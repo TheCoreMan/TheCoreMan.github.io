@@ -1,1 +1,1 @@
-[mrnice.dev](mrnice.dev)
+[mrnice.dev](https://mrnice.dev/)
