@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mrnice.dev</title>
+    <link>https://www.mrnice.dev/</link>
+    <description>Recent content on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 08 Aug 2020 01:12:58 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</title>
+      <link>https://www.mrnice.dev/posts/my-2020-defcon-talk/</link>
+      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/my-2020-defcon-talk/</guid>
+      <description>I recently gave a talk in DefCon SAFEMODE Red Team Village. It was a very interesting and unique experience, here&amp;rsquo;s what I&amp;rsquo;ve learned.
+The talk itself The talk was titled Making Breach &amp;amp; Attack Simulation Accessible and Actionable with Infection Monkey. Watch the recording here:
+  Lectures, COVID, and crowd interaction Giving a live talk is something I very much enjoy doing. 🎤
+Crowd interaction, controlling my voice, gesturing, joking with the audience now and then, answering questions; Honestly, I really like it.</description>
+    </item>
+    
+    <item>
+      <title>Devlog #4 | IT&#39;S ALIIIIIIVE</title>
+      <link>https://www.mrnice.dev/posts/dev-log-4/</link>
+      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-4/</guid>
+      <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
+ “The test of the machine is the satisfaction it gives you. There isn&amp;rsquo;t any other test. If the machine produces tranquility it&amp;rsquo;s right. If it disturbs you it&amp;rsquo;s wrong until either the machine or your mind is changed.”
+― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</description>
+    </item>
+    
+    <item>
+      <title>The Impact of Open Source on Security - Q&amp;A</title>
+      <link>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</link>
+      <pubDate>Thu, 11 Jun 2020 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
+      <link>https://www.mrnice.dev/posts/dev-log-3/</link>
+      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-3/</guid>
+      <description>“Today I have grown taller from walking with the trees.”
+― Karle Wilson Baker
+ Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
+ Why do we need a level browser?</description>
+    </item>
+    
+    <item>
+      <title>basic-1</title>
+      <link>https://www.mrnice.dev/levels/basic-1/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/basic-1/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>basic-2</title>
+      <link>https://www.mrnice.dev/levels/basic-2/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/basic-2/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>clone</title>
+      <link>https://www.mrnice.dev/levels/clone/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/clone/</guid>
+      <description>Welcome to make-git-better CTF 🚩
+ Notes for beginners  🧱 CTF structure The level browser 🤔 Unsure what to do?  ▶ I am ready to play  Connect to the game server Clone the repository  🧩 Hints  Notes for beginners 🧱 CTF structure This CTF, like most other CTFs, is separated into levels. You start at the &amp;ldquo;clone&amp;rdquo; level (where you are right now), and try to finish it.</description>
+    </item>
+    
+    <item>
+      <title>hooks-1</title>
+      <link>https://www.mrnice.dev/levels/hooks-1/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/hooks-1/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>hooks-2</title>
+      <link>https://www.mrnice.dev/levels/hooks-2/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/hooks-2/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>log-1</title>
+      <link>https://www.mrnice.dev/levels/log-1/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/log-1/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>log-2</title>
+      <link>https://www.mrnice.dev/levels/log-2/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/log-2/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>log-3</title>
+      <link>https://www.mrnice.dev/levels/log-3/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/log-3/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>log-4</title>
+      <link>https://www.mrnice.dev/levels/log-4/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/log-4/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>log-5</title>
+      <link>https://www.mrnice.dev/levels/log-5/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/log-5/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>merge-1</title>
+      <link>https://www.mrnice.dev/levels/merge-1/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/merge-1/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>merge-2</title>
+      <link>https://www.mrnice.dev/levels/merge-2/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/merge-2/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>merge-3</title>
+      <link>https://www.mrnice.dev/levels/merge-3/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/merge-3/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>merge-4</title>
+      <link>https://www.mrnice.dev/levels/merge-4/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/merge-4/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>merge-5</title>
+      <link>https://www.mrnice.dev/levels/merge-5/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/merge-5/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+    <item>
+      <title>rebase-1</title>
+      <link>https://www.mrnice.dev/levels/rebase-1/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/rebase-1/</guid>
+      <description>var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.</description>
+    </item>
+    
+  </channel>
+</rss>

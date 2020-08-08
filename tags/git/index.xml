@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/git/</link>
+    <description>Recent content in git on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Jul 2020 18:53:26 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Devlog #4 | IT&#39;S ALIIIIIIVE</title>
+      <link>https://www.mrnice.dev/posts/dev-log-4/</link>
+      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-4/</guid>
+      <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
+ “The test of the machine is the satisfaction it gives you. There isn&amp;rsquo;t any other test. If the machine produces tranquility it&amp;rsquo;s right. If it disturbs you it&amp;rsquo;s wrong until either the machine or your mind is changed.”
+― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</description>
+    </item>
+    
+    <item>
+      <title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
+      <link>https://www.mrnice.dev/posts/dev-log-3/</link>
+      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-3/</guid>
+      <description>“Today I have grown taller from walking with the trees.”
+― Karle Wilson Baker
+ Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
+ Why do we need a level browser?</description>
+    </item>
+    
+    <item>
+      <title>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</title>
+      <link>https://www.mrnice.dev/posts/dev-log-2/</link>
+      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-2/</guid>
+      <description>Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+It only took us three development logs to start writing code. So fast! /s
+ The first step was doing it manually, once 👨🏽‍🏭⚒  Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server  Starting to automate 🤖  Generating the pre-receive hook automatically 🤖 I guess I&amp;rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one  Parsing game-config.</description>
+    </item>
+    
+    <item>
+      <title>Devlog #1 | The best-laid plans of mice and men</title>
+      <link>https://www.mrnice.dev/posts/dev-log-1/</link>
+      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-1/</guid>
+      <description>Last time we talked a lot about the WHY. This post is all about the HOW.
+ If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first  Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?</description>
+    </item>
+    
+    <item>
+      <title>Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)</title>
+      <link>https://www.mrnice.dev/posts/dev-log-0/</link>
+      <pubDate>Sat, 11 Apr 2020 14:00:45 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-0/</guid>
+      <description>A Devlog? Yes.
+ A Devlog? Why?!  I&amp;rsquo;m trying to save a side project from dying I&amp;rsquo;m inspired by someone else Tom Randell and Yahtzee Croshaw Uncle Bob Seems like a fun thing to try  What now?  The project The devlog   Why?! I&amp;rsquo;m trying to save a side project from dying I have a cool side project called make-git-better. It&amp;rsquo;s a CTF-type challenge which is meant to teach you git.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>toml on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/toml/</link>
+    <description>Recent content in toml on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 May 2020 20:20:31 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/tags/toml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</title>
+      <link>https://www.mrnice.dev/posts/dev-log-2/</link>
+      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-2/</guid>
+      <description>Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+It only took us three development logs to start writing code. So fast! /s
+ The first step was doing it manually, once 👨🏽‍🏭⚒  Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server  Starting to automate 🤖  Generating the pre-receive hook automatically 🤖 I guess I&amp;rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one  Parsing game-config.</description>
+    </item>
+    
+  </channel>
+</rss>

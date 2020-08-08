@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>requirements on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/requirements/</link>
+    <description>Recent content in requirements on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 May 2020 18:02:38 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/tags/requirements/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Devlog #1 | The best-laid plans of mice and men</title>
+      <link>https://www.mrnice.dev/posts/dev-log-1/</link>
+      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-1/</guid>
+      <description>Last time we talked a lot about the WHY. This post is all about the HOW.
+ If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first  Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?</description>
+    </item>
+    
+  </channel>
+</rss>

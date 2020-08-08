@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/</link>
+    <description>Recent content in Tags on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 08 Aug 2020 01:12:58 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>musings</title>
+      <link>https://www.mrnice.dev/tags/musings/</link>
+      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/musings/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open-source</title>
+      <link>https://www.mrnice.dev/tags/open-source/</link>
+      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://www.mrnice.dev/tags/security/</link>
+      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ctf</title>
+      <link>https://www.mrnice.dev/tags/ctf/</link>
+      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devlog</title>
+      <link>https://www.mrnice.dev/tags/devlog/</link>
+      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/devlog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://www.mrnice.dev/tags/git/</link>
+      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithms</title>
+      <link>https://www.mrnice.dev/tags/algorithms/</link>
+      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://www.mrnice.dev/tags/rust/</link>
+      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://www.mrnice.dev/tags/docker/</link>
+      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>toml</title>
+      <link>https://www.mrnice.dev/tags/toml/</link>
+      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/toml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>design</title>
+      <link>https://www.mrnice.dev/tags/design/</link>
+      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>requirements</title>
+      <link>https://www.mrnice.dev/tags/requirements/</link>
+      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/requirements/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mitre-attack</title>
+      <link>https://www.mrnice.dev/tags/mitre-attack/</link>
+      <pubDate>Mon, 27 Apr 2020 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/mitre-attack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://www.mrnice.dev/tags/aws/</link>
+      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud</title>
+      <link>https://www.mrnice.dev/tags/cloud/</link>
+      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.mrnice.dev/tags/python/</link>
+      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>https://www.mrnice.dev/tags/testing/</link>
+      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://www.mrnice.dev/tags/linux/</link>
+      <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>meta</title>
+      <link>https://www.mrnice.dev/tags/meta/</link>
+      <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/meta/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bandit</title>
+      <link>https://www.mrnice.dev/tags/bandit/</link>
+      <pubDate>Mon, 02 Mar 2020 21:57:03 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/bandit/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

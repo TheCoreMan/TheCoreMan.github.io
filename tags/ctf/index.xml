@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ctf on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/ctf/</link>
+    <description>Recent content in ctf on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Jul 2020 18:53:26 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Devlog #4 | IT&#39;S ALIIIIIIVE</title>
+      <link>https://www.mrnice.dev/posts/dev-log-4/</link>
+      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-4/</guid>
+      <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
+ “The test of the machine is the satisfaction it gives you. There isn&amp;rsquo;t any other test. If the machine produces tranquility it&amp;rsquo;s right. If it disturbs you it&amp;rsquo;s wrong until either the machine or your mind is changed.”
+― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</description>
+    </item>
+    
+    <item>
+      <title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
+      <link>https://www.mrnice.dev/posts/dev-log-3/</link>
+      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-3/</guid>
+      <description>“Today I have grown taller from walking with the trees.”
+― Karle Wilson Baker
+ Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
+ Why do we need a level browser?</description>
+    </item>
+    
+    <item>
+      <title>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</title>
+      <link>https://www.mrnice.dev/posts/dev-log-2/</link>
+      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-2/</guid>
+      <description>Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+It only took us three development logs to start writing code. So fast! /s
+ The first step was doing it manually, once 👨🏽‍🏭⚒  Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server  Starting to automate 🤖  Generating the pre-receive hook automatically 🤖 I guess I&amp;rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one  Parsing game-config.</description>
+    </item>
+    
+    <item>
+      <title>Devlog #1 | The best-laid plans of mice and men</title>
+      <link>https://www.mrnice.dev/posts/dev-log-1/</link>
+      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-1/</guid>
+      <description>Last time we talked a lot about the WHY. This post is all about the HOW.
+ If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first  Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?</description>
+    </item>
+    
+    <item>
+      <title>Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)</title>
+      <link>https://www.mrnice.dev/posts/dev-log-0/</link>
+      <pubDate>Sat, 11 Apr 2020 14:00:45 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-0/</guid>
+      <description>A Devlog? Yes.
+ A Devlog? Why?!  I&amp;rsquo;m trying to save a side project from dying I&amp;rsquo;m inspired by someone else Tom Randell and Yahtzee Croshaw Uncle Bob Seems like a fun thing to try  What now?  The project The devlog   Why?! I&amp;rsquo;m trying to save a side project from dying I have a cool side project called make-git-better. It&amp;rsquo;s a CTF-type challenge which is meant to teach you git.</description>
+    </item>
+    
+    <item>
+      <title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
+      <link>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</link>
+      <pubDate>Mon, 02 Mar 2020 21:57:03 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</guid>
+      <description>See all the bandit writeups for the other levels.
+Election day? More like CTF day 🚩
+ SPOILER ALERT Level 22 -&amp;gt; Level 23  cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password  Level 23 -&amp;gt; Level 24 Level 24 -&amp;gt; Level 25 Level 25 -&amp;gt; Level 26 Level 26 -&amp;gt; Level 27 Level 27 -&amp;gt; Level 28 Level 28 -&amp;gt; Level 29 Level 29 -&amp;gt; Level 30 Level 30 -&amp;gt; Level 31  Bonus round - what&amp;rsquo;s up with the secret tag  Level 31 -&amp;gt; Level 32  Bonus round - how did the server respond with a message  Level 32 -&amp;gt; Level 33 Level 33 -&amp;gt; Level 34  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.</description>
+    </item>
+    
+    <item>
+      <title>OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</title>
+      <link>https://www.mrnice.dev/posts/bandit-ctf-writeup-2/</link>
+      <pubDate>Sat, 15 Feb 2020 21:57:03 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/bandit-ctf-writeup-2/</guid>
+      <description>See all the bandit writeups for the other levels.
+Coffee? ✅
+Workout? ✅
+Laptops? ✅
+Then let&amp;rsquo;s goooooo
+ SPOILER ALERT Level 13 -&amp;gt; Level 14 Level 14 -&amp;gt; Level 15 Level 15 -&amp;gt; Level 16 Level 16 -&amp;gt; Level 17 Level 17 -&amp;gt; Level 18 Level 18 -&amp;gt; Level 19 Level 19 -&amp;gt; Level 20 Level 20 -&amp;gt; Level 21 Level 21 -&amp;gt; Level 22 Level 22 and beyond  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.</description>
+    </item>
+    
+    <item>
+      <title>OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</title>
+      <link>https://www.mrnice.dev/posts/bandit-ctf-writeup/</link>
+      <pubDate>Sat, 01 Feb 2020 13:23:19 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/bandit-ctf-writeup/</guid>
+      <description>See all the bandit writeups for the other levels.
+It&amp;rsquo;s a lovely, lazy Saturday. Not much to do. We&amp;rsquo;re already after our morning workout, had some nice breakfast, ☕ in hand, Spotify on point with some chill vibes (Neotokyo by Ed Harrison). So my wife and I decided to try to solve OverTheWire&amp;rsquo;s Bandit CTF together and write up what we&amp;rsquo;ve learned.
+ SPOILER ALERT Level 0 Level 0 -&amp;gt; Level 1 Level 1 -&amp;gt; Level 2 Level 2 -&amp;gt; Level 3 Level 3 -&amp;gt; Level 4 Level 4 -&amp;gt; Level 5 Level 5 -&amp;gt; Level 6 Level 6 -&amp;gt; Level 7 Level 7 -&amp;gt; Level 8 Level 8 -&amp;gt; Level 9 Level 9 -&amp;gt; Level 10 Level 10 -&amp;gt; Level 11 Level 11 -&amp;gt; Level 12 Level 12 -&amp;gt; Level 13 Level 13 and beyond  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.</description>
+    </item>
+    
+  </channel>
+</rss>

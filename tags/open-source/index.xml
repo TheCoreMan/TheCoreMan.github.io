@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>open-source on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/open-source/</link>
+    <description>Recent content in open-source on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 08 Aug 2020 01:12:58 +0300</lastBuildDate>
+    
+	<atom:link href="https://www.mrnice.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</title>
+      <link>https://www.mrnice.dev/posts/my-2020-defcon-talk/</link>
+      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/my-2020-defcon-talk/</guid>
+      <description>I recently gave a talk in DefCon SAFEMODE Red Team Village. It was a very interesting and unique experience, here&amp;rsquo;s what I&amp;rsquo;ve learned.
+The talk itself The talk was titled Making Breach &amp;amp; Attack Simulation Accessible and Actionable with Infection Monkey. Watch the recording here:
+  Lectures, COVID, and crowd interaction Giving a live talk is something I very much enjoy doing. 🎤
+Crowd interaction, controlling my voice, gesturing, joking with the audience now and then, answering questions; Honestly, I really like it.</description>
+    </item>
+    
+    <item>
+      <title>The Impact of Open Source on Security - Q&amp;A</title>
+      <link>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</link>
+      <pubDate>Thu, 11 Jun 2020 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test your ATT&amp;CK before the attack with Infection Monkey</title>
+      <link>https://www.mrnice.dev/posts/monkey-mitre/</link>
+      <pubDate>Mon, 27 Apr 2020 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/monkey-mitre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Monkey See, Centra do: How to Assess Your Zero Trust Status and Mitigate</title>
+      <link>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</link>
+      <pubDate>Wed, 26 Feb 2020 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Infection Monkey for Zero Trust</title>
+      <link>https://www.mrnice.dev/posts/monkey-zero-trust/</link>
+      <pubDate>Tue, 29 Oct 2019 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/monkey-zero-trust/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
