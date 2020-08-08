@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)">
+<meta itemprop="description" content="A Devlog? Yes.
+ A Devlog? Why?!  I&rsquo;m trying to save a side project from dying I&rsquo;m inspired by someone else Tom Randell and Yahtzee Croshaw Uncle Bob Seems like a fun thing to try  What now?  The project The devlog   Why?! I&rsquo;m trying to save a side project from dying I have a cool side project called make-git-better. It&rsquo;s a CTF-type challenge which is meant to teach you git.">
+<meta itemprop="datePublished" content="2020-04-11T14:00:45+03:00" />
+<meta itemprop="dateModified" content="2020-04-11T14:00:45+03:00" />
+<meta itemprop="wordCount" content="948">
+<meta itemprop="image" content="https://i0.wp.com/teacherspitstop.com/wp-content/uploads/2019/08/writing.png">
+
+
+
+<meta itemprop="keywords" content="devlog,git,ctf," />
+<meta property="og:title" content="Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)" />
+<meta property="og:description" content="A Devlog? Yes.
+ A Devlog? Why?!  I&rsquo;m trying to save a side project from dying I&rsquo;m inspired by someone else Tom Randell and Yahtzee Croshaw Uncle Bob Seems like a fun thing to try  What now?  The project The devlog   Why?! I&rsquo;m trying to save a side project from dying I have a cool side project called make-git-better. It&rsquo;s a CTF-type challenge which is meant to teach you git." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-0/" />
+<meta property="og:image" content="https://i0.wp.com/teacherspitstop.com/wp-content/uploads/2019/08/writing.png" />
+<meta property="article:published_time" content="2020-04-11T14:00:45+03:00" />
+<meta property="article:modified_time" content="2020-04-11T14:00:45+03:00" />
+
+<meta name="twitter:title" content="Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ShayNehmad">
+<meta name="twitter:image" content="https://i0.wp.com/teacherspitstop.com/wp-content/uploads/2019/08/writing.png">
+
+<meta name="twitter:creator" content="@ShayNehmad">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://i0.wp.com/teacherspitstop.com/wp-content/uploads/2019/08/writing.png');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/ShayNehmad" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 11, 2020</span></div>
+				<h1>Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="a-devlog">A Devlog?<a href="#a-devlog" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Yes.</p>
+
+<ul>
+<li><a href="#a-devlog">A Devlog?</a></li>
+<li><a href="#why">Why?!</a>
+
+<ul>
+<li><a href="#im-trying-to-save-a-side-project-from-dying">I&rsquo;m trying to save a side project from dying</a></li>
+<li><a href="#im-inspired-by-someone-else">I&rsquo;m inspired by someone else</a></li>
+<li><a href="#tom-randell-and-yahtzee-croshaw">Tom Randell and Yahtzee Croshaw</a></li>
+<li><a href="#uncle-bob">Uncle Bob</a></li>
+<li><a href="#seems-like-a-fun-thing-to-try">Seems like a fun thing to try</a></li>
+</ul></li>
+<li><a href="#what-now">What now?</a>
+
+<ul>
+<li><a href="#the-project">The project</a></li>
+<li><a href="#the-devlog">The devlog</a></li>
+</ul></li>
+</ul>
+
+<h2 id="why">Why?!<a href="#why" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="i-m-trying-to-save-a-side-project-from-dying">I&rsquo;m trying to save a side project from dying<a href="#i-m-trying-to-save-a-side-project-from-dying" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>I have a cool side project called <a href="/make-git-better-ctf">make-git-better</a>. It&rsquo;s a CTF-type challenge which is meant to teach you <code>git</code>. Right now, the project is teetering in the twilight zone of side projects. On one hand - I like it and it&rsquo;s moderately successful (more than 30 people played it). On the other hand, I whipped up the first version quickly and with pretty much reckless abandon.</p>
+
+<p><em>And it shows</em>.</p>
+
+<p>The setup is all wrong. There&rsquo;s code duplication of the worst kind. Testing it is a nightmare. Both times I tried actually doing the CTF as part of a workshop, technical issues ruined almost everything, and there was no backup plan. I&rsquo;ve gotten a lot of feedback (which is great!), but even thinking about implementing it in the current situation makes me anxious, since everything is super rigid and slow. So it&rsquo;s time for THE GREAT REFACTOR IN THE SKY.</p>
+
+<p><img src="https://miro.medium.com/max/800/1*k5c4zVotUhTunD6UwrzJyg.jpeg" alt="uncle bob agrees" /></p>
+
+<p>Maybe blogging and sharing this will make me disciplined enough to work on this project until it&rsquo;s actually done.</p>
+
+<p>And where did that idea come from?</p>
+
+<h3 id="i-m-inspired-by-someone-else">I&rsquo;m inspired by someone else<a href="#i-m-inspired-by-someone-else" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<h4 id="tom-randell-and-yahtzee-croshaw">Tom Randell and Yahtzee Croshaw<a href="#tom-randell-and-yahtzee-croshaw" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>Recently, YouTube&rsquo;s algorithm ingeniously offered me to watch this video:</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/uNfxb4FF6wE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>It was HILARIOUS. And also super interesting, even though I&rsquo;m not an artist AT ALL. As one does, I look into Tom&rsquo;s channel and sorted the videos by popularity. And I really liked the vibe (the other videos are a lot more &ldquo;developer&rdquo;-ish). Seems like a great way to keep up a project alive and keep the work social and interesting. Great way to self-commit, by not actually &ldquo;self&rdquo; committing. Tom&rsquo;s pretty funny as well which is helpful:</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">big yes <a href="https://t.co/O6RBDmu3ev">pic.twitter.com/O6RBDmu3ev</a></p>&mdash; randall (@thomasjrandall) <a href="https://twitter.com/thomasjrandall/status/1218322978712125440?ref_src=twsrc%5Etfw">January 18, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>After that, I fell into an even cooler rabbit-hole: Yahtzee Croshaw&rsquo;s 12 games in 12 months dev diary.</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/dUnM3lPMb1Q" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>Yahtzee, who&rsquo;s known for his rather direct manner of speaking had an amazing observation in the first minute of the video which kicked me into first gear:</p>
+
+<blockquote>
+<p>I&rsquo;m a creative. [&hellip;] But if there&rsquo;s one that I can&rsquo;t stand, it&rsquo;s people who claim to be creative who never finish shit. Starting projects doesn&rsquo;t count; if all you do is start projects and eventually give up on them, you have as much right to call yourself a creative as someone who spent the equivalent time in a wooden box BEING DEAD.</p>
+</blockquote>
+
+<p>With that kick in the ass from Yahtzee, there&rsquo;s no way I&rsquo;ll fail to finish this project. <em>/s</em></p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;ve finished the Dev Diary 12 games in 12 months challenge! But like any proud parent, it&#39;s important to me to play favourites, so please vote on yours. <a href="https://t.co/bDnRenMx4N">https://t.co/bDnRenMx4N</a></p>&mdash; Yahtzee Croshaw (@YahtzeeCroshaw) <a href="https://twitter.com/YahtzeeCroshaw/status/1250097732963807232?ref_src=twsrc%5Etfw">April 14, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>I&rsquo;ve thought about doing a devlog/dev diary/dev live streaming for a while as part of my work on <a href="https://infectionmonkey.com">Infection Monkey</a>, but that didn&rsquo;t really come to fruition. I think that this kind of thing won&rsquo;t really thrive in a commercial/corporate ecosystem. It has to come from the heart.</p>
+
+<h4 id="uncle-bob">Uncle Bob<a href="#uncle-bob" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>I&rsquo;m reading <a href="https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a>, written by the most influential software writer in the world, <a href="https://twitter.com/unclebobmartin">Uncle Bob</a>. This book is all about professionalism. And I think that it&rsquo;s very difficult to be professional alone. This devlog is the mission log that will make sure I&rsquo;m staying professional to myself and to the project. It&rsquo;s about professional hygiene, professional practising. It&rsquo;s the warmup, it&rsquo;s the stone to sharp on.</p>
+
+<p>In short - it&rsquo;s a tool.</p>
+
+<h3 id="seems-like-a-fun-thing-to-try">Seems like a fun thing to try<a href="#seems-like-a-fun-thing-to-try" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Yeah. Not that complicated of a reason, but a good one. If this will make me enjoy the process more, then why shouldn&rsquo;t I try it? And how can I know if I won&rsquo;t try?</p>
+
+<h2 id="what-now">What now?<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Good question. Let&rsquo;s plan:</p>
+
+<h3 id="the-project">The project<a href="#the-project" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>The plan for make-git-better 2 is to:</p>
+
+<ol>
+<li>Throw this plan into a project board on GitHub or Trello or something.</li>
+<li>Set up the development so it&rsquo;s a nice breeze and not a hellish nightmare. This will be a pretty big DevOps/IT kind of thing: write the challenge&rsquo;s levels using some sort of fun and easy configuration (it should be a graph! not a line.), deploy to docker, connect it to <a href="https://github.com/OverTheWireOrg/docker-tcp-switchboard">docker-tcp-switchboard</a>. Unsure if there&rsquo;s going to be a companion site as well - probably yes.</li>
+<li>Create some content for the levels. My current leading &ldquo;content&rdquo; world is to make it feel like a text-based adventure/RPG kind of thing.</li>
+<li>Crack out a ton of levels. I have about 12 now, and I have plans for 30. If the development is easy and I have enough content, this part should be fun and easy.</li>
+<li>Deploy and have a test run with a few people.</li>
+<li>Bask in glory for the rest of time.</li>
+</ol>
+
+<h3 id="the-devlog">The devlog<a href="#the-devlog" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>My plan is to have this devlog be a scratchpad next to me as I&rsquo;m working on this project. This makes me talk &ldquo;out loud&rdquo; in my head about it, which is much nicer and will also force me to make conscious decisions and become a better developer.</p>
+
+<p><img src="https://cdn.someecards.com/someecards/usercards/im-not-crazy-the-voices-in-my-head-told-me-so-520c3.png" alt="comedy graveyard" /></p>
+
+<p>I don&rsquo;t know when&rsquo;s the next time I&rsquo;ll work on this project. Honestly, it should be before May, when I have another workshop planned: hopefully, this won&rsquo;t peter out as well. See you soon.</p>
+
+<p><em>Writer&rsquo;s note: I started drafting this devlog in early April, but only published it in early May, when I had devlog #1 already drafted. Guess it didn&rsquo;t peter out</em> ¯\<em>(ツ)</em>/¯</p>
+
+<p><em><a href="https://www.mrnice.dev/tags/devlog/">You can follow this devlog here.</a></em></p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/bandit-ctf-writeup-3/">OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup-2/">OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup/">OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>948 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-11 14:00 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/monkey-mitre/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Test your ATT&amp;CK before the attack with Infection Monkey</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Testing AWS Lambda and API Gateway</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

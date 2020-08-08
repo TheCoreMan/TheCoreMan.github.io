@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Make Git Better CTF">
+<meta itemprop="description" content="TLDR - where do I start What is this? Cool, where do I sign up? My git workshop ⚒ Prerequisites  Knowledge Installations  The game server 🔨 Rules Cool, so where do I begin? Hall of Fame 🏆 The challenge is open source  TLDR - where do I start Click right here to start. Good luck!  What is this? A Capture-The-Flag challenge (what&rsquo;s that?), aimed at intermediate git users, that revolves around git.">
+<meta itemprop="datePublished" content="2020-02-23T16:57:48+02:00" />
+<meta itemprop="dateModified" content="2020-02-23T16:57:48+02:00" />
+<meta itemprop="wordCount" content="743">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="Make Git Better CTF" />
+<meta property="og:description" content="TLDR - where do I start What is this? Cool, where do I sign up? My git workshop ⚒ Prerequisites  Knowledge Installations  The game server 🔨 Rules Cool, so where do I begin? Hall of Fame 🏆 The challenge is open source  TLDR - where do I start Click right here to start. Good luck!  What is this? A Capture-The-Flag challenge (what&rsquo;s that?), aimed at intermediate git users, that revolves around git." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/ctf/" />
+<meta property="article:published_time" content="2020-02-23T16:57:48+02:00" />
+<meta property="article:modified_time" content="2020-02-23T16:57:48+02:00" />
+
+<meta name="twitter:title" content="Make Git Better CTF">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ShayNehmad">
+<meta name="twitter:image" content="https://i.imgur.com/ROzkHYp.png">
+
+<meta name="twitter:creator" content="@ShayNehmad">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Make Git Better CTF</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/ShayNehmad" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>Make Git Better CTF</h1>
+		<div class="content">
+			
+
+<p><img src="https://i.imgur.com/yc8VW3J.png" alt="make-git-better-ctf-logo" /></p>
+
+<ul>
+<li><a href="#tldr-where-do-i-start">TLDR - where do I start</a></li>
+<li><a href="#what-is-this">What is this?</a></li>
+<li><a href="#cool-where-do-i-sign-up">Cool, where do I sign up?</a></li>
+<li><a href="#my-git-workshop">My <code>git</code> workshop ⚒</a></li>
+<li><a href="#prerequisites">Prerequisites</a>
+
+<ul>
+<li><a href="#knowledge">Knowledge</a></li>
+<li><a href="#installations">Installations</a></li>
+</ul></li>
+<li><a href="#the-game-server">The game server 🔨</a></li>
+<li><a href="#rules">Rules</a></li>
+<li><a href="#cool-so-where-do-i-begin">Cool, so where do I begin?</a></li>
+<li><a href="#hall-of-fame">Hall of Fame 🏆</a></li>
+<li><a href="#the-challenge-is-open-source">The challenge is open source</a></li>
+</ul>
+
+<h2 id="tldr-where-do-i-start">TLDR - where do I start<a href="#tldr-where-do-i-start" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="click-right-here-to-start-levels-clone-good-luck-omit-in-toc"><a href="/levels/clone"><strong>Click right here to start.</strong></a> Good luck! <!-- omit in toc --><a href="#click-right-here-to-start-levels-clone-good-luck-omit-in-toc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<h2 id="what-is-this">What is this?<a href="#what-is-this" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>A Capture-The-Flag challenge (<a href="https://ctfd.io/whats-a-ctf/">what&rsquo;s that?</a>), aimed at intermediate <code>git</code> users, that revolves around <code>git</code>. You advance in the challenge by using <code>git</code> commands to get the flag that unlocks the next stage.</p>
+
+<h2 id="cool-where-do-i-sign-up">Cool, where do I sign up?<a href="#cool-where-do-i-sign-up" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>🈚 The challenge is totally free and open-source! No signup, payment, or bla-bla required. I do recommend <a href="https://www.mrnice.dev/about/#nc-shay-nehmad-443">contacting me</a> if you plan to try the challenge.</p>
+
+<h2 id="my-git-workshop">My <code>git</code> workshop ⚒<a href="#my-git-workshop" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>This CTF is a part of a <code>git</code> workshop I&rsquo;ve conducted multiple times. Some information about the workshop:</p>
+
+<ul>
+<li>⌚ Takes around 3 hours.</li>
+<li>📦 Is comprised of:
+
+<ul>
+<li>👨‍🏫 An hour-long active lecture on <code>git</code> internals. The lecture focuses on understanding HOW git works. The goal of the session is to give participantes the self efficacy to solve problems and use advanced features.</li>
+<li>🚩 The challenge itself, with live support from me while participantes are solving the challenge.</li>
+</ul></li>
+<li>📹 Can be conducted on-site or remote with Video Conferencing.</li>
+<li>🌐 Can be conducted in English or Hebrew.</li>
+<li>👩‍🎓👨‍🎓 Works well with up to 10 participates at a time.</li>
+</ul>
+
+<p>If you want the workshop for your organization, <a href="https://www.mrnice.dev/about/#nc-shay-nehmad-443">contact me</a> and let&rsquo;s set it up 🤙</p>
+
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="knowledge">Knowledge<a href="#knowledge" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<ul>
+<li>Basic <code>git</code> knowledge.
+
+<ul>
+<li>If you&rsquo;re a little rusty/unsure, take a look at <a href="https://speakerdeck.com/alicebartlett/git-for-humans">Git for humans</a>.</li>
+</ul></li>
+<li>Basic understanding of <code>Python</code>
+
+<ul>
+<li>just need to be able to read it.</li>
+</ul></li>
+</ul>
+
+<h3 id="installations">Installations<a href="#installations" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>All you need to play the challenge is:</p>
+
+<ul>
+<li>A web browser, like <a href="https://www.google.com/chrome/">Chrome</a>.</li>
+<li>An SSH client.</li>
+<li>A terminal. <em>It&rsquo;s recommended to get a terminal that knows how to render unicode characters correctly - the challenge has some and without one you&rsquo;ll want to</em> (╯°□°）╯︵ ┻━┻)</li>
+</ul>
+
+<p>You probably have all three installed on your machine already.</p>
+
+<h2 id="the-game-server">The game server 🔨<a href="#the-game-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><img src="https://media.giphy.com/media/ge91zAgmwUqLMqiH2c/giphy.gif" alt="box" title="box" /></p>
+
+<p>Here&rsquo;s what you should expect to be installed on the CTF server you&rsquo;re going to log in to.</p>
+
+<ul>
+<li>git 😺</li>
+<li><a href="https://en.wikipedia.org/wiki/Z_shell"><code>zsh</code></a> as the default shell. If you&rsquo;re used to <code>bash</code> - don&rsquo;t worry, it&rsquo;s very similar.</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh">oh-my-zsh</a> with <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git">git plugin</a>.
+
+<ul>
+<li>Some useful aliases (<a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git#aliases">see the full list here</a>):
+
+<ul>
+<li><code>gst</code> 🔛 <code>git status</code></li>
+<li><code>gco</code> 🔛 <code>git checkout</code></li>
+<li><code>gaa</code> 🔛 <code>git add --all</code></li>
+<li><code>gcmsg</code> 🔛 <code>git commit -m</code></li>
+<li><code>gp</code> 🔛 <code>git push</code></li>
+</ul></li>
+</ul></li>
+<li><a href="https://github.com/junegunn/fzf">fzf</a> with default <code>zsh</code> bindings.
+
+<ul>
+<li><code>Ctrl</code>+<code>R</code> for fuzzy history matching.</li>
+<li><code>Ctrl</code>+<code>T</code> for fuzzy file finding.</li>
+</ul></li>
+<li>All your favorite text editors ✍
+
+<ul>
+<li><code>vim</code> is configured as the default editor. You can change this by running <code>git config --global core.editor &quot;nano&quot;</code>.</li>
+<li><code>emacs</code>.</li>
+<li><code>nano</code>.</li>
+</ul></li>
+</ul>
+
+<p>Everything else you need to solve the CTF is installed on the machine: no need for any other external tools.</p>
+
+<h2 id="rules">Rules<a href="#rules" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>These rules are 100% based on the honor system 🤝🏽</p>
+
+<ul>
+<li>Have fun 😃 we&rsquo;re all here to learn.</li>
+<li>Don&rsquo;t look at any of the open source code that builds the CTF. <strong>THIS WILL RUIN THE CHALLENGE FOR YOU.</strong></li>
+<li>This challenge will not require brute-forcing to solve - the solution, once you got it, should be clear.</li>
+<li>You are <strong>most welcome</strong> to post write-ups and solutions - I 100% support you in doing so. Please mark the write-up clearly with a <strong>spoiler warning</strong> and try to avoid posting the actual flags (you can check out <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/">one of my writeups</a> as an example).</li>
+<li>If you&rsquo;re stuck and you need help, feel free to contact me! There&rsquo;s no point in getting frustrated about this challenge - it should be fun and educational, and not too hard.</li>
+</ul>
+
+<h2 id="cool-so-where-do-i-begin">Cool, so where do I begin?<a href="#cool-so-where-do-i-begin" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><a href="/levels/clone">Right here, good luck</a>.</p>
+
+<h2 id="hall-of-fame">Hall of Fame 🏆<a href="#hall-of-fame" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><a href="../ctf-hof">Read here to get a list of everyone who&rsquo;s completed the challenge!</a></p>
+
+<h2 id="the-challenge-is-open-source">The challenge is open source<a href="#the-challenge-is-open-source" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>The challenge is open-source and is licensed under <a href="https://github.com/ShayNehmad/make-git-better-2/blob/dev/LICENSE">Creative Commons Attribution 4.0 International</a>.</p>
+
+<p>You can read about how the challenge was built in my <a href="https://www.mrnice.dev/tags/devlog/">development log blog post series</a>. The challenge is made up of two (main) repositories:</p>
+
+<ul>
+<li><a href="https://github.com/ShayNehmad/make-git-better-2">ShayNehmad/make-git-better-2</a> contains all the code required to build the challenge, the level checkers, the web content and the tests.</li>
+<li><a href="https://github.com/ShayNehmad/make-git-better-levels">ShayNehmad/make-git-better-levels</a> contains the repo the players will clone and play against in the actual game.</li>
+</ul>
+
+<p>If you want to contribute new levels you can refer to the <a href="https://github.com/ShayNehmad/make-git-better-2/blob/dev/README.md">README</a> to get started. I recommend you open your own fork of the two repositores and talk to me about your plans <strong>before</strong> you start working.</p>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

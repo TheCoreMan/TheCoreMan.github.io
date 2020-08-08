@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34">
+<meta itemprop="description" content="See all the bandit writeups for the other levels.
+Election day? More like CTF day 🚩
+ SPOILER ALERT Level 22 -&gt; Level 23  cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password  Level 23 -&gt; Level 24 Level 24 -&gt; Level 25 Level 25 -&gt; Level 26 Level 26 -&gt; Level 27 Level 27 -&gt; Level 28 Level 28 -&gt; Level 29 Level 29 -&gt; Level 30 Level 30 -&gt; Level 31  Bonus round - what&rsquo;s up with the secret tag  Level 31 -&gt; Level 32  Bonus round - how did the server respond with a message  Level 32 -&gt; Level 33 Level 33 -&gt; Level 34  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.">
+<meta itemprop="datePublished" content="2020-03-02T21:57:03+02:00" />
+<meta itemprop="dateModified" content="2020-03-02T21:57:03+02:00" />
+<meta itemprop="wordCount" content="2489">
+
+
+
+<meta itemprop="keywords" content="linux,ctf,writeups,bandit,overthewire," />
+<meta property="og:title" content="OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34" />
+<meta property="og:description" content="See all the bandit writeups for the other levels.
+Election day? More like CTF day 🚩
+ SPOILER ALERT Level 22 -&gt; Level 23  cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password  Level 23 -&gt; Level 24 Level 24 -&gt; Level 25 Level 25 -&gt; Level 26 Level 26 -&gt; Level 27 Level 27 -&gt; Level 28 Level 28 -&gt; Level 29 Level 29 -&gt; Level 30 Level 30 -&gt; Level 31  Bonus round - what&rsquo;s up with the secret tag  Level 31 -&gt; Level 32  Bonus round - how did the server respond with a message  Level 32 -&gt; Level 33 Level 33 -&gt; Level 34  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/bandit-ctf-writeup-3/" />
+<meta property="article:published_time" content="2020-03-02T21:57:03+02:00" />
+<meta property="article:modified_time" content="2020-03-02T21:57:03+02:00" />
+
+<meta name="twitter:title" content="OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ShayNehmad">
+<meta name="twitter:image" content="https://i.imgur.com/ROzkHYp.png">
+
+<meta name="twitter:creator" content="@ShayNehmad">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/ShayNehmad" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 2, 2020</span></div>
+				<h1>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</h1>
+			</header>
+			<div class="content">
+				
+
+<p><strong>See <a href="https://www.mrnice.dev/tags/bandit/">all the bandit writeups</a> for the other levels.</strong></p>
+
+<p>Election day? More like CTF day 🚩</p>
+
+<ul>
+<li><a href="#spoiler-alert">SPOILER ALERT</a></li>
+<li><a href="#level-22---level-23">Level 22 -&gt; Level 23</a>
+
+<ul>
+<li><a href="#cron-breakdown"><code>cron</code> breakdown</a></li>
+<li><a href="#script-breakdown">Script breakdown</a></li>
+<li><a href="#shebang">Shebang</a></li>
+<li><a href="#first-variable---myname">First variable - myname</a></li>
+<li><a href="#second-variable---mytarget">Second variable - mytarget</a></li>
+<li><a href="#writing-the-password">Writing the password</a></li>
+</ul></li>
+<li><a href="#level-23---level-24">Level 23 -&gt; Level 24</a></li>
+<li><a href="#level-24---level-25">Level 24 -&gt; Level 25</a></li>
+<li><a href="#level-25---level-26">Level 25 -&gt; Level 26</a></li>
+<li><a href="#level-26---level-27">Level 26 -&gt; Level 27</a></li>
+<li><a href="#level-27---level-28">Level 27 -&gt; Level 28</a></li>
+<li><a href="#level-28---level-29">Level 28 -&gt; Level 29</a></li>
+<li><a href="#level-29---level-30">Level 29 -&gt; Level 30</a></li>
+<li><a href="#level-30---level-31">Level 30 -&gt; Level 31</a>
+
+<ul>
+<li><a href="#bonus-round---whats-up-with-the-secret-tag">Bonus round - what&rsquo;s up with the <code>secret</code> tag</a></li>
+</ul></li>
+<li><a href="#level-31---level-32">Level 31 -&gt; Level 32</a>
+
+<ul>
+<li><a href="#bonus-round---how-did-the-server-respond-with-a-message">Bonus round - how did the server respond with a message</a></li>
+</ul></li>
+<li><a href="#level-32---level-33">Level 32 -&gt; Level 33</a></li>
+<li><a href="#level-33---level-34">Level 33 -&gt; Level 34</a></li>
+</ul>
+
+<h2 id="spoiler-alert">SPOILER ALERT<a href="#spoiler-alert" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><strong>THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU</strong>.</p>
+
+<p>So why am I writing it up?</p>
+
+<ol>
+<li>I want to be sure that I understood how I solved the level.</li>
+<li>I want to be sure that I can explain my solution to other people.</li>
+<li>If someone is stuck and wants some help to continue, they can do so quickly.</li>
+</ol>
+
+<p>These challeges can be frustrating. While I think that a little frustration is good (especially in CTFs), I hope this guide will cause someone who was almost discouraged from trying/continuing the challenge to carry on. If you&rsquo;re one of these people - don&rsquo;t give up! You can do this 💪🏽</p>
+
+<p><img src="https://previews.123rf.com/images/lkeskinen/lkeskinen1705/lkeskinen170506216/78174196-spoiler-alert-rubber-stamp.jpg" alt="spoiler alert" /></p>
+
+<p>Also, I will try to avoid posting the passwords. If you do see a password that I forgot to omit please let me know!</p>
+
+<h2 id="level-22-level-23">Level 22 -&gt; Level 23<a href="#level-22-level-23" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Like <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/#level-21---level-22">the previous stage</a>, we need to read the <code>cron</code> script to see what&rsquo;s going on.</p>
+
+<p><img src="https://i.imgur.com/EpEQ6cx.png" alt="cronjob23 output" /></p>
+
+<p>This time this script is a little bigger, so let&rsquo;s break it down part by part.</p>
+
+<h3 id="cron-breakdown"><code>cron</code> breakdown<a href="#cron-breakdown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">@reboot bandit23 /usr/bin/cronjob_bandit23.sh  <span class="p">&amp;</span>&gt; /dev/null
+* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  <span class="p">&amp;</span>&gt; /dev/null</code></pre></div>
+<ul>
+<li><code>@reboot</code>/<code>* * * * *</code>: This part determines the <strong>timing</strong> of the command. So the command will be executed after reboot and every minute.</li>
+<li><code>bandit23</code>: This part determines <strong>which user</strong> will be executing the command.</li>
+<li><code>/usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null</code>: This part is the command itself. It runs the <code>/usr/bin/cronjob_bandit23.sh</code> script and then redirects all output (<code>stdout</code> and <code>stderr</code>) to <code>/dev/null</code>. So what does the script do?</li>
+</ul>
+
+<h3 id="script-breakdown">Script breakdown<a href="#script-breakdown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This part is all about reading and understanding <code>bash</code> scripts, which is a very useful skill to have. So let&rsquo;s take our time with this. When we <code>cat</code> the file, this is what we get:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+<span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Copying passwordfile /etc/bandit_pass/</span><span class="nv">$myname</span><span class="s2"> to /tmp/</span><span class="nv">$mytarget</span><span class="s2">&#34;</span>
+
+cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">$mytarget</span></code></pre></div>
+<p>Scary!</p>
+
+<p><img src="https://media.giphy.com/media/igi0dS20WxPJvroIgW/giphy.gif" alt="scared gif" /></p>
+
+<p>No need to panic. Let&rsquo;s break this down, line by line.</p>
+
+<h4 id="shebang">Shebang<a href="#shebang" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">#!/bin/bash</span></code></pre></div>
+<p>This line is called the <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang line</a> - it tells the program loader which program should run this text file. In our case, this is a <code>bash</code> file.</p>
+
+<h4 id="first-variable-myname">First variable - myname<a href="#first-variable-myname" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span></code></pre></div>
+<p>Here, we see three interesting things: we define a variable called <code>myname</code>, and assign to it the output of the command <code>whoami</code>. <code>whoami</code> prints the current user, and the <code>$()</code> is the POSIX command substitution syntax - that means it executes the command inside <code>$()</code> and pastes back the result of that command.</p>
+
+<p>Let&rsquo;s run <code>whoami</code>, what do we get?</p>
+
+<p><img src="https://i.imgur.com/kXAth1w.png" alt="result of whoami" /></p>
+
+<p>However, the user running this script is actually <code>bandit23</code>, so the value in <code>myname</code> will by <code>bandit23</code>.</p>
+
+<p>Let&rsquo;s continue.</p>
+
+<h4 id="second-variable-mytarget">Second variable - mytarget<a href="#second-variable-mytarget" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+<span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span></code></pre></div>
+<p>Same as before, defining a variable and assigning to it the result of the command inside <code>$()</code>. So what&rsquo;s the command?</p>
+
+<ul>
+<li><code>echo I am user $myname</code>: This part will output the string &ldquo;I am user bandit23&rdquo;. We then pipe this output into&hellip;</li>
+<li><code>md5sum</code>: This command computes the MD5 hash of the input string. If you aren&rsquo;t familiar with hashing functions, <a href="https://en.wikipedia.org/wiki/Hash_function">here&rsquo;s some info</a>. When we run <code>echo hello | md5sum</code>, the output looks like this: <code>b1946ac92492d2347c6235b4d2611184  -</code>. Next, we&rsquo;re piping the output of <code>md5sum</code> into&hellip;</li>
+<li><code>cut -d ' ' -f 1</code>: This command lets us get only parts of the output. The <code>-d</code> flag tells us what&rsquo;s the delimiter between fields and <code>-f</code> tells us which fields to pick (one-based).</li>
+</ul>
+
+<p>Let&rsquo;s run an example to make we we understand this part:</p>
+
+<p><img src="https://i.imgur.com/pq3D3Sk.png" alt="mytarget explanation" /></p>
+
+<p>Now we could calculate the value of the variable <code>mytarget</code>:</p>
+
+<p><img src="https://i.imgur.com/gdMBKOi.png" alt="mytarget value" /></p>
+
+<h4 id="writing-the-password">Writing the password<a href="#writing-the-password" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+<span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Copying passwordfile /etc/bandit_pass/</span><span class="nv">$myname</span><span class="s2"> to /tmp/</span><span class="nv">$mytarget</span><span class="s2">&#34;</span>
+
+cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">$mytarget</span></code></pre></div>
+<p>The script is kind enough to let us know what is happening - it&rsquo;s copying the password (which is what we want) into a file who&rsquo;s name is the value of <code>mytarget</code> (which we know) in the <code>/tmp</code> folder. So all that&rsquo;s left is to read that file:</p>
+
+<p><img src="https://i.imgur.com/IB8xRTP.png" alt="bandit22 win" /></p>
+
+<h2 id="level-23-level-24">Level 23 -&gt; Level 24<a href="#level-23-level-24" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Continuing with the <code>cron</code> scripts, we get:</p>
+
+<p><img src="https://i.imgur.com/10TOQ2M.png" alt="bandit23 start" /></p>
+
+<p>This script executes and deletes all the files it finds in the <code>/var/spool/bandit24</code> directory with the <code>timeout</code> command (which runs a command with a time limit). We need to write a script which does the work we want for us! Writing bash scripts is a very useful skill, and now that we read a few, we know the basics.</p>
+
+<p>First, we should create a temporary directory to work in:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir /tmp/mrnice
+<span class="nb">cd</span> /tmp/mrnice</code></pre></div>
+<p>Then we need to write the script using a text editor - I use <code>vim</code> but you can use <code>nano</code> or other editors as well. The script itself copies the password to a file. Don&rsquo;t forget to <code>chmod +x</code> the script otherwise the <code>cron</code> script won&rsquo;t be able to execute it!</p>
+
+<p><img src="https://i.imgur.com/vBvIagk.png" alt="winning.sh" /></p>
+
+<p>Then we need to make sure that the <code>cron</code> script will have permissions to write to <code>/tmp/mrnice/result.txt</code>, so let&rsquo;s create that file using <code>touch results.txt</code> and <code>chmod 666 results.txt</code> accordingly.</p>
+
+<p>So now all that&rsquo;s left is to copy the script using <code>cp winning.sh /var/spool/bandit24</code> and wait!</p>
+
+<p><img src="https://i.imgur.com/8iBzakI.png" alt="bandit23 win" /></p>
+
+<p>Note: Why did we need to output the results to a file, instead of just using <code>echo</code> or <code>wall</code> to print the script to the console? Well, we saw in the <code>cron</code> script that the output is redirected to <code>/dev/null</code> and therefore we can&rsquo;t use <code>stdout</code> to see the results of the bash script. However, normally when running bash scripts this isn&rsquo;t the case and you can totally use <code>echo</code> to print out the result of the script.</p>
+
+<h2 id="level-24-level-25">Level 24 -&gt; Level 25<a href="#level-24-level-25" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>There a daemon listening to port 30002, and it&rsquo;s waiting for the current user&rsquo;s password and then a 4-digit pincode. Here&rsquo;s how it looks:</p>
+
+<p><img src="https://i.imgur.com/ZIKzvGY.png" alt="Tickeling the daemon" /></p>
+
+<p>So now we need to <a href="https://en.wikipedia.org/wiki/Brute-force_attack">brute-force</a> the correct pincode.</p>
+
+<p>Let&rsquo;s start!</p>
+
+<p><img src="https://media.giphy.com/media/cMPc8fHzhHYoBdky5x/giphy.gif" alt="manual bruteforce" /></p>
+
+<p>Just kidding 😅</p>
+
+<p><img src="https://i.imgflip.com/3ro9wr.jpg" alt="bruteforce meme" /></p>
+
+<p>Let&rsquo;s automate this action to solve this in a reasonable time. There are a ton of options as to how to do it. Here is one: Write the options to a file and output the file into <code>nc</code>. To write all the combinations to a file we use a <strong>for</strong> loop: <code>for i in {0000..9999}; do echo THE_PASSWORD $i &gt;&gt; combinations.txt; done</code>. To read that file line by line and output that to the server, we use a <strong>while</strong> loop using the <strong>read</strong> command: <code>while read line; do echo $line | nc localhost 30002; done &lt; combinations.txt</code>.</p>
+
+<p>Note: This level actually broke down while we were trying to solve it so I didn&rsquo;t get a chance to actually test this solution - it might not even work but this is the gist of the solution.</p>
+
+<h2 id="level-25-level-26">Level 25 -&gt; Level 26<a href="#level-25-level-26" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Warning: This level is quite a lot harder than the last ones, and without prior knowledge, can be quite frustrating. Don&rsquo;t give up!</p>
+
+<p>So, we have a file with the private SSH key like in <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/#level-13---level-14">13 &ndash;&gt; 14</a>, so let&rsquo;s try to log in:</p>
+
+<p><img src="https://media.giphy.com/media/S8BMaD1CU6uROOYiZA/giphy.gif" alt="logon attempt badnit26" /></p>
+
+<p>Well, we&rsquo;re not getting a shell - instead this <code>bandit26</code> ASCII art is printed out and then the connection closes. What can we do? The level clue tells us that the login shell for <code>bandit26</code> is not <code>/bin/bash</code>, so we need to see that is the login shell. We can get that information from the <code>/etc/passwd</code> file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bandit25@bandit:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+<span class="o">(</span>...<span class="o">)</span>
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+<span class="o">(</span>...<span class="o">)</span></code></pre></div>
+<p>What is <code>/usr/bin/showtext</code>? Let&rsquo;s <code>cat</code> it&hellip;</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>
+<span class="nb">export</span> <span class="nv">TERM</span><span class="o">=</span>linux
+
+more ~/text.txt
+<span class="nb">exit</span> <span class="m">0</span></code></pre></div>
+<p>So the &ldquo;shell&rdquo; for <code>bandit26</code> is <code>more ~/text.txt</code>. The <code>text.txt</code> file is not long enough to activate <code>more</code>&rsquo;s interactive mode, so you have to think out of the box here, and literally resize your shell to make <code>more</code> not quit:</p>
+
+<p><img src="https://media.giphy.com/media/KdwDjS8YGTogY801nI/giphy.gif" alt="resizing the shell" /></p>
+
+<p>Now what? We can try running commands with <code>!</code>, but they are running using the <code>/usr/bin/showtext</code> shell, so this is not helpful. After digging in the <a href="http://man7.org/linux/man-pages/man1/more.1.html">man pages</a> of <code>more</code>, we see that we can open <code>vi</code> as well by typing <code>v</code>. So now we are in <code>vi</code> which is one of the best text editors on the planet and <a href="https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/#the-text-editor">one that I recommend packing to a deserted island</a>.</p>
+
+<p>After digging in <code>vimtutor</code>, <code>vi</code>&rsquo;s <code>:help options</code> and <code>:help shell</code>, we see this:</p>
+
+<p><img src="https://i.imgur.com/QkpMkMs.png" alt=":help shell" /></p>
+
+<p>(You can find this in <a href="https://superuser.com/questions/287994/how-to-specify-shell-for-vim">StackExchange</a> as well).</p>
+
+<p>The <code>:shell</code> directive still opens <code>bandit26</code>&rsquo;s default shell which is <code>/usr/bin/showtext</code> so that doesn&rsquo;t help us yet. However, in the help files of <code>vi</code> we can see that <code>vi</code> chooses the shell based on a <code>vi</code> option, and we can change that option. Let&rsquo;s run the <code>:set shell=/bin/bash</code> command which changes the shell <code>vi</code> will use from <code>/usr/bin/showtext</code> to <code>/bin/bash</code>. Now we can type <code>:shell</code> and win!</p>
+
+<h2 id="level-26-level-27">Level 26 -&gt; Level 27<a href="#level-26-level-27" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>This level is a replay of <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/#level-19---level-20">level 19 -&gt; 20 which we&rsquo;ve solved and wrote up about</a>.</p>
+
+<h2 id="level-27-level-28">Level 27 -&gt; Level 28<a href="#level-27-level-28" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><code>git</code>!</p>
+
+<p><img src="https://www.extremetech.com/wp-content/uploads/2018/01/Linus-Torvalds.jpg" alt="linus" /></p>
+
+<p>So we need to <code>clone</code> a repo. First of all we need to create a temporary directory that we have write access to, so let&rsquo;s do that and then clone the repository using the <code>git clone</code> command:</p>
+
+<p><img src="https://i.imgur.com/uolueS5.png" alt="git clone 27" /></p>
+
+<p>Now let&rsquo;s take a look at the repository&rsquo;s content:</p>
+
+<p><img src="https://i.imgur.com/zxwVNQO.png" alt="content of repo 27" /></p>
+
+<p>That wasn&rsquo;t too hard&hellip;</p>
+
+<p><img src="https://i.imgur.com/HswWq7m.gif" alt="lucy" /></p>
+
+<h2 id="level-28-level-29">Level 28 -&gt; Level 29<a href="#level-28-level-29" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Similar setup, so let&rsquo;s clone and see what we get:</p>
+
+<p><img src="https://i.imgur.com/NYGpD1z.png" alt="no password" /></p>
+
+<p>No password! But on this case we cloned quite a lot of objects which indicates to me that this repo has some history. Let&rsquo;s run <code>git log</code>&hellip;</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bandit28@bandit:/tmp/takemeasiam/repo$ git log
+commit 073c27c130e6ee407e12faad1dd3848a110c4f95
+Author: Morla Porla &lt;morla@overthewire.org&gt;
+Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
+
+    fix info leak
+
+commit 186a1038cc54d1358d42d468cdc8e3cc28a93fcb
+Author: Morla Porla &lt;morla@overthewire.org&gt;
+Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
+
+    add missing data
+
+commit b67405defc6ef44210c53345fc953e6a21338cc7
+Author: Ben Dover &lt;noone@overthewire.org&gt;
+Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
+
+    initial commit of README.md</code></pre></div>
+<p><code>fix info leak</code>, you say? Let&rsquo;s see what was the changes that happened in the last commit using <code>git diff HEAD~1</code> (you can also use <code>git diff 186a1038cc54d1358d42d468cdc8e3cc28a93fcb</code> or <code>git checkout HEAD~1</code> or <code>git checkout master~1</code> or a ton of other options):</p>
+
+<p><img src="https://i.imgur.com/O0CzTja.png" alt="git diff password" /></p>
+
+<h2 id="level-29-level-30">Level 29 -&gt; Level 30<a href="#level-29-level-30" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Same setup. This time when we read the README we see this lovely clue:</p>
+<div class="highlight"><pre class="chroma"><code class="language-md" data-lang="md"><span class="gh"># Bandit Notes
+</span><span class="gh"></span>Some notes for bandit30 of bandit.
+
+<span class="gu">## credentials
+</span><span class="gu"></span>
+<span class="k">-</span> username: bandit30
+- password: <span class="p">&lt;</span><span class="nt">no</span> <span class="na">passwords</span> <span class="na">in</span> <span class="na">production</span><span class="err">!</span><span class="p">&gt;</span></code></pre></div>
+<p>Well, if there are no passwords in production, that probably means that there are passwords not in production! Let&rsquo;s look at what <strong>branches</strong> are there:</p>
+
+<p><img src="https://i.imgur.com/9CVfDPE.png" alt="git branch 29" /></p>
+
+<p>We found the <code>dev</code> branch, used <code>git checkout dev</code> to get to it, and read the <code>README</code> to get the password! Nice.</p>
+
+<h2 id="level-30-level-31">Level 30 -&gt; Level 31<a href="#level-30-level-31" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Same setup. This time, when we read the README, we see the following message:</p>
+
+<p><img src="https://i.imgur.com/8MDmjhN.png" alt="readme 30" /></p>
+
+<p>And <code>git log</code> and <code>git branch -a</code> don&rsquo;t show anything useful, as well. What else does a <code>git</code> repository have that we haven&rsquo;t seen yet? <strong>Tags</strong>! Here&rsquo;s some <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">info about <code>git</code> tags</a> if you don&rsquo;t know what they are.</p>
+
+<p>When we run <code>git tag</code> with no arguments, we list all the existing tags: in this repository, the response is <code>secret</code>. Trying to <code>git checkout secret</code> doesn&rsquo;t work. Hmm.</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/AubJS7oWaWo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>We want to look at the tag information itself, so let&rsquo;s run <code>git show secret</code>.</p>
+
+<p><img src="https://i.imgur.com/AUjeiWx.png" alt="git show secret" /></p>
+
+<h3 id="bonus-round-what-s-up-with-the-secret-tag">Bonus round - what&rsquo;s up with the <code>secret</code> tag<a href="#bonus-round-what-s-up-with-the-secret-tag" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>How comes <code>secret</code> was a tag but we we&rsquo;re able to do <code>git checkout</code>? Some <code>git</code> plumbing commands reveal the truth&hellip;</p>
+
+<p><img src="https://i.imgur.com/KaeQTvo.png" alt="secret is a blob" /></p>
+
+<p><code>secret</code> is a <em>blob</em> that&rsquo;s saved in the <code>packed-refs</code> file in the <code>.git</code> directory - but the content of the tag doesn&rsquo;t actually reference any commit in this repository&rsquo;s history.</p>
+
+<h2 id="level-31-level-32">Level 31 -&gt; Level 32<a href="#level-31-level-32" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Same setup. This time:</p>
+
+<p><img src="https://i.imgur.com/HES40zE.png" alt="readme of 31" /></p>
+
+<p>OK, let&rsquo;s write the file with the content they required, <code>git add</code>, <code>git commit</code> and <code>git push</code>. First writing the file:</p>
+
+<p><img src="https://i.imgur.com/Vi9vpiQ.png" alt="writing the file" /></p>
+
+<p>Then we try to <code>git add key.txt</code>, but we get an error:</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">The following paths are ignored by one of your .gitignore files:
+key.txt
+Use -f if you really want to add them.</code></pre></div>
+<p>Here some information about <a href="https://git-scm.com/docs/gitignore">how <code>git</code> ignores files</a>, but basically we&rsquo;re just going to use <code>git add -f</code> and move forward:</p>
+
+<p><img src="https://i.imgur.com/JSsrOZc.png" alt="commiting and pushing the file" /></p>
+
+<h3 id="bonus-round-how-did-the-server-respond-with-a-message">Bonus round - how did the server respond with a message<a href="#bonus-round-how-did-the-server-respond-with-a-message" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>In <code>git</code> there&rsquo;s a very useful feature called <code>git</code> hooks. You can find <a href="https://`git`-scm.com/book/en/v2/Customizing-Git-Git-Hooks">extensive information here</a>, but for now it&rsquo;s enough to say that <code>git</code> hooks are shell scripts that execute when some stuff happens in a specific <code>git</code> repository. On this case, a <strong>pre-receive hook</strong> was embedded on the remote repository which checks the <code>key.txt</code> file and tells you the password if you did everything right.</p>
+
+<h2 id="level-32-level-33">Level 32 -&gt; Level 33<a href="#level-32-level-33" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><em>Note:</em> I&hellip; don&rsquo;t like this level. I don&rsquo;t really see the point it&rsquo;s trying to convey. The writeup might not do it justice. Sorry.</p>
+
+<p>We log into a new shell again!</p>
+
+<p><img src="https://i.imgur.com/wfkD8MI.png" alt="uppershell" /></p>
+
+<p>From the name and the behaviour we can deduce that what this program is doing is taking what we&rsquo;re typing, converting it to UPPERCASE (perhaps with <code>tr</code> like we learned in <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup/#level-11---level-12">level 11 -&gt; 12</a>), and then trying to run the output as an argument to <code>sh</code>. For example, we input <code>ls ~</code> into UPPERSHELL so UPPERSHELL runs <code>sh LS ~</code> (which fails because there&rsquo;s no program named <code>LS</code>).</p>
+
+<p>Let&rsquo;s look at <code>man sh</code>; specifically in the <strong>Parameters</strong> section, we find the following:</p>
+
+<blockquote>
+<p><strong>Special Parameters</strong></p>
+
+<p>The shell treats several parameters specially. These parameters may only be referenced; assignment to them is not allowed.</p>
+
+<p>[&hellip;]</p>
+
+<p><strong>0</strong></p>
+
+<p>Expands to the name of the shell or shell script. This is set at shell initialization. If bash is invoked with a file of commands, $0 is set to the name of that file. If bash is started with the -c option, then $0 is set to the first argument after the string to be executed, if one is present. Otherwise, it is set to the file name used to invoke bash, as given by argument zero.</p>
+</blockquote>
+
+<p>What we want to try and do is pass into UPPERSHELL something that won&rsquo;t be affected by the conversion it&rsquo;s doing. <code>$0</code> uppercased is still <code>$0</code>, and this argument will expand to the name of the shell, which will run <code>sh sh</code> and NOT <code>sh SH</code> (since the uppercasing only happens once). That way we get a shell. Let&rsquo;s look at what we have, and we can use the same old SUID trick from <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/#level-19---level-20">level 19 -&gt; 20 which we&rsquo;ve solved and wrote up about</a></p>
+
+<p><img src="https://i.imgur.com/JNyUYWG.png" alt="ls in bandit31" /></p>
+
+<h2 id="level-33-level-34">Level 33 -&gt; Level 34<a href="#level-33-level-34" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><img src="https://i.imgur.com/By9gclt.png" alt="you win" /></p>
+
+<p>YAY! 🎉</p>
+
+<p><img src="https://media.giphy.com/media/3oEduOEWGS68758rXq/giphy.gif" alt="the cake is a lie" /></p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/bandit-ctf-writeup-2/">OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup/">OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</a></li>
+	
+	<li><a href="/posts/what-to-pack-for-a-deserted-linux-island/">What to Pack for a Deserted Linux Island</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/linux">linux</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/writeups">writeups</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/bandit">bandit</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/overthewire">overthewire</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2489 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-03-02 21:57 &#43;0200</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/how-to-build-this-blog/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>How to Build This Blog</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/monkey-see-centra-do-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Monkey See, Centra do: How to Assess Your Zero Trust Status and Mitigate</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

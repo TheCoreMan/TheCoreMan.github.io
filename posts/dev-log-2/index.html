@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
+<meta itemprop="description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+It only took us three development logs to start writing code. So fast! /s
+ The first step was doing it manually, once 👨🏽‍🏭⚒  Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server  Starting to automate 🤖  Generating the pre-receive hook automatically 🤖 I guess I&rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one  Parsing game-config.">
+<meta itemprop="datePublished" content="2020-05-12T20:20:31+03:00" />
+<meta itemprop="dateModified" content="2020-05-12T20:20:31+03:00" />
+<meta itemprop="wordCount" content="2387">
+<meta itemprop="image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg">
+
+
+
+<meta itemprop="keywords" content="devlog,git,ctf,docker,rust,toml," />
+<meta property="og:title" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency" />
+<meta property="og:description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+It only took us three development logs to start writing code. So fast! /s
+ The first step was doing it manually, once 👨🏽‍🏭⚒  Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server  Starting to automate 🤖  Generating the pre-receive hook automatically 🤖 I guess I&rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one  Parsing game-config." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-2/" />
+<meta property="og:image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg" />
+<meta property="article:published_time" content="2020-05-12T20:20:31+03:00" />
+<meta property="article:modified_time" content="2020-05-12T20:20:31+03:00" />
+
+<meta name="twitter:title" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ShayNehmad">
+<meta name="twitter:image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg">
+
+<meta name="twitter:creator" content="@ShayNehmad">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/ShayNehmad" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 12, 2020</span></div>
+				<h1>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</h1>
+			</header>
+			<div class="content">
+				
+
+<p><a href="/posts/dev-log-1">Last time</a> we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.</p>
+
+<p>It only took us <strong>three</strong> development logs to start writing code. So fast! <em>/s</em></p>
+
+<p><img src="https://media.giphy.com/media/xT39CVCn6Eq8Ve9FZu/giphy.gif" alt="gotta go fast" /></p>
+
+<ul>
+<li><a href="#the-first-step-was-doing-it-manually-once-">The first step was doing it manually, once 👨🏽‍🏭⚒</a>
+
+<ul>
+<li><a href="#writing-a-pre-receive-hook">Writing a pre-receive hook</a></li>
+<li><a href="#looking-at-the-push-contents-during-the-pre-receive-execution">Looking at the push contents during the pre-receive execution</a></li>
+<li><a href="#manually-performing-all-the-actions-to-deploy-a-game-server">Manually performing all the actions to deploy a game server</a></li>
+</ul></li>
+<li><a href="#starting-to-automate-">Starting to automate 🤖</a>
+
+<ul>
+<li><a href="#generating-the-pre-receive-hook-automatically-">Generating the <code>pre-receive</code> hook automatically 🤖</a></li>
+<li><a href="#i-guess-im-a-rustacean-now-">I guess I&rsquo;m a Rustacean now 🦀</a></li>
+<li><a href="#requirements-what-does-the-script-need-to-do">Requirements: What does the script need to do</a></li>
+<li><a href="#implementation-breaking-the-problem-into-smaller-problems-and-solving-them-one-by-one">Implementation: Breaking the problem into smaller problems, and solving them one by one</a>
+
+<ul>
+<li><a href="#parsing-game-configtoml">Parsing <code>game-config.toml</code></a></li>
+<li><a href="#replacing-level-titles-with-their-branches-">Replacing level titles with their branches 🌿</a></li>
+<li><a href="#output-the-result-into-a-working-pre-receive-hook-file">Output the result into a working <code>pre-receive</code> hook file</a></li>
+</ul></li>
+<li><a href="#setting-up-the-game-inside-a-docker-container">Setting up the game inside a Docker container</a></li>
+<li><a href="#requirements-what-should-the-dockerfile-do">Requirements: What should the Dockerfile do</a></li>
+<li><a href="#implementation-what-does-the-dockerfile-actually-do">Implementation: What does the Dockerfile actually do</a></li>
+<li><a href="#what-can-be-improved">What can be improved?</a></li>
+</ul></li>
+<li><a href="#whats-next">What&rsquo;s next?</a></li>
+</ul>
+
+<p><em>Side note</em>: This time I&rsquo;ve been working with my little brother <a href="https://www.bnice.xyz">Barak</a>. His invaluable help (and willingness to work with me) is what will probably tip the scales in favor of this project actually making it to the finish line.</p>
+
+<h2 id="the-first-step-was-doing-it-manually-once">The first step was doing it manually, once 👨🏽‍🏭⚒<a href="#the-first-step-was-doing-it-manually-once" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<blockquote>
+<p>The first rule of any technology used in a business is that automation applied to an efficient operation will magnify the efficiency. The second is that automation applied to an inefficient operation will magnify the inefficiency.</p>
+
+<p>-Bill Gates</p>
+</blockquote>
+
+<p>With that quote in heart, I decided that I wanted to do everything that I needed to do to create a two-level challenge <strong>that works</strong>, but manually. This is my PoC, and it will be useful for two reasons: I didn&rsquo;t want to waste time automating easy processes, and I wanted to make sure I have all the required knowledge to develop the challenge.</p>
+
+<p>In an unsurprising (and pleseant) turn of events, I didn&rsquo;t know everything I needed to ahead of time. Here are some lessons I&rsquo;ve learned:</p>
+
+<h3 id="writing-a-pre-receive-hook">Writing a pre-receive hook<a href="#writing-a-pre-receive-hook" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>My previous <code>git</code> challenge was mostly performed through TravisCI. The player opened a PR and a Travis script validated what they&rsquo;ve presented in their PR. This time, since the challenge should work completely offline and not be dependent on 3rd party services (<a href="/posts/dev-log-0">here&rsquo;s my reasoning why</a>), I wanted to use git hooks.</p>
+
+<p><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_server_side_hooks">Server side hooks in git</a> are scripts that enable us to reject pushes with &ldquo;error&rdquo; messages. In the CTF, we&rsquo;ll piggyback over this mechanism to validate the stages, print failure messages if the player didn&rsquo;t solve the level correctly, or print the flags if the stage was solved. There are three available server-side hooks:</p>
+
+<ul>
+<li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_pre_receive">pre-receive</a> which handles the push and may reject it (by exiting with a non-zero value). <strong>This is the hook that we&rsquo;ll use.</strong></li>
+<li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_update">update</a> which is similar to pre-receive but runs once per branch.</li>
+<li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_post_receive">post-receive</a> which runs after the entire process is completed. This is mostly useful to update other services.</li>
+</ul>
+
+<p>When writing the pre-receive hook, I stumbled onto a problem.</p>
+
+<p><img src="https://media.giphy.com/media/qucJWFolJN6rS/giphy.gif" alt="complicated" /></p>
+
+<h4 id="looking-at-the-push-contents-during-the-pre-receive-execution">Looking at the push contents during the pre-receive execution<a href="#looking-at-the-push-contents-during-the-pre-receive-execution" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>The pre-receive hook doesn&rsquo;t have immediate access to the state of the working directory since it&rsquo;s executed on a <code>bare</code> git repository. There is no working directory! However, since the hook needs to validate if the player solved the level correctly, it needs to look at the working directory.</p>
+
+<p>For example, the first <em>real</em> level (<code>start-here</code>) has a very simple solve condition. 2 files, namely <code>alice.txt</code> and <code>bob.txt</code> should have been added to the repo in a single commit and pushed.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">touch alice.txt bob.txt
+git add alice.txt bob.txt
+git commit -m <span class="s2">&#34;This is how you solve the first level. Not too hard.&#34;</span>
+git push</code></pre></div>
+<p>To test that the player solved the level correctly, we need to validate three things:</p>
+
+<ol>
+<li>The player only performed one commit to solve this level.</li>
+<li>No other files were changed/added/deleted.</li>
+<li>The files <code>alice.txt</code> and <code>bob.txt</code> were created in the root directory of the repo.</li>
+</ol>
+
+<p>Let&rsquo;s see how we validate condition #1 using only <code>git</code> and shell commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">git fetch --tags --quiet  <span class="c1"># get all the tags but don&#39;t show them to the player</span>
+<span class="c1"># Check how many commits the player needed - should be two (the user commit + merge commit)!</span>
+<span class="nv">commit_amount</span><span class="o">=</span><span class="k">$(</span> git log start-here-tag..<span class="nv">$new</span> --oneline <span class="p">|</span> wc -l <span class="k">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$commit_amount</span> -ne <span class="m">1</span> <span class="o">]</span><span class="p">;</span>
+    <span class="k">then</span> reject-solution <span class="s2">&#34;The files should have been added in a single commit, but I&#39;ve found </span><span class="si">${</span><span class="nv">commit_amount</span><span class="si">}</span><span class="s2"> commits in the log. To reset and try again, delete your local start-here branch, checkout the original start-here branch again and try again.&#34;</span><span class="p">;</span>
+<span class="k">fi</span></code></pre></div>
+<p>Condition #2 is validated using only <code>git</code> and shell as well:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># We know that there&#39;s only one commit in the changes - otherwise it would have failed before.</span>
+<span class="nv">number_of_files_changed</span><span class="o">=</span><span class="k">$(</span> git diff --stat <span class="nv">$old</span> <span class="nv">$new</span> <span class="p">|</span> grep <span class="s2">&#34;files changed&#34;</span> <span class="p">|</span> awk <span class="s1">&#39; {print $1} &#39;</span> <span class="k">)</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$number_of_files_changed</span> -ne <span class="m">2</span> <span class="o">]]</span>
+    <span class="k">then</span> reject-solution <span class="s2">&#34;More than 2 files were changed! Only add alice.txt and bob.txt. Check out the original branch and try again.&#34;</span><span class="p">;</span>
+<span class="k">fi</span></code></pre></div>
+<p>The previous conditions don&rsquo;t require us to actually look at the state of the working directory. The third condition - the existence of the files <code>alice.txt</code> and <code>bob.txt</code> - DOES require us to actually look at the directory and see if they&rsquo;re there. If we had the working directory we could simply do this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># Check file existence.</span>
+    <span class="k">if</span> <span class="o">[</span> ! -f alice.txt <span class="o">]</span><span class="p">;</span>
+        <span class="k">then</span> reject-solution <span class="s2">&#34;Alice is missing! Try again.&#34;</span><span class="p">;</span>
+    <span class="k">fi</span>
+
+    <span class="k">if</span> <span class="o">[</span> ! -f bob.txt <span class="o">]</span><span class="p">;</span>
+        <span class="k">then</span> reject-solution <span class="s2">&#34;Bob is missing! Try again.&#34;</span><span class="p">;</span>
+    <span class="k">fi</span></code></pre></div>
+<p>But since we&rsquo;re running on the server we don&rsquo;t have the working directory deployed. After looking around I found the <a href="https://stackoverflow.com/questions/160608/do-a-git-export-like-svn-export/163769#163769">git archive</a> command and came up with this:</p>
+
+<script type="application/javascript" src="https://gist.github.com/ShayNehmad/95d1d6b447e2ff15a66b2af3b5c41db1.js?file=dump-commit-to-directory.sh"></script>
+
+
+<h3 id="manually-performing-all-the-actions-to-deploy-a-game-server">Manually performing all the actions to deploy a game server<a href="#manually-performing-all-the-actions-to-deploy-a-game-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This was a very useful step, and I&rsquo;m glad I did it. Writing down every little thing that I had to deal with while deploying the game made the actual development of CODE that will do it which I did later much more natural. It makes a lot more sense to automate something that was performed manually instead of doing it ahead of time. Here are the actions I performed from adding a new stage to deploying it:</p>
+
+<ol>
+<li>Create a solution checker script for the level.</li>
+<li>Add the level to the Levels repository.</li>
+<li>Add the level to the <code>game-config.toml</code>, which maps which flags it reveals, which branch it resides on, where the relevant solution checker script is located, and what the human-readable title is (e.g. <code>merge-1</code>).</li>
+<li>Update the &ldquo;switchboard&rdquo; <code>pre-receive</code> hook file. <em>This file sees which branch was pushed and calls the appropriate solution checker. If the solution checker gives the green light, the hook will print the flags.</em></li>
+<li>Clone the <code>make-git-better-levels</code> repo with <code>--bare</code>.</li>
+<li>Create a player user.</li>
+<li>Create a git server (user, sshd, <code>authorized_keys</code>). See the relevant parts in the <a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server">git book</a>.</li>
+<li>Copy the solution checkers to the <code>hooks</code> directory in the game repo.</li>
+<li>Copy the pre-receive hook file to the hooks directory.</li>
+<li>Test. I only tested the first levels, which entailed cloning the repo, <code>git checkout start-here</code>, attempting to push a few wrong solutions, and then solving it correctly.</li>
+</ol>
+
+<p>Even this scary task list still doesn&rsquo;t take into consideration the web content creation which is a BIG part.</p>
+
+<h2 id="starting-to-automate">Starting to automate 🤖<a href="#starting-to-automate" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>After performing all these tasks manually, I mapped how they will be automated in the future. I want to automate anything that&rsquo;s not strictly level content creation and validation. But since I have to begin somewhere, I chose to automate task #4 with a helper script and tasks #5 to #9 with Docker.</p>
+
+<h3 id="generating-the-pre-receive-hook-automatically">Generating the <code>pre-receive</code> hook automatically 🤖<a href="#generating-the-pre-receive-hook-automatically" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<h4 id="i-guess-i-m-a-rustacean-now">I guess I&rsquo;m a Rustacean now 🦀<a href="#i-guess-i-m-a-rustacean-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>This is the first <code>rustlang</code> script I&rsquo;ve ever written, and I have to say&hellip;</p>
+
+<p><img src="https://media.giphy.com/media/Mxg7OelvuR7SU/giphy.gif" alt="rusty spoons" /></p>
+
+<p>Developing in Rust (after getting over the initial hurdles) was a very rewarding experience. I can see why it&rsquo;s voted as <a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted">the most loved language in StackOverflow&rsquo;s Developer Survey for the fourth year in a row</a>. My setup was as simple as it gets - <code>vim</code> with some rust plugins. It was easy to jump into it with my C++ experience, and the compiler messages blew me away.</p>
+
+<p>This is obviously an amateur&rsquo;s foray into the language. It&rsquo;s missing a lot of stuff which I hope to add in the future, mainly Unit Testing, and I&rsquo;m sure there are some Rust &ldquo;best practices&rdquo; that I&rsquo;ve missed.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A cool ending to a hot day: developed my first <a href="https://twitter.com/rustlang?ref_src=twsrc%5Etfw">@rustlang</a> script with <a href="https://twitter.com/SandSpider2234?ref_src=twsrc%5Etfw">@SandSpider2234</a>. It generates a pre-receive <a href="https://twitter.com/hashtag/git?src=hash&amp;ref_src=twsrc%5Etfw">#git</a> hook from the CTF&#39;s configuration, so I don&#39;t have to manually update the hook file when generating new stages. No unit tests yet 😅 <a href="https://t.co/nnGYfJ1cUx">pic.twitter.com/nnGYfJ1cUx</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1262133578793717760?ref_src=twsrc%5Etfw">May 17, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<h4 id="requirements-what-does-the-script-need-to-do">Requirements: What does the script need to do<a href="#requirements-what-does-the-script-need-to-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>The script itself had a fairly simple job to perform - create the <code>pre-receive</code> hook based on the game&rsquo;s configuration. For each level, make sure that the correct solution checker is executed, and if it passes, print the relevant flags. This way the checker script doesn&rsquo;t &ldquo;know&rdquo; what level it&rsquo;s in, doesn&rsquo;t need to know the flags, and can be reused. The configuration looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+        <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+        <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+        <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/start-here.sh&#34;</span>
+        <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-1&#34;</span><span class="p">]</span>
+
+<span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+        <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;merge-1&#34;</span>
+        <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;fizzling-vulture-pedial&#34;</span>
+        <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/merge-1.sh&#34;</span>
+        <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-2&#34;</span><span class="p">,</span> <span class="s2">&#34;log-1&#34;</span><span class="p">]</span>
+<span class="c"># So on and so forth for all the levels...</span></code></pre></div>
+<p>So the end result should look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nb">read</span> old new ref &lt; /dev/stdin
+
+<span class="nv">branch_name</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$ref</span> <span class="p">|</span> awk <span class="s1">&#39;BEGIN { FS = &#34;/&#34; } ; { print $NF }&#39;</span><span class="k">)</span>
+
+<span class="k">case</span> <span class="nv">$branch_name</span> in
+start-here<span class="o">)</span>
+    <span class="nb">echo</span> <span class="nv">$old</span> <span class="nv">$new</span> <span class="nv">$ref</span> <span class="p">|</span> hooks/checkers/start-here.sh <span class="o">&amp;&amp;</span> print_flags fizzling-vulture-pedial
+    <span class="p">;;</span>
+fizzling-vulture-pedial<span class="o">)</span>
+    <span class="nb">echo</span> <span class="nv">$old</span> <span class="nv">$new</span> <span class="nv">$ref</span> <span class="p">|</span> hooks/checkers/merge-1.sh <span class="o">&amp;&amp;</span> print_flags first-flag-name second-flag-name  <span class="c1"># &lt;- notice the two flags here</span>
+    <span class="p">;;</span>
+<span class="c1"># So on and so forth for all the levels...</span>
+<span class="k">esac</span></code></pre></div>
+<h4 id="implementation-breaking-the-problem-into-smaller-problems-and-solving-them-one-by-one">Implementation: Breaking the problem into smaller problems, and solving them one by one<a href="#implementation-breaking-the-problem-into-smaller-problems-and-solving-them-one-by-one" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>I&rsquo;m omitting the &ldquo;boilerplate&rdquo; stuff like parsing CLI arguments and logging from this analysis. You can <a href="https://github.com/ShayNehmad/make-git-better-2/blob/dev/scripts/generate-pre-receive-hook/src/main.rs">read all the code on GitHub</a> if you want to see all the details.</p>
+
+<h5 id="parsing-game-config-toml">Parsing <code>game-config.toml</code><a href="#parsing-game-config-toml" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<p>This was pretty straight-forward. First, I defined the data structs for the configuration:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="cp">#[derive(Debug, Deserialize, Serialize)]</span><span class="w">
+</span><span class="w"></span><span class="k">struct</span> <span class="nc">GameConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">levels</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">Level</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="cp">#[derive(Debug, Clone, Deserialize, Serialize)]</span><span class="w">
+</span><span class="w"></span><span class="k">struct</span> <span class="nc">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">title</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">branch</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">solution_checker</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">flags</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>And then read the configuration file into a <code>GameConfig</code> struct:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">game_config_file_contents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span>::<span class="n">read_to_string</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">game_config_path</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">game_config</span>: <span class="nc">GameConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toml</span>::<span class="n">from_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game_config_file_contents</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></code></pre></div>
+<h5 id="replacing-level-titles-with-their-branches">Replacing level titles with their branches 🌿<a href="#replacing-level-titles-with-their-branches" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<p>The branch names are nonsense, to prevent players from looking at branch names for solution hints. To make the configuration more readable, flags are the next level <strong>titles</strong> rather than branch names. Compare:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+        <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+        <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+        <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-1&#34;</span><span class="p">]</span>  <span class="c"># Could have been flags = [&#34;fizzling-vulture-pedial&#34;]</span>
+
+<span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+        <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;merge-1&#34;</span>
+        <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;fizzling-vulture-pedial&#34;</span>
+<span class="c"># ...</span></code></pre></div>
+<p>However, the actual flag that we need to give the player is the branch they need to check out next in order to advance. So the script needs to replace all the flags with the branches - if possible. This took a while to implement, and it was the first time I actually needed to think about Rust&rsquo;s <strong>ownership</strong> model:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">replace_flags_with_branch_names</span><span class="p">(</span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">GameConfig</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="c1">// This has to be cloned! Can&#39;t iterate over this while changing it. Thanks, rustc :)
+</span><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">levels_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">new_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="n">level</span><span class="p">.</span><span class="n">flags</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">            </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;level {} flag {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
+</span><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">levels_iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_info</span><span class="p">.</span><span class="n">iter</span><span class="p">();</span><span class="w">
+</span><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_iterator</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
+</span><span class="w">            </span><span class="k">match</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">                </span><span class="nb">Some</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">                    </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;replacing {} with {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">branch</span><span class="p">);</span><span class="w">
+</span><span class="w">                    </span><span class="n">new_flags</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">.</span><span class="n">branch</span><span class="p">));</span><span class="w">
+</span><span class="w">                </span><span class="p">}</span><span class="w">
+</span><span class="w">                </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">                    </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;flag {} is final&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
+</span><span class="w">                    </span><span class="n">new_flags</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">flag</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span><span class="w">
+</span><span class="w">                </span><span class="p">}</span><span class="w">
+</span><span class="w">            </span><span class="p">}</span><span class="w">
+</span><span class="w">        </span><span class="p">}</span><span class="w">
+</span><span class="w">        </span><span class="n">level</span><span class="p">.</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_flags</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">  </span><span class="c1">// [...]
+</span><span class="c1"></span><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">game_config</span>: <span class="nc">GameConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toml</span>::<span class="n">from_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game_config_file_contents</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span><span class="w">  </span><span class="c1">// [...]
+</span><span class="c1"></span><span class="w">  </span><span class="n">replace_flags_with_branch_names</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">game_config</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h5 id="output-the-result-into-a-working-pre-receive-hook-file">Output the result into a working <code>pre-receive</code> hook file<a href="#output-the-result-into-a-working-pre-receive-hook-file" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h5>
+
+<p>This was done using <a href="https://docs.rs/tinytemplate/1.0.4/tinytemplate/">tinytemplate</a>. The template&rsquo;s interesting part looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-tmpl" data-lang="tmpl"><span class="x">case </span><span class="cp">$</span><span class="n">branch_name</span><span class="x"> in
+</span><span class="x">{{ for level in levels }}{level.branch})
+</span><span class="x">    echo </span><span class="cp">$</span><span class="n">old</span><span class="x"> </span><span class="cp">$</span><span class="n">new</span><span class="x"> </span><span class="cp">$</span><span class="n">ref</span><span class="x"> | {level.solution_checker} &amp;&amp; print_flags{{ for levelflag in level.flags }} {levelflag}{{ endfor }}
+</span><span class="x">    ;;
+</span><span class="x">{{ endfor }}esac</span></code></pre></div>
+<p>We then rendered the template with our updated <code>GameConfig</code> struct, and wrote it to a file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">tt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TinyTemplate</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">template_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;switch_case&#34;</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">tt</span><span class="p">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">template_name</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">template_file_contents</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">rendered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tt</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">template_name</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game_config</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">output_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">output_path</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="n">output_dir</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="n">fs</span>::<span class="n">create_dir_all</span><span class="p">(</span><span class="o">&amp;</span><span class="n">output_dir</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Failed to create parent dir&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">output_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span>::<span class="n">File</span>::<span class="n">create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">args</span><span class="p">.</span><span class="n">output_path</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Couldn&#39;t create file!&#34;</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="n">output_file</span><span class="p">.</span><span class="n">write_all</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rendered</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">()).</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></code></pre></div>
+<h3 id="setting-up-the-game-inside-a-docker-container">Setting up the game inside a Docker container<a href="#setting-up-the-game-inside-a-docker-container" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><img src="https://media.giphy.com/media/xT5LMsC6iydeziO6nC/giphy.gif" alt="docker" /></p>
+
+<p>I managed to get it to work. I&rsquo;m not sure it&rsquo;s perfect by any means, but it&rsquo;s good enough to move forward to other tasks!</p>
+
+<h4 id="requirements-what-should-the-dockerfile-do">Requirements: What should the Dockerfile do<a href="#requirements-what-should-the-dockerfile-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>You can compare the <code>Dockerfile</code>&rsquo;s content to the manual tasks I performed as listed earlier.</p>
+
+<ol>
+<li>Setting up the container and installing dependencies.</li>
+<li>Creating the users, and doing their basic setup.</li>
+<li>Setting up the git server and the levels repo.</li>
+<li>Setting up the actual &ldquo;game&rdquo; part with the hooks.</li>
+</ol>
+
+<h4 id="implementation-what-does-the-dockerfile-actually-do">Implementation: What does the Dockerfile actually do<a href="#implementation-what-does-the-dockerfile-actually-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>Here&rsquo;s the initial version that worked for me. The comments should highlight what&rsquo;s happening in the file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="k">from</span><span class="s"> ubuntu:latest</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Install dependencies.</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt update -y<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> <span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span><span class="s2">&#34;noninteractive&#34;</span> apt install -y tzdata<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt install -y <span class="se">\
+</span><span class="se"></span>        git-all <span class="se">\
+</span><span class="se"></span>        vim <span class="se">\
+</span><span class="se"></span>        nano <span class="se">\
+</span><span class="se"></span>        whois <span class="se">\
+</span><span class="se"></span>        openssh-server <span class="se">\
+</span><span class="se"></span>        curl <span class="se">\
+</span><span class="se"></span>        apt-utils <span class="se">\
+</span><span class="se"></span>        iputils-ping <span class="se">\
+</span><span class="se"></span>        zsh <span class="se">\
+</span><span class="se"></span>        tmux<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Create the required users. The game master is the `git` account, and the player is the user&#39;s account</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> useradd --comment <span class="s2">&#34;GameMaster account&#34;</span> --create-home --password <span class="k">$(</span>mkpasswd -m sha-512 ...<span class="k">)</span> gamemaster<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> useradd --comment <span class="s2">&#34;Player account&#34;</span> --create-home --password <span class="k">$(</span>mkpasswd -m sha-512 player<span class="k">)</span> --shell /bin/zsh player<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># player_entrypoint.sh sets up the player&#39;s SSH keys, copies the public key to /tmp, and sets up the shell (zsh with git plugin).</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> build/player_entrypoint.sh /home/player<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> chown player:player /home/player/player_entrypoint.sh<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> chmod <span class="m">770</span> /home/player/player_entrypoint.sh<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> su -c <span class="s2">&#34;/home/player/player_entrypoint.sh&#34;</span> - player<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># SSH server configuraion</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> mkdir /var/run/sshd<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> <span class="nb">echo</span> <span class="s1">&#39;ClientAliveInterval 60&#39;</span> &gt;&gt; /etc/ssh/sshd_config<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> <span class="nb">echo</span> <span class="s1">&#39;ClientAliveCountMax 10&#39;</span> &gt;&gt;  /etc/ssh/sshd_config<span class="err">
+</span><span class="err"></span><span class="k">COPY</span> build/ssh_banner.txt /etc/banner<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> <span class="nb">echo</span> <span class="s1">&#39;Banner /etc/banner&#39;</span> &gt;&gt; /etc/ssh/sshd_config<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Set up the git server so that the player can run git clone gamemaster@localhost:~/game-repo</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> git clone --bare https://github.com/ShayNehmad/make-git-better-levels.git /home/gamemaster/game-repo<span class="err">
+</span><span class="err"></span><span class="c"># gamemaster_entrypoint.sh adds the player&#39;s ssh public key from /tmp to the authorized_keys</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> build/gamemaster_entrypoint.sh /home/gamemaster<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> chown gamemaster:gamemaster /home/gamemaster/gamemaster_entrypoint.sh<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> chmod <span class="m">770</span> /home/gamemaster/gamemaster_entrypoint.sh<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> su -c <span class="s2">&#34;/home/gamemaster/gamemaster_entrypoint.sh&#34;</span> - gamemaster<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Set up the hooks for the actual gameplay in the repo</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> levels/checkers /home/gamemaster/game-repo/hooks/checkers<span class="err">
+</span><span class="err"></span><span class="k">COPY</span> scripts/generate-pre-receive-hook/output/pre-receive /home/gamemaster/game-repo/hooks<span class="err">
+</span><span class="err"></span><span class="c"># Make sure that gamemaster owns all of their files</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> chown -R gamemaster:gamemaster /home/gamemaster<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Now that we&#39;re done with gamemaster&#39;s setup, we can change the shell to git-shell</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> chsh gamemaster -s <span class="k">$(</span>which git-shell<span class="k">)</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Cleanup</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> rm -rf /tmp/*<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> rm -rf /home/player/player_entrypoint.sh<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 22</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;/usr/sbin/sshd&#34;</span><span class="p">,</span> <span class="s2">&#34;-D&#34;</span><span class="p">]</span></code></pre></div>
+<h4 id="what-can-be-improved">What can be improved?<a href="#what-can-be-improved" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>The build time is REALLY LONG, mostly due to <code>apt-update</code> taking forever. The final docker image is pretty large as well. I&rsquo;m considering moving to <code>alpine</code> as a base image to fix this, but I&rsquo;m not sure all of the dependencies will work there. I&rsquo;m sticking with Ubuntu as a base for now because it&rsquo;s easy and predictable.</p>
+
+<h2 id="what-s-next">What&rsquo;s next?<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>The plan is seeing how the web content side of this will work, automating level creation, and moving to creating a TON of levels.</p>
+
+<p>The deadline is drawing near&hellip;</p>
+
+<blockquote>
+<p>Attribution: Background images created by stories @freepik</p>
+</blockquote>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/dev-log-1/">Devlog #1 | The best-laid plans of mice and men</a></li>
+	
+	<li><a href="/posts/dev-log-0/">Devlog #0 | Thoughts about doing a devlog (but not an actual devlog, that would be silly)</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup-3/">OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup-2/">OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup/">OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/rust">rust</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/toml">toml</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2387 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-12 20:20 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/dev-log-3/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Devlog #3 | I have grown taller from walking with the trees 🌳</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/dev-log-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Devlog #1 | The best-laid plans of mice and men</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

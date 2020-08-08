@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="How to Build This Blog">
+<meta itemprop="description" content="I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.
+I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
+ Create repositories on GitHub  GitHub Pages repository Blog content repository  Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain  Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐  Quality of life  Easy deployment  Other fun stuff you can do  🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links  Summary  Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;.">
+<meta itemprop="datePublished" content="2020-03-30T21:10:59+03:00" />
+<meta itemprop="dateModified" content="2020-03-30T21:10:59+03:00" />
+<meta itemprop="wordCount" content="1017">
+
+
+
+<meta itemprop="keywords" content="meta,linux," />
+<meta property="og:title" content="How to Build This Blog" />
+<meta property="og:description" content="I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.
+I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
+ Create repositories on GitHub  GitHub Pages repository Blog content repository  Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain  Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐  Quality of life  Easy deployment  Other fun stuff you can do  🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links  Summary  Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/how-to-build-this-blog/" />
+<meta property="article:published_time" content="2020-03-30T21:10:59+03:00" />
+<meta property="article:modified_time" content="2020-03-30T21:10:59+03:00" />
+
+<meta name="twitter:title" content="How to Build This Blog">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ShayNehmad">
+<meta name="twitter:image" content="https://i.imgur.com/ROzkHYp.png">
+
+<meta name="twitter:creator" content="@ShayNehmad">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>How to Build This Blog</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/ShayNehmad" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 30, 2020</span></div>
+				<h1>How to Build This Blog</h1>
+			</header>
+			<div class="content">
+				
+
+<p>I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.</p>
+
+<p>I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).</p>
+
+<ul>
+<li><a href="#create-repositories-on-github">Create repositories on GitHub</a>
+
+<ul>
+<li><a href="#github-pages-repository">GitHub Pages repository</a></li>
+<li><a href="#blog-content-repository">Blog content repository</a></li>
+</ul></li>
+<li><a href="#install-hugo">Install Hugo</a></li>
+<li><a href="#initialize-blog-content">Initialize blog content</a></li>
+<li><a href="#connecting-the-blog-repo-to-the-pages-repo">Connecting the blog repo to the Pages repo</a></li>
+<li><a href="#connect-to-a-custom-domain">Connect to a custom domain</a>
+
+<ul>
+<li><a href="#buying-and-configuring-a-domain">Buying and configuring a domain</a></li>
+<li><a href="#configuring-the-cname">Configuring the CNAME</a></li>
+<li><a href="#configuring-the-base-url">Configuring the base URL</a></li>
+<li><a href="#ssl-%f0%9f%94%90">SSL 🔐</a></li>
+</ul></li>
+<li><a href="#quality-of-life">Quality of life</a>
+
+<ul>
+<li><a href="#easy-deployment">Easy deployment</a></li>
+</ul></li>
+<li><a href="#other-fun-stuff-you-can-do">Other fun stuff you can do</a>
+
+<ul>
+<li><a href="#%f0%9f%90%a3-set-up-twitter-cards">🐣 Set up twitter cards</a></li>
+<li><a href="#%f0%9f%96%bc-add-a-logo">🖼 Add a logo</a></li>
+<li><a href="#%f0%9f%93%8a-add-google-analytics">📊 Add Google Analytics</a></li>
+<li><a href="#%f0%9f%8e%a8-add-custom-css-files">🎨 Add custom CSS files</a></li>
+<li><a href="#%f0%9f%93%a3-add-social-links">📣 Add social links</a></li>
+</ul></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+
+<h2 id="create-repositories-on-github">Create repositories on GitHub<a href="#create-repositories-on-github" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="github-pages-repository">GitHub Pages repository<a href="#github-pages-repository" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Like it says in <a href="kguides.github.com/features/pages/">GitHub&rsquo;s guide</a>, you need to create a repository with the name <code>&lt;your_username_here&gt;.github.io</code> in your GitHub account. Add an initial commit there with a basic <code>readme.md</code> and LICENSE files. You don&rsquo;t need to choose a theme and all that stuff since we&rsquo;re going to replace Jekyll with Hugo anyways.</p>
+
+<p>The files that will be here will be hosted and displayed as a web page.</p>
+
+<h3 id="blog-content-repository">Blog content repository<a href="#blog-content-repository" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Create another repository in your account and call it &ldquo;blog&rdquo;. This is where our blog content will go. Make sure it&rsquo;s private! It should look like this:</p>
+
+<p><img src="https://i.imgur.com/kviPmqM.png" alt="github" /></p>
+
+<h2 id="install-hugo-https-gohugo-io">Install <a href="https://gohugo.io/">Hugo</a><a href="#install-hugo-https-gohugo-io" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Hugo is an open-source static site generator, written mostly in Go 💖. <a href="https://gohugo.io/getting-started/installing/">Follow the installation guide</a> to install Hugo. TL;DR for Linux:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s2">&#34;Installing homebrew&#34;</span>
+/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;Setting up homebrew correctly&#34;</span>
+sudo apt install build-essential
+
+<span class="nb">echo</span> <span class="s2">&#34;Installing Hugo&#34;</span>
+/home/linuxbrew/.linuxbrew/bin/brew install hugo</code></pre></div>
+<h2 id="initialize-blog-content">Initialize blog content<a href="#initialize-blog-content" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><code>git clone</code> your &ldquo;blog&rdquo; repo. <code>cd</code> into it and run <code>hugo new site . --force</code> (<code>--force</code> since the folder already exists with some content). This wil initialize your site&rsquo;s content and framework, not its actual web pages.</p>
+
+<p>From here, we&rsquo;re basically following <a href="https://gohugo.io/getting-started/quick-start/">Hugo&rsquo;s Quickstart guide</a> step-by-step:</p>
+
+<p>Choose a theme from <a href="https://themes.gohugo.io/">Hugo&rsquo;s theme gallery</a>. Run <code>git submodule add &lt;theme_git_url&gt; themes/&lt;theme_name&gt;</code> and add the line <code>theme = &lt;theme_name&gt;</code> to your <code>config.toml</code> file.</p>
+
+<blockquote>
+<p>⚠ Usually you&rsquo;ll have to copy some stuff into your <code>config.toml</code> from the theme&rsquo;s installation guide, otherwise you&rsquo;ll get errors or your site will misbehave. Read the theme&rsquo;s documentation before choosing one!</p>
+</blockquote>
+
+<p>To add a first post run <code>hugo new posts/&lt;first_post_name&gt;.md</code>. Add some content there. You will probably want to run <code>hugo new about.md</code> as well.</p>
+
+<p>To check out how everything looks and to make sure it all worked, run <code>hugo server -D</code> and go to <code>http://localhost:1313</code> to see how it turned out.</p>
+
+<h2 id="connecting-the-blog-repo-to-the-pages-repo">Connecting the blog repo to the Pages repo<a href="#connecting-the-blog-repo-to-the-pages-repo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Run the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">git submodule add https://github.com/&lt;your_username_here&gt;.github.io.git public
+
+<span class="c1"># Builds the site into the `public` folder</span>
+hugo -t &lt;theme_name&gt;
+
+<span class="nb">cd</span> public
+git add .
+git commit -m <span class="s2">&#34;First site build 🎉&#34;</span>
+git push origin master</code></pre></div>
+<p>Then surf to <code>https://&lt;your_username_here&gt;.github.io</code>, and you should see your new site :)</p>
+
+<p>Make sure to commit the changes in the <code>blog</code> repository as well.</p>
+
+<h2 id="connect-to-a-custom-domain">Connect to a custom domain<a href="#connect-to-a-custom-domain" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="buying-and-configuring-a-domain">Buying and configuring a domain<a href="#buying-and-configuring-a-domain" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>I used <a href="https://namecheap.com/"><code>namecheap.com</code></a> as my DNS provider so the guide will focus on that.</p>
+
+<p>Buy a domain. You don&rsquo;t need any of the extra services for this to work, but if you want to buy them, go ahead.</p>
+
+<p>Go to the &ldquo;manage&rdquo; section of your new domain. Delete all redirect domains and redirect emails.</p>
+
+<p><img src="https://i.imgur.com/Si4LoW9.png" alt="namecheap config 1" /></p>
+
+<p>Go to &ldquo;Advanced DNS&rdquo; and add the following records, in this order:</p>
+
+<p><img src="https://i.imgur.com/aANgqWR.png" alt="namecheap domain dns config" /></p>
+
+<p>The CNAME record should be:</p>
+
+<ul>
+<li>Host: <code>www</code></li>
+<li>Value: <code>&lt;your_username_here&gt;.github.io.</code> ❗ Make sure you put the dot in the end.</li>
+<li>TTL: <code>5 min</code></li>
+</ul>
+
+<p>The IP addresses are taken from <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site">GitHub custom domain guide</a>.</p>
+
+<h3 id="configuring-the-cname">Configuring the CNAME<a href="#configuring-the-cname" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Go to the GitHub Pages repo settings. Under <code>GitHub Pages</code> there is a <code>Custom domain</code> field - put <code>www.&lt;your-new-domain&gt;</code> there. You can also just write a CNAME file manually.</p>
+
+<h3 id="configuring-the-base-url">Configuring the base URL<a href="#configuring-the-base-url" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>In your <code>config.toml</code> file edit the <code>baseurl</code> parameter to be <code>baseurl = https://www.&lt;your-new-domain&gt;/</code>.</p>
+
+<h3 id="ssl">SSL 🔐<a href="#ssl" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>At first it might seem like your domain isn&rsquo;t secured. Don&rsquo;t worry! It seems that GitHub might take up to 24 hours to issue a certificate and only then you can enforce HTTPS.</p>
+
+<h2 id="quality-of-life">Quality of life<a href="#quality-of-life" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="easy-deployment">Easy deployment<a href="#easy-deployment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Hugo&rsquo;s really fast, which is nice when you build your blog. Here&rsquo;s a top that speed up deployment even more, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#put-it-into-a-script">based on Hugo&rsquo;s documentation on the subject</a>.</p>
+
+<p>Create a <code>deploy.sh</code> and <code>deploy.ps1</code> scripst in the root of your <code>blog</code> repository. These scripts will build the site and <code>add</code> + <code>commit</code> + <code>push</code> the changes in the <code>public</code> directory for you. Here are some gist you can easily code and paste:</p>
+
+<script type="application/javascript" src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.sh"></script>
+
+
+<script type="application/javascript" src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.ps1"></script>
+
+
+<h2 id="other-fun-stuff-you-can-do">Other fun stuff you can do<a href="#other-fun-stuff-you-can-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="set-up-twitter-cards">🐣 Set up twitter cards<a href="#set-up-twitter-cards" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>You can set up twitter card image links, so when you link the blog on twitter it looks nice. Check out the <code>&lt;head&gt;</code> section of this blog post and you could see it. A nice tool for that is <a href="https://cards-dev.twitter.com/validator">Twitter&rsquo;s card validator</a>.</p>
+
+<h3 id="add-a-logo">🖼 Add a logo<a href="#add-a-logo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>You can add a logo to your theme and play around with it. I employed some freelancers to get my logos, and it&rsquo;s usually very cheap.</p>
+
+<h3 id="add-google-analytics">📊 Add Google Analytics<a href="#add-google-analytics" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>You can add some <a href="https://analytics.google.com/">Google Analytics</a> to know how many people visit your site and which pages are the best. A lot of themes have this built-in, so check out your theme&rsquo;s documentation as to how to do it.</p>
+
+<h3 id="add-custom-css-files">🎨 Add custom CSS files<a href="#add-custom-css-files" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>For theming specific parts of your site, especially embedded content, you can use external CSS files. for example, I added <a href="https://gist.github.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2">dark theme for gists</a>, which you&rsquo;ve seen in previous parts of this article. A lot of themes have that built in in the <code>config.toml</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+  <span class="nx">customCSS</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css&#34;</span><span class="p">]</span></code></pre></div>
+<h3 id="add-social-links">📣 Add social links<a href="#add-social-links" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>You can add some social links to the <code>config.toml</code> file and most themes will show it nicely. This depends on your theme, but usually looks like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;twitter&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;https://twitter.com/ShayNehmad&#34;</span>
+
+  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;github&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/ShayNehmad&#34;</span>
+
+  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;email&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;mailto:dude500@gmail.com&#34;</span></code></pre></div>
+<h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>It&rsquo;s not that hard and it&rsquo;s a lot of fun.</p>
+
+<ul>
+<li>Hosting: Github Pages</li>
+<li>Site generation: Hugo</li>
+<li>Domain: namecheap</li>
+</ul>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/bandit-ctf-writeup-3/">OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup-2/">OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup/">OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</a></li>
+	
+	<li><a href="/posts/what-to-pack-for-a-deserted-linux-island/">What to Pack for a Deserted Linux Island</a></li>
+	
+	<li><a href="/posts/first-post/">The first Post</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/meta">meta</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/linux">linux</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1017 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-03-30 21:10 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Testing AWS Lambda and API Gateway</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/bandit-ctf-writeup-3/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
+<meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+ToC  A little context ToC  More context  How I wanted to do it The problems  The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.">
+<meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00" />
+<meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00" />
+<meta itemprop="wordCount" content="1227">
+
+
+
+<meta itemprop="keywords" content="windows,debugging,powershell,monkey,dev," />
+<meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS" />
+<meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+ToC  A little context ToC  More context  How I wanted to do it The problems  The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/" />
+<meta property="article:published_time" content="2019-12-26T15:34:44+02:00" />
+<meta property="article:modified_time" content="2019-12-26T15:34:44+02:00" />
+
+<meta name="twitter:title" content="Debugging Windows: New Users, Powershell, and TLS">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ShayNehmad">
+<meta name="twitter:image" content="https://i.imgur.com/ROzkHYp.png">
+
+<meta name="twitter:creator" content="@ShayNehmad">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Debugging Windows: New Users, Powershell, and TLS</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.eac77496566fd7d5768fd650ddb0b2b181ca6a2d7c5fdd6fe6b8ba4bf47e566f.css" integrity="sha256-6sd0llZv19V2j9ZQ3bCysYHKai18X91v5ri6S/R+Vm8=" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/ShayNehmad" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 26, 2019</span></div>
+				<h1>Debugging Windows: New Users, Powershell, and TLS</h1>
+			</header>
+			<div class="content">
+				
+
+<h2 id="a-little-context">A little context<a href="#a-little-context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>I wanted to work on <a href="https://github.com/guardicore/monkey/pull/517">this PR in Infection Monkey</a>. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.</p>
+
+<h2 id="toc">ToC<a href="#toc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<ul>
+<li><a href="#a-little-context">A little context</a></li>
+<li><a href="#toc">ToC</a>
+
+<ul>
+<li><a href="#more-context">More context</a></li>
+</ul></li>
+<li><a href="#how-i-wanted-to-do-it">How I wanted to do it</a></li>
+<li><a href="#the-problems">The problems</a>
+
+<ul>
+<li><a href="#the-first-problem-the-application-failed-to-initialize-properly-0xc0000124">The first problem: <code>The application failed to initialize properly (0xc0000124)</code></a></li>
+<li><a href="#the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorers-first-launch-configuration-is-not-complete">The second problem: <code>The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer's first-launch configuration is not complete.</code></a></li>
+<li><a href="#the-third-problem-unsupported-tls-version">The third problem: Unsupported TLS version</a></li>
+</ul></li>
+<li><a href="#conclusions">Conclusions</a></li>
+</ul>
+
+<h3 id="more-context">More context<a href="#more-context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>👩‍🔧 <em>If you&rsquo;re here for the technical stuff only you can skip this section.</em></p>
+
+<p>The Infection Monkey is getting a big upgrade right now (Jan 2020) relating to the Zero Trust territory. One of Zero Trust&rsquo;s pillars is People (i.e. User Identity) - meaning how User Identity is secured in your network. The test we wanted to implement in the Monkey to check out that pillar was supposed to imitate the following Attack scenario:</p>
+
+<ol>
+<li>Attacker gets into the machine.</li>
+<li>Attacker creates a new local user.</li>
+<li>Attacker does actions as that new user, including communicating with the internet.</li>
+</ol>
+
+<p>This test checks how much a network adheres to the <a href="https://www.forrester.com/report/Apply+Zero+Trust+eXtended+Principles+In+Your+Identity+And+Access+Management+Programs/-/E-RES158603">People pillar of Zero Trust</a>, since if you&rsquo;re enforcing that part of you network security correctly - a totally new, unknown user SHOULDN&rsquo;T be able to access the internet at all.</p>
+
+<h2 id="how-i-wanted-to-do-it">How I wanted to do it<a href="#how-i-wanted-to-do-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>I already had a POC of the following flow <em>working</em> and <a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py">in the Repo</a>:</p>
+
+<ol>
+<li>Create a new user with the <code>net user</code> command.</li>
+
+<li><p>Log on as the new user (<a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py#L59">see on Github</a>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">win32security</span>
+<span class="kn">import</span> <span class="nn">win32con</span>
+<span class="k">try</span><span class="p">:</span>
+<span class="c1"># Logon as new user: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-logonusera</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">logon_handle</span> <span class="o">=</span> <span class="n">win32security</span><span class="o">.</span><span class="n">LogonUser</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+    <span class="s2">&#34;.&#34;</span><span class="p">,</span>  <span class="c1"># Use current domain.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+    <span class="n">win32con</span><span class="o">.</span><span class="n">LOGON32_LOGON_INTERACTIVE</span><span class="p">,</span>  <span class="c1"># Logon type - interactive (normal user). Need this to open ping</span>
+    <span class="c1"># using a shell.</span>
+    <span class="n">win32con</span><span class="o">.</span><span class="n">LOGON32_PROVIDER_DEFAULT</span><span class="p">)</span>  <span class="c1"># Which logon provider to use - whatever Windows offers.</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="k">raise</span> <span class="n">NewUserError</span><span class="p">(</span><span class="s2">&#34;Can&#39;t logon as {}. Error: {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span></code></pre></div></li>
+
+<li><p>Run <code>PING.exe</code> as that user using <code>CreateProcessAsUser</code>, with <code>self.logon_handle</code> (<a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py#L75">see on GitHub</a>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">run_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+<span class="c1"># Importing these only on windows, as they won&#39;t exist on linux.</span>
+<span class="kn">import</span> <span class="nn">win32con</span>
+<span class="kn">import</span> <span class="nn">win32process</span>
+<span class="kn">import</span> <span class="nn">win32api</span>
+<span class="kn">import</span> <span class="nn">win32event</span>
+<span class="n">exit_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">process_handle</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">thread_handle</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Open process as that user:</span>
+    <span class="c1"># https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessasusera</span>
+    <span class="n">process_handle</span><span class="p">,</span> <span class="n">thread_handle</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">win32process</span><span class="o">.</span><span class="n">CreateProcessAsUser</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logon_handle</span><span class="p">(),</span>  <span class="c1"># A handle to the primary token that represents a user.</span>
+        <span class="bp">None</span><span class="p">,</span>  <span class="c1"># The name of the module to be executed.</span>
+        <span class="n">command</span><span class="p">,</span>  <span class="c1"># The command line to be executed.</span>
+        <span class="bp">None</span><span class="p">,</span>  <span class="c1"># Process attributes</span>
+        <span class="bp">None</span><span class="p">,</span>  <span class="c1"># Thread attributes</span>
+        <span class="bp">True</span><span class="p">,</span>  <span class="c1"># Should inherit handles</span>
+        <span class="n">win32con</span><span class="o">.</span><span class="n">NORMAL_PRIORITY_CLASS</span><span class="p">,</span>  <span class="c1"># The priority class and the creation of the process.</span>
+        <span class="bp">None</span><span class="p">,</span>  <span class="c1"># An environment block for the new process. If this parameter is NULL, the new process</span>
+        <span class="c1"># uses the environment of the calling process.</span>
+        <span class="bp">None</span><span class="p">,</span>  <span class="c1"># CWD. If this parameter is NULL, the new process will have the same current drive and</span>
+        <span class="c1"># directory as the calling process.</span>
+        <span class="n">win32process</span><span class="o">.</span><span class="n">STARTUPINFO</span><span class="p">()</span>  <span class="c1"># STARTUPINFO structure.</span>
+        <span class="c1"># https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa</span>
+    <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">&#34;Waiting for process to finish. Timeout: {}ms&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">WAIT_TIMEOUT_IN_MILLISECONDS</span><span class="p">))</span>
+    <span class="c1"># Ignoring return code, as we&#39;ll use `GetExitCode` to determine the state of the process later.</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">win32event</span><span class="o">.</span><span class="n">WaitForSingleObject</span><span class="p">(</span>  <span class="c1"># Waits until the specified object is signaled, or time-out.</span>
+        <span class="n">process_handle</span><span class="p">,</span>  <span class="c1"># Ping process handle</span>
+        <span class="n">WAIT_TIMEOUT_IN_MILLISECONDS</span>  <span class="c1"># Timeout in milliseconds</span>
+    <span class="p">)</span>
+    <span class="n">exit_code</span> <span class="o">=</span> <span class="n">win32process</span><span class="o">.</span><span class="n">GetExitCodeProcess</span><span class="p">(</span><span class="n">process_handle</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">process_handle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">win32api</span><span class="o">.</span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">process_handle</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">thread_handle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">win32api</span><span class="o">.</span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">thread_handle</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;Close handle error: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+<span class="k">return</span> <span class="n">exit_code</span></code></pre></div></li>
+</ol>
+
+<p>One Googling session later to look for the proper way to send HTTP requests in Windows; and I find that to do that, since we don&rsquo;t have <code>curl</code>, I&rsquo;ll need to use <code>powershell</code>. All I wanted to do was change <code>PING.exe</code> to <code>powershell.exe -command &quot;Invoke-WebRequest https://infectionmonkey.com/&quot;</code>. Sounds simple, doesn&rsquo;t it?</p>
+
+<p><img src="https://media.giphy.com/media/l0HlKwOMS590aqbu0/giphy.gif" alt="WhatsTheWorstThatCouldHappen" /></p>
+
+<h2 id="the-problems">The problems<a href="#the-problems" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="the-first-problem-the-application-failed-to-initialize-properly-0xc0000124">The first problem: <code>The application failed to initialize properly (0xc0000124)</code><a href="#the-first-problem-the-application-failed-to-initialize-properly-0xc0000124" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Like any good developer, I went looking for this error code. <a href="https://github.com/guardicore/monkey/pull/517/files#diff-6104db73f4811fd12884e61eda7c4c0eR74-R75">I also improved my logging of the error code</a>. The problem seemed to be a DLL init problem.</p>
+
+<p><img src="https://i.imgur.com/OJc4Lzm.png" alt="STATUS_DLL_INIT_FAILED" /></p>
+
+<p>What does that mean? I used some <code>procmon</code> to try to figure out what the problem was, but that proved not super useful. My hunch was that since <code>powershell</code> is a modern app, it has more dependencies and requirements that <code>ping</code> simply doesn&rsquo;t, so after a lot of time wasted on trying to pinpoint the issue, I decided to go with a &ldquo;try until it works&rdquo; approach.</p>
+
+<p>Based on <a href="https://stackoverflow.com/questions/38427094/createprocessasuser-works-createprocesswithtokenw-does-not">this StackOverflow thread</a>, I realized I should use <code>CreateProcessWithLogonW</code> instead of <code>CreateProcessAsUser</code>. <code>CreateProcessWithLogonW</code> managed to create an environment where <code>Powershell.exe</code> could run, whereas <code>LogonUser</code> + <code>CreateProcessAsUser</code> didn&rsquo;t.</p>
+
+<p>This is because <code>CreateProcessWithLogonW</code> uses an RPC call to <code>ncalrpc:[SECLOGON]</code> in <code>svchost</code> (<code>SeclCreateProcessWithLogonW</code> from <code>seclogon.dll</code> called). Internally it does <code>CreateProcessAsUser</code> <em>eventually</em>, but it logs on in a different way and ALSO creates a new session + window. This was enough for <code>powershell</code> to run; the actual issue of the environment that <code>powershell</code> needed to run was solved.</p>
+
+<p>This was VERY hard and cryptic to figure out, and took the better part of a day. I was very happy to be done with it; then I got another Error code. 0x1. Hey, at least it&rsquo;s a normal number this time 😑</p>
+
+<h3 id="the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorer-s-first-launch-configuration-is-not-complete">The second problem: <code>The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer's first-launch configuration is not complete.</code><a href="#the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorer-s-first-launch-configuration-is-not-complete" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>The second bug was with the actual command itself. After creating a new user, <code>Invoke-WebRequest</code> won&rsquo;t work. How did I figure this out? I created a debug breakpoint and manually opened a powershell as the new user, just after it was created.</p>
+
+<p>We tried running <code>echo hello</code> - it worked. So we tried running <code>Invoke-WebRequest</code> and it failed:</p>
+
+<p><img src="https://i.imgur.com/IxCYZyx.png" alt="powershell error code" /></p>
+
+<p>This is because <code>Invoke-WebRequest</code> internally uses Internet Explorer&rsquo;s engine to parse the response. Since the user is totally new, &ldquo;Internet Explorer&rsquo;s first-launch configuration is not complete&rdquo; and therefore the Internet Explorer engine is not available.</p>
+
+<p><img src="https://media.giphy.com/media/8GbvxxFHJDBa8/giphy.gif" alt="ugh" /></p>
+
+<p>The fix for that was to add the <code>-UseBasicParsing</code> flag. At first, <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest?view=powershell-6">I thought it was deprecated</a>, but I looked at the wrong documentation since I was testing with an old <code>powershell</code> version. In the newer <code>powershell</code> versions this shouldn&rsquo;t be an issue at all since PS6 doesn&rsquo;t rely on Windows.</p>
+
+<h3 id="the-third-problem-unsupported-tls-version">The third problem: Unsupported TLS version<a href="#the-third-problem-unsupported-tls-version" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>After I was done testing the feature on my machine, I moved to testing the feature on a specific Windows server; where, to no one&rsquo;s surprise, the feature didn&rsquo;t work correctly. This happened since I was testing with <code>https://infectionmonkey.com</code> which ONLY supported <code>TLS 1.2</code>, but the <code>powershell</code> commandlet I was using used <code>TLS 1.0</code> by default.</p>
+
+<p>To overcome this I manually decided which security protocol <code>powershell</code> was going to use, by adding the <code>[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12</code> command to the <code>powershell</code> script. That set the TLS version of the request and fixed the issue. <a href="https://github.com/guardicore/monkey/pull/518/files#diff-6104db73f4811fd12884e61eda7c4c0eR52">See the pull request</a>.</p>
+
+<p>This problem also brought to my attention the fact that <code>https://infectionmonkey.com</code> doesn&rsquo;t support old TLS versions - but we decided that&rsquo;s OK 🔐😀</p>
+
+<h2 id="conclusions">Conclusions<a href="#conclusions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<ul>
+<li>Windows will never cease to surprise me, but not all surprises are good.</li>
+<li>If you&rsquo;re using Windows, try to use the highest-level API you can use. Usually that gives the best results.</li>
+<li>Talking to people is still the #1 method of debugging. 100% of the fixes in this process were inspired by my coworkers.</li>
+<li>I can fix anything given enough time. So can you 🗻</li>
+</ul>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/python-server-profiling-guide-with-examples/">Python Server Profiling: A quick guide (with real data)</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/windows">windows</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/debugging">debugging</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/powershell">powershell</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/monkey">monkey</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/dev">dev</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1227 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-12-26 15:34 &#43;0200</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/bandit-ctf-writeup/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Python Server Profiling: A quick guide (with real data)</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
