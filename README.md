@@ -1,2 +1,1 @@
-# TheCoreMan.github.io
-mrnice.dev blog
+[mrnice.dev](mrnice.dev)
