@@ -5,8 +5,18 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Sat, 08 Aug 2020 01:12:58 +0300</lastBuildDate>
+		<lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
+			<link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>
+			<pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/swimming-with-monkeys/</guid>
+			<description></description>
+			<content type="html"><![CDATA[]]></content>
+		</item>
 		
 		<item>
 			<title>Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</title>

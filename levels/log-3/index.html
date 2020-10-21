@@ -8,16 +8,16 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="log-3">
-<meta itemprop="description" content="var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis.">
+<meta itemprop="description" content="var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;">
 <meta itemprop="datePublished" content="2020-05-23T13:04:22+03:00" />
 <meta itemprop="dateModified" content="2020-05-23T13:04:22+03:00" />
-<meta itemprop="wordCount" content="344">
+<meta itemprop="wordCount" content="500">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta property="og:title" content="log-3" />
-<meta property="og:description" content="var DOTstring = `digraph {0 [label=&#34;clone&#34;]1 [label=&#34;start-here&#34;]2 [label=&#34;basic-1&#34;]3 [label=&#34;basic-2&#34;]4 [label=&#34;merge-1&#34;]5 [label=&#34;merge-2&#34;]6 [label=&#34;merge-3&#34;]7 [label=&#34;merge-4&#34;]8 [label=&#34;merge-5&#34;]9 [label=&#34;revert-1&#34;]10 [label=&#34;tag-1&#34;]11 [label=&#34;tag-2&#34;]12 [label=&#34;hooks-1&#34;]13 [label=&#34;rebase-1&#34;]14 [label=&#34;remote-1&#34;]15 [label=&#34;hooks-2&#34;]16 [label=&#34;log-1&#34;]17 [label=&#34;log-2&#34;]18 [label=&#34;log-3&#34;]19 [label=&#34;log-4&#34;]20 [label=&#34;log-5&#34;]0 - 11 - 22 - 33 - 44 - 55 - 66 - 77 - 86 - 99 - 1010 - 1110 - 1212 - 1313 - 1412 - 154 - 1616 - 1717 - 1818 - 1919 - 20}`;var parsedData = vis." />
+<meta property="og:description" content="var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/levels/log-3/" />
 <meta property="article:published_time" content="2020-05-23T13:04:22+03:00" />
@@ -89,47 +89,51 @@
 <script type="text/javascript">
     var DOTstring = `
 	    digraph {
-    0 [label="clone"]
-    1 [label="start-here"]
-    2 [label="basic-1"]
-    3 [label="basic-2"]
-    4 [label="merge-1"]
-    5 [label="merge-2"]
-    6 [label="merge-3"]
-    7 [label="merge-4"]
-    8 [label="merge-5"]
-    9 [label="revert-1"]
-    10 [label="tag-1"]
-    11 [label="tag-2"]
-    12 [label="hooks-1"]
-    13 [label="rebase-1"]
-    14 [label="remote-1"]
-    15 [label="hooks-2"]
-    16 [label="log-1"]
-    17 [label="log-2"]
-    18 [label="log-3"]
-    19 [label="log-4"]
-    20 [label="log-5"]
-    0 -> 1
-    1 -> 2
-    2 -> 3
-    3 -> 4
-    4 -> 5
-    5 -> 6
-    6 -> 7
-    7 -> 8
-    6 -> 9
-    9 -> 10
-    10 -> 11
-    10 -> 12
-    12 -> 13
-    13 -> 14
-    12 -> 15
-    4 -> 16
-    16 -> 17
-    17 -> 18
-    18 -> 19
-    19 -> 20
+    0 [ label = "clone" ]
+    1 [ label = "start-here" ]
+    2 [ label = "basic-1" ]
+    3 [ label = "basic-2" ]
+    4 [ label = "merge-1" ]
+    5 [ label = "merge-2" ]
+    6 [ label = "merge-3" ]
+    7 [ label = "merge-4" ]
+    8 [ label = "merge-5" ]
+    9 [ label = "revert-1" ]
+    10 [ label = "tag-1" ]
+    11 [ label = "tag-2" ]
+    12 [ label = "hooks-1" ]
+    13 [ label = "rebase-1" ]
+    14 [ label = "remote-1" ]
+    15 [ label = "hooks-2" ]
+    16 [ label = "log-1" ]
+    17 [ label = "log-2" ]
+    18 [ label = "log-3" ]
+    19 [ label = "log-4" ]
+    20 [ label = "log-5" ]
+    21 [ label = "owasp-ctf-1" ]
+    22 [ label = "owasp-ctf-2" ]
+    0 -> 1 [ ]
+    1 -> 2 [ ]
+    2 -> 3 [ ]
+    3 -> 4 [ ]
+    4 -> 5 [ ]
+    5 -> 6 [ ]
+    6 -> 7 [ ]
+    7 -> 8 [ ]
+    6 -> 9 [ ]
+    9 -> 10 [ ]
+    10 -> 11 [ ]
+    10 -> 12 [ ]
+    12 -> 13 [ ]
+    13 -> 14 [ ]
+    12 -> 15 [ ]
+    4 -> 16 [ ]
+    16 -> 17 [ ]
+    17 -> 18 [ ]
+    18 -> 19 [ ]
+    19 -> 20 [ ]
+    0 -> 21 [ ]
+    0 -> 22 [ ]
 }
 
 `;
@@ -161,6 +165,7 @@
         "revert": "⏮ ",
         "hooks": "🎣 ",
         "tag": "🔖 ",
+        "owasp": "🔏 ",
     }
     
     
@@ -188,13 +193,17 @@
 	    font: "20px Verdana black"
 	},
 	edges: {
-	    color: "#e8eef2",
+        color: "#e8eef2",
+        smooth: {
+            type: "continuous"
+        }
 	},
 	physics: {
-	    enabled: false
+	    enabled: true
 	},
 	layout: {
             hierarchical: {
+                sortMethod: "directed",
                 direction: "LR",
             }
         }

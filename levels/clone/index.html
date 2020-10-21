@@ -12,7 +12,7 @@
  Notes for beginners  🧱 CTF structure The level browser 🤔 Unsure what to do?  ▶ I am ready to play  Connect to the game server Clone the repository  🧩 Hints  Notes for beginners 🧱 CTF structure This CTF, like most other CTFs, is separated into levels. You start at the &ldquo;clone&rdquo; level (where you are right now), and try to finish it.">
 <meta itemprop="datePublished" content="2020-05-23T13:04:22+03:00" />
 <meta itemprop="dateModified" content="2020-05-23T13:04:22+03:00" />
-<meta itemprop="wordCount" content="898">
+<meta itemprop="wordCount" content="1054">
 
 
 
@@ -130,47 +130,51 @@
 <script type="text/javascript">
     var DOTstring = `
 	    digraph {
-    0 [label="clone"]
-    1 [label="start-here"]
-    2 [label="basic-1"]
-    3 [label="basic-2"]
-    4 [label="merge-1"]
-    5 [label="merge-2"]
-    6 [label="merge-3"]
-    7 [label="merge-4"]
-    8 [label="merge-5"]
-    9 [label="revert-1"]
-    10 [label="tag-1"]
-    11 [label="tag-2"]
-    12 [label="hooks-1"]
-    13 [label="rebase-1"]
-    14 [label="remote-1"]
-    15 [label="hooks-2"]
-    16 [label="log-1"]
-    17 [label="log-2"]
-    18 [label="log-3"]
-    19 [label="log-4"]
-    20 [label="log-5"]
-    0 -> 1
-    1 -> 2
-    2 -> 3
-    3 -> 4
-    4 -> 5
-    5 -> 6
-    6 -> 7
-    7 -> 8
-    6 -> 9
-    9 -> 10
-    10 -> 11
-    10 -> 12
-    12 -> 13
-    13 -> 14
-    12 -> 15
-    4 -> 16
-    16 -> 17
-    17 -> 18
-    18 -> 19
-    19 -> 20
+    0 [ label = "clone" ]
+    1 [ label = "start-here" ]
+    2 [ label = "basic-1" ]
+    3 [ label = "basic-2" ]
+    4 [ label = "merge-1" ]
+    5 [ label = "merge-2" ]
+    6 [ label = "merge-3" ]
+    7 [ label = "merge-4" ]
+    8 [ label = "merge-5" ]
+    9 [ label = "revert-1" ]
+    10 [ label = "tag-1" ]
+    11 [ label = "tag-2" ]
+    12 [ label = "hooks-1" ]
+    13 [ label = "rebase-1" ]
+    14 [ label = "remote-1" ]
+    15 [ label = "hooks-2" ]
+    16 [ label = "log-1" ]
+    17 [ label = "log-2" ]
+    18 [ label = "log-3" ]
+    19 [ label = "log-4" ]
+    20 [ label = "log-5" ]
+    21 [ label = "owasp-ctf-1" ]
+    22 [ label = "owasp-ctf-2" ]
+    0 -> 1 [ ]
+    1 -> 2 [ ]
+    2 -> 3 [ ]
+    3 -> 4 [ ]
+    4 -> 5 [ ]
+    5 -> 6 [ ]
+    6 -> 7 [ ]
+    7 -> 8 [ ]
+    6 -> 9 [ ]
+    9 -> 10 [ ]
+    10 -> 11 [ ]
+    10 -> 12 [ ]
+    12 -> 13 [ ]
+    13 -> 14 [ ]
+    12 -> 15 [ ]
+    4 -> 16 [ ]
+    16 -> 17 [ ]
+    17 -> 18 [ ]
+    18 -> 19 [ ]
+    19 -> 20 [ ]
+    0 -> 21 [ ]
+    0 -> 22 [ ]
 }
 
 `;
@@ -202,6 +206,7 @@
         "revert": "⏮ ",
         "hooks": "🎣 ",
         "tag": "🔖 ",
+        "owasp": "🔏 ",
     }
     
     
@@ -229,13 +234,17 @@
 	    font: "20px Verdana black"
 	},
 	edges: {
-	    color: "#e8eef2",
+        color: "#e8eef2",
+        smooth: {
+            type: "continuous"
+        }
 	},
 	physics: {
-	    enabled: false
+	    enabled: true
 	},
 	layout: {
             hierarchical: {
+                sortMethod: "directed",
                 direction: "LR",
             }
         }

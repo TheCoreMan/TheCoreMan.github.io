@@ -3,37 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/open-source/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/security/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/posts/swimming-with-monkeys/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/training/</loc>
+    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.mrnice.dev/posts/my-2020-defcon-talk/</loc>
     <lastmod>2020-08-08T01:12:58+03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.mrnice.dev/tags/musings/</loc>
-    <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.mrnice.dev/tags/open-source/</loc>
-    <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.mrnice.dev/tags/security/</loc>
-    <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2020-08-08T01:12:58+03:00</lastmod>
   </url>
   
@@ -154,6 +164,16 @@
   
   <url>
     <loc>https://www.mrnice.dev/levels/merge-5/</loc>
+    <lastmod>2020-05-23T13:04:22+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/levels/owasp-ctf-1/</loc>
+    <lastmod>2020-05-23T13:04:22+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/levels/owasp-ctf-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
   </url>
   
