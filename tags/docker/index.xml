@@ -6,11 +6,7 @@
     <description>Recent content in docker on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 May 2020 20:20:31 +0300</lastBuildDate>
-    
-	<atom:link href="https://www.mrnice.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 12 May 2020 20:20:31 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</title>
       <link>https://www.mrnice.dev/posts/dev-log-2/</link>

@@ -6,10 +6,51 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2020 16:09:49 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ctf</title>
+      <link>https://www.mrnice.dev/tags/ctf/</link>
+      <pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/ctf/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>devlog</title>
+      <link>https://www.mrnice.dev/tags/devlog/</link>
+      <pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/devlog/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>git</title>
+      <link>https://www.mrnice.dev/tags/git/</link>
+      <pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://www.mrnice.dev/tags/rust/</link>
+      <pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>https://www.mrnice.dev/tags/web/</link>
+      <pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/web/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>open-source</title>
@@ -48,47 +89,11 @@
     </item>
     
     <item>
-      <title>ctf</title>
-      <link>https://www.mrnice.dev/tags/ctf/</link>
-      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/ctf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>devlog</title>
-      <link>https://www.mrnice.dev/tags/devlog/</link>
-      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/devlog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://www.mrnice.dev/tags/git/</link>
-      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>algorithms</title>
       <link>https://www.mrnice.dev/tags/algorithms/</link>
       <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rust</title>
-      <link>https://www.mrnice.dev/tags/rust/</link>
-      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/rust/</guid>
       <description></description>
     </item>
     
@@ -179,15 +184,6 @@
       <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>meta</title>
-      <link>https://www.mrnice.dev/tags/meta/</link>
-      <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/meta/</guid>
       <description></description>
     </item>
     

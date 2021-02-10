@@ -6,11 +6,7 @@
     <description>Recent content in overthewire on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 21:57:03 +0200</lastBuildDate>
-    
-	<atom:link href="https://www.mrnice.dev/tags/overthewire/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 02 Mar 2020 21:57:03 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/overthewire/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
       <link>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</link>

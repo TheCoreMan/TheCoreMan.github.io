@@ -6,11 +6,7 @@
     <description>Recent content in training on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate>
-    
-	<atom:link href="https://www.mrnice.dev/tags/training/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/training/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
       <link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>

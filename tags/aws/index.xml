@@ -6,11 +6,7 @@
     <description>Recent content in aws on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2020 20:15:28 +0300</lastBuildDate>
-    
-	<atom:link href="https://www.mrnice.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 02 Apr 2020 20:15:28 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing AWS Lambda and API Gateway</title>
       <link>https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/</link>

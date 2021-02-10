@@ -6,11 +6,7 @@
     <description>Recent content in development on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Nov 2019 18:04:53 +0200</lastBuildDate>
-    
-	<atom:link href="https://www.mrnice.dev/tags/development/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 15 Nov 2019 18:04:53 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/development/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python Server Profiling: A quick guide (with real data)</title>
       <link>https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/</link>

@@ -6,10 +6,18 @@
     <description>Recent content in rust on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 May 2020 18:08:50 +0300</lastBuildDate>
-    
-	<atom:link href="https://www.mrnice.dev/tags/rust/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sun, 01 Nov 2020 16:09:49 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</title>
+      <link>https://www.mrnice.dev/posts/dev-log-5/</link>
+      <pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/dev-log-5/</guid>
+      <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
+Also, this is an old blogpost about something that wasn&amp;rsquo;t actually released as part of the project yet. Maybe one day I&amp;rsquo;ll finish it but the documentation value is important.
+After another successful workshop,
+Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.</description>
+    </item>
     
     <item>
       <title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
