@@ -5,13 +5,23 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Sun, 01 Nov 2020 16:09:49 +0300</lastBuildDate>
+		<lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
+			<link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>
+			<pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/swimming-with-monkeys/</guid>
+			<description></description>
+			<content type="html"><![CDATA[]]></content>
+		</item>
 		
 		<item>
 			<title>Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</title>
 			<link>https://www.mrnice.dev/posts/dev-log-5/</link>
-			<pubDate>Sun, 01 Nov 2020 16:09:49 +0300</pubDate>
+			<pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
 			
 			<guid>https://www.mrnice.dev/posts/dev-log-5/</guid>
 			<description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
@@ -891,16 +901,6 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 
 <p>I decided to not deploy this for now. Maybe in the future. The <a href="https://github.com/TheCoreMan/make-git-better-2/tree/26/auto-hof-page">branch is still open here</a>, so this might actually happen someday!</p>
 ]]></content>
-		</item>
-		
-		<item>
-			<title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
-			<link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>
-			<pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
-			
-			<guid>https://www.mrnice.dev/posts/swimming-with-monkeys/</guid>
-			<description></description>
-			<content type="html"><![CDATA[]]></content>
 		</item>
 		
 		<item>
