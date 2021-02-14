@@ -3,17 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+    <loc>https://www.mrnice.dev/tags/documentation/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.mrnice.dev/tags/open-source/</loc>
-    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
+    <loc>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/musings/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/swimm/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.mrnice.dev/tags/open-source/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
   </url>
   
@@ -24,11 +49,6 @@
   
   <url>
     <loc>https://www.mrnice.dev/posts/swimming-with-monkeys/</loc>
-    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
   </url>
   
@@ -69,11 +89,6 @@
   
   <url>
     <loc>https://www.mrnice.dev/posts/my-2020-defcon-talk/</loc>
-    <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2020-08-08T01:12:58+03:00</lastmod>
   </url>
   

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>swimm on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/swimm/</link>
+    <description>Recent content in swimm on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Feb 2021 12:53:17 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/swimm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Find the Right Code Knowledge Management Tool</title>
+      <link>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</link>
+      <pubDate>Sun, 14 Feb 2021 12:53:17 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

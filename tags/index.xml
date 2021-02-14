@@ -6,7 +6,34 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Feb 2021 12:53:17 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>documentation</title>
+      <link>https://www.mrnice.dev/tags/documentation/</link>
+      <pubDate>Sun, 14 Feb 2021 12:53:17 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/documentation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>musings</title>
+      <link>https://www.mrnice.dev/tags/musings/</link>
+      <pubDate>Sun, 14 Feb 2021 12:53:17 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/musings/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swimm</title>
+      <link>https://www.mrnice.dev/tags/swimm/</link>
+      <pubDate>Sun, 14 Feb 2021 12:53:17 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/swimm/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>open-source</title>
       <link>https://www.mrnice.dev/tags/open-source/</link>
@@ -76,15 +103,6 @@
       <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>musings</title>
-      <link>https://www.mrnice.dev/tags/musings/</link>
-      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/musings/</guid>
       <description></description>
     </item>
     
@@ -166,24 +184,6 @@
       <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>testing</title>
-      <link>https://www.mrnice.dev/tags/testing/</link>
-      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/testing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://www.mrnice.dev/tags/linux/</link>
-      <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/linux/</guid>
       <description></description>
     </item>
     
