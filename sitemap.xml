@@ -1,450 +1,272 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://www.mrnice.dev/tags/documentation/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/swimm/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/open-source/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/security/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/swimming-with-monkeys/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/training/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/ctf/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/devlog/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-5/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/git/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/rust/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/web/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/my-2020-defcon-talk/</loc>
     <lastmod>2020-08-08T01:12:58+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-4/</loc>
     <lastmod>2020-07-04T18:53:26+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</loc>
     <lastmod>2020-06-11T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/algorithms/</loc>
     <lastmod>2020-05-28T18:08:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-3/</loc>
     <lastmod>2020-05-28T18:08:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/basic-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/basic-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/clone/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/hooks-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/hooks-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/log-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/log-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/log-3/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/log-4/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/log-5/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/merge-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/merge-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/merge-3/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/merge-4/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/merge-5/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/owasp-ctf-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/owasp-ctf-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/rebase-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/remote-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/revert-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/start-here/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/tag-1/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/levels/tag-2/</loc>
     <lastmod>2020-05-23T13:04:22+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-2/</loc>
     <lastmod>2020-05-12T20:20:31+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/docker/</loc>
     <lastmod>2020-05-12T20:20:31+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/toml/</loc>
     <lastmod>2020-05-12T20:20:31+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/design/</loc>
     <lastmod>2020-05-02T18:02:38+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-1/</loc>
     <lastmod>2020-05-02T18:02:38+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/requirements/</loc>
     <lastmod>2020-05-02T18:02:38+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/mitre-attack/</loc>
     <lastmod>2020-04-27T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/monkey-mitre/</loc>
     <lastmod>2020-04-27T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-0/</loc>
     <lastmod>2020-04-11T14:00:45+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/aws/</loc>
     <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/cloud/</loc>
     <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/python/</loc>
     <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/testing/</loc>
     <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/</loc>
     <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-this-blog/</loc>
     <lastmod>2020-03-30T21:10:59+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/linux/</loc>
     <lastmod>2020-03-30T21:10:59+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/meta/</loc>
     <lastmod>2020-03-30T21:10:59+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/bandit/</loc>
     <lastmod>2020-03-02T21:57:03+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</loc>
     <lastmod>2020-03-02T21:57:03+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/overthewire/</loc>
     <lastmod>2020-03-02T21:57:03+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/writeups/</loc>
     <lastmod>2020-03-02T21:57:03+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</loc>
     <lastmod>2020-02-26T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/zero-trust/</loc>
     <lastmod>2020-02-26T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/ctf/</loc>
     <lastmod>2020-02-23T16:57:48+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/ctf-hof/</loc>
     <lastmod>2020-02-23T16:57:48+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/bandit-ctf-writeup-2/</loc>
     <lastmod>2020-02-15T21:57:03+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/bandit-ctf-writeup/</loc>
     <lastmod>2020-02-01T13:23:19+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/debugging/</loc>
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/</loc>
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/dev/</loc>
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/monkey/</loc>
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/powershell/</loc>
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/windows/</loc>
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/about/</loc>
     <lastmod>2019-12-26T13:48:04+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/development/</loc>
     <lastmod>2019-11-15T18:04:53+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/profiling/</loc>
     <lastmod>2019-11-15T18:04:53+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/</loc>
     <lastmod>2019-11-15T18:04:53+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/monkey-zero-trust/</loc>
     <lastmod>2019-10-29T12:07:50+03:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/it/</loc>
     <lastmod>2019-08-11T17:26:22+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/sysadmin/</loc>
     <lastmod>2019-08-11T17:26:22+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/tools/</loc>
     <lastmod>2019-08-11T17:26:22+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/</loc>
     <lastmod>2019-08-11T17:26:22+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/first-post/</loc>
     <lastmod>1970-01-01T00:00:01+02:00</lastmod>
   </url>
-  
 </urlset>
