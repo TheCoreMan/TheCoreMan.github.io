@@ -6,7 +6,25 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Feb 2021 12:53:17 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 May 2021 15:36:58 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>emacs</title>
+      <link>https://www.mrnice.dev/tags/emacs/</link>
+      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>howto</title>
+      <link>https://www.mrnice.dev/tags/howto/</link>
+      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/howto/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>documentation</title>
       <link>https://www.mrnice.dev/tags/documentation/</link>
@@ -166,24 +184,6 @@
       <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cloud</title>
-      <link>https://www.mrnice.dev/tags/cloud/</link>
-      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://www.mrnice.dev/tags/python/</link>
-      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/python/</guid>
       <description></description>
     </item>
     

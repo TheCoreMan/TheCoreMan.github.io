@@ -2,25 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/emacs/</loc>
+    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</loc>
+    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/howto/</loc>
+    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/documentation/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/swimm/</loc>
-    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/open-source/</loc>

@@ -5,8 +5,96 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Sun, 14 Feb 2021 12:53:17 +0200</lastBuildDate>
+		<lastBuildDate>Mon, 17 May 2021 15:36:58 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>How to Add EmacsLisp Programs to Emacs - The Hard Way</title>
+			<link>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</link>
+			<pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
+			<description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
+A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
+ I&amp;rsquo;ve stumbled across it from this StackExchange answer.
+ If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
+			<content type="html"><![CDATA[
+
+<p>Adding EmacsLips programs to extend Emacs&rsquo;s functionality from source is something I&rsquo;ve found non-obvious (had to open multiple tabs for). Today I&rsquo;ve decided to figure it out, and it&rsquo;s actually very simple, so here&rsquo;s the guide:</p>
+
+<h2 id="a-find-the-program-you-want-to-add">A - Find the program you want to add</h2>
+
+<p>In my case, it was <a href="https://www.emacswiki.org/emacs/TransposeFrame">&ldquo;Transpose Frame&rdquo;</a> by <a href="https://www.emacswiki.org/emacs/irie">irie</a>.</p>
+
+<blockquote>
+<p>I&rsquo;ve stumbled across it from this <a href="https://emacs.stackexchange.com/a/5374/31257">StackExchange answer</a>.</p>
+</blockquote>
+
+<p>If the program is available on <a href="https://melpa.org/#/">MELPA</a>, you can just add it to the <code>additional-packages</code> list in your <code>.spacemacs</code> config (see <a href="#d-add-the-program-to-your-spacemacs-configuration">section D</a>). However, if it&rsquo;s not, or if you want to do it from source, or you want to do it once &ldquo;the hard way&rdquo; to learn (like I did in this blogpost) you&rsquo;ll need the <code>.el</code> file that has the program. Grab that file&rsquo;s URL.</p>
+
+<h2 id="b-download-the-el-file-into-your-load-path">B - Download the <code>.el</code> file into your <code>load-path</code></h2>
+
+<p>You need to download the <code>.el</code> file into a directory within load-path. This should work (replace the URL with your file):</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/share/emacs/site-lisp
+sudo wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/transpose-frame.el -O transpose-frame.el</code></pre></div>
+<h2 id="c-byte-compile-that-el-file-into-a-elc-file">C - Byte-compile that <code>.el</code> file into a <code>.elc</code> file</h2>
+
+<p>Now you need to compile that <code>.el</code> file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo emacs --batch --eval <span class="o">(</span>byte-compile-file <span class="s2">&#34;transpose-frame.el&#34;</span><span class="o">)</span></code></pre></div>
+<h2 id="d-add-the-program-to-your-spacemacs-configuration">D - Add the program to your Spacemacs configuration</h2>
+
+<p>Open your config file using <code>SPC f e d</code> (files -&gt; edit -&gt; dotfile).</p>
+
+<p>Add the program to your dotfile, for example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;transpose-frame</span><span class="p">)</span></code></pre></div>
+<p>Make sure to add it BEFORE the markers which say:</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="c1">;; Do not write anything past this comment. This is where Emacs will</span>
+<span class="c1">;; auto-generate custom variable definitions.</span></code></pre></div>
+<h2 id="e-reload-the-configuration">E - Reload the configuration</h2>
+
+<p><code>SPC f e R</code> (Files -&gt; Emacs/Spacemacs -&gt; Reload configuration).</p>
+
+<p>It might install/update some things, and then your new program should be available! Try to use it to test it out.</p>
+
+<p><img src="https://i.giphy.com/media/l4JySAWfMaY7w88sU/giphy.gif" alt="Hooray" /></p>
+
+<h2 id="addendum-explanations-and-things-i-ve-learned">Addendum - Explanations and things I&rsquo;ve learned</h2>
+
+<h3 id="emacs-load-path">Emacs load path</h3>
+
+<p><a href="https://www.emacswiki.org/emacs/LoadPath">Here&rsquo;s the load-path documentation</a>. TL;DR: it&rsquo;s where <code>emacs</code> finds libraries to load. Unless you messed around with it, your <code>load-path</code> includes <code>/usr/local/share/emacs/site-lisp</code>.</p>
+
+<p>If you don&rsquo;t want to add the extension to the global site-lisp, the convention in Linux is to usually have a <code>$HOME/.local/share/emacs/site-lisp</code> folder and manually add it to the <code>load-path</code>.</p>
+
+<h3 id="byte-compile-and-accessing-documentation">Byte-compile and accessing documentation</h3>
+
+<p>To understand what <code>byte-compile-file</code> does, you can <a href="https://www.emacswiki.org/emacs/CompiledFile">read the documentation on the Emacs Wiki</a>. But another good tip is to use <code>SPC h d f</code> (help -&gt; describe -&gt; function) to access the internal docs directly from within <code>emacs</code>. Here&rsquo;s what I got for typing <code>SPC h d f byte-compile-file ENTER</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">byte-compile-file is an interactive autoloaded compiled Lisp function in
+‘bytecomp.el’.
+
+(byte-compile-file FILENAME &amp;optional LOAD)
+
+Compile a file of Lisp code named FILENAME into a file of byte code.
+The output file’s name is generated by passing FILENAME to the
+function ‘byte-compile-dest-file’ (which see).
+With prefix arg (noninteractively: 2nd arg), LOAD the file after compiling.
+The value is non-nil if there were no errors, nil if errors.</code></pre></div>
+<p>Also, Emacs might byte-compile things automatically after require.</p>
+
+<h3 id="jumping-between-files-easily">Jumping between files easily</h3>
+
+<p>A few tricks:</p>
+
+<ul>
+<li>Want to go back to a recent file you&rsquo;ve just found? <code>SPC f r</code> (Files -&gt; Recent)</li>
+<li>Want to fuzzy-find files within your projects? <code>SPC p f</code> (Projects -&gt; Helm Find File)</li>
+</ul>
+
+<blockquote>
+<p>Inspired to write this post because of Ophir Harpaz&rsquo;s <a href="https://ophirharpaz.github.io/posts/two-github-accounts-one-computer/">immensely useful blog post, 2 GitHub Accounts 1 Computer - The Shortest Guide Possible</a>. Thanks Ophir :)</p>
+</blockquote>
+]]></content>
+		</item>
 		
 		<item>
 			<title>How to Find the Right Code Knowledge Management Tool</title>

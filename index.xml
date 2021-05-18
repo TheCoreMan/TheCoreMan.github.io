@@ -6,7 +6,19 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Feb 2021 12:53:17 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 May 2021 15:36:58 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add EmacsLisp Programs to Emacs - The Hard Way</title>
+      <link>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</link>
+      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
+      <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
+A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
+ I&amp;rsquo;ve stumbled across it from this StackExchange answer.
+ If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
+    </item>
+    
     <item>
       <title>How to Find the Right Code Knowledge Management Tool</title>
       <link>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</link>
@@ -188,15 +200,6 @@ Today we&amp;rsquo;re automating another big part of the challenge: creating the
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/merge-2/</guid>
-      <description>var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;</description>
-    </item>
-    
-    <item>
-      <title>merge-3</title>
-      <link>https://www.mrnice.dev/levels/merge-3/</link>
-      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/levels/merge-3/</guid>
       <description>var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;</description>
     </item>
     

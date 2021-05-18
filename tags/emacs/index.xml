@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/emacs/</link>
+    <description>Recent content in emacs on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 May 2021 15:36:58 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add EmacsLisp Programs to Emacs - The Hard Way</title>
+      <link>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</link>
+      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
+      <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
+A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
+ I&amp;rsquo;ve stumbled across it from this StackExchange answer.
+ If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
+    </item>
+    
+  </channel>
+</rss>
