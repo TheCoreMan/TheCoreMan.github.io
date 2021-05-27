@@ -119,7 +119,7 @@ lein new app . --force</code></pre></div>
 
 <h3 id="syntax">Syntax</h3>
 
-<p>I started with learning the REPL syntax by following the exercises <a href="https://clojure.org/guides/learn/syntax#_test_your_knowledge">here</a>: Instead of directly using a repl, I typed all this out in a file and used <code>, e</code> to evaluate and write as a comment.</p>
+<p>I started with learning the REPL syntax by <a href="https://clojure.org/guides/learn/syntax#_test_your_knowledge">following the exercises here</a>. Instead of directly using a REPL, I typed all this out in a file and used <code>, e</code> to evaluate and write as a comment.</p>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="c1">;; 1. Using the REPL, compute the sum of 7654 and 1234.</span>
   <span class="p">(</span><span class="nb">+ </span><span class="mi">7654</span> <span class="mi">1234</span><span class="p">)</span>  <span class="c1">; spacemacs printed &#34;=&gt; 8888&#34;</span>
 
@@ -183,7 +183,7 @@ REPL utility.  Prints a brief stack trace <span class="k">for</span> the root ca
 most recent exception.</code></pre></div>
 <h3 id="functions">Functions</h3>
 
-<p>This one took a WHILE.</p>
+<p>This one took a WHILE. <a href="https://clojure.org/guides/learn/functions">Follow along with the guide</a>!</p>
 <div class="highlight"><pre class="chroma"><code class="language-Clojure" data-lang="Clojure"><span class="c1">;; 1) Define a function greet that takes no arguments and prints &#34;Hello&#34;. </span>
 <span class="c1">;;    Replace the ___ with the implementation: (defn greet [] _)</span></code></pre></div>
 <p>I changed the function name from greet to greetq1 to avoid clashes between different questions.</p>
