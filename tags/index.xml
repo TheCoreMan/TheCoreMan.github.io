@@ -6,7 +6,16 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 May 2021 15:36:58 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 May 2021 01:03:49 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>clojure</title>
+      <link>https://www.mrnice.dev/tags/clojure/</link>
+      <pubDate>Thu, 27 May 2021 01:03:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/clojure/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>emacs</title>
       <link>https://www.mrnice.dev/tags/emacs/</link>
@@ -175,15 +184,6 @@
       <pubDate>Mon, 27 Apr 2020 12:07:50 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/mitre-attack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>aws</title>
-      <link>https://www.mrnice.dev/tags/aws/</link>
-      <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/aws/</guid>
       <description></description>
     </item>
     

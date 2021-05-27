@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>clojure on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/clojure/</link>
+    <description>Recent content in clojure on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 May 2021 01:03:49 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Foray Into Clojure, Part 0: Setup, syntax, functions</title>
+      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</link>
+      <pubDate>Thu, 27 May 2021 01:03:49 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</guid>
+      <description>I started this post AFTER starting to work on a Clojure script, when I realized I didn&amp;rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
+In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &amp;ldquo;Learn Clojure&amp;rdquo; guide, with examples and explanations.</description>
+    </item>
+    
+    <item>
+      <title>How to Add EmacsLisp Programs to Emacs - The Hard Way</title>
+      <link>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</link>
+      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
+      <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
+A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
+ I&amp;rsquo;ve stumbled across it from this StackExchange answer.
+ If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
+    </item>
+    
+  </channel>
+</rss>
