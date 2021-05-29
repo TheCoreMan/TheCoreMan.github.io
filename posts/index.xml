@@ -46,6 +46,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#functions">Functions</a></li>
 </ul></li>
+<li><a href="#whats-next">What&rsquo;s next?</a></li>
 </ul>
 
 <!-- markdown-toc end -->
@@ -54,7 +55,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 
 <p>Clojure feels hostile. It feels like a language which was built for seniors. If I don&rsquo;t understand something, it always feels like my fault - the docs are there, the tools are there, I&rsquo;m just not good enough yet.</p>
 
-<p>Now, I&rsquo;m not a junior dev, by any means. But it felt like the barrier for entry was unnecessarily&hellip; well, not high, just hard. You have to learn so much just to <strong>get</strong> to learn Clojure.</p>
+<p>Now, I&rsquo;m not a junior developer, by any means. But it felt like the barrier for entry was unnecessarily&hellip; well, not high, just hard. You have to learn so much just to <strong>get</strong> to learn Clojure.</p>
 
 <p>The best analogy I can give is that if learning, say, basic Python feels like a fun workout in the Park, learning Clojure feels like Pai Mei&rsquo;s training from <em>Kill Bill</em>.</p>
 
@@ -62,7 +63,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 
 <p>Now, <strong>THEORETICALLY</strong>, after the training is over, I&rsquo;m supposed to have some super powers. 🦸</p>
 
-<p>So personally (not in a professional capacity) I will continue learning Clojure. But for professional usage, unless you already have a core team that is fluent in Clojure, or a highly specific need to use it - I would pick other languages to go with to get started with projects. Easier learning curve and easier to hire relevant talent.</p>
+<p>So personally (not in a professional capacity) I will continue learning Clojure. But for professional usage, unless you already have a core team that is fluent in Clojure, or a highly specific need to use it - I would pick other languages to go with to get started with projects. Easier learning curve and easier to hire relevant talent. Take this conclusion with a grain of salt! 🧂 I&rsquo;m still very new here.</p>
 
 <h2 id="setting-up-the-tools">Setting up the tools</h2>
 
@@ -105,7 +106,7 @@ lein new app . --force</code></pre></div>
 
 <p>What I should have done:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">lein new app learn-clojure</code></pre></div>
-<p>And then I opened that project in spacemaces. Quick sidebar here about the REPL. REPL stands for Read Evaluate Print Loop and means Reading a line, Evaluating the string into things that makes sense in the language, and Printing the result from the Evaluate step. In that sense, a commandline calculator is a REPL as well - not just programming shells!</p>
+<p>And then I opened that project in spacemacs. Quick sidebar here about the REPL. REPL stands for Read Evaluate Print Loop and means Reading a line, Evaluating the string into things that makes sense in the language, and Printing the result from the Evaluate step. In that sense, a commandline calculator is a REPL as well - not just programming shells!</p>
 
 <p>With Spacemacs and Clojure, you can REPL the code as you&rsquo;re writing it, and it seems to be the zeitgeist of developing with Clojure. There is quite a lot of documentation about it but the best I&rsquo;ve found is <a href="https://practicalli.github.io/spacemacs/">Practicalli&rsquo;s Spacemacs guide</a>.</p>
 
@@ -451,6 +452,10 @@ nil</code></pre></div>
 <p><img src="https://i.giphy.com/media/a3ANjL4bRwsO4/giphy.gif" alt="phew" /></p>
 
 <p>I had some real roadblocks, but I felt like I was getting faster towards the end.</p>
+
+<h2 id="what-s-next">What&rsquo;s next?</h2>
+
+<p>So my plan is to continue with the <a href="https://clojure.org/guides/learn/sequential_colls">Learn Clojure tutorial</a>, and I&rsquo;m assuming it will go a lot faster. So expect the next parts to come up on the blog at some point.</p>
 ]]></content>
 		</item>
 		

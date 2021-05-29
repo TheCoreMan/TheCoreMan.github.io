@@ -11,7 +11,7 @@
 <meta itemprop="description" content="I started this post AFTER starting to work on a Clojure script, when I realized I didn&rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
 In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &ldquo;Learn Clojure&rdquo; guide, with examples and explanations."><meta itemprop="datePublished" content="2021-05-27T01:03:49&#43;03:00" />
 <meta itemprop="dateModified" content="2021-05-27T01:03:49&#43;03:00" />
-<meta itemprop="wordCount" content="2861"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+<meta itemprop="wordCount" content="2913"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 <meta itemprop="keywords" content="clojure," /><meta property="og:title" content="Foray Into Clojure, Part 0: Setup, syntax, functions" />
 <meta property="og:description" content="I started this post AFTER starting to work on a Clojure script, when I realized I didn&rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
 In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &ldquo;Learn Clojure&rdquo; guide, with examples and explanations." />
@@ -106,6 +106,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#functions">Functions</a></li>
 </ul></li>
+<li><a href="#whats-next">What&rsquo;s next?</a></li>
 </ul>
 
 <!-- markdown-toc end -->
@@ -114,7 +115,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 
 <p>Clojure feels hostile. It feels like a language which was built for seniors. If I don&rsquo;t understand something, it always feels like my fault - the docs are there, the tools are there, I&rsquo;m just not good enough yet.</p>
 
-<p>Now, I&rsquo;m not a junior dev, by any means. But it felt like the barrier for entry was unnecessarily&hellip; well, not high, just hard. You have to learn so much just to <strong>get</strong> to learn Clojure.</p>
+<p>Now, I&rsquo;m not a junior developer, by any means. But it felt like the barrier for entry was unnecessarily&hellip; well, not high, just hard. You have to learn so much just to <strong>get</strong> to learn Clojure.</p>
 
 <p>The best analogy I can give is that if learning, say, basic Python feels like a fun workout in the Park, learning Clojure feels like Pai Mei&rsquo;s training from <em>Kill Bill</em>.</p>
 
@@ -122,7 +123,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 
 <p>Now, <strong>THEORETICALLY</strong>, after the training is over, I&rsquo;m supposed to have some super powers. 🦸</p>
 
-<p>So personally (not in a professional capacity) I will continue learning Clojure. But for professional usage, unless you already have a core team that is fluent in Clojure, or a highly specific need to use it - I would pick other languages to go with to get started with projects. Easier learning curve and easier to hire relevant talent.</p>
+<p>So personally (not in a professional capacity) I will continue learning Clojure. But for professional usage, unless you already have a core team that is fluent in Clojure, or a highly specific need to use it - I would pick other languages to go with to get started with projects. Easier learning curve and easier to hire relevant talent. Take this conclusion with a grain of salt! 🧂 I&rsquo;m still very new here.</p>
 
 <h2 id="setting-up-the-tools">Setting up the tools<a href="#setting-up-the-tools" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
@@ -165,7 +166,7 @@ lein new app . --force</code></pre></div>
 
 <p>What I should have done:</p>
 <div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">lein new app learn-clojure</code></pre></div>
-<p>And then I opened that project in spacemaces. Quick sidebar here about the REPL. REPL stands for Read Evaluate Print Loop and means Reading a line, Evaluating the string into things that makes sense in the language, and Printing the result from the Evaluate step. In that sense, a commandline calculator is a REPL as well - not just programming shells!</p>
+<p>And then I opened that project in spacemacs. Quick sidebar here about the REPL. REPL stands for Read Evaluate Print Loop and means Reading a line, Evaluating the string into things that makes sense in the language, and Printing the result from the Evaluate step. In that sense, a commandline calculator is a REPL as well - not just programming shells!</p>
 
 <p>With Spacemacs and Clojure, you can REPL the code as you&rsquo;re writing it, and it seems to be the zeitgeist of developing with Clojure. There is quite a lot of documentation about it but the best I&rsquo;ve found is <a href="https://practicalli.github.io/spacemacs/">Practicalli&rsquo;s Spacemacs guide</a>.</p>
 
@@ -512,6 +513,10 @@ nil</code></pre></div>
 
 <p>I had some real roadblocks, but I felt like I was getting faster towards the end.</p>
 
+<h2 id="what-s-next">What&rsquo;s next?<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>So my plan is to continue with the <a href="https://clojure.org/guides/learn/sequential_colls">Learn Clojure tutorial</a>, and I&rsquo;m assuming it will go a lot faster. So expect the next parts to come up on the blog at some point.</p>
+
 			</div>
 
 <div class="related-posts thin">
@@ -528,7 +533,7 @@ nil</code></pre></div>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/clojure">clojure</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2861 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2913 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-27 01:03 &#43;0300</p>
 			</footer>
 		</article>
