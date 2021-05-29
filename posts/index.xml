@@ -306,20 +306,28 @@ nil</code></pre></div>
 <span class="c1">;; return another function which takes any number of arguments, applies f </span>
 <span class="c1">;; on them, and then calls not on the result. The not function in Clojure </span>
 <span class="c1">;; does logical negation.</span>
-
 <span class="p">(</span><span class="kd">defn </span><span class="nv">opposite</span> <span class="p">[</span><span class="nv">f</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">f</span> <span class="nv">args</span><span class="p">))))</span>
-<span class="c1">;; NOTE: For testing, defined this function:</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">apply </span><span class="nv">f</span> <span class="nv">args</span><span class="p">))))</span>
+<span class="c1">;; NOTE: For testing, defined these functions:</span>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">always-true</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> <span class="nv">true</span><span class="p">)</span>
-<span class="c1">;; NOTE: Testing in REPL:</span>
-<span class="c1">;; learn-clojure&gt; (always-true 1 2 3)</span>
-<span class="c1">;; true</span>
-<span class="c1">;; learn-clojure&gt; (opposite always-true)</span>
-<span class="c1">;; #function[learn-clojure/opposite/fn--7457]</span>
-<span class="c1">;; learn-clojure&gt; ((opposite always-true))</span>
-<span class="c1">;; false</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">sequential-numbers?</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nb">- </span><span class="nv">y</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="c1">;; NOTE: Tests:</span>
+<span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">always-true</span><span class="p">)</span> <span class="nv">true</span><span class="p">)</span> <span class="s">&#34;always-true does what it says&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">always-true</span> <span class="p">(</span><span class="nf">rand</span><span class="p">))</span> <span class="nv">true</span><span class="p">)</span> <span class="s">&#34;even when params are passed&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">((</span><span class="nf">opposite</span> <span class="nv">always-true</span><span class="p">))</span> <span class="nv">false</span><span class="p">)</span> <span class="s">&#34;opposite flips the result&#34;</span><span class="p">)</span>
 
-<span class="c1">;; 9) Define a function triplicate2 which takes another function and any </span>
+<span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">sequential-numbers?</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span> <span class="nv">true</span><span class="p">)</span> <span class="s">&#34;s-n? works&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">sequential-numbers?</span> <span class="mi">7</span> <span class="mi">7</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span> <span class="s">&#34;s-n? works&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">((</span><span class="nf">opposite</span> <span class="nv">sequential-numbers?</span><span class="p">)</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span> <span class="s">&#34;opposite flips the result&#34;</span><span class="p">)</span></code></pre></div>
+<p>For testing <code>opposite</code>, I&rsquo;ve defined these functions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">always-true</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> <span class="nv">true</span><span class="p">)</span></code></pre></div>
+<p>Testing in REPL:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">learn-clojure&gt; <span class="o">(</span>always-true <span class="m">1</span> <span class="m">2</span> 3<span class="o">)</span>
+<span class="nb">true</span>
+learn-clojure&gt; <span class="o">(</span>opposite always-true<span class="o">)</span>
+<span class="c1">#function[learn-clojure/opposite/fn--7457]</span>
+learn-clojure&gt; <span class="o">((</span>opposite always-true<span class="o">))</span>
+false</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="c1">;; 9) Define a function triplicate2 which takes another function and any </span>
 <span class="c1">;; number of arguments, then calls that function three times on those </span>
 <span class="c1">;; arguments. Re-use the function you defined in the earlier triplicate </span>
 <span class="c1">;; exercise.</span>
@@ -344,12 +352,12 @@ x:  xxx  <span class="p">|</span> y:  yyy  <span class="p">|</span> zs:  nil
 x:  xxx  <span class="p">|</span> y:  yyy  <span class="p">|</span> zs:  nil
 x:  xxx  <span class="p">|</span> y:  yyy  <span class="p">|</span> zs:  nil
 nil</code></pre></div>
-<p>So, I wanted to test this with asserts instead. To do this, I wanted to define a counter. This let me down a rabbit hole of trying to use dynamic scope with the <code>^:dynamic</code> directive, but that didn&rsquo;t work, so I tried atoms, instead. To get started with atoms I ran <code>(find-doc &quot;atom&quot;)</code> and I found three seemingly useful things:</p>
+<p>So, I wanted to test this with asserts instead. To do this, I wanted to define a counter. This led me down a rabbit hole of trying to use dynamic scope with the <code>^:dynamic</code> metadata just by following StackOverflow answers, but that didn&rsquo;t work. With some advice, I tried atoms, instead. To get started with atoms I ran <code>(find-doc &quot;atom&quot;)</code> and I found three seemingly useful things:</p>
 
 <ul>
 <li><code>atom</code></li>
 <li><code>deref</code> (reader macro @)</li>
-<li><code>reset!</code></li>
+<li><code>reset!</code> (I should check <code>swap</code> as well at some point)</li>
 </ul>
 
 <p>And with these, I could set up a test!</p>
