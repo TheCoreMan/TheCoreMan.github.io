@@ -6,7 +6,18 @@
     <description>Recent content in clojure on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 May 2021 01:03:49 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Jun 2021 20:39:47 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?</title>
+      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</link>
+      <pubDate>Fri, 04 Jun 2021 20:39:47 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</guid>
+      <description>隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
+- 白隠 慧鶴 (Hakuin Ekaku)
+ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last time we went over first sections of Learn Clojure: syntax and functions. The main way I learned was by doing the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises!</description>
+    </item>
+    
     <item>
       <title>Foray Into Clojure, Part 0: Setup, syntax, functions</title>
       <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</link>

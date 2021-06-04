@@ -5,8 +5,856 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Thu, 27 May 2021 01:03:49 +0300</lastBuildDate>
+		<lastBuildDate>Fri, 04 Jun 2021 20:39:47 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?</title>
+			<link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</link>
+			<pubDate>Fri, 04 Jun 2021 20:39:47 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</guid>
+			<description>隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
+- 白隠 慧鶴 (Hakuin Ekaku)
+ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last time we went over first sections of Learn Clojure: syntax and functions. The main way I learned was by doing the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises!</description>
+			<content type="html"><![CDATA[
+
+<blockquote>
+<p>隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)</p>
+
+<p>- 白隠 慧鶴 (Hakuin Ekaku)</p>
+</blockquote>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Zen-Master-Hakuin-Ekaku-Self-Portrait-1767.png/440px-Zen-Master-Hakuin-Ekaku-Self-Portrait-1767.png" alt="Hakuin Ekaku self portrait" /></p>
+
+<p>Continuing on the journey of knowledge, I wanted to practice more Clojure. <a href="../first-foray-into-clojure-part-0">Last time</a> we went over first sections of <a href="https://clojure.org/guides/learn/syntax">Learn Clojure</a>: syntax and functions. The main way I learned was by <strong>doing</strong> the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises! :(</p>
+
+<p>We will instead practice using a wonderful project called <a href="http://clojurekoans.com/">Clojure Koans</a>. The gist of Clojure Koans is a bunch of failing assert calls. One needs to write the missing code to make the assert calls pass. Filling in the missing parts along with the context of the question and the &ldquo;Koan&rdquo; above it is how the Clojure Koans project suggests one should practice Clojure (and for me it&rsquo;s learning, not just practicing).</p>
+
+<p>What are &ldquo;Koans&rdquo;, though? Koans are riddles, stories, or puzzles that Zen Buddhists use to explore greater truths about the world. While I&rsquo;m not a practicing member, I think it would be cool to intersperse some real Koans (like the one that started this post) and some relevant art pieces throughout the post. So I will! :)</p>
+
+<blockquote>
+<p>If you want, you can read everything I have to say about Clojure by looking at the <a href="/tags/clojure/">Clojure tag</a>.</p>
+</blockquote>
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+
+<p><strong>Table of Contents</strong></p>
+
+<ul>
+<li><a href="#getting-started-with-clojure-koans">Getting started with Clojure Koans</a></li>
+<li><a href="#blogpost-structure">Blogpost Structure</a></li>
+<li><a href="#equalities">Equalities</a>
+
+<ul>
+<li><a href="#not"><code>not=</code></a></li>
+<li><a href="#keyword--symbol"><code>keyword</code> &amp; <code>symbol</code></a></li>
+</ul></li>
+<li><a href="#strings">Strings</a>
+
+<ul>
+<li><a href="#lets-take-a-deeper-look-into-require">Let&rsquo;s take a deeper look into &ldquo;require&rdquo;</a></li>
+</ul></li>
+<li><a href="#lists">Lists</a>
+
+<ul>
+<li><a href="#quoted-form">Quoted form</a></li>
+<li><a href="#calling-conj-on-a-list">Calling <code>conj</code> on a list</a></li>
+</ul></li>
+<li><a href="#vectors">Vectors</a>
+
+<ul>
+<li><a href="#calling-conj-on-a-vector">Calling <code>conj</code> on a vector</a></li>
+<li><a href="#subvec-inclusive-or-exclusive">Subvec inclusive or exclusive?</a></li>
+</ul></li>
+<li><a href="#sets">Sets</a></li>
+<li><a href="#maps">Maps</a>
+
+<ul>
+<li><a href="#using-maps-as-functions">Using maps as functions</a></li>
+<li><a href="#immutability-and-assoc">Immutability and <code>assoc</code></a></li>
+<li><a href="#merge-with">merge-with</a></li>
+<li><a href="#scary-looking-functional-code">Scary looking functional code</a></li>
+</ul></li>
+<li><a href="#functions">Functions</a>
+
+<ul>
+<li><a href="#begetting-functions-from-functions">Begetting functions from functions</a></li>
+<li><a href="#higher-order-functions">Higher order functions</a></li>
+</ul></li>
+<li><a href="#conditionals">Conditionals</a>
+
+<ul>
+<li><a href="#conditionals-are-expressions-so-they-return-a-value">Conditionals are expressions, so they return a value</a></li>
+</ul></li>
+<li><a href="#higher-order-functions-1">Higher order functions</a>
+
+<ul>
+<li><a href="#map-reduce---name-a-more-iconic-duo">Map Reduce - Name a more iconic duo</a></li>
+</ul></li>
+<li><a href="#closing-words">Closing words</a></li>
+</ul>
+
+<!-- markdown-toc end -->
+
+<h2 id="getting-started-with-clojure-koans">Getting started with Clojure Koans</h2>
+
+<p>The <a href="https://github.com/functional-koans/clojure-koans/blob/master/README.md">README</a> does a good job of explaining how to do the basic installation, but here&rsquo;s the setup you WANT.</p>
+
+<ol>
+<li>Fork the repo to your own account so you can commit (and share) your changes.</li>
+<li>Clone the forked repo. For me: <code>git clone git://github.com/TheCoreMan/clojure-koans.git</code></li>
+<li>Open <code>spacemacs</code>.</li>
+<li>Add the cloned repo as a known project to make stuff work nicely in <code>projectile</code> + <code>helm</code> by <code>SPC SPC add-known</code> and picking the cloned repo directory.</li>
+<li>Start your <code>repl</code> env by <code>, '</code></li>
+<li>Open the first koans scroll: <code>src/koans/01_equalities.clj</code>.</li>
+<li>Open the <code>repl</code> to the side by typing <code>, s a</code>. (might take a while to install)</li>
+<li>Run the Koans by entering <code>(exec &quot;run&quot;)</code> in the <code>repl</code>.</li>
+</ol>
+
+<p>You should see something like this in your REPL:</p>
+
+<p><img src="/images/koans1.png" alt="clojure koan 1" /></p>
+
+<p>Now, let&rsquo;s fix this koan. This one&rsquo;s pretty simple - write <code>true</code> instead of <code>___</code> and after writing the file here&rsquo;s what you&rsquo;ll see in the REPL:</p>
+
+<p><img src="/images/koans2.png" alt="clojure koans 2" /></p>
+
+<p>As you can see, when you solve one Koan, the REPL shows you the next one! How neat is that? So now we are prepared to do the koans.</p>
+
+<p>By the way, optional steps, but highly recommended: prepare yourself a cup of tea 🍵 and put on some <a href="https://www.youtube.com/watch?v=GfIvfO9o6l://www.youtube.com/watch?v=GfIvfO9o6lo">chill music</a>. Simpsonwave is not a joke!</p>
+
+<h2 id="blogpost-structure">Blogpost Structure</h2>
+
+<p>To avoid making this blogpost annoying by making you jump to GitHub to read the solutions, each section will include the solved Koan scroll in full. After the code, you can find my highlights. My solutions can by found on <a href="https://github.com/TheCoreMan/clojure-koans">GitHub</a> as well.</p>
+
+<p>Also, spoiler alert! This blogpost includes the solution to the Koans. I wouldn&rsquo;t worry too much about it though - I don&rsquo;t find the solutions very &ldquo;spoilable&rdquo;.</p>
+
+<h2 id="equalities">Equalities</h2>
+
+<p><img src="/images/hakuin-4-two-blind-men.jpg" alt="Two blind men crossing a bridge" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.01-equalities</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;We shall contemplate truth by testing reality, via equality&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="nv">true</span><span class="p">)</span>
+
+  <span class="s">&#34;To understand reality, we must compare our expectations against reality&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">1</span><span class="p">))</span>
+
+  <span class="s">&#34;You can test equality of many things&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">7</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">2</span> <span class="mi">5</span><span class="p">))</span>
+
+  <span class="s">&#34;Some things may appear different, but be the same&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="mi">2</span><span class="nv">/1</span><span class="p">))</span>
+
+  <span class="s">&#34;You cannot generally float to heavens of integers&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="mf">2.0</span><span class="p">))</span>
+
+  <span class="s">&#34;But a looser equality is also possible&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nb">== </span><span class="mf">2.0</span> <span class="mi">2</span><span class="p">))</span>
+
+  <span class="s">&#34;Something is not equal to nothing&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="nv">nil</span><span class="p">)))</span>
+
+  <span class="s">&#34;Strings, and keywords, and symbols: oh my!&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nb">= </span><span class="s">&#34;hello&#34;</span> <span class="ss">:hello</span> <span class="ss">&#39;hello</span><span class="p">))</span>
+
+  <span class="s">&#34;Make a keyword with your keyboard&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:hello</span> <span class="p">(</span><span class="nb">keyword </span><span class="s">&#34;hello&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;Symbolism is all around us&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">&#39;hello</span> <span class="p">(</span><span class="nb">symbol </span><span class="s">&#34;hello&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;What could be equivalent to nothing?&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">nil</span> <span class="nv">nil</span><span class="p">)</span>
+
+  <span class="s">&#34;When things cannot be equal, they must be different&#34;</span>
+  <span class="p">(</span><span class="nb">not= </span><span class="ss">:fill-in-the-blank</span> <span class="mi">8</span><span class="p">))</span></code></pre></div>
+<h3 id="not"><code>not=</code></h3>
+
+<p>So, while <code>not=</code> may seem obvious, it was fun to use the tools I&rsquo;ve learned last time to understand it <strong>completely</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">(</span>doc <span class="nv">not</span><span class="o">=)</span>
+-------------------------
+clojure.core/not<span class="o">=</span>
+<span class="o">([</span>x<span class="o">]</span> <span class="o">[</span>x y<span class="o">]</span> <span class="o">[</span>x y <span class="p">&amp;</span> more<span class="o">])</span>
+  Same as <span class="o">(</span>not <span class="o">(=</span> obj1 obj2<span class="o">))</span>
+nil
+koan-engine.runner&gt; <span class="o">(</span><span class="nb">type</span> <span class="nv">not</span><span class="o">=)</span>
+clojure.core<span class="nv">$not_EQ_</span>
+koan-engine.runner&gt; <span class="o">(</span>macroexpand <span class="nv">not</span><span class="o">=)</span>
+<span class="c1">#function[clojure.core/not=]</span>
+koan-engine.runner&gt; <span class="o">(</span><span class="nb">source</span> <span class="nv">not</span><span class="o">=)</span>
+<span class="o">(</span>defn <span class="nv">not</span><span class="o">=</span>
+  <span class="s2">&#34;Same as (not (= obj1 obj2))&#34;</span>
+  <span class="o">{</span>:tag Boolean
+   :added <span class="s2">&#34;1.0&#34;</span>
+   :static true<span class="o">}</span>
+  <span class="o">([</span>x<span class="o">]</span> <span class="nb">false</span><span class="o">)</span>
+  <span class="o">([</span>x y<span class="o">]</span> <span class="o">(</span>not <span class="o">(=</span> x y<span class="o">)))</span>
+  <span class="o">([</span>x y <span class="p">&amp;</span> more<span class="o">]</span>
+   <span class="o">(</span>not <span class="o">(</span><span class="nv">apply</span> <span class="o">=</span> x y more<span class="o">))))</span></code></pre></div>
+<p>We can that the implementation of <code>not=</code> is 100% made out of things we&rsquo;ve already learned about in <a href="../first-foray-into-clojure-part-0">the first blogpost</a>, which is very cool - building blocks on building blocks on building blocks.</p>
+
+<h3 id="keyword-symbol"><code>keyword</code> &amp; <code>symbol</code></h3>
+
+<p>It&rsquo;s interesting to see functions like <code>keyword</code> and <code>symbol</code> in this context. This is a great explanation of language internals, which I think is possible in Clojure specifically because of how &ldquo;bootstrap&rdquo;-i it is. Probably not immedietly useful, but cool.</p>
+
+<h2 id="strings">Strings</h2>
+
+<blockquote>
+<p>A monk asked Zhàozhōu, &ldquo;Does a dog have Buddha nature or not?&rdquo; Zhaozhou said, &ldquo;Wú&rdquo;.</p>
+</blockquote>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Zhaozhou_Congshen-Fozu_zhengzong_daoying37.jpg/390px-Zhaozhou_Congshen-Fozu_zhengzong_daoying37.jpg" alt="Portrait of Zhaozhou Congshen" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.02-strings</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">clojure.string</span> <span class="ss">:as</span> <span class="nv">string</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;A string is nothing more than text surrounded by double quotes&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;hello&#34;</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
+
+  <span class="s">&#34;But double quotes are just magic on top of something deeper&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;world&#34;</span> <span class="p">(</span><span class="nb">str </span><span class="ss">&#39;world</span><span class="p">))</span>
+
+  <span class="s">&#34;You can do more than create strings, you can put them together&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Cool right?&#34;</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;Cool &#34;</span> <span class="s">&#34;right?&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;You can even get certain characters&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="sc">\C</span> <span class="p">(</span><span class="nb">get </span><span class="s">&#34;Characters&#34;</span> <span class="mi">0</span><span class="p">))</span>
+
+  <span class="s">&#34;Or even count the characters&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">11</span> <span class="p">(</span><span class="nb">count </span><span class="s">&#34;Hello World&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;But strings and characters are not the same&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nb">= </span><span class="sc">\c</span> <span class="s">&#34;c&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;What if you only wanted to get part of a string?&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;World&#34;</span> <span class="p">(</span><span class="nb">subs </span><span class="s">&#34;Hello World&#34;</span> <span class="mi">6</span> <span class="mi">11</span><span class="p">))</span>
+
+  <span class="s">&#34;How about joining together elements in a list?&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;123&#34;</span> <span class="p">(</span><span class="nf">string/join</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+
+  <span class="s">&#34;What if you wanted to separate them out?&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;1, 2, 3&#34;</span> <span class="p">(</span><span class="nf">string/join</span> <span class="s">&#34;, &#34;</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+
+  <span class="s">&#34;Maybe you want to separate out all your lines&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="s">&#34;1&#34;</span> <span class="s">&#34;2&#34;</span> <span class="s">&#34;3&#34;</span><span class="p">]</span> <span class="p">(</span><span class="nf">string/split-lines</span> <span class="s">&#34;1\n2\n3&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;You may want to make sure your words are backwards&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;olleh&#34;</span> <span class="p">(</span><span class="nf">string/reverse</span> <span class="s">&#34;hello&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;Maybe you want to find the index of the first occurrence of a substring&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">string/index-of</span> <span class="s">&#34;hello world&#34;</span> <span class="s">&#34;hell&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;Or maybe the last index of the same&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">13</span> <span class="p">(</span><span class="nf">string/last-index-of</span> <span class="s">&#34;hello world, hello&#34;</span> <span class="s">&#34;hello&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;But when something doesn&#39;t exist, nothing is found&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">nil</span> <span class="p">(</span><span class="nf">string/index-of</span> <span class="s">&#34;hello world&#34;</span> <span class="s">&#34;bob&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;Sometimes you don&#39;t want whitespace cluttering the front and back&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;hello world&#34;</span> <span class="p">(</span><span class="nf">string/trim</span> <span class="s">&#34;  \nhello world \t \n&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;You can check if something is a char&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nf">char?</span> <span class="sc">\c</span><span class="p">))</span>
+
+  <span class="s">&#34;But it may not be&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nf">char?</span> <span class="s">&#34;a&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;But chars aren&#39;t strings&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nb">string? </span><span class="sc">\b</span><span class="p">))</span>
+
+  <span class="s">&#34;Strings are strings&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nb">string? </span><span class="s">&#34;hello&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;Some strings may be blank&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nf">string/blank?</span> <span class="s">&#34;&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;Even if at first glance they aren&#39;t&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nf">string/blank?</span> <span class="s">&#34; \n \t  &#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;However, most strings aren&#39;t blank&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nf">string/blank?</span> <span class="s">&#34;hello?\nare you out there?&#34;</span><span class="p">)))</span></code></pre></div>
+<p>What&rsquo;s good about this Koan is that nothing is surprising or interesting in the <code>string</code> package, or how Clojure decides to work with strings, at all. Which is good.</p>
+
+<blockquote>
+<p>You know you are working on clean code when each routine you read turns out to be pretty much what you expected.</p>
+
+<p>- <a href="http://c2.com/ward/">Ward Cunningham</a></p>
+</blockquote>
+
+<h3 id="let-s-take-a-deeper-look-into-require">Let&rsquo;s take a deeper look into &ldquo;require&rdquo;</h3>
+
+<p>This is the first time I&rsquo;m looking at a <code>:require</code>. There&rsquo;s a great explanation about it <a href="https://clojure.org/guides/learn/namespaces#_require">in the relevant section of &ldquo;Learn Clojure&rdquo;</a>, so start there and then we can break down this code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">clojure.string</span> <span class="ss">:as</span> <span class="nv">string</span><span class="p">]))</span></code></pre></div>
+<p>The <code>:require</code> class does a few things here. First, load the <code>koan-engine.core</code> namespace, and <code>refer</code> all the Vars from that namespace using their <strong>unqualified</strong> names. That&rsquo;s how the project knows what <code>meditations</code> is. Since we&rsquo;re using the <code>lein</code> REPL here, we can use it to see into the <code>meditations</code> macro and see how the Koans project itself works using <code>doc</code> and <code>source</code> calls!</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">(</span>doc meditations<span class="o">)</span>
+-------------------------
+koan-engine.core/meditations
+<span class="o">([</span><span class="p">&amp;</span> forms<span class="o">])</span>
+Macro
+nil</code></pre></div>
+<p>This is already interesting - we can see <code>koan-engine.core/meditations</code> which indicates that it indeed was required AND referred, since in the Koan scroll we refer to it simply as <code>meditations</code>. Cool! And how does it work? Well, one <code>source meditations</code> later:</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="c1">;; koan-engine.runner&gt; (source meditations)</span>
+<span class="p">(</span><span class="kd">defmacro </span><span class="nv">meditations</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">forms</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">pairs</span> <span class="p">(</span><span class="nf">ensure-valid-meditation</span> <span class="p">(</span><span class="nf">partition</span> <span class="mi">2</span> <span class="nv">forms</span><span class="p">))</span>
+        <span class="nv">tests</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">doc#</span> <span class="nv">code#</span><span class="p">]]</span>
+                     <span class="o">`</span><span class="p">(</span><span class="nf">u/fancy-assert</span> <span class="o">~</span><span class="nv">code#</span> <span class="o">~</span><span class="nv">doc#</span><span class="p">))</span>
+                   <span class="nv">pairs</span><span class="p">)]</span>
+    <span class="o">`</span><span class="p">(</span><span class="k">do </span><span class="o">~@</span><span class="nv">tests</span><span class="p">)))</span>
+<span class="c1">;; koan-engine.runner&gt; (source ensure-valid-meditation)</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">ensure-valid-meditation</span> <span class="p">[</span><span class="nv">doc-expression-pairs</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">doseq </span><span class="p">[[</span><span class="nb">doc </span><span class="nv">expression</span><span class="p">]</span> <span class="nv">doc-expression-pairs</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">when-not </span><span class="p">(</span><span class="nb">string? </span><span class="nv">doc</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">ex-info</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;Meditations must be alternating doc/expression pairs\n&#34;</span>
+                           <span class="s">&#34;Expected &#34;</span> <span class="nb">doc </span><span class="s">&#34; to be a documentation string&#34;</span><span class="p">)</span>
+                      <span class="p">{</span><span class="ss">:line</span> <span class="p">(</span><span class="ss">:line</span> <span class="p">(</span><span class="nb">meta </span><span class="nv">doc</span><span class="p">))}))))</span>
+  <span class="nv">doc-expression-pairs</span><span class="p">)</span>
+<span class="c1">;; koan-engine.runner&gt; (doc u/fancy-assert)</span>
+<span class="c1">;; -------------------------</span>
+<span class="c1">;; koan-engine.util/fancy-assert</span>
+<span class="c1">;; ([x] [x message])</span>
+<span class="c1">;; Macro</span>
+<span class="c1">;;  Assertion with fancy error messaging.</span>
+<span class="c1">;; koan-engine.runner&gt; (source u/fancy-assert)</span>
+<span class="p">(</span><span class="kd">defmacro </span><span class="nv">fancy-assert</span>
+  <span class="s">&#34;Assertion with fancy error messaging.&#34;</span>
+  <span class="p">([</span><span class="nv">x</span><span class="p">]</span> <span class="o">`</span><span class="p">(</span><span class="nf">fancy-assert</span> <span class="o">~</span><span class="nv">x</span> <span class="s">&#34;&#34;</span><span class="p">))</span>
+  <span class="p">([</span><span class="nv">x</span> <span class="nv">message</span><span class="p">]</span>
+     <span class="o">`</span><span class="p">(</span><span class="nf">try</span>
+        <span class="p">(</span><span class="nf">safe-assert</span> <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="o">~</span><span class="nv">x</span><span class="p">)</span> <span class="o">~</span><span class="nv">message</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">catch</span> <span class="nv">Throwable</span> <span class="nv">e#</span>
+          <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">ex-info</span> <span class="p">(</span><span class="nb">str </span><span class="o">&#39;~</span><span class="nv">message</span> <span class="s">&#34;\n&#34;</span> <span class="o">&#39;~</span><span class="nv">x</span><span class="p">)</span>
+                          <span class="p">{</span><span class="ss">:line</span> <span class="p">(</span><span class="ss">:line</span> <span class="p">(</span><span class="nb">meta </span><span class="o">&#39;~</span><span class="nv">x</span><span class="p">))}))))))</span></code></pre></div>
+<p>Feels like looking into the Matrix.</p>
+
+<p><img src="https://media.giphy.com/media/fV0oSDsZ4UgdW/giphy.gif" alt="Seeing the matrix" /></p>
+
+<p>The second thing the <code>:require</code> class does is it grabs <code>clojure/string</code> (which we use for <code>string/blank?</code> for example) and <strong>aliases</strong> it to <code>string</code>. Otherwise, we&rsquo;d have to write <code>clojure.string/blank?</code> every time, which seems silly. Importing/requiring libraries and then aliasing the imported library is a must have feature that plenty of languages have; In Python it&rsquo;s</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">x</span> <span class="kn">as</span> <span class="nn">y</span></code></pre></div>
+<p>and in Go it&rsquo;s</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">import</span> <span class="p">(</span>
+	<span class="nx">z</span> <span class="s">&#34;github.com/x/y&#34;</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="lists">Lists</h2>
+
+<blockquote>
+<p>逢佛殺佛 (If you meet the Buddha, kill him.)</p>
+
+<p>- 临济义玄 (Linji Yixuan)</p>
+</blockquote>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/RinzaiGigen.jpg" alt="Japanese painting of Linji Yixuan (Jap. Rinzai Gigen)" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.03-lists</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;Lists can be expressed by function or a quoted form&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span>
+
+  <span class="s">&#34;They are Clojure seqs (sequences), so they allow access to the first&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">(</span><span class="nb">first </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)))</span>
+
+  <span class="s">&#34;As well as the rest&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="p">(</span><span class="nb">rest </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)))</span>
+
+  <span class="s">&#34;Count your blessings&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">3</span> <span class="p">(</span><span class="nb">count </span><span class="o">&#39;</span><span class="p">(</span><span class="nf">dracula</span> <span class="nv">dooku</span> <span class="nv">chocula</span><span class="p">)))</span>
+
+  <span class="s">&#34;Before they are gone&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nb">count </span><span class="o">&#39;</span><span class="p">()))</span>
+
+  <span class="s">&#34;The rest, when nothing is left, is empty&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="nb">rest </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">100</span><span class="p">)))</span>
+
+  <span class="s">&#34;Construction by adding an element to the front is easy&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span> <span class="ss">:e</span><span class="p">)</span> <span class="p">(</span><span class="nb">cons </span><span class="ss">:a</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span> <span class="ss">:e</span><span class="p">)))</span>
+
+  <span class="s">&#34;Conjoining an element to a list isn&#39;t hard either&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:e</span> <span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">)</span> <span class="ss">:e</span><span class="p">))</span>
+
+  <span class="s">&#34;You can use a list like a stack to get the first element&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:a</span> <span class="p">(</span><span class="nb">peek </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span> <span class="ss">:e</span><span class="p">)))</span>
+
+  <span class="s">&#34;Or the others&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span> <span class="ss">:e</span><span class="p">)</span> <span class="p">(</span><span class="nb">pop </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span> <span class="ss">:e</span><span class="p">)))</span>
+
+  <span class="s">&#34;But watch out if you try to pop nothing&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;No dice!&#34;</span> <span class="p">(</span><span class="nf">try</span>
+          <span class="p">(</span><span class="nb">pop </span><span class="o">&#39;</span><span class="p">())</span>
+          <span class="p">(</span><span class="nf">catch</span> <span class="nv">IllegalStateException</span> <span class="nv">e</span>
+            <span class="s">&#34;No dice!&#34;</span><span class="p">)))</span>
+
+  <span class="s">&#34;The rest of nothing isn&#39;t so strict&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="nf">try</span>
+          <span class="p">(</span><span class="nb">rest </span><span class="o">&#39;</span><span class="p">())</span>
+          <span class="p">(</span><span class="nf">catch</span> <span class="nv">IllegalStateException</span> <span class="nv">e</span>
+            <span class="s">&#34;No dice!&#34;</span><span class="p">))))</span></code></pre></div>
+<h3 id="quoted-form">Quoted form</h3>
+
+<p>This is interesting and I understand it (I think) after <a href="../first-foray-into-clojure-part-0">learning syntax and talking about List vs Invokation a lot last time</a>. Basically, you&rsquo;d think that this is a list:</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span></code></pre></div>
+<p>but what it means is an invokation. You&rsquo;ll try to invoke &ldquo;1&rdquo; and since &ldquo;1&rdquo; is a symbol that&rsquo;s not a callable type it won&rsquo;t work. So how do we make lists?</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span></code></pre></div>
+<h3 id="calling-conj-on-a-list">Calling <code>conj</code> on a list</h3>
+
+<p>Nice implementation here, conj(oin) to a list type will add it to the <em>beginning</em> of the list. Makes sense when you think about it, it would have been <code>O(n)</code> otherwise. Let&rsquo;s look at the docs to be sure:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; 
+<span class="o">(</span>doc conj<span class="o">)</span>
+-------------------------
+clojure.core/conj
+<span class="o">([</span>coll x<span class="o">]</span> <span class="o">[</span>coll x <span class="p">&amp;</span> xs<span class="o">])</span>
+  conj<span class="o">[</span>oin<span class="o">]</span>. Returns a new collection with the xs
+    <span class="s1">&#39;added&#39;</span>. <span class="o">(</span>conj nil item<span class="o">)</span> returns <span class="o">(</span>item<span class="o">)</span>.  The <span class="s1">&#39;addition&#39;</span> may
+    happen at different <span class="s1">&#39;places&#39;</span> depending on the concrete type.</code></pre></div>
+<h2 id="vectors">Vectors</h2>
+
+<blockquote>
+<p>Every time Baizhang, Zen Master Dahui, gave a dharma talk, a certain old man would come to listen. He usually left after the talk, but one day he remained. Baizhang asked, &ldquo;Who is there?&rdquo;</p>
+
+<p>The man said, &ldquo;I am not actually a human being. I lived and taught on this mountain at the time of Kashyapa Buddha. One day a student asked me, &lsquo;Does a person who practices with great devotion still fall into cause and effect?&rsquo; I said to him, &lsquo;No, such a person doesn&rsquo;t.&rsquo; Because I said this I was reborn as a wild fox for five hundred lifetimes. Reverend master, please say a turning word for me and free me from this wild fox body.&rdquo; Then he asked Baizhang, &ldquo;Does a person who practices with great devotion still fall into cause and effect?&rdquo;</p>
+
+<p>Baizhang said, &ldquo;Don&rsquo;t ignore cause and effect.&rdquo;</p>
+
+<p>Immediately the man had great realization. Bowing, he said, &ldquo;I am now liberated from the body of a wild fox. I will stay in the mountain behind the monastery. Master, could you perform the usual services for a deceased monk for me?&rdquo;</p>
+
+<p>Baizhang asked the head of the monks&rsquo; hall to inform the assembly that funeral services for a monk would be held after the midday meal. The monks asked one another, &ldquo;What&rsquo;s going on? Everyone is well; there is no one sick in the Nirvana Hall.&rdquo; After their meal, Baizhang led the assembly to a large rock behind the monastery and showed them a dead fox at the rock&rsquo;s base. Following the customary procedure, they cremated the body.</p>
+
+<p>That evening during his lecture in the dharma hall Baizhang talked about what had happened that day. Huangbo asked him, &ldquo;A teacher of old gave a wrong answer and became a wild fox for five hundred lifetimes. What if he hadn&rsquo;t given a wrong answer?&rdquo;</p>
+
+<p>Baizhang said, &ldquo;Come closer and I will tell you.&rdquo; Huangbo went closer and slapped Baizhang&rsquo;s face. Laughing, Baizhang clapped his hands and said, &ldquo;I thought it was only barbarians who had unusual beards. But you too have an unusual beard!&rdquo;</p>
+</blockquote>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/58/BaizhangHuaihai.gif" alt="Baizhang Huaihai" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.04-vectors</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;You can use vectors in clojure as array-like structures&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">(</span><span class="nb">count </span><span class="p">[</span><span class="mi">42</span><span class="p">]))</span>
+
+  <span class="s">&#34;You can create a vector from a list&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="nf">vec</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+  <span class="s">&#34;Or from some elements&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">nil</span> <span class="nv">nil</span><span class="p">]</span> <span class="p">(</span><span class="nb">vector </span><span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+
+  <span class="s">&#34;But you can populate it with any number of elements at once&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">]</span> <span class="p">(</span><span class="nf">vec</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)))</span>
+
+  <span class="s">&#34;Conjoining to a vector is different than to a list&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">111</span> <span class="mi">222</span> <span class="mi">333</span><span class="p">]</span> <span class="p">(</span><span class="nb">conj </span><span class="p">[</span><span class="mi">111</span> <span class="mi">222</span><span class="p">]</span> <span class="mi">333</span><span class="p">))</span>
+
+  <span class="s">&#34;You can get the first element of a vector like so&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:peanut</span> <span class="p">(</span><span class="nb">first </span><span class="p">[</span><span class="ss">:peanut</span> <span class="ss">:butter</span> <span class="ss">:and</span> <span class="ss">:jelly</span><span class="p">]))</span>
+
+  <span class="s">&#34;And the last in a similar fashion&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:jelly</span> <span class="p">(</span><span class="nb">last </span><span class="p">[</span><span class="ss">:peanut</span> <span class="ss">:butter</span> <span class="ss">:and</span> <span class="ss">:jelly</span><span class="p">]))</span>
+
+  <span class="s">&#34;Or any index if you wish&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:jelly</span> <span class="p">(</span><span class="nb">nth </span><span class="p">[</span><span class="ss">:peanut</span> <span class="ss">:butter</span> <span class="ss">:and</span> <span class="ss">:jelly</span><span class="p">]</span> <span class="mi">3</span><span class="p">))</span>
+
+  <span class="s">&#34;You can also slice a vector&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:butter</span> <span class="ss">:and</span><span class="p">]</span> <span class="p">(</span><span class="nb">subvec </span><span class="p">[</span><span class="ss">:peanut</span> <span class="ss">:butter</span> <span class="ss">:and</span> <span class="ss">:jelly</span><span class="p">]</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">))</span>
+
+  <span class="s">&#34;Equality with collections is in terms of values&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nb">vector </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span></code></pre></div>
+<h3 id="calling-conj-on-a-vector">Calling <code>conj</code> on a vector</h3>
+
+<p>Ha! See? Told you.</p>
+
+<h3 id="subvec-inclusive-or-exclusive">Subvec inclusive or exclusive?</h3>
+
+<p>This is quite confusing (off-by-one things usually are), but <code>subvec</code> is both exclusive and inclusive at the same time:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">(</span>doc subvec<span class="o">)</span>
+-------------------------
+clojure.core/subvec
+<span class="o">([</span>v start<span class="o">]</span> <span class="o">[</span>v start end<span class="o">])</span>
+  Returns a persistent vector of the items in vector from
+  start <span class="o">(</span>inclusive<span class="o">)</span> to end <span class="o">(</span>exclusive<span class="o">)</span>.  If end is not supplied,
+  defaults to <span class="o">(</span>count vector<span class="o">)</span>. This operation is O<span class="o">(</span>1<span class="o">)</span> and very fast, as
+  the resulting vector shares structure with the original and no
+  trimming is <span class="k">done</span>.</code></pre></div>
+<p>I believe this is done so that <code>(count vector)</code> will work nicely with it. As long as things are consistent, everything&rsquo;s OK. It&rsquo;s just always annoying to remember which number should I put where. And don&rsquo;t get me started on 1-based languages like Lua.</p>
+
+<h2 id="sets">Sets</h2>
+
+<blockquote>
+<p>How steep is Yün-mên&rsquo;s mountain!</p>
+
+<p>How low the white clouds hang!</p>
+
+<p>The mountain stream rushes so swiftly</p>
+
+<p>That fish cannot venture to stay.</p>
+
+<p>One&rsquo;s coming is well-understood</p>
+
+<p>From the moment one steps in the door.</p>
+
+<p>Why should I speak of the dust</p>
+
+<p>On the track that is worn by the wheel?</p>
+
+<p>— Yun-men, from the Jingde Chuandeng Lu  《景德傳燈錄》</p>
+</blockquote>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Yunmen_mountain.jpg/640px-Yunmen_mountain.jpg" alt="Yun men's mountain" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.05-sets</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]</span>
+            <span class="p">[</span><span class="nv">clojure.set</span> <span class="ss">:as</span> <span class="nv">set</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;You can create a set by converting another collection&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">#</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span> <span class="p">(</span><span class="nb">set </span><span class="p">[</span><span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span><span class="p">]))</span>
+
+  <span class="s">&#34;Counting them is like counting other collections&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">3</span> <span class="p">(</span><span class="nb">count </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">}))</span>
+
+  <span class="s">&#34;Remember that a set is a *mathematical* set&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">}</span> <span class="p">(</span><span class="nb">set </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span><span class="p">)))</span>
+
+  <span class="s">&#34;You can ask clojure for the union of two sets&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">}</span> <span class="p">(</span><span class="nf">set/union</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">}</span> <span class="o">#</span><span class="p">{</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">}))</span>
+
+  <span class="s">&#34;And also the intersection&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">#</span><span class="p">{</span><span class="mi">2</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span><span class="nf">set/intersection</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">}</span> <span class="o">#</span><span class="p">{</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">}))</span>
+
+  <span class="s">&#34;But don&#39;t forget about the difference&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">4</span><span class="p">}</span> <span class="p">(</span><span class="nf">set/difference</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">}</span> <span class="o">#</span><span class="p">{</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">})))</span></code></pre></div>
+<p>This one was very simple, just good to know the <code>#{}</code> syntax.</p>
+
+<h2 id="maps">Maps</h2>
+
+<blockquote>
+<p>Monk: &ldquo;What is the one road of Ummon?&rdquo;</p>
+
+<p>Ummon: &ldquo;Personal Experience!&rdquo;</p>
+
+<p>Monk: &ldquo;What is the Way?&rdquo;</p>
+
+<p>Ummon: &ldquo;Go!&rdquo;</p>
+
+<p>Monk: &ldquo;What is the road, where is the Way?&rdquo;</p>
+
+<p>Ummon: &ldquo;Begin walking it!&rdquo;</p>
+</blockquote>
+
+<p><img src="https://terebess.hu/zen/yunmen3.jpg" alt="yunman" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.06-maps</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;Don&#39;t get lost when creating a map&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span><span class="nb">hash-map </span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">))</span>
+
+  <span class="s">&#34;A value must be supplied for each key&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span><span class="p">}</span> <span class="p">(</span><span class="nb">hash-map </span><span class="ss">:a</span> <span class="mi">1</span><span class="p">))</span>
+
+  <span class="s">&#34;The size is the number of entries&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="p">(</span><span class="nb">count </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}))</span>
+
+  <span class="s">&#34;You can look up the value for a given key&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="p">(</span><span class="nb">get </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span> <span class="ss">:b</span><span class="p">))</span>
+
+  <span class="s">&#34;Maps can be used as functions to do lookups&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">({</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span> <span class="ss">:a</span><span class="p">))</span>
+
+  <span class="s">&#34;And so can keywords&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">(</span><span class="ss">:a</span> <span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}))</span>
+
+  <span class="s">&#34;But map keys need not be keywords&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Sochi&#34;</span> <span class="p">({</span><span class="mi">2010</span> <span class="s">&#34;Vancouver&#34;</span> <span class="mi">2014</span> <span class="s">&#34;Sochi&#34;</span> <span class="mi">2018</span> <span class="s">&#34;PyeongChang&#34;</span><span class="p">}</span> <span class="mi">2014</span><span class="p">))</span>
+
+  <span class="s">&#34;You may not be able to find an entry for a key&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">nil</span> <span class="p">(</span><span class="nb">get </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span> <span class="ss">:c</span><span class="p">))</span>
+
+  <span class="s">&#34;But you can provide your own default&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:key-not-found</span> <span class="p">(</span><span class="nb">get </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span> <span class="ss">:c</span> <span class="ss">:key-not-found</span><span class="p">))</span>
+
+  <span class="s">&#34;You can find out if a key is present&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nb">contains? </span><span class="p">{</span><span class="ss">:a</span> <span class="nv">nil</span> <span class="ss">:b</span> <span class="nv">nil</span><span class="p">}</span> <span class="ss">:b</span><span class="p">))</span>
+
+  <span class="s">&#34;Or if it is missing&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nb">contains? </span><span class="p">{</span><span class="ss">:a</span> <span class="nv">nil</span> <span class="ss">:b</span> <span class="nv">nil</span><span class="p">}</span> <span class="ss">:c</span><span class="p">))</span>
+
+  <span class="s">&#34;Maps are immutable, but you can create a new and improved version&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="mi">1</span> <span class="s">&#34;January&#34;</span> <span class="mi">2</span> <span class="s">&#34;February&#34;</span><span class="p">}</span> <span class="p">(</span><span class="nb">assoc </span><span class="p">{</span><span class="mi">1</span> <span class="s">&#34;January&#34;</span><span class="p">}</span> <span class="mi">2</span> <span class="s">&#34;February&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;You can also create a new version with an entry removed&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="mi">1</span> <span class="s">&#34;January&#34;</span><span class="p">}</span> <span class="p">(</span><span class="nb">dissoc </span><span class="p">{</span><span class="mi">1</span> <span class="s">&#34;January&#34;</span> <span class="mi">2</span> <span class="s">&#34;February&#34;</span><span class="p">}</span> <span class="mi">2</span><span class="p">))</span>
+
+  <span class="s">&#34;Create a new map by merging&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span> <span class="ss">:c</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span><span class="nb">merge </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span> <span class="p">{</span><span class="ss">:c</span> <span class="mi">3</span><span class="p">}))</span>
+
+  <span class="s">&#34;Specify how to handle entries with same keys when merging&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span> <span class="ss">:c</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span><span class="nb">merge-with + </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">1</span><span class="p">}</span> <span class="p">{</span><span class="ss">:b</span> <span class="mi">1</span> <span class="ss">:c</span> <span class="mi">3</span><span class="p">}))</span>
+
+  <span class="s">&#34;Often you will need to get the keys, but the order is undependable&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">list </span><span class="mi">2010</span> <span class="mi">2014</span> <span class="mi">2018</span><span class="p">)</span>
+     <span class="p">(</span><span class="nb">sort </span><span class="p">(</span><span class="nb">keys </span><span class="p">{</span> <span class="mi">2014</span> <span class="s">&#34;Sochi&#34;</span> <span class="mi">2018</span> <span class="s">&#34;PyeongChang&#34;</span> <span class="mi">2010</span> <span class="s">&#34;Vancouver&#34;</span><span class="p">})))</span>
+
+  <span class="s">&#34;You can get the values in a similar way&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">list </span><span class="s">&#34;PyeongChang&#34;</span> <span class="s">&#34;Sochi&#34;</span> <span class="s">&#34;Vancouver&#34;</span><span class="p">)</span>
+     <span class="p">(</span><span class="nb">sort </span><span class="p">(</span><span class="nb">vals </span><span class="p">{</span><span class="mi">2010</span> <span class="s">&#34;Vancouver&#34;</span> <span class="mi">2014</span> <span class="s">&#34;Sochi&#34;</span> <span class="mi">2018</span> <span class="s">&#34;PyeongChang&#34;</span><span class="p">})))</span>
+
+  <span class="s">&#34;You can even iterate over the map entries as a seq&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">2</span> <span class="ss">:b</span> <span class="mi">3</span><span class="p">}</span>
+     <span class="p">(</span><span class="nb">into </span><span class="p">{}</span>
+           <span class="p">(</span><span class="nf">map</span>
+            <span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">k</span> <span class="nv">v</span><span class="p">]]</span> <span class="p">[</span><span class="nv">k</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">v</span><span class="p">)])</span>
+            <span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}))))</span></code></pre></div>
+<h3 id="using-maps-as-functions">Using maps as functions</h3>
+
+<p>So, maps are callable, and when you call them, you can do a lookup. This is an interesting way to do things:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">({}</span> :a<span class="o">)</span>
+nil
+koan-engine.runner&gt; <span class="o">({</span>:a 1<span class="o">}</span> :a<span class="o">)</span>
+<span class="m">1</span></code></pre></div>
+<h3 id="immutability-and-assoc">Immutability and <code>assoc</code></h3>
+
+<p>In <a href="https://clojure.org/guides/learn/sequential_colls#_immutability">the &ldquo;immutability&rdquo; section the the &ldquo;Learn Clojure&rdquo;</a> guide we learn that clojure collections are immutable and compared by value. So any function that changes a collection, actually returns a new collection. With that in mind, let&rsquo;s take a look at <code>assoc</code>&rsquo;s documentation:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">(</span>doc assoc<span class="o">)</span>
+-------------------------
+clojure.core/assoc
+<span class="o">([</span>map key val<span class="o">]</span> <span class="o">[</span>map key val <span class="p">&amp;</span> kvs<span class="o">])</span>
+  assoc<span class="o">[</span>iate<span class="o">]</span>. When applied to a map, returns a new map of the
+    same <span class="o">(</span>hashed/sorted<span class="o">)</span> type, that contains the mapping of key<span class="o">(</span>s<span class="o">)</span> to
+    val<span class="o">(</span>s<span class="o">)</span>. When applied to a vector, returns a new vector that
+    contains val at index. Note - index must be &lt;<span class="o">=</span> <span class="o">(</span>count vector<span class="o">)</span>.
+nil
+koan-engine.runner&gt; </code></pre></div>
+<p>And let&rsquo;s test:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">(</span>def mymap <span class="o">{</span>:a 1<span class="o">})</span>
+<span class="c1">#&#39;koan-engine.runner/mymap</span>
+koan-engine.runner&gt; <span class="o">(</span>println mymap<span class="o">)</span>
+<span class="o">{</span>:a 1<span class="o">}</span>
+nil
+koan-engine.runner&gt; <span class="o">(</span>assoc mymap :b <span class="m">2</span> :c 3<span class="o">)</span>
+<span class="o">{</span>:a 1, :b 2, :c 3<span class="o">}</span>
+koan-engine.runner&gt; <span class="o">(</span>println mymap<span class="o">)</span>
+<span class="o">{</span>:a 1<span class="o">}</span>
+nil
+koan-engine.runner&gt; </code></pre></div>
+<h3 id="merge-with">merge-with</h3>
+
+<p>Seems like a really strong function! I&rsquo;ve been developing some Gremlin code at work recently, in Python. Something like this has been sorely missing. In fact, <a href="https://groups.google.com/g/gremlin-users/c/QBmiOUkA0iI/m/p-659fEtBwAJ">I&rsquo;ve even talked about it in the Gremlin Google Group</a>. It&rsquo;s great to have another example at hand.</p>
+
+<h3 id="scary-looking-functional-code">Scary looking functional code</h3>
+
+<p>I don&rsquo;t easily grok functional code. Usually I have to go over it a few times until I understand it, since it&rsquo;s really not my background. For example, this is scary to me:</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="s">&#34;You can even iterate over the map entries as a seq&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">{</span><span class="ss">:a</span> <span class="mi">2</span> <span class="ss">:b</span> <span class="mi">3</span><span class="p">}</span>
+     <span class="p">(</span><span class="nb">into </span><span class="p">{}</span>
+           <span class="p">(</span><span class="nf">map</span>
+            <span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">k</span> <span class="nv">v</span><span class="p">]]</span> <span class="p">[</span><span class="nv">k</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">v</span><span class="p">)])</span>
+            <span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}))))</span></code></pre></div>
+<p>So let&rsquo;s face our fears and understand what it means!</p>
+
+<p><code>map</code> takes a function and a collection, and, according to the docs, returns a lazy sequence of the result of applying the function to the items in the collection. Our function takes a vector of two elements and returns the same vector with the second element incremented. Wait, so are map key-value pairs actually just vectors? Let&rsquo;s check:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">koan-engine.runner&gt; <span class="o">(</span>first <span class="o">{</span>:a <span class="m">1</span> :b 2<span class="o">})</span>
+<span class="o">[</span>:a 1<span class="o">]</span>
+koan-engine.runner&gt; <span class="o">(</span><span class="nb">type</span> <span class="o">(</span>first <span class="o">{</span>:a <span class="m">1</span> :b 2<span class="o">}))</span>
+clojure.lang.MapEntry</code></pre></div>
+<p>Aha! So, no? Or wait - maybe? It definitely looks like a vector to me. Turns out that both the <a href="https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/MapEntry.java">MapEntry</a> and <a href="https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/PersistentVector.java">PersistentVector</a> implement <a href="https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/APersistentVector.java">APersistentVector</a> so a MapEntry is a vector. Sort of.</p>
+
+<p>Now, <code>into</code>. From <a href="https://clojure.org/guides/learn/hashed_colls#_into">the relevant part of &ldquo;Learn Clojure&rdquo;</a>, we learn that into is used to put one collection into another, returning the type of the first. Here, we&rsquo;re putting the result of the <code>map</code> call into an empty map. OK! So that&rsquo;s how the &ldquo;vectors&rdquo; are casted back into MapEntries.</p>
+
+<p><img src="https://scoutcambridge.com/wp-content/uploads/2017/10/Potter.jpg" alt="mischief managed" /></p>
+
+<h2 id="functions">Functions</h2>
+
+<blockquote>
+<p>A monk once asked Ummon, &ldquo;What is this place where knowledge is useless?&rdquo;</p>
+
+<p>Ummon answered him: &ldquo;Knowledge and emotion cannot fathom it!&rdquo;</p>
+</blockquote>
+
+<p><img src="https://terebess.hu/zen/yunmen1.jpg" alt="yunman" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.07-functions</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">multiply-by-ten</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="nv">n</span><span class="p">))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">square</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="nv">n</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;Calling a function is like giving it a hug with parentheses&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">81</span> <span class="p">(</span><span class="nf">square</span> <span class="mi">9</span><span class="p">))</span>
+
+  <span class="s">&#34;Functions are usually defined before they are used&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">20</span> <span class="p">(</span><span class="nf">multiply-by-ten</span> <span class="mi">2</span><span class="p">))</span>
+
+  <span class="s">&#34;But they can also be defined inline&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">10</span> <span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="mi">5</span> <span class="nv">n</span><span class="p">))</span> <span class="mi">2</span><span class="p">))</span>
+
+  <span class="s">&#34;Or using an even shorter syntax&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">60</span> <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nb">* </span><span class="mi">15</span> <span class="nv">%</span><span class="p">)</span> <span class="mi">4</span><span class="p">))</span>
+
+  <span class="s">&#34;Even anonymous functions may take multiple arguments&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">15</span> <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nb">+ </span><span class="nv">%1</span> <span class="nv">%2</span> <span class="nv">%3</span><span class="p">)</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
+
+  <span class="s">&#34;Arguments can also be skipped&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;AACC&#34;</span> <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nb">str </span><span class="s">&#34;AA&#34;</span> <span class="nv">%2</span><span class="p">)</span> <span class="s">&#34;bb&#34;</span> <span class="s">&#34;CC&#34;</span><span class="p">))</span>
+
+  <span class="s">&#34;One function can beget another&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">9</span> <span class="p">(((</span><span class="k">fn </span><span class="p">[]</span> <span class="nv">+</span><span class="p">))</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span>
+
+  <span class="s">&#34;Functions can also take other functions as input&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">20</span> <span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span>
+           <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span>
+
+  <span class="s">&#34;Higher-order functions take function arguments&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">25</span> <span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="mi">5</span><span class="p">))</span>
+          <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">n</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="nv">n</span><span class="p">))))</span>
+
+  <span class="s">&#34;But they are often better written using the names of functions&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">25</span> <span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="mi">5</span><span class="p">))</span> <span class="nv">square</span><span class="p">)))</span></code></pre></div>
+<h3 id="begetting-functions-from-functions">Begetting functions from functions</h3>
+
+<p>This might be just syntactic suger, but using `(fn [] +) to return the add operation as a symbol seems powerful.</p>
+
+<h3 id="higher-order-functions">Higher order functions</h3>
+
+<p>What are higher order functions? Well, there&rsquo;s a <a href="https://clojure.org/guides/higher_order_functions">Clojure guide about them</a>! They are functions that take other functions as arguments, which is obvious very important for functional programming. We&rsquo;ve seen one higher order function already - <code>map</code>. In this Koan we wrote a higher order function of our own:</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="mi">5</span><span class="p">)</span></code></pre></div>
+<p>It gets a function as an argument and calls that function with 5.</p>
+
+<p>There&rsquo;s a whole Koan scroll about higher order functions later on, so let&rsquo;s put a 📌 in it for now and carry on.</p>
+
+<h2 id="conditionals">Conditionals</h2>
+
+<blockquote>
+<p>Said Ummon to his disciples, &ldquo;I do not ask you to say anything about before the fifteenth day of the month, but say something about after the fifteenth day of the month.&rdquo;</p>
+
+<p>Because no monk could reply, Ummon answered himself and said, &ldquo;日々是好日!&rdquo; (&ldquo;Every day is a good day!&rdquo;)</p>
+</blockquote>
+
+<p><img src="https://lh3.ggpht.com/Q6qJ6AHrdNK_M_BjteaTJ7afo_LiQqA2VSiy7N_J8RzUTE9BaaFFngp1=s1200" alt="yunmen" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.08-conditionals</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">explain-exercise-velocity</span> <span class="p">[</span><span class="nv">exercise-term</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">case</span> <span class="nv">exercise-term</span>
+        <span class="ss">:bicycling</span>        <span class="s">&#34;pretty fast&#34;</span>
+        <span class="ss">:jogging</span>          <span class="s">&#34;not super fast&#34;</span>
+        <span class="ss">:walking</span>          <span class="s">&#34;not fast at all&#34;</span>
+        <span class="s">&#34;is that even exercise?&#34;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;You will face many decisions&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:a</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">false? </span><span class="p">(</span><span class="nb">= </span><span class="mi">4</span> <span class="mi">5</span><span class="p">))</span>
+          <span class="ss">:a</span>
+          <span class="ss">:b</span><span class="p">))</span>
+
+  <span class="s">&#34;Some of them leave you no alternative&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="mi">4</span> <span class="mi">3</span><span class="p">)</span>
+          <span class="p">[]))</span>
+
+  <span class="s">&#34;And in such a situation you may have nothing&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="nv">nil</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">nil? </span><span class="mi">0</span><span class="p">)</span>
+          <span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span><span class="p">]))</span>
+
+  <span class="s">&#34;In others your alternative may be interesting&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">:glory</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="p">()))</span>
+              <span class="ss">:doom</span>
+              <span class="ss">:glory</span><span class="p">))</span>
+
+  <span class="s">&#34;You may have a multitude of possible paths&#34;</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">x</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="p">(</span><span class="nb">= </span><span class="ss">:your-road</span> <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">1</span><span class="p">)</span> <span class="ss">:road-not-taken</span>
+                        <span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">2</span><span class="p">)</span> <span class="ss">:another-road-not-taken</span>
+                        <span class="ss">:else</span> <span class="ss">:your-road</span><span class="p">)))</span>
+
+  <span class="s">&#34;Or your fate may be sealed&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="ss">&#39;doom</span> <span class="p">(</span><span class="nb">if-not </span><span class="p">(</span><span class="nb">zero? </span><span class="mi">3</span><span class="p">)</span>
+          <span class="ss">&#39;doom</span>
+          <span class="ss">&#39;more-doom</span><span class="p">))</span>
+
+  <span class="s">&#34;In case of emergency, go fast&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;pretty fast&#34;</span>
+     <span class="p">(</span><span class="nf">explain-exercise-velocity</span> <span class="ss">:bicycling</span><span class="p">))</span>
+
+  <span class="s">&#34;But admit it when you don&#39;t know what to do&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;is that even exercise?&#34;</span>
+     <span class="p">(</span><span class="nf">explain-exercise-velocity</span> <span class="ss">:watching-tv</span><span class="p">)))</span></code></pre></div>
+<h3 id="conditionals-are-expressions-so-they-return-a-value">Conditionals are expressions, so they return a value</h3>
+
+<p>This is 🤯 to me. It does read very nicely, even if it&rsquo;s vastly different from almost every other language I&rsquo;ve used. In a general sense, what this does is force the developer to make their conditionals be used for getting values, not for choosing long-winding execution branches. According to CRs I&rsquo;ve done, and Dijkstra&rsquo;s laws, and plenty of other intuition, this seems&hellip; really good?</p>
+
+<p>Well, good in the sense that exercise, sleep and eating well are really good. It&rsquo;s really good but I hate doing it.</p>
+
+<h2 id="higher-order-functions-1">Higher order functions</h2>
+
+<blockquote>
+<p>Ummon Zenji said: &ldquo;Men of immeasurable greatness are tossed about in the ebb and flow of words.&rdquo;</p>
+</blockquote>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Kenk%C5%8D_Sh%C5%8Dkei_-_Landscape_with_Pavilion_-_1985.7_-_Metropolitan_Museum_of_Art.jpg/521px-Kenk%C5%8D_Sh%C5%8Dkei_-_Landscape_with_Pavilion_-_1985.7_-_Metropolitan_Museum_of_Art.jpg" alt="landscape with pavilion" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.09-higher-order-functions</span>
+  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nf">meditations</span>
+  <span class="s">&#34;The map function relates a sequence to another&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">4</span> <span class="mi">8</span> <span class="mi">12</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">x</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]))</span>
+
+  <span class="s">&#34;You may create that mapping&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">4</span> <span class="mi">9</span> <span class="mi">16</span> <span class="mi">25</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]))</span>
+
+  <span class="s">&#34;Or use the names of existing functions&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">false</span> <span class="nv">false</span> <span class="nv">true</span> <span class="nv">false</span> <span class="nv">false</span><span class="p">]</span> <span class="p">(</span><span class="nb">map nil? </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="nv">nil</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]))</span>
+
+  <span class="s">&#34;A filter can be strong&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="nv">false</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:anything</span> <span class="ss">:goes</span> <span class="ss">:here</span><span class="p">)))</span>
+
+  <span class="s">&#34;Or very weak&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="ss">:anything</span> <span class="ss">:goes</span> <span class="ss">:here</span><span class="p">)</span> <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="nv">true</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:anything</span> <span class="ss">:goes</span> <span class="ss">:here</span><span class="p">)))</span>
+
+  <span class="s">&#34;Or somewhere in between&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">]</span> <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="mi">35</span><span class="p">))</span> <span class="p">[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span> <span class="mi">40</span> <span class="mi">50</span> <span class="mi">60</span> <span class="mi">70</span> <span class="mi">80</span><span class="p">]))</span>
+
+  <span class="s">&#34;Maps and filters may be combined&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">10</span><span class="p">))</span> <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="mi">4</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">])))</span>
+
+  <span class="s">&#34;Reducing can increase the result&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">24</span> <span class="p">(</span><span class="nb">reduce </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]))</span>
+
+  <span class="s">&#34;You can start somewhere else&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">2400</span> <span class="p">(</span><span class="nb">reduce </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span> <span class="mi">100</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]))</span>
+
+  <span class="s">&#34;Numbers are not the only things one can reduce&#34;</span>
+  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;longest&#34;</span> <span class="p">(</span><span class="nb">reduce </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span>
+                         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">count </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">count </span><span class="nv">b</span><span class="p">))</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">))</span>
+                       <span class="p">[</span><span class="s">&#34;which&#34;</span> <span class="s">&#34;word&#34;</span> <span class="s">&#34;is&#34;</span> <span class="s">&#34;longest&#34;</span><span class="p">])))</span></code></pre></div>
+<h3 id="map-reduce-name-a-more-iconic-duo">Map Reduce - Name a more iconic duo</h3>
+
+<p>I&rsquo;ve been working a lot with high-scale data pipelines using Spark recently (at work). I still can&rsquo;t really wrap my head around how these frameworks and these &ldquo;map reduce&rdquo; functions are basically the same. My brain isn&rsquo;t wired to deal with such huge differences in scale!</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/1200px-Apache_Spark_logo.svg.png" alt="Apache spark" /></p>
+
+<p>Using Filter Map and Reduce in day-to-day work is very useful, but sometimes harder to read, as this reoccurring Twitter drama shows:</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">All code using array.reduce should be rewritten without array.reduce so it&#39;s readable by humans *mutes thread*</p>&mdash; Jake Archibald (@jaffathecake) <a href="https://twitter.com/jaffathecake/status/1213077702300852224?ref_src=twsrc%5Etfw">January 3, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">my rule for .reduce(): only use it when the result has the same type as the items and the reducer is associative, like<br><br>.reduce((a, b) =&gt; a + b, 0)<br><br>✅ summing some numbers<br>✅ multiplying some numbers<br>🚫 building up a list or object<br>🚫 just about anything else (use a loop)</p>&mdash; Sophie Alpert (@sophiebits) <a href="https://twitter.com/sophiebits/status/1099014182261776384?ref_src=twsrc%5Etfw">February 22, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<h2 id="closing-words">Closing words</h2>
+
+<p>Next time, we&rsquo;ll either continue with the Koans - they are super fun, and a very engaging project - or start actually developing a script that does something real with Clojure. In any case, learning Clojure is slowly starting to become more fun as I can understand the glyphs in front of my eyes. Functional programming is also a good way to feel smart :)</p>
+
+<p>While I&rsquo;m writing these posts half for their documentational value and half just for myself as a personal technical journal, feel free to reach out via Twitter/LinkedIn if you&rsquo;ve made it so far in the post and tell me what you think!</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Foray Into Clojure, Part 0: Setup, syntax, functions</title>
