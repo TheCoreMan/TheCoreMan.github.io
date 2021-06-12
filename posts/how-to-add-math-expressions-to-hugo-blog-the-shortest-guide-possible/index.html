@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible">
+<meta itemprop="description" content="Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
+$$ E=mc^2 $$
+Or L&rsquo;Hôpital&rsquo;s rule?
+$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&rsquo;\left( x \right)}}{{g&rsquo;\left( x \right)}} $$
+Or Matrix Multiplication?
+$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$"><meta itemprop="datePublished" content="2021-06-12T12:15:16&#43;03:00" />
+<meta itemprop="dateModified" content="2021-06-12T12:15:16&#43;03:00" />
+<meta itemprop="wordCount" content="794"><meta itemprop="image" content="https://www.mrnice.dev/images/math-teacher.svg">
+<meta itemprop="keywords" content="howto,hugo,meta,math," /><meta property="og:title" content="How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible" />
+<meta property="og:description" content="Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
+$$ E=mc^2 $$
+Or L&rsquo;Hôpital&rsquo;s rule?
+$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&rsquo;\left( x \right)}}{{g&rsquo;\left( x \right)}} $$
+Or Matrix Multiplication?
+$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/" /><meta property="og:image" content="https://www.mrnice.dev/images/math-teacher.svg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-12T12:15:16&#43;03:00" />
+<meta property="article:modified_time" content="2021-06-12T12:15:16&#43;03:00" />
+
+
+<meta name="twitter:title" content="How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/math-teacher.svg');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 12, 2021</span></div>
+				<h1>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</h1>
+			</header>
+			<div class="content">
+				
+
+<p>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?</p>
+
+<p>$$ E=mc^2 $$</p>
+
+<p>Or L&rsquo;Hôpital&rsquo;s rule?</p>
+
+<p>$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&rsquo;\left( x \right)}}{{g&rsquo;\left( x \right)}} $$</p>
+
+<p>Or Matrix Multiplication?</p>
+
+<p>$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$</p>
+
+<p>Here&rsquo;s the shortest guide I can write for you. This guide assumes you&rsquo;re blogging with Hugo, like this blog. <a href="../how-to-build-this-blog">Read my &ldquo;How to build this blog&rdquo;</a> post to learn how to set something like this up.</p>
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+
+<p><strong>Table of Contents</strong></p>
+
+<ul>
+<li><a href="#1-fork-your-blogs-theme">1. Fork your blog&rsquo;s theme</a></li>
+<li><a href="#2-choose-where-to-include-js-scripts">2. Choose where to include JS scripts</a></li>
+<li><a href="#3-add-mathjax-javascript">3. Add MathJax JavaScript</a></li>
+<li><a href="#4-test-using-a-math-expression-in-your-markdown-posts">4. Test using a math expression in your markdown posts</a>
+
+<ul>
+<li><a href="#inline-math-expressions">Inline math expressions</a></li>
+<li><a href="#display-math-expressions">Display math expressions</a></li>
+<li><a href="#complicated-math-expressions">Complicated math expressions</a></li>
+<li><a href="#multiline-expressions">Multiline expressions</a></li>
+</ul></li>
+</ul>
+
+<!-- markdown-toc end -->
+
+<h2 id="1-fork-your-blog-s-theme">1. Fork your blog&rsquo;s theme<a href="#1-fork-your-blog-s-theme" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>We&rsquo;re going to change the blog&rsquo;s theme, so we want to fork the theme we&rsquo;re using, so we can commit and push changes without bothering anyone. Maybe even merge the changes back to the original project later on!</p>
+
+<p>In my case I&rsquo;m using <a href="https://themes.gohugo.io/hermit/">hermit</a>. In the theme&rsquo;s GitHub page, click &ldquo;Fork&rdquo;:</p>
+
+<p><img src="/images/fork-theme.png" alt="forking example" /></p>
+
+<p>Then, locally added the forked theme as a submodule using</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># Assuming you&#39;re in your blog&#39;s root dir</span>
+<span class="nb">cd</span> themes
+
+<span class="c1"># This is my command, for example</span>
+git submodule add https://github.com/TheCoreMan/hermit hermit-fork
+
+<span class="c1"># Yours should be</span>
+git submodule add https://github.com/&lt;your usename here&gt;/&lt;theme name here&gt; &lt;theme name here&gt;-fork</code></pre></div>
+<p>Finally, edit your <code>config.toml</code> file so that Hugo uses your new, forked theme:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;hermit-fork&#34;</span></code></pre></div>
+<h2 id="2-choose-where-to-include-js-scripts">2. Choose where to include JS scripts<a href="#2-choose-where-to-include-js-scripts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>To display math we&rsquo;re going to use a JS script. We&rsquo;ll include the JS in our <code>layouts/_default/baseof.html</code> file, to make sure that we have Math support in every single page. You can choose different places to include the JS, such as <code>layouts/_default/header.html</code>, <code>layouts/_default/footer.html</code> or <code>layouts/_default/single.html</code> - your mileage may vary based on your theme&rsquo;s setup.</p>
+
+<h2 id="3-add-mathjax-javascript">3. Add MathJax JavaScript<a href="#3-add-mathjax-javascript" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><a href="https://www.mathjax.org/">MathJax</a> is a JavaScript display engine for mathematics. To use it, we need to add the MathJax script to the page we&rsquo;ve chosen. Copy and paste this snippet to your the layout snippet you&rsquo;ve chosen to add JS to:</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- This part includes the Javascript file --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MathJax-script&#34;</span> <span class="na">async</span>
+  <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- this part configures it --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/x-mathjax-config&#34;</span><span class="p">&gt;</span>
+<span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+  <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[[</span><span class="s1">&#39;\\(&#39;</span><span class="p">,</span><span class="s1">&#39;\\)&#39;</span><span class="p">]],</span>
+    <span class="nx">displayMath</span><span class="o">:</span> <span class="p">[[</span><span class="s1">&#39;$$&#39;</span><span class="p">,</span><span class="s1">&#39;$$&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;\[&#39;</span><span class="p">,</span><span class="s1">&#39;\]&#39;</span><span class="p">]],</span>
+    <span class="nx">processEscapes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">processEnvironments</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">skipTags</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;noscript&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;textarea&#39;</span><span class="p">,</span> <span class="s1">&#39;pre&#39;</span><span class="p">],</span>
+    <span class="nx">TeX</span><span class="o">:</span> <span class="p">{</span> <span class="nx">equationNumbers</span><span class="o">:</span> <span class="p">{</span> <span class="nx">autoNumber</span><span class="o">:</span> <span class="s2">&#34;AMS&#34;</span> <span class="p">},</span>
+         <span class="nx">extensions</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;AMSmath.js&#34;</span><span class="p">,</span> <span class="s2">&#34;AMSsymbols.js&#34;</span><span class="p">]</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<p>If you need any specific configurations, prefer to host the JS yourself (for local publishing/avoiding CDN outbreaks) or want to customize anything else, <a href="https://github.com/mathjax/MathJax/#installation-and-use">you can find MathJax&rsquo;s installation documentation here</a>.</p>
+
+<p><a href="http://docs.mathjax.org/en/latest/options/input/tex.html">Here&rsquo;s specific documentation about the configuration values we&rsquo;re using here: <code>tex2jax input configruation</code></a>. Specifically important:</p>
+
+<ul>
+<li><code>processEscapes</code> - this will help avoit messing up normal markdown.</li>
+<li><code>skipTags</code> - without this, MathJax will try to parse parts of our post which we don&rsquo;t want it to</li>
+</ul>
+
+<h2 id="4-test-using-a-math-expression-in-your-markdown-posts">4. Test using a math expression in your markdown posts<a href="#4-test-using-a-math-expression-in-your-markdown-posts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Now that we&rsquo;re done with setup, let&rsquo;s see how to use Math Expressions in our markdown posts.</p>
+
+<h3 id="inline-math-expressions">Inline math expressions<a href="#inline-math-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>To get an inline math expression like \(E=mc^2\), wrap your math expression with <code>\\(</code> and <code>\\)</code>, like so: <code>\\(E=mc^2\\)</code>.</p>
+
+<h3 id="display-math-expressions">Display math expressions<a href="#display-math-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This markdown:</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">$$ E=mc^2 $$</code></pre></div>
+<p>Produces this math expression:</p>
+
+<p>$$ E=mc^2 $$</p>
+
+<p>You can also use <code>\\[</code> and <code>\\]</code> as delimiters, like so:</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">\\[ E=mc^2 \therefore E_{\rm rel} = \sqrt{ (m_0 c^2)^2 + (pc)^2 } \,\! \\]</code></pre></div>
+<p>\[ E=mc^2 \therefore E_{\rm rel} = \sqrt{ (m_0 c^2)^2 + (pc)^2 } \,! \]</p>
+
+<h3 id="complicated-math-expressions">Complicated math expressions<a href="#complicated-math-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This markdown:</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">$$ \mathop {\lim }\limits\_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits\_{x \to c} \frac{{f&#39;\left( x \right)}}{{g&#39;\left( x \right)}} $$</code></pre></div>
+<p>Produces this math expression:</p>
+
+<p>$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&rsquo;\left( x \right)}}{{g&rsquo;\left( x \right)}} $$</p>
+
+<p>NOTE: We had to escape (i.e. put a <code>\</code> before) our underscores. Make sure to turn all <code>_</code> into <code>\_</code> inside your math expression. That&rsquo;s because <em>underscores mark italicized text in markdown</em>, and our parser might mess up the Math Expression, so MathJax won&rsquo;t be able to read it.</p>
+
+<h3 id="multiline-expressions">Multiline expressions<a href="#multiline-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This markdown:</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">$$ \begin{pmatrix} 0 <span class="err">&amp;</span> 1 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix}\begin{pmatrix} 0 <span class="err">&amp;</span> 0 \\\\ 1 <span class="err">&amp;</span> 0 \end{pmatrix}=\begin{pmatrix} 1 <span class="err">&amp;</span> 0 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix} $$</code></pre></div>
+<p>Produces this math expression:</p>
+
+<p>$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$</p>
+
+<p>NOTE: We had to escape (i.e. put a <code>\</code> before) our backslashes TWICE. Make sure to turn all <code>\\</code> into <code>\\\\</code>.</p>
+
+<blockquote>
+<p>Attribution: <a href="https://www.vecteezy.com/free-vector/vector">Vector Vectors by Vecteezy</a>.</p>
+</blockquote>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/how-to-build-this-blog/">How to Build This Blog</a></li>
+	
+	<li><a href="/posts/shortest-guide-how-to-add-programs-to-emacs/">How to Add EmacsLisp Programs to Emacs - The Hard Way</a></li>
+	
+	<li><a href="/posts/first-post/">The first Post</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/howto">howto</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/hugo">hugo</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/meta">meta</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/math">math</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>794 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-06-12 12:15 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

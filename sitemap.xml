@@ -2,19 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/howto/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/hugo/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/math/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/meta/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/clojure/</loc>
     <lastmod>2021-06-04T20:39:47+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</loc>
-    <lastmod>2021-06-04T20:39:47+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2021-06-04T20:39:47+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2021-06-04T20:39:47+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2021-06-04T20:39:47+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</loc>
@@ -24,9 +39,6 @@
     <lastmod>2021-05-17T15:36:58+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</loc>
-    <lastmod>2021-05-17T15:36:58+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/howto/</loc>
     <lastmod>2021-05-17T15:36:58+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/documentation/</loc>
@@ -204,9 +216,6 @@
     <lastmod>2020-03-30T21:10:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/linux/</loc>
-    <lastmod>2020-03-30T21:10:59+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/meta/</loc>
     <lastmod>2020-03-30T21:10:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/bandit/</loc>

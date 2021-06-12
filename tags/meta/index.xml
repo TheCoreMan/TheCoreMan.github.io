@@ -6,7 +6,21 @@
     <description>Recent content in meta on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Mar 2020 21:10:59 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/meta/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Jun 2021 12:15:16 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/meta/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</title>
+      <link>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</link>
+      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</guid>
+      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
+$$ E=mc^2 $$
+Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
+$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
+Or Matrix Multiplication?
+$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
+    </item>
+    
     <item>
       <title>How to Build This Blog</title>
       <link>https://www.mrnice.dev/posts/how-to-build-this-blog/</link>

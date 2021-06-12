@@ -6,7 +6,43 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Jun 2021 20:39:47 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Jun 2021 12:15:16 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>howto</title>
+      <link>https://www.mrnice.dev/tags/howto/</link>
+      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/howto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://www.mrnice.dev/tags/hugo/</link>
+      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>https://www.mrnice.dev/tags/math/</link>
+      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>meta</title>
+      <link>https://www.mrnice.dev/tags/meta/</link>
+      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/meta/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>clojure</title>
       <link>https://www.mrnice.dev/tags/clojure/</link>
@@ -22,15 +58,6 @@
       <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/emacs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>howto</title>
-      <link>https://www.mrnice.dev/tags/howto/</link>
-      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/howto/</guid>
       <description></description>
     </item>
     
@@ -157,33 +184,6 @@
       <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/toml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>design</title>
-      <link>https://www.mrnice.dev/tags/design/</link>
-      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/design/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>requirements</title>
-      <link>https://www.mrnice.dev/tags/requirements/</link>
-      <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/requirements/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mitre-attack</title>
-      <link>https://www.mrnice.dev/tags/mitre-attack/</link>
-      <pubDate>Mon, 27 Apr 2020 12:07:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/mitre-attack/</guid>
       <description></description>
     </item>
     

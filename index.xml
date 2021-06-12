@@ -6,7 +6,21 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Jun 2021 20:39:47 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Jun 2021 12:15:16 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</title>
+      <link>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</link>
+      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</guid>
+      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
+$$ E=mc^2 $$
+Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
+$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
+Or Matrix Multiplication?
+$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
+    </item>
+    
     <item>
       <title>Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?</title>
       <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</link>
@@ -194,15 +208,6 @@ Today we&amp;rsquo;re automating another big part of the challenge: creating the
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/log-4/</guid>
-      <description>var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;</description>
-    </item>
-    
-    <item>
-      <title>log-5</title>
-      <link>https://www.mrnice.dev/levels/log-5/</link>
-      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/levels/log-5/</guid>
       <description>var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;</description>
     </item>
     
