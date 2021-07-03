@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/2021-q2-professional-self-reflection/</loc>
+    <lastmod>2021-07-02T10:23:18+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2021-07-02T10:23:18+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/musings/</loc>
+    <lastmod>2021-07-02T10:23:18+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2021-07-02T10:23:18+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2021-07-02T10:23:18+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</loc>
     <lastmod>2021-06-12T12:15:16+03:00</lastmod>
   </url><url>
@@ -15,15 +30,6 @@
     <lastmod>2021-06-12T12:15:16+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/meta/</loc>
-    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2021-06-12T12:15:16+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/clojure/</loc>
@@ -45,9 +51,6 @@
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</loc>
-    <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/swimm/</loc>
