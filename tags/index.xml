@@ -53,9 +53,18 @@
     </item>
     
     <item>
+      <title>algorithms</title>
+      <link>https://www.mrnice.dev/tags/algorithms/</link>
+      <pubDate>Sat, 05 Jun 2021 13:02:35 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>clojure</title>
       <link>https://www.mrnice.dev/tags/clojure/</link>
-      <pubDate>Fri, 04 Jun 2021 20:39:47 +0300</pubDate>
+      <pubDate>Sat, 05 Jun 2021 13:02:35 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/clojure/</guid>
       <description></description>
@@ -157,15 +166,6 @@
       <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>algorithms</title>
-      <link>https://www.mrnice.dev/tags/algorithms/</link>
-      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
       <description></description>
     </item>
     

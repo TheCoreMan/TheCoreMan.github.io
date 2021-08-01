@@ -32,8 +32,14 @@
     <loc>https://www.mrnice.dev/tags/meta/</loc>
     <lastmod>2021-06-12T12:15:16+03:00</lastmod>
   </url><url>
+    <loc>https://www.mrnice.dev/tags/algorithms/</loc>
+    <lastmod>2021-06-05T13:02:35+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/clojure/</loc>
-    <lastmod>2021-06-04T20:39:47+03:00</lastmod>
+    <lastmod>2021-06-05T13:02:35+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</loc>
+    <lastmod>2021-06-05T13:02:35+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</loc>
     <lastmod>2021-06-04T20:39:47+03:00</lastmod>
@@ -94,9 +100,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</loc>
     <lastmod>2020-06-11T12:07:50+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/algorithms/</loc>
-    <lastmod>2020-05-28T18:08:50+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/dev-log-3/</loc>
     <lastmod>2020-05-28T18:08:50+03:00</lastmod>

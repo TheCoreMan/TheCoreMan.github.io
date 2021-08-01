@@ -33,6 +33,18 @@ $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0
     </item>
     
     <item>
+      <title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>
+      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</link>
+      <pubDate>Sat, 05 Jun 2021 13:02:35 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</guid>
+      <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.
+ This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
+Table of Contents
+ Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti  Comparison to other languages Breaking down what the code means Open to extension   Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?</description>
+    </item>
+    
+    <item>
       <title>Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?</title>
       <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</link>
       <pubDate>Fri, 04 Jun 2021 20:39:47 +0300</pubDate>
@@ -201,15 +213,6 @@ Today we&amp;rsquo;re automating another big part of the challenge: creating the
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/log-2/</guid>
-      <description>var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;</description>
-    </item>
-    
-    <item>
-      <title>log-3</title>
-      <link>https://www.mrnice.dev/levels/log-3/</link>
-      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/levels/log-3/</guid>
       <description>var DOTstring = ` digraph { 0 [ label = &#34;clone&#34; ] 1 [ label = &#34;start-here&#34; ] 2 [ label = &#34;basic-1&#34; ] 3 [ label = &#34;basic-2&#34; ] 4 [ label = &#34;merge-1&#34; ] 5 [ label = &#34;merge-2&#34; ] 6 [ label = &#34;merge-3&#34; ] 7 [ label = &#34;merge-4&#34; ] 8 [ label = &#34;merge-5&#34; ] 9 [ label = &#34;revert-1&#34; ] 10 [ label = &#34;</description>
     </item>
     
