@@ -6,7 +6,25 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Jul 2021 10:23:18 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Aug 2021 08:32:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>algorithms</title>
+      <link>https://www.mrnice.dev/tags/algorithms/</link>
+      <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>clojure</title>
+      <link>https://www.mrnice.dev/tags/clojure/</link>
+      <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/clojure/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>musings</title>
       <link>https://www.mrnice.dev/tags/musings/</link>
@@ -49,24 +67,6 @@
       <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/meta/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>algorithms</title>
-      <link>https://www.mrnice.dev/tags/algorithms/</link>
-      <pubDate>Sat, 05 Jun 2021 13:02:35 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>clojure</title>
-      <link>https://www.mrnice.dev/tags/clojure/</link>
-      <pubDate>Sat, 05 Jun 2021 13:02:35 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/clojure/</guid>
       <description></description>
     </item>
     

@@ -6,7 +6,19 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Jul 2021 10:23:18 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Aug 2021 08:32:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>
+      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</link>
+      <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</guid>
+      <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.
+ This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
+Table of Contents
+ Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti  Comparison to other languages Breaking down what the code means Open to extension   Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?</description>
+    </item>
+    
     <item>
       <title>2021Q2: Professional Self Reflection</title>
       <link>https://www.mrnice.dev/posts/2021-q2-professional-self-reflection/</link>
@@ -30,18 +42,6 @@ Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
 $$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
 Or Matrix Multiplication?
 $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
-    </item>
-    
-    <item>
-      <title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>
-      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</link>
-      <pubDate>Sat, 05 Jun 2021 13:02:35 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</guid>
-      <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.
- This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
-Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti  Comparison to other languages Breaking down what the code means Open to extension   Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?</description>
     </item>
     
     <item>
