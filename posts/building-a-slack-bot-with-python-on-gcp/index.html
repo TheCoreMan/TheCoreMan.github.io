@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1">
+<meta itemprop="description" content="A joint project with my beautiful wife Olga! &lt;3
+In this post, we&rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
+Table of Contents  Requirements  Why do this, the stupid reason Why do this, the real reason  Planning  Task Management Architecture  Working  Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack  What&rsquo;s next?"><meta itemprop="datePublished" content="2021-08-27T15:18:40&#43;03:00" />
+<meta itemprop="dateModified" content="2021-08-27T15:18:40&#43;03:00" />
+<meta itemprop="wordCount" content="1410"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+<meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1" />
+<meta property="og:description" content="A joint project with my beautiful wife Olga! &lt;3
+In this post, we&rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
+Table of Contents  Requirements  Why do this, the stupid reason Why do this, the real reason  Planning  Task Management Architecture  Working  Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack  What&rsquo;s next?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-27T15:18:40&#43;03:00" />
+<meta property="article:modified_time" content="2021-08-27T15:18:40&#43;03:00" />
+
+
+<meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 27, 2021</span></div>
+				<h1>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</h1>
+			</header>
+			<div class="content">
+				
+
+<p>A joint project with my beautiful wife
+<a href="https://www.linkedin.com/in/olga-beskrovniy-4469b276">Olga</a>! &lt;3</p>
+
+<p>In this post, we&rsquo;ll go over how we built a Slack Bot that helped my company
+manage parking spots.</p>
+
+<h4 id="table-of-contents">Table of Contents<a href="#table-of-contents" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<ul>
+<li><a href="#requirements">Requirements</a>
+
+<ul>
+<li><a href="#why-do-this-the-stupid-reason">Why do this, the stupid reason</a></li>
+<li><a href="#why-do-this-the-real-reason">Why do this, the real reason</a></li>
+</ul></li>
+<li><a href="#planning">Planning</a>
+
+<ul>
+<li><a href="#task-management">Task Management</a></li>
+<li><a href="#architecture">Architecture</a></li>
+</ul></li>
+<li><a href="#working">Working</a>
+
+<ul>
+<li><a href="#setting-up-a-working-environment">Setting up a working environment</a></li>
+<li><a href="#setting-up-gcp">Setting up GCP</a></li>
+<li><a href="#developing-an-initial-server">Developing an initial server</a></li>
+<li><a href="#containerizing-the-server">Containerizing the server</a></li>
+<li><a href="#deploying-the-app-to-the-cloud">Deploying the app to the cloud</a></li>
+<li><a href="#connecting-the-server-to-slack">Connecting the server to Slack</a></li>
+</ul></li>
+<li><a href="#whats-next">What&rsquo;s next?</a></li>
+</ul>
+
+<h2 id="requirements">Requirements<a href="#requirements" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p><img src="/images/start-with-why.jpeg" alt="Start With Why" title="Start With Why" /></p>
+
+<h3 id="why-do-this-the-stupid-reason">Why do this, the stupid reason<a href="#why-do-this-the-stupid-reason" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Recently my company expanded and we now have 7 parking spots at the office,
+instead of the 2 we USED to have. While we have a 100% flex policy on working
+from home, the office is really fun - people want to come in. And with more
+people coming in, more parking needs to be managed.</p>
+
+<p>With two spots, it&rsquo;s been pretty easy to manage manually. We opened a
+Slack Channel called <code>#parking</code>, set up ground rules for reserving the spots,
+and responded to queries about spots manually:</p>
+
+<figure>
+    <img src="/images/parkbot/example1.png"/> <figcaption>
+            <h4>Reserving a spot for the day</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="/images/parkbot/example2.png"/> <figcaption>
+            <h4>Asking what&#39;s the current status of parking spots</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="/images/parkbot/example3.png"/> <figcaption>
+            <h4>Announcing that the parking is full for the day</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="/images/parkbot/example4.png"/> <figcaption>
+            <h4>When things go wrong... Parking without reserving</h4>
+        </figcaption>
+</figure>
+
+
+<p>If there are no open spots available, we have an option to park at a nearby
+garage. Parking in the garage has three drawbacks:</p>
+
+<ul>
+<li>🚶‍♀ It&rsquo;s not in the office, which means we have to walk from and to the
+garage.</li>
+<li>💰 It costs the company more money since the company pays the garage fees.</li>
+<li>👷 We don&rsquo;t want employees to mess with their phones while driving.
+We&rsquo;d prefer for them to know where they are going to park at before getting
+on the road.</li>
+</ul>
+
+<p>Due to these drawbacks, we&rsquo;d prefer employees to park at the office whenever
+possible.</p>
+
+<p>This manual system worked OK-ish with 2 spots. With 7?! No way. Time to
+automate!</p>
+
+<p><a href="https://xkcd.com/1319"><img src="https://imgs.xkcd.com/comics/automation.png" alt="Automation" title="XKCD automation" /></a></p>
+
+<h3 id="why-do-this-the-real-reason">Why do this, the real reason<a href="#why-do-this-the-real-reason" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Olga starts a new job soon after 6 months on Maternity Leave. 🐣 This project
+is mostly about learning and practicing, so that Olga can start a new job as
+sharp as possible.</p>
+
+<h2 id="planning">Planning<a href="#planning" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="task-management">Task Management<a href="#task-management" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Every good project starts with a board!</p>
+
+<p><img src="/images/parkbot/board.jpeg" alt="Silicon Valley - Scrum Board" title="Silicon Valley Scrum" /></p>
+
+<p>So Olga set up a project board on Notion. The experience of working with it has
+been surprisingly nice! But I guess when comparing to Jira, every possible
+system will feel better&hellip; Here&rsquo;s a screenshot of the board in the middle of
+work:</p>
+
+<p><img src="/images/parkbot/notion-board.png" alt="Project Board" title="Project Board" /></p>
+
+<h3 id="architecture">Architecture<a href="#architecture" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>We also invested into drawing up the architecture for the project. This
+architecture went through some phases. First, we thought that we were going to
+use <strong>serverless functions</strong> for the REST API backend (we&rsquo;re on GCP, so
+<a href="https://cloud.google.com/functions">Cloud Functions</a>), so the architecture
+looked like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">DeploymentDiagram</span> <span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="kc">true</span> <span class="nx">framecolor</span><span class="o">=</span><span class="nx">steelblue</span> <span class="nx">label</span><span class="o">=</span><span class="s2">&#34;SlackValetBot Deployment Diagram&#34;</span><span class="p">]</span> <span class="p">{</span>
+ <span class="nx">node</span> <span class="nx">slack</span> <span class="nx">as</span> <span class="s2">&#34;Slack&#34;</span> <span class="p">{</span>
+   <span class="nx">artifact</span> <span class="nx">channel</span> <span class="nx">as</span> <span class="s2">&#34;#parking&#34;</span>
+   <span class="nx">artifact</span> <span class="nx">bot</span> <span class="nx">as</span> <span class="s2">&#34;Slack App&#34;</span>
+  <span class="p">}</span>
+  
+ <span class="nx">node</span> <span class="nx">cloud</span> <span class="nx">as</span> <span class="s2">&#34;Google cloud&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">triggerEndpoint</span>
+  <span class="nx">artifact</span> <span class="nx">cloudFunction</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">file</span><span class="p">]</span>
+ <span class="p">}</span>
+ <span class="nx">node</span> <span class="nx">calendar</span> <span class="nx">as</span> <span class="s2">&#34;Google Calendar&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">parkingSpots</span> <span class="nx">as</span> <span class="s2">&#34;Parking\nSpots&#34;</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">database</span><span class="p">]</span>
+ <span class="p">}</span>
+  
+ <span class="nx">channel</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(1) /reserve&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(2) HTTP req&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">cloudFunction</span> <span class="s2">&#34;(3) Trigger&#34;</span>
+ <span class="nx">cloudFunction</span> <span class="o">-&gt;</span> <span class="nx">parkingSpots</span> <span class="s2">&#34;(4) API req&#34;</span>
+ <span class="nx">parkingSpots</span> <span class="o">-&gt;</span> <span class="nx">cloudFunction</span> <span class="s2">&#34;(5) API resp&#34;</span>
+ <span class="nx">cloudFunction</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(6) Function\nreturn value&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(7) HTTP resp&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">channel</span> <span class="s2">&#34;(8) Available\nor N/A&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+<figure>
+    <img src="/images/parkbot/arch1.svg"/> <figcaption>
+            <h4>Architecture Phase 1 | Cloud Function</h4>
+        </figcaption>
+</figure>
+
+
+<p>But after reading into what we should learn, we decided to move to
+<a href="https://cloud.google.com/run">Cloud Run</a>, and set up the REST backend inside
+a Docker container, instead:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">DeploymentDiagram</span> <span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="kc">true</span> <span class="nx">framecolor</span><span class="o">=</span><span class="nx">steelblue</span> <span class="nx">label</span><span class="o">=</span><span class="s2">&#34;SlackValetBot Deployment Diagram&#34;</span><span class="p">]</span> <span class="p">{</span>
+ <span class="nx">node</span> <span class="nx">slack</span> <span class="nx">as</span> <span class="s2">&#34;Slack&#34;</span> <span class="p">{</span>
+   <span class="nx">artifact</span> <span class="nx">channel</span> <span class="nx">as</span> <span class="s2">&#34;#parking&#34;</span>
+   <span class="nx">artifact</span> <span class="nx">bot</span> <span class="nx">as</span> <span class="s2">&#34;Slack App&#34;</span>
+  <span class="p">}</span>
+  
+ <span class="nx">node</span> <span class="nx">cloud</span> <span class="nx">as</span> <span class="s2">&#34;Google cloud&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">triggerEndpoint</span>
+  <span class="nx">artifact</span> <span class="nx">cloudRun</span> 
+ <span class="p">}</span>
+ 
+<span class="nx">node</span> <span class="nx">container</span> <span class="nx">as</span> <span class="s2">&#34;REST API Backend Container&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">httpServer</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">file</span><span class="p">]</span>
+<span class="p">}</span>
+  
+ <span class="nx">node</span> <span class="nx">calendar</span> <span class="nx">as</span> <span class="s2">&#34;Google Calendar&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">parkingSpots</span> <span class="nx">as</span> <span class="s2">&#34;Parking\nSpots&#34;</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">database</span><span class="p">]</span>
+ <span class="p">}</span>
+  
+ <span class="nx">channel</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(1) /reserve&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(2) HTTP req&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">cloudRun</span> <span class="s2">&#34;(3) Trigger&#34;</span>
+ <span class="nx">cloudRun</span> <span class="o">-&gt;</span> <span class="nx">httpServer</span> <span class="s2">&#34;(4) Init conatainer&#34;</span>
+ <span class="nx">cloudRun</span> <span class="o">-&gt;</span> <span class="nx">httpServer</span> <span class="s2">&#34;(5) HTTP req&#34;</span>
+ <span class="nx">httpServer</span> <span class="o">-&gt;</span> <span class="nx">parkingSpots</span> <span class="s2">&#34;(6) API req&#34;</span>
+ <span class="nx">parkingSpots</span> <span class="o">-&gt;</span> <span class="nx">httpServer</span> <span class="s2">&#34;(7) API resp&#34;</span>
+ <span class="nx">httpServer</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(8) Function\nreturn value&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(9) HTTP resp&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">channel</span> <span class="s2">&#34;(10) Available\nor N/A&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+<figure>
+    <img src="/images/parkbot/arch2.svg"/> <figcaption>
+            <h4>Architecture Phase 2 | Cloud Run</h4>
+        </figcaption>
+</figure>
+
+
+<h2 id="working">Working<a href="#working" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="setting-up-a-working-environment">Setting up a working environment<a href="#setting-up-a-working-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Since Olga&rsquo;s PC is mostly used for gaming and not for development, it&rsquo;s wasn&rsquo;t really
+set up for work. It&rsquo;s a Windows machine, but we set up WSL to make development easier
+(I&rsquo;m on an Ubuntu machine and in general Windows isn&rsquo;t super great for dev IMHO). Luckily,
+I&rsquo;ve already <a href="../what-to-pack-for-a-deserted-linux-island/">written a post on the subject,
+so we just followed the guide there</a>!</p>
+
+<h3 id="setting-up-gcp">Setting up GCP<a href="#setting-up-gcp" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>We tried setting up GCP on Olga&rsquo;s account, but had issues - for some reason,
+we couldn&rsquo;t activate her account. So we ended up using mine.</p>
+
+<p>First, we created a new project:</p>
+
+<p><img src="/images/parkbot/gcp-project.png" alt="&quot;GCP project&quot;" title="GCP project" /></p>
+
+<p>We&rsquo;ve also set up a budget alert to avoid surprises:</p>
+
+<p><img src="/images/parkbot/gcp-budget-alert.png" alt="&quot;Budget Alert&quot;" title="Budget Alert" /></p>
+
+<p>And finally, I added Olga as a co-owner.</p>
+
+<p>We could spend more time on this setup, using IaC stuff - but this is good
+enough to start playing around with it.</p>
+
+<h3 id="developing-an-initial-server">Developing an initial server<a href="#developing-an-initial-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Our setup is based on <a href="https://python-poetry.org/">Poetry</a>, so the project
+structure so far is:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">❯ tree
+.
+├── Dockerfile
+├── LICENSE
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+└── src
+    └── valet_parking_slack_bot
+        ├── main.py
+        ├── __pycache__
+        │   └── server.cpython-39.pyc
+        └── server.py
+
+<span class="m">3</span> directories, <span class="m">8</span> files</code></pre></div>
+<p>We started by developing a very simple Flask app:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/spots&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">spots</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&#34;dedede&#34;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">check_available_spots</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">check_available_spots</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&#34;no spots for you!&#34;</span></code></pre></div>
+<p>And after running it using <code>export FLASK_APP=valet_parking_slack_bot.server</code>
+and <code>flask run</code>, we got this!</p>
+
+<p><img src="/images/parkbot/server-1.png" alt="&quot;Flask app&quot;" title="Flask app" /></p>
+
+<p><img src="/images/parkbot/TheSoupNazi.png" alt="&quot;Soup Nazi&quot;" title="Soup Nazi" /></p>
+
+<h3 id="containerizing-the-server">Containerizing the server<a href="#containerizing-the-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><img src="/images/parkbot/docker-meme.jpg" alt="&quot;Docker meme&quot;" title="Docker meme" /></p>
+
+<p>Now that we have a working server, we should containerize it so that we can
+deploy it to Cloud Run and execute it from there. Here&rsquo;s the Dockerfile, with
+some inline documentation explaining each part:</p>
+<div class="highlight"><pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="c"># Base image. This version is in the pyproject file as well.</span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> python:3.9</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Install various system dependencies.</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> pip install <span class="s2">&#34;poetry==1.1.8&#34;</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Install various project dependencies.</span><span class="err">
+</span><span class="err"></span><span class="c"># Copy only requirements to cache them in docker layer.</span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> poetry.lock pyproject.toml /app/<span class="err">
+</span><span class="err"></span><span class="c"># Install Python dependencies.</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> poetry config virtualenvs.create <span class="nb">false</span> <span class="se">\
+</span><span class="se"></span>  <span class="o">&amp;&amp;</span> poetry install --no-interaction --no-ansi<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Run the server.</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> src/ /app/<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 5000</span><span class="err">
+</span><span class="err"></span><span class="k">ENV</span> <span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">&#34;valet_parking_slack_bot.server.py&#34;</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="o">[</span> <span class="se">\
+</span><span class="se"></span>	<span class="s2">&#34;flask&#34;</span>, <span class="s2">&#34;run&#34;</span>, <span class="se">\
+</span><span class="se"></span>	<span class="s2">&#34;--host=0.0.0.0&#34;</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">]</span></code></pre></div>
+<h3 id="deploying-the-app-to-the-cloud">Deploying the app to the cloud<a href="#deploying-the-app-to-the-cloud" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>The moment we&rsquo;ve all been waiting for! This was really easy, all things
+considered. GCP has some problems, but the Dev experience is not one of them!</p>
+
+<p>First, we needed to <a href="https://cloud.google.com/sdk/docs/install">install the gcloud
+CLI tool</a>, and initialize it using:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">gcloud init</code></pre></div>
+<p>After that, deploying to Cloud Run is very simple. Literally just:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">gcloud run deploy --port <span class="m">5000</span></code></pre></div>
+<blockquote>
+<p>The port is specified because Cloud Run defaults to apps listening on 8080,
+and since we have port 5000 defined in the server app and the dockerfile,
+the default Cloud Run value needs to be overridden.</p>
+</blockquote>
+
+<p>Then, interactively, we chose the:</p>
+
+<ul>
+<li><p><strong>Source code location</strong>: The default was correct</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">Source code location
+<span class="o">(</span>/home/shay/Desktop/code/valet-parking-slack-bot<span class="o">)</span>:
+Next time, use <span class="s2">&#34;gcloud run deploy --source .&#34;</span> to deploy the current directory.</code></pre></div></li>
+
+<li><p><strong>Region</strong>: we chose <code>europe-north-1</code> in Finland since it&rsquo;s <a href="https://cloud.google.com/blog/products/gcp/gcp-arrives-in-the-nordics-with-a-new-region-in-finland">more
+eco-friendly</a>.</p></li>
+</ul>
+
+<p><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gcp_finland_hamina65yz.max-1600x1600.JPEG" alt="&quot;Finland data center&quot;" title="Finland data center" /></p>
+
+<p>And finally:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> ✓ Building and deploying... Done.</code></pre></div>
+<p>We then faced a permissions issue: the service responded with an error indicating
+we were not permitted to invoke it when trying to test it with a <code>curl</code> command.
+Apperantly, the default on GCP is to not have global permissions to invoke the
+Cloud Run app. Which is probably correct! So, we added the <code>Cloud Run Invoker</code>
+role to the special group <code>allUsers</code>.</p>
+
+<p><img src="/images/parkbot/allusers-service-permissions.png" alt="&quot;Cloud permissions&quot;" title="Cloud
+permissions" /></p>
+
+<p>After fixing that, WE SUCESSFULLY DEPLOYED A SERVER TO THE CLOUD!!! How cool is
+that?</p>
+
+<p><img src="/images/parkbot/server-success.jpg" alt="&quot;Response from cloud&quot;" title="Response from 
+cloud server" /></p>
+
+<p><img src="https://i.giphy.com/media/xTk9ZZvJbApGt3vy3C/giphy.gif?cid=ecf05e47ojwmp169tyt0mrhr2s2n456ugxkeaned360tcr02&amp;rid=giphy.gif&amp;ct=g" alt="" /></p>
+
+<p>We then added a test endpoint to check if the server is working as expected, and
+wrote a short unit test to validate it. You can
+<a href="https://github.com/TheCoreMan/valet-parking-slack-bot/pull/1">check out the details in this PR</a>,
+but here&rsquo;s a screenshot that sums it up:</p>
+
+<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="&quot;pytest healthcheck&quot;" title="pytest healthcheck" /></p>
+
+<h3 id="connecting-the-server-to-slack">Connecting the server to Slack<a href="#connecting-the-server-to-slack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>We now wanted to create a Slack App, and connect it to the server. We started
+by creating a test workspace called NiceFam, and then we used
+<a href="https://api.slack.com/apps">the Slack API &ldquo;Your Apps&rdquo; page</a> to create a new app.
+We added it to our test workspace, and configured the <code>/spots</code> test command to
+request our cloud server endpoint:</p>
+
+<p><img src="/images/parkbot/slash-command.png" alt="&quot;Slack slash command configuration&quot;" title="Slack slash command configuration" /></p>
+
+<p>The result?</p>
+
+<p><img src="/images/parkbot/slack-integ-1.png" alt="&quot;Slash command preview in Slack&quot;" title="Slash command preview in Slack" /></p>
+
+<p><img src="/images/parkbot/slack-integ-2.png" alt="&quot;Response from server in Slack&quot;" title="Response from server in Slack" /></p>
+
+<p>Woohoo!</p>
+
+<p><img src="https://i.giphy.com/media/eKraNY98WTfUi6Fd1t/giphy.gif?cid=ecf05e47a1m06l7omtax8mst3d08u7owimby82eljc46l6rl&amp;rid=giphy.gif" alt="" /></p>
+
+<h2 id="what-s-next">What&rsquo;s next?<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>This concludes the first part of this particular adventure. In the next post(s),
+we&rsquo;ll develop the bot&rsquo;s interface and integration with Google Calendar. Hopefully,
+the real deployment will be ready soon!</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/testing-aws-lambda-and-api-gateway/">Testing AWS Lambda and API Gateway</a></li>
+	
+	<li><a href="/posts/dev-log-2/">Devlog #2 | Automation applied to an efficient operation will magnify efficiency</a></li>
+	
+	<li><a href="/posts/dev-log-1/">Devlog #1 | The best-laid plans of mice and men</a></li>
+	
+	<li><a href="/posts/python-server-profiling-guide-with-examples/">Python Server Profiling: A quick guide (with real data)</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1410 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-27 15:18 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/automation/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/cloud/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/docker/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/gcp/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/python/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/serverless/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/slack/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</loc>
+    <lastmod>2021-08-27T15:18:40+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/algorithms/</loc>
     <lastmod>2021-08-01T08:32:00+03:00</lastmod>
   </url><url>
@@ -9,15 +42,6 @@
     <lastmod>2021-08-01T08:32:00+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</loc>
-    <lastmod>2021-08-01T08:32:00+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2021-08-01T08:32:00+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2021-08-01T08:32:00+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2021-08-01T08:32:00+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/2021-q2-professional-self-reflection/</loc>
@@ -179,9 +203,6 @@
     <loc>https://www.mrnice.dev/posts/dev-log-2/</loc>
     <lastmod>2020-05-12T20:20:31+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/docker/</loc>
-    <lastmod>2020-05-12T20:20:31+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/toml/</loc>
     <lastmod>2020-05-12T20:20:31+03:00</lastmod>
   </url><url>
@@ -204,15 +225,6 @@
     <lastmod>2020-04-11T14:00:45+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/aws/</loc>
-    <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/cloud/</loc>
-    <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/python/</loc>
-    <lastmod>2020-04-02T20:15:28+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/serverless/</loc>
     <lastmod>2020-04-02T20:15:28+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/testing/</loc>

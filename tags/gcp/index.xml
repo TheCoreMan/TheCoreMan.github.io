@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gcp on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/gcp/</link>
+    <description>Recent content in gcp on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Aug 2021 15:18:40 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/gcp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</title>
+      <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</guid>
+      <description>A joint project with my beautiful wife Olga! &amp;lt;3
+In this post, we&amp;rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
+Table of Contents  Requirements  Why do this, the stupid reason Why do this, the real reason  Planning  Task Management Architecture  Working  Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack  What&amp;rsquo;s next?</description>
+    </item>
+    
+  </channel>
+</rss>

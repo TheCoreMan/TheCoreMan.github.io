@@ -5,8 +5,401 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Sun, 01 Aug 2021 08:32:00 +0300</lastBuildDate>
+		<lastBuildDate>Fri, 27 Aug 2021 15:18:40 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</title>
+			<link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>
+			<pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</guid>
+			<description>A joint project with my beautiful wife Olga! &amp;lt;3
+In this post, we&amp;rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
+Table of Contents  Requirements  Why do this, the stupid reason Why do this, the real reason  Planning  Task Management Architecture  Working  Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack  What&amp;rsquo;s next?</description>
+			<content type="html"><![CDATA[
+
+<p>A joint project with my beautiful wife
+<a href="https://www.linkedin.com/in/olga-beskrovniy-4469b276">Olga</a>! &lt;3</p>
+
+<p>In this post, we&rsquo;ll go over how we built a Slack Bot that helped my company
+manage parking spots.</p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ul>
+<li><a href="#requirements">Requirements</a>
+
+<ul>
+<li><a href="#why-do-this-the-stupid-reason">Why do this, the stupid reason</a></li>
+<li><a href="#why-do-this-the-real-reason">Why do this, the real reason</a></li>
+</ul></li>
+<li><a href="#planning">Planning</a>
+
+<ul>
+<li><a href="#task-management">Task Management</a></li>
+<li><a href="#architecture">Architecture</a></li>
+</ul></li>
+<li><a href="#working">Working</a>
+
+<ul>
+<li><a href="#setting-up-a-working-environment">Setting up a working environment</a></li>
+<li><a href="#setting-up-gcp">Setting up GCP</a></li>
+<li><a href="#developing-an-initial-server">Developing an initial server</a></li>
+<li><a href="#containerizing-the-server">Containerizing the server</a></li>
+<li><a href="#deploying-the-app-to-the-cloud">Deploying the app to the cloud</a></li>
+<li><a href="#connecting-the-server-to-slack">Connecting the server to Slack</a></li>
+</ul></li>
+<li><a href="#whats-next">What&rsquo;s next?</a></li>
+</ul>
+
+<h2 id="requirements">Requirements</h2>
+
+<p><img src="/images/start-with-why.jpeg" alt="Start With Why" title="Start With Why" /></p>
+
+<h3 id="why-do-this-the-stupid-reason">Why do this, the stupid reason</h3>
+
+<p>Recently my company expanded and we now have 7 parking spots at the office,
+instead of the 2 we USED to have. While we have a 100% flex policy on working
+from home, the office is really fun - people want to come in. And with more
+people coming in, more parking needs to be managed.</p>
+
+<p>With two spots, it&rsquo;s been pretty easy to manage manually. We opened a
+Slack Channel called <code>#parking</code>, set up ground rules for reserving the spots,
+and responded to queries about spots manually:</p>
+
+<figure>
+    <img src="/images/parkbot/example1.png"/> <figcaption>
+            <h4>Reserving a spot for the day</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="/images/parkbot/example2.png"/> <figcaption>
+            <h4>Asking what&#39;s the current status of parking spots</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="/images/parkbot/example3.png"/> <figcaption>
+            <h4>Announcing that the parking is full for the day</h4>
+        </figcaption>
+</figure>
+
+
+<figure>
+    <img src="/images/parkbot/example4.png"/> <figcaption>
+            <h4>When things go wrong... Parking without reserving</h4>
+        </figcaption>
+</figure>
+
+
+<p>If there are no open spots available, we have an option to park at a nearby
+garage. Parking in the garage has three drawbacks:</p>
+
+<ul>
+<li>🚶‍♀ It&rsquo;s not in the office, which means we have to walk from and to the
+garage.</li>
+<li>💰 It costs the company more money since the company pays the garage fees.</li>
+<li>👷 We don&rsquo;t want employees to mess with their phones while driving.
+We&rsquo;d prefer for them to know where they are going to park at before getting
+on the road.</li>
+</ul>
+
+<p>Due to these drawbacks, we&rsquo;d prefer employees to park at the office whenever
+possible.</p>
+
+<p>This manual system worked OK-ish with 2 spots. With 7?! No way. Time to
+automate!</p>
+
+<p><a href="https://xkcd.com/1319"><img src="https://imgs.xkcd.com/comics/automation.png" alt="Automation" title="XKCD automation" /></a></p>
+
+<h3 id="why-do-this-the-real-reason">Why do this, the real reason</h3>
+
+<p>Olga starts a new job soon after 6 months on Maternity Leave. 🐣 This project
+is mostly about learning and practicing, so that Olga can start a new job as
+sharp as possible.</p>
+
+<h2 id="planning">Planning</h2>
+
+<h3 id="task-management">Task Management</h3>
+
+<p>Every good project starts with a board!</p>
+
+<p><img src="/images/parkbot/board.jpeg" alt="Silicon Valley - Scrum Board" title="Silicon Valley Scrum" /></p>
+
+<p>So Olga set up a project board on Notion. The experience of working with it has
+been surprisingly nice! But I guess when comparing to Jira, every possible
+system will feel better&hellip; Here&rsquo;s a screenshot of the board in the middle of
+work:</p>
+
+<p><img src="/images/parkbot/notion-board.png" alt="Project Board" title="Project Board" /></p>
+
+<h3 id="architecture">Architecture</h3>
+
+<p>We also invested into drawing up the architecture for the project. This
+architecture went through some phases. First, we thought that we were going to
+use <strong>serverless functions</strong> for the REST API backend (we&rsquo;re on GCP, so
+<a href="https://cloud.google.com/functions">Cloud Functions</a>), so the architecture
+looked like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">DeploymentDiagram</span> <span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="kc">true</span> <span class="nx">framecolor</span><span class="o">=</span><span class="nx">steelblue</span> <span class="nx">label</span><span class="o">=</span><span class="s2">&#34;SlackValetBot Deployment Diagram&#34;</span><span class="p">]</span> <span class="p">{</span>
+ <span class="nx">node</span> <span class="nx">slack</span> <span class="nx">as</span> <span class="s2">&#34;Slack&#34;</span> <span class="p">{</span>
+   <span class="nx">artifact</span> <span class="nx">channel</span> <span class="nx">as</span> <span class="s2">&#34;#parking&#34;</span>
+   <span class="nx">artifact</span> <span class="nx">bot</span> <span class="nx">as</span> <span class="s2">&#34;Slack App&#34;</span>
+  <span class="p">}</span>
+  
+ <span class="nx">node</span> <span class="nx">cloud</span> <span class="nx">as</span> <span class="s2">&#34;Google cloud&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">triggerEndpoint</span>
+  <span class="nx">artifact</span> <span class="nx">cloudFunction</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">file</span><span class="p">]</span>
+ <span class="p">}</span>
+ <span class="nx">node</span> <span class="nx">calendar</span> <span class="nx">as</span> <span class="s2">&#34;Google Calendar&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">parkingSpots</span> <span class="nx">as</span> <span class="s2">&#34;Parking\nSpots&#34;</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">database</span><span class="p">]</span>
+ <span class="p">}</span>
+  
+ <span class="nx">channel</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(1) /reserve&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(2) HTTP req&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">cloudFunction</span> <span class="s2">&#34;(3) Trigger&#34;</span>
+ <span class="nx">cloudFunction</span> <span class="o">-&gt;</span> <span class="nx">parkingSpots</span> <span class="s2">&#34;(4) API req&#34;</span>
+ <span class="nx">parkingSpots</span> <span class="o">-&gt;</span> <span class="nx">cloudFunction</span> <span class="s2">&#34;(5) API resp&#34;</span>
+ <span class="nx">cloudFunction</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(6) Function\nreturn value&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(7) HTTP resp&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">channel</span> <span class="s2">&#34;(8) Available\nor N/A&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+<figure>
+    <img src="/images/parkbot/arch1.svg"/> <figcaption>
+            <h4>Architecture Phase 1 | Cloud Function</h4>
+        </figcaption>
+</figure>
+
+
+<p>But after reading into what we should learn, we decided to move to
+<a href="https://cloud.google.com/run">Cloud Run</a>, and set up the REST backend inside
+a Docker container, instead:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">DeploymentDiagram</span> <span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="kc">true</span> <span class="nx">framecolor</span><span class="o">=</span><span class="nx">steelblue</span> <span class="nx">label</span><span class="o">=</span><span class="s2">&#34;SlackValetBot Deployment Diagram&#34;</span><span class="p">]</span> <span class="p">{</span>
+ <span class="nx">node</span> <span class="nx">slack</span> <span class="nx">as</span> <span class="s2">&#34;Slack&#34;</span> <span class="p">{</span>
+   <span class="nx">artifact</span> <span class="nx">channel</span> <span class="nx">as</span> <span class="s2">&#34;#parking&#34;</span>
+   <span class="nx">artifact</span> <span class="nx">bot</span> <span class="nx">as</span> <span class="s2">&#34;Slack App&#34;</span>
+  <span class="p">}</span>
+  
+ <span class="nx">node</span> <span class="nx">cloud</span> <span class="nx">as</span> <span class="s2">&#34;Google cloud&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">triggerEndpoint</span>
+  <span class="nx">artifact</span> <span class="nx">cloudRun</span> 
+ <span class="p">}</span>
+ 
+<span class="nx">node</span> <span class="nx">container</span> <span class="nx">as</span> <span class="s2">&#34;REST API Backend Container&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">httpServer</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">file</span><span class="p">]</span>
+<span class="p">}</span>
+  
+ <span class="nx">node</span> <span class="nx">calendar</span> <span class="nx">as</span> <span class="s2">&#34;Google Calendar&#34;</span> <span class="p">{</span>
+  <span class="nx">artifact</span> <span class="nx">parkingSpots</span> <span class="nx">as</span> <span class="s2">&#34;Parking\nSpots&#34;</span> <span class="p">[</span><span class="nx">icon</span><span class="o">=</span><span class="nx">database</span><span class="p">]</span>
+ <span class="p">}</span>
+  
+ <span class="nx">channel</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(1) /reserve&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(2) HTTP req&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">cloudRun</span> <span class="s2">&#34;(3) Trigger&#34;</span>
+ <span class="nx">cloudRun</span> <span class="o">-&gt;</span> <span class="nx">httpServer</span> <span class="s2">&#34;(4) Init conatainer&#34;</span>
+ <span class="nx">cloudRun</span> <span class="o">-&gt;</span> <span class="nx">httpServer</span> <span class="s2">&#34;(5) HTTP req&#34;</span>
+ <span class="nx">httpServer</span> <span class="o">-&gt;</span> <span class="nx">parkingSpots</span> <span class="s2">&#34;(6) API req&#34;</span>
+ <span class="nx">parkingSpots</span> <span class="o">-&gt;</span> <span class="nx">httpServer</span> <span class="s2">&#34;(7) API resp&#34;</span>
+ <span class="nx">httpServer</span> <span class="o">-&gt;</span> <span class="nx">triggerEndpoint</span> <span class="s2">&#34;(8) Function\nreturn value&#34;</span>
+ <span class="nx">triggerEndpoint</span> <span class="o">-&gt;</span> <span class="nx">bot</span> <span class="s2">&#34;(9) HTTP resp&#34;</span>
+ <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">channel</span> <span class="s2">&#34;(10) Available\nor N/A&#34;</span>
+<span class="p">}</span>
+</code></pre></div>
+<figure>
+    <img src="/images/parkbot/arch2.svg"/> <figcaption>
+            <h4>Architecture Phase 2 | Cloud Run</h4>
+        </figcaption>
+</figure>
+
+
+<h2 id="working">Working</h2>
+
+<h3 id="setting-up-a-working-environment">Setting up a working environment</h3>
+
+<p>Since Olga&rsquo;s PC is mostly used for gaming and not for development, it&rsquo;s wasn&rsquo;t really
+set up for work. It&rsquo;s a Windows machine, but we set up WSL to make development easier
+(I&rsquo;m on an Ubuntu machine and in general Windows isn&rsquo;t super great for dev IMHO). Luckily,
+I&rsquo;ve already <a href="../what-to-pack-for-a-deserted-linux-island/">written a post on the subject,
+so we just followed the guide there</a>!</p>
+
+<h3 id="setting-up-gcp">Setting up GCP</h3>
+
+<p>We tried setting up GCP on Olga&rsquo;s account, but had issues - for some reason,
+we couldn&rsquo;t activate her account. So we ended up using mine.</p>
+
+<p>First, we created a new project:</p>
+
+<p><img src="/images/parkbot/gcp-project.png" alt="&quot;GCP project&quot;" title="GCP project" /></p>
+
+<p>We&rsquo;ve also set up a budget alert to avoid surprises:</p>
+
+<p><img src="/images/parkbot/gcp-budget-alert.png" alt="&quot;Budget Alert&quot;" title="Budget Alert" /></p>
+
+<p>And finally, I added Olga as a co-owner.</p>
+
+<p>We could spend more time on this setup, using IaC stuff - but this is good
+enough to start playing around with it.</p>
+
+<h3 id="developing-an-initial-server">Developing an initial server</h3>
+
+<p>Our setup is based on <a href="https://python-poetry.org/">Poetry</a>, so the project
+structure so far is:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">❯ tree
+.
+├── Dockerfile
+├── LICENSE
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+└── src
+    └── valet_parking_slack_bot
+        ├── main.py
+        ├── __pycache__
+        │   └── server.cpython-39.pyc
+        └── server.py
+
+<span class="m">3</span> directories, <span class="m">8</span> files</code></pre></div>
+<p>We started by developing a very simple Flask app:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/spots&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">spots</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&#34;dedede&#34;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">check_available_spots</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">check_available_spots</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&#34;no spots for you!&#34;</span></code></pre></div>
+<p>And after running it using <code>export FLASK_APP=valet_parking_slack_bot.server</code>
+and <code>flask run</code>, we got this!</p>
+
+<p><img src="/images/parkbot/server-1.png" alt="&quot;Flask app&quot;" title="Flask app" /></p>
+
+<p><img src="/images/parkbot/TheSoupNazi.png" alt="&quot;Soup Nazi&quot;" title="Soup Nazi" /></p>
+
+<h3 id="containerizing-the-server">Containerizing the server</h3>
+
+<p><img src="/images/parkbot/docker-meme.jpg" alt="&quot;Docker meme&quot;" title="Docker meme" /></p>
+
+<p>Now that we have a working server, we should containerize it so that we can
+deploy it to Cloud Run and execute it from there. Here&rsquo;s the Dockerfile, with
+some inline documentation explaining each part:</p>
+<div class="highlight"><pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="c"># Base image. This version is in the pyproject file as well.</span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> python:3.9</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Install various system dependencies.</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> pip install <span class="s2">&#34;poetry==1.1.8&#34;</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Install various project dependencies.</span><span class="err">
+</span><span class="err"></span><span class="c"># Copy only requirements to cache them in docker layer.</span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> poetry.lock pyproject.toml /app/<span class="err">
+</span><span class="err"></span><span class="c"># Install Python dependencies.</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> poetry config virtualenvs.create <span class="nb">false</span> <span class="se">\
+</span><span class="se"></span>  <span class="o">&amp;&amp;</span> poetry install --no-interaction --no-ansi<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># Run the server.</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> src/ /app/<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 5000</span><span class="err">
+</span><span class="err"></span><span class="k">ENV</span> <span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">&#34;valet_parking_slack_bot.server.py&#34;</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="o">[</span> <span class="se">\
+</span><span class="se"></span>	<span class="s2">&#34;flask&#34;</span>, <span class="s2">&#34;run&#34;</span>, <span class="se">\
+</span><span class="se"></span>	<span class="s2">&#34;--host=0.0.0.0&#34;</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">]</span></code></pre></div>
+<h3 id="deploying-the-app-to-the-cloud">Deploying the app to the cloud</h3>
+
+<p>The moment we&rsquo;ve all been waiting for! This was really easy, all things
+considered. GCP has some problems, but the Dev experience is not one of them!</p>
+
+<p>First, we needed to <a href="https://cloud.google.com/sdk/docs/install">install the gcloud
+CLI tool</a>, and initialize it using:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">gcloud init</code></pre></div>
+<p>After that, deploying to Cloud Run is very simple. Literally just:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">gcloud run deploy --port <span class="m">5000</span></code></pre></div>
+<blockquote>
+<p>The port is specified because Cloud Run defaults to apps listening on 8080,
+and since we have port 5000 defined in the server app and the dockerfile,
+the default Cloud Run value needs to be overridden.</p>
+</blockquote>
+
+<p>Then, interactively, we chose the:</p>
+
+<ul>
+<li><p><strong>Source code location</strong>: The default was correct</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">Source code location
+<span class="o">(</span>/home/shay/Desktop/code/valet-parking-slack-bot<span class="o">)</span>:
+Next time, use <span class="s2">&#34;gcloud run deploy --source .&#34;</span> to deploy the current directory.</code></pre></div></li>
+
+<li><p><strong>Region</strong>: we chose <code>europe-north-1</code> in Finland since it&rsquo;s <a href="https://cloud.google.com/blog/products/gcp/gcp-arrives-in-the-nordics-with-a-new-region-in-finland">more
+eco-friendly</a>.</p></li>
+</ul>
+
+<p><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gcp_finland_hamina65yz.max-1600x1600.JPEG" alt="&quot;Finland data center&quot;" title="Finland data center" /></p>
+
+<p>And finally:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"> ✓ Building and deploying... Done.</code></pre></div>
+<p>We then faced a permissions issue: the service responded with an error indicating
+we were not permitted to invoke it when trying to test it with a <code>curl</code> command.
+Apperantly, the default on GCP is to not have global permissions to invoke the
+Cloud Run app. Which is probably correct! So, we added the <code>Cloud Run Invoker</code>
+role to the special group <code>allUsers</code>.</p>
+
+<p><img src="/images/parkbot/allusers-service-permissions.png" alt="&quot;Cloud permissions&quot;" title="Cloud
+permissions" /></p>
+
+<p>After fixing that, WE SUCESSFULLY DEPLOYED A SERVER TO THE CLOUD!!! How cool is
+that?</p>
+
+<p><img src="/images/parkbot/server-success.jpg" alt="&quot;Response from cloud&quot;" title="Response from 
+cloud server" /></p>
+
+<p><img src="https://i.giphy.com/media/xTk9ZZvJbApGt3vy3C/giphy.gif?cid=ecf05e47ojwmp169tyt0mrhr2s2n456ugxkeaned360tcr02&amp;rid=giphy.gif&amp;ct=g" alt="" /></p>
+
+<p>We then added a test endpoint to check if the server is working as expected, and
+wrote a short unit test to validate it. You can
+<a href="https://github.com/TheCoreMan/valet-parking-slack-bot/pull/1">check out the details in this PR</a>,
+but here&rsquo;s a screenshot that sums it up:</p>
+
+<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="&quot;pytest healthcheck&quot;" title="pytest healthcheck" /></p>
+
+<h3 id="connecting-the-server-to-slack">Connecting the server to Slack</h3>
+
+<p>We now wanted to create a Slack App, and connect it to the server. We started
+by creating a test workspace called NiceFam, and then we used
+<a href="https://api.slack.com/apps">the Slack API &ldquo;Your Apps&rdquo; page</a> to create a new app.
+We added it to our test workspace, and configured the <code>/spots</code> test command to
+request our cloud server endpoint:</p>
+
+<p><img src="/images/parkbot/slash-command.png" alt="&quot;Slack slash command configuration&quot;" title="Slack slash command configuration" /></p>
+
+<p>The result?</p>
+
+<p><img src="/images/parkbot/slack-integ-1.png" alt="&quot;Slash command preview in Slack&quot;" title="Slash command preview in Slack" /></p>
+
+<p><img src="/images/parkbot/slack-integ-2.png" alt="&quot;Response from server in Slack&quot;" title="Response from server in Slack" /></p>
+
+<p>Woohoo!</p>
+
+<p><img src="https://i.giphy.com/media/eKraNY98WTfUi6Fd1t/giphy.gif?cid=ecf05e47a1m06l7omtax8mst3d08u7owimby82eljc46l6rl&amp;rid=giphy.gif" alt="" /></p>
+
+<h2 id="what-s-next">What&rsquo;s next?</h2>
+
+<p>This concludes the first part of this particular adventure. In the next post(s),
+we&rsquo;ll develop the bot&rsquo;s interface and integration with Google Calendar. Hopefully,
+the real deployment will be ready soon!</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>

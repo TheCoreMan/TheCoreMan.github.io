@@ -6,7 +6,70 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Aug 2021 08:32:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Aug 2021 15:18:40 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>automation</title>
+      <link>https://www.mrnice.dev/tags/automation/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud</title>
+      <link>https://www.mrnice.dev/tags/cloud/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://www.mrnice.dev/tags/docker/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gcp</title>
+      <link>https://www.mrnice.dev/tags/gcp/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/gcp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.mrnice.dev/tags/python/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>serverless</title>
+      <link>https://www.mrnice.dev/tags/serverless/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>slack</title>
+      <link>https://www.mrnice.dev/tags/slack/</link>
+      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/slack/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>algorithms</title>
       <link>https://www.mrnice.dev/tags/algorithms/</link>
@@ -121,69 +184,6 @@
       <pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/training/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ctf</title>
-      <link>https://www.mrnice.dev/tags/ctf/</link>
-      <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/ctf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>devlog</title>
-      <link>https://www.mrnice.dev/tags/devlog/</link>
-      <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/devlog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://www.mrnice.dev/tags/git/</link>
-      <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rust</title>
-      <link>https://www.mrnice.dev/tags/rust/</link>
-      <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/rust/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>web</title>
-      <link>https://www.mrnice.dev/tags/web/</link>
-      <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://www.mrnice.dev/tags/docker/</link>
-      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>toml</title>
-      <link>https://www.mrnice.dev/tags/toml/</link>
-      <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/toml/</guid>
       <description></description>
     </item>
     
