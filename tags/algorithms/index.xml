@@ -16,7 +16,7 @@
       <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.
  This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
 Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti  Comparison to other languages Breaking down what the code means Open to extension   Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?</description>
+ Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?</description>
     </item>
     
     <item>

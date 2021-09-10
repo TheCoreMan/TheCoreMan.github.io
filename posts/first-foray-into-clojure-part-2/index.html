@@ -11,14 +11,14 @@
 <meta itemprop="description" content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
  This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
 Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti  Comparison to other languages Breaking down what the code means Open to extension   Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?"><meta itemprop="datePublished" content="2021-08-01T08:32:00&#43;03:00" />
+ Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?"><meta itemprop="datePublished" content="2021-08-01T08:32:00&#43;03:00" />
 <meta itemprop="dateModified" content="2021-08-01T08:32:00&#43;03:00" />
 <meta itemprop="wordCount" content="2755"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 <meta itemprop="keywords" content="clojure,algorithms," /><meta property="og:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日" />
 <meta property="og:description" content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
  This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
 Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti  Comparison to other languages Breaking down what the code means Open to extension   Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?" />
+ Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/" /><meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-01T08:32:00&#43;03:00" />
@@ -128,13 +128,10 @@ one for context. Let&rsquo;s just jump into it!</p>
 
 <ul>
 <li><a href="#using-multi-arity-functions">Using multi-arity functions</a></li>
-<li><a href="#value-based-polymorphism-with-defmulti">Value-based polymorphism with <code>defmulti</code></a>
-
-<ul>
+<li><a href="#value-based-polymorphism-with-defmulti">Value-based polymorphism with <code>defmulti</code></a></li>
 <li><a href="#comparison-to-other-languages">Comparison to other languages</a></li>
 <li><a href="#breaking-down-what-the-code-means">Breaking down what the code means</a></li>
 <li><a href="#open-to-extension">Open to extension</a></li>
-</ul></li>
 </ul></li>
 <li><a href="#lazy-sequences">Lazy Sequences</a>
 
