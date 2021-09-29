@@ -1,0 +1,8 @@
+--- Dockerfile.base	2021-09-11 15:35:49.117069816 +0300
++++ Dockerfile.1	2021-09-11 15:34:10.003008547 +0300
+@@ -1,3 +1,4 @@
+ # Base image. This version is in the pyproject file as well.
+-FROM python:3.9
++# See Image Variants on https://hub.docker.com/_/python
++FROM python:3.9-slim
+ 

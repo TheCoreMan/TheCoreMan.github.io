@@ -6,7 +6,19 @@
     <description>Recent content in python on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Aug 2021 15:18:40 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Sep 2021 12:23:06 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2</title>
+      <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</link>
+      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</guid>
+      <description>Part two of the joint project with my intelligent and brave wife, Olga!
+This post is a part of a series, so check out part 1 for context.
+Warning: As our development of this project was a little &amp;ldquo;all over the place&amp;rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
+QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.</description>
+    </item>
+    
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>

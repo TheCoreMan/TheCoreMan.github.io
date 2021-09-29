@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2">
+<meta itemprop="description" content="Part two of the joint project with my intelligent and brave wife, Olga!
+This post is a part of a series, so check out part 1 for context.
+Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
+QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06&#43;03:00" />
+<meta itemprop="dateModified" content="2021-09-28T12:23:06&#43;03:00" />
+<meta itemprop="wordCount" content="1878"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+<meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2" />
+<meta property="og:description" content="Part two of the joint project with my intelligent and brave wife, Olga!
+This post is a part of a series, so check out part 1 for context.
+Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
+QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-28T12:23:06&#43;03:00" />
+<meta property="article:modified_time" content="2021-09-28T12:23:06&#43;03:00" />
+
+
+<meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Sep 28, 2021</span></div>
+				<h1>We Built a Slack Bot for Valet Parking Services: 🅿️art 2</h1>
+			</header>
+			<div class="content">
+				
+
+<p>Part two of the joint project with my intelligent and brave wife,
+<a href="https://www.linkedin.com/in/olga-beskrovniy-4469b276/">Olga</a>!</p>
+
+<p>This post is a part of a series, so <a href="../building-a-slack-bot-with-python-on-gcp">check out part 1 for context</a>.</p>
+
+<p>Warning: As our development of this project was a little &ldquo;all over the place&rdquo;
+as we try to fit it to our busy lives and the Holiday Season, the blog post
+is a little all over the place as well.</p>
+
+<h2 id="qol-improvements">QoL improvements<a href="#qol-improvements" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Before moving on the the next big tasks, we wanted to do some small QoL
+improvements, which we introduced in 3 separate PRs.</p>
+
+<h3 id="slimming-down-the-docker-image-size">Slimming down the Docker Image size<a href="#slimming-down-the-docker-image-size" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>This one even got a tweet.</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Made my Docker image size 20% (from almost 1GB to 196MB) by adding `-slim` to the base image. Sane defaults, anyone? <a href="https://t.co/6yt17kEWpo">pic.twitter.com/6yt17kEWpo</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1436245245428224002?ref_src=twsrc%5Etfw">September 10, 2021</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Sometimes things don&rsquo;t make sense to me. Why is the DEFAULT image the one with
+&ldquo;batteries-included&rdquo;, all the bloat, and the huge one? Do developers really
+prefer things to surface-level work so badly that they are willing to accept
+images that are 5 times bigger as the default? 🤔</p>
+
+<p>In any case, the diff was very simple:</p>
+
+<p><a href="./Dockerfile.1"><code>Dockerfile.1</code></a>:
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">&mdash; Dockerfile.base    2021-09-11 15:35:49.117069816 +0300
+</span><span class="gd"></span><span class="gi">+++ Dockerfile.1    2021-09-11 15:34:10.003008547 +0300
+</span><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
+</span><span class="gu"></span> # Base image. This version is in the pyproject file as well.
+<span class="gd">-FROM python:3.9
+</span><span class="gd"></span><span class="gi">+# See Image Variants on <a href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a>
+</span><span class="gi">+FROM python:3.9-slim
+</span><span class="gi"></span>
+</code></pre></div></p>
+
+<blockquote>
+<p>Shoutout to <a href="https://willschenk.com/">Will Schenk</a> for the awesome <code>diff</code>
+shortcode. If you have time after reading this blog, make sure to put Will&rsquo;s
+on your read list. Very cool technical musings there!</p>
+</blockquote>
+
+<h3 id="adding-a-test-endpoint-to-the-server-to-make-sure-it-works">Adding a test endpoint to the server, to make sure it works<a href="#adding-a-test-endpoint-to-the-server-to-make-sure-it-works" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>We started by writing a very simple pytest, which just sent a request to the
+first endpoint we&rsquo;ve developed, called <code>spots</code>. But then, we realized that once
+we actually develop that endpoint, the return value will change. So to keep
+things humming nicely, we added a <code>/test</code> URL to the server which we used for
+the test.</p>
+
+<p><a href="./src/valet_parking_slack_bot/server.py.1"><code>src/valet_parking_slack_bot/server.py.1</code></a>:
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">&mdash; server.py.base 2021-09-11 15:49:18.844449939 +0300
+</span><span class="gd"></span><span class="gi">+++ server.py.1 2021-09-11 15:49:26.696418007 +0300
+</span><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
+</span><span class="gu"></span><span class="gi">+from datetime import datetime
+</span><span class="gi"></span> from flask import Flask
+<span class="gu">@@ -4,3 +5,2 @@
+</span><span class="gu"></span>
+<span class="gd">-
+</span><span class="gd"></span> app = Flask(<strong>name</strong>)
+<span class="gu">@@ -18,3 +18,11 @@
+</span><span class="gu"></span>
+<span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
+</span><span class="gi">+def healthcheck():
+</span><span class="gi">+    response = {
+</span><span class="gi">+            &#34;message&#34;: &#34;I&#39;m alive!&#34;,
+</span><span class="gi">+            &#34;ts&#34;: str(datetime.now())
+</span><span class="gi">+    }
+</span><span class="gi">+    return response
+</span><span class="gi">+
+</span><span class="gi"></span> if <strong>name</strong> == &#34;<strong>main</strong>&#34;:
+<span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span><span class="gd"></span>\ No newline at end of file
+<span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></code></pre></div></p>
+
+<p>This is the updated test, where you can see the <strong>TODO</strong> was deleted.
+One of the best feelings is checking boxes ✅</p>
+
+<p><a href="./tests/test_service_availability.py.1"><code>tests/test_service_availability.py.1</code></a>:
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">&mdash; tests/test_service_availability.py.base    2021-09-11 15:53:42.271063485 +0300
+</span><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1    2021-09-11 15:53:22.591186320 +0300
+</span><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
+</span><span class="gu"></span> import requests
+<span class="gi">+import logging
+</span><span class="gi">+
+</span><span class="gi">+logger = logging.getLogger(<strong>name</strong>)
+</span><span class="gi"></span>
+<span class="gu">@@ -4,9 +7,11 @@
+</span><span class="gu"></span>
+<span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
+</span><span class="gd">-# since the response to this URL will change and the
+</span><span class="gd">-# test will fail even though the service is available!
+</span><span class="gd"></span> def test_cloud_endpoint():
+<span class="gd">-    want = &#34;no spots for you!&#34;
+</span><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
+</span><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
+</span><span class="gi">+
+</span><span class="gi">+    response = requests.get(test_url)
+</span><span class="gi">+<br />
+</span><span class="gi"></span>     assert response.ok
+<span class="gd">-    assert want.lower() == response.text.lower()<br />
+</span><span class="gd"></span><span class="gi">+    data = response.json()
+</span><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
+</span><span class="gi">+    assert data[&#34;ts&#34;]
+</span><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
+</span></code></pre></div></p>
+
+<p>and it works!</p>
+
+<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="Test endpoint" title="Test endpoint" /></p>
+
+<h3 id="adding-basic-ci">Adding basic CI<a href="#adding-basic-ci" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>We added some basic CI tooling using GitHub Actions, which you can <a href="https://github.com/TheCoreMan/valet-parking-slack-bot/pull/2/checks">check out
+here</a>. The
+CI currently runs <code>flake8</code> and <code>pytest</code>. We based it off of GitHub&rsquo;s official
+<a href="https://github.com/actions/starter-workflows/blob/main/ci/python-app.yml">Python Application</a>
+with only some minor changes for Poetry:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># This workflow will install Python dependencies, run tests and lint with a single version of Python</span><span class="w">
+</span><span class="w"></span><span class="c"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Python application</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
+</span><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Set up Python 3.9</span><span class="w">
+</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/setup-python@v2</span><span class="w">
+</span><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="m">3.9</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Poetry</span><span class="w">
+</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">Gr1N/setup-poetry@v7</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test poetry installation</span><span class="w">
+</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">poetry --version</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configure poetry</span><span class="w">
+</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">        poetry config virtualenvs.create false
+</span><span class="sd">        poetry config --list</span><span class="w">        
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install dependencies</span><span class="w">
+</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">        </span><span class="w">        </span><span class="l">poetry install</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Lint with flake8</span><span class="w">
+</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">        # stop the build if there are Python syntax errors or undefined names
+</span><span class="sd">        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+</span><span class="sd">        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+</span><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">        
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test with pytest</span><span class="w">
+</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">        </span><span class="w">        </span><span class="l">pytest</span></code></pre></div>
+<h3 id="setting-up-a-local-development-environment">Setting up a local development environment<a href="#setting-up-a-local-development-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><a href="../building-a-slack-bot-with-python-on-gcp">Last time</a>, we managed to deploy
+our bot to the cloud. Immediate regret followed, as the build-deploy-test loop
+got a lot longer! Instead of just changing the code to see what happens, we now
+need to deploy the code to GCP, build a new docker image there, and deploy it.
+That&rsquo;s too much time!</p>
+
+<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&quot;i'm waiting&quot;" title="i'm waiting" /></p>
+
+<p>To speed things up, we used <a href="https://ngrok.com/">ngrok</a> to set up a public
+URL for our local web server, and then configured the Slack app to go to that
+URL instead of our cloud endpoint. When we&rsquo;ll release, we&rsquo;ll need to revert
+this change.</p>
+
+<p>After downloading <code>ngrok</code>, running it was literally just <code>./ngrok http 5000</code>.
+The command gives you a public URL:</p>
+
+<p><img src="/images/parkbot/ngrok-output.jpg" alt="&quot;ngrok output&quot;" title="ngrok output" /></p>
+
+<p>And then you configure it in Slack:</p>
+
+<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&quot;slack ngrok&quot;" title="slack ngrok" /></p>
+
+<h2 id="designing-and-building-the-bot-s-business-logic">Designing and Building the Bot&rsquo;s Business Logic<a href="#designing-and-building-the-bot-s-business-logic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>With all the POCs we did
+<a href="../building-a-slack-bot-with-python-on-gcp">in the first post</a> and all the QoL
+improvements out of the way, now we finally feel comfortable enough with the
+infrastrcture and the <em>build-deploy-test</em> loop to get cracking with developing
+the core logic of the app!</p>
+
+<h3 id="let-s-do-some-product-designing-the-user-flows">Let&rsquo;s do some Product - designing the user flows<a href="#let-s-do-some-product-designing-the-user-flows" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>One thing we&rsquo;ve learned since last time with some user surveys was that setting
+up Google Calendar resources is a total pain, so we need to manage the
+repository ourselves. With this architectural change in mind, we wanted to
+design the first user interaction with the bot - setting it up.</p>
+
+<p><img src="https://i.giphy.com/media/CoG8AbJ9oBmOdPuF1L/giphy-downsized.gif" alt="" /></p>
+
+<blockquote>
+<p>Side note: To do this part well, we&rsquo;ve used a tool I really started to like
+recently - <a href="https://excalidraw.com/">Excalidraw</a>. It&rsquo;s the best virtual
+whiteboard experience I&rsquo;ve had so far, and I pretty much tried them all.</p>
+</blockquote>
+
+<p>The bot seems very simple on the surface. You ask it to reserve a spot, it
+reserves a spot, right? How complex can it be? When starting to actually work
+on planning the user flows with a DDR, we&rsquo;ve discovered multiple layers of
+complexity:</p>
+
+<ul>
+<li><strong>Setup</strong> - how to set the bot up in a self-serve way that isn&rsquo;t horrible?</li>
+<li><strong>Edge cases</strong> - someone wanted to park, but now they can&rsquo;t make it? Add new
+spots when expanding? Etc.</li>
+<li><strong>UX</strong> - Do we really want to only use <code>/</code> commands? The main drawback is
+that bot usage will be mostly from mobile devices (since people reserve parking
+before they make it to the office). Typing <code>/</code> on a mobile device is annoying.</li>
+<li><strong>Account management</strong> - we only thought about one user, but the bot will
+hopefully serve multiple Slack Workspaces. At the very least, it&rsquo;ll serve the
+first client and the dev env.</li>
+</ul>
+
+<p>Here&rsquo;s what we came up with. You&rsquo;ll need to click the image to scroll around
+and actually read it:</p>
+
+<p><a href="/images/parkbot/user-flow-setup.png"><img src="/images/parkbot/user-flow-setup.png" alt="" /></a></p>
+
+<p>Since we saw that even just the setup flow is pretty complicated on its own,
+we decided to implement a little bit more of the bot so we have better domain
+knowledge before designing the other user flows. It seemed like learning more
+about Slack bots, designing the code itself a little more, and seeing what&rsquo;s
+easy and what&rsquo;s hard were better avenues to getting a better end product than
+spending time designing the rest of the flows.</p>
+
+<h3 id="initial-development-design-mocks-stubs">Initial development - design, mocks, stubs<a href="#initial-development-design-mocks-stubs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>In our initial design, we went for a pretty simple design, mostly meant to
+make sure we&rsquo;re adhereing to the
+<a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">Single Responsibility Principle</a>
+and to expedite development using this trick:</p>
+
+<p><strong>Create an interface for the parking spot ~repository~, so that developing
+it won&rsquo;t block us from working on business logic and UX.</strong></p>
+
+<p>Our design ended up here:</p>
+
+<p><img src="/images/parkbot/oop-design.png" alt="&quot;OOP design&quot;" title="OOP design" /></p>
+
+<p>This design also allowed us to test the designator using <strong>automatic spec for
+mocks</strong>, which proved very useful in our case. Check out how clear and clean
+these tests are!</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">valet_parking_slack_bot.logic</span> <span class="kn">import</span> <span class="n">ParkingSpotDesignator</span>
+<span class="kn">from</span> <span class="nn">valet_parking_slack_bot.repo</span> <span class="kn">import</span> <span class="n">ParkingSpotRepoBase</span>
+<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">create_autospec</span>
+
+<span class="n">test_username</span> <span class="o">=</span> <span class="s2">&#34;test_user&#34;</span>
+
+<span class="k">def</span> <span class="nf">test_reserve_spot_sanity</span><span class="p">():</span>
+    <span class="c1"># arrange (given)</span>
+    <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+    <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_available_spots</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+    
+    <span class="c1"># act (when)</span>
+    <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">try_reserve_spot</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+
+    <span class="c1"># assert (then)</span>
+    <span class="k">assert</span> <span class="n">return_value</span>
+    <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_available_spots</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+    <span class="n">repo</span><span class="o">.</span><span class="n">assign</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">test_username</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">TestReleaseByUsername</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">test_one_reserved_spot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;Parking spot 1 has been released successfully&#34;</span>
+
+    <span class="k">def</span> <span class="nf">test_no_reserved_spots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;User had no assigned parking&#34;</span>
+
+    <span class="k">def</span> <span class="nf">test_two_reserved_spots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;1 2&#39;</span>
+        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;You have several reserved spots: 1 2. Which one to release?&#34;</span></code></pre></div>
+<p>These tests do a TON for the <code>designator</code> without worrying even ONCE about
+the <code>repository</code>! They tell us a lot about how the interface works and what
+the <code>designator</code> is doing. They help maintain it on a deeper level than &ldquo;it&rsquo;s
+not working&rdquo;.</p>
+
+<p>Cool! Since we also implemented a stub, the bot now responds with semi-coherent
+responses, which is very exciting as well:</p>
+
+<p><img src="/images/parkbot/stub-responses.jpg" alt="" /></p>
+
+<h3 id="let-s-do-some-development-using-bolt">Let&rsquo;s do some Development - using Bolt<a href="#let-s-do-some-development-using-bolt" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>The first version of the bot was based on Flask, but the moment we wanted to
+do something that was actually Slack-ish (in our case it was extracting the
+user&rsquo;s name based on the context in the request, which includes the <code>user_id</code>)
+we felt like it was difficult.</p>
+
+<p>After looking around a bit we&rsquo;ve found
+<a href="https://slack.dev/bolt-python/tutorial/getting-started">Bolt SDK for Python</a>,
+which seems packed with great features, useful documentation, and easy to use.
+We migrated the functions we&rsquo;ve implemented on Flask to
+use Bolt, instead. We&rsquo;ve still kept Flask as the Web server, so that the test
+endpoint (remember? From the <a href="../building-a-slack-bot-with-python-on-gcp">last post</a>)
+will still work.</p>
+
+<h4 id="let-s-get-sidetracked-web-servers-web-applications-and-wsgi">Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI<a href="#let-s-get-sidetracked-web-servers-web-applications-and-wsgi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>Why does the Bolt documentation say:</p>
+
+<blockquote>
+<p>By default, Bolt will use the built-in <code>HTTPServer</code> adapter. <strong>While this</strong>
+<strong>is okay for local development, it is not recommended for production.</strong></p>
+</blockquote>
+
+<p>And why, when you run <code>flask run</code>, it tells you:</p>
+
+<blockquote>
+<p><code>WARNING: This is a development server.
+Do not use it in a production deployment.
+Use a production WSGI server instead.</code></p>
+</blockquote>
+
+<p>And what does that have to do with Whiskey?</p>
+
+<p>Well, since Olga was curious about it, we learned more about WSGI. Instead of
+parroting it all here, I&rsquo;ll try to summarize what we&rsquo;ve understood from
+<a href="https://www.python.org/dev/peps/pep-3333/">PEP 3333</a>:</p>
+
+<ul>
+<li>There are two parts of a complete web app: the app (which is what we care
+about) and the server (which, honestly, is not what we care about right now).</li>
+<li>To allow an app to pick-and-choose which server they want to use for
+different use cases (development VS huge production cases), the WSGI is an
+agreed-upon protocol.</li>
+<li>Flask allows you to write WSGI-compliant apps. It also comes with a server,
+but that server is mostly for development.</li>
+<li>There are a lot of Production-grade server stacks - seems like for Python,
+Gunicorn with nginx is a good choice.</li>
+</ul>
+
+<p>After spending some time in this rabbit hole, we decided we actually don&rsquo;t
+care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</p>
+
+<p>In the future, we&rsquo;ll consider migrating to the following stack:</p>
+<pre><code>nginx &lt;-&gt; gunicorn &lt;-&gt; flask &lt;-&gt; bolt</code></pre>
+<p>So this was completely unnecessary sidetrack. Aren&rsquo;t those the best? Just ask
+<a href="https://youtu.be/qEV9qoup2mQ">CGP grey</a>.</p>
+
+<h2 id="next-up">Next up<a href="#next-up" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Next time, we plan to work on:</p>
+
+<ul>
+<li>Listening to messages instead of slash commands to improve UX</li>
+<li>Using Blocks to create beautiful looking responses</li>
+<li>Develop an implementation of the repository using Cloud SQL</li>
+</ul>
+
+<p>Stay tuned!</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/building-a-slack-bot-with-python-on-gcp/">We Built a Slack Bot for Valet Parking Services: 🅿️art 1</a></li>
+	
+	<li><a href="/posts/testing-aws-lambda-and-api-gateway/">Testing AWS Lambda and API Gateway</a></li>
+	
+	<li><a href="/posts/dev-log-2/">Devlog #2 | Automation applied to an efficient operation will magnify efficiency</a></li>
+	
+	<li><a href="/posts/dev-log-1/">Devlog #1 | The best-laid plans of mice and men</a></li>
+	
+	<li><a href="/posts/python-server-profiling-guide-with-examples/">Python Server Profiling: A quick guide (with real data)</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1878 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-09-28 12:23 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
