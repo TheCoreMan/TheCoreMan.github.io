@@ -8,11 +8,11 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Make Git Better CTF">
-<meta itemprop="description" content="TLDR - where do I start What is this? Cool, where do I sign up? My git workshop ⚒ Prerequisites  Knowledge Installations  The game server 🔨 Rules Cool, so where do I begin? Hall of Fame 🏆 The challenge is open source  TLDR - where do I start Click right here to start. Good luck!  What is this? A Capture-The-Flag challenge (what&rsquo;s that?), aimed at intermediate git users, that revolves around git."><meta itemprop="datePublished" content="2020-02-23T16:57:48&#43;02:00" />
+<meta itemprop="description" content="TLDR - where do I start What is this? Cool, where do I sign up? My git workshop ⚒ Prerequisites  Knowledge Installations Unsure about which terminal to use?  The game server 🔨 Rules Cool, so where do I begin? Hall of Fame 🏆 The challenge is open source  TLDR - where do I start Click right here to start. Good luck!  What is this? A Capture-The-Flag challenge (what&rsquo;s that?"><meta itemprop="datePublished" content="2020-02-23T16:57:48&#43;02:00" />
 <meta itemprop="dateModified" content="2020-02-23T16:57:48&#43;02:00" />
-<meta itemprop="wordCount" content="743">
+<meta itemprop="wordCount" content="1170">
 <meta itemprop="keywords" content="" /><meta property="og:title" content="Make Git Better CTF" />
-<meta property="og:description" content="TLDR - where do I start What is this? Cool, where do I sign up? My git workshop ⚒ Prerequisites  Knowledge Installations  The game server 🔨 Rules Cool, so where do I begin? Hall of Fame 🏆 The challenge is open source  TLDR - where do I start Click right here to start. Good luck!  What is this? A Capture-The-Flag challenge (what&rsquo;s that?), aimed at intermediate git users, that revolves around git." />
+<meta property="og:description" content="TLDR - where do I start What is this? Cool, where do I sign up? My git workshop ⚒ Prerequisites  Knowledge Installations Unsure about which terminal to use?  The game server 🔨 Rules Cool, so where do I begin? Hall of Fame 🏆 The challenge is open source  TLDR - where do I start Click right here to start. Good luck!  What is this? A Capture-The-Flag challenge (what&rsquo;s that?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/ctf/" /><meta property="article:section" content="" />
 <meta property="article:published_time" content="2020-02-23T16:57:48&#43;02:00" />
@@ -110,7 +110,7 @@ MathJax.Hub.Config({
 <p><img src="https://i.imgur.com/yc8VW3J.png" alt="make-git-better-ctf-logo" /></p>
 
 <ul>
-<li><a href="#tldr-where-do-i-start">TLDR - where do I start</a></li>
+<li><a href="#tldr---where-do-i-start">TLDR - where do I start</a></li>
 <li><a href="#what-is-this">What is this?</a></li>
 <li><a href="#cool-where-do-i-sign-up">Cool, where do I sign up?</a></li>
 <li><a href="#my-git-workshop">My <code>git</code> workshop ⚒</a></li>
@@ -119,11 +119,12 @@ MathJax.Hub.Config({
 <ul>
 <li><a href="#knowledge">Knowledge</a></li>
 <li><a href="#installations">Installations</a></li>
+<li><a href="#unsure-about-which-terminal-to-use">Unsure about which terminal to use?</a></li>
 </ul></li>
 <li><a href="#the-game-server">The game server 🔨</a></li>
 <li><a href="#rules">Rules</a></li>
 <li><a href="#cool-so-where-do-i-begin">Cool, so where do I begin?</a></li>
-<li><a href="#hall-of-fame">Hall of Fame 🏆</a></li>
+<li><a href="#hall-of-fame-">Hall of Fame 🏆</a></li>
 <li><a href="#the-challenge-is-open-source">The challenge is open source</a></li>
 </ul>
 
@@ -187,6 +188,75 @@ MathJax.Hub.Config({
 
 <p>You probably have all three installed on your machine already.</p>
 
+<h4 id="unsure-about-which-terminal-to-use">Unsure about which terminal to use?<a href="#unsure-about-which-terminal-to-use" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<ul>
+<li>🪟  If you&rsquo;re on Windows, <a href="https://github.com/microsoft/terminal#installing-and-running-windows-terminal">Windows Terminal</a>
+, <a href="https://www.putty.org/">PuTTY</a> and <a href="https://mobaxterm.mobatek.net/">MobaXTerm</a>
+are good alternatives that support Unicode.</li>
+<li>🐧 If you&rsquo;re on Linux, most shells/terminals work with Unicode pretty well. The
+built-in Ubuntu terminal (Gnome) works. <a href="https://sw.kovidgoyal.net/kitty/">Kitty</a>
+works as well.</li>
+</ul>
+
+<p>If you want to check if your shell&rsquo;s support for Unicode, try to <code>curl</code> or
+<code>wget</code> a file that has unicode, and see what it prints. For example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget -O - http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt</code></pre></div>
+<p>This should print something that looks like this towards the end:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">Runes:
+
+  ᚻᛖ ᚳᚹᚫᚦ ᚦᚫᛏ ᚻᛖ ᛒᚢᛞᛖ ᚩᚾ ᚦᚫᛗ ᛚᚪᚾᛞᛖ ᚾᚩᚱᚦᚹᛖᚪᚱᛞᚢᛗ ᚹᛁᚦ ᚦᚪ ᚹᛖᛥᚫ
+
+  <span class="o">(</span>Old English, which transcribed into Latin reads <span class="s1">&#39;He cwaeth that he
+</span><span class="s1">  bude thaem lande northweardum with tha Westsae.&#39;</span> and means <span class="s1">&#39;He said
+</span><span class="s1">  that he lived in the northern land near the Western Sea.&#39;</span><span class="o">)</span>
+
+Braille:
+
+  ⡌⠁⠧⠑ ⠼⠁⠒  ⡍⠜⠇⠑⠹⠰⠎ ⡣⠕⠌
+
+  ⡍⠜⠇⠑⠹ ⠺⠁⠎ ⠙⠑⠁⠙⠒ ⠞⠕ ⠃⠑⠛⠔ ⠺⠊⠹⠲ ⡹⠻⠑ ⠊⠎ ⠝⠕ ⠙⠳⠃⠞
+  ⠱⠁⠞⠑⠧⠻ ⠁⠃⠳⠞ ⠹⠁⠞⠲ ⡹⠑ ⠗⠑⠛⠊⠌⠻ ⠕⠋ ⠙⠊⠎ ⠃⠥⠗⠊⠁⠇ ⠺⠁⠎
+  ⠎⠊⠛⠝⠫ ⠃⠹ ⠹⠑ ⠊⠇⠻⠛⠹⠍⠁⠝⠂ ⠹⠑ ⠊⠇⠻⠅⠂ ⠹⠑ ⠥⠝⠙⠻⠞⠁⠅⠻⠂
+  ⠁⠝⠙ ⠹⠑ ⠡⠊⠑⠋ ⠍⠳⠗⠝⠻⠲ ⡎⠊⠗⠕⠕⠛⠑ ⠎⠊⠛⠝⠫ ⠊⠞⠲ ⡁⠝⠙
+  ⡎⠊⠗⠕⠕⠛⠑⠰⠎ ⠝⠁⠍⠑ ⠺⠁⠎ ⠛⠕⠕⠙ ⠥⠏⠕⠝ ⠰⡡⠁⠝⠛⠑⠂ ⠋⠕⠗ ⠁⠝⠹⠹⠔⠛ ⠙⠑
+  ⠡⠕⠎⠑ ⠞⠕ ⠏⠥⠞ ⠙⠊⠎ ⠙⠁⠝⠙ ⠞⠕⠲
+
+  ⡕⠇⠙ ⡍⠜⠇⠑⠹ ⠺⠁⠎ ⠁⠎ ⠙⠑⠁⠙ ⠁⠎ ⠁ ⠙⠕⠕⠗⠤⠝⠁⠊⠇⠲
+
+  ⡍⠔⠙⠖ ⡊ ⠙⠕⠝⠰⠞ ⠍⠑⠁⠝ ⠞⠕ ⠎⠁⠹ ⠹⠁⠞ ⡊ ⠅⠝⠪⠂ ⠕⠋ ⠍⠹
+  ⠪⠝ ⠅⠝⠪⠇⠫⠛⠑⠂ ⠱⠁⠞ ⠹⠻⠑ ⠊⠎ ⠏⠜⠞⠊⠊⠥⠇⠜⠇⠹ ⠙⠑⠁⠙ ⠁⠃⠳⠞
+  ⠁ ⠙⠕⠕⠗⠤⠝⠁⠊⠇⠲ ⡊ ⠍⠊⠣⠞ ⠙⠁⠧⠑ ⠃⠑⠲ ⠔⠊⠇⠔⠫⠂ ⠍⠹⠎⠑⠇⠋⠂ ⠞⠕
+  ⠗⠑⠛⠜⠙ ⠁ ⠊⠕⠋⠋⠔⠤⠝⠁⠊⠇ ⠁⠎ ⠹⠑ ⠙⠑⠁⠙⠑⠌ ⠏⠊⠑⠊⠑ ⠕⠋ ⠊⠗⠕⠝⠍⠕⠝⠛⠻⠹
+  ⠔ ⠹⠑ ⠞⠗⠁⠙⠑⠲ ⡃⠥⠞ ⠹⠑ ⠺⠊⠎⠙⠕⠍ ⠕⠋ ⠳⠗ ⠁⠝⠊⠑⠌⠕⠗⠎
+  ⠊⠎ ⠔ ⠹⠑ ⠎⠊⠍⠊⠇⠑⠆ ⠁⠝⠙ ⠍⠹ ⠥⠝⠙⠁⠇⠇⠪⠫ ⠙⠁⠝⠙⠎
+  ⠩⠁⠇⠇ ⠝⠕⠞ ⠙⠊⠌⠥⠗⠃ ⠊⠞⠂ ⠕⠗ ⠹⠑ ⡊⠳⠝⠞⠗⠹⠰⠎ ⠙⠕⠝⠑ ⠋⠕⠗⠲ ⡹⠳
+  ⠺⠊⠇⠇ ⠹⠻⠑⠋⠕⠗⠑ ⠏⠻⠍⠊⠞ ⠍⠑ ⠞⠕ ⠗⠑⠏⠑⠁⠞⠂ ⠑⠍⠏⠙⠁⠞⠊⠊⠁⠇⠇⠹⠂ ⠹⠁⠞
+  ⡍⠜⠇⠑⠹ ⠺⠁⠎ ⠁⠎ ⠙⠑⠁⠙ ⠁⠎ ⠁ ⠙⠕⠕⠗⠤⠝⠁⠊⠇⠲
+
+  <span class="o">(</span>The first couple of paragraphs of <span class="s2">&#34;A Christmas Carol&#34;</span> by Dickens<span class="o">)</span>
+
+Compact font selection example text:
+
+  ABCDEFGHIJKLMNOPQRSTUVWXYZ /0123456789
+  abcdefghijklmnopqrstuvwxyz £©µÀÆÖÞßéöÿ
+  –—‘“”„†•…‰™œŠŸž€ ΑΒΓΔΩαβγδω АБВГДабвгд
+  ∀∂∈ℝ∧∪≡∞ ↑↗↨↻⇣ ┐┼╔╘░►☺♀ ﬁ�⑀₂ἠḂӥẄɐː⍎אԱა
+
+Greetings in various languages:
+
+  Hello world, Καλημέρα κόσμε, コンニチハ
+
+Box drawing alignment tests:                                          █
+                                                                      ▉
+  ╔══╦══╗  ┌──┬──┐  ╭──┬──╮  ╭──┬──╮  ┏━━┳━━┓  ┎┒┏┑   ╷  ╻ ┏┯┓ ┌┰┐    ▊ ╱╲╱╲╳╳╳
+  ║┌─╨─┐║  │╔═╧═╗│  │╒═╪═╕│  │╓─╁─╖│  ┃┌─╂─┐┃  ┗╃╄┙  ╶┼╴╺╋╸┠┼┨ ┝╋┥    ▋ ╲╱╲╱╳╳╳
+  ║│╲ ╱│║  │║   ║│  ││ │ ││  │║ ┃ ║│  ┃│ ╿ │┃  ┍╅╆┓   ╵  ╹ ┗┷┛ └┸┘    ▌ ╱╲╱╲╳╳╳
+  ╠╡ ╳ ╞╣  ├╢   ╟┤  ├┼─┼─┼┤  ├╫─╂─╫┤  ┣┿╾┼╼┿┫  ┕┛┖┚     ┌┄┄┐ ╎ ┏┅┅┓ ┋ ▍ ╲╱╲╱╳╳╳
+  ║│╱ ╲│║  │║   ║│  ││ │ ││  │║ ┃ ║│  ┃│ ╽ │┃  ░░▒▒▓▓██ ┊  ┆ ╎ ╏  ┇ ┋ ▎
+  ║└─╥─┘║  │╚═╤═╝│  │╘═╪═╛│  │╙─╀─╜│  ┃└─╂─┘┃  ░░▒▒▓▓██ ┊  ┆ ╎ ╏  ┇ ┋ ▏
+  ╚══╩══╝  └──┴──┘  ╰──┴──╯  ╰──┴──╯  ┗━━┻━━┛  ▗▄▖▛▀▜   └╌╌┘ ╎ ┗╍╍┛ ┋  ▁▂▃▄▅▆▇█
+                                               ▝▀▘▙▄▟</code></pre></div>
 <h2 id="the-game-server">The game server 🔨<a href="#the-game-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p><img src="https://media.giphy.com/media/ge91zAgmwUqLMqiH2c/giphy.gif" alt="box" title="box" /></p>
