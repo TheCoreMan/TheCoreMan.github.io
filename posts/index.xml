@@ -9,7 +9,7 @@
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2</title>
+			<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</title>
 			<link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</link>
 			<pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
 			
@@ -17,7 +17,7 @@
 			<description>Part two of the joint project with my intelligent and brave wife, Olga!
 This post is a part of a series, so check out part 1 for context.
 Warning: As our development of this project was a little &amp;ldquo;all over the place&amp;rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
-QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.</description>
+ QoL improvements  Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment  Designing and Building the Bot&amp;rsquo;s Business Logic  Let&amp;rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&amp;rsquo;s do some Development - using Bolt Let&amp;rsquo;s get sidetracked - Web servers, web applications, and WSGI  Next up  QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.</description>
 			<content type="html"><![CDATA[
 
 <p>Part two of the joint project with my intelligent and brave wife,
@@ -28,6 +28,26 @@ QoL improvements Before moving on the the next big tasks, we wanted to do some s
 <p>Warning: As our development of this project was a little &ldquo;all over the place&rdquo;
 as we try to fit it to our busy lives and the Holiday Season, the blog post
 is a little all over the place as well.</p>
+
+<ul>
+<li><a href="#qol-improvements">QoL improvements</a>
+
+<ul>
+<li><a href="#slimming-down-the-docker-image-size">Slimming down the Docker Image size</a></li>
+<li><a href="#adding-a-test-endpoint-to-the-server-to-make-sure-it-works">Adding a test endpoint to the server, to make sure it works</a></li>
+<li><a href="#adding-basic-ci">Adding basic CI</a></li>
+<li><a href="#setting-up-a-local-development-environment">Setting up a local development environment</a></li>
+</ul></li>
+<li><a href="#designing-and-building-the-bots-business-logic">Designing and Building the Bot&rsquo;s Business Logic</a>
+
+<ul>
+<li><a href="#lets-do-some-product---designing-the-user-flows">Let&rsquo;s do some Product - designing the user flows</a></li>
+<li><a href="#initial-development---design-mocks-stubs">Initial development - design, mocks, stubs</a></li>
+<li><a href="#lets-do-some-development---using-bolt">Let&rsquo;s do some Development - using Bolt</a></li>
+<li><a href="#lets-get-sidetracked---web-servers-web-applications-and-wsgi">Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI</a></li>
+</ul></li>
+<li><a href="#next-up">Next up</a></li>
+</ul>
 
 <h2 id="qol-improvements">QoL improvements</h2>
 
@@ -406,7 +426,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 		</item>
 		
 		<item>
-			<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1</title>
+			<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start</title>
 			<link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>
 			<pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
 			
