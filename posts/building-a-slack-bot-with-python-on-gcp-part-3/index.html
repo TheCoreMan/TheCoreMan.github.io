@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data">
+<meta itemprop="description" content="Part three of the joint project with my incredibly sharp wife, Olga!
+This post is a part of a series, so check out the entire series for context.
+In this post, we&rsquo;ll dive into how we&rsquo;ve implemented a Database in our application. The post starts with the design, then moves to implementation of DB connectivity, then the data models themselves, and finally some testing.
+Upfront, we had to decide if we&rsquo;ll choose a relational database or something else - and we decided to go relational."><meta itemprop="datePublished" content="2021-10-31T20:04:53&#43;03:00" />
+<meta itemprop="dateModified" content="2021-10-31T20:04:53&#43;03:00" />
+<meta itemprop="wordCount" content="1805"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+<meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless,database,ORM," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data" />
+<meta property="og:description" content="Part three of the joint project with my incredibly sharp wife, Olga!
+This post is a part of a series, so check out the entire series for context.
+In this post, we&rsquo;ll dive into how we&rsquo;ve implemented a Database in our application. The post starts with the design, then moves to implementation of DB connectivity, then the data models themselves, and finally some testing.
+Upfront, we had to decide if we&rsquo;ll choose a relational database or something else - and we decided to go relational." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-31T20:04:53&#43;03:00" />
+<meta property="article:modified_time" content="2021-10-31T20:04:53&#43;03:00" />
+
+
+<meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 31, 2021</span></div>
+				<h1>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</h1>
+			</header>
+			<div class="content">
+				
+
+<p>Part three of the joint project with my incredibly sharp wife,
+<a href="https://www.linkedin.com/in/olga-nehmad/">Olga</a>!</p>
+
+<p>This post is a part of a series, so <a href="https://www.mrnice.dev/tags/slack/">check out the entire series for context</a>.</p>
+
+<p>In this post, we&rsquo;ll dive into how we&rsquo;ve implemented a Database in our
+application. The post starts with the design, then moves to implementation of
+DB connectivity, then the data models themselves, and finally some testing.</p>
+
+<p>Upfront, we had to decide if we&rsquo;ll choose a relational database or something
+else - and we decided to go relational. This could be a super interesting
+decisions with many factors going into it - but in reality, we chose relational
+because it&rsquo;s to most relevant for us to practice right now :)</p>
+
+<h2 id="database-schema-design">Database Schema Design<a href="#database-schema-design" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Let up start by quickly analyzing what our database schema will be. Since we&rsquo;ll
+probably change it moving forward anyway, this is just a rough sketch.</p>
+
+<p>We&rsquo;ll design the database using two tools and an iterative approach. The first
+tool is the <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity-Relationship diargram (also known as an ER
+model)</a>, which
+helps us visually describe the abstract data model. The data model will be
+implemented with a relational database. The second tool: reviewing the ER model
+by testing how well it can respond to queries required by the business logic.</p>
+
+<h3 id="entity-relationship-diargram">Entity-Relationship diargram<a href="#entity-relationship-diargram" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>We sketched this diargram using my new favorite whiteboarding tool,
+<a href="https://excalidraw.com://excalidraw.com/">Excalidraw</a>. While there are many
+tools specifically designed for creating ER diargrams, I find them exhausting;
+just whiteboarding allows one to focus on what one cares about, instead of
+focusing on the tool itself.</p>
+
+<p><img src="/images/parkbot/ER.png" alt="&quot;ER Design&quot;" title="ER Design" /></p>
+
+<h3 id="the-business-needs-test">The &ldquo;Business needs&rdquo; test<a href="#the-business-needs-test" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><img src="https://i.giphy.com/media/3o6Mbbs879ozZ9Yic0/giphy.gif" alt="&quot;test&quot;" title="Test" /></p>
+
+<p>As we mentioned before, one good way to review the ER model is to check whether
+it is useful for the main queries we&rsquo;ll want to ask of it. These queries are
+derived from the main business needs from the application. So let&rsquo;s check that!</p>
+
+<h4 id="on-my-way">On My Way<a href="#on-my-way" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>The main use case is someone telling the bot that they are on their way. The
+flow will look something like this:</p>
+
+<ol>
+<li><strong>User</strong>: I&rsquo;m OMW! Here&rsquo;s my Workspace ID and User ID.</li>
+<li><strong>Backend</strong>: OK. Let&rsquo;s understand what Garage your headed to. Are there
+multiple Garages in this workspace? <code>SELECT * FROM Garages WHERE
+workspace_id=workspace_id</code>.
+
+<ol>
+<li>If there are multiple garages, check if the user has a preference: <code>SELECT
+default garage FROM Users WHERE user_id=user_id</code>
+
+<ol>
+<li>If there isn&rsquo;t a preference, ask the user which garage they&rsquo;re headed
+towards today.</li>
+</ol></li>
+<li>Otherwise (there&rsquo;s only one garage), just use that one.</li>
+</ol></li>
+<li><strong>Backend</strong>: What are the user&rsquo;s parking preferences? <code>SELECT Spot
+Requirements, Spot Preferences FROM Users WHERE user_id=user_id</code>.</li>
+<li><strong>Backend</strong>: Are there relevant open spots? <code>SELECT * FROM Spots INNER JOIN
+Reservations WHERE Garage ID=Garage ID AND Workspace ID=Workspace ID AND
+Reservations.date == Today AND Reservations.active == True</code>. The backend should
+also filter the spots by the user&rsquo;s spot requirements.
+
+<ol>
+<li>If there are open spots, reserve one! <code>INSERT INTO Reservations (columns)
+VALUES (values)</code>. Then tell the user the arrival instructions.</li>
+<li>If there aren&rsquo;t any open spots, tell the user the fallback instructions.</li>
+</ol></li>
+</ol>
+
+<h4 id="current-status">Current Status<a href="#current-status" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>One other use case is someone asking what&rsquo;s the current status of the garage.
+That flow is a lot simpler:</p>
+
+<ol>
+<li><strong>User</strong>: What&rsquo;s the status of garage X?</li>
+<li><strong>Backend</strong>: <code>SELECT * FROM Spots INNER JOIN Reservations WHERE Garage ID = X
+AND Reservations.date == Today</code>.</li>
+</ol>
+
+<h4 id="release-a-spot">Release a Spot<a href="#release-a-spot" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<ol>
+<li><strong>User</strong>: Release my spot!</li>
+<li><strong>Backend</strong>: <code>SELECT * FROM Reservations WHERE Date == Today AND User ID =
+User ID</code>
+
+<ol>
+<li>If there&rsquo;s only one reservation, update with <code>Active = False</code>.</li>
+<li>If there are no reservations, return an error.</li>
+<li>If there are multiple reservations, ask the user which one to release.</li>
+</ol></li>
+</ol>
+
+<h4 id="analytics">Analytics<a href="#analytics" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+
+<p>These queries will be useful for reports.</p>
+
+<ol>
+<li><strong>User</strong>: What&rsquo;s my parking history?</li>
+<li><strong>Backend</strong>: <code>SELECT * from Reservations WHERE User ID = User ID AND 
+workspace_id == workspace_id</code>.</li>
+<li><strong>User</strong>: Which spot did I park in the most?</li>
+<li><strong>Backend</strong>: Same query is before, just with some <code>ORDER BY</code> and <code>count()</code>
+sprinkled on top.</li>
+</ol>
+
+<h3 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p>Seems like the schema structure is OK.</p>
+
+<p><img src="https://i.giphy.com/media/dsKnRuALlWsZG/giphy.gif" alt="&quot;summary&quot;" title="summary" /></p>
+
+<p>There is something &ldquo;uncomfortable&rdquo; about
+often having to perform an <code>INNER JOIN</code> between spots are reservations. We
+could work around that in various ways, like a database view or duplication of
+data - but I think that the schema is good enough to move forward!</p>
+
+<h2 id="choosing-a-db-and-an-orm-spoiler-postgresql-sqlalchemy">Choosing a DB and an ORM (Spoiler: PostgreSQL + SQLAlchemy)<a href="#choosing-a-db-and-an-orm-spoiler-postgresql-sqlalchemy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>There are quite a lot of Database and ORM options out there. We decided to go
+with a relational database (specifically, <code>PostgreSQL</code>) because it&rsquo;s the most
+relevant for us to practice. Also, <a href="https://db-engines.com/en/ranking">it&rsquo;s the fourth most popular option, behind
+three other relational options</a>, so how
+wrong could this choice be?</p>
+
+<p><img src="/images/parkbot/db-ranking.png" alt="&quot;DB rankings&quot;" title="DB rankings" /></p>
+
+<p>Now, which ORM to use? We decided to go with <code>SQLAlchemy</code> as an ORM since quick
+research showed it&rsquo;s definitely the standard for Python, very popular with
+<a href="https://pypistats.org/packages/sqlalchemy">close to 50M monthly downloads</a>,
+and documented enjoyably:</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Absolutely loving the <a href="https://twitter.com/sqlalchemy?ref_src=twsrc%5Etfw">@sqlalchemy</a> documentation right now. This level of writing reminds me of my high school science books in a really good way. This is the tutorial, not the reference documentation - it should be fun :) <a href="https://t.co/9tcVcj565J">pic.twitter.com/9tcVcj565J</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1449453437335265286?ref_src=twsrc%5Etfw">October 16, 2021</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Other options considered were:</p>
+
+<ul>
+<li><code>peewee</code>; loses on popularity as it has only 500K monthly downloads.</li>
+<li><code>Django ORM</code>; loses since <a href="https://speakerdeck.com/alex/why-i-hate-the-django-orm">its author hates it,
+appearantly</a>.</li>
+<li><code>PonyORM</code>; loses on various parameters, which you can check out on
+<a href="https://python.libhunt.com/compare-pony-vs-sqlalchemy">libhunt</a> - but again,
+mostly due to popularity.</li>
+</ul>
+
+<h2 id="developing-the-db-session">Developing the DB session<a href="#developing-the-db-session" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>To make using the DB in development easy, and switching to prod also easy,
+we&rsquo;ve used the <code>factory</code> design pattern to create the DB session, with only
+the <code>inmem_testing</code> case implemented for now:</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">enum</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+
+<span class="k">class</span> <span class="nc">DbCase</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">inmem_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+    <span class="n">docker_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+    <span class="n">prod</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
+        <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite://&#39;</span><span class="p">)</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">session</span>
+    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Docker session not implemented yet.&#34;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Prod session not implemented yet.&#34;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Unknown case: {case}&#34;</span><span class="p">)</span></code></pre></div>
+<p>When developing the other ones, we&rsquo;re going to rely on Env Vars and/or config
+files to populate the connection with data (username, password, address, etc.).</p>
+
+<p>To test all the cases, we&rsquo;ve used a feature of pytest called <code>parametrize</code>,
+but ended up only using it once (since we&rsquo;ve only implemented one):</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="nd">@pytest.mark.parametrize</span><span class="p">(</span>
+    <span class="s2">&#34;db_case&#34;</span><span class="p">,</span> 
+    <span class="p">[</span>
+        <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">,</span>
+    <span class="p">]</span> <span class="c1"># TODO - add more DbCases once we implement them.</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_db_session</span><span class="p">(</span><span class="n">db_case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">):</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s2">&#34;asdfzcxv&#34;</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">db_case</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;select &#39;{expected}&#39;&#34;</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">result</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></code></pre></div>
+<h2 id="developing-the-models">Developing the models<a href="#developing-the-models" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Following SQLAlchemy&rsquo;s tutorials, we&rsquo;ve developed the models:</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">enum</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">registry</span><span class="p">,</span> <span class="n">relationship</span><span class="p">,</span> <span class="n">Session</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Boolean</span><span class="p">,</span> 
+    <span class="n">Column</span><span class="p">,</span> 
+    <span class="n">Date</span><span class="p">,</span>
+    <span class="n">DateTime</span><span class="p">,</span>
+    <span class="n">Enum</span><span class="p">,</span> 
+    <span class="n">ForeignKey</span><span class="p">,</span> 
+    <span class="n">Integer</span><span class="p">,</span> 
+    <span class="n">String</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># See https://docs.sqlalchemy.org/en/14/tutorial/metadata.html#setting-up-the-registry</span>
+<span class="n">mapper_registry</span> <span class="o">=</span> <span class="n">registry</span><span class="p">()</span>
+<span class="n">Base</span> <span class="o">=</span> <span class="n">mapper_registry</span><span class="o">.</span><span class="n">generate_base</span><span class="p">()</span>
+
+
+<span class="nd">@enum.unique</span>
+<span class="k">class</span> <span class="nc">PricingTier</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">free</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+    <span class="n">paid</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+
+
+<span class="n">TABLE_NAME_WORKSPACES</span> <span class="o">=</span> <span class="s2">&#34;workspaces&#34;</span>
+<span class="n">TABLE_NAME_SPOTS</span> <span class="o">=</span> <span class="s2">&#34;spots&#34;</span>
+<span class="n">TABLE_NAME_GARAGES</span> <span class="o">=</span> <span class="s2">&#34;garages&#34;</span>
+<span class="n">TABLE_NAME_USERS</span> <span class="o">=</span> <span class="s2">&#34;users&#34;</span>
+<span class="n">TABLE_NAME_RESERVATIONS</span> <span class="o">=</span> <span class="s2">&#34;reservations&#34;</span>
+
+
+<span class="k">class</span> <span class="nc">Workspace</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_WORKSPACES</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">slack_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">pricing_tier</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Enum</span><span class="p">(</span><span class="n">PricingTier</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">onboard_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">)</span>
+
+    <span class="c1"># Setting up Relationships: See</span>
+    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/relationship_api.html#sqlalchemy.orm.relationship</span>
+    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/tutorial.html#orm-tutorial-relationship</span>
+    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#relationship-patterns</span>
+    <span class="c1"># for details.</span>
+    
+    <span class="c1"># workspace --[1..n]-&gt; garages</span>
+    <span class="n">garages</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Garage&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;workspace&#34;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># workspace -[1]--[0..n]-&gt; users</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;User&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;workspace&#34;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO add emoji to repr</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Workspace({self.id=}, {self.name=}, {self.pricing_tier=}, {self.onboard_time=})&#34;</span>
+
+
+<span class="k">class</span> <span class="nc">Garage</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_GARAGES</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">full_instructions</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">arrival_instructions</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    
+    <span class="c1"># Garage &lt;-[n..1]-- workspace</span>
+    <span class="n">workspace_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">,</span> 
+        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{TABLE_NAME_WORKSPACES}.id&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">workspace</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Workspace&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_GARAGES</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Garage --[1..n]-&gt; spots</span>
+    <span class="n">spots</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Spot&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;garage&#34;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Garage {self.name} at {repr(self.workspace)}&#34;</span>
+
+<span class="k">class</span> <span class="nc">SpotAttributes</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">accessible</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+    <span class="n">charger</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+    <span class="n">scooter</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+    <span class="n">wide</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Spot</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_SPOTS</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="c1"># TODO: Figure out how to set up attributes correctly. Array data type </span>
+    <span class="c1"># isn&#39;t support in basic SQL (like sqlite), so that&#39;s not a good solution.</span>
+    <span class="c1"># options include:</span>
+    <span class="c1"># - Adding a SpotAttributes table</span>
+    <span class="c1"># - JSON list</span>
+    <span class="c1"># - &#34;bitwise&#34;/&#34;flags&#34; based on enum value</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="c1"># Spot &lt;-[n..1]-- garage</span>
+    <span class="n">garage_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">,</span>
+        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{TABLE_NAME_GARAGES}.id&#34;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">garage</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Garage&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_SPOTS</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Spot -[1]--[1..n]-&gt; reservations</span>
+    <span class="n">reservations</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Reservation&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;spot&#34;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Spot {self.name} at {self.garage}&#34;</span>
+
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_USERS</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">slack_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="c1"># Which garage to give this user by default? The ID of the garage.</span>
+    <span class="n">default_garage</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">spot_preferences</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">spot_requirements</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+
+    <span class="c1"># Workspace --[1..n]-&gt; User</span>
+    <span class="n">workspace_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">String</span><span class="p">,</span> 
+        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{TABLE_NAME_WORKSPACES}.id&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">workspace</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Workspace&#34;</span><span class="p">,</span> 
+        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_USERS</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Reservation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_RESERVATIONS</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Date</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">member_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">member_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="c1"># Reservation -[1]--[n]-&gt; spot (multiple reservations can be made for the </span>
+    <span class="c1"># same spot, on different dates).</span>
+    <span class="n">spot_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">Integer</span><span class="p">,</span>
+        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{TABLE_NAME_SPOTS}.id&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">spot</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s2">&#34;Spot&#34;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_RESERVATIONS</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Reservation: </span><span class="se">\
+</span><span class="se"></span><span class="s2">{&#39;Active&#39; if self.active else &#39;Inactive&#39;} </span><span class="se">\
+</span><span class="se"></span><span class="s2">by {self.member_id} </span><span class="se">\
+</span><span class="se"></span><span class="s2">({self.member_name if self.member_name else &#39;unknown name&#39;}) </span><span class="se">\
+</span><span class="se"></span><span class="s2">for {self.date} spot {repr(self.spot)}&#34;</span></code></pre></div>
+<p>We&rsquo;ve also writted some accompanied tests, to demonstrate usage (and prove that
+the schema was implemented successfully). In order to write the tests, we had
+to develop a <code>pytest.fixture</code> to provide a session with data for each test
+class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">DEMO_WORKSPACE_NAME</span> <span class="o">=</span> <span class="s2">&#34;NiceFam&#34;</span>
+<span class="n">DEMO_WORKSPACE_SLACK_ID</span> <span class="o">=</span> <span class="s2">&#34;T02CPGASL8Y&#34;</span>
+<span class="n">DEMO_MEMBER_ID</span> <span class="o">=</span> <span class="s2">&#34;U02C63W148L&#34;</span>
+<span class="n">DEMO_RESERVATION_DATE</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1994</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">session_with_demo_models</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">)</span>
+    <span class="n">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+
+    <span class="c1"># first, set up a workspace</span>
+    <span class="n">w1</span> <span class="o">=</span> <span class="n">Workspace</span><span class="p">(</span>
+        <span class="n">slack_id</span><span class="o">=</span><span class="n">DEMO_WORKSPACE_SLACK_ID</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">DEMO_WORKSPACE_NAME</span><span class="p">,</span>
+        <span class="n">pricing_tier</span><span class="o">=</span><span class="n">PricingTier</span><span class="o">.</span><span class="n">paid</span><span class="p">,</span> 
+        <span class="n">onboard_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">g1</span> <span class="o">=</span> <span class="n">Garage</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&#34;Main garage&#34;</span><span class="p">,</span>
+        <span class="n">full_instructions</span><span class="o">=</span><span class="s2">&#34;it&#39;s full, you&#39;re fucked.&#34;</span><span class="p">,</span>
+        <span class="n">arrival_instructions</span><span class="o">=</span><span class="s2">&#34;just get here&#34;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">spots</span> <span class="o">=</span> <span class="p">[</span><span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="p">),</span> <span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;2&#34;</span><span class="p">),</span> <span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;3&#34;</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spots</span><span class="p">:</span>
+        <span class="n">g1</span><span class="o">.</span><span class="n">spots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">w1</span><span class="o">.</span><span class="n">garages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+    
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
+
+    <span class="c1"># now add some reservations</span>
+    <span class="n">r1</span> <span class="o">=</span> <span class="n">Reservation</span><span class="p">(</span>
+        <span class="n">date</span><span class="o">=</span><span class="n">DEMO_RESERVATION_DATE</span><span class="p">,</span> 
+        <span class="n">active</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+        <span class="n">member_id</span><span class="o">=</span><span class="n">DEMO_MEMBER_ID</span><span class="p">,</span>
+        <span class="n">member_name</span><span class="o">=</span><span class="s2">&#34;Shay Nehmad&#34;</span><span class="p">,</span>
+        <span class="n">spot</span><span class="o">=</span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">Reservation</span><span class="p">(</span>
+        <span class="n">date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+        <span class="n">active</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">member_id</span><span class="o">=</span><span class="n">DEMO_MEMBER_ID</span><span class="p">,</span>
+        <span class="n">member_name</span><span class="o">=</span><span class="s2">&#34;Shay Nehmad&#34;</span><span class="p">,</span>
+        <span class="n">spot</span><span class="o">=</span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+    <span class="c1"># put the session in the class that uses this fixture</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
+    <span class="k">return</span> <span class="n">session</span></code></pre></div>
+<p>And here&rsquo;s how the test class that uses the fixture looks:</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">TestAllModelsTogether</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">test_selecting_reservations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                <span class="n">Reservation</span><span class="o">.</span><span class="n">date</span> <span class="o">==</span> <span class="n">DEMO_RESERVATION_DATE</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">reservations</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reservations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">reservations</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">reservations</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reservations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">reservations</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_reservation_relationships</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
+        <span class="n">a_single_reservation</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+        <span class="k">assert</span> <span class="n">a_single_reservation</span><span class="o">.</span><span class="n">spot</span><span class="o">.</span><span class="n">garage</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">slack_id</span> <span class="o">==</span> <span class="n">DEMO_WORKSPACE_SLACK_ID</span></code></pre></div>
+<p>As you can see, for the fixture, we had to also write a utility function to
+<strong>create</strong> the tables, in order to avoid the <code>OperationalError: Table xxx not
+found</code> error:</p>
+<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Creates all the required tables in the DB, in case it&#39;s un-initialized.
+</span><span class="s2">    
+</span><span class="s2">    Safe to run if tables already exist.&#34;&#34;&#34;</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get_bind</span><span class="p">())</span></code></pre></div>
+<h2 id="what-s-next">What&rsquo;s next?<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Well, we&rsquo;ve done some more work around other parts of the code and set up a
+website. The next thing is integration and making sure it &ldquo;all works together&rdquo;,
+and then actually setting it up for a client. Let&rsquo;s hope we find the time! :)</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/dO1rMeYnOmM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/building-a-slack-bot-with-python-on-gcp-part-2/">We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</a></li>
+	
+	<li><a href="/posts/building-a-slack-bot-with-python-on-gcp/">We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start</a></li>
+	
+	<li><a href="/posts/testing-aws-lambda-and-api-gateway/">Testing AWS Lambda and API Gateway</a></li>
+	
+	<li><a href="/posts/dev-log-2/">Devlog #2 | Automation applied to an efficient operation will magnify efficiency</a></li>
+	
+	<li><a href="/posts/dev-log-1/">Devlog #1 | The best-laid plans of mice and men</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/database">database</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/orm">ORM</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1805 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-10-31 19:04 &#43;0200</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>

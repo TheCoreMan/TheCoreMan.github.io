@@ -6,11 +6,11 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Sep 2021 12:23:06 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>automation</title>
       <link>https://www.mrnice.dev/tags/automation/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/automation/</guid>
       <description></description>
@@ -19,16 +19,25 @@
     <item>
       <title>cloud</title>
       <link>https://www.mrnice.dev/tags/cloud/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/cloud/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>database</title>
+      <link>https://www.mrnice.dev/tags/database/</link>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>docker</title>
       <link>https://www.mrnice.dev/tags/docker/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/docker/</guid>
       <description></description>
@@ -37,16 +46,25 @@
     <item>
       <title>gcp</title>
       <link>https://www.mrnice.dev/tags/gcp/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/gcp/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>ORM</title>
+      <link>https://www.mrnice.dev/tags/orm/</link>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/orm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>python</title>
       <link>https://www.mrnice.dev/tags/python/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/python/</guid>
       <description></description>
@@ -55,7 +73,7 @@
     <item>
       <title>serverless</title>
       <link>https://www.mrnice.dev/tags/serverless/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/serverless/</guid>
       <description></description>
@@ -64,7 +82,7 @@
     <item>
       <title>slack</title>
       <link>https://www.mrnice.dev/tags/slack/</link>
-      <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
+      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/slack/</guid>
       <description></description>
@@ -166,24 +184,6 @@
       <pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/open-source/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>security</title>
-      <link>https://www.mrnice.dev/tags/security/</link>
-      <pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>training</title>
-      <link>https://www.mrnice.dev/tags/training/</link>
-      <pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/training/</guid>
       <description></description>
     </item>
     
