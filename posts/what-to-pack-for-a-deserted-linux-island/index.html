@@ -11,8 +11,8 @@
 <meta itemprop="description" content="This post has appeared as an article on issue #1 of PagedOut! magazine.
 Things I insist on installing on every new Linux server I work on, and you should too.
  Why Prep The Shell The Terminal(s) The Text Editor The Browser  Why It’s that time again. You finally manage to ssh into your brand-new server, aaaand…
-😖 It sucks. You think to yourself, “ah, if only I had time to set this up like I WANT it to be, this machine would’ve been a treat”."><meta itemprop="datePublished" content="2019-08-11T17:26:22&#43;02:00" />
-<meta itemprop="dateModified" content="2019-08-11T17:26:22&#43;02:00" />
+😖 It sucks. You think to yourself, “ah, if only I had time to set this up like I WANT it to be, this machine would’ve been a treat”."><meta itemprop="datePublished" content="2019-08-11T17:26:22+02:00" />
+<meta itemprop="dateModified" content="2019-08-11T17:26:22+02:00" />
 <meta itemprop="wordCount" content="567">
 <meta itemprop="keywords" content="linux,sysadmin,it,tools," /><meta property="og:title" content="What to Pack for a Deserted Linux Island" />
 <meta property="og:description" content="This post has appeared as an article on issue #1 of PagedOut! magazine.
@@ -21,8 +21,8 @@ Things I insist on installing on every new Linux server I work on, and you shoul
 😖 It sucks. You think to yourself, “ah, if only I had time to set this up like I WANT it to be, this machine would’ve been a treat”." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-08-11T17:26:22&#43;02:00" />
-<meta property="article:modified_time" content="2019-08-11T17:26:22&#43;02:00" />
+<meta property="article:published_time" content="2019-08-11T17:26:22+02:00" />
+<meta property="article:modified_time" content="2019-08-11T17:26:22+02:00" />
 
 
 <meta name="twitter:title" content="What to Pack for a Deserted Linux Island">
@@ -44,7 +44,7 @@ Things I insist on installing on every new Linux server I work on, and you shoul
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>What to Pack for a Deserted Linux Island</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -154,27 +154,27 @@ MathJax.Hub.Config({
 <p><em>Note: This guide is for Debian-based releases. Make adaptations as necessary.</em></p>
 
 <p>First thing first, update your current software.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt get update</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt get update</span></span></code></pre></div>
 <p>And get software that gets other software.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt install curl
-sudo apt install git-all</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install curl
+</span></span><span class="line"><span class="cl">sudo apt install git-all</span></span></code></pre></div>
 <p>Now for the fun and <em>oh so opinionated</em> stuff. These are personal (but tried and true) favorite programs and configurations. Give them a shot.</p>
 
 <h2 id="the-shell">The Shell<a href="#the-shell" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>I recommend you get the coolest one:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt install zsh</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install zsh</span></span></code></pre></div>
 <p>When you launch it for the first time, use the wizard to configure it to your liking. If you don’t configure <em>autocomplete</em> and <em>chdir without cd</em>, you’re wrong. Then get <a href="https://ohmyz.sh/">oh-my-zsh</a> (for the security-minded folks out there - after reviewing the script of course).</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span></span></span></code></pre></div>
 <p>Don’t forget to add 2-letters-long aliases to the most frequently used paths (e.g. source, bin and logs). Super fast cd-ing 🏎. Also, random themes are fun, but I find myself returning to <code>agnoster</code>. Do that by putting the following line in <code>~/.zshrc</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;agnoster&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&#34;agnoster&#34;</span></span></span></code></pre></div>
 <p>I recommend checking out plugins which are useful and installing them as well. I use these, but this is really personal preference stuff:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">plugins</span><span class="o">=(</span>
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  virtualenv
-<span class="o">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>
+</span></span><span class="line"><span class="cl">  git
+</span></span><span class="line"><span class="cl">  zsh-autosuggestions
+</span></span><span class="line"><span class="cl">  zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl">  virtualenv
+</span></span><span class="line"><span class="cl"><span class="o">)</span></span></span></code></pre></div>
 <p>After adding the git plugin as well, it&rsquo;ll end up looking like this:</p>
 
 <p><img src="https://i.imgur.com/F27tsU5.png" alt="Happy shell" /></p>
@@ -182,19 +182,19 @@ sudo apt install git-all</code></pre></div>
 <h2 id="the-terminal-s">The Terminal(s)<a href="#the-terminal-s" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>More terminals == more throughput == more productivity == more happiness. That’s just math. Get <code>tmux</code>, <a href="https://github.com/gpakosz/.tmux"><code>oh-my-tmux</code></a>, powerline and <code>nerdfonts</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt install tmux
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install tmux
+</span></span><span class="line"><span class="cl">git clone https://github.com/gpakosz/.tmux.git
+</span></span><span class="line"><span class="cl">ln -s -f .tmux/.tmux.conf
+</span></span><span class="line"><span class="cl">cp .tmux/.tmux.conf.local .</span></span></code></pre></div>
 <h2 id="the-text-editor">The Text Editor<a href="#the-text-editor" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>I could write a whole article on why to use <code>vim</code>. In short, it’s fast and effective. To improve the experience of using vim: get <a href="https://github.com/tpope/vim-pathogen"><code>pathogen</code></a> (<code>vim</code>&rsquo;s package manager) and <a href="https://github.com/scrooloose/nerdtree"><code>nerdtree</code></a> to browse files quickly. Map <code>&lt;C+n&gt;</code> to open <code>nerdtree</code>.</p>
 
 <p>In the terminal,</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir -p ~/.vim/autoload ~/.vim/bundle <span class="o">&amp;&amp;</span> curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir -p ~/.vim/autoload ~/.vim/bundle <span class="o">&amp;&amp;</span> curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+</span></span><span class="line"><span class="cl">git clone https://github.com/preservim/nerdtree.git ~/.vim/bundle/nerdtree</span></span></code></pre></div>
 <p>In your <code>~/.vimrc</code>,</p>
-<pre><code class="language-rc" data-lang="rc">call pathogen#infect()
+<pre tabindex="0"><code class="language-rc" data-lang="rc">call pathogen#infect()
 syntax on
 filetype plugin indent on</code></pre>
 <h2 id="the-browser">The Browser<a href="#the-browser" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -227,7 +227,7 @@ filetype plugin indent on</code></pre>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -235,7 +235,7 @@ filetype plugin indent on</code></pre>
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

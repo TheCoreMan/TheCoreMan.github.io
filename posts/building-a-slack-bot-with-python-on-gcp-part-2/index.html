@@ -11,8 +11,8 @@
 <meta itemprop="description" content="Part two of the joint project with my intelligent and brave wife, Olga!
 This post is a part of a series, so check out part 1 for context.
 Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
- QoL improvements  Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment  Designing and Building the Bot&rsquo;s Business Logic  Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI  Next up  QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06&#43;03:00" />
-<meta itemprop="dateModified" content="2021-09-28T12:23:06&#43;03:00" />
+ QoL improvements  Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment  Designing and Building the Bot&rsquo;s Business Logic  Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI  Next up  QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06+03:00" />
+<meta itemprop="dateModified" content="2021-09-28T12:23:06+03:00" />
 <meta itemprop="wordCount" content="1948"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
 <meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic" />
 <meta property="og:description" content="Part two of the joint project with my intelligent and brave wife, Olga!
@@ -21,8 +21,8 @@ Warning: As our development of this project was a little &ldquo;all over the pla
  QoL improvements  Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment  Designing and Building the Bot&rsquo;s Business Logic  Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI  Next up  QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-28T12:23:06&#43;03:00" />
-<meta property="article:modified_time" content="2021-09-28T12:23:06&#43;03:00" />
+<meta property="article:published_time" content="2021-09-28T12:23:06+03:00" />
+<meta property="article:modified_time" content="2021-09-28T12:23:06+03:00" />
 
 
 <meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
@@ -37,7 +37,7 @@ Warning: As our development of this project was a little &ldquo;all over the pla
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -160,15 +160,15 @@ images that are 5 times bigger as the default? 🤔</p>
 <p>In any case, the diff was very simple:</p>
 
 <p><a href="./Dockerfile.1"><code>Dockerfile.1</code></a>:
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">&mdash; Dockerfile.base    2021-09-11 15:35:49.117069816 +0300
-</span><span class="gd"></span><span class="gi">+++ Dockerfile.1    2021-09-11 15:34:10.003008547 +0300
-</span><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
-</span><span class="gu"></span> # Base image. This version is in the pyproject file as well.
-<span class="gd">-FROM python:3.9
-</span><span class="gd"></span><span class="gi">+# See Image Variants on <a href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a>
-</span><span class="gi">+FROM python:3.9-slim
-</span><span class="gi"></span>
-</code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">&mdash; Dockerfile.base   2021-09-11 15:35:49.117069816 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ Dockerfile.1  2021-09-11 15:34:10.003008547 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> # Base image. This version is in the pyproject file as well.
+</span></span><span class="line"><span class="cl"><span class="gd">-FROM python:3.9
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+# See Image Variants on <a href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a>
+</span></span></span><span class="line"><span class="cl"><span class="gi">+FROM python:3.9-slim
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>
+</span></span></code></pre></div></p>
 
 <blockquote>
 <p>Shoutout to <a href="https://willschenk.com/">Will Schenk</a> for the awesome <code>diff</code>
@@ -185,62 +185,62 @@ things humming nicely, we added a <code>/test</code> URL to the server which we 
 the test.</p>
 
 <p><a href="./src/valet_parking_slack_bot/server.py.1"><code>src/valet_parking_slack_bot/server.py.1</code></a>:
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">&mdash; server.py.base 2021-09-11 15:49:18.844449939 +0300
-</span><span class="gd"></span><span class="gi">+++ server.py.1 2021-09-11 15:49:26.696418007 +0300
-</span><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
-</span><span class="gu"></span><span class="gi">+from datetime import datetime
-</span><span class="gi"></span> from flask import Flask
-<span class="gu">@@ -4,3 +5,2 @@
-</span><span class="gu"></span>
-<span class="gd">-
-</span><span class="gd"></span> app = Flask(<strong>name</strong>)
-<span class="gu">@@ -18,3 +18,11 @@
-</span><span class="gu"></span>
-<span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
-</span><span class="gi">+def healthcheck():
-</span><span class="gi">+    response = {
-</span><span class="gi">+            &#34;message&#34;: &#34;I&#39;m alive!&#34;,
-</span><span class="gi">+            &#34;ts&#34;: str(datetime.now())
-</span><span class="gi">+    }
-</span><span class="gi">+    return response
-</span><span class="gi">+
-</span><span class="gi"></span> if <strong>name</strong> == &#34;<strong>main</strong>&#34;:
-<span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
-</span><span class="gd"></span>\ No newline at end of file
-<span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
-</span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">&mdash; server.py.base    2021-09-11 15:49:18.844449939 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ server.py.1   2021-09-11 15:49:26.696418007 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+from datetime import datetime
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> from flask import Flask
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,3 +5,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gd">-
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span> app = Flask(<strong>name</strong>)
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -18,3 +18,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
+</span></span></span><span class="line"><span class="cl"><span class="gi">+def healthcheck():
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;message&#34;: &#34;I&#39;m alive!&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;ts&#34;: str(datetime.now())
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    return response
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> if <strong>name</strong> == &#34;<strong>main</strong>&#34;:
+</span></span><span class="line"><span class="cl"><span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>\ No newline at end of file
+</span></span><span class="line"><span class="cl"><span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></span></span></code></pre></div></p>
 
 <p>This is the updated test, where you can see the <strong>TODO</strong> was deleted.
 One of the best feelings is checking boxes ✅</p>
 
 <p><a href="./tests/test_service_availability.py.1"><code>tests/test_service_availability.py.1</code></a>:
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gd">&mdash; tests/test_service_availability.py.base    2021-09-11 15:53:42.271063485 +0300
-</span><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1    2021-09-11 15:53:22.591186320 +0300
-</span><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
-</span><span class="gu"></span> import requests
-<span class="gi">+import logging
-</span><span class="gi">+
-</span><span class="gi">+logger = logging.getLogger(<strong>name</strong>)
-</span><span class="gi"></span>
-<span class="gu">@@ -4,9 +7,11 @@
-</span><span class="gu"></span>
-<span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
-</span><span class="gd">-# since the response to this URL will change and the
-</span><span class="gd">-# test will fail even though the service is available!
-</span><span class="gd"></span> def test_cloud_endpoint():
-<span class="gd">-    want = &#34;no spots for you!&#34;
-</span><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
-</span><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
-</span><span class="gi">+
-</span><span class="gi">+    response = requests.get(test_url)
-</span><span class="gi">+<br />
-</span><span class="gi"></span>     assert response.ok
-<span class="gd">-    assert want.lower() == response.text.lower()<br />
-</span><span class="gd"></span><span class="gi">+    data = response.json()
-</span><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
-</span><span class="gi">+    assert data[&#34;ts&#34;]
-</span><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
-</span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">&mdash; tests/test_service_availability.py.base   2021-09-11 15:53:42.271063485 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1  2021-09-11 15:53:22.591186320 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> import requests
+</span></span><span class="line"><span class="cl"><span class="gi">+import logging
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi">+logger = logging.getLogger(<strong>name</strong>)
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,9 +7,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
+</span></span></span><span class="line"><span class="cl"><span class="gd">-# since the response to this URL will change and the
+</span></span></span><span class="line"><span class="cl"><span class="gd">-# test will fail even though the service is available!
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span> def test_cloud_endpoint():
+</span></span><span class="line"><span class="cl"><span class="gd">-    want = &#34;no spots for you!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = requests.get(test_url)
+</span></span></span><span class="line"><span class="cl"><span class="gi">+<br />
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>     assert response.ok
+</span></span><span class="line"><span class="cl"><span class="gd">-    assert want.lower() == response.text.lower()<br />
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    data = response.json()
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;ts&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
+</span></span></span></code></pre></div></p>
 
 <p>and it works!</p>
 
@@ -253,48 +253,48 @@ here</a>. The
 CI currently runs <code>flake8</code> and <code>pytest</code>. We based it off of GitHub&rsquo;s official
 <a href="https://github.com/actions/starter-workflows/blob/main/ci/python-app.yml">Python Application</a>
 with only some minor changes for Poetry:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># This workflow will install Python dependencies, run tests and lint with a single version of Python</span><span class="w">
-</span><span class="w"></span><span class="c"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Python application</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
-</span><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Set up Python 3.9</span><span class="w">
-</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/setup-python@v2</span><span class="w">
-</span><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="m">3.9</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Poetry</span><span class="w">
-</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">Gr1N/setup-poetry@v7</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test poetry installation</span><span class="w">
-</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">poetry --version</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configure poetry</span><span class="w">
-</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span><span class="sd">        poetry config virtualenvs.create false
-</span><span class="sd">        poetry config --list</span><span class="w">        
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install dependencies</span><span class="w">
-</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span><span class="sd">        </span><span class="w">        </span><span class="l">poetry install</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Lint with flake8</span><span class="w">
-</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span><span class="sd">        # stop the build if there are Python syntax errors or undefined names
-</span><span class="sd">        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-</span><span class="sd">        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-</span><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">        
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test with pytest</span><span class="w">
-</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span><span class="sd">        </span><span class="w">        </span><span class="l">pytest</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This workflow will install Python dependencies, run tests and lint with a single version of Python</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Python application</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Set up Python 3.9</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/setup-python@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="m">3.9</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Poetry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">Gr1N/setup-poetry@v7</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test poetry installation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">poetry --version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configure poetry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry config virtualenvs.create false
+</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry config --list</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install dependencies</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        </span><span class="w">        </span><span class="l">poetry install</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Lint with flake8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        # stop the build if there are Python syntax errors or undefined names
+</span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+</span></span></span><span class="line"><span class="cl"><span class="sd">        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+</span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test with pytest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        </span><span class="w">        </span><span class="l">pytest</span></span></span></code></pre></div>
 <h3 id="setting-up-a-local-development-environment">Setting up a local development environment<a href="#setting-up-a-local-development-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p><a href="../building-a-slack-bot-with-python-on-gcp">Last time</a>, we managed to deploy
@@ -388,51 +388,51 @@ it won&rsquo;t block us from working on business logic and UX.</strong></p>
 <p>This design also allowed us to test the designator using <strong>automatic spec for
 mocks</strong>, which proved very useful in our case. Check out how clear and clean
 these tests are!</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">from</span> <span class="nn">valet_parking_slack_bot.logic</span> <span class="kn">import</span> <span class="n">ParkingSpotDesignator</span>
-<span class="kn">from</span> <span class="nn">valet_parking_slack_bot.repo</span> <span class="kn">import</span> <span class="n">ParkingSpotRepoBase</span>
-<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">create_autospec</span>
-
-<span class="n">test_username</span> <span class="o">=</span> <span class="s2">&#34;test_user&#34;</span>
-
-<span class="k">def</span> <span class="nf">test_reserve_spot_sanity</span><span class="p">():</span>
-    <span class="c1"># arrange (given)</span>
-    <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
-    <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_available_spots</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
-    
-    <span class="c1"># act (when)</span>
-    <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">try_reserve_spot</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
-
-    <span class="c1"># assert (then)</span>
-    <span class="k">assert</span> <span class="n">return_value</span>
-    <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_available_spots</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
-    <span class="n">repo</span><span class="o">.</span><span class="n">assign</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">test_username</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">TestReleaseByUsername</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">test_one_reserved_spot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
-        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
-        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
-
-        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;Parking spot 1 has been released successfully&#34;</span>
-
-    <span class="k">def</span> <span class="nf">test_no_reserved_spots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
-        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
-
-        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;User had no assigned parking&#34;</span>
-
-    <span class="k">def</span> <span class="nf">test_two_reserved_spots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
-        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;1 2&#39;</span>
-        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
-
-        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;You have several reserved spots: 1 2. Which one to release?&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">valet_parking_slack_bot.logic</span> <span class="kn">import</span> <span class="n">ParkingSpotDesignator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">valet_parking_slack_bot.repo</span> <span class="kn">import</span> <span class="n">ParkingSpotRepoBase</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">create_autospec</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">test_username</span> <span class="o">=</span> <span class="s2">&#34;test_user&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_reserve_spot_sanity</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># arrange (given)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_available_spots</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># act (when)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">try_reserve_spot</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># assert (then)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">return_value</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_available_spots</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repo</span><span class="o">.</span><span class="n">assign</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">test_username</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestReleaseByUsername</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_one_reserved_spot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;Parking spot 1 has been released successfully&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_no_reserved_spots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;User had no assigned parking&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_two_reserved_spots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repo</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">ParkingSpotRepoBase</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">repo</span><span class="o">.</span><span class="n">retrieve_spots_by_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;1 2&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;You have several reserved spots: 1 2. Which one to release?&#34;</span></span></span></code></pre></div>
 <p>These tests do a TON for the <code>designator</code> without worrying even ONCE about
 the <code>repository</code>! They tell us a lot about how the interface works and what
 the <code>designator</code> is doing. They help maintain it on a deeper level than &ldquo;it&rsquo;s
@@ -497,7 +497,7 @@ Gunicorn with nginx is a good choice.</li>
 care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</p>
 
 <p>In the future, we&rsquo;ll consider migrating to the following stack:</p>
-<pre><code>nginx &lt;-&gt; gunicorn &lt;-&gt; flask &lt;-&gt; bolt</code></pre>
+<pre tabindex="0"><code>nginx &lt;-&gt; gunicorn &lt;-&gt; flask &lt;-&gt; bolt</code></pre>
 <p>So this was completely unnecessary sidetrack. Aren&rsquo;t those the best? Just ask
 <a href="https://youtu.be/qEV9qoup2mQ">CGP grey</a>.</p>
 
@@ -554,7 +554,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -562,7 +562,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

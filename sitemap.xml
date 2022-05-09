@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/golang/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/open-source/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/recolabs/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</loc>
+    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/meta/</loc>
+    <lastmod>2022-01-19T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/print-hello-world-were-recolabs/</loc>
+    <lastmod>2022-01-19T22:29:06+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/automation/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
@@ -17,13 +44,7 @@
     <loc>https://www.mrnice.dev/tags/gcp/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2021-10-31T20:04:53+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/orm/</loc>
-    <lastmod>2021-10-31T20:04:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/python/</loc>
@@ -33,9 +54,6 @@
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/slack/</loc>
-    <lastmod>2021-10-31T20:04:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</loc>
@@ -74,9 +92,6 @@
     <loc>https://www.mrnice.dev/tags/math/</loc>
     <lastmod>2021-06-12T12:15:16+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/meta/</loc>
-    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</loc>
     <lastmod>2021-06-04T20:39:47+03:00</lastmod>
   </url><url>
@@ -97,9 +112,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/tags/swimm/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/open-source/</loc>
-    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/security/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>

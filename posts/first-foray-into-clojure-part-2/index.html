@@ -11,8 +11,8 @@
 <meta itemprop="description" content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
  This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
 Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?"><meta itemprop="datePublished" content="2021-08-01T08:32:00&#43;03:00" />
-<meta itemprop="dateModified" content="2021-08-01T08:32:00&#43;03:00" />
+ Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?"><meta itemprop="datePublished" content="2021-08-01T08:32:00+03:00" />
+<meta itemprop="dateModified" content="2021-08-01T08:32:00+03:00" />
 <meta itemprop="wordCount" content="2755"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 <meta itemprop="keywords" content="clojure,algorithms," /><meta property="og:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日" />
 <meta property="og:description" content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
@@ -21,8 +21,8 @@ Table of Contents
  Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/" /><meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-01T08:32:00&#43;03:00" />
-<meta property="article:modified_time" content="2021-08-01T08:32:00&#43;03:00" />
+<meta property="article:published_time" content="2021-08-01T08:32:00+03:00" />
+<meta property="article:modified_time" content="2021-08-01T08:32:00+03:00" />
 
 
 <meta name="twitter:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
@@ -37,7 +37,7 @@ Table of Contents
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png');}</style>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -171,48 +171,48 @@ one for context. Let&rsquo;s just jump into it!</p>
 </blockquote>
 
 <p><img src="https://terebess.hu/zen/csontvary-maganyos-cedrus.jpg" alt="" /></p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.10-runtime-polymorphism</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
-
-<span class="p">(</span><span class="kd">defn </span><span class="nv">hello</span>
-  <span class="p">([]</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
-  <span class="p">([</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;Hello, you silly &#34;</span> <span class="nv">a</span> <span class="s">&#34;.&#34;</span><span class="p">))</span>
-  <span class="p">([</span><span class="nv">a</span> <span class="o">&amp;</span> <span class="nv">more</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;Hello to this group: &#34;</span>
-                   <span class="p">(</span><span class="nb">apply </span><span class="nv">str</span>
-                          <span class="p">(</span><span class="nf">interpose</span> <span class="s">&#34;, &#34;</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">more</span><span class="p">)))</span>
-                   <span class="s">&#34;!&#34;</span><span class="p">)))</span>
-
-<span class="p">(</span><span class="kd">defmulti </span><span class="nv">diet</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="ss">:eater</span> <span class="nv">x</span><span class="p">)))</span>
-<span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:herbivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats veggies.&#34;</span><span class="p">))</span>
-<span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:carnivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats animals.&#34;</span><span class="p">))</span>
-<span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:default</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;I don&#39;t know what &#34;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats.&#34;</span><span class="p">))</span>
-
-<span class="p">(</span><span class="nf">meditations</span>
-  <span class="s">&#34;Some functions can be used in different ways - with no arguments&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Hello World!&#34;</span> <span class="p">(</span><span class="nf">hello</span><span class="p">))</span>
-
-  <span class="s">&#34;With one argument&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Hello, you silly world.&#34;</span> <span class="p">(</span><span class="nf">hello</span> <span class="s">&#34;world&#34;</span><span class="p">))</span>
-
-  <span class="s">&#34;Or with many arguments&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Hello to this group: Peter, Paul, Mary!&#34;</span>
-     <span class="p">(</span><span class="nf">hello</span> <span class="s">&#34;Peter&#34;</span> <span class="s">&#34;Paul&#34;</span> <span class="s">&#34;Mary&#34;</span><span class="p">))</span>
-
-  <span class="s">&#34;Multimethods allow more complex dispatching&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Bambi eats veggies.&#34;</span>
-     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:species</span> <span class="s">&#34;deer&#34;</span> <span class="ss">:name</span> <span class="s">&#34;Bambi&#34;</span> <span class="ss">:age</span> <span class="mi">1</span> <span class="ss">:eater</span> <span class="ss">:herbivore</span><span class="p">}))</span>
-
-  <span class="s">&#34;Animals have different names&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Thumper eats veggies.&#34;</span>
-     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:species</span> <span class="s">&#34;rabbit&#34;</span> <span class="ss">:name</span> <span class="s">&#34;Thumper&#34;</span> <span class="ss">:age</span> <span class="mi">1</span> <span class="ss">:eater</span> <span class="ss">:herbivore</span><span class="p">}))</span>
-
-  <span class="s">&#34;Different methods are used depending on the dispatch function result&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Simba eats animals.&#34;</span>
-     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:species</span> <span class="s">&#34;lion&#34;</span> <span class="ss">:name</span> <span class="s">&#34;Simba&#34;</span> <span class="ss">:age</span> <span class="mi">1</span> <span class="ss">:eater</span> <span class="ss">:carnivore</span><span class="p">}))</span>
-
-  <span class="s">&#34;You may use a default method when no others match&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;I don&#39;t know what Rich Hickey eats.&#34;</span>
-     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:name</span> <span class="s">&#34;Rich Hickey&#34;</span><span class="p">})))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.10-runtime-polymorphism</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">hello</span>
+</span></span><span class="line"><span class="cl">  <span class="p">([]</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">([</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;Hello, you silly &#34;</span> <span class="nv">a</span> <span class="s">&#34;.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">([</span><span class="nv">a</span> <span class="o">&amp;</span> <span class="nv">more</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;Hello to this group: &#34;</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">(</span><span class="nb">apply </span><span class="nv">str</span>
+</span></span><span class="line"><span class="cl">                          <span class="p">(</span><span class="nf">interpose</span> <span class="s">&#34;, &#34;</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">more</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">                   <span class="s">&#34;!&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmulti </span><span class="nv">diet</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="ss">:eater</span> <span class="nv">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:herbivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats veggies.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:carnivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats animals.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:default</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;I don&#39;t know what &#34;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">meditations</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Some functions can be used in different ways - with no arguments&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Hello World!&#34;</span> <span class="p">(</span><span class="nf">hello</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;With one argument&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Hello, you silly world.&#34;</span> <span class="p">(</span><span class="nf">hello</span> <span class="s">&#34;world&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Or with many arguments&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Hello to this group: Peter, Paul, Mary!&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">hello</span> <span class="s">&#34;Peter&#34;</span> <span class="s">&#34;Paul&#34;</span> <span class="s">&#34;Mary&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Multimethods allow more complex dispatching&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Bambi eats veggies.&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:species</span> <span class="s">&#34;deer&#34;</span> <span class="ss">:name</span> <span class="s">&#34;Bambi&#34;</span> <span class="ss">:age</span> <span class="mi">1</span> <span class="ss">:eater</span> <span class="ss">:herbivore</span><span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Animals have different names&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Thumper eats veggies.&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:species</span> <span class="s">&#34;rabbit&#34;</span> <span class="ss">:name</span> <span class="s">&#34;Thumper&#34;</span> <span class="ss">:age</span> <span class="mi">1</span> <span class="ss">:eater</span> <span class="ss">:herbivore</span><span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Different methods are used depending on the dispatch function result&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;Simba eats animals.&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:species</span> <span class="s">&#34;lion&#34;</span> <span class="ss">:name</span> <span class="s">&#34;Simba&#34;</span> <span class="ss">:age</span> <span class="mi">1</span> <span class="ss">:eater</span> <span class="ss">:carnivore</span><span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;You may use a default method when no others match&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;I don&#39;t know what Rich Hickey eats.&#34;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:name</span> <span class="s">&#34;Rich Hickey&#34;</span><span class="p">})))</span></span></span></code></pre></div>
 <h3 id="using-multi-arity-functions">Using multi-arity functions<a href="#using-multi-arity-functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p><a href="../first-foray-into-clojure-part-0">In the first blog post in the series</a>
@@ -222,10 +222,10 @@ So this is not new :)</p>
 <h3 id="value-based-polymorphism-with-defmulti">Value-based polymorphism with <code>defmulti</code><a href="#value-based-polymorphism-with-defmulti" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>In this Koan, we see two new things: <code>defmulti</code> and <code>defmethod</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defmulti </span><span class="nv">diet</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="ss">:eater</span> <span class="nv">x</span><span class="p">)))</span>
-<span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:herbivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats veggies.&#34;</span><span class="p">))</span>
-<span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:carnivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats animals.&#34;</span><span class="p">))</span>
-<span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:default</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;I don&#39;t know what &#34;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats.&#34;</span><span class="p">))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmulti </span><span class="nv">diet</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="ss">:eater</span> <span class="nv">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:herbivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats veggies.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:carnivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats animals.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:default</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;I don&#39;t know what &#34;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats.&#34;</span><span class="p">))</span></span></span></code></pre></div>
 <h4 id="comparison-to-other-languages">Comparison to other languages<a href="#comparison-to-other-languages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>This is the way to implement run-time polymorphism in Clojure. Again, coming
@@ -241,8 +241,8 @@ look at <code>defmulti</code>&rsquo;s signature.</p>
 <blockquote>
 <p>Tip: Want to see docs for something? When your cursor is on it, <code>, h h</code>:</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">clojure.core/defmulti
- <span class="o">[</span>name docstring? attr-map? dispatch-fn <span class="p">&amp;</span> options<span class="o">]</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">clojure.core/defmulti
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>name docstring? attr-map? dispatch-fn <span class="p">&amp;</span> options<span class="o">]</span></span></span></code></pre></div>
 <p>So, <code>defmulti</code> is the way we define the <strong>dispatcher</strong>. If you call <code>diet</code> with
 a value <code>x</code>, the dispatcher will dispatch it to the relevant method by getting
 the value of out the <code>:eater</code> key and dispatching <code>x</code> to the relevant method.
@@ -254,8 +254,8 @@ where to dispatch to? Well, you register them
 using <code>defmethod</code>. When you <code>defmethod</code> with the same name as the
 <code>multifunction</code>, you register that method to the dispatcher. From the
 documentation of <code>defmethod</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">clojure.core/defmethod
- <span class="o">[</span>multifn dispatch-val <span class="p">&amp;</span> fn-tail<span class="o">]</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">clojure.core/defmethod
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>multifn dispatch-val <span class="p">&amp;</span> fn-tail<span class="o">]</span></span></span></code></pre></div>
 <p>So, by choosing the <code>dispatch-val</code> we tell the multifunction where to dispatch
 each <code>x</code> that&rsquo;s passed, <strong>based on a value that&rsquo;s in one of its keys</strong>.
 <code>:default</code> is a special value for this use.</p>
@@ -274,7 +274,7 @@ the <code>:vegen</code> <code>dispatch-val</code>. In a &ldquo;normal&rdquo; lib
 way to start doing it would be to inherit the Base class and impl <code>diet</code>. With
 Clojure, Alice will only need to implement the <code>defmethod</code>. To do that, Alice
 will <code>require</code> the <code>koans.10-runtime-polymorphism :as k</code> and simply will write:</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">k/diet</span> <span class="ss">:vegen</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats without hurting anyone 💚.&#34;</span><span class="p">))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">k/diet</span> <span class="ss">:vegen</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats without hurting anyone 💚.&#34;</span><span class="p">))</span></span></span></code></pre></div>
 <p>This is already cool, but the potential uses for this are awesome. For example:
 how will you expose a library&rsquo;s exception handling mechanism to extension and
 modification? It&rsquo;s hard to imagine how one might do that in other langauages,
@@ -300,51 +300,51 @@ exceptions.</p>
 
 <p>The next day Tozan bowed to Ummon and asked, &ldquo;Yesterday you forgave me three blows. I do not know why you thought me wrong.&rdquo; Ummon, rebuking Tozan&rsquo;s spiritless responses, said: &ldquo;You are good for nothing! You simply wander from one monastery to another.&rdquo; Before Ummon&rsquo;s words were ended, Tozan was enlightened.</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.11-lazy-sequences</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
-
-<span class="p">(</span><span class="nf">meditations</span>
-  <span class="s">&#34;There are many ways to generate a sequence&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">5</span><span class="p">))</span>
-
-  <span class="s">&#34;The range starts at the beginning by default&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">))</span>
-
-  <span class="s">&#34;Only take what you need when the sequence is large&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">]</span>
-     <span class="p">(</span><span class="nb">take </span><span class="mi">10</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span><span class="p">)))</span>
-
-  <span class="s">&#34;Or limit results by dropping what you don&#39;t need&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">95</span> <span class="mi">96</span> <span class="mi">97</span> <span class="mi">98</span> <span class="mi">99</span><span class="p">]</span>
-     <span class="p">(</span><span class="nb">drop </span><span class="mi">95</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span><span class="p">)))</span>
-
-  <span class="s">&#34;Iteration provides an infinite lazy sequence&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span>
-
-  <span class="s">&#34;Repetition is key&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span><span class="p">]</span>
-     <span class="p">(</span><span class="nb">repeat </span><span class="mi">10</span> <span class="ss">:a</span><span class="p">))</span>
-
-  <span class="s">&#34;Iteration can be used for repetition&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">repeat </span><span class="mi">100</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
-     <span class="p">(</span><span class="nb">take </span><span class="mi">100</span> <span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">))))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.11-lazy-sequences</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">meditations</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;There are many ways to generate a sequence&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;The range starts at the beginning by default&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">range </span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Only take what you need when the sequence is large&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">take </span><span class="mi">10</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Or limit results by dropping what you don&#39;t need&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">95</span> <span class="mi">96</span> <span class="mi">97</span> <span class="mi">98</span> <span class="mi">99</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">drop </span><span class="mi">95</span> <span class="p">(</span><span class="nb">range </span><span class="mi">100</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Iteration provides an infinite lazy sequence&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Repetition is key&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span> <span class="ss">:a</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">repeat </span><span class="mi">10</span> <span class="ss">:a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Iteration can be used for repetition&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">repeat </span><span class="mi">100</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">take </span><span class="mi">100</span> <span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">))))</span></span></span></code></pre></div>
 <h3 id="iterate-is-also-zero-based"><code>iterate</code> is also zero-based<a href="#iterate-is-also-zero-based" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>At first, I thought that the answer to this Koan</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="s">&#34;Iteration provides an infinite lazy sequence&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="nv">__</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="s">&#34;Iteration provides an infinite lazy sequence&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="nv">__</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></span></span></code></pre></div>
 <p>was this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span> <span class="mi">256</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span> <span class="mi">256</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></span></span></code></pre></div>
 <p>But that didn&rsquo;t work, so I took a closer look at <code>iterate</code>&rsquo;s documentation:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">clojure.core/iterate
- <span class="o">[</span>f x<span class="o">]</span>
-Added in 1.0
-  Returns a lazy sequence of x, <span class="o">(</span>f x<span class="o">)</span>, <span class="o">(</span>f <span class="o">(</span>f x<span class="o">))</span> etc. f must be free of
-  side-effects</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">clojure.core/iterate
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>f x<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Added in 1.0
+</span></span><span class="line"><span class="cl">  Returns a lazy sequence of x, <span class="o">(</span>f x<span class="o">)</span>, <span class="o">(</span>f <span class="o">(</span>f x<span class="o">))</span> etc. f must be free of
+</span></span><span class="line"><span class="cl">  side-effects</span></span></code></pre></div>
 <p>So iterate is 0 based as well: it starts with 0 calls to <code>f</code>, and then moves on
 to <code>(f x)</code>, and then to <code>(f (f x))</code>. So here we need to start with <code>x</code>, so with
 1, so:</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></span></span></code></pre></div>
 <p>Let&rsquo;s express this in mathematical form. <code>iterate</code> basically composes a function
 onto itself, so saying <code>(nth (iterate f x) n)</code> is the same as</p>
 
@@ -359,7 +359,7 @@ onto itself, so saying <code>(nth (iterate f x) n)</code> is the same as</p>
 <p>In the <a href="../first-foray-into-clojure-part-0">first blog post in this series</a>, we
 learned about the <code>identity</code> function. Here we use it to create an infinite lazy
 sequence of the same value:</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">)</span></span></span></code></pre></div>
 <h2 id="sequence-comprehensions">Sequence Comprehensions<a href="#sequence-comprehensions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p><img src="https://terebess.hu/zen/yunmen2.jpg" alt="" /></p>
@@ -373,47 +373,47 @@ sequence of the same value:</p>
 
 <p>The master replied, “I request Your Majesty to reflect upon the words your servant just uttered.”</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.12-sequence-comprehensions</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
-
-<span class="p">(</span><span class="nf">meditations</span>
-  <span class="s">&#34;Sequence comprehensions can bind each element in turn to a symbol&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]</span>
-     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">6</span><span class="p">)]</span>
-       <span class="nv">x</span><span class="p">))</span>
-
-  <span class="s">&#34;They can easily emulate mapping&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">9</span> <span class="mi">16</span> <span class="mi">25</span><span class="p">)</span>
-     <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
-          <span class="p">(</span><span class="nb">range </span><span class="mi">6</span><span class="p">))</span>
-     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">6</span><span class="p">)]</span>
-       <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)))</span>
-
-  <span class="s">&#34;And also filtering&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
-     <span class="p">(</span><span class="nb">filter </span><span class="nv">odd?</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">))</span>
-     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)</span> <span class="ss">:when</span> <span class="p">(</span><span class="nf">odd?</span> <span class="nv">x</span><span class="p">)]</span>
-       <span class="nv">x</span><span class="p">))</span>
-
-  <span class="s">&#34;Combinations of these transformations is trivial&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">9</span> <span class="mi">25</span> <span class="mi">49</span> <span class="mi">81</span><span class="p">)</span>
-     <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
-          <span class="p">(</span><span class="nb">filter </span><span class="nv">odd?</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)))</span>
-     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)</span> <span class="ss">:when</span> <span class="p">(</span><span class="nf">odd?</span> <span class="nv">x</span><span class="p">)]</span>
-       <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)))</span>
-
-  <span class="s">&#34;More complex transformations simply take multiple binding forms&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[[</span><span class="ss">:top</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:right</span><span class="p">]</span>
-      <span class="p">[</span><span class="ss">:middle</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:middle</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:middle</span> <span class="ss">:right</span><span class="p">]</span>
-      <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:right</span><span class="p">]]</span>
-     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">row</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:middle</span> <span class="ss">:bottom</span><span class="p">]</span>
-           <span class="nv">column</span> <span class="p">[</span><span class="ss">:left</span> <span class="ss">:middle</span> <span class="ss">:right</span><span class="p">]]</span>
-       <span class="p">[</span><span class="nv">row</span> <span class="nv">column</span><span class="p">])))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.12-sequence-comprehensions</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">meditations</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Sequence comprehensions can bind each element in turn to a symbol&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">6</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;They can easily emulate mapping&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">9</span> <span class="mi">16</span> <span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nb">range </span><span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">6</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;And also filtering&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">filter </span><span class="nv">odd?</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)</span> <span class="ss">:when</span> <span class="p">(</span><span class="nf">odd?</span> <span class="nv">x</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">       <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Combinations of these transformations is trivial&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">9</span> <span class="mi">25</span> <span class="mi">49</span> <span class="mi">81</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nb">filter </span><span class="nv">odd?</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">x</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">)</span> <span class="ss">:when</span> <span class="p">(</span><span class="nf">odd?</span> <span class="nv">x</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;More complex transformations simply take multiple binding forms&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[[</span><span class="ss">:top</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:right</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="ss">:middle</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:middle</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:middle</span> <span class="ss">:right</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:right</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">row</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:middle</span> <span class="ss">:bottom</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">           <span class="nv">column</span> <span class="p">[</span><span class="ss">:left</span> <span class="ss">:middle</span> <span class="ss">:right</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">       <span class="p">[</span><span class="nv">row</span> <span class="nv">column</span><span class="p">])))</span></span></span></code></pre></div>
 <h3 id="when-and-other-predefined-keyword-modifiers"><code>:when</code> and other predefined keyword modifiers<a href="#when-and-other-predefined-keyword-modifiers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p><code>for</code> in Clojure has some supported modifiers. For the docs:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">   Supported modifiers are: :let [binding-form expr ...],
-   :while test, :when test.</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">   Supported modifiers are: :let [binding-form expr ...],
+</span></span><span class="line"><span class="cl">   :while test, :when test.</span></span></code></pre></div>
 <p>These keywords are parsed specifically by <code>for</code>, which in Clojure is a whole
 DSL. There are a few of these &ldquo;custom keyword&rdquo; modifiers for different macros -
 important to check the docs for these.</p>
@@ -433,49 +433,49 @@ important to check the docs for these.</p>
 
 <p>Afterwards another teacher, Shishin, asked his pupils: &ldquo;At which point did that student go off the track?&rdquo;</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.13-creating-functions</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
-
-<span class="p">(</span><span class="kd">defn </span><span class="nv">square</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
-
-<span class="p">(</span><span class="nf">meditations</span>
-  <span class="s">&#34;One may know what they seek by knowing what they do not seek&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">true</span> <span class="nv">false</span> <span class="nv">true</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-a-symbol?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">symbol?</span><span class="p">)]</span>
-                  <span class="p">(</span><span class="nb">map </span><span class="nv">not-a-symbol?</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">&#39;b</span> <span class="s">&#34;c&#34;</span><span class="p">])))</span>
-
-  <span class="s">&#34;Praise and &#39;complement&#39; may help you separate the wheat from the chaff&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:wheat</span> <span class="s">&#34;wheat&#34;</span> <span class="ss">&#39;wheat</span><span class="p">]</span>
-       <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-nil?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">nil?</span><span class="p">)]</span>
-         <span class="p">(</span><span class="nb">filter </span><span class="nv">not-nil?</span> <span class="p">[</span><span class="nv">nil</span> <span class="ss">:wheat</span> <span class="nv">nil</span> <span class="s">&#34;wheat&#34;</span> <span class="nv">nil</span> <span class="ss">&#39;wheat</span> <span class="nv">nil</span><span class="p">])))</span>
-
-  <span class="s">&#34;Partial functions allow procrastination&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">20</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">multiply-by-5</span> <span class="p">(</span><span class="nb">partial * </span><span class="mi">5</span><span class="p">)]</span>
-          <span class="p">(</span><span class="nf">multiply-by-5</span> <span class="mi">4</span><span class="p">)))</span>
-
-  <span class="s">&#34;Don&#39;t forget: first things first&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span>
-       <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">ab-adder</span> <span class="p">(</span><span class="nb">partial concat </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span><span class="p">])]</span>
-         <span class="p">(</span><span class="nf">ab-adder</span> <span class="p">[</span><span class="ss">:c</span> <span class="ss">:d</span><span class="p">])))</span>
-
-  <span class="s">&#34;Functions can join forces as one &#39;composed&#39; function&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">25</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">inc-and-square</span> <span class="p">(</span><span class="nb">comp </span><span class="nv">square</span> <span class="nv">inc</span><span class="p">)]</span>
-          <span class="p">(</span><span class="nf">inc-and-square</span> <span class="mi">4</span><span class="p">)))</span>
-
-  <span class="s">&#34;Have a go on a double dec-er&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">8</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">double-dec</span> <span class="p">(</span><span class="nb">comp dec </span><span class="nv">dec</span><span class="p">)]</span>
-          <span class="p">(</span><span class="nf">double-dec</span> <span class="mi">10</span><span class="p">)))</span>
-
-  <span class="s">&#34;Be careful about the order in which you mix your functions&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">99</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">square-and-dec</span> <span class="p">(</span><span class="nb">comp dec </span><span class="nv">square</span><span class="p">)]</span>
-          <span class="p">(</span><span class="nf">square-and-dec</span> <span class="mi">10</span><span class="p">))))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.13-creating-functions</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">square</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">meditations</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;One may know what they seek by knowing what they do not seek&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">true</span> <span class="nv">false</span> <span class="nv">true</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-a-symbol?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">symbol?</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nb">map </span><span class="nv">not-a-symbol?</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">&#39;b</span> <span class="s">&#34;c&#34;</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Praise and &#39;complement&#39; may help you separate the wheat from the chaff&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:wheat</span> <span class="s">&#34;wheat&#34;</span> <span class="ss">&#39;wheat</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-nil?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">nil?</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nb">filter </span><span class="nv">not-nil?</span> <span class="p">[</span><span class="nv">nil</span> <span class="ss">:wheat</span> <span class="nv">nil</span> <span class="s">&#34;wheat&#34;</span> <span class="nv">nil</span> <span class="ss">&#39;wheat</span> <span class="nv">nil</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Partial functions allow procrastination&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">20</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">multiply-by-5</span> <span class="p">(</span><span class="nb">partial * </span><span class="mi">5</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">multiply-by-5</span> <span class="mi">4</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Don&#39;t forget: first things first&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span> <span class="ss">:d</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">ab-adder</span> <span class="p">(</span><span class="nb">partial concat </span><span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span><span class="p">])]</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nf">ab-adder</span> <span class="p">[</span><span class="ss">:c</span> <span class="ss">:d</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Functions can join forces as one &#39;composed&#39; function&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">25</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">inc-and-square</span> <span class="p">(</span><span class="nb">comp </span><span class="nv">square</span> <span class="nv">inc</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">inc-and-square</span> <span class="mi">4</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Have a go on a double dec-er&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">8</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">double-dec</span> <span class="p">(</span><span class="nb">comp dec </span><span class="nv">dec</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">double-dec</span> <span class="mi">10</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Be careful about the order in which you mix your functions&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">99</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">square-and-dec</span> <span class="p">(</span><span class="nb">comp dec </span><span class="nv">square</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">square-and-dec</span> <span class="mi">10</span><span class="p">))))</span></span></span></code></pre></div>
 <h3 id="the-let-special-form">The <code>let</code> special form<a href="#the-let-special-form" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>To understand the <code>let</code> call in this Koan, we must refer to <a href="https://clojure.org/reference/special_forms#let">the reference
 documentation</a>. Let&rsquo;s break
 this down:</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">  <span class="s">&#34;One may know what they seek by knowing what they do not seek&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">false</span> <span class="nv">true</span> <span class="nv">false</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-a-symbol?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">symbol?</span><span class="p">)]</span>
-                  <span class="p">(</span><span class="nb">map </span><span class="nv">not-a-symbol?</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">&#39;b</span> <span class="s">&#34;c&#34;</span><span class="p">])))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="s">&#34;One may know what they seek by knowing what they do not seek&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">false</span> <span class="nv">true</span> <span class="nv">false</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-a-symbol?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">symbol?</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nb">map </span><span class="nv">not-a-symbol?</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">&#39;b</span> <span class="s">&#34;c&#34;</span><span class="p">])))</span></span></span></code></pre></div>
 <p>So, using <code>let</code>, one can create a <em>lexical context</em> where the bindings inside
 the &ldquo;[]&rdquo; are evaluated. The bindings are pairs. In this binding, we bind the
 symbol <code>not-a-symbol?</code> to the result of the <code>complement</code> function call on
@@ -499,93 +499,93 @@ awakened ones and ancestral sages?”</p>
 </blockquote>
 
 <p><img src="https://imgcp.aacdn.jp/img-a/1200/900/global-aaj-front/article/2019/04/5cc26664b2211_5cc2658f7abdf_777076407.jpg" alt="" /></p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.14-recursion</span>
-  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
-
-<span class="p">(</span><span class="kd">defn </span><span class="nv">is-even?</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="nv">true</span>
-    <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">is-even?</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)))))</span>
-
-<span class="p">(</span><span class="kd">defn </span><span class="nv">is-even-bigint?</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span>   <span class="nv">n</span>
-         <span class="nv">acc</span> <span class="nv">true</span><span class="p">]</span>
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="nv">acc</span>
-      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">not </span><span class="nv">acc</span><span class="p">)))))</span>
-
-<span class="p">(</span><span class="kd">defn </span><span class="nv">recursive-reverse</span> <span class="p">[</span><span class="nv">coll</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">coll</span> <span class="nv">coll</span>
-         <span class="nv">result</span> <span class="p">(</span><span class="nf">list</span><span class="p">)]</span>
-         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">coll</span><span class="p">)</span>
-           <span class="nv">result</span>
-           <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">coll</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">result</span> <span class="p">(</span><span class="nb">first </span><span class="nv">coll</span><span class="p">))))))</span>
-
-<span class="p">(</span><span class="nb">comment </span><span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span><span class="c1">;; =&gt; (3 2 1)</span>
-         <span class="p">)</span>
-
-<span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="mi">1</span>
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)</span>
-      <span class="mi">2</span>
-      <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nb">count </span><span class="nv">n</span>
-             <span class="nv">accum</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">count</span><span class="p">)</span>
-          <span class="nv">accum</span>
-          <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">count</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">accum</span> <span class="nv">count</span><span class="p">)))))))</span>
-
-<span class="p">(</span><span class="nf">meditations</span>
-  <span class="s">&#34;Recursion ends with a base case&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nf">is-even?</span> <span class="mi">0</span><span class="p">))</span>
-
-  <span class="s">&#34;And starts by moving toward that base case&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nf">is-even?</span> <span class="mi">1</span><span class="p">))</span>
-
-  <span class="s">&#34;Having too many stack frames requires explicit tail calls with recur&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nf">is-even-bigint?</span> <span class="mi">100003</span><span class="nv">N</span><span class="p">))</span>
-
-  <span class="s">&#34;Reversing directions is easy when you have not gone far&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-
-  <span class="s">&#34;Yet it becomes more difficult the more steps you take&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">6</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">]))</span>
-
-  <span class="s">&#34;Simple things may appear simple.&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">1</span><span class="p">))</span>
-
-  <span class="s">&#34;They may require other simple steps.&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">2</span><span class="p">))</span>
-
-  <span class="s">&#34;Sometimes a slightly bigger step is necessary&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">6</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">3</span><span class="p">))</span>
-
-  <span class="s">&#34;And eventually you must think harder&#34;</span>
-  <span class="p">(</span><span class="nb">= </span><span class="mi">24</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">4</span><span class="p">))</span>
-
-  <span class="s">&#34;You can even deal with very large numbers&#34;</span>
-  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">1000</span><span class="nv">N</span><span class="p">))</span>
-
-  <span class="s">&#34;But what happens when the machine limits you?&#34;</span>
-  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">100003</span><span class="nv">N</span><span class="p">)))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.14-recursion</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">is-even?</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">is-even?</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">is-even-bigint?</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">n</span>   <span class="nv">n</span>
+</span></span><span class="line"><span class="cl">         <span class="nv">acc</span> <span class="nv">true</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">acc</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">not </span><span class="nv">acc</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">recursive-reverse</span> <span class="p">[</span><span class="nv">coll</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">coll</span> <span class="nv">coll</span>
+</span></span><span class="line"><span class="cl">         <span class="nv">result</span> <span class="p">(</span><span class="nf">list</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">coll</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="nv">result</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">coll</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">result</span> <span class="p">(</span><span class="nb">first </span><span class="nv">coll</span><span class="p">))))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">comment </span><span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span><span class="c1">;; =&gt; (3 2 1)</span>
+</span></span><span class="line"><span class="cl">         <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nb">count </span><span class="nv">n</span>
+</span></span><span class="line"><span class="cl">             <span class="nv">accum</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">accum</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">count</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">accum</span> <span class="nv">count</span><span class="p">)))))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">meditations</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Recursion ends with a base case&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="nv">true</span> <span class="p">(</span><span class="nf">is-even?</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;And starts by moving toward that base case&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nf">is-even?</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Having too many stack frames requires explicit tail calls with recur&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="nv">false</span> <span class="p">(</span><span class="nf">is-even-bigint?</span> <span class="mi">100003</span><span class="nv">N</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Reversing directions is easy when you have not gone far&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Yet it becomes more difficult the more steps you take&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">6</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Simple things may appear simple.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;They may require other simple steps.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Sometimes a slightly bigger step is necessary&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">6</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;And eventually you must think harder&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">24</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;You can even deal with very large numbers&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">1000</span><span class="nv">N</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;But what happens when the machine limits you?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">100003</span><span class="nv">N</span><span class="p">)))</span></span></span></code></pre></div>
 <h3 id="use-comment">Use <code>comment</code><a href="#use-comment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>Following a recommendation, I started using <code>comment</code> instead of testing in
 the repl. But what does <code>comment</code> do?</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="nb">&gt; </span><span class="p">(</span><span class="nb">doc </span><span class="nv">comment</span><span class="p">)</span>
-<span class="nv">-------------------------</span>
-<span class="nv">clojure.core/comment</span>
-<span class="p">([</span><span class="o">&amp;</span> <span class="nv">body</span><span class="p">])</span>
-<span class="nv">Macro</span>
-  <span class="nv">Ignores</span> <span class="nv">body</span>, <span class="nv">yields</span> <span class="nv">nil</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="nb">&gt; </span><span class="p">(</span><span class="nb">doc </span><span class="nv">comment</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">-------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="nv">clojure.core/comment</span>
+</span></span><span class="line"><span class="cl"><span class="p">([</span><span class="o">&amp;</span> <span class="nv">body</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Macro</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">Ignores</span> <span class="nv">body</span>, <span class="nv">yields</span> <span class="nv">nil</span></span></span></code></pre></div>
 <p>How is this useful? Well, look at the comment in the Koan body that I&rsquo;ve added.
 The marked part was added automatically by evaluating the comment&rsquo;s body using
 <code>, e p ; -&gt; cider-pprint-eval-to-comment</code>. This is a good way to try out stuff
 and get some &ldquo;free&rdquo; documentation on the way!</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="c1">;;        Evaluate this using , e p ; | get this output</span>
-<span class="c1">;;        ^^^^^^^^^^^^^^^^^^^^^^^^^   | ^^^^^^^^^^^^^^^  </span>
-<span class="p">(</span><span class="nb">comment </span><span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>    <span class="c1">;; =&gt; (3 2 1)</span>
-         <span class="p">)</span> </code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;;        Evaluate this using , e p ; | get this output</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;        ^^^^^^^^^^^^^^^^^^^^^^^^^   | ^^^^^^^^^^^^^^^  </span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">comment </span><span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>    <span class="c1">;; =&gt; (3 2 1)</span>
+</span></span><span class="line"><span class="cl">         <span class="p">)</span> </span></span></code></pre></div>
 <h3 id="loop-finally-with-no-for-that-s-what-i-needed"><code>loop</code>?! Finally, with no <code>for</code>, that&rsquo;s what I needed<a href="#loop-finally-with-no-for-that-s-what-i-needed" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>As we&rsquo;ve seen before, Clojure&rsquo;s <code>for</code> is not a loop, but an iteration. <a href="https://clojure.org/special_forms#loop">Surely
@@ -597,29 +597,29 @@ top of the loop, with arity equal to the number of bindings. See recur.</p>
 </blockquote>
 
 <p>OMG. Welp - let&rsquo;s see <code>recur</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="nb">&gt; </span><span class="p">(</span><span class="nb">doc </span><span class="nv">recur</span><span class="p">)</span>
-<span class="nv">-------------------------</span>
-<span class="nv">recur</span>
-  <span class="p">(</span><span class="nf">recur</span> <span class="nv">exprs*</span><span class="p">)</span>
-<span class="nv">Special</span> <span class="nv">Form</span>
-  <span class="nv">Evaluates</span> <span class="nv">the</span> <span class="nv">exprs</span> <span class="nv">in</span> <span class="nv">order</span>, <span class="nv">then</span>, <span class="nv">in</span> <span class="nv">parallel</span>, <span class="nv">rebinds</span>
-  <span class="nv">the</span> <span class="nv">bindings</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">recursion</span> <span class="nv">point</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">exprs.</span>
-  <span class="nv">Execution</span> <span class="nv">then</span> <span class="nv">jumps</span> <span class="nv">back</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">recursion</span> <span class="nv">point</span>, <span class="nv">a</span> <span class="k">loop </span><span class="nb">or </span><span class="k">fn </span><span class="nv">method.</span>
-
-  <span class="nv">Please</span> <span class="nv">see</span> <span class="nv">http</span><span class="ss">://clojure.org/special_forms#recur</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="nb">&gt; </span><span class="p">(</span><span class="nb">doc </span><span class="nv">recur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">-------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="nv">recur</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">recur</span> <span class="nv">exprs*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Special</span> <span class="nv">Form</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">Evaluates</span> <span class="nv">the</span> <span class="nv">exprs</span> <span class="nv">in</span> <span class="nv">order</span>, <span class="nv">then</span>, <span class="nv">in</span> <span class="nv">parallel</span>, <span class="nv">rebinds</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">the</span> <span class="nv">bindings</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">recursion</span> <span class="nv">point</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">exprs.</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">Execution</span> <span class="nv">then</span> <span class="nv">jumps</span> <span class="nv">back</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">recursion</span> <span class="nv">point</span>, <span class="nv">a</span> <span class="k">loop </span><span class="nb">or </span><span class="k">fn </span><span class="nv">method.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nv">Please</span> <span class="nv">see</span> <span class="nv">http</span><span class="ss">://clojure.org/special_forms#recur</span></span></span></code></pre></div>
 <p>OK. Following <a href="http://clojure.org/special_forms#recur">the Clojure docs link</a>
 as well provides a clearer picture. In our factorial implementation, after the
 base cases, we have two <code>exprs</code> and two binding targets (sybmols):</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="mi">1</span>
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)</span>
-      <span class="mi">2</span>
-      <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nb">count </span><span class="nv">n</span>   <span class="c1">;; This is the first bind target</span>
-             <span class="nv">accum</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1">;; This is the second bind target</span>
-        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">count</span><span class="p">)</span>
-          <span class="nv">accum</span>                                     
-          <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">count</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">accum</span> <span class="nv">count</span><span class="p">)))))))</span>  <span class="c1">;; Here are the exprs</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nb">count </span><span class="nv">n</span>   <span class="c1">;; This is the first bind target</span>
+</span></span><span class="line"><span class="cl">             <span class="nv">accum</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1">;; This is the second bind target</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">accum</span>                                     
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">count</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">accum</span> <span class="nv">count</span><span class="p">)))))))</span>  <span class="c1">;; Here are the exprs</span></span></span></code></pre></div>
 <p>So, <code>recur</code> evaluates the exprs IN ORDER, and then rebinds <code>count</code> and <code>accum</code>
 to the value of the revelant expression and jumps back to the <code>loop</code>.
 In our case, <code>count</code> gets <code>--</code>-ed and <code>accum</code> is multiplied by <code>count</code>. Makes
@@ -640,7 +640,7 @@ always the tool to reach for, but it&rsquo;s obviously very useful to know.</p>
 
 <p>In order to debug in Spacemacs, we first write the expression we want to debug
 (which, if we want, we can later use as a <code>comment</code>):</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">factorial</span> <span class="mi">5</span><span class="p">))</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">factorial</span> <span class="mi">5</span><span class="p">))</span></span></span></code></pre></div>
 <p>Then, with out cursor over it, <code>, d b -&gt; cider-debug-defun-at-point</code>, will lead
 us to the delightful:</p>
 
@@ -705,7 +705,7 @@ here</a>.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -713,7 +713,7 @@ here</a>.</p>
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

@@ -12,9 +12,9 @@
 ― Karle Wilson Baker
  Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
 Today we&rsquo;re automating another big part of the challenge: creating the level browser.
- Why do we need a level browser?"><meta itemprop="datePublished" content="2020-05-28T18:08:50&#43;03:00" />
-<meta itemprop="dateModified" content="2020-05-28T18:08:50&#43;03:00" />
-<meta itemprop="wordCount" content="1639"><meta itemprop="image" content="https://www.mrnice.dev/goodwillhunting.jpg">
+ Why do we need a level browser?"><meta itemprop="datePublished" content="2020-05-28T18:08:50+03:00" />
+<meta itemprop="dateModified" content="2020-05-28T18:08:50+03:00" />
+<meta itemprop="wordCount" content="1642"><meta itemprop="image" content="https://www.mrnice.dev/goodwillhunting.jpg">
 <meta itemprop="keywords" content="devlog,git,ctf,rust,algorithms," /><meta property="og:title" content="Devlog #3 | I have grown taller from walking with the trees 🌳" />
 <meta property="og:description" content="“Today I have grown taller from walking with the trees.”
 ― Karle Wilson Baker
@@ -23,8 +23,8 @@ Today we&rsquo;re automating another big part of the challenge: creating the lev
  Why do we need a level browser?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-3/" /><meta property="og:image" content="https://www.mrnice.dev/goodwillhunting.jpg" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-05-28T18:08:50&#43;03:00" />
-<meta property="article:modified_time" content="2020-05-28T18:08:50&#43;03:00" />
+<meta property="article:published_time" content="2020-05-28T18:08:50+03:00" />
+<meta property="article:modified_time" content="2020-05-28T18:08:50+03:00" />
 
 
 <meta name="twitter:title" content="Devlog #3 | I have grown taller from walking with the trees 🌳">
@@ -46,7 +46,7 @@ Today we&rsquo;re automating another big part of the challenge: creating the lev
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/goodwillhunting.jpg');}</style>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -172,9 +172,8 @@ MathJax.Hub.Config({
 
 <p>So I need a place to put auxiliary content for each level. The options were either in the level itself as text files that are a part of the game repository or as a separate webpage. I decided to go with a webpage since combining the two seemed to not really work in the last version of this challenge and webpages allow for more content types to be easily embedded. A good example of a CTF doing this is <a href="https://overthewire.org/wargames/bandit/">OverTheWire</a>.</p>
 
-<figure>
-    <img src="https://i.imgur.com/DmHX6S7.png"
-         alt="OverTheWire Level Browser"/> <figcaption>
+<figure><img src="https://i.imgur.com/DmHX6S7.png"
+         alt="OverTheWire Level Browser"/><figcaption>
             <h4>OverTheWire Level Browser</h4>
         </figcaption>
 </figure>
@@ -182,9 +181,8 @@ MathJax.Hub.Config({
 
 <p>However, unlike OverTheWire, the level structure in this CTF is not linear, so the level browser can&rsquo;t just be a list. Logically, it&rsquo;s an <a href="https://en.wikipedia.org/wiki/Arborescence_(graph_theory)">Arborescence</a>: a directed, acyclic, rooted tree 🌳 graph where the Nodes are levels and the Edges are flags. I drew some inspiration from Google&rsquo;s beginner CTF page:</p>
 
-<p><a href="https://capturetheflag.withgoogle.com/#beginners/"><figure>
-    <img src="https://i.imgur.com/2VbUMUc.png"
-         alt="Google CTF Level Browser"/> <figcaption>
+<p><a href="https://capturetheflag.withgoogle.com/#beginners/"><figure><img src="https://i.imgur.com/2VbUMUc.png"
+         alt="Google CTF Level Browser"/><figcaption>
             <h4>Google CTF Level Browser</h4>
         </figcaption>
 </figure>
@@ -201,24 +199,24 @@ MathJax.Hub.Config({
 <h3 id="more-details">More details<a href="#more-details" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p><strong>Input</strong>: The game&rsquo;s configuration, which looks like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
-  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;clone&#34;</span>
-  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;master&#34;</span>
-  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;echo No pushing to master. Read the README file; exit 1&#34;</span>
-  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;start-here&#34;</span><span class="p">]</span>
-
-<span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
-  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
-  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
-  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/start-here.sh&#34;</span>
-  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-1&#34;</span><span class="p">]</span>
-
-<span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
-  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;merge-1&#34;</span>
-  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;REDACTED&#34;</span>
-  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/merge-1.sh&#34;</span>
-  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-2&#34;</span><span class="p">,</span> <span class="s2">&#34;log-1&#34;</span><span class="p">]</span>
-<span class="p">...</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;clone&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;master&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;echo No pushing to master. Read the README file; exit 1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;start-here&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/start-here.sh&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-1&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;merge-1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;REDACTED&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/merge-1.sh&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-2&#34;</span><span class="p">,</span> <span class="s2">&#34;log-1&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span></span></span></code></pre></div>
 <p>Will be fed into a script that parses it into a graph. The script will then render the graph to the&hellip;</p>
 
 <p><strong>Output</strong>: an interactive level browser that looks like a graph.</p>
@@ -235,19 +233,19 @@ MathJax.Hub.Config({
 
 <p>Professor rework dropped in for a visit&hellip;</p>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Professor Rework looking kinda thicc ngl <a href="https://t.co/HUlQJV6JlO">pic.twitter.com/HUlQJV6JlO</a></p>&mdash; Randy (@bigrando420) <a href="https://twitter.com/bigrando420/status/1242886023643725829?ref_src=twsrc%5Etfw">March 25, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Professor Rework looking kinda thicc ngl <a href="https://t.co/HUlQJV6JlO">pic.twitter.com/HUlQJV6JlO</a></p>&mdash; randy (@bigrando420) <a href="https://twitter.com/bigrando420/status/1242886023643725829?ref_src=twsrc%5Etfw">March 25, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 <p><a href="/posts/dev-log-2#parsing-game-configtoml">Last time</a> we created some data structures that represent a single Level and the Game Config, but it was all in a single file. Now that we&rsquo;re planning to write another script, it&rsquo; time to move stuff out of single files into a common library under <code>/lib</code> and separate different scripts into different files under a <code>/bin</code>. This resulted in the following directory structure:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># This is executable scripts</span>
-/scripts/src/bin
-/scripts/src/bin/generate-levels-graph.rs
-/scripts/src/bin/generate-pre-receive-hook.rs
-
-<span class="c1"># This is common code</span>
-/scripts/src/lib
-/scripts/src/lib/lib.rs</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># This is executable scripts</span>
+</span></span><span class="line"><span class="cl">/scripts/src/bin
+</span></span><span class="line"><span class="cl">/scripts/src/bin/generate-levels-graph.rs
+</span></span><span class="line"><span class="cl">/scripts/src/bin/generate-pre-receive-hook.rs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># This is common code</span>
+</span></span><span class="line"><span class="cl">/scripts/src/lib
+</span></span><span class="line"><span class="cl">/scripts/src/lib/lib.rs</span></span></code></pre></div>
 <h3 id="parsing-the-configuration-into-a-graph">Parsing the configuration into a graph<a href="#parsing-the-configuration-into-a-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>Who would have believed that I would actually need to write a recursive algorithm that deals with Graphs outside of university?</p>
@@ -263,72 +261,70 @@ MathJax.Hub.Config({
 
 
 <p>Here&rsquo;s the code:</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">create_graph_from_game_config</span><span class="p">(</span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="nc">GameConfig</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">LevelsGraph</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">levels_graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LevelsGraph</span>::<span class="n">new</span><span class="p">();</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clone</span><span class="p">();</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">tree_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">first_level</span><span class="p">.</span><span class="n">clone</span><span class="p">());</span><span class="w">
-</span><span class="w">    </span><span class="n">add_level_nodes_to_graph</span><span class="p">(</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tree_root</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game_config</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="n">levels_graph</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="sd">/// Recursive function that populates the game graph
-</span><span class="sd">///
-</span><span class="sd">/// If receives a graph initialized with the first level as a root node.
-</span><span class="sd"></span><span class="k">fn</span> <span class="nf">add_level_nodes_to_graph</span><span class="o">&lt;</span><span class="na">&#39;a</span><span class="o">&gt;</span><span class="p">(</span><span class="w">
-</span><span class="w">    </span><span class="n">current_level</span>: <span class="nc">Level</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">current_node</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span><span class="w"> </span><span class="n">NodeIndex</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">levels_graph</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">LevelsGraph</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span><span class="w"> </span><span class="n">GameConfig</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="p">};</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">flags</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;level {} flag {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
-</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">levels_iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="p">.</span><span class="n">iter</span><span class="p">();</span><span class="w">
-</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_iterator</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
-</span><span class="w">        </span><span class="k">match</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">            </span><span class="nb">Some</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="w">
-</span><span class="w">                    </span><span class="s">&#34;The flag does point to another level, {}. Adding level as node to graph&#34;</span><span class="p">,</span><span class="w">
-</span><span class="w">                    </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="w">
-</span><span class="w">                </span><span class="p">);</span><span class="w">
-</span><span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="n">new_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">clone</span><span class="p">());</span><span class="w">
-</span><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Adding edge from {} to {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="p">);</span><span class="w">
-</span><span class="w">                </span><span class="n">levels_graph</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="o">*</span><span class="n">current_node</span><span class="p">,</span><span class="w"> </span><span class="n">new_node</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">
-</span><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Recursive calling add nodes on {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="p">);</span><span class="w">
-</span><span class="w">                </span><span class="n">add_level_nodes_to_graph</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">new_node</span><span class="p">,</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game_config</span><span class="p">);</span><span class="w">
-</span><span class="w">            </span><span class="p">}</span><span class="w">
-</span><span class="w">            </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The flag doesn&#39;t point to another level - no need to recurse&#34;</span><span class="p">);</span><span class="w">
-</span><span class="w">            </span><span class="p">}</span><span class="w">
-</span><span class="w">        </span><span class="p">}</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">create_graph_from_game_config</span><span class="p">(</span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="nc">GameConfig</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">LevelsGraph</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">levels_graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LevelsGraph</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">tree_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">first_level</span><span class="p">.</span><span class="n">clone</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">add_level_nodes_to_graph</span><span class="p">(</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tree_root</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game_config</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">levels_graph</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sd">/// Recursive function that populates the game graph
+</span></span></span><span class="line"><span class="cl"><span class="sd">///
+</span></span></span><span class="line"><span class="cl"><span class="sd">/// If receives a graph initialized with the first level as a root node.
+</span></span></span><span class="line"><span class="cl"><span class="sd"></span><span class="k">fn</span> <span class="nf">add_level_nodes_to_graph</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">current_level</span>: <span class="nc">Level</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">current_node</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">a</span> <span class="nc">NodeIndex</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">levels_graph</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">a</span> <span class="nc">mut</span><span class="w"> </span><span class="n">LevelsGraph</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">a</span> <span class="nc">GameConfig</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">flags</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;level {} flag {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">levels_iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="p">.</span><span class="n">iter</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_iterator</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">flag</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">match</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nb">Some</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;The flag does point to another level, {}. Adding level as node to graph&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="n">new_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">clone</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Adding edge from {} to {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">current_level</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">levels_graph</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="o">*</span><span class="n">current_node</span><span class="p">,</span><span class="w"> </span><span class="n">new_node</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Recursive calling add nodes on {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">title</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">add_level_nodes_to_graph</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">new_node</span><span class="p">,</span><span class="w"> </span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">game_config</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;The flag doesn&#39;t point to another level - no need to recurse&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
 <h4 id="example">Example<a href="#example" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>Let&rsquo;s run through an example (this example is the unit test, as well). Let&rsquo;s say this is our game config:</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;second&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
-</span><span class="w"></span><span class="p">};</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">second_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;second&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;another&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"> </span><span class="s">&#34;asdf&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
-</span><span class="w"></span><span class="p">};</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">game_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">levels</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="n">second_level</span><span class="p">],</span><span class="w">
-</span><span class="w"></span><span class="p">};</span><span class="w">
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;second&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">second_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;second&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;another&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"> </span><span class="s">&#34;asdf&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">game_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">levels</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="n">second_level</span><span class="p">],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span></span></span></code></pre></div>
 <p>Now, when we call <code>let graph = create_graph_from_game_config(&amp;game_conf);</code>, the graph is initialized with the first level as its root. This is how the graph looks like at this state:</p>
 
 <p><img src="https://i.imgur.com/GvKevCU.png" alt="graph 1" title="graph 1" /></p>
@@ -346,10 +342,9 @@ MathJax.Hub.Config({
 <h4 id="outputting-the-graph-to-dot">Outputting the graph to DOT<a href="#outputting-the-graph-to-dot" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>The <a href="https://docs.rs/petgraph/0.5.1/petgraph/"><code>petgraph</code></a> crate has built-in support for <code>DOT</code>, so outputting the graph to DOT format was very easy:</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">levels_graph_as_dot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span>::<span class="n">with_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p">[</span><span class="n">Config</span>::<span class="n">EdgeNoLabel</span><span class="p">]);</span><span class="w">
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">levels_graph_as_dot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span>::<span class="n">with_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p">[</span><span class="n">Config</span>::<span class="n">EdgeNoLabel</span><span class="p">]);</span></span></span></code></pre></div>
 <p>The resulting <code>DOT</code> string is very readable:</p>
-<pre><code class="language-DOT" data-lang="DOT">digraph {
+<pre tabindex="0"><code class="language-DOT" data-lang="DOT">digraph {
     0 [label=&#34;clone&#34;]
     1 [label=&#34;start-here&#34;]
     2 [label=&#34;merge-1&#34;]
@@ -365,58 +360,55 @@ MathJax.Hub.Config({
 <h4 id="using-the-dot-string-to-render-a-visual-interactive-graph">Using the DOT string to render a visual, interactive graph<a href="#using-the-dot-string-to-render-a-visual-interactive-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 
 <p>The graph template file (which becomes a shortcode) has a few interesting parts. First, it has an empty <code>div</code> with the &ldquo;mynetwork&rdquo; id:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;mynetwork&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;mynetwork&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Then the script starts doing the heavy lifting. First we define the DOTstring using TinyTemplates built-in <code>unescaped</code> formatter and parse the data using <code>vis</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="kd">var</span> <span class="nx">DOTstring</span> <span class="o">=</span> <span class="sb">`
-</span><span class="sb">{levels_graph_as_dot | unescaped}
-</span><span class="sb">`</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">parsedData</span> <span class="o">=</span> <span class="nx">vis</span><span class="p">.</span><span class="nx">parseDOTNetwork</span><span class="p">(</span><span class="nx">DOTstring</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span>
-      <span class="nx">nodes</span><span class="o">:</span> <span class="nx">parsedData</span><span class="p">.</span><span class="nx">nodes</span><span class="p">,</span>
-      <span class="nx">edges</span><span class="o">:</span> <span class="nx">parsedData</span><span class="p">.</span><span class="nx">edges</span>
-    <span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">DOTstring</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">{levels_graph_as_dot | unescaped}
+</span></span></span><span class="line"><span class="cl"><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">parsedData</span> <span class="o">=</span> <span class="nx">vis</span><span class="p">.</span><span class="nx">parseDOTNetwork</span><span class="p">(</span><span class="nx">DOTstring</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">nodes</span><span class="o">:</span> <span class="nx">parsedData</span><span class="p">.</span><span class="nx">nodes</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">edges</span><span class="o">:</span> <span class="nx">parsedData</span><span class="p">.</span><span class="nx">edges</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre></div>
 <p>After we have the data, we can create the graph itself. There are a lot of styling options here to make the graph itself look nice:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="c1">// create a network
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mynetwork&#39;</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span>
-      <span class="nx">autoResize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="nx">nodes</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
-        <span class="nx">shape</span><span class="o">:</span> <span class="s2">&#34;box&#34;</span><span class="p">,</span>
-        <span class="nx">shadow</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;#e8eef2&#34;</span><span class="p">,</span>
-        <span class="nx">font</span><span class="o">:</span> <span class="s2">&#34;20px arial black&#34;</span>
-      <span class="p">},</span>
-      <span class="nx">edges</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
-        <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;#e8eef2&#34;</span><span class="p">,</span>
-      <span class="p">},</span>
-      <span class="nx">physics</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
-        <span class="nx">enabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nx">solver</span><span class="o">:</span> <span class="s2">&#34;hierarchicalRepulsion&#34;</span><span class="p">,</span>
-      <span class="p">},</span>
-      <span class="nx">layout</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
-          <span class="nx">hierarchical</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
-            <span class="nx">direction</span><span class="o">:</span> <span class="s2">&#34;LR&#34;</span><span class="p">,</span>
-            <span class="nx">levelSeparation</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-            <span class="nx">nodeSpacing</span><span class="o">:</span> <span class="mi">33</span><span class="p">,</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">};</span>
-
-    <span class="c1">// initialize your network!
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">network</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vis</span><span class="p">.</span><span class="nx">Network</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">    <span class="c1">// create a network
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mynetwork&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">autoResize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">nodes</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shape</span><span class="o">:</span> <span class="s2">&#34;box&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shadow</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;#e8eef2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">font</span><span class="o">:</span> <span class="s2">&#34;20px arial black&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">edges</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;#e8eef2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">physics</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">solver</span><span class="o">:</span> <span class="s2">&#34;hierarchicalRepulsion&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">layout</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">hierarchical</span><span class="o">:</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">direction</span><span class="o">:</span> <span class="s2">&#34;LR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">levelSeparation</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">nodeSpacing</span><span class="o">:</span> <span class="mi">33</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// initialize your network!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">network</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vis</span><span class="p">.</span><span class="nx">Network</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span></span></span></code></pre></div>
 <p>Finally, we need to add interactivity to the graph - otherwise, it&rsquo;s not a level browser! Luckily, it was rather simple to use <a href="https://codepen.io/pen/?&amp;editable=true=https%3A%2F%2Fvisjs.github.io%2Fvis-network%2Fexamples%2Fstatic%2Fcodepen.0b56da2bf3b3b38d9624dfc4d9f0565ea204687d3b64636adcd3c3f0c829d4a6.html"><code>vis.js</code>&rsquo;s detailed code examples</a> to build this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="nx">network</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="err">\</span><span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="nx">params</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="err">\</span><span class="p">{</span>
-            <span class="nx">levelName</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]].</span><span class="nx">label</span><span class="p">;</span>
-            <span class="nx">resulting_url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span> <span class="o">+</span> <span class="s2">&#34;/levels/&#34;</span> <span class="o">+</span> <span class="nx">levelName</span><span class="p">;</span>
-            <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">resulting_url</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">    <span class="nx">network</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="nx">params</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="err">\</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">levelName</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]].</span><span class="nx">label</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">resulting_url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span> <span class="o">+</span> <span class="s2">&#34;/levels/&#34;</span> <span class="o">+</span> <span class="nx">levelName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">resulting_url</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span></span></span></code></pre></div>
 <p>And the final result looked pretty cool :)</p>
 
 <p><img src="https://media.giphy.com/media/jVCFgE9CW1bfmI0DGZ/giphy.gif" alt="level browser demo" title="Level browser demo" /></p>
@@ -428,38 +420,37 @@ MathJax.Hub.Config({
 <p><img src="https://i.imgur.com/ufD5efV.png" alt="&quot;Test Explorer&quot;" title="Test Explorer" /></p>
 
 <p>The unit test for this script was the example we saw eariler:</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="cp">#[cfg(test)]</span><span class="w">
-</span><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="o">*</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="n">petgraph</span>::<span class="n">algo</span>::<span class="n">is_cyclic_directed</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="cp">#[test]</span><span class="w">
-</span><span class="w">    </span><span class="k">fn</span> <span class="nf">test_create_graph_from_game_config</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">            </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">            </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">            </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">            </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;second&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
-</span><span class="w">        </span><span class="p">};</span><span class="w">
-</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">second_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">            </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;second&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">            </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">            </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
-</span><span class="w">            </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;another&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"> </span><span class="s">&#34;asdf&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
-</span><span class="w">        </span><span class="p">};</span><span class="w">
-</span><span class="w">
-</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">game_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">            </span><span class="n">levels</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="n">second_level</span><span class="p">],</span><span class="w">
-</span><span class="w">        </span><span class="p">};</span><span class="w">
-</span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_graph_from_game_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game_conf</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">node_count</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">
-</span><span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">edge_count</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">
-</span><span class="w">        </span><span class="n">assert</span><span class="o">!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">is_directed</span><span class="p">());</span><span class="w">
-</span><span class="w">        </span><span class="n">assert</span><span class="o">!</span><span class="p">(</span><span class="o">!</span><span class="n">is_cyclic_directed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">graph</span><span class="p">));</span><span class="w">
-</span><span class="w">    </span><span class="p">}</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">use</span><span class="w"> </span><span class="n">petgraph</span>::<span class="n">algo</span>::<span class="n">is_cyclic_directed</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">test_create_graph_from_game_config</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;second&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">second_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;second&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">branch</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">solution_checker</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;sec&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">flags</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="s">&#34;another&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"> </span><span class="s">&#34;asdf&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">game_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">levels</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="n">second_level</span><span class="p">],</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_graph_from_game_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">game_conf</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">node_count</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">edge_count</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">assert!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">is_directed</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">assert!</span><span class="p">(</span><span class="o">!</span><span class="n">is_cyclic_directed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">graph</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
 <h2 id="what-s-next">What&rsquo;s next<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Now that a lot of the infrastructure is in place, it&rsquo;s time to plan out, develop, test, deploy, test again, and write content for all of the levels. The previous version of the challenge had about 11 levels all in all. I hope to get to at LEAST 15 in the first iteration - hopefully, 20.</p>
@@ -492,7 +483,7 @@ MathJax.Hub.Config({
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/rust">rust</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/algorithms">algorithms</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1639 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1642 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-28 18:08 &#43;0300</p>
 			</footer>
 		</article>
@@ -509,7 +500,7 @@ MathJax.Hub.Config({
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -517,7 +508,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

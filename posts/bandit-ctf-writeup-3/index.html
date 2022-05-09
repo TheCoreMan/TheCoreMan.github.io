@@ -10,8 +10,8 @@
 <meta itemprop="name" content="OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34">
 <meta itemprop="description" content="See all the bandit writeups for the other levels.
 Election day? More like CTF day 🚩
- SPOILER ALERT Level 22 -&gt; Level 23  cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password  Level 23 -&gt; Level 24 Level 24 -&gt; Level 25 Level 25 -&gt; Level 26 Level 26 -&gt; Level 27 Level 27 -&gt; Level 28 Level 28 -&gt; Level 29 Level 29 -&gt; Level 30 Level 30 -&gt; Level 31  Bonus round - what&rsquo;s up with the secret tag  Level 31 -&gt; Level 32  Bonus round - how did the server respond with a message  Level 32 -&gt; Level 33 Level 33 -&gt; Level 34  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."><meta itemprop="datePublished" content="2020-03-02T21:57:03&#43;02:00" />
-<meta itemprop="dateModified" content="2020-03-02T21:57:03&#43;02:00" />
+ SPOILER ALERT Level 22 -&gt; Level 23  cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password  Level 23 -&gt; Level 24 Level 24 -&gt; Level 25 Level 25 -&gt; Level 26 Level 26 -&gt; Level 27 Level 27 -&gt; Level 28 Level 28 -&gt; Level 29 Level 29 -&gt; Level 30 Level 30 -&gt; Level 31  Bonus round - what&rsquo;s up with the secret tag  Level 31 -&gt; Level 32  Bonus round - how did the server respond with a message  Level 32 -&gt; Level 33 Level 33 -&gt; Level 34  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."><meta itemprop="datePublished" content="2020-03-02T21:57:03+02:00" />
+<meta itemprop="dateModified" content="2020-03-02T21:57:03+02:00" />
 <meta itemprop="wordCount" content="2489">
 <meta itemprop="keywords" content="linux,ctf,writeups,bandit,overthewire," /><meta property="og:title" content="OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34" />
 <meta property="og:description" content="See all the bandit writeups for the other levels.
@@ -19,8 +19,8 @@ Election day? More like CTF day 🚩
  SPOILER ALERT Level 22 -&gt; Level 23  cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password  Level 23 -&gt; Level 24 Level 24 -&gt; Level 25 Level 25 -&gt; Level 26 Level 26 -&gt; Level 27 Level 27 -&gt; Level 28 Level 28 -&gt; Level 29 Level 29 -&gt; Level 30 Level 30 -&gt; Level 31  Bonus round - what&rsquo;s up with the secret tag  Level 31 -&gt; Level 32  Bonus round - how did the server respond with a message  Level 32 -&gt; Level 33 Level 33 -&gt; Level 34  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/bandit-ctf-writeup-3/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-03-02T21:57:03&#43;02:00" />
-<meta property="article:modified_time" content="2020-03-02T21:57:03&#43;02:00" />
+<meta property="article:published_time" content="2020-03-02T21:57:03+02:00" />
+<meta property="article:modified_time" content="2020-03-02T21:57:03+02:00" />
 
 
 <meta name="twitter:title" content="OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34">
@@ -42,7 +42,7 @@ Election day? More like CTF day 🚩
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -178,8 +178,8 @@ MathJax.Hub.Config({
 <p>This time this script is a little bigger, so let&rsquo;s break it down part by part.</p>
 
 <h3 id="cron-breakdown"><code>cron</code> breakdown<a href="#cron-breakdown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">@reboot bandit23 /usr/bin/cronjob_bandit23.sh  <span class="p">&amp;</span>&gt; /dev/null
-* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  <span class="p">&amp;</span>&gt; /dev/null</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">@reboot bandit23 /usr/bin/cronjob_bandit23.sh  <span class="p">&amp;</span>&gt; /dev/null
+</span></span><span class="line"><span class="cl">* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  <span class="p">&amp;</span>&gt; /dev/null</span></span></code></pre></div>
 <ul>
 <li><code>@reboot</code>/<code>* * * * *</code>: This part determines the <strong>timing</strong> of the command. So the command will be executed after reboot and every minute.</li>
 <li><code>bandit23</code>: This part determines <strong>which user</strong> will be executing the command.</li>
@@ -189,14 +189,14 @@ MathJax.Hub.Config({
 <h3 id="script-breakdown">Script breakdown<a href="#script-breakdown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>This part is all about reading and understanding <code>bash</code> scripts, which is a very useful skill to have. So let&rsquo;s take our time with this. When we <code>cat</code> the file, this is what we get:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
-<span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
-
-<span class="nb">echo</span> <span class="s2">&#34;Copying passwordfile /etc/bandit_pass/</span><span class="nv">$myname</span><span class="s2"> to /tmp/</span><span class="nv">$mytarget</span><span class="s2">&#34;</span>
-
-cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">$mytarget</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Copying passwordfile /etc/bandit_pass/</span><span class="nv">$myname</span><span class="s2"> to /tmp/</span><span class="nv">$mytarget</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">$mytarget</span></span></span></code></pre></div>
 <p>Scary!</p>
 
 <p><img src="https://media.giphy.com/media/igi0dS20WxPJvroIgW/giphy.gif" alt="scared gif" /></p>
@@ -204,13 +204,13 @@ cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">
 <p>No need to panic. Let&rsquo;s break this down, line by line.</p>
 
 <h4 id="shebang">Shebang<a href="#shebang" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">#!/bin/bash</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span></span></span></code></pre></div>
 <p>This line is called the <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang line</a> - it tells the program loader which program should run this text file. In our case, this is a <code>bash</code> file.</p>
 
 <h4 id="first-variable-myname">First variable - myname<a href="#first-variable-myname" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span></span></span></code></pre></div>
 <p>Here, we see three interesting things: we define a variable called <code>myname</code>, and assign to it the output of the command <code>whoami</code>. <code>whoami</code> prints the current user, and the <code>$()</code> is the POSIX command substitution syntax - that means it executes the command inside <code>$()</code> and pastes back the result of that command.</p>
 
 <p>Let&rsquo;s run <code>whoami</code>, what do we get?</p>
@@ -222,10 +222,10 @@ cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">
 <p>Let&rsquo;s continue.</p>
 
 <h4 id="second-variable-mytarget">Second variable - mytarget<a href="#second-variable-mytarget" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
-<span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span></span></span></code></pre></div>
 <p>Same as before, defining a variable and assigning to it the result of the command inside <code>$()</code>. So what&rsquo;s the command?</p>
 
 <ul>
@@ -243,14 +243,14 @@ cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">
 <p><img src="https://i.imgur.com/gdMBKOi.png" alt="mytarget value" /></p>
 
 <h4 id="writing-the-password">Writing the password<a href="#writing-the-password" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
-<span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
-
-<span class="nb">echo</span> <span class="s2">&#34;Copying passwordfile /etc/bandit_pass/</span><span class="nv">$myname</span><span class="s2"> to /tmp/</span><span class="nv">$mytarget</span><span class="s2">&#34;</span>
-
-cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">$mytarget</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Copying passwordfile /etc/bandit_pass/</span><span class="nv">$myname</span><span class="s2"> to /tmp/</span><span class="nv">$mytarget</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">$mytarget</span></span></span></code></pre></div>
 <p>The script is kind enough to let us know what is happening - it&rsquo;s copying the password (which is what we want) into a file who&rsquo;s name is the value of <code>mytarget</code> (which we know) in the <code>/tmp</code> folder. So all that&rsquo;s left is to read that file:</p>
 
 <p><img src="https://i.imgur.com/IB8xRTP.png" alt="bandit22 win" /></p>
@@ -264,8 +264,8 @@ cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">
 <p>This script executes and deletes all the files it finds in the <code>/var/spool/bandit24</code> directory with the <code>timeout</code> command (which runs a command with a time limit). We need to write a script which does the work we want for us! Writing bash scripts is a very useful skill, and now that we read a few, we know the basics.</p>
 
 <p>First, we should create a temporary directory to work in:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mkdir /tmp/mrnice
-<span class="nb">cd</span> /tmp/mrnice</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir /tmp/mrnice
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp/mrnice</span></span></code></pre></div>
 <p>Then we need to write the script using a text editor - I use <code>vim</code> but you can use <code>nano</code> or other editors as well. The script itself copies the password to a file. Don&rsquo;t forget to <code>chmod +x</code> the script otherwise the <code>cron</code> script won&rsquo;t be able to execute it!</p>
 
 <p><img src="https://i.imgur.com/vBvIagk.png" alt="winning.sh" /></p>
@@ -307,19 +307,19 @@ cat /etc/bandit_pass/<span class="nv">$myname</span> &gt; /tmp/<span class="nv">
 <p><img src="https://media.giphy.com/media/S8BMaD1CU6uROOYiZA/giphy.gif" alt="logon attempt badnit26" /></p>
 
 <p>Well, we&rsquo;re not getting a shell - instead this <code>bandit26</code> ASCII art is printed out and then the connection closes. What can we do? The level clue tells us that the login shell for <code>bandit26</code> is not <code>/bin/bash</code>, so we need to see that is the login shell. We can get that information from the <code>/etc/passwd</code> file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bandit25@bandit:~$ cat /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-<span class="o">(</span>...<span class="o">)</span>
-bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
-<span class="o">(</span>...<span class="o">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bandit25@bandit:~$ cat /etc/passwd
+</span></span><span class="line"><span class="cl">root:x:0:0:root:/root:/bin/bash
+</span></span><span class="line"><span class="cl">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+</span></span><span class="line"><span class="cl"><span class="o">(</span>...<span class="o">)</span>
+</span></span><span class="line"><span class="cl">bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+</span></span><span class="line"><span class="cl"><span class="o">(</span>...<span class="o">)</span></span></span></code></pre></div>
 <p>What is <code>/usr/bin/showtext</code>? Let&rsquo;s <code>cat</code> it&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
-</span><span class="cp"></span>
-<span class="nb">export</span> <span class="nv">TERM</span><span class="o">=</span>linux
-
-more ~/text.txt
-<span class="nb">exit</span> <span class="m">0</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">TERM</span><span class="o">=</span>linux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">more ~/text.txt
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">0</span></span></span></code></pre></div>
 <p>So the &ldquo;shell&rdquo; for <code>bandit26</code> is <code>more ~/text.txt</code>. The <code>text.txt</code> file is not long enough to activate <code>more</code>&rsquo;s interactive mode, so you have to think out of the box here, and literally resize your shell to make <code>more</code> not quit:</p>
 
 <p><img src="https://media.giphy.com/media/KdwDjS8YGTogY801nI/giphy.gif" alt="resizing the shell" /></p>
@@ -363,24 +363,24 @@ more ~/text.txt
 <p><img src="https://i.imgur.com/NYGpD1z.png" alt="no password" /></p>
 
 <p>No password! But on this case we cloned quite a lot of objects which indicates to me that this repo has some history. Let&rsquo;s run <code>git log</code>&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">bandit28@bandit:/tmp/takemeasiam/repo$ git log
-commit 073c27c130e6ee407e12faad1dd3848a110c4f95
-Author: Morla Porla &lt;morla@overthewire.org&gt;
-Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
-
-    fix info leak
-
-commit 186a1038cc54d1358d42d468cdc8e3cc28a93fcb
-Author: Morla Porla &lt;morla@overthewire.org&gt;
-Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
-
-    add missing data
-
-commit b67405defc6ef44210c53345fc953e6a21338cc7
-Author: Ben Dover &lt;noone@overthewire.org&gt;
-Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
-
-    initial commit of README.md</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bandit28@bandit:/tmp/takemeasiam/repo$ git log
+</span></span><span class="line"><span class="cl">commit 073c27c130e6ee407e12faad1dd3848a110c4f95
+</span></span><span class="line"><span class="cl">Author: Morla Porla &lt;morla@overthewire.org&gt;
+</span></span><span class="line"><span class="cl">Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    fix info leak
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">commit 186a1038cc54d1358d42d468cdc8e3cc28a93fcb
+</span></span><span class="line"><span class="cl">Author: Morla Porla &lt;morla@overthewire.org&gt;
+</span></span><span class="line"><span class="cl">Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    add missing data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">commit b67405defc6ef44210c53345fc953e6a21338cc7
+</span></span><span class="line"><span class="cl">Author: Ben Dover &lt;noone@overthewire.org&gt;
+</span></span><span class="line"><span class="cl">Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +0200
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    initial commit of README.md</span></span></code></pre></div>
 <p><code>fix info leak</code>, you say? Let&rsquo;s see what was the changes that happened in the last commit using <code>git diff HEAD~1</code> (you can also use <code>git diff 186a1038cc54d1358d42d468cdc8e3cc28a93fcb</code> or <code>git checkout HEAD~1</code> or <code>git checkout master~1</code> or a ton of other options):</p>
 
 <p><img src="https://i.imgur.com/O0CzTja.png" alt="git diff password" /></p>
@@ -388,13 +388,13 @@ Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +
 <h2 id="level-29-level-30">Level 29 -&gt; Level 30<a href="#level-29-level-30" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Same setup. This time when we read the README we see this lovely clue:</p>
-<div class="highlight"><pre class="chroma"><code class="language-md" data-lang="md"><span class="gh"># Bandit Notes
-</span><span class="gh"></span>Some notes for bandit30 of bandit.
-
-<span class="gu">## credentials
-</span><span class="gu"></span>
-<span class="k">-</span> username: bandit30
-- password: <span class="p">&lt;</span><span class="nt">no</span> <span class="na">passwords</span> <span class="na">in</span> <span class="na">production</span><span class="err">!</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Bandit Notes
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>Some notes for bandit30 of bandit.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## credentials
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="k">-</span> username: bandit30
+</span></span><span class="line"><span class="cl">- password: <span class="p">&lt;</span><span class="nt">no</span> <span class="na">passwords</span> <span class="na">in</span> <span class="na">production</span><span class="err">!</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Well, if there are no passwords in production, that probably means that there are passwords not in production! Let&rsquo;s look at what <strong>branches</strong> are there:</p>
 
 <p><img src="https://i.imgur.com/9CVfDPE.png" alt="git branch 29" /></p>
@@ -440,9 +440,9 @@ Date:   Tue Oct <span class="m">16</span> 14:00:39 <span class="m">2018</span> +
 <p><img src="https://i.imgur.com/Vi9vpiQ.png" alt="writing the file" /></p>
 
 <p>Then we try to <code>git add key.txt</code>, but we get an error:</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">The following paths are ignored by one of your .gitignore files:
-key.txt
-Use -f if you really want to add them.</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">The following paths are ignored by one of your .gitignore files:
+</span></span><span class="line"><span class="cl">key.txt
+</span></span><span class="line"><span class="cl">Use -f if you really want to add them.</span></span></code></pre></div>
 <p>Here some information about <a href="https://git-scm.com/docs/gitignore">how <code>git</code> ignores files</a>, but basically we&rsquo;re just going to use <code>git add -f</code> and move forward:</p>
 
 <p><img src="https://i.imgur.com/JSsrOZc.png" alt="commiting and pushing the file" /></p>
@@ -524,7 +524,7 @@ Use -f if you really want to add them.</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -532,7 +532,7 @@ Use -f if you really want to add them.</code></pre></div>
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

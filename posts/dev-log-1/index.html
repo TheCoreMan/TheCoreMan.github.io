@@ -9,16 +9,16 @@
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Devlog #1 | The best-laid plans of mice and men">
 <meta itemprop="description" content="Last time we talked a lot about the WHY. This post is all about the HOW.
- If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first  Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?"><meta itemprop="datePublished" content="2020-05-02T18:02:38&#43;03:00" />
-<meta itemprop="dateModified" content="2020-05-02T18:02:38&#43;03:00" />
+ If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first  Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?"><meta itemprop="datePublished" content="2020-05-02T18:02:38+03:00" />
+<meta itemprop="dateModified" content="2020-05-02T18:02:38+03:00" />
 <meta itemprop="wordCount" content="1089"><meta itemprop="image" content="https://i.imgur.com/rPuIykR.png">
 <meta itemprop="keywords" content="devlog,git,ctf,docker,rust,design,requirements," /><meta property="og:title" content="Devlog #1 | The best-laid plans of mice and men" />
 <meta property="og:description" content="Last time we talked a lot about the WHY. This post is all about the HOW.
  If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first  Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-1/" /><meta property="og:image" content="https://i.imgur.com/rPuIykR.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-05-02T18:02:38&#43;03:00" />
-<meta property="article:modified_time" content="2020-05-02T18:02:38&#43;03:00" />
+<meta property="article:published_time" content="2020-05-02T18:02:38+03:00" />
+<meta property="article:modified_time" content="2020-05-02T18:02:38+03:00" />
 
 
 <meta name="twitter:title" content="Devlog #1 | The best-laid plans of mice and men">
@@ -40,7 +40,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Devlog #1 | The best-laid plans of mice and men</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://i.imgur.com/rPuIykR.png');}</style>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -208,53 +208,53 @@ MathJax.Hub.Config({
 <h3 id="given-this-definition-of-level-what-s-the-structure-of-the-db">Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB<a href="#given-this-definition-of-level-what-s-the-structure-of-the-db" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>First, we&rsquo;ll have one <code>game_config.toml</code> file that looks like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Generic stuff</span>
-<span class="nx">generic</span> <span class="p">=</span> <span class="s2">&#34;stuff&#34;</span>
-
-<span class="c"># Dunno. Some server configs?</span>
-<span class="p">[</span><span class="nx">server</span><span class="p">]</span>
-<span class="nx">paths</span> <span class="p">=</span> <span class="s2">&#34;asdf&#34;</span>
-
-<span class="c"># Here&#39;s the interesting part</span>
-<span class="p">[</span><span class="nx">levels</span><span class="p">]</span>
-  <span class="p">[</span><span class="nx">levels</span><span class="p">.</span><span class="nx">start</span><span class="mi">-1</span><span class="p">]</span>
-  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;start-1&#34;</span>
-  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
-  <span class="nx">solutionChecker</span> <span class="p">=</span> <span class="s2">&#34;checkers/start-here.sh&#34;</span>
-  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;fizzling-vulture-pedial&#34;</span><span class="p">]</span>
-  <span class="c"># Level page is implicitly &#34;pages/start-1.md&#34;</span>
-  <span class="c"># Testing info is implicitly in &#34;tests/start-1.rs&#34;</span>
-
-  <span class="p">[</span><span class="nx">levels</span><span class="p">.</span><span class="nx">merge</span><span class="mi">-1</span><span class="p">]</span>
-  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;merge-1&#34;</span>
-  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;fizzling-vulture-pedial&#34;</span>
-  <span class="nx">solutionChecker</span> <span class="p">=</span> <span class="s2">&#34;checkers/merge-1.sh&#34;</span>
-  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;kneel-untinted-names&#34;</span><span class="p">,</span> <span class="s2">&#34;upleaped-unprint-odorize&#34;</span><span class="p">]</span>
-  <span class="c"># Level page is implicitly &#34;pages/merge-1.md&#34;</span>
-  <span class="c"># Testing info is implicitly in &#34;tests/merge-1.rs&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Generic stuff</span>
+</span></span><span class="line"><span class="cl"><span class="nx">generic</span> <span class="p">=</span> <span class="s2">&#34;stuff&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Dunno. Some server configs?</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">server</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">paths</span> <span class="p">=</span> <span class="s2">&#34;asdf&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Here&#39;s the interesting part</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">levels</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">levels</span><span class="p">.</span><span class="nx">start-1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;start-1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;start-here&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">solutionChecker</span> <span class="p">=</span> <span class="s2">&#34;checkers/start-here.sh&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;fizzling-vulture-pedial&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Level page is implicitly &#34;pages/start-1.md&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Testing info is implicitly in &#34;tests/start-1.rs&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">levels</span><span class="p">.</span><span class="nx">merge-1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;merge-1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;fizzling-vulture-pedial&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">solutionChecker</span> <span class="p">=</span> <span class="s2">&#34;checkers/merge-1.sh&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;kneel-untinted-names&#34;</span><span class="p">,</span> <span class="s2">&#34;upleaped-unprint-odorize&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Level page is implicitly &#34;pages/merge-1.md&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Testing info is implicitly in &#34;tests/merge-1.rs&#34;</span></span></span></code></pre></div>
 <h3 id="level-db-folder-structure">Level DB folder structure<a href="#level-db-folder-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">/levels
-/levels/game_config.toml
-/levels/checkers  <span class="c1"># executable per level</span>
-/levels/pages  <span class="c1"># markdown per level</span>
-/levels/tests  <span class="c1"># per level. Will start manually</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/levels
+</span></span><span class="line"><span class="cl">/levels/game_config.toml
+</span></span><span class="line"><span class="cl">/levels/checkers  <span class="c1"># executable per level</span>
+</span></span><span class="line"><span class="cl">/levels/pages  <span class="c1"># markdown per level</span>
+</span></span><span class="line"><span class="cl">/levels/tests  <span class="c1"># per level. Will start manually</span></span></span></code></pre></div>
 <h2 id="envisioning-the-project-structure">Envisioning the project structure<a href="#envisioning-the-project-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>I think this will be the semi-final directory structure and parts of the project, following the HLD from before:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">/
-
-/levels  <span class="c1"># See above.</span>
-
-/scripts  <span class="c1"># This is standalone code. It might rely on the data in `levels`, but these will be separate scripts, that will be developed as independently as possible from the real data.</span>
-/scripts/generate_level  <span class="c1"># CLI wizard to creates a new  level</span>
-/scripts/generate_graph  <span class="c1"># Generate the level browsing page. Should be a Markdown file</span>
-/scripts/deploy_git_server  <span class="c1"># When running inside the docker, set up the repo and the hook</span>
-/scripts/test_levels  <span class="c1"># When running inside the docker, run all the tests</span>
-
-/build
-/build/package_for_docker  <span class="c1"># Takes the levels + scripts and packages them for the docker</span>
-/build/dockerfile
-/build/dockerfile_entrypoint.sh</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/levels  <span class="c1"># See above.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/scripts  <span class="c1"># This is standalone code. It might rely on the data in `levels`, but these will be separate scripts, that will be developed as independently as possible from the real data.</span>
+</span></span><span class="line"><span class="cl">/scripts/generate_level  <span class="c1"># CLI wizard to creates a new  level</span>
+</span></span><span class="line"><span class="cl">/scripts/generate_graph  <span class="c1"># Generate the level browsing page. Should be a Markdown file</span>
+</span></span><span class="line"><span class="cl">/scripts/deploy_git_server  <span class="c1"># When running inside the docker, set up the repo and the hook</span>
+</span></span><span class="line"><span class="cl">/scripts/test_levels  <span class="c1"># When running inside the docker, run all the tests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/build
+</span></span><span class="line"><span class="cl">/build/package_for_docker  <span class="c1"># Takes the levels + scripts and packages them for the docker</span>
+</span></span><span class="line"><span class="cl">/build/dockerfile
+</span></span><span class="line"><span class="cl">/build/dockerfile_entrypoint.sh</span></span></code></pre></div>
 <h2 id="back-on-planet-earth">Back on planet earth&hellip; 🌍<a href="#back-on-planet-earth" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>I &ldquo;wasted&rdquo; some time on installations and reading.</p>
@@ -306,7 +306,7 @@ MathJax.Hub.Config({
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -314,7 +314,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

@@ -11,9 +11,9 @@
 <meta itemprop="description" content="Part three of the joint project with my incredibly sharp wife, Olga!
 This post is a part of a series, so check out the entire series for context.
 In this post, we&rsquo;ll dive into how we&rsquo;ve implemented a Database in our application. The post starts with the design, then moves to implementation of DB connectivity, then the data models themselves, and finally some testing.
-Upfront, we had to decide if we&rsquo;ll choose a relational database or something else - and we decided to go relational."><meta itemprop="datePublished" content="2021-10-31T20:04:53&#43;03:00" />
-<meta itemprop="dateModified" content="2021-10-31T20:04:53&#43;03:00" />
-<meta itemprop="wordCount" content="1805"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+Upfront, we had to decide if we&rsquo;ll choose a relational database or something else - and we decided to go relational."><meta itemprop="datePublished" content="2021-10-31T20:04:53+03:00" />
+<meta itemprop="dateModified" content="2021-10-31T20:04:53+03:00" />
+<meta itemprop="wordCount" content="1800"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
 <meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless,database,ORM," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data" />
 <meta property="og:description" content="Part three of the joint project with my incredibly sharp wife, Olga!
 This post is a part of a series, so check out the entire series for context.
@@ -21,8 +21,8 @@ In this post, we&rsquo;ll dive into how we&rsquo;ve implemented a Database in ou
 Upfront, we had to decide if we&rsquo;ll choose a relational database or something else - and we decided to go relational." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-10-31T20:04:53&#43;03:00" />
-<meta property="article:modified_time" content="2021-10-31T20:04:53&#43;03:00" />
+<meta property="article:published_time" content="2021-10-31T20:04:53+03:00" />
+<meta property="article:modified_time" content="2021-10-31T20:04:53+03:00" />
 
 
 <meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data">
@@ -37,7 +37,7 @@ Upfront, we had to decide if we&rsquo;ll choose a relational database or somethi
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -273,305 +273,305 @@ mostly due to popularity.</li>
 <p>To make using the DB in development easy, and switching to prod also easy,
 we&rsquo;ve used the <code>factory</code> design pattern to create the DB session, with only
 the <code>inmem_testing</code> case implemented for now:</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">enum</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
-
-<span class="k">class</span> <span class="nc">DbCase</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">inmem_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-    <span class="n">docker_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-    <span class="n">prod</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
-        <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite://&#39;</span><span class="p">)</span>
-        <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">session</span>
-    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Docker session not implemented yet.&#34;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Prod session not implemented yet.&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;Unknown case: {case}&#34;</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">enum</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DbCase</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inmem_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">docker_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prod</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite://&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">session</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Docker session not implemented yet.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Prod session not implemented yet.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Unknown case: </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre></div>
 <p>When developing the other ones, we&rsquo;re going to rely on Env Vars and/or config
 files to populate the connection with data (username, password, address, etc.).</p>
 
 <p>To test all the cases, we&rsquo;ve used a feature of pytest called <code>parametrize</code>,
 but ended up only using it once (since we&rsquo;ve only implemented one):</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="nd">@pytest.mark.parametrize</span><span class="p">(</span>
-    <span class="s2">&#34;db_case&#34;</span><span class="p">,</span> 
-    <span class="p">[</span>
-        <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">,</span>
-    <span class="p">]</span> <span class="c1"># TODO - add more DbCases once we implement them.</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_db_session</span><span class="p">(</span><span class="n">db_case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">):</span>
-    <span class="n">expected</span> <span class="o">=</span> <span class="s2">&#34;asdfzcxv&#34;</span>
-    <span class="n">session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">db_case</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;select &#39;{expected}&#39;&#34;</span><span class="p">))</span>
-    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">result</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;db_case&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span> <span class="c1"># TODO - add more DbCases once we implement them.</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_db_session</span><span class="p">(</span><span class="n">db_case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expected</span> <span class="o">=</span> <span class="s2">&#34;asdfzcxv&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">db_case</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;select &#39;</span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">&#39;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">result</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></span></span></code></pre></div>
 <h2 id="developing-the-models">Developing the models<a href="#developing-the-models" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Following SQLAlchemy&rsquo;s tutorials, we&rsquo;ve developed the models:</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="kn">import</span> <span class="nn">enum</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">registry</span><span class="p">,</span> <span class="n">relationship</span><span class="p">,</span> <span class="n">Session</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Boolean</span><span class="p">,</span> 
-    <span class="n">Column</span><span class="p">,</span> 
-    <span class="n">Date</span><span class="p">,</span>
-    <span class="n">DateTime</span><span class="p">,</span>
-    <span class="n">Enum</span><span class="p">,</span> 
-    <span class="n">ForeignKey</span><span class="p">,</span> 
-    <span class="n">Integer</span><span class="p">,</span> 
-    <span class="n">String</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># See https://docs.sqlalchemy.org/en/14/tutorial/metadata.html#setting-up-the-registry</span>
-<span class="n">mapper_registry</span> <span class="o">=</span> <span class="n">registry</span><span class="p">()</span>
-<span class="n">Base</span> <span class="o">=</span> <span class="n">mapper_registry</span><span class="o">.</span><span class="n">generate_base</span><span class="p">()</span>
-
-
-<span class="nd">@enum.unique</span>
-<span class="k">class</span> <span class="nc">PricingTier</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">free</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-    <span class="n">paid</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-
-
-<span class="n">TABLE_NAME_WORKSPACES</span> <span class="o">=</span> <span class="s2">&#34;workspaces&#34;</span>
-<span class="n">TABLE_NAME_SPOTS</span> <span class="o">=</span> <span class="s2">&#34;spots&#34;</span>
-<span class="n">TABLE_NAME_GARAGES</span> <span class="o">=</span> <span class="s2">&#34;garages&#34;</span>
-<span class="n">TABLE_NAME_USERS</span> <span class="o">=</span> <span class="s2">&#34;users&#34;</span>
-<span class="n">TABLE_NAME_RESERVATIONS</span> <span class="o">=</span> <span class="s2">&#34;reservations&#34;</span>
-
-
-<span class="k">class</span> <span class="nc">Workspace</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_WORKSPACES</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">slack_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">pricing_tier</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Enum</span><span class="p">(</span><span class="n">PricingTier</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">onboard_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">)</span>
-
-    <span class="c1"># Setting up Relationships: See</span>
-    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/relationship_api.html#sqlalchemy.orm.relationship</span>
-    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/tutorial.html#orm-tutorial-relationship</span>
-    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#relationship-patterns</span>
-    <span class="c1"># for details.</span>
-    
-    <span class="c1"># workspace --[1..n]-&gt; garages</span>
-    <span class="n">garages</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Garage&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;workspace&#34;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># workspace -[1]--[0..n]-&gt; users</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;User&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;workspace&#34;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># TODO add emoji to repr</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Workspace({self.id=}, {self.name=}, {self.pricing_tier=}, {self.onboard_time=})&#34;</span>
-
-
-<span class="k">class</span> <span class="nc">Garage</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_GARAGES</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">full_instructions</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">arrival_instructions</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    
-    <span class="c1"># Garage &lt;-[n..1]-- workspace</span>
-    <span class="n">workspace_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">String</span><span class="p">,</span> 
-        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{TABLE_NAME_WORKSPACES}.id&#39;</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="n">workspace</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Workspace&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_GARAGES</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Garage --[1..n]-&gt; spots</span>
-    <span class="n">spots</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Spot&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;garage&#34;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Garage {self.name} at {repr(self.workspace)}&#34;</span>
-
-<span class="k">class</span> <span class="nc">SpotAttributes</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">accessible</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-    <span class="n">charger</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-    <span class="n">scooter</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-    <span class="n">wide</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
-
-
-<span class="k">class</span> <span class="nc">Spot</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_SPOTS</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="c1"># TODO: Figure out how to set up attributes correctly. Array data type </span>
-    <span class="c1"># isn&#39;t support in basic SQL (like sqlite), so that&#39;s not a good solution.</span>
-    <span class="c1"># options include:</span>
-    <span class="c1"># - Adding a SpotAttributes table</span>
-    <span class="c1"># - JSON list</span>
-    <span class="c1"># - &#34;bitwise&#34;/&#34;flags&#34; based on enum value</span>
-    <span class="n">attributes</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    
-    <span class="c1"># Spot &lt;-[n..1]-- garage</span>
-    <span class="n">garage_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">String</span><span class="p">,</span>
-        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{TABLE_NAME_GARAGES}.id&#34;</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="n">garage</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Garage&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_SPOTS</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Spot -[1]--[1..n]-&gt; reservations</span>
-    <span class="n">reservations</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Reservation&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;spot&#34;</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Spot {self.name} at {self.garage}&#34;</span>
-
-
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_USERS</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">slack_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="c1"># Which garage to give this user by default? The ID of the garage.</span>
-    <span class="n">default_garage</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">spot_preferences</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">spot_requirements</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-
-    <span class="c1"># Workspace --[1..n]-&gt; User</span>
-    <span class="n">workspace_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">String</span><span class="p">,</span> 
-        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{TABLE_NAME_WORKSPACES}.id&#39;</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="n">workspace</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Workspace&#34;</span><span class="p">,</span> 
-        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_USERS</span><span class="p">,</span>
-    <span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">Reservation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_RESERVATIONS</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Date</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">active</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">member_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">member_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    
-    <span class="c1"># Reservation -[1]--[n]-&gt; spot (multiple reservations can be made for the </span>
-    <span class="c1"># same spot, on different dates).</span>
-    <span class="n">spot_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
-        <span class="n">Integer</span><span class="p">,</span>
-        <span class="n">ForeignKey</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{TABLE_NAME_SPOTS}.id&#39;</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="n">spot</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
-        <span class="s2">&#34;Spot&#34;</span><span class="p">,</span>
-        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_RESERVATIONS</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">f</span><span class="s2">&#34;Reservation: </span><span class="se">\
-</span><span class="se"></span><span class="s2">{&#39;Active&#39; if self.active else &#39;Inactive&#39;} </span><span class="se">\
-</span><span class="se"></span><span class="s2">by {self.member_id} </span><span class="se">\
-</span><span class="se"></span><span class="s2">({self.member_name if self.member_name else &#39;unknown name&#39;}) </span><span class="se">\
-</span><span class="se"></span><span class="s2">for {self.date} spot {repr(self.spot)}&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">enum</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">registry</span><span class="p">,</span> <span class="n">relationship</span><span class="p">,</span> <span class="n">Session</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Boolean</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Column</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Date</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DateTime</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Enum</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">ForeignKey</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Integer</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># See https://docs.sqlalchemy.org/en/14/tutorial/metadata.html#setting-up-the-registry</span>
+</span></span><span class="line"><span class="cl"><span class="n">mapper_registry</span> <span class="o">=</span> <span class="n">registry</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Base</span> <span class="o">=</span> <span class="n">mapper_registry</span><span class="o">.</span><span class="n">generate_base</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@enum</span><span class="o">.</span><span class="n">unique</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PricingTier</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">free</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paid</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TABLE_NAME_WORKSPACES</span> <span class="o">=</span> <span class="s2">&#34;workspaces&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">TABLE_NAME_SPOTS</span> <span class="o">=</span> <span class="s2">&#34;spots&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">TABLE_NAME_GARAGES</span> <span class="o">=</span> <span class="s2">&#34;garages&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">TABLE_NAME_USERS</span> <span class="o">=</span> <span class="s2">&#34;users&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">TABLE_NAME_RESERVATIONS</span> <span class="o">=</span> <span class="s2">&#34;reservations&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Workspace</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_WORKSPACES</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">slack_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pricing_tier</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Enum</span><span class="p">(</span><span class="n">PricingTier</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onboard_time</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Setting up Relationships: See</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/relationship_api.html#sqlalchemy.orm.relationship</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/tutorial.html#orm-tutorial-relationship</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#relationship-patterns</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># for details.</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># workspace --[1..n]-&gt; garages</span>
+</span></span><span class="line"><span class="cl">    <span class="n">garages</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Garage&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;workspace&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># workspace -[1]--[0..n]-&gt; users</span>
+</span></span><span class="line"><span class="cl">    <span class="n">users</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;User&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;workspace&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># TODO add emoji to repr</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Workspace(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pricing_tier</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">onboard_time</span><span class="si">=}</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Garage</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_GARAGES</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">full_instructions</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arrival_instructions</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Garage &lt;-[n..1]-- workspace</span>
+</span></span><span class="line"><span class="cl">    <span class="n">workspace_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">ForeignKey</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">TABLE_NAME_WORKSPACES</span><span class="si">}</span><span class="s1">.id&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">workspace</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Workspace&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_GARAGES</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Garage --[1..n]-&gt; spots</span>
+</span></span><span class="line"><span class="cl">    <span class="n">spots</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Spot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;garage&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Garage </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workspace</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SpotAttributes</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">accessible</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">charger</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scooter</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wide</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Spot</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_SPOTS</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># TODO: Figure out how to set up attributes correctly. Array data type </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># isn&#39;t support in basic SQL (like sqlite), so that&#39;s not a good solution.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># options include:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># - Adding a SpotAttributes table</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># - JSON list</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># - &#34;bitwise&#34;/&#34;flags&#34; based on enum value</span>
+</span></span><span class="line"><span class="cl">    <span class="n">attributes</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Spot &lt;-[n..1]-- garage</span>
+</span></span><span class="line"><span class="cl">    <span class="n">garage_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ForeignKey</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">TABLE_NAME_GARAGES</span><span class="si">}</span><span class="s2">.id&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">garage</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Garage&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_SPOTS</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Spot -[1]--[1..n]-&gt; reservations</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reservations</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Reservation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;spot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Spot </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">garage</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_USERS</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">slack_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Which garage to give this user by default? The ID of the garage.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_garage</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">spot_preferences</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">spot_requirements</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Workspace --[1..n]-&gt; User</span>
+</span></span><span class="line"><span class="cl">    <span class="n">workspace_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">ForeignKey</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">TABLE_NAME_WORKSPACES</span><span class="si">}</span><span class="s1">.id&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">workspace</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Workspace&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_USERS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Reservation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_NAME_RESERVATIONS</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">date</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Date</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">active</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Boolean</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">member_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">member_name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Reservation -[1]--[n]-&gt; spot (multiple reservations can be made for the </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># same spot, on different dates).</span>
+</span></span><span class="line"><span class="cl">    <span class="n">spot_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Integer</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ForeignKey</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">TABLE_NAME_SPOTS</span><span class="si">}</span><span class="s1">.id&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">spot</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Spot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">back_populates</span><span class="o">=</span><span class="n">TABLE_NAME_RESERVATIONS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Reservation: </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="si">{</span><span class="s1">&#39;Active&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="k">else</span> <span class="s1">&#39;Inactive&#39;</span><span class="si">}</span><span class="s2"> </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">by </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">member_id</span><span class="si">}</span><span class="s2"> </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">member_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">member_name</span> <span class="k">else</span> <span class="s1">&#39;unknown name&#39;</span><span class="si">}</span><span class="s2">) </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2"> spot </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spot</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span></span></span></code></pre></div>
 <p>We&rsquo;ve also writted some accompanied tests, to demonstrate usage (and prove that
 the schema was implemented successfully). In order to write the tests, we had
 to develop a <code>pytest.fixture</code> to provide a session with data for each test
 class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="n">DEMO_WORKSPACE_NAME</span> <span class="o">=</span> <span class="s2">&#34;NiceFam&#34;</span>
-<span class="n">DEMO_WORKSPACE_SLACK_ID</span> <span class="o">=</span> <span class="s2">&#34;T02CPGASL8Y&#34;</span>
-<span class="n">DEMO_MEMBER_ID</span> <span class="o">=</span> <span class="s2">&#34;U02C63W148L&#34;</span>
-<span class="n">DEMO_RESERVATION_DATE</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1994</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
-
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">session_with_demo_models</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">)</span>
-    <span class="n">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
-
-    <span class="c1"># first, set up a workspace</span>
-    <span class="n">w1</span> <span class="o">=</span> <span class="n">Workspace</span><span class="p">(</span>
-        <span class="n">slack_id</span><span class="o">=</span><span class="n">DEMO_WORKSPACE_SLACK_ID</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">DEMO_WORKSPACE_NAME</span><span class="p">,</span>
-        <span class="n">pricing_tier</span><span class="o">=</span><span class="n">PricingTier</span><span class="o">.</span><span class="n">paid</span><span class="p">,</span> 
-        <span class="n">onboard_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="p">)</span>
-    <span class="n">g1</span> <span class="o">=</span> <span class="n">Garage</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&#34;Main garage&#34;</span><span class="p">,</span>
-        <span class="n">full_instructions</span><span class="o">=</span><span class="s2">&#34;it&#39;s full, you&#39;re fucked.&#34;</span><span class="p">,</span>
-        <span class="n">arrival_instructions</span><span class="o">=</span><span class="s2">&#34;just get here&#34;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">spots</span> <span class="o">=</span> <span class="p">[</span><span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="p">),</span> <span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;2&#34;</span><span class="p">),</span> <span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;3&#34;</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spots</span><span class="p">:</span>
-        <span class="n">g1</span><span class="o">.</span><span class="n">spots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="n">w1</span><span class="o">.</span><span class="n">garages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
-    
-    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
-
-    <span class="c1"># now add some reservations</span>
-    <span class="n">r1</span> <span class="o">=</span> <span class="n">Reservation</span><span class="p">(</span>
-        <span class="n">date</span><span class="o">=</span><span class="n">DEMO_RESERVATION_DATE</span><span class="p">,</span> 
-        <span class="n">active</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
-        <span class="n">member_id</span><span class="o">=</span><span class="n">DEMO_MEMBER_ID</span><span class="p">,</span>
-        <span class="n">member_name</span><span class="o">=</span><span class="s2">&#34;Shay Nehmad&#34;</span><span class="p">,</span>
-        <span class="n">spot</span><span class="o">=</span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="p">)</span>
-    <span class="n">r2</span> <span class="o">=</span> <span class="n">Reservation</span><span class="p">(</span>
-        <span class="n">date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
-        <span class="n">active</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-        <span class="n">member_id</span><span class="o">=</span><span class="n">DEMO_MEMBER_ID</span><span class="p">,</span>
-        <span class="n">member_name</span><span class="o">=</span><span class="s2">&#34;Shay Nehmad&#34;</span><span class="p">,</span>
-        <span class="n">spot</span><span class="o">=</span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="p">)</span>
-    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
-    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
-    <span class="n">session</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-    <span class="c1"># put the session in the class that uses this fixture</span>
-    <span class="n">request</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
-    <span class="k">return</span> <span class="n">session</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">DEMO_WORKSPACE_NAME</span> <span class="o">=</span> <span class="s2">&#34;NiceFam&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEMO_WORKSPACE_SLACK_ID</span> <span class="o">=</span> <span class="s2">&#34;T02CPGASL8Y&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEMO_MEMBER_ID</span> <span class="o">=</span> <span class="s2">&#34;U02C63W148L&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">DEMO_RESERVATION_DATE</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1994</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">session_with_demo_models</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># first, set up a workspace</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w1</span> <span class="o">=</span> <span class="n">Workspace</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">slack_id</span><span class="o">=</span><span class="n">DEMO_WORKSPACE_SLACK_ID</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span><span class="o">=</span><span class="n">DEMO_WORKSPACE_NAME</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pricing_tier</span><span class="o">=</span><span class="n">PricingTier</span><span class="o">.</span><span class="n">paid</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">onboard_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span> <span class="o">=</span> <span class="n">Garage</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span><span class="o">=</span><span class="s2">&#34;Main garage&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">full_instructions</span><span class="o">=</span><span class="s2">&#34;it&#39;s full, you&#39;re fucked.&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arrival_instructions</span><span class="o">=</span><span class="s2">&#34;just get here&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">spots</span> <span class="o">=</span> <span class="p">[</span><span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="p">),</span> <span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;2&#34;</span><span class="p">),</span> <span class="n">Spot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;3&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spots</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">g1</span><span class="o">.</span><span class="n">spots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w1</span><span class="o">.</span><span class="n">garages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># now add some reservations</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r1</span> <span class="o">=</span> <span class="n">Reservation</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">date</span><span class="o">=</span><span class="n">DEMO_RESERVATION_DATE</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">member_id</span><span class="o">=</span><span class="n">DEMO_MEMBER_ID</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">member_name</span><span class="o">=</span><span class="s2">&#34;Shay Nehmad&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">spot</span><span class="o">=</span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r2</span> <span class="o">=</span> <span class="n">Reservation</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">active</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">member_id</span><span class="o">=</span><span class="n">DEMO_MEMBER_ID</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">member_name</span><span class="o">=</span><span class="s2">&#34;Shay Nehmad&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">spot</span><span class="o">=</span><span class="n">spots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># put the session in the class that uses this fixture</span>
+</span></span><span class="line"><span class="cl">    <span class="n">request</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">session</span></span></span></code></pre></div>
 <p>And here&rsquo;s how the test class that uses the fixture looks:</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">TestAllModelsTogether</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">test_selecting_reservations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-                <span class="n">Reservation</span><span class="o">.</span><span class="n">date</span> <span class="o">==</span> <span class="n">DEMO_RESERVATION_DATE</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">reservations</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reservations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">reservations</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-
-        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">reservations</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reservations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">reservations</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">test_reservation_relationships</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
-        <span class="n">a_single_reservation</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
-
-        <span class="k">assert</span> <span class="n">a_single_reservation</span><span class="o">.</span><span class="n">spot</span><span class="o">.</span><span class="n">garage</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">slack_id</span> <span class="o">==</span> <span class="n">DEMO_WORKSPACE_SLACK_ID</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestAllModelsTogether</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_selecting_reservations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Reservation</span><span class="o">.</span><span class="n">date</span> <span class="o">==</span> <span class="n">DEMO_RESERVATION_DATE</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reservations</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reservations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">reservations</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reservations</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">reservations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">reservations</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_reservation_relationships</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a_single_reservation</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">select</span><span class="p">(</span><span class="n">Reservation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span><span class="o">.</span><span class="n">scalars</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">a_single_reservation</span><span class="o">.</span><span class="n">spot</span><span class="o">.</span><span class="n">garage</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">slack_id</span> <span class="o">==</span> <span class="n">DEMO_WORKSPACE_SLACK_ID</span></span></span></code></pre></div>
 <p>As you can see, for the fixture, we had to also write a utility function to
 <strong>create</strong> the tables, in order to avoid the <code>OperationalError: Table xxx not
 found</code> error:</p>
-<div class="highlight"><pre class="chroma"><code class="language-py" data-lang="py"><span class="k">def</span> <span class="nf">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;Creates all the required tables in the DB, in case it&#39;s un-initialized.
-</span><span class="s2">    
-</span><span class="s2">    Safe to run if tables already exist.&#34;&#34;&#34;</span>
-    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get_bind</span><span class="p">())</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Creates all the required tables in the DB, in case it&#39;s un-initialized.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Safe to run if tables already exist.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get_bind</span><span class="p">())</span></span></span></code></pre></div>
 <h2 id="what-s-next">What&rsquo;s next?<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Well, we&rsquo;ve done some more work around other parts of the code and set up a
@@ -608,11 +608,14 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/database">database</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/orm">ORM</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1805 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1800 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-10-31 19:04 &#43;0200</p>
 			</footer>
 		</article>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/print-hello-world-were-recolabs/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>print(&#39;Hello, World! We’re R&amp;D@RecoLabs.ai&#39;)</span>
+			</a>
 			<a class="prev-post" href="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/">
 				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</span>
 			</a>
@@ -622,7 +625,7 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -630,7 +633,7 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

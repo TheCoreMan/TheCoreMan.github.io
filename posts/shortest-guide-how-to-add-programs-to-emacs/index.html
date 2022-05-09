@@ -11,8 +11,8 @@
 <meta itemprop="description" content="Adding EmacsLips programs to extend Emacs&rsquo;s functionality from source is something I&rsquo;ve found non-obvious (had to open multiple tabs for). Today I&rsquo;ve decided to figure it out, and it&rsquo;s actually very simple, so here&rsquo;s the guide:
 A - Find the program you want to add In my case, it was &ldquo;Transpose Frame&rdquo; by irie.
  I&rsquo;ve stumbled across it from this StackExchange answer.
- If the program is available on MELPA, you can just add it to the additional-packages list in your ."><meta itemprop="datePublished" content="2021-05-17T15:36:58&#43;03:00" />
-<meta itemprop="dateModified" content="2021-05-17T15:36:58&#43;03:00" />
+ If the program is available on MELPA, you can just add it to the additional-packages list in your ."><meta itemprop="datePublished" content="2021-05-17T15:36:58+03:00" />
+<meta itemprop="dateModified" content="2021-05-17T15:36:58+03:00" />
 <meta itemprop="wordCount" content="543"><meta itemprop="image" content="https://s3.amazonaws.com/fullstackfeed/images/emacs-5.jpg">
 <meta itemprop="keywords" content="emacs,howto,clojure," /><meta property="og:title" content="How to Add EmacsLisp Programs to Emacs - The Hard Way" />
 <meta property="og:description" content="Adding EmacsLips programs to extend Emacs&rsquo;s functionality from source is something I&rsquo;ve found non-obvious (had to open multiple tabs for). Today I&rsquo;ve decided to figure it out, and it&rsquo;s actually very simple, so here&rsquo;s the guide:
@@ -21,8 +21,8 @@ A - Find the program you want to add In my case, it was &ldquo;Transpose Frame&r
  If the program is available on MELPA, you can just add it to the additional-packages list in your ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/" /><meta property="og:image" content="https://s3.amazonaws.com/fullstackfeed/images/emacs-5.jpg" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-17T15:36:58&#43;03:00" />
-<meta property="article:modified_time" content="2021-05-17T15:36:58&#43;03:00" />
+<meta property="article:published_time" content="2021-05-17T15:36:58+03:00" />
+<meta property="article:modified_time" content="2021-05-17T15:36:58+03:00" />
 
 
 <meta name="twitter:title" content="How to Add EmacsLisp Programs to Emacs - The Hard Way">
@@ -37,7 +37,7 @@ A - Find the program you want to add In my case, it was &ldquo;Transpose Frame&r
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>How to Add EmacsLisp Programs to Emacs - The Hard Way</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://s3.amazonaws.com/fullstackfeed/images/emacs-5.jpg');}</style>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
 <script type="text/javascript" id="MathJax-script" async
@@ -125,21 +125,21 @@ MathJax.Hub.Config({
 <h2 id="b-download-the-el-file-into-your-load-path">B - Download the <code>.el</code> file into your <code>load-path</code><a href="#b-download-the-el-file-into-your-load-path" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>You need to download the <code>.el</code> file into a directory within load-path. This should work (replace the URL with your file):</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /usr/local/share/emacs/site-lisp
-sudo wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/transpose-frame.el -O transpose-frame.el</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/local/share/emacs/site-lisp
+</span></span><span class="line"><span class="cl">sudo wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/transpose-frame.el -O transpose-frame.el</span></span></code></pre></div>
 <h2 id="c-byte-compile-that-el-file-into-a-elc-file">C - Byte-compile that <code>.el</code> file into a <code>.elc</code> file<a href="#c-byte-compile-that-el-file-into-a-elc-file" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Now you need to compile that <code>.el</code> file:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo emacs --batch --eval <span class="o">(</span>byte-compile-file <span class="s2">&#34;transpose-frame.el&#34;</span><span class="o">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo emacs --batch --eval <span class="o">(</span>byte-compile-file <span class="s2">&#34;transpose-frame.el&#34;</span><span class="o">)</span></span></span></code></pre></div>
 <h2 id="d-add-the-program-to-your-spacemacs-configuration">D - Add the program to your Spacemacs configuration<a href="#d-add-the-program-to-your-spacemacs-configuration" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p>Open your config file using <code>SPC f e d</code> (files -&gt; edit -&gt; dotfile).</p>
 
 <p>Add the program to your dotfile, for example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;transpose-frame</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;transpose-frame</span><span class="p">)</span></span></span></code></pre></div>
 <p>Make sure to add it BEFORE the markers which say:</p>
-<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="c1">;; Do not write anything past this comment. This is where Emacs will</span>
-<span class="c1">;; auto-generate custom variable definitions.</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="c1">;; Do not write anything past this comment. This is where Emacs will</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; auto-generate custom variable definitions.</span></span></span></code></pre></div>
 <h2 id="e-reload-the-configuration">E - Reload the configuration<a href="#e-reload-the-configuration" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 
 <p><code>SPC f e R</code> (Files -&gt; Emacs/Spacemacs -&gt; Reload configuration).</p>
@@ -159,16 +159,16 @@ sudo wget https://raw.githubusercontent.com/emacsmirror/emacswiki.org/master/tra
 <h3 id="byte-compile-and-accessing-documentation">Byte-compile and accessing documentation<a href="#byte-compile-and-accessing-documentation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 
 <p>To understand what <code>byte-compile-file</code> does, you can <a href="https://www.emacswiki.org/emacs/CompiledFile">read the documentation on the Emacs Wiki</a>. But another good tip is to use <code>SPC h d f</code> (help -&gt; describe -&gt; function) to access the internal docs directly from within <code>emacs</code>. Here&rsquo;s what I got for typing <code>SPC h d f byte-compile-file ENTER</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">byte-compile-file is an interactive autoloaded compiled Lisp function in
-‘bytecomp.el’.
-
-(byte-compile-file FILENAME &amp;optional LOAD)
-
-Compile a file of Lisp code named FILENAME into a file of byte code.
-The output file’s name is generated by passing FILENAME to the
-function ‘byte-compile-dest-file’ (which see).
-With prefix arg (noninteractively: 2nd arg), LOAD the file after compiling.
-The value is non-nil if there were no errors, nil if errors.</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">byte-compile-file is an interactive autoloaded compiled Lisp function in
+</span></span><span class="line"><span class="cl">‘bytecomp.el’.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(byte-compile-file FILENAME &amp;optional LOAD)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Compile a file of Lisp code named FILENAME into a file of byte code.
+</span></span><span class="line"><span class="cl">The output file’s name is generated by passing FILENAME to the
+</span></span><span class="line"><span class="cl">function ‘byte-compile-dest-file’ (which see).
+</span></span><span class="line"><span class="cl">With prefix arg (noninteractively: 2nd arg), LOAD the file after compiling.
+</span></span><span class="line"><span class="cl">The value is non-nil if there were no errors, nil if errors.</span></span></code></pre></div>
 <p>Also, Emacs might byte-compile things automatically after require.</p>
 
 <h3 id="jumping-between-files-easily">Jumping between files easily<a href="#jumping-between-files-easily" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -217,7 +217,7 @@ The value is non-nil if there were no errors, nil if errors.</code></pre></div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
@@ -225,7 +225,7 @@ The value is non-nil if there were no errors, nil if errors.</code></pre></div>
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

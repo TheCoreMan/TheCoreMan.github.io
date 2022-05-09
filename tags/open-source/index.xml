@@ -6,7 +6,16 @@
     <description>Recent content in open-source on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 May 2022 22:29:06 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>We Attended the Go Israel March 2022 Meetup</title>
+      <link>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</link>
+      <pubDate>Mon, 09 May 2022 22:29:06 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
       <link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>

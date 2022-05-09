@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>recolabs on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/recolabs/</link>
+    <description>Recent content in recolabs on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 May 2022 22:29:06 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/recolabs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>We Attended the Go Israel March 2022 Meetup</title>
+      <link>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</link>
+      <pubDate>Mon, 09 May 2022 22:29:06 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>print(&#39;Hello, World! We’re R&amp;D@RecoLabs.ai&#39;)</title>
+      <link>https://www.mrnice.dev/posts/print-hello-world-were-recolabs/</link>
+      <pubDate>Wed, 19 Jan 2022 22:29:06 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/print-hello-world-were-recolabs/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
