@@ -14,7 +14,7 @@
       
       <guid>https://www.mrnice.dev/posts/dev-log-1/</guid>
       <description>Last time we talked a lot about the WHY. This post is all about the HOW.
- If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first  Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?</description>
+If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level HLD Planning the level database What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time If a task is done and no one marks it in a ticketing system, does it actually work?</description>
     </item>
     
   </channel>

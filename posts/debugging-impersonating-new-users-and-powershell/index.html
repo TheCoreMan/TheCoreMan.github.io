@@ -9,12 +9,12 @@
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
 <meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC  A little context ToC  More context  How I wanted to do it The problems  The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete."><meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00" />
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete."><meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00" />
 <meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00" />
 <meta itemprop="wordCount" content="1227">
 <meta itemprop="keywords" content="windows,debugging,powershell,monkey,dev," /><meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS" />
 <meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC  A little context ToC  More context  How I wanted to do it The problems  The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete." />
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-26T15:34:44+02:00" />
@@ -110,159 +110,123 @@ MathJax.Hub.Config({
 				<h1>Debugging Windows: New Users, Powershell, and TLS</h1>
 			</header>
 			<div class="content">
-				
-
-<h2 id="a-little-context">A little context<a href="#a-little-context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+				<h2 id="a-little-context">A little context<a href="#a-little-context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I wanted to work on <a href="https://github.com/guardicore/monkey/pull/517">this PR in Infection Monkey</a>. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.</p>
-
 <h2 id="toc">ToC<a href="#toc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <ul>
 <li><a href="#a-little-context">A little context</a></li>
 <li><a href="#toc">ToC</a>
-
 <ul>
 <li><a href="#more-context">More context</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#how-i-wanted-to-do-it">How I wanted to do it</a></li>
 <li><a href="#the-problems">The problems</a>
-
 <ul>
 <li><a href="#the-first-problem-the-application-failed-to-initialize-properly-0xc0000124">The first problem: <code>The application failed to initialize properly (0xc0000124)</code></a></li>
 <li><a href="#the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorers-first-launch-configuration-is-not-complete">The second problem: <code>The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer's first-launch configuration is not complete.</code></a></li>
 <li><a href="#the-third-problem-unsupported-tls-version">The third problem: Unsupported TLS version</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#conclusions">Conclusions</a></li>
 </ul>
-
 <h3 id="more-context">More context<a href="#more-context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>👩‍🔧 <em>If you&rsquo;re here for the technical stuff only you can skip this section.</em></p>
-
 <p>The Infection Monkey is getting a big upgrade right now (Jan 2020) relating to the Zero Trust territory. One of Zero Trust&rsquo;s pillars is People (i.e. User Identity) - meaning how User Identity is secured in your network. The test we wanted to implement in the Monkey to check out that pillar was supposed to imitate the following Attack scenario:</p>
-
 <ol>
 <li>Attacker gets into the machine.</li>
 <li>Attacker creates a new local user.</li>
 <li>Attacker does actions as that new user, including communicating with the internet.</li>
 </ol>
-
 <p>This test checks how much a network adheres to the <a href="https://www.forrester.com/report/Apply+Zero+Trust+eXtended+Principles+In+Your+Identity+And+Access+Management+Programs/-/E-RES158603">People pillar of Zero Trust</a>, since if you&rsquo;re enforcing that part of you network security correctly - a totally new, unknown user SHOULDN&rsquo;T be able to access the internet at all.</p>
-
 <h2 id="how-i-wanted-to-do-it">How I wanted to do it<a href="#how-i-wanted-to-do-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>I already had a POC of the following flow <em>working</em> and <a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py">in the Repo</a>:</p>
-
 <ol>
 <li>Create a new user with the <code>net user</code> command.</li>
-
-<li><p>Log on as the new user (<a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py#L59">see on Github</a>):</p>
+<li>Log on as the new user (<a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py#L59">see on Github</a>):</li>
+</ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">win32security</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">win32con</span>
 </span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Logon as new user: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-logonusera</span>
-</span></span><span class="line"><span class="cl"><span class="bp">self</span><span class="o">.</span><span class="n">logon_handle</span> <span class="o">=</span> <span class="n">win32security</span><span class="o">.</span><span class="n">LogonUser</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;.&#34;</span><span class="p">,</span>  <span class="c1"># Use current domain.</span>
-</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">win32con</span><span class="o">.</span><span class="n">LOGON32_LOGON_INTERACTIVE</span><span class="p">,</span>  <span class="c1"># Logon type - interactive (normal user). Need this to open ping</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># using a shell.</span>
-</span></span><span class="line"><span class="cl">    <span class="n">win32con</span><span class="o">.</span><span class="n">LOGON32_PROVIDER_DEFAULT</span><span class="p">)</span>  <span class="c1"># Which logon provider to use - whatever Windows offers.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Logon as new user: https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-logonusera</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">logon_handle</span> <span class="o">=</span> <span class="n">win32security</span><span class="o">.</span><span class="n">LogonUser</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;.&#34;</span><span class="p">,</span>  <span class="c1"># Use current domain.</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">win32con</span><span class="o">.</span><span class="n">LOGON32_LOGON_INTERACTIVE</span><span class="p">,</span>  <span class="c1"># Logon type - interactive (normal user). Need this to open ping</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># using a shell.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">win32con</span><span class="o">.</span><span class="n">LOGON32_PROVIDER_DEFAULT</span><span class="p">)</span>  <span class="c1"># Which logon provider to use - whatever Windows offers.</span>
 </span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl"><span class="k">raise</span> <span class="n">NewUserError</span><span class="p">(</span><span class="s2">&#34;Can&#39;t logon as </span><span class="si">{}</span><span class="s2">. Error: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span></span></span></code></pre></div></li>
-
-<li><p>Run <code>PING.exe</code> as that user using <code>CreateProcessAsUser</code>, with <code>self.logon_handle</code> (<a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py#L75">see on GitHub</a>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">run_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Importing these only on windows, as they won&#39;t exist on linux.</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">win32con</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">win32process</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">win32api</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">win32event</span>
-</span></span><span class="line"><span class="cl"><span class="n">exit_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="n">process_handle</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl"><span class="n">thread_handle</span> <span class="o">=</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Open process as that user:</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessasusera</span>
-</span></span><span class="line"><span class="cl">    <span class="n">process_handle</span><span class="p">,</span> <span class="n">thread_handle</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">win32process</span><span class="o">.</span><span class="n">CreateProcessAsUser</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">get_logon_handle</span><span class="p">(),</span>  <span class="c1"># A handle to the primary token that represents a user.</span>
-</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># The name of the module to be executed.</span>
-</span></span><span class="line"><span class="cl">        <span class="n">command</span><span class="p">,</span>  <span class="c1"># The command line to be executed.</span>
-</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Process attributes</span>
-</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Thread attributes</span>
-</span></span><span class="line"><span class="cl">        <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Should inherit handles</span>
-</span></span><span class="line"><span class="cl">        <span class="n">win32con</span><span class="o">.</span><span class="n">NORMAL_PRIORITY_CLASS</span><span class="p">,</span>  <span class="c1"># The priority class and the creation of the process.</span>
-</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># An environment block for the new process. If this parameter is NULL, the new process</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># uses the environment of the calling process.</span>
-</span></span><span class="line"><span class="cl">        <span class="kc">None</span><span class="p">,</span>  <span class="c1"># CWD. If this parameter is NULL, the new process will have the same current drive and</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># directory as the calling process.</span>
-</span></span><span class="line"><span class="cl">        <span class="n">win32process</span><span class="o">.</span><span class="n">STARTUPINFO</span><span class="p">()</span>  <span class="c1"># STARTUPINFO structure.</span>
-</span></span><span class="line"><span class="cl">        <span class="c1"># https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Waiting for process to finish. Timeout: </span><span class="si">{}</span><span class="s2">ms&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">WAIT_TIMEOUT_IN_MILLISECONDS</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Ignoring return code, as we&#39;ll use `GetExitCode` to determine the state of the process later.</span>
-</span></span><span class="line"><span class="cl">    <span class="n">_</span> <span class="o">=</span> <span class="n">win32event</span><span class="o">.</span><span class="n">WaitForSingleObject</span><span class="p">(</span>  <span class="c1"># Waits until the specified object is signaled, or time-out.</span>
-</span></span><span class="line"><span class="cl">        <span class="n">process_handle</span><span class="p">,</span>  <span class="c1"># Ping process handle</span>
-</span></span><span class="line"><span class="cl">        <span class="n">WAIT_TIMEOUT_IN_MILLISECONDS</span>  <span class="c1"># Timeout in milliseconds</span>
-</span></span><span class="line"><span class="cl">    <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">exit_code</span> <span class="o">=</span> <span class="n">win32process</span><span class="o">.</span><span class="n">GetExitCodeProcess</span><span class="p">(</span><span class="n">process_handle</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">finally</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">process_handle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">win32api</span><span class="o">.</span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">process_handle</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">thread_handle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">win32api</span><span class="o">.</span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">thread_handle</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;Close handle error: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">exit_code</span></span></span></code></pre></div></li>
+</span></span><span class="line"><span class="cl">    <span class="k">raise</span> <span class="n">NewUserError</span><span class="p">(</span><span class="s2">&#34;Can&#39;t logon as </span><span class="si">{}</span><span class="s2">. Error: </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)))</span>
+</span></span></code></pre></div><ol start="3">
+<li>Run <code>PING.exe</code> as that user using <code>CreateProcessAsUser</code>, with <code>self.logon_handle</code> (<a href="https://github.com/guardicore/monkey/blob/34c2ff6bb622bbe122ffa53b9fb0069f93293b53/monkey/infection_monkey/utils/windows/users.py#L75">see on GitHub</a>):</li>
 </ol>
-
-<p>One Googling session later to look for the proper way to send HTTP requests in Windows; and I find that to do that, since we don&rsquo;t have <code>curl</code>, I&rsquo;ll need to use <code>powershell</code>. All I wanted to do was change <code>PING.exe</code> to <code>powershell.exe -command &quot;Invoke-WebRequest https://infectionmonkey.com/&quot;</code>. Sounds simple, doesn&rsquo;t it?</p>
-
-<p><img src="https://media.giphy.com/media/l0HlKwOMS590aqbu0/giphy.gif" alt="WhatsTheWorstThatCouldHappen" /></p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">run_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Importing these only on windows, as they won&#39;t exist on linux.</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">win32con</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">win32process</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">win32api</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">win32event</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exit_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">process_handle</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="n">thread_handle</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Open process as that user:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessasusera</span>
+</span></span><span class="line"><span class="cl">        <span class="n">process_handle</span><span class="p">,</span> <span class="n">thread_handle</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">win32process</span><span class="o">.</span><span class="n">CreateProcessAsUser</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">get_logon_handle</span><span class="p">(),</span>  <span class="c1"># A handle to the primary token that represents a user.</span>
+</span></span><span class="line"><span class="cl">            <span class="kc">None</span><span class="p">,</span>  <span class="c1"># The name of the module to be executed.</span>
+</span></span><span class="line"><span class="cl">            <span class="n">command</span><span class="p">,</span>  <span class="c1"># The command line to be executed.</span>
+</span></span><span class="line"><span class="cl">            <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Process attributes</span>
+</span></span><span class="line"><span class="cl">            <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Thread attributes</span>
+</span></span><span class="line"><span class="cl">            <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Should inherit handles</span>
+</span></span><span class="line"><span class="cl">            <span class="n">win32con</span><span class="o">.</span><span class="n">NORMAL_PRIORITY_CLASS</span><span class="p">,</span>  <span class="c1"># The priority class and the creation of the process.</span>
+</span></span><span class="line"><span class="cl">            <span class="kc">None</span><span class="p">,</span>  <span class="c1"># An environment block for the new process. If this parameter is NULL, the new process</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># uses the environment of the calling process.</span>
+</span></span><span class="line"><span class="cl">            <span class="kc">None</span><span class="p">,</span>  <span class="c1"># CWD. If this parameter is NULL, the new process will have the same current drive and</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># directory as the calling process.</span>
+</span></span><span class="line"><span class="cl">            <span class="n">win32process</span><span class="o">.</span><span class="n">STARTUPINFO</span><span class="p">()</span>  <span class="c1"># STARTUPINFO structure.</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Waiting for process to finish. Timeout: </span><span class="si">{}</span><span class="s2">ms&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">WAIT_TIMEOUT_IN_MILLISECONDS</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Ignoring return code, as we&#39;ll use `GetExitCode` to determine the state of the process later.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_</span> <span class="o">=</span> <span class="n">win32event</span><span class="o">.</span><span class="n">WaitForSingleObject</span><span class="p">(</span>  <span class="c1"># Waits until the specified object is signaled, or time-out.</span>
+</span></span><span class="line"><span class="cl">            <span class="n">process_handle</span><span class="p">,</span>  <span class="c1"># Ping process handle</span>
+</span></span><span class="line"><span class="cl">            <span class="n">WAIT_TIMEOUT_IN_MILLISECONDS</span>  <span class="c1"># Timeout in milliseconds</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit_code</span> <span class="o">=</span> <span class="n">win32process</span><span class="o">.</span><span class="n">GetExitCodeProcess</span><span class="p">(</span><span class="n">process_handle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">process_handle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">win32api</span><span class="o">.</span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">process_handle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">thread_handle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">win32api</span><span class="o">.</span><span class="n">CloseHandle</span><span class="p">(</span><span class="n">thread_handle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;Close handle error: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">exit_code</span>
+</span></span></code></pre></div><p>One Googling session later to look for the proper way to send HTTP requests in Windows; and I find that to do that, since we don&rsquo;t have <code>curl</code>, I&rsquo;ll need to use <code>powershell</code>. All I wanted to do was change <code>PING.exe</code> to <code>powershell.exe -command &quot;Invoke-WebRequest https://infectionmonkey.com/&quot;</code>. Sounds simple, doesn&rsquo;t it?</p>
+<p><img src="https://media.giphy.com/media/l0HlKwOMS590aqbu0/giphy.gif" alt="WhatsTheWorstThatCouldHappen"></p>
 <h2 id="the-problems">The problems<a href="#the-problems" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <h3 id="the-first-problem-the-application-failed-to-initialize-properly-0xc0000124">The first problem: <code>The application failed to initialize properly (0xc0000124)</code><a href="#the-first-problem-the-application-failed-to-initialize-properly-0xc0000124" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Like any good developer, I went looking for this error code. <a href="https://github.com/guardicore/monkey/pull/517/files#diff-6104db73f4811fd12884e61eda7c4c0eR74-R75">I also improved my logging of the error code</a>. The problem seemed to be a DLL init problem.</p>
-
-<p><img src="https://i.imgur.com/OJc4Lzm.png" alt="STATUS_DLL_INIT_FAILED" /></p>
-
+<p><img src="https://i.imgur.com/OJc4Lzm.png" alt="STATUS_DLL_INIT_FAILED"></p>
 <p>What does that mean? I used some <code>procmon</code> to try to figure out what the problem was, but that proved not super useful. My hunch was that since <code>powershell</code> is a modern app, it has more dependencies and requirements that <code>ping</code> simply doesn&rsquo;t, so after a lot of time wasted on trying to pinpoint the issue, I decided to go with a &ldquo;try until it works&rdquo; approach.</p>
-
 <p>Based on <a href="https://stackoverflow.com/questions/38427094/createprocessasuser-works-createprocesswithtokenw-does-not">this StackOverflow thread</a>, I realized I should use <code>CreateProcessWithLogonW</code> instead of <code>CreateProcessAsUser</code>. <code>CreateProcessWithLogonW</code> managed to create an environment where <code>Powershell.exe</code> could run, whereas <code>LogonUser</code> + <code>CreateProcessAsUser</code> didn&rsquo;t.</p>
-
 <p>This is because <code>CreateProcessWithLogonW</code> uses an RPC call to <code>ncalrpc:[SECLOGON]</code> in <code>svchost</code> (<code>SeclCreateProcessWithLogonW</code> from <code>seclogon.dll</code> called). Internally it does <code>CreateProcessAsUser</code> <em>eventually</em>, but it logs on in a different way and ALSO creates a new session + window. This was enough for <code>powershell</code> to run; the actual issue of the environment that <code>powershell</code> needed to run was solved.</p>
-
 <p>This was VERY hard and cryptic to figure out, and took the better part of a day. I was very happy to be done with it; then I got another Error code. 0x1. Hey, at least it&rsquo;s a normal number this time 😑</p>
-
-<h3 id="the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorer-s-first-launch-configuration-is-not-complete">The second problem: <code>The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer's first-launch configuration is not complete.</code><a href="#the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorer-s-first-launch-configuration-is-not-complete" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorers-first-launch-configuration-is-not-complete">The second problem: <code>The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer's first-launch configuration is not complete.</code><a href="#the-second-problem-the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-not-available-or-internet-explorers-first-launch-configuration-is-not-complete" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>The second bug was with the actual command itself. After creating a new user, <code>Invoke-WebRequest</code> won&rsquo;t work. How did I figure this out? I created a debug breakpoint and manually opened a powershell as the new user, just after it was created.</p>
-
 <p>We tried running <code>echo hello</code> - it worked. So we tried running <code>Invoke-WebRequest</code> and it failed:</p>
-
-<p><img src="https://i.imgur.com/IxCYZyx.png" alt="powershell error code" /></p>
-
+<p><img src="https://i.imgur.com/IxCYZyx.png" alt="powershell error code"></p>
 <p>This is because <code>Invoke-WebRequest</code> internally uses Internet Explorer&rsquo;s engine to parse the response. Since the user is totally new, &ldquo;Internet Explorer&rsquo;s first-launch configuration is not complete&rdquo; and therefore the Internet Explorer engine is not available.</p>
-
-<p><img src="https://media.giphy.com/media/8GbvxxFHJDBa8/giphy.gif" alt="ugh" /></p>
-
+<p><img src="https://media.giphy.com/media/8GbvxxFHJDBa8/giphy.gif" alt="ugh"></p>
 <p>The fix for that was to add the <code>-UseBasicParsing</code> flag. At first, <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest?view=powershell-6">I thought it was deprecated</a>, but I looked at the wrong documentation since I was testing with an old <code>powershell</code> version. In the newer <code>powershell</code> versions this shouldn&rsquo;t be an issue at all since PS6 doesn&rsquo;t rely on Windows.</p>
-
 <h3 id="the-third-problem-unsupported-tls-version">The third problem: Unsupported TLS version<a href="#the-third-problem-unsupported-tls-version" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>After I was done testing the feature on my machine, I moved to testing the feature on a specific Windows server; where, to no one&rsquo;s surprise, the feature didn&rsquo;t work correctly. This happened since I was testing with <code>https://infectionmonkey.com</code> which ONLY supported <code>TLS 1.2</code>, but the <code>powershell</code> commandlet I was using used <code>TLS 1.0</code> by default.</p>
-
 <p>To overcome this I manually decided which security protocol <code>powershell</code> was going to use, by adding the <code>[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12</code> command to the <code>powershell</code> script. That set the TLS version of the request and fixed the issue. <a href="https://github.com/guardicore/monkey/pull/518/files#diff-6104db73f4811fd12884e61eda7c4c0eR52">See the pull request</a>.</p>
-
 <p>This problem also brought to my attention the fact that <code>https://infectionmonkey.com</code> doesn&rsquo;t support old TLS versions - but we decided that&rsquo;s OK 🔐😀</p>
-
 <h2 id="conclusions">Conclusions<a href="#conclusions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <ul>
 <li>Windows will never cease to surprise me, but not all surprises are good.</li>
 <li>If you&rsquo;re using Windows, try to use the highest-level API you can use. Usually that gives the best results.</li>
@@ -311,7 +275,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

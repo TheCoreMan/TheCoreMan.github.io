@@ -10,13 +10,13 @@
 <meta itemprop="name" content="OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13">
 <meta itemprop="description" content="See all the bandit writeups for the other levels.
 It&rsquo;s a lovely, lazy Saturday. Not much to do. We&rsquo;re already after our morning workout, had some nice breakfast, ☕ in hand, Spotify on point with some chill vibes (Neotokyo by Ed Harrison). So my wife and I decided to try to solve OverTheWire&rsquo;s Bandit CTF together and write up what we&rsquo;ve learned.
- SPOILER ALERT Level 0 Level 0 -&gt; Level 1 Level 1 -&gt; Level 2 Level 2 -&gt; Level 3 Level 3 -&gt; Level 4 Level 4 -&gt; Level 5 Level 5 -&gt; Level 6 Level 6 -&gt; Level 7 Level 7 -&gt; Level 8 Level 8 -&gt; Level 9 Level 9 -&gt; Level 10 Level 10 -&gt; Level 11 Level 11 -&gt; Level 12 Level 12 -&gt; Level 13 Level 13 and beyond  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."><meta itemprop="datePublished" content="2020-02-01T13:23:19+02:00" />
+SPOILER ALERT Level 0 Level 0 -&gt; Level 1 Level 1 -&gt; Level 2 Level 2 -&gt; Level 3 Level 3 -&gt; Level 4 Level 4 -&gt; Level 5 Level 5 -&gt; Level 6 Level 6 -&gt; Level 7 Level 7 -&gt; Level 8 Level 8 -&gt; Level 9 Level 9 -&gt; Level 10 Level 10 -&gt; Level 11 Level 11 -&gt; Level 12 Level 12 -&gt; Level 13 Level 13 and beyond SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."><meta itemprop="datePublished" content="2020-02-01T13:23:19+02:00" />
 <meta itemprop="dateModified" content="2020-02-01T13:23:19+02:00" />
 <meta itemprop="wordCount" content="1694">
 <meta itemprop="keywords" content="linux,ctf,writeups,bandit,overthewire," /><meta property="og:title" content="OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13" />
 <meta property="og:description" content="See all the bandit writeups for the other levels.
 It&rsquo;s a lovely, lazy Saturday. Not much to do. We&rsquo;re already after our morning workout, had some nice breakfast, ☕ in hand, Spotify on point with some chill vibes (Neotokyo by Ed Harrison). So my wife and I decided to try to solve OverTheWire&rsquo;s Bandit CTF together and write up what we&rsquo;ve learned.
- SPOILER ALERT Level 0 Level 0 -&gt; Level 1 Level 1 -&gt; Level 2 Level 2 -&gt; Level 3 Level 3 -&gt; Level 4 Level 4 -&gt; Level 5 Level 5 -&gt; Level 6 Level 6 -&gt; Level 7 Level 7 -&gt; Level 8 Level 8 -&gt; Level 9 Level 9 -&gt; Level 10 Level 10 -&gt; Level 11 Level 11 -&gt; Level 12 Level 12 -&gt; Level 13 Level 13 and beyond  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU." />
+SPOILER ALERT Level 0 Level 0 -&gt; Level 1 Level 1 -&gt; Level 2 Level 2 -&gt; Level 3 Level 3 -&gt; Level 4 Level 4 -&gt; Level 5 Level 5 -&gt; Level 6 Level 6 -&gt; Level 7 Level 7 -&gt; Level 8 Level 8 -&gt; Level 9 Level 9 -&gt; Level 10 Level 10 -&gt; Level 11 Level 11 -&gt; Level 12 Level 12 -&gt; Level 13 Level 13 and beyond SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/bandit-ctf-writeup/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-02-01T13:23:19+02:00" />
@@ -112,12 +112,8 @@ MathJax.Hub.Config({
 				<h1>OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</h1>
 			</header>
 			<div class="content">
-				
-
-<p><strong>See <a href="https://www.mrnice.dev/tags/bandit/">all the bandit writeups</a> for the other levels.</strong></p>
-
+				<p><strong>See <a href="https://www.mrnice.dev/tags/bandit/">all the bandit writeups</a> for the other levels.</strong></p>
 <p>It&rsquo;s a lovely, lazy Saturday. Not much to do. We&rsquo;re already after our morning workout, had some nice breakfast, ☕ in hand, Spotify on point with some chill vibes <a href="https://open.spotify.com/album/6gNyXr6nNjX0JVQd5VCUM6?si=sZIP9Y4CQWWDZ8M8_Gj0zA">(Neotokyo by Ed Harrison)</a>. So my wife and I decided to try to solve <a href="https://overthewire.org/information/donate.html">OverTheWire&rsquo;s</a> <a href="https://overthewire.org/wargames/bandit/">Bandit CTF</a> together and write up what we&rsquo;ve learned.</p>
-
 <ul>
 <li><a href="#spoiler-alert">SPOILER ALERT</a></li>
 <li><a href="#level-0">Level 0</a></li>
@@ -136,203 +132,116 @@ MathJax.Hub.Config({
 <li><a href="#level-12---level-13">Level 12 -&gt; Level 13</a></li>
 <li><a href="#level-13-and-beyond">Level 13 and beyond</a></li>
 </ul>
-
 <h2 id="spoiler-alert">SPOILER ALERT<a href="#spoiler-alert" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p><strong>THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU</strong>.</p>
-
 <p>So why am I writing it up?</p>
-
 <ol>
 <li>I want to be sure that I understood how I solved the level.</li>
 <li>I want to be sure that I can explain my solution to other people.</li>
 <li>If someone is stuck and wants some help to continue, they can do so quickly.</li>
 </ol>
-
 <p>These challeges can be frustrating. While I think that a little frustration is good (especially in CTFs), I hope this guide will cause someone who was almost discouraged from trying/continuing the challenge to carry on. If you&rsquo;re one of these people - don&rsquo;t give up! You can do this 💪🏽</p>
-
-<p><img src="https://previews.123rf.com/images/lkeskinen/lkeskinen1705/lkeskinen170506216/78174196-spoiler-alert-rubber-stamp.jpg" alt="spoiler alert" /></p>
-
+<p><img src="https://previews.123rf.com/images/lkeskinen/lkeskinen1705/lkeskinen170506216/78174196-spoiler-alert-rubber-stamp.jpg" alt="spoiler alert"></p>
 <p>Also, I will try to avoid posting the passwords. If you do see a password that I forgot to omit please let me know!</p>
-
 <h2 id="level-0">Level 0<a href="#level-0" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>The first thing you see after connecting is:</p>
-
-<p><img src="https://i.imgur.com/IrCDYkk.png" alt="bandit0" /></p>
-
+<p><img src="https://i.imgur.com/IrCDYkk.png" alt="bandit0"></p>
 <p>Problems you might face:</p>
-
 <ul>
 <li>You don&rsquo;t <code>ssh user@hostname:port</code>. The syntax is <code>ssh user@hostname -p port</code>.</li>
 </ul>
-
 <p>The solution is to go to the next level on their site. Simple 🤗</p>
-
-<h2 id="level-0-level-1">Level 0 -&gt; Level 1<a href="#level-0-level-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="level-0---level-1">Level 0 -&gt; Level 1<a href="#level-0---level-1" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Here you need to read the file called <code>readme</code>. The file is located at <code>/home/bandit0/readme</code> which is the home directory. Conveniently, when you log in to a server using SSH, noramlly your default working directory is your home directory.</p>
-
 <p>To read files in linux you can use the <code>cat</code> command.</p>
-
 <p>Here&rsquo;s what it looks like:</p>
-
-<p><img src="https://i.imgur.com/mpszOsH.png" alt="bandit1" /></p>
-
+<p><img src="https://i.imgur.com/mpszOsH.png" alt="bandit1"></p>
 <p>To move to the next stage you need to log in to the server with the user <code>bandit1</code> and the password you&rsquo;ve retrieved from the <code>readme</code> file.</p>
-
 <blockquote>
 <p>Tip: To copy the password and paste it in a shell environment, mark it with your mouse, <code>right-click</code> to copy (you won&rsquo;t see anything) and then <code>right-click</code> to paste (you won&rsquo;t see anything again).</p>
 </blockquote>
-
-<h2 id="level-1-level-2">Level 1 -&gt; Level 2<a href="#level-1-level-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="level-1---level-2">Level 1 -&gt; Level 2<a href="#level-1---level-2" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>To solve this level you need to do basically the same thing you did last stage but trying <code>cat -</code> won&rsquo;t work because <a href="https://unix.stackexchange.com/questions/16357/usage-of-dash-in-place-of-a-filename"><code>-</code> means <code>stdin</code></a>.</p>
-
 <p>To overcome this we use bash indirection, there are a few ways around this, here are two:</p>
-
-<p><img src="https://i.imgur.com/WYJvOD1.png" alt="bandit2" /></p>
-
-<h2 id="level-2-level-3">Level 2 -&gt; Level 3<a href="#level-2-level-3" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/WYJvOD1.png" alt="bandit2"></p>
+<h2 id="level-2---level-3">Level 2 -&gt; Level 3<a href="#level-2---level-3" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>There are spaces in the file name which we need to read this time. Now we can use place <code>\</code> before the spaces (called <em>escaping</em>) or use quotes (<code>&quot;</code>) around the filename.</p>
-
-<p><img src="https://i.imgur.com/0PiUvxd.png" alt="bandit3" /></p>
-
-<h2 id="level-3-level-4">Level 3 -&gt; Level 4<a href="#level-3-level-4" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/0PiUvxd.png" alt="bandit3"></p>
+<h2 id="level-3---level-4">Level 3 -&gt; Level 4<a href="#level-3---level-4" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>What are hidden files in Linux? A hidden file is any file that begins with a dot <code>.</code>.</p>
-
 <p>To list all files (including hidden ones), use the <code>-a</code> flag for the <code>ls</code> command.</p>
-
-<p><img src="https://i.imgur.com/oXyt5a2.png" alt="bandit4" /></p>
-
-<h2 id="level-4-level-5">Level 4 -&gt; Level 5<a href="#level-4-level-5" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/oXyt5a2.png" alt="bandit4"></p>
+<h2 id="level-4---level-5">Level 4 -&gt; Level 5<a href="#level-4---level-5" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We can use the <code>file</code> command (yeah, that&rsquo;s the name) to try and determine what are the contents of a file. So since we are directed to look at the only human readable file in the directory, let&rsquo;s use the <code>file</code> command on all of the files. We can do this manually but by using a wildcard (<code>*</code>) we tell bash to run <code>file</code> with everything that matches.</p>
-
-<p><img src="https://i.imgur.com/R1qVFpc.png" alt="bandit5" /></p>
-
-<h2 id="level-5-level-6">Level 5 -&gt; Level 6<a href="#level-5-level-6" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/R1qVFpc.png" alt="bandit5"></p>
+<h2 id="level-5---level-6">Level 5 -&gt; Level 6<a href="#level-5---level-6" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We need to use the <code>find</code> command to find a file which answers specific parameters. I won&rsquo;t lie - I used Google to lookup the exact syntax and flags. You can use <code>man find</code> if you really want to go in deep, but usually I won&rsquo;t do this just to save time ⌚. Google brought up <a href="http://www.ducea.com/2008/02/12/linux-tips-find-all-files-of-a-particular-size/">this link</a>, which told me that we need to use the <code>-size</code> flag and specify the size in bytes. In the end we end up with:</p>
-
-<p><img src="https://i.imgur.com/WmfdNxt.png" alt="bandit6" /></p>
-
+<p><img src="https://i.imgur.com/WmfdNxt.png" alt="bandit6"></p>
 <p>You can see that after reading the file, my shell was wierd - that&rsquo;s because the file has a lot of spaces, so <code>cat</code> printed out all the spaces.</p>
-
-<h2 id="level-6-level-7">Level 6 -&gt; Level 7<a href="#level-6-level-7" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="level-6---level-7">Level 6 -&gt; Level 7<a href="#level-6---level-7" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This is just the previous stage on steroids. Let&rsquo;s break down the command that solves this stage, <code>find / -group bandit6 -user bandit7 -size 33c 2&gt;/dev/null</code>:</p>
-
 <ul>
 <li><code>find /</code>: find all files matching the specifiers I&rsquo;ll supply next on the server. This search the entire server because we tell <code>find</code> to start at <code>/</code> which is the root directory of Linux.</li>
 <li><code>-group bandit6 -user bandit7 -size 33c</code>: The specifiers, pretty self-explanetory.</li>
 <li><code>2&gt;/dev/null</code> - This redirects all output sent to <code>stderr</code> (so all errors) to <code>/dev/null</code>, which basically means &ldquo;don&rsquo;t show me the errors - I don&rsquo;t care about them&rdquo;. Why would we hide the errors? Well, without this, the output is very long since <code>find</code> is trying to look at files without the proper permissions:</li>
 </ul>
-
-<p><img src="https://i.imgur.com/rfBdna0.png" alt="bandit7witherrors" /></p>
-
+<p><img src="https://i.imgur.com/rfBdna0.png" alt="bandit7witherrors"></p>
 <p>And after removing the errors we get what we want:</p>
-
-<p><img src="https://i.imgur.com/hFK0j18.png" alt="bandit7" /></p>
-
-<h2 id="level-7-level-8">Level 7 -&gt; Level 8<a href="#level-7-level-8" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/hFK0j18.png" alt="bandit7"></p>
+<h2 id="level-7---level-8">Level 7 -&gt; Level 8<a href="#level-7---level-8" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This level teaches us basic use of the very useful tool, <code>grep</code>. <code>grep</code> is a way to apply a regular expression on output to filter out matches. This is a pretty basic example of that. The file <code>data.txt</code> has a lot of lines that look like this: &ldquo;word passwrd&rdquo;. We need to find the one line which has the word &ldquo;millionth&rdquo;. So we do:</p>
-
-<p><img src="https://i.imgur.com/SloGnVE.png" alt="bandit8" /></p>
-
-<h2 id="level-8-level-9">Level 8 -&gt; Level 9<a href="#level-8-level-9" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/SloGnVE.png" alt="bandit8"></p>
+<h2 id="level-8---level-9">Level 8 -&gt; Level 9<a href="#level-8---level-9" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>So if we <code>tail</code> the file to get a sense of what are the contents, we get this:</p>
-
-<p><img src="https://i.imgur.com/64T6o9G.png" alt="bandit8" /></p>
-
+<p><img src="https://i.imgur.com/64T6o9G.png" alt="bandit8"></p>
 <p>So a bunch of passwords. We want to find the one password that appears only once. To do this we can use the <code>uniq</code> command. According to <code>man uniq</code>, we need to figure out 2 things before we go ahead with running it:</p>
-
 <ol>
-<li>&ldquo;Filter <strong>adjacent</strong> matching lines [&hellip;]&ldquo;. This means that we need to get the lines that are the same next to eachother. Helpfully we have <code>sort</code> that does just that.</li>
-<li>&ldquo;With no options, <strong>matching lines are merged to the first occurrence</strong>[&hellip;]&ldquo;. So we&rsquo;ll need to find an option that show ONLY the line that appears once. I found <code>-c</code> which counts appearances (you can see in the first part of the screenshot), and was ready to filter the output using a complex <code>grep</code> argument. However, I read the <code>man</code> page a little bit further down and found <code>-u</code>. RTFM 📖</li>
+<li>&ldquo;Filter <strong>adjacent</strong> matching lines [&hellip;]&rdquo;. This means that we need to get the lines that are the same next to eachother. Helpfully we have <code>sort</code> that does just that.</li>
+<li>&ldquo;With no options, <strong>matching lines are merged to the first occurrence</strong>[&hellip;]&rdquo;. So we&rsquo;ll need to find an option that show ONLY the line that appears once. I found <code>-c</code> which counts appearances (you can see in the first part of the screenshot), and was ready to filter the output using a complex <code>grep</code> argument. However, I read the <code>man</code> page a little bit further down and found <code>-u</code>. RTFM 📖</li>
 </ol>
-
-<p><img src="https://i.imgur.com/Y6Xp35y.png" alt="bandit9" /></p>
-
-<h2 id="level-9-level-10">Level 9 -&gt; Level 10<a href="#level-9-level-10" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/Y6Xp35y.png" alt="bandit9"></p>
+<h2 id="level-9---level-10">Level 9 -&gt; Level 10<a href="#level-9---level-10" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We need to find the human-readable lines in the file. To our help comes the <code>strings</code> command, which prints &ldquo;the strings of printable characters in files&rdquo; (from <code>man strings</code>). Will that be enough? Let&rsquo;s check&hellip;</p>
-
-<p><img src="https://i.imgur.com/IloCOEa.png" alt="bandit9 too many strings" /></p>
-
+<p><img src="https://i.imgur.com/IloCOEa.png" alt="bandit9 too many strings"></p>
 <p>Seems like there are 254 lines which are printable. This is not a small enough number for us to filter out manually. Let&rsquo;s use the second clue then, and filter out the lines that have <code>=</code> in them using <code>grep</code>.</p>
-
-<p><img src="https://i.imgur.com/7I9mUDQ.png" alt="bandit9" /></p>
-
-<h2 id="level-10-level-11">Level 10 -&gt; Level 11<a href="#level-10-level-11" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/7I9mUDQ.png" alt="bandit9"></p>
+<h2 id="level-10---level-11">Level 10 -&gt; Level 11<a href="#level-10---level-11" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This level is about Base64, which is an encoding that you <a href="https://en.wikipedia.org/wiki/Base64">can read about more here</a> but is useful and widespread since it can be used to encode binary data as ASCII strings.</p>
-
 <p>In Linux we have the <code>base64</code> command. A quick <code>man base64</code> later and&hellip;</p>
-
-<p><img src="https://i.imgur.com/kveF5Pb.png" alt="bandit10" /></p>
-
-<h2 id="level-11-level-12">Level 11 -&gt; Level 12<a href="#level-11-level-12" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/kveF5Pb.png" alt="bandit10"></p>
+<h2 id="level-11---level-12">Level 11 -&gt; Level 12<a href="#level-11---level-12" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This time we learn about the <code>tr</code> command. This is the first command that I didn&rsquo;t know about before solving this challenge, so let&rsquo;s dive into it a bit.</p>
-
 <p><code>tr</code> is used to translate characters from one set to another. So, let&rsquo;s say we want to shift every letter one place forward in the Alphabet: A to B, B to C, etc. We can use <code>tr</code> like so:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">shay@gc-pc-169 ~ <span class="nb">echo</span> <span class="s2">&#34;abcd&#34;</span> <span class="p">|</span> tr <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span> <span class="s1">&#39;bcdefghijklmnopqrstuvwxyza&#39;</span>
-</span></span><span class="line"><span class="cl">bcde</span></span></code></pre></div>
-<p>However, specifying the entire Alphabet is annoying, so <code>tr</code> expands ranges marked with <code>-</code> like you would expect.</p>
+</span></span><span class="line"><span class="cl">bcde
+</span></span></code></pre></div><p>However, specifying the entire Alphabet is annoying, so <code>tr</code> expands ranges marked with <code>-</code> like you would expect.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">shay@gc-pc-169 ~ <span class="nb">echo</span> <span class="s2">&#34;abcd&#34;</span> <span class="p">|</span> tr <span class="s1">&#39;a-z&#39;</span> <span class="s1">&#39;b-za&#39;</span>
-</span></span><span class="line"><span class="cl">bcde</span></span></code></pre></div>
-<p>To rotate 13, we need to specify the correct sets for <code>tr</code> - we can do this by counting, or with python:</p>
+</span></span><span class="line"><span class="cl">bcde
+</span></span></code></pre></div><p>To rotate 13, we need to specify the correct sets for <code>tr</code> - we can do this by counting, or with python:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>  <span class="c1"># Prints m. 12 since python arrays are 0-based.</span></span></span></code></pre></div>
-<p>So our final command will be:</p>
-
-<p><img src="https://i.imgur.com/d3Khqwx.png" alt="bandit11" /></p>
-
-<h2 id="level-12-level-13">Level 12 -&gt; Level 13<a href="#level-12-level-13" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>  <span class="c1"># Prints m. 12 since python arrays are 0-based.</span>
+</span></span></code></pre></div><p>So our final command will be:</p>
+<p><img src="https://i.imgur.com/d3Khqwx.png" alt="bandit11"></p>
+<h2 id="level-12---level-13">Level 12 -&gt; Level 13<a href="#level-12---level-13" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Ramping up the difficulty! First we need to create a workspace in <code>/tmp</code>. So let&rsquo;s do that:</p>
-
-<p><img src="https://i.imgur.com/DdAuMek.png" alt="bandit12 - create a workspace" /></p>
-
+<p><img src="https://i.imgur.com/DdAuMek.png" alt="bandit12 - create a workspace"></p>
 <p>Then, let&rsquo;s take a look at the file.</p>
-
-<p><img src="https://i.imgur.com/waqnYPi.png" alt="hexdump" /></p>
-
+<p><img src="https://i.imgur.com/waqnYPi.png" alt="hexdump"></p>
 <p>This is a hexdump. Quick Google search reveals this was done by the <code>xxd</code> command, so let&rsquo;s reverse it using the <code>xxd -r</code>, and then check out what we got using the <code>file</code> command.</p>
-
-<p><img src="https://i.imgur.com/KFRlBXd.png" alt="unhexed" /></p>
-
+<p><img src="https://i.imgur.com/KFRlBXd.png" alt="unhexed"></p>
 <p>So now we know that the binary data is actually compressed with <code>gzip</code>. To uncompress, we have to change the extension, so let&rsquo;s do that and then uncompress using the <code>mv</code> and <code>gunzip</code> commands:</p>
-
-<p><img src="https://i.imgur.com/xUeBoor.png" alt="gunzips" /></p>
-
+<p><img src="https://i.imgur.com/xUeBoor.png" alt="gunzips"></p>
 <p>Now it&rsquo;s <code>bzip2</code>. Let&rsquo;s do the same trick but with <code>bunzip2</code>, which doesn&rsquo;t require the file to end with any specific extension, so we can skip the <code>mv</code> (note that tab completion won&rsquo;t work without the extension):</p>
-
-<p><img src="https://i.imgur.com/2T1E3LJ.png" alt="bunzip2" /></p>
-
+<p><img src="https://i.imgur.com/2T1E3LJ.png" alt="bunzip2"></p>
 <p>The file was <code>gzip</code>ped, so we <code>gunzip</code>ed again. And then we got a new filetype: a &ldquo;<code>POSIX tar archive</code>&rdquo;. To unpack this file (sometimes referred to as a &ldquo;tarball&rdquo;), we need to use the <code>tar</code> command. As XKCD can tell us, there&rsquo;s no way to remember the flags by heart.</p>
-
-<p><a href="https://xkcd.com/1168/"><img src="https://imgs.xkcd.com/comics/tar.png" alt="https://xkcd.com/1168/" /></a></p>
-
+<p><a href="https://xkcd.com/1168/"><img src="https://imgs.xkcd.com/comics/tar.png" alt="https://xkcd.com/1168/"></a></p>
 <p>So to do <code>tar</code> on this file we need to run <code>tar -xf the_new_file_name</code>. <code>-x</code> means extract, and <code>-f</code> means from file. The output file name is going to be decided by the original file name that was tarballed.</p>
-
-<p><img src="https://i.imgur.com/2TOh57y.png" alt="tar" /></p>
-
+<p><img src="https://i.imgur.com/2TOh57y.png" alt="tar"></p>
 <p>After that, the files were compressed but with algorithms we already saw. So I won&rsquo;t recount everything here - it was more <code>tar</code>, <code>gunzip</code>, and <code>bunzip2</code> until we got to the flag.</p>
-
-<p><img src="https://i.imgur.com/1e3u2mX.png" alt="bandit12 end" /></p>
-
+<p><img src="https://i.imgur.com/1e3u2mX.png" alt="bandit12 end"></p>
 <h2 id="level-13-and-beyond">Level 13 and beyond<a href="#level-13-and-beyond" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Well, this was enough for us for one day. We do have some Red Dead Redemption 2 to get to, as well. Arthur Morgan has been waiting for us for too long.</p>
-
-<p><img src="https://media.giphy.com/media/4H3fg9iWifJPLdDU9K/giphy.gif" alt="Arthur Morgan" /></p>
-
+<p><img src="https://media.giphy.com/media/4H3fg9iWifJPLdDU9K/giphy.gif" alt="Arthur Morgan"></p>
 <p>See <a href="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/">part 2</a> for the rest of the levels.</p>
 
 			</div>
@@ -376,7 +285,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

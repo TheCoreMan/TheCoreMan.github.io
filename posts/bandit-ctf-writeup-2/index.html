@@ -13,7 +13,7 @@ Coffee? ✅
 Workout? ✅
 Laptops? ✅
 Then let&rsquo;s goooooo
- SPOILER ALERT Level 13 -&gt; Level 14 Level 14 -&gt; Level 15 Level 15 -&gt; Level 16 Level 16 -&gt; Level 17 Level 17 -&gt; Level 18 Level 18 -&gt; Level 19 Level 19 -&gt; Level 20 Level 20 -&gt; Level 21 Level 21 -&gt; Level 22 Level 22 and beyond  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."><meta itemprop="datePublished" content="2020-02-15T21:57:03+02:00" />
+SPOILER ALERT Level 13 -&gt; Level 14 Level 14 -&gt; Level 15 Level 15 -&gt; Level 16 Level 16 -&gt; Level 17 Level 17 -&gt; Level 18 Level 18 -&gt; Level 19 Level 19 -&gt; Level 20 Level 20 -&gt; Level 21 Level 21 -&gt; Level 22 Level 22 and beyond SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."><meta itemprop="datePublished" content="2020-02-15T21:57:03+02:00" />
 <meta itemprop="dateModified" content="2020-02-15T21:57:03+02:00" />
 <meta itemprop="wordCount" content="1173">
 <meta itemprop="keywords" content="linux,ctf,writeups,bandit,overthewire," /><meta property="og:title" content="OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22" />
@@ -22,7 +22,7 @@ Coffee? ✅
 Workout? ✅
 Laptops? ✅
 Then let&rsquo;s goooooo
- SPOILER ALERT Level 13 -&gt; Level 14 Level 14 -&gt; Level 15 Level 15 -&gt; Level 16 Level 16 -&gt; Level 17 Level 17 -&gt; Level 18 Level 18 -&gt; Level 19 Level 19 -&gt; Level 20 Level 20 -&gt; Level 21 Level 21 -&gt; Level 22 Level 22 and beyond  SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU." />
+SPOILER ALERT Level 13 -&gt; Level 14 Level 14 -&gt; Level 15 Level 15 -&gt; Level 16 Level 16 -&gt; Level 17 Level 17 -&gt; Level 18 Level 18 -&gt; Level 19 Level 19 -&gt; Level 20 Level 20 -&gt; Level 21 Level 21 -&gt; Level 22 Level 22 and beyond SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/bandit-ctf-writeup-2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-02-15T21:57:03+02:00" />
@@ -118,22 +118,13 @@ MathJax.Hub.Config({
 				<h1>OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</h1>
 			</header>
 			<div class="content">
-				
-
-<p><strong>See <a href="https://www.mrnice.dev/tags/bandit/">all the bandit writeups</a> for the other levels.</strong></p>
-
+				<p><strong>See <a href="https://www.mrnice.dev/tags/bandit/">all the bandit writeups</a> for the other levels.</strong></p>
 <p>Coffee? ✅</p>
-
 <p>Workout? ✅</p>
-
 <p>Laptops? ✅</p>
-
-<p><img src="https://i.imgur.com/E0CJvNO.jpg" alt="workstation" /></p>
-
+<p><img src="https://i.imgur.com/E0CJvNO.jpg" alt="workstation"></p>
 <p>Then let&rsquo;s goooooo</p>
-
-<p><img src="https://i1.sndcdn.com/artworks-000524575062-dx085e-t500x500.jpg" alt="here we go again" /></p>
-
+<p><img src="https://i1.sndcdn.com/artworks-000524575062-dx085e-t500x500.jpg" alt="here we go again"></p>
 <ul>
 <li><a href="#spoiler-alert">SPOILER ALERT</a></li>
 <li><a href="#level-13---level-14">Level 13 -&gt; Level 14</a></li>
@@ -147,145 +138,84 @@ MathJax.Hub.Config({
 <li><a href="#level-21---level-22">Level 21 -&gt; Level 22</a></li>
 <li><a href="#level-22-and-beyond">Level 22 and beyond</a></li>
 </ul>
-
 <h2 id="spoiler-alert">SPOILER ALERT<a href="#spoiler-alert" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p><strong>THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU</strong>.</p>
-
 <p>So why am I writing it up?</p>
-
 <ol>
 <li>I want to be sure that I understood how I solved the level.</li>
 <li>I want to be sure that I can explain my solution to other people.</li>
 <li>If someone is stuck and wants some help to continue, they can do so quickly.</li>
 </ol>
-
 <p>These challeges can be frustrating. While I think that a little frustration is good (especially in CTFs), I hope this guide will cause someone who was almost discouraged from trying/continuing the challenge to carry on. If you&rsquo;re one of these people - don&rsquo;t give up! You can do this 💪🏽</p>
-
-<p><img src="https://previews.123rf.com/images/lkeskinen/lkeskinen1705/lkeskinen170506216/78174196-spoiler-alert-rubber-stamp.jpg" alt="spoiler alert" /></p>
-
+<p><img src="https://previews.123rf.com/images/lkeskinen/lkeskinen1705/lkeskinen170506216/78174196-spoiler-alert-rubber-stamp.jpg" alt="spoiler alert"></p>
 <p>Also, I will try to avoid posting the passwords. If you do see a password that I forgot to omit please let me know!</p>
-
-<h2 id="level-13-level-14">Level 13 -&gt; Level 14<a href="#level-13-level-14" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="level-13---level-14">Level 13 -&gt; Level 14<a href="#level-13---level-14" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>The first thing you see is a file called <code>sshkey.private</code> and the contents are these:</p>
-
-<p><img src="https://i.imgur.com/iE95Wze.png" alt="ssh key" /></p>
-
+<p><img src="https://i.imgur.com/iE95Wze.png" alt="ssh key"></p>
 <p>After reading a little about how SSH works, the gist for this challenge is that if you have someone&rsquo;s <em>private</em> key (in this case, <code>bandit14</code>&rsquo;s private key file), you can login as him if the server has authorized his <em>public</em> key. So, now let&rsquo;s get to business: a quick <code>man ssh</code> and then search for the word private by writing <code>/private</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    -i identity_file
-</span></span><span class="line"><span class="cl">      Selects a file from which the identity <span class="o">(</span>private key<span class="o">)</span> <span class="k">for</span> public key authentication is read.</span></span></code></pre></div>
-<p>Finally, let&rsquo;s log in (Shoutout to <a href="https://www.screentogif.com/">ScreenToGif</a>):</p>
-
-<p><img src="https://media.giphy.com/media/efy5gRS8LbOXlihvFB/giphy.gif" alt="bandit13solve" /></p>
-
-<h2 id="level-14-level-15">Level 14 -&gt; Level 15<a href="#level-14-level-15" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">      Selects a file from which the identity <span class="o">(</span>private key<span class="o">)</span> <span class="k">for</span> public key authentication is read.
+</span></span></code></pre></div><p>Finally, let&rsquo;s log in (Shoutout to <a href="https://www.screentogif.com/">ScreenToGif</a>):</p>
+<p><img src="https://media.giphy.com/media/efy5gRS8LbOXlihvFB/giphy.gif" alt="bandit13solve"></p>
+<h2 id="level-14---level-15">Level 14 -&gt; Level 15<a href="#level-14---level-15" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>The level guide tells us the following: <code>The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.</code>.</p>
-
 <p>Let&rsquo;s first make sure someone is indeed listening and in which protocol, using <code>nmap</code>:</p>
-
-<p><img src="https://i.imgur.com/WO9a6tT.png" alt="nmap result" /></p>
-
+<p><img src="https://i.imgur.com/WO9a6tT.png" alt="nmap result"></p>
 <p>We see <code>30000/tcp</code> which is good. It means that there&rsquo;s a server listening on port <code>30000</code> with the <code>TCP</code> protocol. We don&rsquo;t know what the server is really expecting, so let&rsquo;s try to talk to it and see what happens. We can use the <code>nc</code> command to do that. Again, the example is straight out of the <code>man nc</code> page:</p>
-
-<p><img src="https://i.imgur.com/jIdevK5.png" alt="nc wrong password" /></p>
-
+<p><img src="https://i.imgur.com/jIdevK5.png" alt="nc wrong password"></p>
 <p>OK! So we have a server that&rsquo;s listening for text-based input listening on port 30000/tcp and we need to submit the user&rsquo;s current password to the server. I admit I was stuck on this for a while until my wife reminded me the previous instructions we got which told us that the password was stored in <code>/etc/bandit_pass/bandit14</code> 😅 So, to solve this we needed to pass the contents of that file to the server:</p>
-
-<p><img src="https://i.imgur.com/7R09eL9.png" alt="nc right passowrd" /></p>
-
-<h2 id="level-15-level-16">Level 15 -&gt; Level 16<a href="#level-15-level-16" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/7R09eL9.png" alt="nc right passowrd"></p>
+<h2 id="level-15---level-16">Level 15 -&gt; Level 16<a href="#level-15---level-16" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This level is very similar to the previous one, but you need to connect using SSL. Luckily, <code>openssl</code> has a handy utility just for that: <code>s_client</code>. Just run <code>openssl s_client -connect localhost:30001</code> and paste the password and you&rsquo;re good!</p>
-
-<h2 id="level-16-level-17">Level 16 -&gt; Level 17<a href="#level-16-level-17" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="level-16---level-17">Level 16 -&gt; Level 17<a href="#level-16---level-17" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We need to find a specific server that&rsquo;s listening on TLS between ports 31000 and 32000. Just running <code>nmap localhost</code> won&rsquo;t do because <code>nmap</code> only scans some known ports and not the range we need. So we&rsquo;ll have to use the <code>-p</code> flag to specify ports:</p>
-
-<p><img src="https://i.imgur.com/UX3jk73.png" alt="nmap" /></p>
-
+<p><img src="https://i.imgur.com/UX3jk73.png" alt="nmap"></p>
 <p>We got 2 servers. Let&rsquo;s try to connect to them using SSL, just like the last stage: <code>openssl s_client -connect localhost:31518</code>. One of them only echoes what we send it, but the second one gives us a private key when we provide the password! All we need to do is copy the private key from the shell, exit the SSH session, create a local file on our computer (I called it <code>bandit17.sshkey</code>), paste our key into it, and login!</p>
-
 <p>Oh wait&hellip;</p>
-
-<p><img src="https://i.imgur.com/XoStDS2.png" alt="ssh bad permissions" /></p>
-
+<p><img src="https://i.imgur.com/XoStDS2.png" alt="ssh bad permissions"></p>
 <p>The <code>ssh</code> client chosses to ignores private key files which are too overly permissive. This is due to security concerns. We need to change the permissions to be only readable by us, or to <code>400</code>, using <code>chmod</code>.</p>
-
-<p><img src="https://i.imgur.com/W7PGXaX.png" alt="bandit 16 win" /></p>
-
-<h2 id="level-17-level-18">Level 17 -&gt; Level 18<a href="#level-17-level-18" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">diff passwords.old passwords.new</span></span></code></pre></div>
-<p>Nothing to write up about, really :)</p>
-
-<h2 id="level-18-level-19">Level 18 -&gt; Level 19<a href="#level-18-level-19" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/W7PGXaX.png" alt="bandit 16 win"></p>
+<h2 id="level-17---level-18">Level 17 -&gt; Level 18<a href="#level-17---level-18" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">diff passwords.old passwords.new
+</span></span></code></pre></div><p>Nothing to write up about, really :)</p>
+<h2 id="level-18---level-19">Level 18 -&gt; Level 19<a href="#level-18---level-19" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>After logging in we get logged right out!</p>
-
-<p><img src="https://i.imgur.com/X44zwp6.png" alt="bashrc nonsense" /></p>
-
+<p><img src="https://i.imgur.com/X44zwp6.png" alt="bashrc nonsense"></p>
 <p>This is because of a modified <code>.bashrc</code> file which prints &ldquo;Bye Bye&rdquo; and kills the shell. We can&rsquo;t read the files from the previous user (<code>bandit18</code>) since we don&rsquo;t have permissions to do so. And <code>bash</code> opens up automatically since it&rsquo;s the <a href="https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell">login shell</a>.</p>
-
 <p>However, instead of running an interactive session and therefore opening up the login shell, we can run a command directly from <code>ssh</code>:</p>
-
-<p><img src="https://i.imgur.com/VPotd1a.png" alt="echo hello over ssh" /></p>
-
+<p><img src="https://i.imgur.com/VPotd1a.png" alt="echo hello over ssh"></p>
 <p>So to win this stage, all we need to do is:</p>
-
-<p><img src="https://i.imgur.com/jI4hDsh.png" alt="win bandit18" /></p>
-
-<h2 id="level-19-level-20">Level 19 -&gt; Level 20<a href="#level-19-level-20" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/jI4hDsh.png" alt="win bandit18"></p>
+<h2 id="level-19---level-20">Level 19 -&gt; Level 20<a href="#level-19---level-20" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>In this level we are presented with a <strong>suid</strong> binary. This is quite a difficult concept so let&rsquo;s make sure we understand it. First off you need to understand Unix permissions. Luckily, <a href="https://twitter.com/b0rk">@b0rk</a> explains it in a very simple way:</p>
-
-<p><a href="https://twitter.com/b0rk/status/982641594305273856"><img src="https://pbs.twimg.com/media/DaMLUoGXUAI21V6?format=jpg&amp;name=large" alt="unix permission by @b0rk" /></a></p>
-
+<p><a href="https://twitter.com/b0rk/status/982641594305273856"><img src="https://pbs.twimg.com/media/DaMLUoGXUAI21V6?format=jpg&amp;name=large" alt="unix permission by @b0rk"></a></p>
 <p>See that last panel? That&rsquo;s the key for this stage. Let&rsquo;s run <code>ls -l</code> and see what we get.</p>
-
-<p><img src="https://i.imgur.com/MKcsr8O.png" alt="ls -l bandit 19" /></p>
-
+<p><img src="https://i.imgur.com/MKcsr8O.png" alt="ls -l bandit 19"></p>
 <p>And let&rsquo;s break it down according to what we&rsquo;ve learned about permissions:</p>
-
 <ul>
 <li><code>-rwsr-x---</code> This is divided into three parts:
-
 <ul>
 <li><code>rws</code> means that the <em>user</em> can read, write and suid - execute and change the EUID during execution to the <em>user</em> as well. In case you missed it, EUID (which stands for Effective User ID) is what is actually checked when the Operating System checks a process for permissions.</li>
 <li><code>r-x</code> means that the <em>group</em> can read and execute the file.</li>
 <li><code>---</code> means that <em>everyone</em> don&rsquo;t have any access to this file.</li>
-</ul></li>
+</ul>
+</li>
 <li><code>bandit20 bandit19</code> - These are, in order, the <em>user</em> and the <em>group</em>.</li>
 </ul>
-
 <p>Seems like we should have execution rights. Let&rsquo;s run the file and see what we get!</p>
-
-<p><img src="https://i.imgur.com/UXVvbxP.png" alt="run the suid" /></p>
-
+<p><img src="https://i.imgur.com/UXVvbxP.png" alt="run the suid"></p>
 <p>The SUID binary changed the EUID to <code>bandit20</code>, and then ran whichever command we told it to run. So let&rsquo;s read the password file as <code>bandit20</code>.</p>
-
-<p><img src="https://i.imgur.com/ykvSOJ9.png" alt="win bandit19" /></p>
-
-<h2 id="level-20-level-21">Level 20 -&gt; Level 21<a href="#level-20-level-21" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/ykvSOJ9.png" alt="win bandit19"></p>
+<h2 id="level-20---level-21">Level 20 -&gt; Level 21<a href="#level-20---level-21" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This level combines a lot of our knowledge from previous stages. We need to set up a server which will listen on a port of our choosing and then use the SUID binary to connect to it. We can use <code>nc -l -p 5656</code> (<code>-l</code> means listen and <code>-p 5656</code> indicates which port we chose), like so:</p>
-
-<p><img src="https://media.giphy.com/media/iGM1EWLyCtj1wj0l7k/giphy.gif" alt="Set up the server" /></p>
-
+<p><img src="https://media.giphy.com/media/iGM1EWLyCtj1wj0l7k/giphy.gif" alt="Set up the server"></p>
 <p>Then, instead of transmitting &ldquo;hello&rdquo;, we will transmit the current password.</p>
-
-<p><img src="https://i.imgur.com/AhUA28S.png" alt="win bandit 20" /></p>
-
-<h2 id="level-21-level-22">Level 21 -&gt; Level 22<a href="#level-21-level-22" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/AhUA28S.png" alt="win bandit 20"></p>
+<h2 id="level-21---level-22">Level 21 -&gt; Level 22<a href="#level-21---level-22" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>In this level we learn about <code>cron</code> and the <code>crontab</code> files. So read about those <a href="https://linux.die.net/man/5/crontab">here</a> and then the level becomes quite easy.</p>
-
 <p>The <code>cronjob_bandit22</code> runs the <code>/usr/bin/cronjob_bandit22.sh</code> script every minute and after reboot as well. The script just saves the password in a temporary file and gives read permissions to everyone, so we read it and win!</p>
-
-<p><img src="https://i.imgur.com/OFOKQ9M.png" alt="crontab level" /></p>
-
+<p><img src="https://i.imgur.com/OFOKQ9M.png" alt="crontab level"></p>
 <h2 id="level-22-and-beyond">Level 22 and beyond<a href="#level-22-and-beyond" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Well, we haven&rsquo;t solved them yet. We&rsquo;re going to sleep 😴 Be on the lookout for part 3!</p>
 
 			</div>
@@ -331,7 +261,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

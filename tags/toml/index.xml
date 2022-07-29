@@ -15,7 +15,7 @@
       <guid>https://www.mrnice.dev/posts/dev-log-2/</guid>
       <description>Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
- The first step was doing it manually, once 👨🏽‍🏭⚒  Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server  Starting to automate 🤖  Generating the pre-receive hook automatically 🤖 I guess I&amp;rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one  Parsing game-config.</description>
+The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I&amp;rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.</description>
     </item>
     
   </channel>

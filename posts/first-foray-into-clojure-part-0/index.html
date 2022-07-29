@@ -11,7 +11,7 @@
 <meta itemprop="description" content="I started this post AFTER starting to work on a Clojure script, when I realized I didn&rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
 In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &ldquo;Learn Clojure&rdquo; guide, with examples and explanations."><meta itemprop="datePublished" content="2021-05-27T01:03:49+03:00" />
 <meta itemprop="dateModified" content="2021-05-27T01:03:49+03:00" />
-<meta itemprop="wordCount" content="2913"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+<meta itemprop="wordCount" content="2915"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 <meta itemprop="keywords" content="clojure," /><meta property="og:title" content="Foray Into Clojure, Part 0: Setup, syntax, functions" />
 <meta property="og:description" content="I started this post AFTER starting to work on a Clojure script, when I realized I didn&rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
 In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &ldquo;Learn Clojure&rdquo; guide, with examples and explanations." />
@@ -104,127 +104,90 @@ MathJax.Hub.Config({
 				<h1>Foray Into Clojure, Part 0: Setup, syntax, functions</h1>
 			</header>
 			<div class="content">
-				
-
-<p>I started this post <strong>AFTER</strong> starting to work on a Clojure script, when I realized I didn&rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.</p>
-
+				<p>I started this post <strong>AFTER</strong> starting to work on a Clojure script, when I realized I didn&rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.</p>
 <p>In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &ldquo;Learn Clojure&rdquo; guide, with examples and explanations. If you want to clone my solutions and play around with them yourself, feel free to <a href="https://github.com/TheCoreMan/learn-clojure">grab the code itself from my GitHub</a>.</p>
-
 <blockquote>
 <p>If you want, you can read everything I have to say about Clojure by looking at the <a href="/tags/clojure/">Clojure tag</a>.</p>
 </blockquote>
-
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-
+<!-- raw HTML omitted -->
 <p><strong>Table of Contents</strong></p>
-
 <ul>
 <li><a href="#starting-from-the-end---my-conclusions-and-experience-learning-clojure-so-far">Starting from the end - my conclusions and experience learning Clojure so far</a></li>
 <li><a href="#setting-up-the-tools">Setting up the tools</a>
-
 <ul>
 <li><a href="#clojure-itself">Clojure itself</a></li>
 <li><a href="#leiningen">Leiningen</a></li>
 <li><a href="#spacemacs">Spacemacs</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#opening-a-project-to-learn-with">Opening a project to learn with</a></li>
 <li><a href="#learning-clojure">Learning Clojure</a>
-
 <ul>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#functions">Functions</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#whats-next">What&rsquo;s next?</a></li>
 </ul>
-
-<!-- markdown-toc end -->
-
-<h2 id="starting-from-the-end-my-conclusions-and-experience-learning-clojure-so-far">Starting from the end - my conclusions and experience learning Clojure so far<a href="#starting-from-the-end-my-conclusions-and-experience-learning-clojure-so-far" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<!-- raw HTML omitted -->
+<h2 id="starting-from-the-end---my-conclusions-and-experience-learning-clojure-so-far">Starting from the end - my conclusions and experience learning Clojure so far<a href="#starting-from-the-end---my-conclusions-and-experience-learning-clojure-so-far" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Clojure feels hostile. It feels like a language which was built for seniors. If I don&rsquo;t understand something, it always feels like my fault - the docs are there, the tools are there, I&rsquo;m just not good enough yet.</p>
-
 <p>Now, I&rsquo;m not a junior developer, by any means. But it felt like the barrier for entry was unnecessarily&hellip; well, not high, just hard. You have to learn so much just to <strong>get</strong> to learn Clojure.</p>
-
 <p>The best analogy I can give is that if learning, say, basic Python feels like a fun workout in the Park, learning Clojure feels like Pai Mei&rsquo;s training from <em>Kill Bill</em>.</p>
-
-<p><img src="https://i.giphy.com/media/WDpgbGctTnxuw/giphy.gif" alt="kill bill GIF" /></p>
-
+<p><img src="https://i.giphy.com/media/WDpgbGctTnxuw/giphy.gif" alt="kill bill GIF"></p>
 <p>Now, <strong>THEORETICALLY</strong>, after the training is over, I&rsquo;m supposed to have some super powers. 🦸</p>
-
 <p>So personally (not in a professional capacity) I will continue learning Clojure. But for professional usage, unless you already have a core team that is fluent in Clojure, or a highly specific need to use it - I would pick other languages to go with to get started with projects. Easier learning curve and easier to hire relevant talent. Take this conclusion with a grain of salt! 🧂 I&rsquo;m still very new here.</p>
-
 <h2 id="setting-up-the-tools">Setting up the tools<a href="#setting-up-the-tools" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>This is a fresh OS, so I needed to install stuff from scratch. Pretty easy to follow <a href="https://clojure.org/guides/getting_started">the documentation</a> once you know what you need, but I&rsquo;ll post a TL;DR here:</p>
-
 <h3 id="clojure-itself">Clojure itself<a href="#clojure-itself" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -O https://download.clojure.org/install/linux-install-1.10.3.822.sh
 </span></span><span class="line"><span class="cl">chmod +x linux-install-1.10.3.822.sh
-</span></span><span class="line"><span class="cl">sudo ./linux-install-1.10.3.822.sh</span></span></code></pre></div>
-<p>Then test with:</p>
+</span></span><span class="line"><span class="cl">sudo ./linux-install-1.10.3.822.sh
+</span></span></code></pre></div><p>Then test with:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ clojure --version
-</span></span><span class="line"><span class="cl">Clojure CLI version 1.10.3.822</span></span></code></pre></div>
-<h3 id="leiningen">Leiningen<a href="#leiningen" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">Clojure CLI version 1.10.3.822
+</span></span></code></pre></div><h3 id="leiningen">Leiningen<a href="#leiningen" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>For working with Clojure projects. Works with <code>apt</code>! So just <code>sudo apt install leiningen</code>.</p>
-
 <p>Test with:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ lein --version
-</span></span><span class="line"><span class="cl">Leiningen 2.9.1 on Java 11.0.10 OpenJDK 64-Bit Server VM</span></span></code></pre></div>
-<h3 id="spacemacs">Spacemacs<a href="#spacemacs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">Leiningen 2.9.1 on Java 11.0.10 OpenJDK 64-Bit Server VM
+</span></span></code></pre></div><h3 id="spacemacs">Spacemacs<a href="#spacemacs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>This one is annoying to &ldquo;start&rdquo; with. But it&rsquo;s the de-facto standard editor for Clojure developers, so I have to try it, I guess. Installation is easy enough:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-</span></span><span class="line"><span class="cl">emacs</span></span></code></pre></div>
-<p>It runs quite a lot of installations etc. now, so go grab yourself a coffee while it does its thing.</p>
-
-<p><img src="https://i.giphy.com/media/xULW8tFJvm5JJYnZkc/giphy.gif?cid=ecf05e475vl2kdbgxdtfdpxqcwkojcxbi7oysi01i2pdgllu&amp;rid=giphy.gif" alt="coffee break" /></p>
-
+</span></span><span class="line"><span class="cl">emacs
+</span></span></code></pre></div><p>It runs quite a lot of installations etc. now, so go grab yourself a coffee while it does its thing.</p>
+<p><img src="https://i.giphy.com/media/xULW8tFJvm5JJYnZkc/giphy.gif?cid=ecf05e475vl2kdbgxdtfdpxqcwkojcxbi7oysi01i2pdgllu&amp;rid=giphy.gif" alt="coffee break"></p>
 <h2 id="opening-a-project-to-learn-with">Opening a project to learn with<a href="#opening-a-project-to-learn-with" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>What I did:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir learn-clojure
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> learn-clojure
-</span></span><span class="line"><span class="cl">lein new app . --force</span></span></code></pre></div>
-<p>This caused considerable frustration and even a tweet:</p>
-
+</span></span><span class="line"><span class="cl">lein new app . --force
+</span></span></code></pre></div><p>This caused considerable frustration and even a tweet:</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The `--force` flag actually means &quot;PLEASE USER DON&#39;T DO THIS I BEG OF YOU EVERYTHING WILL GET BORKED IF YOU USE THIS FLAG&quot;<br><br>(Thing I re-learned from `leiningen`&#39;s --force and <a href="https://twitter.com/_bsless?ref_src=twsrc%5Etfw">@_bsless</a> today)</p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1391123406947590152?ref_src=twsrc%5Etfw">May 8, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>What I should have done:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">lein new app learn-clojure</span></span></code></pre></div>
-<p>And then I opened that project in spacemacs. Quick sidebar here about the REPL. REPL stands for Read Evaluate Print Loop and means Reading a line, Evaluating the string into things that makes sense in the language, and Printing the result from the Evaluate step. In that sense, a commandline calculator is a REPL as well - not just programming shells!</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">lein new app learn-clojure
+</span></span></code></pre></div><p>And then I opened that project in spacemacs. Quick sidebar here about the REPL. REPL stands for Read Evaluate Print Loop and means Reading a line, Evaluating the string into things that makes sense in the language, and Printing the result from the Evaluate step. In that sense, a commandline calculator is a REPL as well - not just programming shells!</p>
 <p>With Spacemacs and Clojure, you can REPL the code as you&rsquo;re writing it, and it seems to be the zeitgeist of developing with Clojure. There is quite a lot of documentation about it but the best I&rsquo;ve found is <a href="https://practicalli.github.io/spacemacs/">Practicalli&rsquo;s Spacemacs guide</a>.</p>
-
 <p>The TL;DR is open the project in spacemacs, then run <code>sesmen-start</code> by typing <code>, '</code>, and then jump to the REPL with <code>, s a</code>. Everything else you want to find using <code>SPC SPC</code>.</p>
-
 <h2 id="learning-clojure">Learning Clojure<a href="#learning-clojure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>This part has &ldquo;spoilers&rdquo; (if you can even call them that) since I show the exercises&rsquo; answers.</p>
-
 <p>All the answers can also be found <a href="https://github.com/TheCoreMan/learn-clojure">on a repository I&rsquo;ve opened</a>.</p>
-
 <h3 id="syntax">Syntax<a href="#syntax" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>I started with learning the REPL syntax by <a href="https://clojure.org/guides/learn/syntax#_test_your_knowledge">following the exercises here</a>. Instead of directly using a REPL, I typed all this out in a file and used <code>, e</code> to evaluate and write as a comment.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="c1">;; 1. Using the REPL, compute the sum of 7654 and 1234.</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">+ </span><span class="mi">7654</span> <span class="mi">1234</span><span class="p">)</span>  <span class="c1">; spacemacs printed &#34;=&gt; 8888&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">;; 2. Rewrite the following algebraic expression as a Clojure expression:</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">;; ( 7 + 3 * 4 + 5 ) / 10.</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="mi">7</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">5</span><span class="p">)</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1">; 12 / 5</span></span></span></code></pre></div>
-<p>The next step was to:</p>
-
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="mi">7</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">5</span><span class="p">)</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1">; 12 / 5</span>
+</span></span></code></pre></div><p>The next step was to:</p>
 <blockquote>
 <p>Using REPL documentation functions, find the documentation for the rem and mod functions. Compare the results of the provided expressions based on the documentation.</p>
 </blockquote>
-
 <p>Can&rsquo;t really do this inside the code example, so I&rsquo;ll just write what I did. To open the REPL in Spacemacs: <code>, s a</code> calls <code>cider-switch-to-repl-buffer</code>. <strong>This is invaluable advice and will become something you run all the time!</strong> Get used to it. <code>, s a</code>.</p>
-
 <p>Then, I loaded the REPL functions using <code>(require '[clojure.repl :refer :all])</code>. Later I realized this happens automatically.</p>
-
 <p>Then, to see the docs for <code>rem</code> and <code>mod</code>, all I did was:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">learn-clojure&gt; <span class="o">(</span>doc rem<span class="o">)</span>
 </span></span><span class="line"><span class="cl">-------------------------
@@ -237,8 +200,8 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">clojure.core/mod
 </span></span><span class="line"><span class="cl"><span class="o">([</span>num div<span class="o">])</span>
 </span></span><span class="line"><span class="cl">Modulus of num and div. Truncates toward negative infinity.
-</span></span><span class="line"><span class="cl">nil</span></span></code></pre></div>
-<p>Then I played around a little more, trying rem and mod myself and looking at their source:</p>
+</span></span><span class="line"><span class="cl">nil
+</span></span></code></pre></div><p>Then I played around a little more, trying rem and mod myself and looking at their source:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">learn-clojure&gt; <span class="o">(</span><span class="nb">source</span> rem<span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="o">(</span>defn rem
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;remainder of dividing numerator by denominator.&#34;</span>
@@ -258,9 +221,8 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">    <span class="o">(</span><span class="k">if</span> <span class="o">(</span>or <span class="o">(</span>zero? m<span class="o">)</span> <span class="o">(=</span> <span class="o">(</span>pos? num<span class="o">)</span> <span class="o">(</span>pos? div<span class="o">)))</span>
 </span></span><span class="line"><span class="cl">      m
 </span></span><span class="line"><span class="cl">      <span class="o">(</span>+ m div<span class="o">))))</span>
-</span></span><span class="line"><span class="cl">nil</span></span></code></pre></div>
-<p>Finally, the tutorial went over the very useful <code>find-doc</code> function, which reminded my of the immensely useful <code>man -k</code> and <code>man -K</code>.</p>
-
+</span></span><span class="line"><span class="cl">nil
+</span></span></code></pre></div><p>Finally, the tutorial went over the very useful <code>find-doc</code> function, which reminded my of the immensely useful <code>man -k</code> and <code>man -K</code>.</p>
 <blockquote>
 <p>Using find-doc, find the function that prints the stack trace of the most recent REPL exception.</p>
 </blockquote>
@@ -269,13 +231,12 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">clojure.stacktrace/e
 </span></span><span class="line"><span class="cl"><span class="o">([])</span>
 </span></span><span class="line"><span class="cl">REPL utility.  Prints a brief stack trace <span class="k">for</span> the root cause of the
-</span></span><span class="line"><span class="cl">most recent exception.</span></span></code></pre></div>
-<h3 id="functions">Functions<a href="#functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">most recent exception.
+</span></span></code></pre></div><h3 id="functions">Functions<a href="#functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>This one took a WHILE. <a href="https://clojure.org/guides/learn/functions">Follow along with the guide</a>!</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Clojure" data-lang="Clojure"><span class="line"><span class="cl"><span class="c1">;; 1) Define a function greet that takes no arguments and prints &#34;Hello&#34;. </span>
-</span></span><span class="line"><span class="cl"><span class="c1">;;    Replace the ___ with the implementation: (defn greet [] _)</span></span></span></code></pre></div>
-<p>I changed the function name from greet to greetq1 to avoid clashes between different questions.</p>
+</span></span><span class="line"><span class="cl"><span class="c1">;;    Replace the ___ with the implementation: (defn greet [] _)</span>
+</span></span></code></pre></div><p>I changed the function name from greet to greetq1 to avoid clashes between different questions.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">greetq1</span> <span class="p">[]</span> <span class="p">(</span><span class="nb">println </span><span class="s">&#34;Hello&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; Testing in REPL:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; learn-clojure&gt; (greetq1)</span>
@@ -305,25 +266,21 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl"><span class="c1">;; Given one argument x, returns &#34;Hello, x!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; Given two arguments x and y, returns &#34;x, y!&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; Hint use the str function to concatenate strings</span>
-</span></span><span class="line"><span class="cl"><span class="c1">;; (doc str)</span></span></span></code></pre></div>
-<p>Here&rsquo;s what <code>(doc str)</code> returns on the REPL:</p>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (doc str)</span>
+</span></span></code></pre></div><p>Here&rsquo;s what <code>(doc str)</code> returns on the REPL:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="p">;;</span> learn-clojure&gt; <span class="o">(</span>doc str<span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> -------------------------
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> clojure.core/str
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> <span class="o">([]</span> <span class="o">[</span>x<span class="o">]</span> <span class="o">[</span>x <span class="p">&amp;</span> ys<span class="o">])</span>
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> With no args, returns the empty string. With one arg x, returns
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> x.toString<span class="o">()</span>.  <span class="o">(</span>str nil<span class="o">)</span> returns the empty string. With more than
-</span></span><span class="line"><span class="cl"><span class="p">;;</span> one arg, returns the concatenation of the str values of the args.</span></span></code></pre></div>
-<p>At this point, testing at the REPL was getting tiresome. So I started testing with assert calls, instead. After the fact, I&rsquo;ve probably learned more from writing the assertions, as well. This is a good reminder to Kent Beck&rsquo;s advice on learning tests:</p>
-
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> one arg, returns the concatenation of the str values of the args.
+</span></span></code></pre></div><p>At this point, testing at the REPL was getting tiresome. So I started testing with assert calls, instead. After the fact, I&rsquo;ve probably learned more from writing the assertions, as well. This is a good reminder to Kent Beck&rsquo;s advice on learning tests:</p>
 <blockquote>
 <p>When do you write tests for externally produced software? Before the first time you are going to use a new facility in the package.</p>
-
 <p><a href="https://twitter.com/KentBeck">Kent Beck</a>, &ldquo;Test Driven Development by Example&rdquo;</p>
 </blockquote>
-
 <p>As far as I&rsquo;m concerned, writing asserts for questions in a tutorial is similar in spirit to Learning Test - I&rsquo;m learning how to write Clojure (since the asserts are in Clojure), I&rsquo;m learning how the answer should behave (since the question is externally produced, the answer is as well, even if I haven&rsquo;t written it yet), and when implementing the answer - I&rsquo;m learning the answer, and if the assert was written correctly.</p>
-
 <p>So back on track:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">greeting-q3</span>
 </span></span><span class="line"><span class="cl">  <span class="p">([]</span> <span class="p">(</span><span class="nf">greeting-q3</span> <span class="s">&#34;World&#34;</span><span class="p">))</span>
@@ -345,10 +302,9 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">;; In Clojure, this is the identity function. By itself, identity </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; is not very useful, but it is sometimes necessary when working </span>
-</span></span><span class="line"><span class="cl"><span class="c1">;; with higher-order functions.</span></span></span></code></pre></div>
-<p>Following the previous question, I was surprised that <code>(defn do-nothing [x] (x))</code> doesn&rsquo;t work.
+</span></span><span class="line"><span class="cl"><span class="c1">;; with higher-order functions.</span>
+</span></span></code></pre></div><p>Following the previous question, I was surprised that <code>(defn do-nothing [x] (x))</code> doesn&rsquo;t work.
 After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(defn do-nothing [x] (x))</code></p>
-
 <p>What I didn&rsquo;t realize was that I thought that <code>(x)</code> is an expression that would just evaluate to <code>x</code>, but it&rsquo;s not!
 <code>(f x)</code> is a list sintactically, and a function invokation semantically. The first position in the list is the thing to invoke (in the function position). So <code>(f)</code> means INVOCATION of f&rsquo;s VALUE (which normally is a function).
 <code>(x)</code> means INVOCATION of <code>x</code>&rsquo;s VALUE, but <code>x</code>&rsquo;s value is non-invokable!</p>
@@ -376,21 +332,21 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="p">(</span><span class="nf">f</span> <span class="mi">123</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="p">(</span><span class="nb">apply </span><span class="nv">f</span> <span class="mi">123</span> <span class="p">(</span><span class="nf">range</span><span class="p">)))))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">;; In Clojure, this is the constantly function.</span></span></span></code></pre></div>
-<p>I didn&rsquo;t understand why the <code>constantly</code> function was useful, so I <a href="https://stackoverflow.com/a/4018731/4119906">looked it up here</a>.</p>
+</span></span><span class="line"><span class="cl"><span class="c1">;; In Clojure, this is the constantly function.</span>
+</span></span></code></pre></div><p>I didn&rsquo;t understand why the <code>constantly</code> function was useful, so I <a href="https://stackoverflow.com/a/4018731/4119906">looked it up here</a>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;; 7) Define a function triplicate which takes another </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;;    function and calls it three times, without any arguments.</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">triplicate</span> <span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span><span class="p">)</span> <span class="p">(</span><span class="nf">f</span><span class="p">)</span> <span class="p">(</span><span class="nf">f</span><span class="p">))</span></span></span></code></pre></div>
-<p>Wrote this function to test:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">test-triplicate</span> <span class="p">[]</span> <span class="p">(</span><span class="nb">println </span><span class="s">&#34;Called from triplicate&#34;</span><span class="p">))</span></span></span></code></pre></div>
-<p>In the REPL, it looked like this:</p>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">triplicate</span> <span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span><span class="p">)</span> <span class="p">(</span><span class="nf">f</span><span class="p">)</span> <span class="p">(</span><span class="nf">f</span><span class="p">))</span>
+</span></span></code></pre></div><p>Wrote this function to test:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">test-triplicate</span> <span class="p">[]</span> <span class="p">(</span><span class="nb">println </span><span class="s">&#34;Called from triplicate&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>In the REPL, it looked like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">learn-clojure&gt; <span class="o">(</span>triplicate test-triplicate<span class="o">)</span>
 </span></span><span class="line"><span class="cl">Called from triplicate
 </span></span><span class="line"><span class="cl">Called from triplicate
 </span></span><span class="line"><span class="cl">Called from triplicate
-</span></span><span class="line"><span class="cl">nil</span></span></code></pre></div>
-<p>Moving on!</p>
+</span></span><span class="line"><span class="cl">nil
+</span></span></code></pre></div><p>Moving on!</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Clojure" data-lang="Clojure"><span class="line"><span class="cl"><span class="c1">;; 8) Define a function opposite which takes a single argument f. It should </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; return another function which takes any number of arguments, applies f </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; on them, and then calls not on the result. The not function in Clojure </span>
@@ -407,27 +363,28 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">sequential-numbers?</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span> <span class="nv">true</span><span class="p">)</span> <span class="s">&#34;s-n? works&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">sequential-numbers?</span> <span class="mi">7</span> <span class="mi">7</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span> <span class="s">&#34;s-n? works&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">((</span><span class="nf">opposite</span> <span class="nv">sequential-numbers?</span><span class="p">)</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span> <span class="s">&#34;opposite flips the result&#34;</span><span class="p">)</span></span></span></code></pre></div>
-<p>For testing <code>opposite</code>, I&rsquo;ve defined these functions:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">always-true</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> <span class="nv">true</span><span class="p">)</span></span></span></code></pre></div>
-<p>Testing in REPL:</p>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">((</span><span class="nf">opposite</span> <span class="nv">sequential-numbers?</span><span class="p">)</span> <span class="mi">7</span> <span class="mi">8</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span> <span class="s">&#34;opposite flips the result&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>For testing <code>opposite</code>, I&rsquo;ve defined these functions:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">always-true</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> <span class="nv">true</span><span class="p">)</span>
+</span></span></code></pre></div><p>Testing in REPL:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">learn-clojure&gt; <span class="o">(</span>always-true <span class="m">1</span> <span class="m">2</span> 3<span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">true</span>
 </span></span><span class="line"><span class="cl">learn-clojure&gt; <span class="o">(</span>opposite always-true<span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#function[learn-clojure/opposite/fn--7457]</span>
 </span></span><span class="line"><span class="cl">learn-clojure&gt; <span class="o">((</span>opposite always-true<span class="o">))</span>
-</span></span><span class="line"><span class="cl">false</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;; 9) Define a function triplicate2 which takes another function and any </span>
+</span></span><span class="line"><span class="cl"><span class="nb">false</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;; 9) Define a function triplicate2 which takes another function and any </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; number of arguments, then calls that function three times on those </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; arguments. Re-use the function you defined in the earlier triplicate </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; exercise.</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">triplicate2-with-hashtag</span> <span class="p">[</span><span class="nv">f</span> <span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">triplicate</span> <span class="o">#</span><span class="p">(</span><span class="nb">apply </span><span class="nv">f</span> <span class="nv">args</span><span class="p">)))</span></span></span></code></pre></div>
-<p>Again, defined this function for testing:</p>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">triplicate</span> <span class="o">#</span><span class="p">(</span><span class="nb">apply </span><span class="nv">f</span> <span class="nv">args</span><span class="p">)))</span>
+</span></span></code></pre></div><p>Again, defined this function for testing:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Clojure" data-lang="Clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">test-triplicate2</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span> <span class="o">&amp;</span> <span class="nv">zs</span><span class="p">]</span> <span class="p">(</span><span class="nb">println </span><span class="s">&#34;x: &#34;</span> <span class="nv">x</span> <span class="s">&#34; | y: &#34;</span> <span class="nv">y</span> <span class="s">&#34; | zs: &#34;</span> <span class="nv">zs</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">triplicate2-with-fn</span> <span class="p">[</span><span class="nv">f</span> <span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">triplicate</span> <span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="p">(</span><span class="nb">apply </span><span class="nv">f</span> <span class="nv">args</span><span class="p">))))</span></span></span></code></pre></div>
-<p>And here&rsquo;s how the testing looked in the REPL:</p>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">triplicate</span> <span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="p">(</span><span class="nb">apply </span><span class="nv">f</span> <span class="nv">args</span><span class="p">))))</span>
+</span></span></code></pre></div><p>And here&rsquo;s how the testing looked in the REPL:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">learn-clojure&gt; <span class="o">(</span>test-triplicate2 <span class="s2">&#34;we&#39;ve had one, yes&#34;</span> <span class="s2">&#34;but what about second breakfast?&#34;</span> <span class="s2">&#34;What about elevenses?&#34;</span> <span class="s2">&#34;Luncheon?&#34;</span> <span class="s2">&#34;Afternoon tea?&#34;</span> <span class="s2">&#34;Dinner?&#34;</span> <span class="s2">&#34;Supper?&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">x:  we<span class="err">&#39;</span>ve had one, yes  <span class="p">|</span> y:  but what about second breakfast?  <span class="p">|</span> zs:  <span class="o">(</span>What about elevenses? Luncheon? Afternoon tea? Dinner? Supper?<span class="o">)</span>
 </span></span><span class="line"><span class="cl">nil
@@ -440,15 +397,13 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 </span></span><span class="line"><span class="cl">x:  xxx  <span class="p">|</span> y:  yyy  <span class="p">|</span> zs:  nil
 </span></span><span class="line"><span class="cl">x:  xxx  <span class="p">|</span> y:  yyy  <span class="p">|</span> zs:  nil
 </span></span><span class="line"><span class="cl">x:  xxx  <span class="p">|</span> y:  yyy  <span class="p">|</span> zs:  nil
-</span></span><span class="line"><span class="cl">nil</span></span></code></pre></div>
-<p>So, I wanted to test this with asserts instead. To do this, I wanted to define a counter. This led me down a rabbit hole of trying to use dynamic scope with the <code>^:dynamic</code> metadata just by following StackOverflow answers, but that didn&rsquo;t work. With some advice, I tried atoms, instead. To get started with atoms I ran <code>(find-doc &quot;atom&quot;)</code> and I found three seemingly useful things:</p>
-
+</span></span><span class="line"><span class="cl">nil
+</span></span></code></pre></div><p>So, I wanted to test this with asserts instead. To do this, I wanted to define a counter. This led me down a rabbit hole of trying to use dynamic scope with the <code>^:dynamic</code> metadata just by following StackOverflow answers, but that didn&rsquo;t work. With some advice, I tried atoms, instead. To get started with atoms I ran <code>(find-doc &quot;atom&quot;)</code> and I found three seemingly useful things:</p>
 <ul>
 <li><code>atom</code></li>
 <li><code>deref</code> (reader macro @)</li>
 <li><code>reset!</code> (I should check <code>swap</code> as well at some point)</li>
 </ul>
-
 <p>And with these, I could set up a test!</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="k">def </span><span class="nv">i-start-as-two</span> <span class="p">(</span><span class="nf">atom</span> <span class="mi">2</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">def </span><span class="nv">i-start-as-sixty-four</span> <span class="p">(</span><span class="nf">atom</span> <span class="mi">64</span><span class="p">))</span>
@@ -462,23 +417,23 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nf">=</span>
 </span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nf">triplicate2-with-fn</span> <span class="nv">test-triplicate3</span> <span class="nv">i-start-as-sixty-four</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">         <span class="nv">expected-starting-at-64</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nb">str </span><span class="s">&#34;expected &#34;</span> <span class="nv">expected-starting-at-64</span> <span class="s">&#34;, got &#34;</span> <span class="o">@</span><span class="nv">i-start-as-sixty-four</span><span class="p">))</span></span></span></code></pre></div>
-<p>The following exercises deal with Java interop, which I find exciting. I&rsquo;s a really cool feature of the language in my opinion. A lot of great stuff is written in Java.</p>
-
-<p><img src="https://i.stack.imgur.com/Jteqd.png" alt="java" /></p>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nb">str </span><span class="s">&#34;expected &#34;</span> <span class="nv">expected-starting-at-64</span> <span class="s">&#34;, got &#34;</span> <span class="o">@</span><span class="nv">i-start-as-sixty-four</span><span class="p">))</span>
+</span></span></code></pre></div><p>The following exercises deal with Java interop, which I find exciting. I&rsquo;s a really cool feature of the language in my opinion. A lot of great stuff is written in Java.</p>
+<p><img src="https://i.stack.imgur.com/Jteqd.png" alt="java"></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;; 10) Using the java.lang.Math class (Math/pow, Math/cos, Math/sin, Math/PI), </span>
 </span></span><span class="line"><span class="cl"><span class="c1">;; demonstrate the following mathematical facts:</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">;; 10.1) The cosine of pi is -1</span></span></span></code></pre></div>
-<p>While true, this exercise is written in a somewhat misleading fashion! Check out these asserts to understand why:</p>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 10.1) The cosine of pi is -1</span>
+</span></span></code></pre></div><p>While true, this exercise is written in a somewhat misleading fashion! Check out these asserts to understand why:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">Math/cos</span> <span class="nv">Math/PI</span><span class="p">)</span> <span class="mi">-1</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">Math/cos</span> <span class="nv">Math/PI</span><span class="p">)</span> <span class="mf">-1.0</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">type</span> <span class="mi">-1</span><span class="p">)</span> <span class="p">(</span><span class="nf">type</span> <span class="mf">-1.0</span><span class="p">))))</span></span></span></code></pre></div>
-<p>And from the REPL:</p>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">type</span> <span class="mi">-1</span><span class="p">)</span> <span class="p">(</span><span class="nf">type</span> <span class="mf">-1.0</span><span class="p">))))</span>
+</span></span></code></pre></div><p>And from the REPL:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="p">;;</span> learn-clojure&gt; <span class="o">(</span><span class="nb">type</span> <span class="o">(</span>Math/cos Math/PI<span class="o">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> java.lang.Double
 </span></span><span class="line"><span class="cl"><span class="p">;;</span> learn-clojure&gt; <span class="o">(</span><span class="nb">type</span> -1<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">;;</span> java.lang.Long</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;; 10.2) For some x, sin(x)^2 + cos(x)^2 = 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> java.lang.Long
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;; 10.2) For some x, sin(x)^2 + cos(x)^2 = 1</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">pythagorean-identity</span>
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;The Pythagorean identity function (LHS). ⊿
 </span></span></span><span class="line"><span class="cl"><span class="s">
@@ -536,13 +491,10 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 </span></span><span class="line"><span class="cl"><span class="c1">;; NOTE: now, to test:</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">def </span><span class="nv">composed-sin-and-arcsin</span> <span class="p">(</span><span class="nf">two-fns</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">Math/sin</span> <span class="nv">x</span><span class="p">))</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">Math/asin</span> <span class="nv">x</span><span class="p">))))</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">def </span><span class="nv">random-value</span> <span class="p">(</span><span class="nf">rand</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">composed-sin-and-arcsin</span> <span class="nv">random-value</span><span class="p">)</span> <span class="nv">random-value</span><span class="p">))</span></span></span></code></pre></div>
-<p><img src="https://i.giphy.com/media/a3ANjL4bRwsO4/giphy.gif" alt="phew" /></p>
-
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">assert </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">composed-sin-and-arcsin</span> <span class="nv">random-value</span><span class="p">)</span> <span class="nv">random-value</span><span class="p">))</span>
+</span></span></code></pre></div><p><img src="https://i.giphy.com/media/a3ANjL4bRwsO4/giphy.gif" alt="phew"></p>
 <p>I had some real roadblocks, but I felt like I was getting faster towards the end.</p>
-
-<h2 id="what-s-next">What&rsquo;s next?<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="whats-next">What&rsquo;s next?<a href="#whats-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>So my plan is to continue with the <a href="https://clojure.org/guides/learn/sequential_colls">Learn Clojure tutorial</a>, and I&rsquo;m assuming it will go a lot faster. So expect the next parts to come up on the blog at some point.</p>
 
 			</div>
@@ -561,7 +513,7 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/clojure">clojure</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2913 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2915 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-05-27 01:03 &#43;0300</p>
 			</footer>
 		</article>
@@ -586,7 +538,7 @@ After all, why this: <code>(defn do-nothing [x] x)</code>, but not this: <code>(
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

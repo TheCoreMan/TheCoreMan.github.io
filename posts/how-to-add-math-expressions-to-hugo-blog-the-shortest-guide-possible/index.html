@@ -112,50 +112,33 @@ MathJax.Hub.Config({
 				<h1>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</h1>
 			</header>
 			<div class="content">
-				
-
-<p>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?</p>
-
+				<p>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?</p>
 <p>$$ E=mc^2 $$</p>
-
 <p>Or L&rsquo;Hôpital&rsquo;s rule?</p>
-
 <p>$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&rsquo;\left( x \right)}}{{g&rsquo;\left( x \right)}} $$</p>
-
 <p>Or Matrix Multiplication?</p>
-
 <p>$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$</p>
-
 <p>Here&rsquo;s the shortest guide I can write for you. This guide assumes you&rsquo;re blogging with Hugo, like this blog. <a href="../how-to-build-this-blog">Read my &ldquo;How to build this blog&rdquo;</a> post to learn how to set something like this up.</p>
-
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-
+<!-- raw HTML omitted -->
 <p><strong>Table of Contents</strong></p>
-
 <ul>
 <li><a href="#1-fork-your-blogs-theme">1. Fork your blog&rsquo;s theme</a></li>
 <li><a href="#2-choose-where-to-include-js-scripts">2. Choose where to include JS scripts</a></li>
 <li><a href="#3-add-mathjax-javascript">3. Add MathJax JavaScript</a></li>
 <li><a href="#4-test-using-a-math-expression-in-your-markdown-posts">4. Test using a math expression in your markdown posts</a>
-
 <ul>
 <li><a href="#inline-math-expressions">Inline math expressions</a></li>
 <li><a href="#display-math-expressions">Display math expressions</a></li>
 <li><a href="#complicated-math-expressions">Complicated math expressions</a></li>
 <li><a href="#multiline-expressions">Multiline expressions</a></li>
-</ul></li>
 </ul>
-
-<!-- markdown-toc end -->
-
-<h2 id="1-fork-your-blog-s-theme">1. Fork your blog&rsquo;s theme<a href="#1-fork-your-blog-s-theme" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="1-fork-your-blogs-theme">1. Fork your blog&rsquo;s theme<a href="#1-fork-your-blogs-theme" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We&rsquo;re going to change the blog&rsquo;s theme, so we want to fork the theme we&rsquo;re using, so we can commit and push changes without bothering anyone. Maybe even merge the changes back to the original project later on!</p>
-
 <p>In my case I&rsquo;m using <a href="https://themes.gohugo.io/hermit/">hermit</a>. In the theme&rsquo;s GitHub page, click &ldquo;Fork&rdquo;:</p>
-
-<p><img src="/images/fork-theme.png" alt="forking example" /></p>
-
+<p><img src="/images/fork-theme.png" alt="forking example"></p>
 <p>Then, locally added the forked theme as a submodule using</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Assuming you&#39;re in your blog&#39;s root dir</span>
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> themes
@@ -164,15 +147,12 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">git submodule add https://github.com/TheCoreMan/hermit hermit-fork
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Yours should be</span>
-</span></span><span class="line"><span class="cl">git submodule add https://github.com/&lt;your usename here&gt;/&lt;theme name here&gt; &lt;theme name here&gt;-fork</span></span></code></pre></div>
-<p>Finally, edit your <code>config.toml</code> file so that Hugo uses your new, forked theme:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;hermit-fork&#34;</span></span></span></code></pre></div>
-<h2 id="2-choose-where-to-include-js-scripts">2. Choose where to include JS scripts<a href="#2-choose-where-to-include-js-scripts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">git submodule add https://github.com/&lt;your usename here&gt;/&lt;theme name here&gt; &lt;theme name here&gt;-fork
+</span></span></code></pre></div><p>Finally, edit your <code>config.toml</code> file so that Hugo uses your new, forked theme:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;hermit-fork&#34;</span>
+</span></span></code></pre></div><h2 id="2-choose-where-to-include-js-scripts">2. Choose where to include JS scripts<a href="#2-choose-where-to-include-js-scripts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>To display math we&rsquo;re going to use a JS script. We&rsquo;ll include the JS in our <code>layouts/_default/baseof.html</code> file, to make sure that we have Math support in every single page. You can choose different places to include the JS, such as <code>layouts/_default/header.html</code>, <code>layouts/_default/footer.html</code> or <code>layouts/_default/single.html</code> - your mileage may vary based on your theme&rsquo;s setup.</p>
-
 <h2 id="3-add-mathjax-javascript">3. Add MathJax JavaScript<a href="#3-add-mathjax-javascript" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p><a href="https://www.mathjax.org/">MathJax</a> is a JavaScript display engine for mathematics. To use it, we need to add the MathJax script to the page we&rsquo;ve chosen. Copy and paste this snippet to your the layout snippet you&rsquo;ve chosen to add JS to:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- This part includes the Javascript file --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MathJax-script&#34;</span> <span class="na">async</span>
@@ -192,56 +172,37 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">         <span class="nx">extensions</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;AMSmath.js&#34;</span><span class="p">,</span> <span class="s2">&#34;AMSsymbols.js&#34;</span><span class="p">]</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></span></span></code></pre></div>
-<p>If you need any specific configurations, prefer to host the JS yourself (for local publishing/avoiding CDN outbreaks) or want to customize anything else, <a href="https://github.com/mathjax/MathJax/#installation-and-use">you can find MathJax&rsquo;s installation documentation here</a>.</p>
-
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>If you need any specific configurations, prefer to host the JS yourself (for local publishing/avoiding CDN outbreaks) or want to customize anything else, <a href="https://github.com/mathjax/MathJax/#installation-and-use">you can find MathJax&rsquo;s installation documentation here</a>.</p>
 <p><a href="http://docs.mathjax.org/en/latest/options/input/tex.html">Here&rsquo;s specific documentation about the configuration values we&rsquo;re using here: <code>tex2jax input configruation</code></a>. Specifically important:</p>
-
 <ul>
 <li><code>processEscapes</code> - this will help avoit messing up normal markdown.</li>
 <li><code>skipTags</code> - without this, MathJax will try to parse parts of our post which we don&rsquo;t want it to</li>
 </ul>
-
 <h2 id="4-test-using-a-math-expression-in-your-markdown-posts">4. Test using a math expression in your markdown posts<a href="#4-test-using-a-math-expression-in-your-markdown-posts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Now that we&rsquo;re done with setup, let&rsquo;s see how to use Math Expressions in our markdown posts.</p>
-
 <h3 id="inline-math-expressions">Inline math expressions<a href="#inline-math-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>To get an inline math expression like \(E=mc^2\), wrap your math expression with <code>\\(</code> and <code>\\)</code>, like so: <code>\\(E=mc^2\\)</code>.</p>
-
 <h3 id="display-math-expressions">Display math expressions<a href="#display-math-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>This markdown:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ E=mc^2 $$</span></span></code></pre></div>
-<p>Produces this math expression:</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ E=mc^2 $$
+</span></span></code></pre></div><p>Produces this math expression:</p>
 <p>$$ E=mc^2 $$</p>
-
 <p>You can also use <code>\\[</code> and <code>\\]</code> as delimiters, like so:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">\\[ E=mc^2 \therefore E_{\rm rel} = \sqrt{ (m_0 c^2)^2 + (pc)^2 } \,\! \\]</span></span></code></pre></div>
-<p>\[ E=mc^2 \therefore E_{\rm rel} = \sqrt{ (m_0 c^2)^2 + (pc)^2 } \,! \]</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">\\[ E=mc^2 \therefore E_{\rm rel} = \sqrt{ (m_0 c^2)^2 + (pc)^2 } \,\! \\]
+</span></span></code></pre></div><p>\[ E=mc^2 \therefore E_{\rm rel} = \sqrt{ (m_0 c^2)^2 + (pc)^2 } ,! \]</p>
 <h3 id="complicated-math-expressions">Complicated math expressions<a href="#complicated-math-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>This markdown:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ \mathop {\lim }\limits\_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits\_{x \to c} \frac{{f&#39;\left( x \right)}}{{g&#39;\left( x \right)}} $$</span></span></code></pre></div>
-<p>Produces this math expression:</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ \mathop {\lim }\limits\_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits\_{x \to c} \frac{{f&#39;\left( x \right)}}{{g&#39;\left( x \right)}} $$
+</span></span></code></pre></div><p>Produces this math expression:</p>
 <p>$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&rsquo;\left( x \right)}}{{g&rsquo;\left( x \right)}} $$</p>
-
 <p>NOTE: We had to escape (i.e. put a <code>\</code> before) our underscores. Make sure to turn all <code>_</code> into <code>\_</code> inside your math expression. That&rsquo;s because <em>underscores mark italicized text in markdown</em>, and our parser might mess up the Math Expression, so MathJax won&rsquo;t be able to read it.</p>
-
 <h3 id="multiline-expressions">Multiline expressions<a href="#multiline-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>This markdown:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ \begin{pmatrix} 0 <span class="err">&amp;</span> 1 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix}\begin{pmatrix} 0 <span class="err">&amp;</span> 0 \\\\ 1 <span class="err">&amp;</span> 0 \end{pmatrix}=\begin{pmatrix} 1 <span class="err">&amp;</span> 0 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix} $$</span></span></code></pre></div>
-<p>Produces this math expression:</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ \begin{pmatrix} 0 <span class="err">&amp;</span> 1 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix}\begin{pmatrix} 0 <span class="err">&amp;</span> 0 \\\\ 1 <span class="err">&amp;</span> 0 \end{pmatrix}=\begin{pmatrix} 1 <span class="err">&amp;</span> 0 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix} $$
+</span></span></code></pre></div><p>Produces this math expression:</p>
 <p>$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$</p>
-
 <p>NOTE: We had to escape (i.e. put a <code>\</code> before) our backslashes TWICE. Make sure to turn all <code>\\</code> into <code>\\\\</code>.</p>
-
 <blockquote>
 <p>Attribution: <a href="https://www.vecteezy.com/free-vector/vector">Vector Vectors by Vecteezy</a>.</p>
 </blockquote>
@@ -291,7 +252,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

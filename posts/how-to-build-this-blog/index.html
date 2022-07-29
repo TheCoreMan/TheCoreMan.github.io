@@ -10,13 +10,13 @@
 <meta itemprop="name" content="How to Build This Blog">
 <meta itemprop="description" content="I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.
 I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
- Create repositories on GitHub  GitHub Pages repository Blog content repository  Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain  Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐  Quality of life  Easy deployment  Other fun stuff you can do  🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links  Summary  Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;."><meta itemprop="datePublished" content="2020-03-30T21:10:59+03:00" />
+Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;."><meta itemprop="datePublished" content="2020-03-30T21:10:59+03:00" />
 <meta itemprop="dateModified" content="2020-03-30T21:10:59+03:00" />
 <meta itemprop="wordCount" content="1017">
 <meta itemprop="keywords" content="meta,linux,howto,hugo," /><meta property="og:title" content="How to Build This Blog" />
 <meta property="og:description" content="I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.
 I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
- Create repositories on GitHub  GitHub Pages repository Blog content repository  Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain  Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐  Quality of life  Easy deployment  Other fun stuff you can do  🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links  Summary  Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;." />
+Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/how-to-build-this-blog/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-30T21:10:59+03:00" />
@@ -112,63 +112,50 @@ MathJax.Hub.Config({
 				<h1>How to Build This Blog</h1>
 			</header>
 			<div class="content">
-				
-
-<p>I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.</p>
-
+				<p>I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.</p>
 <p>I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).</p>
-
 <ul>
 <li><a href="#create-repositories-on-github">Create repositories on GitHub</a>
-
 <ul>
 <li><a href="#github-pages-repository">GitHub Pages repository</a></li>
 <li><a href="#blog-content-repository">Blog content repository</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#install-hugo">Install Hugo</a></li>
 <li><a href="#initialize-blog-content">Initialize blog content</a></li>
 <li><a href="#connecting-the-blog-repo-to-the-pages-repo">Connecting the blog repo to the Pages repo</a></li>
 <li><a href="#connect-to-a-custom-domain">Connect to a custom domain</a>
-
 <ul>
 <li><a href="#buying-and-configuring-a-domain">Buying and configuring a domain</a></li>
 <li><a href="#configuring-the-cname">Configuring the CNAME</a></li>
 <li><a href="#configuring-the-base-url">Configuring the base URL</a></li>
 <li><a href="#ssl-%f0%9f%94%90">SSL 🔐</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#quality-of-life">Quality of life</a>
-
 <ul>
 <li><a href="#easy-deployment">Easy deployment</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#other-fun-stuff-you-can-do">Other fun stuff you can do</a>
-
 <ul>
 <li><a href="#%f0%9f%90%a3-set-up-twitter-cards">🐣 Set up twitter cards</a></li>
 <li><a href="#%f0%9f%96%bc-add-a-logo">🖼 Add a logo</a></li>
 <li><a href="#%f0%9f%93%8a-add-google-analytics">📊 Add Google Analytics</a></li>
 <li><a href="#%f0%9f%8e%a8-add-custom-css-files">🎨 Add custom CSS files</a></li>
 <li><a href="#%f0%9f%93%a3-add-social-links">📣 Add social links</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#summary">Summary</a></li>
 </ul>
-
 <h2 id="create-repositories-on-github">Create repositories on GitHub<a href="#create-repositories-on-github" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <h3 id="github-pages-repository">GitHub Pages repository<a href="#github-pages-repository" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Like it says in <a href="kguides.github.com/features/pages/">GitHub&rsquo;s guide</a>, you need to create a repository with the name <code>&lt;your_username_here&gt;.github.io</code> in your GitHub account. Add an initial commit there with a basic <code>readme.md</code> and LICENSE files. You don&rsquo;t need to choose a theme and all that stuff since we&rsquo;re going to replace Jekyll with Hugo anyways.</p>
-
 <p>The files that will be here will be hosted and displayed as a web page.</p>
-
 <h3 id="blog-content-repository">Blog content repository<a href="#blog-content-repository" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Create another repository in your account and call it &ldquo;blog&rdquo;. This is where our blog content will go. Make sure it&rsquo;s private! It should look like this:</p>
-
-<p><img src="https://i.imgur.com/kviPmqM.png" alt="github" /></p>
-
-<h2 id="install-hugo-https-gohugo-io">Install <a href="https://gohugo.io/">Hugo</a><a href="#install-hugo-https-gohugo-io" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/kviPmqM.png" alt="github"></p>
+<h2 id="install-hugohttpsgohugoio">Install <a href="https://gohugo.io/">Hugo</a><a href="#install-hugohttpsgohugoio" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Hugo is an open-source static site generator, written mostly in Go 💖. <a href="https://gohugo.io/getting-started/installing/">Follow the installation guide</a> to install Hugo. TL;DR for Linux:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Installing homebrew&#34;</span>
 </span></span><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span><span class="s2">&#34;</span>
@@ -177,25 +164,17 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">sudo apt install build-essential
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Installing Hugo&#34;</span>
-</span></span><span class="line"><span class="cl">/home/linuxbrew/.linuxbrew/bin/brew install hugo</span></span></code></pre></div>
-<h2 id="initialize-blog-content">Initialize blog content<a href="#initialize-blog-content" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">/home/linuxbrew/.linuxbrew/bin/brew install hugo
+</span></span></code></pre></div><h2 id="initialize-blog-content">Initialize blog content<a href="#initialize-blog-content" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><code>git clone</code> your &ldquo;blog&rdquo; repo. <code>cd</code> into it and run <code>hugo new site . --force</code> (<code>--force</code> since the folder already exists with some content). This wil initialize your site&rsquo;s content and framework, not its actual web pages.</p>
-
 <p>From here, we&rsquo;re basically following <a href="https://gohugo.io/getting-started/quick-start/">Hugo&rsquo;s Quickstart guide</a> step-by-step:</p>
-
 <p>Choose a theme from <a href="https://themes.gohugo.io/">Hugo&rsquo;s theme gallery</a>. Run <code>git submodule add &lt;theme_git_url&gt; themes/&lt;theme_name&gt;</code> and add the line <code>theme = &lt;theme_name&gt;</code> to your <code>config.toml</code> file.</p>
-
 <blockquote>
 <p>⚠ Usually you&rsquo;ll have to copy some stuff into your <code>config.toml</code> from the theme&rsquo;s installation guide, otherwise you&rsquo;ll get errors or your site will misbehave. Read the theme&rsquo;s documentation before choosing one!</p>
 </blockquote>
-
 <p>To add a first post run <code>hugo new posts/&lt;first_post_name&gt;.md</code>. Add some content there. You will probably want to run <code>hugo new about.md</code> as well.</p>
-
 <p>To check out how everything looks and to make sure it all worked, run <code>hugo server -D</code> and go to <code>http://localhost:1313</code> to see how it turned out.</p>
-
 <h2 id="connecting-the-blog-repo-to-the-pages-repo">Connecting the blog repo to the Pages repo<a href="#connecting-the-blog-repo-to-the-pages-repo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Run the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git submodule add https://github.com/&lt;your_username_here&gt;.github.io.git public
 </span></span><span class="line"><span class="cl">
@@ -205,84 +184,50 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
 </span></span><span class="line"><span class="cl">git add .
 </span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;First site build 🎉&#34;</span>
-</span></span><span class="line"><span class="cl">git push origin master</span></span></code></pre></div>
-<p>Then surf to <code>https://&lt;your_username_here&gt;.github.io</code>, and you should see your new site :)</p>
-
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span></code></pre></div><p>Then surf to <code>https://&lt;your_username_here&gt;.github.io</code>, and you should see your new site :)</p>
 <p>Make sure to commit the changes in the <code>blog</code> repository as well.</p>
-
 <h2 id="connect-to-a-custom-domain">Connect to a custom domain<a href="#connect-to-a-custom-domain" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <h3 id="buying-and-configuring-a-domain">Buying and configuring a domain<a href="#buying-and-configuring-a-domain" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>I used <a href="https://namecheap.com/"><code>namecheap.com</code></a> as my DNS provider so the guide will focus on that.</p>
-
 <p>Buy a domain. You don&rsquo;t need any of the extra services for this to work, but if you want to buy them, go ahead.</p>
-
 <p>Go to the &ldquo;manage&rdquo; section of your new domain. Delete all redirect domains and redirect emails.</p>
-
-<p><img src="https://i.imgur.com/Si4LoW9.png" alt="namecheap config 1" /></p>
-
+<p><img src="https://i.imgur.com/Si4LoW9.png" alt="namecheap config 1"></p>
 <p>Go to &ldquo;Advanced DNS&rdquo; and add the following records, in this order:</p>
-
-<p><img src="https://i.imgur.com/aANgqWR.png" alt="namecheap domain dns config" /></p>
-
+<p><img src="https://i.imgur.com/aANgqWR.png" alt="namecheap domain dns config"></p>
 <p>The CNAME record should be:</p>
-
 <ul>
 <li>Host: <code>www</code></li>
 <li>Value: <code>&lt;your_username_here&gt;.github.io.</code> ❗ Make sure you put the dot in the end.</li>
 <li>TTL: <code>5 min</code></li>
 </ul>
-
 <p>The IP addresses are taken from <a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site">GitHub custom domain guide</a>.</p>
-
 <h3 id="configuring-the-cname">Configuring the CNAME<a href="#configuring-the-cname" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Go to the GitHub Pages repo settings. Under <code>GitHub Pages</code> there is a <code>Custom domain</code> field - put <code>www.&lt;your-new-domain&gt;</code> there. You can also just write a CNAME file manually.</p>
-
 <h3 id="configuring-the-base-url">Configuring the base URL<a href="#configuring-the-base-url" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>In your <code>config.toml</code> file edit the <code>baseurl</code> parameter to be <code>baseurl = https://www.&lt;your-new-domain&gt;/</code>.</p>
-
-<h3 id="ssl">SSL 🔐<a href="#ssl" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="ssl-">SSL 🔐<a href="#ssl-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>At first it might seem like your domain isn&rsquo;t secured. Don&rsquo;t worry! It seems that GitHub might take up to 24 hours to issue a certificate and only then you can enforce HTTPS.</p>
-
 <h2 id="quality-of-life">Quality of life<a href="#quality-of-life" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <h3 id="easy-deployment">Easy deployment<a href="#easy-deployment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Hugo&rsquo;s really fast, which is nice when you build your blog. Here&rsquo;s a top that speed up deployment even more, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#put-it-into-a-script">based on Hugo&rsquo;s documentation on the subject</a>.</p>
-
 <p>Create a <code>deploy.sh</code> and <code>deploy.ps1</code> scripst in the root of your <code>blog</code> repository. These scripts will build the site and <code>add</code> + <code>commit</code> + <code>push</code> the changes in the <code>public</code> directory for you. Here are some gist you can easily code and paste:</p>
-
 <script type="application/javascript" src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.sh"></script>
-
 
 <script type="application/javascript" src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.ps1"></script>
 
-
 <h2 id="other-fun-stuff-you-can-do">Other fun stuff you can do<a href="#other-fun-stuff-you-can-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<h3 id="set-up-twitter-cards">🐣 Set up twitter cards<a href="#set-up-twitter-cards" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="-set-up-twitter-cards">🐣 Set up twitter cards<a href="#-set-up-twitter-cards" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>You can set up twitter card image links, so when you link the blog on twitter it looks nice. Check out the <code>&lt;head&gt;</code> section of this blog post and you could see it. A nice tool for that is <a href="https://cards-dev.twitter.com/validator">Twitter&rsquo;s card validator</a>.</p>
-
-<h3 id="add-a-logo">🖼 Add a logo<a href="#add-a-logo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="-add-a-logo">🖼 Add a logo<a href="#-add-a-logo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>You can add a logo to your theme and play around with it. I employed some freelancers to get my logos, and it&rsquo;s usually very cheap.</p>
-
-<h3 id="add-google-analytics">📊 Add Google Analytics<a href="#add-google-analytics" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="-add-google-analytics">📊 Add Google Analytics<a href="#-add-google-analytics" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>You can add some <a href="https://analytics.google.com/">Google Analytics</a> to know how many people visit your site and which pages are the best. A lot of themes have this built-in, so check out your theme&rsquo;s documentation as to how to do it.</p>
-
-<h3 id="add-custom-css-files">🎨 Add custom CSS files<a href="#add-custom-css-files" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="-add-custom-css-files">🎨 Add custom CSS files<a href="#-add-custom-css-files" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>For theming specific parts of your site, especially embedded content, you can use external CSS files. for example, I added <a href="https://gist.github.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2">dark theme for gists</a>, which you&rsquo;ve seen in previous parts of this article. A lot of themes have that built in in the <code>config.toml</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">customCSS</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css&#34;</span><span class="p">]</span></span></span></code></pre></div>
-<h3 id="add-social-links">📣 Add social links<a href="#add-social-links" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">  <span class="nx">customCSS</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><h3 id="-add-social-links">📣 Add social links<a href="#-add-social-links" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>You can add some social links to the <code>config.toml</code> file and most themes will show it nicely. This depends on your theme, but usually looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
@@ -295,11 +240,9 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;email&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;mailto:dude500@gmail.com&#34;</span></span></span></code></pre></div>
-<h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;mailto:dude500@gmail.com&#34;</span>
+</span></span></code></pre></div><h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>It&rsquo;s not that hard and it&rsquo;s a lot of fun.</p>
-
 <ul>
 <li>Hosting: Github Pages</li>
 <li>Site generation: Hugo</li>
@@ -355,7 +298,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

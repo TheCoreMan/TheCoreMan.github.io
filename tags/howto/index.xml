@@ -29,8 +29,8 @@ $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0
       <guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
       <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
 A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
- I&amp;rsquo;ve stumbled across it from this StackExchange answer.
- If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
+I&amp;rsquo;ve stumbled across it from this StackExchange answer.
+If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Fra
       <guid>https://www.mrnice.dev/posts/how-to-build-this-blog/</guid>
       <description>I&amp;rsquo;ve been getting some questions as to how I made this blog. So I decided I&amp;rsquo;ll share all the little details so you don&amp;rsquo;t have to 🔍 look it up.
 I&amp;rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
- Create repositories on GitHub  GitHub Pages repository Blog content repository  Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain  Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐  Quality of life  Easy deployment  Other fun stuff you can do  🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links  Summary  Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
+Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
     </item>
     
   </channel>

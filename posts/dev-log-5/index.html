@@ -11,14 +11,14 @@
 <meta itemprop="description" content="If you haven&rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&rsquo;t.
 Also, this is an old blogpost about something that wasn&rsquo;t actually released as part of the project yet. Maybe one day I&rsquo;ll finish it but the documentation value is important.
 After another successful workshop,
-Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn."><meta itemprop="datePublished" content="2020-10-09T16:09:49+03:00" />
+I decided it&rsquo;s time to tackle issue #26 from the project&rsquo;s backlog using rust, Yew, and WebAssembly."><meta itemprop="datePublished" content="2020-10-09T16:09:49+03:00" />
 <meta itemprop="dateModified" content="2020-10-09T16:09:49+03:00" />
-<meta itemprop="wordCount" content="3710"><meta itemprop="image" content="https://www.mrnice.dev/images/trophy.jpg">
+<meta itemprop="wordCount" content="4586"><meta itemprop="image" content="https://www.mrnice.dev/images/trophy.jpg">
 <meta itemprop="keywords" content="devlog,git,ctf,rust,web," /><meta property="og:title" content="Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly" />
 <meta property="og:description" content="If you haven&rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&rsquo;t.
 Also, this is an old blogpost about something that wasn&rsquo;t actually released as part of the project yet. Maybe one day I&rsquo;ll finish it but the documentation value is important.
 After another successful workshop,
-Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn." />
+I decided it&rsquo;s time to tackle issue #26 from the project&rsquo;s backlog using rust, Yew, and WebAssembly." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-5/" /><meta property="og:image" content="https://www.mrnice.dev/images/trophy.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-09T16:09:49+03:00" />
@@ -115,34 +115,22 @@ MathJax.Hub.Config({
 				<h1>Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</h1>
 			</header>
 			<div class="content">
-				
-
-<hr />
-
+				<hr>
 <p><em>If you haven&rsquo;t read the rest of the devlogs, <a href="/tags/devlog/">you can find them here</a>. You might be missing some context if you don&rsquo;t.</em></p>
-
 <p><em>Also, this is an old blogpost about something that wasn&rsquo;t actually released as part of the project yet. Maybe one day I&rsquo;ll finish it but the documentation value is important.</em></p>
-
-<hr />
-
+<hr>
 <p>After another successful workshop,</p>
-
-<p><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.<br><br>(But damn, I miss in-person workshops 😣) <a href="https://t.co/mKYaEfwjqp">pic.twitter.com/mKYaEfwjqp</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1302564182290825216?ref_src=twsrc%5Etfw">September 6, 2020</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-
+<!-- raw HTML omitted -->
 <p>I decided it&rsquo;s time to tackle issue #26 from the project&rsquo;s backlog using rust, Yew, and WebAssembly. Here&rsquo;s how it looks now that it&rsquo;s done:</p>
-
-<p><img src="/images/yew-win-state.gif" alt="win state" title="win state" /></p>
-
+<p><img src="/images/yew-win-state.gif" alt="win state" title="win state"></p>
 <p>This posts in a live log of HOW I did this.</p>
-
 <ul>
 <li><a href="#some-context-please">Some context, please</a></li>
 <li><a href="#the-plan">The plan</a></li>
 <li><a href="#lets-do-this">Let&rsquo;s do this</a>
-
 <ul>
-<li><a href="#developing-the-webpage-with-yew">Developing the webpage with Yew</a></li>
+<li><a href="#developing-the-webpage-with-yew">Developing the webpage with Yew</a>
+<ul>
 <li><a href="#getting-started-with-yew">Getting started with Yew</a></li>
 <li><a href="#the-develop---build---test-loop">The develop -&gt; build -&gt; test loop</a></li>
 <li><a href="#creating-a-basic-component-in-yew">Creating a basic component in Yew</a></li>
@@ -151,80 +139,58 @@ MathJax.Hub.Config({
 <li><a href="#order-please">Order, please</a></li>
 <li><a href="#read-the-level-information-from-a-json-file">Read the level information from a JSON file</a></li>
 <li><a href="#add-a-check-all-win-state">Add a &ldquo;check all&rdquo; win state</a></li>
-<li><a href="#the-webserver">The webserver</a></li>
-</ul></li>
 </ul>
-
+</li>
+<li><a href="#the-webserver">The webserver</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="some-context-please">Some context, please<a href="#some-context-please" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Issue #26 basically means that <strong>players can verify that they&rsquo;ve finished the challenge done on their own</strong>. Players being able to check their own work is good for motivating them to finish the challenge. Also, it makes running the workshop even more hands-off, which is great, since it gives me more time to focus on attendees. Here&rsquo;s the issue:</p>
-
-<p><a href="https://github.com/TheCoreMan/make-git-better-2/issues/26"><img src="/images/mgbissue26.png" alt="Issue #26" title="Issue #26" /></a></p>
-
+<p><a href="https://github.com/TheCoreMan/make-git-better-2/issues/26"><img src="/images/mgbissue26.png" alt="Issue #26" title="Issue #26"></a></p>
 <p>I&rsquo;ve also decided this would be a good opportunity to practice more Rust and learn a little about WebAssembly using <a href="https://github.com/yewstack/yew">Yew</a>. Since this is more of a learning exercise, expect this post to be a little more&hellip; <em>verbose</em> then usual.</p>
-
 <h2 id="the-plan">The plan<a href="#the-plan" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Let&rsquo;s start with some planning. We will need to:</p>
-
 <ol>
-<li><p>Create a script which parses all the final flags from <a href="https://github.com/TheCoreMan/make-git-better-2/blob/dev/levels/game-config.toml">the game&rsquo;s configuration</a> into a very simple JSON file. That file should only include the flags HASHED. Should look like this:</p>
+<li>Create a script which parses all the final flags from <a href="https://github.com/TheCoreMan/make-git-better-2/blob/dev/levels/game-config.toml">the game&rsquo;s configuration</a> into a very simple JSON file. That file should only include the flags HASHED. Should look like this:</li>
+</ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[{</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;merge-5&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&#34;flag-sha256&#34;</span><span class="p">:</span> <span class="s2">&#34;f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;merge-5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;flag-sha256&#34;</span><span class="p">:</span> <span class="s2">&#34;f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;remote-1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&#34;flag-sha256&#34;</span><span class="p">:</span> <span class="s2">&#34;699040c7908d5b03ad8dfca650ad30eff01b49571d21b193d4cb43ff05cd1b58&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}]</span></span></span></code></pre></div></li>
-
-<li><p>Create a static webpage that reads this file and offers the user simple text boxes + a <code>✅ verify</code> button.</p>
-
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;remote-1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;flag-sha256&#34;</span><span class="p">:</span> <span class="s2">&#34;699040c7908d5b03ad8dfca650ad30eff01b49571d21b193d4cb43ff05cd1b58&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}]</span>
+</span></span></code></pre></div><ol start="2">
+<li>Create a static webpage that reads this file and offers the user simple text boxes + a <code>✅ verify</code> button.
 <ul>
 <li>When <code>✅ verify</code> is pressed, all correct/incorrect flags should be marked (with emojis/colored text boxes).</li>
 <li>If all are correct, prints out a message which instructs the user to screenshot and send me the page to get into the <a href="https://www.mrnice.dev/ctf-hof">Hall of Fame</a>.</li>
-</ul></li>
-
-<li><p>Write a super-simplistic web backend with <code>Rocket</code> which basically only serves the one static file, or possibly just use rust&rsquo;s <code>miniserve</code> or Python&rsquo;s <code>http.server</code>.</p></li>
-
-<li><p>Extend the new <a href="https://github.com/TheCoreMan/make-git-better-2/pull/65/files#diff-7c1482160bbc50bb2f8c4232725b9016"><code>ansible</code> playbook</a> with commands which pull, build and serve the static page from <code>ctf.mrnice.dev:1337</code>.</p></li>
+</ul>
+</li>
+<li>Write a super-simplistic web backend with <code>Rocket</code> which basically only serves the one static file, or possibly just use rust&rsquo;s <code>miniserve</code> or Python&rsquo;s <code>http.server</code>.</li>
+<li>Extend the new <a href="https://github.com/TheCoreMan/make-git-better-2/pull/65/files#diff-7c1482160bbc50bb2f8c4232725b9016"><code>ansible</code> playbook</a> with commands which pull, build and serve the static page from <code>ctf.mrnice.dev:1337</code>.</li>
 </ol>
-
 <p>To me, it makes sense to start with 2 -&gt; 3 -&gt; 4 and only then do 1. I can do 1 manually and only when I add new stages I&rsquo;ll have to update it, so it&rsquo;s the least important.</p>
-
-<h2 id="let-s-do-this">Let&rsquo;s do this<a href="#let-s-do-this" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<p><img src="https://media.giphy.com/media/aMh59aKR8vjdC/giphy.gif" alt="Giddy up" title="Giddy up" /></p>
-
+<h2 id="lets-do-this">Let&rsquo;s do this<a href="#lets-do-this" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><img src="https://media.giphy.com/media/aMh59aKR8vjdC/giphy.gif" alt="Giddy up" title="Giddy up"></p>
 <h3 id="developing-the-webpage-with-yew">Developing the webpage with Yew<a href="#developing-the-webpage-with-yew" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <h4 id="getting-started-with-yew">Getting started with Yew<a href="#getting-started-with-yew" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>I started by following the <a href="https://yew.rs/docs/en/getting-started/build-a-sample-app/">getting started guide</a>. I wanted to make sure the toolchain is up and running and I understood how it works (well, enough to work with it, anyway&hellip;).</p>
-
 <p>To start, I created a new rust library and copied the template from the docs. Then I used <code>wasm-pack</code> to pack the rust library into a <code>wasm.js</code> file that a browser could use. <code>wasm-pack</code> requires <code>OpenSSL</code> and <code>pkg-config</code>; On my machine (Ubuntu 20.04 on WSL 2) this was solved by running the following commands:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install libssl-dev
-</span></span><span class="line"><span class="cl">sudo apt install pkg-config</span></span></code></pre></div>
-<p>With <code>yum</code>, you need to install <code>openssl-devel</code> and <code>pkgconfig</code>, instead. Isn&rsquo;t packaging fun? 😐</p>
-
+</span></span><span class="line"><span class="cl">sudo apt install pkg-config
+</span></span></code></pre></div><p>With <code>yum</code>, you need to install <code>openssl-devel</code> and <code>pkgconfig</code>, instead. Isn&rsquo;t packaging fun? 😐</p>
 <p>Then, running <code>wasm-pack build --target web --out-name wasm --out-dir ./static</code> and serving the output from the <code>static</code> folder using <code>python3 -m http.server 8000</code> got me this, which was exciting:</p>
-
-<p><img src="/images/wasm-pack-1.png" alt="WASM build output" /></p>
-
-<p><img src="/images/yew-sample-app-1.gif" alt="Yew Sample app" title="Yew Sample app" /></p>
-
+<p><img src="/images/wasm-pack-1.png" alt="WASM build output"></p>
+<p><img src="/images/yew-sample-app-1.gif" alt="Yew Sample app" title="Yew Sample app"></p>
 <p>And with some quick CSS and structure shoved into the static folder, it quickly looked OK, as well:</p>
-
-<p><img src="/images/yew-sample-app-2.png" alt="webpage - 2" title="webpage - 2" /></p>
-
-<h4 id="the-develop-build-test-loop">The develop -&gt; build -&gt; test loop<a href="#the-develop-build-test-loop" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<p><img src="/images/yew-sample-app-2.png" alt="webpage - 2" title="webpage - 2"></p>
+<h4 id="the-develop---build---test-loop">The develop -&gt; build -&gt; test loop<a href="#the-develop---build---test-loop" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Even though I was done with the getting started guide, I still didn&rsquo;t feel comfortable with Yew. I wanted to get into a good development loop to &ldquo;get my sea legs&rdquo; and just feel like I&rsquo;m learning the new framework in a deep way. I want to REALLY understand this subject - enough to use it in a professional setting.</p>
-
-<p><img src="https://i.giphy.com/media/fhAwk4DnqNgw8/giphy.gif" alt="learning" title="learning" /></p>
-
+<p><img src="https://i.giphy.com/media/fhAwk4DnqNgw8/giphy.gif" alt="learning" title="learning"></p>
 <p>In order to do this, I broke down the development into small and manageable tasks. <em>This was important since I&rsquo;m working on this while working on a ton of other stuff as well, and low-level planning is useful for context switches.</em></p>
-
 <ol>
 <li>Create a basic <code>check flag</code> component with the level title + textbox + status emoji. Not the full logic for now.</li>
 <li>Create a list of those components on the webpage based of a list of structs. The list of structs will be const for now.</li>
@@ -232,19 +198,12 @@ MathJax.Hub.Config({
 <li>Change the const list from &lsquo;1.&rsquo; to a list read from a JSON file.</li>
 <li>Add a <code>verify-all</code> state which checks all flags and prints a &ldquo;you win&rdquo; message, and instruction on how to send the message my way.</li>
 </ol>
-
 <h4 id="creating-a-basic-component-in-yew">Creating a basic component in Yew<a href="#creating-a-basic-component-in-yew" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>I&rsquo;ve created a new file called <code>level.rs</code> and created a rather basic component in it. While WIP it looked like this:</p>
-
-<p><img src="/images/yew-wip-3.gif" alt="Flag check component" title="flag checker component WIP" /></p>
-
+<p><img src="/images/yew-wip-3.gif" alt="Flag check component" title="flag checker component WIP"></p>
 <p>But ended up looking somewhat sleeker (and with less clicks required!):</p>
-
-<p><img src="/images/single-level-component.gif" alt="a single level component" title="a single level component" /></p>
-
+<p><img src="/images/single-level-component.gif" alt="a single level component" title="a single level component"></p>
 <p>To understand what &ldquo;Components&rdquo; are, you can refer to <a href="https://yew.rs/docs/en/concepts/components/">the documentation</a> and <a href="https://github.com/yewstack/yew/blob/master/yew/src/html/mod.rs#L30">the source code</a>. For now, let&rsquo;s walk through my component&rsquo;s code at this point to make sure we understand exactly what&rsquo;s going on.</p>
-
 <p>First (after the normal <code>use</code> calls), I defined the component&rsquo;s state:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">log</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
@@ -262,8 +221,8 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">user_flag</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Whether the correct flag has been entered.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">flag_correct</span>: <span class="kt">bool</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Next, I defined the <strong>messages</strong> of our component. These will be used in the component itself later on.</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Next, I defined the <strong>messages</strong> of our component. These will be used in the component itself later on.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// These are the messages (think &#34;events&#34;) that can happen in this component.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nc">LevelMsg</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// This message indicates that it&#39;s time to check the user flag to see if it&#39;s the correct one.
@@ -271,8 +230,8 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// This message indicates that the user changed the flg they&#39;re guessing (when they&#39;re typing). 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// Since we need to pass a value, this message has a parameter - see the `view` and `update` methods to see how this is used.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">UserFlagChanged</span><span class="p">(</span><span class="nb">String</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Then it was time to define the <a href="https://yew.rs/docs/en/concepts/components/properties/">properties</a>:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then it was time to define the <a href="https://yew.rs/docs/en/concepts/components/properties/">properties</a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// See https://yew.rs/docs/en/concepts/components/properties/
 </span></span></span><span class="line"><span class="cl"><span class="c1">// The properties allow enable child and parent components to communicate with each other.
 </span></span></span><span class="line"><span class="cl"><span class="c1">// The parent of a level component is the page itself.
@@ -285,8 +244,8 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// This prop indicates whether the user&#39;s flag is correct. Not passed from parent, but rather used to communicate back to it from the level.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="cp">#[prop_or(false)]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">flag_correct</span>: <span class="kt">bool</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Finally, we could declare our component! This is a pretty long chuck of code, but a lot of it is documentation, so just try to read it.</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Finally, we could declare our component! This is a pretty long chuck of code, but a lot of it is documentation, so just try to read it.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// See https://yew.rs/docs/en/concepts/components/
 </span></span></span><span class="line"><span class="cl"><span class="c1">// `Component` is a Trait (see https://doc.rust-lang.org/book/ch10-02-traits.html), 
 </span></span></span><span class="line"><span class="cl"><span class="c1">// The source code of `Component` is here: https://github.com/yewstack/yew/blob/master/yew/src/html/mod.rs#L30 
@@ -399,11 +358,9 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>As you can see the level component has a TON of log messages. The log actually go out to Chrome&rsquo;s console using the <a href="https://crates.io/crates/wasm-logger"><code>wasm-logger</code></a> crate! Here&rsquo;s how it looks like in the console:</p>
-
-<p><img src="/images/level-comp-debug-messages.gif" alt="Level component console logs" title="Level component console logs" /></p>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>As you can see the level component has a TON of log messages. The log actually go out to Chrome&rsquo;s console using the <a href="https://crates.io/crates/wasm-logger"><code>wasm-logger</code></a> crate! Here&rsquo;s how it looks like in the console:</p>
+<p><img src="/images/level-comp-debug-messages.gif" alt="Level component console logs" title="Level component console logs"></p>
 <p>The log messages themselves:</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">wasm.js:398 DEBUG src/level.rs:51 Creating level levelname component
 wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component
@@ -416,27 +373,23 @@ wasm.js:398 DEBUG src/level.rs:67 Updating level levelname component
 wasm.js:398 DEBUG src/level.rs:77 In level levelname, User flag changed from a to aa
 wasm.js:398 DEBUG src/level.rs:67 Updating level levelname component
 wasm.js:398 DEBUG src/level.rs:71 In level levelname, checking flag
-wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component</code></pre>
-<p>To set this up I only needed to add this to the main file:</p>
+wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component
+</code></pre><p>To set this up I only needed to add this to the main file:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[wasm_bindgen(start)]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">run_app</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">wasm_logger</span>::<span class="n">init</span><span class="p">(</span><span class="n">wasm_logger</span>::<span class="n">Config</span>::<span class="n">default</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">App</span>::<span class="o">&lt;</span><span class="n">SubmitFlagsPage</span><span class="o">&gt;</span>::<span class="n">new</span><span class="p">().</span><span class="n">mount_to_body</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>And finally we have a level component we&rsquo;re happy with! Let&rsquo;s move on 😀</p>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>And finally we have a level component we&rsquo;re happy with! Let&rsquo;s move on 😀</p>
 <h4 id="creating-multiple-levels-from-a-vector">Creating multiple levels from a vector<a href="#creating-multiple-levels-from-a-vector" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>This was pretty straight-forward. Here&rsquo;s the result:</p>
-
-<p><img src="/images/two-levels.gif" alt="two levels" title="two levels" /></p>
-
+<p><img src="/images/two-levels.gif" alt="two levels" title="two levels"></p>
 <p>First, I defined the level information data structure, which is the &ldquo;data&rdquo; counterpart of the <code>LevelComponent</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">LevelInfo</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span>: <span class="nb">String</span><span class="p">,</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flag</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Then, I change the <code>view</code> function of the main page to include this line, and added the <code>create_component_from_level_info</code> function for the <code>iter().map()</code> call:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then, I change the <code>view</code> function of the main page to include this line, and added the <code>create_component_from_level_info</code> function for the <code>iter().map()</code> call:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// in SubmitFlagsPage::view()...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="o">&lt;</span><span class="n">div</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&#34;level-checkers&#34;</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="o">&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">levels</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">map</span><span class="p">(</span><span class="n">create_component_from_level_info</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">
@@ -446,8 +399,8 @@ wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">html</span><span class="o">!</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&lt;</span><span class="n">LevelComponent</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">level_info</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span><span class="w"> </span><span class="n">flag</span><span class="o">=</span><span class="n">level_info</span><span class="p">.</span><span class="n">flag</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span><span class="w"> </span><span class="o">/&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Finally, I initialized the &ldquo;levels&rdquo; vector with the following const values in <code>create</code>:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Finally, I initialized the &ldquo;levels&rdquo; vector with the following const values in <code>create</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">create</span><span class="p">(</span><span class="n">_</span>: <span class="nc">Self</span>::<span class="n">Properties</span><span class="p">,</span><span class="w"> </span><span class="n">link</span>: <span class="nc">ComponentLink</span><span class="o">&lt;</span><span class="bp">Self</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// TODO change to read from file
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">const_level_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LevelInfo</span><span class="w"> </span><span class="p">{</span><span class="n">name</span>: <span class="s">&#34;name1&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"> </span><span class="n">flag</span>: <span class="s">&#34;flag1&#34;</span><span class="p">.</span><span class="n">to_string</span><span class="p">()};</span><span class="w">
@@ -460,25 +413,18 @@ wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">levels</span>: <span class="nc">levels_info_vector</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">all_flags_done</span>: <span class="nc">false</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<h4 id="making-the-flags-hashed-instead-of-plaintext">Making the flags hashed instead of plaintext<a href="#making-the-flags-hashed-instead-of-plaintext" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h4 id="making-the-flags-hashed-instead-of-plaintext">Making the flags hashed instead of plaintext<a href="#making-the-flags-hashed-instead-of-plaintext" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>First of all, why is this needed? Well, this is an &ldquo;anti-cheating&rdquo; mechanism. At our current state, the flags can be found by inspecting the page&rsquo;s code. Let&rsquo;s try to find the level <code>name2</code>&rsquo;s flag as a cheater.</p>
-
 <ol>
 <li>In the &ldquo;sources&rdquo; tab of the webpage, open the compiled WebAssembly file</li>
 <li>Search for a level&rsquo;s name (which we can see on the webpage itself)</li>
 <li>Look at the data: here&rsquo;s the flag next to each level! 💸</li>
 </ol>
-
-<p><img src="/images/yew-hashing.png" alt="Cheating" title="cheating" /></p>
-
+<p><img src="/images/yew-hashing.png" alt="Cheating" title="cheating"></p>
 <p>Let&rsquo;s quickly hash &ldquo;flag1&rdquo; and &ldquo;flag2&rdquo; and change the const strings to hashes:</p>
-
-<p><img src="/images/sha-flags.png" alt="SHA flags" title="SHA flags" /></p>
-
-<p><img src="/images/yew-hashing-2.png" alt="SHA flags 2" title="SHA flags 2" /></p>
-
+<p><img src="/images/sha-flags.png" alt="SHA flags" title="SHA flags"></p>
+<p><img src="/images/yew-hashing-2.png" alt="SHA flags 2" title="SHA flags 2"></p>
 <p>We need to change the implementation of the LevelComponent from a direct comparison to hashing. Here&rsquo;s how that looks now:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="kt">str</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">sha2</span>::<span class="p">{</span><span class="n">Sha256</span><span class="p">,</span><span class="w"> </span><span class="n">Digest</span><span class="p">};</span><span class="w">
@@ -515,11 +461,9 @@ wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Here&rsquo;s how it looks like:</p>
-
-<p><img src="/images/yew-hashing-3.gif" alt="&quot;hashed flags&quot;" title="hashed flags" /></p>
-
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Here&rsquo;s how it looks like:</p>
+<p><img src="/images/yew-hashing-3.gif" alt="&amp;ldquo;hashed flags&amp;rdquo;" title="hashed flags"></p>
 <p>Here is some log output:</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">wasm.js:398 DEBUG src/level.rs:54 Creating level name1 component
 wasm.js:398 DEBUG src/level.rs:54 Creating level name2 component
@@ -536,40 +480,28 @@ wasm.js:398 DEBUG src/level.rs:75 update::name1, user flag f, user hash 252f10c8
 wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component
 wasm.js:398 DEBUG src/level.rs:84 update::name1, User flag changed from f to fl
 wasm.js:398 DEBUG src/level.rs:75 update::name1, user flag fl, user hash 593f2d04aab251f60c9e4b8bbc1e05a34e920980ec08351a18459b2bc7dbf2f6, actual flag hash bfebba9e53b0108063c9c9e5828c0907337aeeed4363b1aac4da791d9593cec2
-wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
-<p>And most importantly - the flag is no longer in the source, so you can&rsquo;t cheat by reading the source of the webpage itself!</p>
-
-<p><img src="/images/yew-hashing-2.png" alt="No more cheating" title="No more cheating" /></p>
-
+wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component
+</code></pre><p>And most importantly - the flag is no longer in the source, so you can&rsquo;t cheat by reading the source of the webpage itself!</p>
+<p><img src="/images/yew-hashing-2.png" alt="No more cheating" title="No more cheating"></p>
 <p>While working on this I ran into a weird <code>panic</code>, so I added the <code>console_error_panic_hook</code> crate to understand the stacktrace better - <a href="https://yew.rs/docs/en/more/debugging/">here are some details about that</a>.</p>
-
 <h4 id="order-please">Order, please<a href="#order-please" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
-<p><img src="https://media.giphy.com/media/tJMVcTfzDdL1pOGxlk/giphy.gif" alt="order" title="order!" /></p>
-
+<p><img src="https://media.giphy.com/media/tJMVcTfzDdL1pOGxlk/giphy.gif" alt="order" title="order!"></p>
 <p>At this point, it felt right to clean up the <code>lib.rs</code> file which felt like it was going out of control (and looking at the remaining tasks, it was only going to get worse). So I decided to move the components into a &ldquo;components&rdquo; module. See <a href="https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html#managing-growing-projects-with-packages-crates-and-modules"><code>Managing Growing Projects with Packages, Crates, and Modules</code> from the rustbook</a> for details. Ended up with this, which looks better:</p>
-
-<p><img src="/images/yew-components-folder.png" alt="components module" title="components module" /></p>
-
+<p><img src="/images/yew-components-folder.png" alt="components module" title="components module"></p>
 <h4 id="read-the-level-information-from-a-json-file">Read the level information from a JSON file<a href="#read-the-level-information-from-a-json-file" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>The level information JSON file can&rsquo;t be read from the filesystem, since we&rsquo;re running inside the browser. So we need to serve the JSON file and <code>fetch</code> it from the web app. After a couple of tries, I&rsquo;ve found <a href="https://github.com/davidedelpapa/yew-tutorial/wiki/Tut-05">this YEW tutorial by Davide Del Papa</a>. It&rsquo;s a little out dated (<a href="https://github.com/davidedelpapa/yew-tutorial/issues/1">I opened an issue, of course</a>) but really well-structured!</p>
-
 <p>Now that we have a fetch, that means that we now have a few states. Let&rsquo;s describe them:</p>
-
 <ul>
 <li>We start uninitialized. We don&rsquo;t have the data, and we haven&rsquo;t requested it yet. The user should see a loading animation and we should go get the data.</li>
 <li>We move to &ldquo;fetching&rdquo;. This is us waiting for the data to return from the server. The user should still see a loading animation.</li>
 <li>We end up in two possible situations:
-
 <ul>
 <li>Data was fetched and parsed correctly. Move the the &ldquo;normal&rdquo; state which we&rsquo;ve built so far.</li>
 <li>An error somewhere. We ought display the error to the user with instructions how to fix it (which are: reach out to me).</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>This state should be in our &ldquo;MainPage&rdquo; component, which is in change of fetching the data and creating the level components from it. The fetching should be someplace else, so I&rsquo;ve created a &ldquo;GetFlagsService&rdquo;. To fetch the data, I&rsquo;ve used <a href="https://docs.rs/yew/0.17.3/yew/services/fetch/struct.FetchService.html">Yew&rsquo;s FetchService</a>. To parse it I&rsquo;ve used <code>serde_json</code> for Parsing the JSON as a strongly typed data structure.</p>
-
 <p>Here&rsquo;s the <code>GetFlagsService</code>, which is charge of fetching and parsing. It uses a callback that emits the value (or error) to:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">GetFlagsService</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">file_path</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="nb">static</span> <span class="kt">str</span><span class="p">,</span><span class="w">
@@ -619,8 +551,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">try_to_parse_levels_json</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">LevelsInfo</span><span class="p">,</span><span class="w"> </span><span class="n">serde_json</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">parsed</span>: <span class="nc">LevelsInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">serde_json</span>::<span class="n">from_str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>To use <code>GetFlagsService</code> in the MainPage component, we had to make some changes. First, add all relevant members to the component&rsquo;s struct:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>To use <code>GetFlagsService</code> in the MainPage component, we had to make some changes. First, add all relevant members to the component&rsquo;s struct:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">link</span>: <span class="nc">ComponentLink</span><span class="o">&lt;</span><span class="bp">Self</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">levels</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">LevelInfo</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
@@ -633,15 +565,15 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flags_service_callback</span>: <span class="nc">Callback</span><span class="o">&lt;</span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">LevelsInfo</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flags_service_task</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="n">FetchTask</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">requested_flags</span>: <span class="kt">bool</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Then, add the new messages which help us transfer from state to state. The important one here is <code>FlagsResponseReady</code>, which receives a <code>Result&lt;LevelsInfo, Error&gt;</code> as an argument. This means that when we get the response in the <code>GetFlagsService</code>, we&rsquo;re going to <code>emit</code> the response as a <code>Result</code> which might be an error and might be OK. We&rsquo;ll see how we consume that <code>Result</code> later.</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then, add the new messages which help us transfer from state to state. The important one here is <code>FlagsResponseReady</code>, which receives a <code>Result&lt;LevelsInfo, Error&gt;</code> as an argument. This means that when we get the response in the <code>GetFlagsService</code>, we&rsquo;re going to <code>emit</code> the response as a <code>Result</code> which might be an error and might be OK. We&rsquo;ll see how we consume that <code>Result</code> later.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[derive(Debug)]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nc">MainPageMsg</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Fetch-related messages
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">GetFlagsResponse</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FlagsResponseReady</span><span class="p">(</span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">LevelsInfo</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Initialize these in <code>create</code>. Note the new FlagsService, and how we&rsquo;re linking the callback!</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Initialize these in <code>create</code>. Note the new FlagsService, and how we&rsquo;re linking the callback!</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">type</span> <span class="nc">Message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MainPageMsg</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">type</span> <span class="nc">Properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">();</span><span class="w">
@@ -660,8 +592,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div>
-<p>In <code>update</code>, we&rsquo;re dealing with all the new messages. You can see that we&rsquo;re matching on the <code>FlagsResponseReady</code> message twice! Once when it&rsquo;s <code>Ok</code> and once when it&rsquo;s an <code>Err</code>.</p>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>In <code>update</code>, we&rsquo;re dealing with all the new messages. You can see that we&rsquo;re matching on the <code>FlagsResponseReady</code> message twice! Once when it&rsquo;s <code>Ok</code> and once when it&rsquo;s an <code>Err</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">update</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span>: <span class="nc">Self</span>::<span class="n">Message</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ShouldRender</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">log</span>::<span class="n">debug</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;MainPage: Update message {:?}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">match</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -684,8 +616,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>And finally, we need to make <code>view</code> deal with all this stuff. We move from &ldquo;uninitialized&rdquo; to &ldquo;fetching&rdquo; using the <code>self.requested_flags</code> member:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>And finally, we need to make <code>view</code> deal with all this stuff. We move from &ldquo;uninitialized&rdquo; to &ldquo;fetching&rdquo; using the <code>self.requested_flags</code> member:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">view</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Html</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// If you didn&#39;t request flags yet, try to.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">!</span><span class="bp">self</span><span class="p">.</span><span class="n">requested_flags</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -701,8 +633,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="o">&lt;/</span><span class="n">main</span><span class="o">&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">&lt;/&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span></span></span></code></pre></div>
-<p>And the component itself is in <code>get_levels_comp</code>, and you can see the different states being managed with <code>Option</code> and <code>self.error</code>:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>And the component itself is in <code>get_levels_comp</code>, and you can see the different states being managed with <code>Option</code> and <code>self.error</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// Extra, non-component functions for MainPage
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">impl</span><span class="w"> </span><span class="n">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">get_levels_comp</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Html</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -738,23 +670,15 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>Now, to test! First, let&rsquo;s start with a sanity test: the file is correct. It works! 🎉 While waiting for the file it shows:</p>
-
-<p><img src="/images/yew-loading.png" alt="loading" title="loading" /></p>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Now, to test! First, let&rsquo;s start with a sanity test: the file is correct. It works! 🎉 While waiting for the file it shows:</p>
+<p><img src="/images/yew-loading.png" alt="loading" title="loading"></p>
 <p>And then the site boots up and you can put in the flags. This GIF is censored of course :)</p>
-
-<p><img src="/images/flags-from-json-1.gif" alt="Flags from JSON" title="Flags from JSON" /></p>
-
+<p><img src="/images/flags-from-json-1.gif" alt="Flags from JSON" title="Flags from JSON"></p>
 <p>Let&rsquo;s introduce a Typo into the JSON file and see how that looks:</p>
-
-<p><img src="/images/yew-json-deserialize-error.png" alt="Error" title="Error" /></p>
-
+<p><img src="/images/yew-json-deserialize-error.png" alt="Error" title="Error"></p>
 <h4 id="add-a-check-all-win-state">Add a &ldquo;check all&rdquo; win state<a href="#add-a-check-all-win-state" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>In this final stage of development, I needed need to add state to the main page which checks how many levels were completed and displays a win message accordingly. There are a few possible solutions to do this, but I&rsquo;ve opted to go with adding a <code>levels_status</code> map to the main page and having each level component update it via a callback function.</p>
-
 <p>First, I moved all necessary information into the <code>common.rs</code> file: The status struct, the main page messages, and the callback type.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[derive(Debug)]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">SingleFlagStatus</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -770,8 +694,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FlagsResponseReady</span><span class="p">(</span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">LevelsInfo</span><span class="p">,</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;</span><span class="p">),</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">type</span> <span class="nc">CheckFlagCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Callback</span><span class="o">&lt;</span><span class="n">SingleFlagStatus</span><span class="o">&gt;</span><span class="p">;</span></span></span></code></pre></div>
-<p>Adding the callback to the level component wasn&rsquo;t too hard. Using a <code>pub type</code> for it instead of writing out the generic type each time was very useful, since it saved me from errors I had with mismatched generic types. The interesting part is in <code>update</code>, where the component emits its status via the callback:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">type</span> <span class="nc">CheckFlagCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Callback</span><span class="o">&lt;</span><span class="n">SingleFlagStatus</span><span class="o">&gt;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>Adding the callback to the level component wasn&rsquo;t too hard. Using a <code>pub type</code> for it instead of writing out the generic type each time was very useful, since it saved me from errors I had with mismatched generic types. The interesting part is in <code>update</code>, where the component emits its status via the callback:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="n">common</span>::<span class="p">{</span><span class="n">SingleFlagStatus</span><span class="p">,</span><span class="w"> </span><span class="n">CheckFlagCallback</span><span class="p">};</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
@@ -811,8 +735,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">            </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// ... snip ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span></span></span></code></pre></div>
-<p>The main page component now needed to create the state and manage it. The state itself is managed in the <code>levels-status</code> map, which is created in the <code>create</code> function and initialized once we get the flags from the server:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>The main page component now needed to create the state and manage it. The state itself is managed in the <code>levels-status</code> map, which is created in the <code>create</code> function and initialized once we get the flags from the server:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="n">common</span>::<span class="p">{</span><span class="n">LevelInfo</span><span class="p">,</span><span class="w"> </span><span class="n">LevelsInfo</span><span class="p">,</span><span class="w"> </span><span class="n">MainPageMsg</span><span class="p">,</span><span class="w"> </span><span class="n">CheckFlagCallback</span><span class="p">};</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -847,8 +771,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// ... snip ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span></span></span></code></pre></div>
-<p>The main page creates and registers the callback in the <code>view</code> call, when creating the <code>LevelComponent</code>s. I had to use <a href="https://doc.rust-lang.org/book/ch13-01-closures.html">rust closures</a> here since we wanted to keep access to <code>self</code> when creating the LevelComponents (to access <code>self.link.component</code>) but still use an iterator to create the levels since <a href="https://yew.rs/docs/en/concepts/html/lists/">that&rsquo;s how Yew handles lists of components</a>. As you can see, when creating the component, the main page is passing the callback as a prop.</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>The main page creates and registers the callback in the <code>view</code> call, when creating the <code>LevelComponent</code>s. I had to use <a href="https://doc.rust-lang.org/book/ch13-01-closures.html">rust closures</a> here since we wanted to keep access to <code>self</code> when creating the LevelComponents (to access <code>self.link.component</code>) but still use an iterator to create the levels since <a href="https://yew.rs/docs/en/concepts/html/lists/">that&rsquo;s how Yew handles lists of components</a>. As you can see, when creating the component, the main page is passing the callback as a prop.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">get_levels_comp</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Html</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">match</span><span class="w"> </span><span class="o">&amp;</span><span class="bp">self</span><span class="p">.</span><span class="n">levels</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -877,8 +801,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="o">&lt;</span><span class="n">LevelComponent</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">level_info</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span><span class="w"> </span><span class="n">flag</span><span class="o">=</span><span class="n">level_info</span><span class="p">.</span><span class="n">flag</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span><span class="w"> </span><span class="n">check_callback</span><span class="o">=</span><span class="n">callback</span><span class="w"> </span><span class="o">/&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<p>In the <code>update</code> function, the main page handles the callback by accessing the relevant value in the map using the <code>get_mut</code> accessor and changing its value based on the reported status:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>In the <code>update</code> function, the main page handles the callback by accessing the relevant value in the map using the <code>get_mut</code> accessor and changing its value based on the reported status:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ... snip ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">fn</span> <span class="nf">update</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span>: <span class="nc">Self</span>::<span class="n">Message</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ShouldRender</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -890,8 +814,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span></span></span></code></pre></div>
-<p>Finally, I&rsquo;ve added the visual indication of the win state with a &ldquo;totals&rdquo; functional component. First I added it in the main page <code>view</code>:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Finally, I&rsquo;ve added the visual indication of the win state with a &ldquo;totals&rdquo; functional component. First I added it in the main page <code>view</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">view</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Html</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// ... snip ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="n">html</span><span class="o">!</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -899,15 +823,14 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">get_totals_comp</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// ... snip ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span></span></span></code></pre></div>
-<p>Let&rsquo;s walk through the <code>totals</code> code.</p>
-
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Let&rsquo;s walk through the <code>totals</code> code.</p>
 <p>If the levels counter is not initialized yet (since we&rsquo;re waiting on the <code>fetch</code> to return or we&rsquo;ve had an error), it&rsquo;s just an empty component.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">MainPage</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">fn</span> <span class="nf">get_totals_comp</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Html</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">levels_status</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">html</span><span class="o">!</span><span class="w"> </span><span class="p">{}</span></span></span></code></pre></div>
-<p>Otherwise, we want to count how many flags are correct:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">html</span><span class="o">!</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span></span></span></code></pre></div><p>Otherwise, we want to count how many flags are correct:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
@@ -916,8 +839,8 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="o">*</span><span class="n">is_correct</span><span class="w"> </span><span class="p">{</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">counter</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">};</span></span></span></code></pre></div>
-<p>And then show the victory component if <strong>all</strong> are correct:</p>
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">};</span><span class="w">
+</span></span></span></code></pre></div><p>And then show the victory component if <strong>all</strong> are correct:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">victory_comp</span>: <span class="nc">Html</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -947,21 +870,13 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// ... snip ...
-</span></span></span></code></pre></div>
-<p>Here&rsquo;s how it ended up looking:</p>
-
-<p><img src="/images/yew-win-state.gif" alt="win state" title="win state" /></p>
-
+</span></span></span></code></pre></div><p>Here&rsquo;s how it ended up looking:</p>
+<p><img src="/images/yew-win-state.gif" alt="win state" title="win state"></p>
 <h3 id="the-webserver">The webserver<a href="#the-webserver" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Since this is a very simple static app, all we need is to server the HTML, CSS, <code>levels_info.json</code> and compiled WASM from a static folder, and make sure we serve <code>index.html</code> as the index. We can use <code>simple-http-server</code> which really can&rsquo;t be simpler. Installation and execution are basically two commands, <code>cargo install simple-http-server</code> and running with <code>simple-http-server --index --nocache --port 1337</code>:</p>
-
-<p><img src="/images/yew-simple-http-server.png" alt="http server" title="http server" /></p>
-
+<p><img src="/images/yew-simple-http-server.png" alt="http server" title="http server"></p>
 <p>BTW, we can also use <code>miniserve</code> by downloading it from GitHub with <code>wget https://github.com/svenstaro/miniserve/releases/download/v0.9.0/miniserve-v0.9.0-linux-x86_64</code>, then <code>chmod +x</code>-ing it and finally running <code>miniserve --index index.html .</code> inside the <code>static</code> folder - but installation is annoying since you need the nightly build of rust, so we&rsquo;ll go with <code>simple-http-server</code>.</p>
-
 <h2 id="what-now">What now?<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>I decided to not deploy this for now. Maybe in the future. The <a href="https://github.com/TheCoreMan/make-git-better-2/tree/26/auto-hof-page">branch is still open here</a>, so this might actually happen someday!</p>
 
 			</div>
@@ -988,7 +903,7 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/rust">rust</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/web">web</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>3710 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>4586 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-10-09 16:09 &#43;0300</p>
 			</footer>
 		</article>
@@ -1013,7 +928,7 @@ wasm.js:398 DEBUG src/level.rs:102 Viewing level name1 component</code></pre>
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

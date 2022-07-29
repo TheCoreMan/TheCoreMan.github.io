@@ -9,16 +9,16 @@
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
 <meta itemprop="description" content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
- This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
+This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
 Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?"><meta itemprop="datePublished" content="2021-08-01T08:32:00+03:00" />
+Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?"><meta itemprop="datePublished" content="2021-08-01T08:32:00+03:00" />
 <meta itemprop="dateModified" content="2021-08-01T08:32:00+03:00" />
-<meta itemprop="wordCount" content="2755"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+<meta itemprop="wordCount" content="2759"><meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 <meta itemprop="keywords" content="clojure,algorithms," /><meta property="og:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日" />
 <meta property="og:description" content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
- This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
+This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
 Table of Contents
- Runtime Polymorphism  Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension  Lazy Sequences  iterate is also zero-based Standing on the shoulders of giants - using identity  Sequence Comprehensions  :when and other predefined keyword modifiers  Creating Functions  The let special form Function composition with comp  Recursion  Use comment loop?" />
+Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/" /><meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-01T08:32:00+03:00" />
@@ -108,69 +108,61 @@ MathJax.Hub.Config({
 				<h1>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</h1>
 			</header>
 			<div class="content">
-				
-
-<blockquote>
+				<blockquote>
 <p>&ldquo;日々是好日&rdquo; (<em>Nichinichi kore kōnichi</em>) means &ldquo;Every day is a good day&rdquo;
 or &ldquo;Try to spend every day meaningfully&rdquo;.</p>
 </blockquote>
-
 <p>This blog post continues directly from <a href="../first-foray-into-clojure-part-1">the previous
 one</a>, so I&rsquo;ll skip the intros. Go read that
 one for context. Let&rsquo;s just jump into it!</p>
-
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-
+<!-- raw HTML omitted -->
 <p><strong>Table of Contents</strong></p>
-
 <ul>
 <li><a href="#runtime-polymorphism">Runtime Polymorphism</a>
-
 <ul>
 <li><a href="#using-multi-arity-functions">Using multi-arity functions</a></li>
-<li><a href="#value-based-polymorphism-with-defmulti">Value-based polymorphism with <code>defmulti</code></a></li>
+<li><a href="#value-based-polymorphism-with-defmulti">Value-based polymorphism with <code>defmulti</code></a>
+<ul>
 <li><a href="#comparison-to-other-languages">Comparison to other languages</a></li>
 <li><a href="#breaking-down-what-the-code-means">Breaking down what the code means</a></li>
 <li><a href="#open-to-extension">Open to extension</a></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#lazy-sequences">Lazy Sequences</a>
-
 <ul>
 <li><a href="#iterate-is-also-zero-based"><code>iterate</code> is also zero-based</a></li>
 <li><a href="#standing-on-the-shoulders-of-giants---using-identity">Standing on the shoulders of giants - using <code>identity</code></a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#sequence-comprehensions">Sequence Comprehensions</a>
-
 <ul>
 <li><a href="#when-and-other-predefined-keyword-modifiers"><code>:when</code> and other predefined keyword modifiers</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#creating-functions">Creating Functions</a>
-
 <ul>
 <li><a href="#the-let-special-form">The <code>let</code> special form</a></li>
 <li><a href="#function-composition-with-comp">Function composition with <code>comp</code></a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#recursion">Recursion</a>
-
 <ul>
 <li><a href="#use-comment">Use <code>comment</code></a></li>
 <li><a href="#loop-finally-with-no-for-thats-what-i-needed"><code>loop</code>?! Finally, with no <code>for</code>, that&rsquo;s what I needed</a></li>
 <li><a href="#clojure-debugging">Clojure Debugging</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#what-now">What now?</a></li>
 </ul>
-
-<!-- markdown-toc end -->
-
+<!-- raw HTML omitted -->
 <h2 id="runtime-polymorphism">Runtime Polymorphism<a href="#runtime-polymorphism" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <blockquote>
 <p>One day someone asked Master Yunmen, “What is the meaning of the teaching?”</p>
-
 <p>The master said, “The answer is not finished yet.”</p>
 </blockquote>
-
-<p><img src="https://terebess.hu/zen/csontvary-maganyos-cedrus.jpg" alt="" /></p>
+<p><img src="https://terebess.hu/zen/csontvary-maganyos-cedrus.jpg" alt=""></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.10-runtime-polymorphism</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
 </span></span><span class="line"><span class="cl">
@@ -212,42 +204,34 @@ one for context. Let&rsquo;s just jump into it!</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;You may use a default method when no others match&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="s">&#34;I don&#39;t know what Rich Hickey eats.&#34;</span>
-</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:name</span> <span class="s">&#34;Rich Hickey&#34;</span><span class="p">})))</span></span></span></code></pre></div>
-<h3 id="using-multi-arity-functions">Using multi-arity functions<a href="#using-multi-arity-functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nf">diet</span> <span class="p">{</span><span class="ss">:name</span> <span class="s">&#34;Rich Hickey&#34;</span><span class="p">})))</span>
+</span></span></code></pre></div><h3 id="using-multi-arity-functions">Using multi-arity functions<a href="#using-multi-arity-functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><a href="../first-foray-into-clojure-part-0">In the first blog post in the series</a>
 we&rsquo;ve already seen multi-arity functions (in the <code>greeting</code> implementations).
 So this is not new :)</p>
-
 <h3 id="value-based-polymorphism-with-defmulti">Value-based polymorphism with <code>defmulti</code><a href="#value-based-polymorphism-with-defmulti" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>In this Koan, we see two new things: <code>defmulti</code> and <code>defmethod</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmulti </span><span class="nv">diet</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="ss">:eater</span> <span class="nv">x</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:herbivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats veggies.&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:carnivore</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats animals.&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:default</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;I don&#39;t know what &#34;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats.&#34;</span><span class="p">))</span></span></span></code></pre></div>
-<h4 id="comparison-to-other-languages">Comparison to other languages<a href="#comparison-to-other-languages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">diet</span> <span class="ss">:default</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;I don&#39;t know what &#34;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats.&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><h4 id="comparison-to-other-languages">Comparison to other languages<a href="#comparison-to-other-languages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>This is the way to implement run-time polymorphism in Clojure. Again, coming
 from different language means I have to compare to learn. There are two methods
 of implementing ploymorphism that I know: Type-based, which is like C++
 inheritance, and Duck typing, which is like the source of plenty of Python bugs.</p>
-
 <h4 id="breaking-down-what-the-code-means">Breaking down what the code means<a href="#breaking-down-what-the-code-means" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>Let&rsquo;s break down what this code means. To speak in the same terms, let&rsquo;s take a
 look at <code>defmulti</code>&rsquo;s signature.</p>
-
 <blockquote>
 <p>Tip: Want to see docs for something? When your cursor is on it, <code>, h h</code>:</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">clojure.core/defmulti
-</span></span><span class="line"><span class="cl"> <span class="o">[</span>name docstring? attr-map? dispatch-fn <span class="p">&amp;</span> options<span class="o">]</span></span></span></code></pre></div>
-<p>So, <code>defmulti</code> is the way we define the <strong>dispatcher</strong>. If you call <code>diet</code> with
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>name docstring? attr-map? dispatch-fn <span class="p">&amp;</span> options<span class="o">]</span>
+</span></span></code></pre></div><p>So, <code>defmulti</code> is the way we define the <strong>dispatcher</strong>. If you call <code>diet</code> with
 a value <code>x</code>, the dispatcher will dispatch it to the relevant method by getting
 the value of out the <code>:eater</code> key and dispatching <code>x</code> to the relevant method.
 This was defined by the <code>dispatch-fn</code>.</p>
-
 <p>Now the question becomes, how do you install multifunctions (I like to think
 about it like &ldquo;register methods&rdquo;) in the <code>defmulti diet</code>? How will <code>diet</code> know
 where to dispatch to? Well, you register them
@@ -255,17 +239,14 @@ using <code>defmethod</code>. When you <code>defmethod</code> with the same name
 <code>multifunction</code>, you register that method to the dispatcher. From the
 documentation of <code>defmethod</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">clojure.core/defmethod
-</span></span><span class="line"><span class="cl"> <span class="o">[</span>multifn dispatch-val <span class="p">&amp;</span> fn-tail<span class="o">]</span></span></span></code></pre></div>
-<p>So, by choosing the <code>dispatch-val</code> we tell the multifunction where to dispatch
+</span></span><span class="line"><span class="cl"> <span class="o">[</span>multifn dispatch-val <span class="p">&amp;</span> fn-tail<span class="o">]</span>
+</span></span></code></pre></div><p>So, by choosing the <code>dispatch-val</code> we tell the multifunction where to dispatch
 each <code>x</code> that&rsquo;s passed, <strong>based on a value that&rsquo;s in one of its keys</strong>.
 <code>:default</code> is a special value for this use.</p>
-
 <p>You can read more about multimethods in <a href="https://clojure.org/reference/multimethods">Clojure&rsquo;s
 reference</a>, since I probably can&rsquo;t
 explain it better than the official docs.</p>
-
 <h4 id="open-to-extension">Open to extension<a href="#open-to-extension" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>Another cool thing is that this polymorphism is <em>open to extension</em>. What does
 that mean? Let&rsquo;s take a look at an example. Alice wants to extend
 the <code>diet</code> multimethod we&rsquo;ve defined in their own Clojure project. Since it&rsquo;s a
@@ -274,30 +255,21 @@ the <code>:vegen</code> <code>dispatch-val</code>. In a &ldquo;normal&rdquo; lib
 way to start doing it would be to inherit the Base class and impl <code>diet</code>. With
 Clojure, Alice will only need to implement the <code>defmethod</code>. To do that, Alice
 will <code>require</code> the <code>koans.10-runtime-polymorphism :as k</code> and simply will write:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">k/diet</span> <span class="ss">:vegen</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats without hurting anyone 💚.&#34;</span><span class="p">))</span></span></span></code></pre></div>
-<p>This is already cool, but the potential uses for this are awesome. For example:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defmethod </span><span class="nv">k/diet</span> <span class="ss">:vegen</span> <span class="p">[</span><span class="nv">a</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="ss">:name</span> <span class="nv">a</span><span class="p">)</span> <span class="s">&#34; eats without hurting anyone 💚.&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><p>This is already cool, but the potential uses for this are awesome. For example:
 how will you expose a library&rsquo;s exception handling mechanism to extension and
 modification? It&rsquo;s hard to imagine how one might do that in other langauages,
 but using <code>multimethods</code> one can simple allow users to override specific
 exceptions.</p>
-
 <h2 id="lazy-sequences">Lazy Sequences<a href="#lazy-sequences" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<p><img src="https://terebess.hu/keletkultinfo/lacza/kep11.jpg" alt="" /></p>
-
+<p><img src="https://terebess.hu/keletkultinfo/lacza/kep11.jpg" alt=""></p>
 <blockquote>
 <p>Tozan (Ummon&rsquo;s future successor as head of the Ummon school) went to Ummon. Ummon asked him where he came from. Tozan said, &ldquo;From Sato Village.&rdquo;</p>
-
 <p>Ummon asked: &ldquo;In what temple did you remain for the summer?&rdquo;</p>
-
 <p>Tozan replied, &ldquo;The temple of Hoji, south of the lake.&rdquo;</p>
-
 <p>&ldquo;When did you leave there?&rdquo; asked Ummon, wondering how long Tozan would continue with such factual answers.</p>
-
 <p>&ldquo;The twenty-fifth of August&rdquo;, answered Tozan.</p>
-
 <p>Ummon then said: &ldquo;I should give you three blows, but today I forgive you.&rdquo;</p>
-
 <p>The next day Tozan bowed to Ummon and asked, &ldquo;Yesterday you forgave me three blows. I do not know why you thought me wrong.&rdquo; Ummon, rebuking Tozan&rsquo;s spiritless responses, said: &ldquo;You are good for nothing! You simply wander from one monastery to another.&rdquo; Before Ummon&rsquo;s words were ended, Tozan was enlightened.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.11-lazy-sequences</span>
@@ -327,50 +299,39 @@ exceptions.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Iteration can be used for repetition&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">repeat </span><span class="mi">100</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">take </span><span class="mi">100</span> <span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">))))</span></span></span></code></pre></div>
-<h3 id="iterate-is-also-zero-based"><code>iterate</code> is also zero-based<a href="#iterate-is-also-zero-based" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">take </span><span class="mi">100</span> <span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">))))</span>
+</span></span></code></pre></div><h3 id="iterate-is-also-zero-based"><code>iterate</code> is also zero-based<a href="#iterate-is-also-zero-based" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>At first, I thought that the answer to this Koan</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="s">&#34;Iteration provides an infinite lazy sequence&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="nv">__</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></span></span></code></pre></div>
-<p>was this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span> <span class="mi">256</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></span></span></code></pre></div>
-<p>But that didn&rsquo;t work, so I took a closer look at <code>iterate</code>&rsquo;s documentation:</p>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="nv">__</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span></code></pre></div><p>was this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span> <span class="mi">256</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span></code></pre></div><p>But that didn&rsquo;t work, so I took a closer look at <code>iterate</code>&rsquo;s documentation:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">clojure.core/iterate
 </span></span><span class="line"><span class="cl"> <span class="o">[</span>f x<span class="o">]</span>
 </span></span><span class="line"><span class="cl">Added in 1.0
 </span></span><span class="line"><span class="cl">  Returns a lazy sequence of x, <span class="o">(</span>f x<span class="o">)</span>, <span class="o">(</span>f <span class="o">(</span>f x<span class="o">))</span> etc. f must be free of
-</span></span><span class="line"><span class="cl">  side-effects</span></span></code></pre></div>
-<p>So iterate is 0 based as well: it starts with 0 calls to <code>f</code>, and then moves on
+</span></span><span class="line"><span class="cl">  side-effects
+</span></span></code></pre></div><p>So iterate is 0 based as well: it starts with 0 calls to <code>f</code>, and then moves on
 to <code>(f x)</code>, and then to <code>(f (f x))</code>. So here we need to start with <code>x</code>, so with
 1, so:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span></span></span></code></pre></div>
-<p>Let&rsquo;s express this in mathematical form. <code>iterate</code> basically composes a function
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">8</span> <span class="mi">16</span> <span class="mi">32</span> <span class="mi">64</span> <span class="mi">128</span><span class="p">]</span> <span class="p">(</span><span class="nb">take </span><span class="mi">8</span> <span class="p">(</span><span class="nb">iterate </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="mi">2</span><span class="p">))</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span></code></pre></div><p>Let&rsquo;s express this in mathematical form. <code>iterate</code> basically composes a function
 onto itself, so saying <code>(nth (iterate f x) n)</code> is the same as</p>
-
 <p>$$ f^n(x) $$</p>
-
 <p>therefore:</p>
-
 <p>$$ n=0 \to f^0(x) = x | x=1 \to f^0(1) = 1 $$</p>
-
-<h3 id="standing-on-the-shoulders-of-giants-using-identity">Standing on the shoulders of giants - using <code>identity</code><a href="#standing-on-the-shoulders-of-giants-using-identity" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="standing-on-the-shoulders-of-giants---using-identity">Standing on the shoulders of giants - using <code>identity</code><a href="#standing-on-the-shoulders-of-giants---using-identity" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>In the <a href="../first-foray-into-clojure-part-0">first blog post in this series</a>, we
 learned about the <code>identity</code> function. Here we use it to create an infinite lazy
 sequence of the same value:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">)</span></span></span></code></pre></div>
-<h2 id="sequence-comprehensions">Sequence Comprehensions<a href="#sequence-comprehensions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<p><img src="https://terebess.hu/zen/yunmen2.jpg" alt="" /></p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">iterate identity </span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="sequence-comprehensions">Sequence Comprehensions<a href="#sequence-comprehensions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><img src="https://terebess.hu/zen/yunmen2.jpg" alt=""></p>
 <blockquote>
 <p>Once the Southern Han Emperor Gaozu summoned Master Yunmen to the capital for an audience. The Emperor asked, “What is Zen all about?”</p>
-
 <p>Master Yunmen said, “Your Majesty has the question, and your servant the monk has the answer.”</p>
-
 <p>The Emperor inquired, “What answer?”</p>
-
 <p>The master replied, “I request Your Majesty to reflect upon the words your servant just uttered.”</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.12-sequence-comprehensions</span>
@@ -408,29 +369,21 @@ sequence of the same value:</p>
 </span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:left</span><span class="p">]</span> <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:middle</span><span class="p">]</span> <span class="p">[</span><span class="ss">:bottom</span> <span class="ss">:right</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">     <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">row</span> <span class="p">[</span><span class="ss">:top</span> <span class="ss">:middle</span> <span class="ss">:bottom</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">           <span class="nv">column</span> <span class="p">[</span><span class="ss">:left</span> <span class="ss">:middle</span> <span class="ss">:right</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl">       <span class="p">[</span><span class="nv">row</span> <span class="nv">column</span><span class="p">])))</span></span></span></code></pre></div>
-<h3 id="when-and-other-predefined-keyword-modifiers"><code>:when</code> and other predefined keyword modifiers<a href="#when-and-other-predefined-keyword-modifiers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">       <span class="p">[</span><span class="nv">row</span> <span class="nv">column</span><span class="p">])))</span>
+</span></span></code></pre></div><h3 id="when-and-other-predefined-keyword-modifiers"><code>:when</code> and other predefined keyword modifiers<a href="#when-and-other-predefined-keyword-modifiers" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><code>for</code> in Clojure has some supported modifiers. For the docs:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">   Supported modifiers are: :let [binding-form expr ...],
-</span></span><span class="line"><span class="cl">   :while test, :when test.</span></span></code></pre></div>
-<p>These keywords are parsed specifically by <code>for</code>, which in Clojure is a whole
+</span></span><span class="line"><span class="cl">   :while test, :when test.
+</span></span></code></pre></div><p>These keywords are parsed specifically by <code>for</code>, which in Clojure is a whole
 DSL. There are a few of these &ldquo;custom keyword&rdquo; modifiers for different macros -
 important to check the docs for these.</p>
-
 <h2 id="creating-functions">Creating Functions<a href="#creating-functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<p><img src="https://ychef.files.bbci.co.uk/624x351/p00xnqmc.jpg" alt="" /></p>
-
+<p><img src="https://ychef.files.bbci.co.uk/624x351/p00xnqmc.jpg" alt=""></p>
 <blockquote>
 <p>A Zen student told Ummon, &ldquo;Brilliancy of Buddha illuminates the whole universe.&rdquo;</p>
-
 <p>Before he finished the phrase, Ummon asked: &ldquo;You are reciting another&rsquo;s poem, are you not?&rdquo;</p>
-
 <p>&ldquo;Yes&rdquo;, answered the student.</p>
-
 <p>&ldquo;You are sidetracked&rdquo;, said Ummon.</p>
-
 <p>Afterwards another teacher, Shishin, asked his pupils: &ldquo;At which point did that student go off the track?&rdquo;</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.13-creating-functions</span>
@@ -467,38 +420,29 @@ important to check the docs for these.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;Be careful about the order in which you mix your functions&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="mi">99</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">square-and-dec</span> <span class="p">(</span><span class="nb">comp dec </span><span class="nv">square</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">square-and-dec</span> <span class="mi">10</span><span class="p">))))</span></span></span></code></pre></div>
-<h3 id="the-let-special-form">The <code>let</code> special form<a href="#the-let-special-form" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">square-and-dec</span> <span class="mi">10</span><span class="p">))))</span>
+</span></span></code></pre></div><h3 id="the-let-special-form">The <code>let</code> special form<a href="#the-let-special-form" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>To understand the <code>let</code> call in this Koan, we must refer to <a href="https://clojure.org/reference/special_forms#let">the reference
 documentation</a>. Let&rsquo;s break
 this down:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">  <span class="s">&#34;One may know what they seek by knowing what they do not seek&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">= </span><span class="p">[</span><span class="nv">false</span> <span class="nv">true</span> <span class="nv">false</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">not-a-symbol?</span> <span class="p">(</span><span class="nb">complement </span><span class="nv">symbol?</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nb">map </span><span class="nv">not-a-symbol?</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">&#39;b</span> <span class="s">&#34;c&#34;</span><span class="p">])))</span></span></span></code></pre></div>
-<p>So, using <code>let</code>, one can create a <em>lexical context</em> where the bindings inside
+</span></span><span class="line"><span class="cl">                  <span class="p">(</span><span class="nb">map </span><span class="nv">not-a-symbol?</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">&#39;b</span> <span class="s">&#34;c&#34;</span><span class="p">])))</span>
+</span></span></code></pre></div><p>So, using <code>let</code>, one can create a <em>lexical context</em> where the bindings inside
 the &ldquo;[]&rdquo; are evaluated. The bindings are pairs. In this binding, we bind the
 symbol <code>not-a-symbol?</code> to the result of the <code>complement</code> function call on
 <code>symbol?</code>. Then we can call <code>not-a-symbol?</code> in the lexical context <code>let</code>
 created.</p>
-
 <h3 id="function-composition-with-comp">Function composition with <code>comp</code><a href="#function-composition-with-comp" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p>This make a lot of sense, and seems very useful. Compose functions using <code>comp f
-g h</code> to get:</p>
-
+<p>This make a lot of sense, and seems very useful. Compose functions using <code>comp f g h</code> to get:</p>
 <p>$$ f(g(h(x))) $$</p>
-
 <h2 id="recursion">Recursion<a href="#recursion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <blockquote>
 <p>Once a monk asked Master Yunmen, “Will you say something that goes beyond the
 awakened ones and ancestral sages?”</p>
-
 <p>The master said, “Sesame cake.”</p>
 </blockquote>
-
-<p><img src="https://imgcp.aacdn.jp/img-a/1200/900/global-aaj-front/article/2019/04/5cc26664b2211_5cc2658f7abdf_777076407.jpg" alt="" /></p>
+<p><img src="https://imgcp.aacdn.jp/img-a/1200/900/global-aaj-front/article/2019/04/5cc26664b2211_5cc2658f7abdf_777076407.jpg" alt=""></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.14-recursion</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]))</span>
 </span></span><span class="line"><span class="cl">
@@ -567,9 +511,8 @@ awakened ones and ancestral sages?”</p>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">1000</span><span class="nv">N</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="s">&#34;But what happens when the machine limits you?&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">100003</span><span class="nv">N</span><span class="p">)))</span></span></span></code></pre></div>
-<h3 id="use-comment">Use <code>comment</code><a href="#use-comment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">&lt; </span><span class="mi">1000000000000000000000000</span><span class="nv">N</span> <span class="p">(</span><span class="nf">factorial</span> <span class="mi">100003</span><span class="nv">N</span><span class="p">)))</span>
+</span></span></code></pre></div><h3 id="use-comment">Use <code>comment</code><a href="#use-comment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Following a recommendation, I started using <code>comment</code> instead of testing in
 the repl. But what does <code>comment</code> do?</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="nb">&gt; </span><span class="p">(</span><span class="nb">doc </span><span class="nv">comment</span><span class="p">)</span>
@@ -577,25 +520,22 @@ the repl. But what does <code>comment</code> do?</p>
 </span></span><span class="line"><span class="cl"><span class="nv">clojure.core/comment</span>
 </span></span><span class="line"><span class="cl"><span class="p">([</span><span class="o">&amp;</span> <span class="nv">body</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="nv">Macro</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">Ignores</span> <span class="nv">body</span>, <span class="nv">yields</span> <span class="nv">nil</span></span></span></code></pre></div>
-<p>How is this useful? Well, look at the comment in the Koan body that I&rsquo;ve added.
+</span></span><span class="line"><span class="cl">  <span class="nv">Ignores</span> <span class="nv">body</span>, <span class="nv">yields</span> <span class="nv">nil</span>
+</span></span></code></pre></div><p>How is this useful? Well, look at the comment in the Koan body that I&rsquo;ve added.
 The marked part was added automatically by evaluating the comment&rsquo;s body using
 <code>, e p ; -&gt; cider-pprint-eval-to-comment</code>. This is a good way to try out stuff
 and get some &ldquo;free&rdquo; documentation on the way!</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="c1">;;        Evaluate this using , e p ; | get this output</span>
 </span></span><span class="line"><span class="cl"><span class="c1">;;        ^^^^^^^^^^^^^^^^^^^^^^^^^   | ^^^^^^^^^^^^^^^  </span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">comment </span><span class="p">(</span><span class="nf">recursive-reverse</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>    <span class="c1">;; =&gt; (3 2 1)</span>
-</span></span><span class="line"><span class="cl">         <span class="p">)</span> </span></span></code></pre></div>
-<h3 id="loop-finally-with-no-for-that-s-what-i-needed"><code>loop</code>?! Finally, with no <code>for</code>, that&rsquo;s what I needed<a href="#loop-finally-with-no-for-that-s-what-i-needed" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">         <span class="p">)</span> 
+</span></span></code></pre></div><h3 id="loop-finally-with-no-for-thats-what-i-needed"><code>loop</code>?! Finally, with no <code>for</code>, that&rsquo;s what I needed<a href="#loop-finally-with-no-for-thats-what-i-needed" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>As we&rsquo;ve seen before, Clojure&rsquo;s <code>for</code> is not a loop, but an iteration. <a href="https://clojure.org/special_forms#loop">Surely
 <code>loop</code> is a loop, right</a>?</p>
-
 <blockquote>
 <p>loop is exactly like let, except that it establishes a recursion point at the
 top of the loop, with arity equal to the number of bindings. See recur.</p>
 </blockquote>
-
 <p>OMG. Welp - let&rsquo;s see <code>recur</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="nb">&gt; </span><span class="p">(</span><span class="nb">doc </span><span class="nv">recur</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">-------------------------</span>
@@ -606,8 +546,8 @@ top of the loop, with arity equal to the number of bindings. See recur.</p>
 </span></span><span class="line"><span class="cl">  <span class="nv">the</span> <span class="nv">bindings</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">recursion</span> <span class="nv">point</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">exprs.</span>
 </span></span><span class="line"><span class="cl">  <span class="nv">Execution</span> <span class="nv">then</span> <span class="nv">jumps</span> <span class="nv">back</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">recursion</span> <span class="nv">point</span>, <span class="nv">a</span> <span class="k">loop </span><span class="nb">or </span><span class="k">fn </span><span class="nv">method.</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nv">Please</span> <span class="nv">see</span> <span class="nv">http</span><span class="ss">://clojure.org/special_forms#recur</span></span></span></code></pre></div>
-<p>OK. Following <a href="http://clojure.org/special_forms#recur">the Clojure docs link</a>
+</span></span><span class="line"><span class="cl">  <span class="nv">Please</span> <span class="nv">see</span> <span class="nv">http</span><span class="ss">://clojure.org/special_forms#recur</span>
+</span></span></code></pre></div><p>OK. Following <a href="http://clojure.org/special_forms#recur">the Clojure docs link</a>
 as well provides a clearer picture. In our factorial implementation, after the
 base cases, we have two <code>exprs</code> and two binding targets (sybmols):</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
@@ -619,50 +559,35 @@ base cases, we have two <code>exprs</code> and two binding targets (sybmols):</p
 </span></span><span class="line"><span class="cl">             <span class="nv">accum</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1">;; This is the second bind target</span>
 </span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">count</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">          <span class="nv">accum</span>                                     
-</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">count</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">accum</span> <span class="nv">count</span><span class="p">)))))))</span>  <span class="c1">;; Here are the exprs</span></span></span></code></pre></div>
-<p>So, <code>recur</code> evaluates the exprs IN ORDER, and then rebinds <code>count</code> and <code>accum</code>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">dec </span><span class="nv">count</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">accum</span> <span class="nv">count</span><span class="p">)))))))</span>  <span class="c1">;; Here are the exprs</span>
+</span></span></code></pre></div><p>So, <code>recur</code> evaluates the exprs IN ORDER, and then rebinds <code>count</code> and <code>accum</code>
 to the value of the revelant expression and jumps back to the <code>loop</code>.
 In our case, <code>count</code> gets <code>--</code>-ed and <code>accum</code> is multiplied by <code>count</code>. Makes
 sense! This how exactly how the factorial function is defined:</p>
-
-<p>$$ n! = n \times (n-1) \times (n-2) \times &hellip; \times 2 \times 1 $$</p>
-
+<p>$$ n! = n \times (n-1) \times (n-2) \times . . . \times 2 \times 1 $$</p>
 <p>Maybe this form is a clearer analogy:</p>
-
-<p>$$ accum=1 | n! = \left(\left(\left(\left(\left(accum \times n\right) \times \left(n-1\right)\right) \times \left(n-2\right)\right) \times &hellip; \times 2\right) \times 1\right) $$</p>
-
+<p>$$ accum=1 | n! = \left(\left(\left(\left(\left(accum \times n\right) \times \left(n-1\right)\right) \times \left(n-2\right)\right) \times . . . \times 2\right) \times 1\right) $$</p>
 <h3 id="clojure-debugging">Clojure Debugging<a href="#clojure-debugging" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>To make sure that we understand this part, we
 can try to experiment with it using another tool we haven&rsquo;t used yet:
 <strong>debugging</strong>. Clojure development is usually REPL-driven, so debugging isn&rsquo;t
 always the tool to reach for, but it&rsquo;s obviously very useful to know.</p>
-
 <p>In order to debug in Spacemacs, we first write the expression we want to debug
 (which, if we want, we can later use as a <code>comment</code>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">factorial</span> <span class="mi">5</span><span class="p">))</span></span></span></code></pre></div>
-<p>Then, with out cursor over it, <code>, d b -&gt; cider-debug-defun-at-point</code>, will lead
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">factorial</span> <span class="mi">5</span><span class="p">))</span>
+</span></span></code></pre></div><p>Then, with out cursor over it, <code>, d b -&gt; cider-debug-defun-at-point</code>, will lead
 us to the delightful:</p>
-
-<p><img src="/images/clj-debug-1.png" alt="Debugging in Spacemacs" title="Debugging in Spacemacs" /></p>
-
+<p><img src="/images/clj-debug-1.png" alt="Debugging in Spacemacs" title="Debugging in Spacemacs"></p>
 <p>And then to even more amazing:</p>
-
-<p><img src="/images/debug-clj-2.gif" alt="" title="Debugging in Spacemacs" /></p>
-
+<p><img src="/images/debug-clj-2.gif" alt="" title="Debugging in Spacemacs"></p>
 <h2 id="what-now">What now?<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>We&rsquo;re at the halfway point!</p>
-
-<p><img src="/images/clj-koans-list.png" alt="Koans list" title="Koans list" /></p>
-
+<p><img src="/images/clj-koans-list.png" alt="Koans list" title="Koans list"></p>
 <p>I really hope I&rsquo;ll get back to the Koans sooner rather than later. But to quote
 someone really smart I know:</p>
-
 <blockquote>
 <p>There&rsquo;s never enough time; Thanks you for yours!</p>
 </blockquote>
-
 <p>Check out the rest of my blogposts. You can <a href="/tags">browse them by subject
 here</a>.</p>
 
@@ -688,7 +613,7 @@ here</a>.</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/clojure">clojure</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/algorithms">algorithms</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2755 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2759 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-01 08:32 &#43;0300</p>
 			</footer>
 		</article>
@@ -713,7 +638,7 @@ here</a>.</p>
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

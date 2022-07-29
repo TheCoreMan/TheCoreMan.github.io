@@ -14,7 +14,7 @@
       
       <guid>https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/</guid>
       <description>A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC  A little context ToC  More context  How I wanted to do it The problems  The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.</description>
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.</description>
     </item>
     
   </channel>

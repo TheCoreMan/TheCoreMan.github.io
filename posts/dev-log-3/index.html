@@ -10,17 +10,17 @@
 <meta itemprop="name" content="Devlog #3 | I have grown taller from walking with the trees 🌳">
 <meta itemprop="description" content="“Today I have grown taller from walking with the trees.”
 ― Karle Wilson Baker
- Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
 Today we&rsquo;re automating another big part of the challenge: creating the level browser.
- Why do we need a level browser?"><meta itemprop="datePublished" content="2020-05-28T18:08:50+03:00" />
+Why do we need a level browser?"><meta itemprop="datePublished" content="2020-05-28T18:08:50+03:00" />
 <meta itemprop="dateModified" content="2020-05-28T18:08:50+03:00" />
-<meta itemprop="wordCount" content="1642"><meta itemprop="image" content="https://www.mrnice.dev/goodwillhunting.jpg">
+<meta itemprop="wordCount" content="1816"><meta itemprop="image" content="https://www.mrnice.dev/goodwillhunting.jpg">
 <meta itemprop="keywords" content="devlog,git,ctf,rust,algorithms," /><meta property="og:title" content="Devlog #3 | I have grown taller from walking with the trees 🌳" />
 <meta property="og:description" content="“Today I have grown taller from walking with the trees.”
 ― Karle Wilson Baker
- Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
 Today we&rsquo;re automating another big part of the challenge: creating the level browser.
- Why do we need a level browser?" />
+Why do we need a level browser?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-3/" /><meta property="og:image" content="https://www.mrnice.dev/goodwillhunting.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-05-28T18:08:50+03:00" />
@@ -117,87 +117,70 @@ MathJax.Hub.Config({
 				<h1>Devlog #3 | I have grown taller from walking with the trees 🌳</h1>
 			</header>
 			<div class="content">
-				
-
-<blockquote>
+				<blockquote>
 <p>“Today I have grown taller from walking with the trees.”</p>
-
 <p>― Karle Wilson Baker</p>
 </blockquote>
-
-<p><img src="https://www.telegraph.co.uk/content/dam/news/2016/09/08/107667228_beech-tree-NEWS_trans_NvBQzQNjv4BqplGOf-dgG3z4gg9owgQTXEmhb5tXCQRHAvHRWfzHzHk.jpg" alt="tree" title="tree" /></p>
-
+<p><img src="https://www.telegraph.co.uk/content/dam/news/2016/09/08/107667228_beech-tree-NEWS_trans_NvBQzQNjv4BqplGOf-dgG3z4gg9owgQTXEmhb5tXCQRHAvHRWfzHzHk.jpg" alt="tree" title="tree"></p>
 <p>Welcome back to my devlog series, where I discuss the development of <code>make-git-better</code> version 2 - a <code>git</code> CTF challenge. <a href="/posts/dev-log-2">Last time</a> we finished developing a script that automated generating the main <code>git</code> server hook for the CTF.</p>
-
 <p>Today we&rsquo;re automating another big part of the challenge: <strong>creating the level browser</strong>.</p>
-
 <ul>
 <li><a href="#why-do-we-need-a-level-browser">Why do we need a level browser?</a></li>
 <li><a href="#high-level-design-level-browser-generator">High-level design: level browser generator</a>
-
 <ul>
 <li><a href="#tldr">TL;DR</a></li>
 <li><a href="#more-details">More details</a></li>
 <li><a href="#how-will-the-script-work">How will the script work</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#implementation">Implementation</a>
-
 <ul>
 <li><a href="#refactoring-the-project-structure">Refactoring the project structure</a></li>
-<li><a href="#parsing-the-configuration-into-a-graph">Parsing the configuration into a graph</a></li>
+<li><a href="#parsing-the-configuration-into-a-graph">Parsing the configuration into a graph</a>
+<ul>
 <li><a href="#example">Example</a></li>
-<li><a href="#rendering-the-graph-as-an-interactive-web-ui-element">Rendering the graph as an interactive web UI element</a></li>
+</ul>
+</li>
+<li><a href="#rendering-the-graph-as-an-interactive-web-ui-element">Rendering the graph as an interactive web UI element</a>
+<ul>
 <li><a href="#outputting-the-graph-to-dot">Outputting the graph to DOT</a></li>
 <li><a href="#using-the-dot-string-to-render-a-visual-interactive-graph">Using the DOT string to render a visual, interactive graph</a></li>
+</ul>
+</li>
 <li><a href="#unit-testing">Unit testing</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#whats-next">What&rsquo;s next</a></li>
 </ul>
-
 <h2 id="why-do-we-need-a-level-browser">Why do we need a level browser?<a href="#why-do-we-need-a-level-browser" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>When solving a CTF, I want to make sure I keep the fun/frustration factors pretty balanced. To that end, I want to communicate some things to the player, such as:</p>
-
 <ol>
 <li>If you&rsquo;re stuck on a level, here are some hints.</li>
 <li>The storyline/theme/flavour/jokes/memes are there if you want them; out of the way if you don&rsquo;t.</li>
 <li>You&rsquo;ve made X progress and you are Y level away from finished the challenge.</li>
 </ol>
-
 <p>I feel like knowing all this really lowers the risk of the player getting frustrated while playing the CTF, so we can avoid <em>unpleasentenss</em>&hellip;</p>
-
-<p><img src="https://media.giphy.com/media/bPCwGUF2sKjyE/giphy.gif" alt="Computer rage" title="Computer rage" /></p>
-
+<p><img src="https://media.giphy.com/media/bPCwGUF2sKjyE/giphy.gif" alt="Computer rage" title="Computer rage"></p>
 <p>Also, potentially, it would be cool to have a place to put your flags and get the next level/a code to the &ldquo;final&rdquo; level.</p>
-
 <p>So I need a place to put auxiliary content for each level. The options were either in the level itself as text files that are a part of the game repository or as a separate webpage. I decided to go with a webpage since combining the two seemed to not really work in the last version of this challenge and webpages allow for more content types to be easily embedded. A good example of a CTF doing this is <a href="https://overthewire.org/wargames/bandit/">OverTheWire</a>.</p>
-
 <figure><img src="https://i.imgur.com/DmHX6S7.png"
          alt="OverTheWire Level Browser"/><figcaption>
             <h4>OverTheWire Level Browser</h4>
         </figcaption>
 </figure>
 
-
 <p>However, unlike OverTheWire, the level structure in this CTF is not linear, so the level browser can&rsquo;t just be a list. Logically, it&rsquo;s an <a href="https://en.wikipedia.org/wiki/Arborescence_(graph_theory)">Arborescence</a>: a directed, acyclic, rooted tree 🌳 graph where the Nodes are levels and the Edges are flags. I drew some inspiration from Google&rsquo;s beginner CTF page:</p>
-
 <p><a href="https://capturetheflag.withgoogle.com/#beginners/"><figure><img src="https://i.imgur.com/2VbUMUc.png"
          alt="Google CTF Level Browser"/><figcaption>
             <h4>Google CTF Level Browser</h4>
         </figcaption>
 </figure>
 </a></p>
-
 <p>And set out to implement it myself.</p>
-
 <h2 id="high-level-design-level-browser-generator">High-level design: level browser generator<a href="#high-level-design-level-browser-generator" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<h3 id="tl-dr">TL;DR<a href="#tl-dr" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="tldr">TL;DR<a href="#tldr" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Shove the game config (TOML file with a list of levels) into a visual interactive web graph file, and embed that file in the CTF site.</p>
-
 <h3 id="more-details">More details<a href="#more-details" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p><strong>Input</strong>: The game&rsquo;s configuration, which looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">levels</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;clone&#34;</span>
@@ -216,26 +199,17 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">  <span class="nx">branch</span> <span class="p">=</span> <span class="s2">&#34;REDACTED&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">solution_checker</span> <span class="p">=</span> <span class="s2">&#34;hooks/checkers/merge-1.sh&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;merge-2&#34;</span><span class="p">,</span> <span class="s2">&#34;log-1&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">...</span></span></span></code></pre></div>
-<p>Will be fed into a script that parses it into a graph. The script will then render the graph to the&hellip;</p>
-
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><p>Will be fed into a script that parses it into a graph. The script will then render the graph to the&hellip;</p>
 <p><strong>Output</strong>: an interactive level browser that looks like a graph.</p>
-
 <h3 id="how-will-the-script-work">How will the script work<a href="#how-will-the-script-work" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>There are two heavy lifting jobs in this script and a lot of boilerplate that surrounds them. The first job is taking the config and parsing it into a graph. The second job is displaying the logical graph in a web context.</p>
-
 <p>To solve the first job, we&rsquo;ll write a recursive algorithm in Rust and parse the config Level by Level. To solve the second job, we&rsquo;ll use some nifty JS libraries and standard languages to &ldquo;shove&rdquo; the graph into a web page.</p>
-
 <h2 id="implementation">Implementation<a href="#implementation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <h3 id="refactoring-the-project-structure">Refactoring the project structure<a href="#refactoring-the-project-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Professor rework dropped in for a visit&hellip;</p>
-
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Professor Rework looking kinda thicc ngl <a href="https://t.co/HUlQJV6JlO">pic.twitter.com/HUlQJV6JlO</a></p>&mdash; randy (@bigrando420) <a href="https://twitter.com/bigrando420/status/1242886023643725829?ref_src=twsrc%5Etfw">March 25, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 <p><a href="/posts/dev-log-2#parsing-game-configtoml">Last time</a> we created some data structures that represent a single Level and the Game Config, but it was all in a single file. Now that we&rsquo;re planning to write another script, it&rsquo; time to move stuff out of single files into a common library under <code>/lib</code> and separate different scripts into different files under a <code>/bin</code>. This resulted in the following directory structure:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># This is executable scripts</span>
@@ -245,23 +219,18 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># This is common code</span>
 </span></span><span class="line"><span class="cl">/scripts/src/lib
-</span></span><span class="line"><span class="cl">/scripts/src/lib/lib.rs</span></span></code></pre></div>
-<h3 id="parsing-the-configuration-into-a-graph">Parsing the configuration into a graph<a href="#parsing-the-configuration-into-a-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">/scripts/src/lib/lib.rs
+</span></span></code></pre></div><h3 id="parsing-the-configuration-into-a-graph">Parsing the configuration into a graph<a href="#parsing-the-configuration-into-a-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Who would have believed that I would actually need to write a recursive algorithm that deals with Graphs outside of university?</p>
-
-<p><img src="https://media.giphy.com/media/cl27Mh8srUEog5GtUR/giphy.gif" alt="Happy student" title="Happy student" /></p>
-
+<p><img src="https://media.giphy.com/media/cl27Mh8srUEog5GtUR/giphy.gif" alt="Happy student" title="Happy student"></p>
 <p>The core algorithm of the script is <code>add_level_nodes_to_graph</code>, which is a recursive function that gets the current level and adds the next levels from it (i.e. the current level&rsquo;s flags, if those point to other levels) to the graph - and calls itself again for each of those levels. The graph is initialized with the root.</p>
-
 <p>While developing this part, I really struggled with the concept of <em>ownership</em> and <em>lifetimes</em> in Rust. However, after a few hours of frustrating debugging, the <a href="https://www.rust-lang.org/community">Rust community</a> really helped me figure those issues out (which is why you see a lot of <code>.clone()</code>s dotted around the code).</p>
-
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">OMG, the <a href="https://twitter.com/rustlang?ref_src=twsrc%5Etfw">@rustlang</a> <a href="https://twitter.com/discord?ref_src=twsrc%5Etfw">@discord</a> is supportive and awesome. I couldn&#39;t figure out lifetimes in my script, and they saved me (after hours of painful debugging). Such a cool community! Feel like a <a href="https://twitter.com/hashtag/Rustacean?src=hash&amp;ref_src=twsrc%5Etfw">#Rustacean</a> already 🦀<br><br>Note to self: Clone first, optimize later. <a href="https://t.co/9j8d7QeDiT">pic.twitter.com/9j8d7QeDiT</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1264726269293445120?ref_src=twsrc%5Etfw">May 25, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>Here&rsquo;s the code:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">create_graph_from_game_config</span><span class="p">(</span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="nc">GameConfig</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">LevelsGraph</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">create_graph_from_game_config</span><span class="p">(</span><span class="n">game_config</span>: <span class="kp">&amp;</span><span class="nc">GameConfig</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">LevelsGraph</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">levels_graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LevelsGraph</span>::<span class="n">new</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game_config</span><span class="p">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clone</span><span class="p">();</span><span class="w">
@@ -305,9 +274,8 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<h4 id="example">Example<a href="#example" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h4 id="example">Example<a href="#example" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Let&rsquo;s run through an example (this example is the unit test, as well). Let&rsquo;s say this is our game config:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">first_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">title</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;first&#34;</span><span class="p">),</span><span class="w">
@@ -324,26 +292,18 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">game_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameConfig</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">levels</span>: <span class="nc">vec</span><span class="o">!</span><span class="p">[</span><span class="n">first_level</span><span class="p">,</span><span class="w"> </span><span class="n">second_level</span><span class="p">],</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span></span></span></code></pre></div>
-<p>Now, when we call <code>let graph = create_graph_from_game_config(&amp;game_conf);</code>, the graph is initialized with the first level as its root. This is how the graph looks like at this state:</p>
-
-<p><img src="https://i.imgur.com/GvKevCU.png" alt="graph 1" title="graph 1" /></p>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span></code></pre></div><p>Now, when we call <code>let graph = create_graph_from_game_config(&amp;game_conf);</code>, the graph is initialized with the first level as its root. This is how the graph looks like at this state:</p>
+<p><img src="https://i.imgur.com/GvKevCU.png" alt="graph 1" title="graph 1"></p>
 <p>After initializing we call <code>add_level_nodes_to_graph</code> with the first node as a parameter. <code>add_level_nodes_to_graph</code> iterates on all of the first level&rsquo;s flags. Since <code>second</code> is the title of another level, it is added to the graph and an edge is drawn between <code>first</code> and <code>second</code>. This is how the graph looks like at this state:</p>
-
-<p><img src="https://i.imgur.com/TVyCnrV.png" alt="graph 2" title="graph 2" /></p>
-
+<p><img src="https://i.imgur.com/TVyCnrV.png" alt="graph 2" title="graph 2"></p>
 <p>The <code>second</code> level has 2 flags, but these flags don&rsquo;t actually &ldquo;point&rdquo; to other levels that exist in the configuration - so <code>add_level_nodes_to_graph</code> discards them as flags that don&rsquo;t shouldn&rsquo;t be nodes in the final graph. We&rsquo;re done with that call, the stack unwinds, and we wind up with a simple Tree graph.</p>
-
 <h3 id="rendering-the-graph-as-an-interactive-web-ui-element">Rendering the graph as an interactive web UI element<a href="#rendering-the-graph-as-an-interactive-web-ui-element" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>To do this, I had to first take into consideration the fact that all of the game&rsquo;s web content will be part of my blog and therefore it should work neatly in Hugo. I decided that the level browser will be a <a href="https://gohugo.io/templates/shortcode-templates/">custom Hugo shortcode</a> and to use the <a href="https://visjs.org/">vis.js</a> JS library to display the graph itself. The interface between the logical graph in the script and the actual resulting HTML file had two parts - <a href="https://github.com/bheisler/TinyTemplate"><code>TinyTemplate</code></a> for the actual string replacement, and <a href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)"><code>DOT</code></a> as the common language.</p>
-
 <h4 id="outputting-the-graph-to-dot">Outputting the graph to DOT<a href="#outputting-the-graph-to-dot" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>The <a href="https://docs.rs/petgraph/0.5.1/petgraph/"><code>petgraph</code></a> crate has built-in support for <code>DOT</code>, so outputting the graph to DOT format was very easy:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">levels_graph_as_dot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span>::<span class="n">with_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p">[</span><span class="n">Config</span>::<span class="n">EdgeNoLabel</span><span class="p">]);</span></span></span></code></pre></div>
-<p>The resulting <code>DOT</code> string is very readable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="n">levels_graph_as_dot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span>::<span class="n">with_config</span><span class="p">(</span><span class="o">&amp;</span><span class="n">levels_graph</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p">[</span><span class="n">Config</span>::<span class="n">EdgeNoLabel</span><span class="p">]);</span><span class="w">
+</span></span></span></code></pre></div><p>The resulting <code>DOT</code> string is very readable:</p>
 <pre tabindex="0"><code class="language-DOT" data-lang="DOT">digraph {
     0 [label=&#34;clone&#34;]
     1 [label=&#34;start-here&#34;]
@@ -356,12 +316,11 @@ MathJax.Hub.Config({
     2 -&gt; 3
     2 -&gt; 4
     4 -&gt; 5
-}</code></pre>
-<h4 id="using-the-dot-string-to-render-a-visual-interactive-graph">Using the DOT string to render a visual, interactive graph<a href="#using-the-dot-string-to-render-a-visual-interactive-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+}
+</code></pre><h4 id="using-the-dot-string-to-render-a-visual-interactive-graph">Using the DOT string to render a visual, interactive graph<a href="#using-the-dot-string-to-render-a-visual-interactive-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>The graph template file (which becomes a shortcode) has a few interesting parts. First, it has an empty <code>div</code> with the &ldquo;mynetwork&rdquo; id:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;mynetwork&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
-<p>Then the script starts doing the heavy lifting. First we define the DOTstring using TinyTemplates built-in <code>unescaped</code> formatter and parse the data using <code>vis</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;mynetwork&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Then the script starts doing the heavy lifting. First we define the DOTstring using TinyTemplates built-in <code>unescaped</code> formatter and parse the data using <code>vis</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">DOTstring</span> <span class="o">=</span> <span class="sb">`
 </span></span></span><span class="line"><span class="cl"><span class="sb">{levels_graph_as_dot | unescaped}
 </span></span></span><span class="line"><span class="cl"><span class="sb">`</span><span class="p">;</span>
@@ -370,8 +329,8 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">nodes</span><span class="o">:</span> <span class="nx">parsedData</span><span class="p">.</span><span class="nx">nodes</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">edges</span><span class="o">:</span> <span class="nx">parsedData</span><span class="p">.</span><span class="nx">edges</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre></div>
-<p>After we have the data, we can create the graph itself. There are a lot of styling options here to make the graph itself look nice:</p>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p>After we have the data, we can create the graph itself. There are a lot of styling options here to make the graph itself look nice:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">    <span class="c1">// create a network
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;mynetwork&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -400,25 +359,20 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// initialize your network!
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">network</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vis</span><span class="p">.</span><span class="nx">Network</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span></span></span></code></pre></div>
-<p>Finally, we need to add interactivity to the graph - otherwise, it&rsquo;s not a level browser! Luckily, it was rather simple to use <a href="https://codepen.io/pen/?&amp;editable=true=https%3A%2F%2Fvisjs.github.io%2Fvis-network%2Fexamples%2Fstatic%2Fcodepen.0b56da2bf3b3b38d9624dfc4d9f0565ea204687d3b64636adcd3c3f0c829d4a6.html"><code>vis.js</code>&rsquo;s detailed code examples</a> to build this:</p>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">network</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vis</span><span class="p">.</span><span class="nx">Network</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</span></span></code></pre></div><p>Finally, we need to add interactivity to the graph - otherwise, it&rsquo;s not a level browser! Luckily, it was rather simple to use <a href="https://codepen.io/pen/?&amp;editable=true=https%3A%2F%2Fvisjs.github.io%2Fvis-network%2Fexamples%2Fstatic%2Fcodepen.0b56da2bf3b3b38d9624dfc4d9f0565ea204687d3b64636adcd3c3f0c829d4a6.html"><code>vis.js</code>&rsquo;s detailed code examples</a> to build this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl">    <span class="nx">network</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="err">\</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="nx">params</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="err">\</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nx">levelName</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]].</span><span class="nx">label</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="nx">resulting_url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span> <span class="o">+</span> <span class="s2">&#34;/levels/&#34;</span> <span class="o">+</span> <span class="nx">levelName</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">resulting_url</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">});</span></span></span></code></pre></div>
-<p>And the final result looked pretty cool :)</p>
-
-<p><img src="https://media.giphy.com/media/jVCFgE9CW1bfmI0DGZ/giphy.gif" alt="level browser demo" title="Level browser demo" /></p>
-
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span></code></pre></div><p>And the final result looked pretty cool :)</p>
+<p><img src="https://media.giphy.com/media/jVCFgE9CW1bfmI0DGZ/giphy.gif" alt="level browser demo" title="Level browser demo"></p>
 <h3 id="unit-testing">Unit testing<a href="#unit-testing" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>I also covered the non-boilerplate parts of the code with unit tests. Since <code>rust</code> has it baked-in to the language and tooling, this is very easy and immediately satisfying.</p>
-
-<p><img src="https://i.imgur.com/ufD5efV.png" alt="&quot;Test Explorer&quot;" title="Test Explorer" /></p>
-
+<p><img src="https://i.imgur.com/ufD5efV.png" alt="&amp;ldquo;Test Explorer&amp;rdquo;" title="Test Explorer"></p>
 <p>The unit test for this script was the example we saw eariler:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -450,14 +404,11 @@ MathJax.Hub.Config({
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">assert!</span><span class="p">(</span><span class="n">graph</span><span class="p">.</span><span class="n">is_directed</span><span class="p">());</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">assert!</span><span class="p">(</span><span class="o">!</span><span class="n">is_cyclic_directed</span><span class="p">(</span><span class="o">&amp;</span><span class="n">graph</span><span class="p">));</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div>
-<h2 id="what-s-next">What&rsquo;s next<a href="#what-s-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h2 id="whats-next">What&rsquo;s next<a href="#whats-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Now that a lot of the infrastructure is in place, it&rsquo;s time to plan out, develop, test, deploy, test again, and write content for all of the levels. The previous version of the challenge had about 11 levels all in all. I hope to get to at LEAST 15 in the first iteration - hopefully, 20.</p>
-
 <p>But that&rsquo;s for tomorrow, and tomorrow is another day&hellip;</p>
-
-<p><img src="https://importanceoftechnology.net/wp-content/uploads/2020/05/istockphoto-961483346-1024x1024-1.jpg" alt="Weekend" title="Weekend" /></p>
+<p><img src="https://importanceoftechnology.net/wp-content/uploads/2020/05/istockphoto-961483346-1024x1024-1.jpg" alt="Weekend" title="Weekend"></p>
 
 			</div>
 
@@ -483,7 +434,7 @@ MathJax.Hub.Config({
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/rust">rust</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/algorithms">algorithms</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1642 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1816 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-28 18:08 &#43;0300</p>
 			</footer>
 		</article>
@@ -508,7 +459,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

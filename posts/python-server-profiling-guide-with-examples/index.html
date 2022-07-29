@@ -114,32 +114,18 @@ MathJax.Hub.Config({
 				<h1>Python Server Profiling: A quick guide (with real data)</h1>
 			</header>
 			<div class="content">
-				
-
-<p>This post has appeared as an article on <a href="https://pagedout.institute/download/PagedOut_002_beta1.pdf">issue #2</a> of <a href="https://pagedout.institute/">PagedOut! magazine</a>.</p>
-
-<p><img src="https://pagedout.institute/download/PagedOut_002_wallpaper_30.png" alt="pagedout2" /></p>
-
+				<p>This post has appeared as an article on <a href="https://pagedout.institute/download/PagedOut_002_beta1.pdf">issue #2</a> of <a href="https://pagedout.institute/">PagedOut! magazine</a>.</p>
+<p><img src="https://pagedout.institute/download/PagedOut_002_wallpaper_30.png" alt="pagedout2"></p>
 <p><em>I improved performance issues in a Python server and survived to tell you the tale.</em></p>
-
 <h2 id="0-discover-your-problem-is-performance">0) Discover your problem is performance<a href="#0-discover-your-problem-is-performance" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.</p>
-
 <p>For us, it started with this a demo of the new version of <a href="https://infectionmonkey.com/">Infection Monkey</a> that had &gt;35 machines. The report generation was so slow, the server just died! Luckily <a href="https://twitter.com/CyberCaffeinate">@CyberCaffeinate</a> was able to recognize the situation and relay it to us.</p>
-
-<p><img src="https://i.imgur.com/d4nxiqx.png" alt="Problem" /></p>
-
-<h2 id="0-5-briefly-consider-re-writing-in-golang">0.5) Briefly consider re-writing in Golang<a href="#0-5-briefly-consider-re-writing-in-golang" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/d4nxiqx.png" alt="Problem"></p>
+<h2 id="05-briefly-consider-re-writing-in-golang">0.5) Briefly consider re-writing in Golang<a href="#05-briefly-consider-re-writing-in-golang" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><em>Cry inside when you realize you’re not going to do that. Promise yourself to rethink the tech stack for the next feature. Rinse and repeat.</em></p>
-
-<p><img src="https://go-gopher.appspot.com/static/star100.jpg" alt="gopher" /></p>
-
-<h2 id="1-identify-the-bottlenecks-using-pyspy-https-github-com-benfred-py-spy">1) Identify the bottlenecks using <a href="https://github.com/benfred/py-spy">PySpy</a><a href="#1-identify-the-bottlenecks-using-pyspy-https-github-com-benfred-py-spy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://go-gopher.appspot.com/static/star100.jpg" alt="gopher"></p>
+<h2 id="1-identify-the-bottlenecks-using-pyspyhttpsgithubcombenfredpy-spy">1) Identify the bottlenecks using <a href="https://github.com/benfred/py-spy">PySpy</a><a href="#1-identify-the-bottlenecks-using-pyspyhttpsgithubcombenfredpy-spy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>The problem with Server profiling is that profilers measure a program from start to finish. When you run a server, it doesn’t stop, but waits for requests. Enter <strong>PySpy</strong>, which is a <strong>sampling profiler</strong> for Python. Quick start guide:</p>
-
 <ol>
 <li>Run the server. Let’s say its PID is 12345.</li>
 <li><code>py-spy top --pid 12345</code></li>
@@ -147,37 +133,21 @@ MathJax.Hub.Config({
 <li><code>py-spy dump --pid 12345</code></li>
 <li>Look for the timewasters from step 4.</li>
 </ol>
-
 <p>This is what our first run of <code>py-spy top</code> returned:</p>
-
-<p><img src="https://i.imgur.com/N6unTdU.png" alt="pyspy" /></p>
-
+<p><img src="https://i.imgur.com/N6unTdU.png" alt="pyspy"></p>
 <p>So we found out we call <code>local_ip_addresses()</code> often, and we’re also spending time on MongoDB calls.</p>
-
-<h2 id="2-profile-the-problems-using-yappi-https-github-com-sumerc-yappi">2) Profile the problems using <a href="https://github.com/sumerc/yappi">Yappi</a><a href="#2-profile-the-problems-using-yappi-https-github-com-sumerc-yappi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="2-profile-the-problems-using-yappihttpsgithubcomsumercyappi">2) Profile the problems using <a href="https://github.com/sumerc/yappi">Yappi</a><a href="#2-profile-the-problems-using-yappihttpsgithubcomsumercyappi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Write a scratch file which only calls required initialization and calls the problematic methods. <em>In our case, the problem only occurred with a large database, so we had to recreate that as well. “External” factors often are a part of profiling.</em></p>
-
 <p>Now, we can profile that scratch file instead of the server using <code>Yappi</code>. We should get a performance graph and know exactly how much time each method is taking.</p>
-
-<p><img src="https://i.imgur.com/clKieUv.png" alt="yappi" /></p>
-
+<p><img src="https://i.imgur.com/clKieUv.png" alt="yappi"></p>
 <p><em>These are both the before and after snapshots. We found out that when generating a report, we query our database almost a million times (for 30 machines)</em> 🤷‍♀‍</p>
-
 <h2 id="3-improve-performance">3) Improve performance<a href="#3-improve-performance" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>First, you’ll need to determine what’s the performance goal. Programs can almost always be optimized, so you need to choose when to stop working at it. <em>For example, we thought going under 5 seconds for each report generation is OK for our needs, for now.</em></p>
-
-<p>Usually, there are two types of performance issues: If the bottleneck is with your <strong>data</strong>, use caching (we used <a href="https://github.com/youknowone/ring"><code>ring</code></a>). If the bottlenecks are bad <strong>algorithms</strong> – you’ll have to improve them from a lazy Θ(n<sup>4</sup>) to a speedy Θ(n<sup>2</sup>).</p>
-
+<p>Usually, there are two types of performance issues: If the bottleneck is with your <strong>data</strong>, use caching (we used <a href="https://github.com/youknowone/ring"><code>ring</code></a>). If the bottlenecks are bad <strong>algorithms</strong> – you’ll have to improve them from a lazy Θ(n<!-- raw HTML omitted -->4<!-- raw HTML omitted -->) to a speedy Θ(n<!-- raw HTML omitted -->2<!-- raw HTML omitted -->).</p>
 <p><em>See how we did both of those in <a href="https://github.com/guardicore/monkey/pull/447">this Pull Request</a>.</em></p>
-
-<h2 id="a-word-of-warning">⚠ A word of warning<a href="#a-word-of-warning" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="-a-word-of-warning">⚠ A word of warning<a href="#-a-word-of-warning" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>No one is clever enough to improve performance without introducing a new bug. Case in point:</p>
-
-<p><img src="https://i.imgur.com/LjC8tMH.png" alt="bug" /></p>
-
+<p><img src="https://i.imgur.com/LjC8tMH.png" alt="bug"></p>
 <p>So good luck with profiling! It’s fun 😊</p>
 
 			</div>
@@ -212,7 +182,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

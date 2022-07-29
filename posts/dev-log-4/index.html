@@ -9,13 +9,13 @@
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Devlog #4 | IT&#39;S ALIIIIIIVE">
 <meta itemprop="description" content="If you haven&rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&rsquo;t.
- “The test of the machine is the satisfaction it gives you. There isn&rsquo;t any other test. If the machine produces tranquility it&rsquo;s right. If it disturbs you it&rsquo;s wrong until either the machine or your mind is changed.”
+“The test of the machine is the satisfaction it gives you. There isn&rsquo;t any other test. If the machine produces tranquility it&rsquo;s right. If it disturbs you it&rsquo;s wrong until either the machine or your mind is changed.”
 ― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values"><meta itemprop="datePublished" content="2020-07-04T18:53:26+03:00" />
 <meta itemprop="dateModified" content="2020-07-04T18:53:26+03:00" />
-<meta itemprop="wordCount" content="857"><meta itemprop="image" content="https://www.mrnice.dev/images/itsalive.jpg">
+<meta itemprop="wordCount" content="858"><meta itemprop="image" content="https://www.mrnice.dev/images/itsalive.jpg">
 <meta itemprop="keywords" content="devlog,git,ctf," /><meta property="og:title" content="Devlog #4 | IT&#39;S ALIIIIIIVE" />
 <meta property="og:description" content="If you haven&rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&rsquo;t.
- “The test of the machine is the satisfaction it gives you. There isn&rsquo;t any other test. If the machine produces tranquility it&rsquo;s right. If it disturbs you it&rsquo;s wrong until either the machine or your mind is changed.”
+“The test of the machine is the satisfaction it gives you. There isn&rsquo;t any other test. If the machine produces tranquility it&rsquo;s right. If it disturbs you it&rsquo;s wrong until either the machine or your mind is changed.”
 ― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-4/" /><meta property="og:image" content="https://www.mrnice.dev/images/itsalive.jpg" /><meta property="article:section" content="posts" />
@@ -113,111 +113,76 @@ MathJax.Hub.Config({
 				<h1>Devlog #4 | IT&#39;S ALIIIIIIVE</h1>
 			</header>
 			<div class="content">
-				
-
-<p><em>If you haven&rsquo;t read the rest of the devlogs, <a href="/tags/devlog/">you can find them here</a>. You might be missing some context if you don&rsquo;t.</em></p>
-
+				<p><em>If you haven&rsquo;t read the rest of the devlogs, <a href="/tags/devlog/">you can find them here</a>. You might be missing some context if you don&rsquo;t.</em></p>
 <blockquote>
 <p>“The test of the machine is the satisfaction it gives you. There isn&rsquo;t any other test. If the machine produces tranquility it&rsquo;s right. If it disturbs you it&rsquo;s wrong until either the machine or your mind is changed.”</p>
-
 <p>― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</p>
 </blockquote>
-
 <p>I&rsquo;ve been working on this version of the CTF for a good long while now: Since May 2nd on this version, which means about 2 months; and since last year on the concept, which means about 9 months. And I&rsquo;ve finally released it!</p>
-
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I am SO EXCITED to finally share this with y&#39;all: <a href="https://t.co/vcXfmcTYS1">https://t.co/vcXfmcTYS1</a><br><br>The <a href="https://twitter.com/hashtag/git?src=hash&amp;ref_src=twsrc%5Etfw">#git</a> CTF challenge I&#39;ve been working on for months with <a href="https://twitter.com/SandSpider2234?ref_src=twsrc%5Etfw">@SandSpider2234</a> is finally online! 😃I hope it will be a fun, challenging, interactive way for the world to learn and practice git.</p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1273655547754164226?ref_src=twsrc%5Etfw">June 18, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>So, what have we learned?</p>
-
 <h2 id="effective-tooling-leads-to-a-motivated-process">Effective tooling leads to a motivated process<a href="#effective-tooling-leads-to-a-motivated-process" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>I had a BLAST running my <code>generate-new-level</code> script. The marvel of seeing my hard <a href="../dev-log-1">planning</a> and <a href="../dev-log-2">development</a> work pay off made me WANT to create more levels and to continue working on the Challenge in the future as well.</p>
-
 <h2 id="testing-is-worth-its-weight-in-gold">Testing is worth its weight in gold<a href="#testing-is-worth-its-weight-in-gold" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Had a few friends test out the challenge, and the feedback was invaluable:</p>
-
-<p><img src="/images/pull_request.png" alt="Pull Request" title="Pull Request" /></p>
-
+<p><img src="/images/pull_request.png" alt="Pull Request" title="Pull Request"></p>
 <h2 id="releasing-is-exciting-and-fun">Releasing is exciting and fun<a href="#releasing-is-exciting-and-fun" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Having people that I don&rsquo;t know playing my challenge live and sending me PMs on Twitter was super cool. A very humbling experience to know that I actually helped someone who wants to study:</p>
-
-<p><img src="/images/mgb_twitter_dm.png" alt="Twitter DM" title="Twitter DM" /></p>
-
+<p><img src="/images/mgb_twitter_dm.png" alt="Twitter DM" title="Twitter DM"></p>
 <h2 id="releasing-in-covid-19-is-bittersweet">Releasing in COVID-19 is bittersweet<a href="#releasing-in-covid-19-is-bittersweet" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>This CTF was a part of a workshop with a lecture as well. While it can be done 100% online no problem (and in fact this format is incredibly productive in remote work), I love the feeling of interacting with my players one-on-one. Obviously since the importance of social distancing can&rsquo;t be overstated and this CAN be done remotely, it should; but ignoring the fact that I&rsquo;m actually missing that human connection will be dishonest.</p>
-
 <p>I&rsquo;m sure that there are lonelier experiences than this, but releasing the CTF only to my computer + Zoom calls and then moving from my workstation to the couch (in 3 steps) is sort of a hollow happiness.</p>
-
 <h2 id="analytics-can-be-important">Analytics can be important<a href="#analytics-can-be-important" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>I skipped analytics this time, and I regret it. I would love to get an estimation of how many players are playing my challenge hourly, and I&rsquo;ve scripted it pretty easily:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="c1"># $1 is key file, $2 is username</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="k">$(</span>date<span class="k">)</span><span class="s2">: </span><span class="k">$(</span>ssh -i <span class="nv">$1</span> <span class="nv">$2</span>@ctf.mrnice.dev <span class="s1">&#39;docker ps | grep mgb | wc -l&#39;</span><span class="k">)</span><span class="s2"> players&#34;</span></span></span></code></pre></div>
-<p>But it doesn&rsquo;t really connect to anything, so I&rsquo;m not really using it. Would have been better to run this every X on the machine and export the results into some AWS DB - but I want to keep costs down, so I gave up on this.</p>
-
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="k">$(</span>date<span class="k">)</span><span class="s2">: </span><span class="k">$(</span>ssh -i <span class="nv">$1</span> <span class="nv">$2</span>@ctf.mrnice.dev <span class="s1">&#39;docker ps | grep mgb | wc -l&#39;</span><span class="k">)</span><span class="s2"> players&#34;</span>
+</span></span></code></pre></div><p>But it doesn&rsquo;t really connect to anything, so I&rsquo;m not really using it. Would have been better to run this every X on the machine and export the results into some AWS DB - but I want to keep costs down, so I gave up on this.</p>
 <h2 id="a-successful-release-just-creates-more-tasks">A successful release just creates more tasks<a href="#a-successful-release-just-creates-more-tasks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Since release, I&rsquo;ve created <strong>21</strong> new issues:</p>
-
 <ul>
 <li>14 New level ideas, including:
-
 <ul>
 <li><code>branch</code></li>
 <li><code>fsck</code></li>
 <li>More <code>rebase</code></li>
 <li><code>submodule</code></li>
-</ul></li>
+</ul>
+</li>
 <li>2 Bugs 🐛</li>
 <li>5 New features/improvements</li>
 </ul>
-
 <p>And I feel like if I release version 1.1 with all the new levels and features, I&rsquo;ll just want to do version 1.2, and then 1.3, and then&hellip;.</p>
-
 <p>(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</p>
-
-<h2 id="people-enjoy-learning-if-it-s-fun">People enjoy learning if it&rsquo;s fun<a href="#people-enjoy-learning-if-it-s-fun" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="people-enjoy-learning-if-its-fun">People enjoy learning if it&rsquo;s fun<a href="#people-enjoy-learning-if-its-fun" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>All you need to see is the <a href="../../ctf-hof">Hall Of Fame</a> - a lot of people enjoyed the CTF enough to actually finish it!</p>
-
-<h2 id="side-projects-are-great-if-you-don-t-let-them-die-and-also-if-you-do">Side projects are great if you don&rsquo;t let them die, and also if you do<a href="#side-projects-are-great-if-you-don-t-let-them-die-and-also-if-you-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="side-projects-are-great-if-you-dont-let-them-die-and-also-if-you-do">Side projects are great if you don&rsquo;t let them die, and also if you do<a href="#side-projects-are-great-if-you-dont-let-them-die-and-also-if-you-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>It took 3 dead side projects to get to this one. Is this the natural process of working on passion projects? I hope not, but I hope it is at the same time. Now that this project is out, I would want to keep it alive, keep maintaining it, keep nurturing it. So I wouldn&rsquo;t want too many side projects to &ldquo;tie me down&rdquo;.</p>
-
-<h2 id="i-ve-improved-technically-as-well">I&rsquo;ve improved technically, as well<a href="#i-ve-improved-technically-as-well" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="ive-improved-technically-as-well">I&rsquo;ve improved technically, as well<a href="#ive-improved-technically-as-well" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Uncle bob wrote in his book &ldquo;Clean Coder&rdquo;:</p>
-
 <blockquote>
 <p>Practice. Practice. Practice. True professionals keep their skills sharp and ready. Musicians don’t get better by performing (doing your job), they get better by practicing (outside of work). That same rule applies to engineers.</p>
 </blockquote>
-
 <p>My project enables others to practice, but it also helped me learn and train. So, what did I learn/practice?</p>
-
 <ul>
 <li>more <code>git</code>
-
 <ul>
 <li>How to write complex server-side hooks</li>
 <li>How to set up a git server with <code>ssh</code></li>
 <li>What people want to learn, and what do they find copmlicated</li>
-</ul></li>
+</ul>
+</li>
 <li>Rust
-
 <ul>
 <li>New language! 🦀</li>
 <li>Read the book (up to chapter 15 or so, still need to finish it sometimes)</li>
 <li>Learned about ownership</li>
-</ul></li>
+</ul>
+</li>
 <li>Programming
-
 <ul>
 <li>Recursion</li>
 <li>Graph algorithms</li>
@@ -225,29 +190,28 @@ MathJax.Hub.Config({
 <li>Good logging</li>
 <li>Good packaging</li>
 <li>Developer documentation</li>
-</ul></li>
+</ul>
+</li>
 <li>Docker
-
 <ul>
 <li>The <a href="https://github.com/ShayNehmad/make-git-better-2/blob/dev/Dockerfile">dockerfile for the server</a> is pretty complicated all things considered: good practice to write it.</li>
 <li>How to invalidate <code>docker build</code> cache</li>
-</ul></li>
+</ul>
+</li>
 <li>AWS
-
 <ul>
 <li>Always nice to practice setting up an EC2 instance</li>
 <li>Learned how to get an Elastic IP address and assign it to a machine</li>
-</ul></li>
+</ul>
+</li>
 <li>JavaScript
-
 <ul>
 <li>Practiced more with <code>vis.js</code> to do the level graph</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="what-now">What now<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
-<p><img src="https://i.giphy.com/media/1mhMrZxMhbnNmkCi0y/giphy.gif" alt="Kick up my feet" title="Kick up my feet" /></p>
+<p><img src="https://i.giphy.com/media/1mhMrZxMhbnNmkCi0y/giphy.gif" alt="Kick up my feet" title="Kick up my feet"></p>
 
 			</div>
 
@@ -273,7 +237,7 @@ MathJax.Hub.Config({
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>857 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>858 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-07-04 18:53 &#43;0300</p>
 			</footer>
 		</article>
@@ -298,7 +262,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

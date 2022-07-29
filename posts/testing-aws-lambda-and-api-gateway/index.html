@@ -10,13 +10,13 @@
 <meta itemprop="name" content="Testing AWS Lambda and API Gateway">
 <meta itemprop="description" content="Recently, I had to fix some bugs in a Python AWS lambda which gets triggered by an API Gateway. I&rsquo;ve found that the way that Lambdas work makes you want to develop it badly. So I hope you can use these tips when you develop your Lambdas to do it better.
 I worked on a Python Lambda, so this is what you&rsquo;ll see in this post.
- How to test AWS Lambda &#43; API Gateway successfully  Whitebox: Cover the logic in regular unit tests Blackbox: Cover the Gateway API Gateway API Stages Writing the tests Choose which tests you want to run using pytest&rsquo;s -k switch  What now  How to test AWS Lambda &#43; API Gateway successfully The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:"><meta itemprop="datePublished" content="2020-04-02T20:15:28+03:00" />
+How to test AWS Lambda &#43; API Gateway successfully Whitebox: Cover the logic in regular unit tests Blackbox: Cover the Gateway API Gateway API Stages Writing the tests Choose which tests you want to run using pytest&rsquo;s -k switch What now How to test AWS Lambda &#43; API Gateway successfully The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:"><meta itemprop="datePublished" content="2020-04-02T20:15:28+03:00" />
 <meta itemprop="dateModified" content="2020-04-02T20:15:28+03:00" />
 <meta itemprop="wordCount" content="588">
 <meta itemprop="keywords" content="python,cloud,aws,testing,serverless," /><meta property="og:title" content="Testing AWS Lambda and API Gateway" />
 <meta property="og:description" content="Recently, I had to fix some bugs in a Python AWS lambda which gets triggered by an API Gateway. I&rsquo;ve found that the way that Lambdas work makes you want to develop it badly. So I hope you can use these tips when you develop your Lambdas to do it better.
 I worked on a Python Lambda, so this is what you&rsquo;ll see in this post.
- How to test AWS Lambda &#43; API Gateway successfully  Whitebox: Cover the logic in regular unit tests Blackbox: Cover the Gateway API Gateway API Stages Writing the tests Choose which tests you want to run using pytest&rsquo;s -k switch  What now  How to test AWS Lambda &#43; API Gateway successfully The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:" />
+How to test AWS Lambda &#43; API Gateway successfully Whitebox: Cover the logic in regular unit tests Blackbox: Cover the Gateway API Gateway API Stages Writing the tests Choose which tests you want to run using pytest&rsquo;s -k switch What now How to test AWS Lambda &#43; API Gateway successfully The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-04-02T20:15:28+03:00" />
@@ -112,61 +112,45 @@ MathJax.Hub.Config({
 				<h1>Testing AWS Lambda and API Gateway</h1>
 			</header>
 			<div class="content">
-				
-
-<p>Recently, I had to fix some bugs in a Python AWS lambda which gets triggered by an API Gateway. I&rsquo;ve found that the way that Lambdas work makes you want to develop it badly. So I hope you can use these tips when you develop your Lambdas to do it better.</p>
-
-<p><img src="https://d1.awsstatic.com/product-marketing/Lambda/Diagrams/product-page-diagram_Lambda-HowItWorks.68a0bcacfcf46fccf04b97f16b686ea44494303f.png" alt="aws lambda logo" /></p>
-
+				<p>Recently, I had to fix some bugs in a Python AWS lambda which gets triggered by an API Gateway. I&rsquo;ve found that the way that Lambdas work makes you want to develop it badly. So I hope you can use these tips when you develop your Lambdas to do it better.</p>
+<p><img src="https://d1.awsstatic.com/product-marketing/Lambda/Diagrams/product-page-diagram_Lambda-HowItWorks.68a0bcacfcf46fccf04b97f16b686ea44494303f.png" alt="aws lambda logo"></p>
 <p><em>I worked on a Python Lambda, so this is what you&rsquo;ll see in this post.</em></p>
-
 <ul>
 <li><a href="#how-to-test-aws-lambda--api-gateway-successfully">How to test AWS Lambda + API Gateway successfully</a>
-
 <ul>
 <li><a href="#whitebox-cover-the-logic-in-regular-unit-tests">Whitebox: Cover the logic in regular unit tests</a></li>
-<li><a href="#blackbox-cover-the-gateway-api">Blackbox: Cover the Gateway API</a></li>
+<li><a href="#blackbox-cover-the-gateway-api">Blackbox: Cover the Gateway API</a>
+<ul>
 <li><a href="#gateway-api-stages">Gateway API Stages</a></li>
 <li><a href="#writing-the-tests">Writing the tests</a></li>
+</ul>
+</li>
 <li><a href="#choose-which-tests-you-want-to-run-using-pytests--k-switch">Choose which tests you want to run using <code>pytest</code>&rsquo;s <code>-k</code> switch</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#what-now">What now</a></li>
 </ul>
-
-<h2 id="how-to-test-aws-lambda-api-gateway-successfully">How to test AWS Lambda + API Gateway successfully<a href="#how-to-test-aws-lambda-api-gateway-successfully" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<h2 id="how-to-test-aws-lambda--api-gateway-successfully">How to test AWS Lambda + API Gateway successfully<a href="#how-to-test-aws-lambda--api-gateway-successfully" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:</p>
-
 <h3 id="whitebox-cover-the-logic-in-regular-unit-tests">Whitebox: Cover the logic in regular unit tests<a href="#whitebox-cover-the-logic-in-regular-unit-tests" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>This is good advice in general, but cover as much of the logic in UTs. To do that you&rsquo;ll probably need to add a parameter to the Lambda that checks if it&rsquo;s in testing mode, like so:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl">    <span class="n">is_testing</span> <span class="o">=</span> <span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;querystring&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;testing&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;true&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">handle_get</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">real_context</span><span class="p">,</span> <span class="n">testing</span><span class="o">=</span><span class="n">is_testing</span><span class="p">)</span></span></span></code></pre></div>
-<p>And when it&rsquo;s in testing mode, you need to avoid adding stuff to DBs. The correct way to do this is with a proper DAL and a mock that checks that the correct data was inserted: this is the <a href="https://en.wikipedia.org/wiki/Dependency_injection#Constructor_injection">classic dependency injection example</a>.</p>
-
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">handle_get</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">real_context</span><span class="p">,</span> <span class="n">testing</span><span class="o">=</span><span class="n">is_testing</span><span class="p">)</span>
+</span></span></code></pre></div><p>And when it&rsquo;s in testing mode, you need to avoid adding stuff to DBs. The correct way to do this is with a proper DAL and a mock that checks that the correct data was inserted: this is the <a href="https://en.wikipedia.org/wiki/Dependency_injection#Constructor_injection">classic dependency injection example</a>.</p>
 <p>Now you can write usual unit tests to tests all the parts of your lambda completely decoupled from the fact it&rsquo;s deployed on the cloud.</p>
-
 <h3 id="blackbox-cover-the-gateway-api">Blackbox: Cover the Gateway API<a href="#blackbox-cover-the-gateway-api" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>Now comes the fun part. We&rsquo;ll test the Gateway API using python&rsquo;s <code>requests</code> module and asserting the result.</p>
-
-<p><img src="https://media.giphy.com/media/26AHICv4otlZ0ruGk/giphy.gif" alt="hol up" /></p>
-
+<p><img src="https://media.giphy.com/media/26AHICv4otlZ0ruGk/giphy.gif" alt="hol up"></p>
 <h4 id="gateway-api-stages">Gateway API Stages<a href="#gateway-api-stages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>You SHOULD create two stages for your API: <code>prod</code> (which you probably already have) and <code>dev</code>. <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/stages.html">Here&rsquo;s a link to the documentation</a> but just look at the image below and you&rsquo;ll get the gist. MAKE SURE YOUR UNIT TESTS ARE TESTING THE <code>dev</code> INVOKE URL.</p>
-
-<p><img src="https://i.imgur.com/c18yNmZ.png" alt="API stages" /></p>
-
+<p><img src="https://i.imgur.com/c18yNmZ.png" alt="API stages"></p>
 <h4 id="writing-the-tests">Writing the tests<a href="#writing-the-tests" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
 <p>Here&rsquo;s the template. Copy, paste, and change according to your case. Some interesting stuff in this example:</p>
-
 <ul>
 <li>Faking user agent</li>
 <li>Asserting on status codes and content</li>
-
-<li><p>Logging makes it EASY to LEARN what the lambda does - run the tests and you get all the data you need.</p>
+<li>Logging makes it EASY to LEARN what the lambda does - run the tests and you get all the data you need.</li>
+</ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pytest</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
@@ -181,32 +165,29 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl"><span class="n">API_GATEWAY_URL</span> <span class="o">=</span> <span class="s2">&#34;https://XXXXXXXXXX.execute-api.RE-GION-1.amazonaws.com/dev?testing=true&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_api_gateway_testcase_name_here</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl"><span class="n">url_to_test</span> <span class="o">=</span> <span class="n">API_GATEWAY_URL</span> <span class="o">+</span> <span class="s2">&#34;&amp;some=parameters&amp;for=this_test_case&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;url: </span><span class="si">{</span><span class="n">url_to_test</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_to_test</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="n">ua</span><span class="o">.</span><span class="n">chrome</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;the response error code is </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;the json of the response is </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span>    <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
-</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="s2">&#34;expected_key&#34;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&#34;expected_key&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;expected_value&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url_to_test</span> <span class="o">=</span> <span class="n">API_GATEWAY_URL</span> <span class="o">+</span> <span class="s2">&#34;&amp;some=parameters&amp;for=this_test_case&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;url: </span><span class="si">{</span><span class="n">url_to_test</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_to_test</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="n">ua</span><span class="o">.</span><span class="n">chrome</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;the response error code is </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;the json of the response is </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span>    <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="s2">&#34;expected_key&#34;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&#34;expected_key&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;expected_value&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_api_gateway_redirect_example</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl"><span class="n">url_to_test</span> <span class="o">=</span> <span class="n">API_GATEWAY_URL</span> <span class="o">+</span> <span class="s2">&#34;&amp;some=parameters&amp;for=this_test_case&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;url: </span><span class="si">{</span><span class="n">url_to_test</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_to_test</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="n">ua</span><span class="o">.</span><span class="n">chrome</span><span class="p">},</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># &lt;---- Note this</span>
-</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;the response error code is </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="sa">f</span><span class="s2">&#34;the json of the response is </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span>    <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">302</span>
-</span></span><span class="line"><span class="cl"><span class="n">redirect_location</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&#34;location&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Redirecting to...</span><span class="si">{</span><span class="n">redirect_location</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="s2">&#34;something_about_the_location&#34;</span> <span class="ow">in</span> <span class="n">redirect_location</span></span></span></code></pre></div></li>
-</ul>
-
-<h3 id="choose-which-tests-you-want-to-run-using-pytest-s-k-switch">Choose which tests you want to run using <code>pytest</code>&rsquo;s <code>-k</code> switch<a href="#choose-which-tests-you-want-to-run-using-pytest-s-k-switch" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span><span class="line"><span class="cl">    <span class="n">url_to_test</span> <span class="o">=</span> <span class="n">API_GATEWAY_URL</span> <span class="o">+</span> <span class="s2">&#34;&amp;some=parameters&amp;for=this_test_case&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;url: </span><span class="si">{</span><span class="n">url_to_test</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_to_test</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="n">ua</span><span class="o">.</span><span class="n">chrome</span><span class="p">},</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># &lt;---- Note this</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;the response error code is </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;the json of the response is </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span>    <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">302</span>
+</span></span><span class="line"><span class="cl">    <span class="n">redirect_location</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&#34;location&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Redirecting to...</span><span class="si">{</span><span class="n">redirect_location</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="s2">&#34;something_about_the_location&#34;</span> <span class="ow">in</span> <span class="n">redirect_location</span>
+</span></span></code></pre></div><h3 id="choose-which-tests-you-want-to-run-using-pytests--k-switch">Choose which tests you want to run using <code>pytest</code>&rsquo;s <code>-k</code> switch<a href="#choose-which-tests-you-want-to-run-using-pytests--k-switch" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Now you can choose which tests are running with the <code>-k</code> switch:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># This one runs all the tests</span>
 </span></span><span class="line"><span class="cl">python -m pytest -v
@@ -215,9 +196,8 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">python -m pytest -v -k <span class="s2">&#34;api_gateway&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># This one runs the whitebox tests only</span>
-</span></span><span class="line"><span class="cl">python -m pytest -v -k <span class="s2">&#34;not api_gateway&#34;</span></span></span></code></pre></div>
-<h2 id="what-now">What now<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">python -m pytest -v -k <span class="s2">&#34;not api_gateway&#34;</span>
+</span></span></code></pre></div><h2 id="what-now">What now<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Remember to deploy any changes in the code to prod 🍾</p>
 
 			</div>
@@ -261,7 +241,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

@@ -9,16 +9,16 @@
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
 <meta itemprop="description" content="Part two of the joint project with my intelligent and brave wife, Olga!
-This post is a part of a series, so check out part 1 for context.
+This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
 Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
- QoL improvements  Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment  Designing and Building the Bot&rsquo;s Business Logic  Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI  Next up  QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06+03:00" />
+QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&rsquo;s Business Logic Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06+03:00" />
 <meta itemprop="dateModified" content="2021-09-28T12:23:06+03:00" />
-<meta itemprop="wordCount" content="1948"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+<meta itemprop="wordCount" content="1785"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
 <meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic" />
 <meta property="og:description" content="Part two of the joint project with my intelligent and brave wife, Olga!
-This post is a part of a series, so check out part 1 for context.
+This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
 Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
- QoL improvements  Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment  Designing and Building the Bot&rsquo;s Business Logic  Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI  Next up  QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs." />
+QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&rsquo;s Business Logic Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-28T12:23:06+03:00" />
@@ -108,146 +108,70 @@ MathJax.Hub.Config({
 				<h1>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</h1>
 			</header>
 			<div class="content">
-				
-
-<p>Part two of the joint project with my intelligent and brave wife,
+				<p>Part two of the joint project with my intelligent and brave wife,
 <a href="https://www.linkedin.com/in/olga-beskrovniy-4469b276/">Olga</a>!</p>
-
-<p>This post is a part of a series, so <a href="../building-a-slack-bot-with-python-on-gcp">check out part 1 for context</a>.</p>
-
+<p>This post is a part of a series, so [check out part 1 for context]
+(../building-a-slack-bot-with-python-on-gcp).</p>
 <p>Warning: As our development of this project was a little &ldquo;all over the place&rdquo;
 as we try to fit it to our busy lives and the Holiday Season, the blog post
 is a little all over the place as well.</p>
-
 <ul>
 <li><a href="#qol-improvements">QoL improvements</a>
-
 <ul>
 <li><a href="#slimming-down-the-docker-image-size">Slimming down the Docker Image size</a></li>
 <li><a href="#adding-a-test-endpoint-to-the-server-to-make-sure-it-works">Adding a test endpoint to the server, to make sure it works</a></li>
 <li><a href="#adding-basic-ci">Adding basic CI</a></li>
 <li><a href="#setting-up-a-local-development-environment">Setting up a local development environment</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#designing-and-building-the-bots-business-logic">Designing and Building the Bot&rsquo;s Business Logic</a>
-
 <ul>
 <li><a href="#lets-do-some-product---designing-the-user-flows">Let&rsquo;s do some Product - designing the user flows</a></li>
 <li><a href="#initial-development---design-mocks-stubs">Initial development - design, mocks, stubs</a></li>
-<li><a href="#lets-do-some-development---using-bolt">Let&rsquo;s do some Development - using Bolt</a></li>
+<li><a href="#lets-do-some-development---using-bolt">Let&rsquo;s do some Development - using Bolt</a>
+<ul>
 <li><a href="#lets-get-sidetracked---web-servers-web-applications-and-wsgi">Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI</a></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#next-up">Next up</a></li>
 </ul>
-
 <h2 id="qol-improvements">QoL improvements<a href="#qol-improvements" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Before moving on the the next big tasks, we wanted to do some small QoL
 improvements, which we introduced in 3 separate PRs.</p>
-
 <h3 id="slimming-down-the-docker-image-size">Slimming down the Docker Image size<a href="#slimming-down-the-docker-image-size" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>This one even got a tweet.</p>
-
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Made my Docker image size 20% (from almost 1GB to 196MB) by adding `-slim` to the base image. Sane defaults, anyone? <a href="https://t.co/6yt17kEWpo">pic.twitter.com/6yt17kEWpo</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1436245245428224002?ref_src=twsrc%5Etfw">September 10, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 <p>Sometimes things don&rsquo;t make sense to me. Why is the DEFAULT image the one with
 &ldquo;batteries-included&rdquo;, all the bloat, and the huge one? Do developers really
 prefer things to surface-level work so badly that they are willing to accept
 images that are 5 times bigger as the default? 🤔</p>
-
 <p>In any case, the diff was very simple:</p>
-
-<p><a href="./Dockerfile.1"><code>Dockerfile.1</code></a>:
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">&mdash; Dockerfile.base   2021-09-11 15:35:49.117069816 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ Dockerfile.1  2021-09-11 15:34:10.003008547 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> # Base image. This version is in the pyproject file as well.
-</span></span><span class="line"><span class="cl"><span class="gd">-FROM python:3.9
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+# See Image Variants on <a href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a>
-</span></span></span><span class="line"><span class="cl"><span class="gi">+FROM python:3.9-slim
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span>
-</span></span></code></pre></div></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->Dockerfile.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
+<!-- raw HTML omitted -->
 <blockquote>
 <p>Shoutout to <a href="https://willschenk.com/">Will Schenk</a> for the awesome <code>diff</code>
 shortcode. If you have time after reading this blog, make sure to put Will&rsquo;s
 on your read list. Very cool technical musings there!</p>
 </blockquote>
-
 <h3 id="adding-a-test-endpoint-to-the-server-to-make-sure-it-works">Adding a test endpoint to the server, to make sure it works<a href="#adding-a-test-endpoint-to-the-server-to-make-sure-it-works" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>We started by writing a very simple pytest, which just sent a request to the
 first endpoint we&rsquo;ve developed, called <code>spots</code>. But then, we realized that once
 we actually develop that endpoint, the return value will change. So to keep
 things humming nicely, we added a <code>/test</code> URL to the server which we used for
 the test.</p>
-
-<p><a href="./src/valet_parking_slack_bot/server.py.1"><code>src/valet_parking_slack_bot/server.py.1</code></a>:
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">&mdash; server.py.base    2021-09-11 15:49:18.844449939 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ server.py.1   2021-09-11 15:49:26.696418007 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+from datetime import datetime
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> from flask import Flask
-</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,3 +5,2 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
-</span></span><span class="line"><span class="cl"><span class="gd">-
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span> app = Flask(<strong>name</strong>)
-</span></span><span class="line"><span class="cl"><span class="gu">@@ -18,3 +18,11 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
-</span></span><span class="line"><span class="cl"><span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
-</span></span></span><span class="line"><span class="cl"><span class="gi">+def healthcheck():
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = {
-</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;message&#34;: &#34;I&#39;m alive!&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;ts&#34;: str(datetime.now())
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    }
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    return response
-</span></span></span><span class="line"><span class="cl"><span class="gi">+
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> if <strong>name</strong> == &#34;<strong>main</strong>&#34;:
-</span></span><span class="line"><span class="cl"><span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span>\ No newline at end of file
-</span></span><span class="line"><span class="cl"><span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
-</span></span></span></code></pre></div></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->src/valet_parking_slack_bot/server.py.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
+<!-- raw HTML omitted -->
 <p>This is the updated test, where you can see the <strong>TODO</strong> was deleted.
 One of the best feelings is checking boxes ✅</p>
-
-<p><a href="./tests/test_service_availability.py.1"><code>tests/test_service_availability.py.1</code></a>:
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">&mdash; tests/test_service_availability.py.base   2021-09-11 15:53:42.271063485 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1  2021-09-11 15:53:22.591186320 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> import requests
-</span></span><span class="line"><span class="cl"><span class="gi">+import logging
-</span></span></span><span class="line"><span class="cl"><span class="gi">+
-</span></span></span><span class="line"><span class="cl"><span class="gi">+logger = logging.getLogger(<strong>name</strong>)
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span>
-</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,9 +7,11 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
-</span></span><span class="line"><span class="cl"><span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
-</span></span></span><span class="line"><span class="cl"><span class="gd">-# since the response to this URL will change and the
-</span></span></span><span class="line"><span class="cl"><span class="gd">-# test will fail even though the service is available!
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span> def test_cloud_endpoint():
-</span></span><span class="line"><span class="cl"><span class="gd">-    want = &#34;no spots for you!&#34;
-</span></span></span><span class="line"><span class="cl"><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
-</span></span></span><span class="line"><span class="cl"><span class="gi">+
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = requests.get(test_url)
-</span></span></span><span class="line"><span class="cl"><span class="gi">+<br />
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span>     assert response.ok
-</span></span><span class="line"><span class="cl"><span class="gd">-    assert want.lower() == response.text.lower()<br />
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    data = response.json()
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;ts&#34;]
-</span></span></span><span class="line"><span class="cl"><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
-</span></span></span></code></pre></div></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->tests/test_service_availability.py.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
+<!-- raw HTML omitted -->
 <p>and it works!</p>
-
-<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="Test endpoint" title="Test endpoint" /></p>
-
+<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="Test endpoint" title="Test endpoint"></p>
 <h3 id="adding-basic-ci">Adding basic CI<a href="#adding-basic-ci" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
 <p>We added some basic CI tooling using GitHub Actions, which you can <a href="https://github.com/TheCoreMan/valet-parking-slack-bot/pull/2/checks">check out
 here</a>. The
 CI currently runs <code>flake8</code> and <code>pytest</code>. We based it off of GitHub&rsquo;s official
@@ -294,59 +218,44 @@ with only some minor changes for Poetry:</p>
 </span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">        
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test with pytest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">        </span><span class="w">        </span><span class="l">pytest</span></span></span></code></pre></div>
-<h3 id="setting-up-a-local-development-environment">Setting up a local development environment<a href="#setting-up-a-local-development-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+</span></span></span><span class="line"><span class="cl"><span class="sd">        </span><span class="w">        </span><span class="l">pytest</span><span class="w">
+</span></span></span></code></pre></div><h3 id="setting-up-a-local-development-environment">Setting up a local development environment<a href="#setting-up-a-local-development-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><a href="../building-a-slack-bot-with-python-on-gcp">Last time</a>, we managed to deploy
 our bot to the cloud. Immediate regret followed, as the build-deploy-test loop
 got a lot longer! Instead of just changing the code to see what happens, we now
 need to deploy the code to GCP, build a new docker image there, and deploy it.
 That&rsquo;s too much time!</p>
-
-<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&quot;i'm waiting&quot;" title="i'm waiting" /></p>
-
+<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&amp;ldquo;i&amp;rsquo;m waiting&amp;rdquo;" title="i'm waiting"></p>
 <p>To speed things up, we used <a href="https://ngrok.com/">ngrok</a> to set up a public
 URL for our local web server, and then configured the Slack app to go to that
 URL instead of our cloud endpoint. When we&rsquo;ll release, we&rsquo;ll need to revert
 this change.</p>
-
 <p>After downloading <code>ngrok</code>, running it was literally just <code>./ngrok http 5000</code>.
 The command gives you a public URL:</p>
-
-<p><img src="/images/parkbot/ngrok-output.jpg" alt="&quot;ngrok output&quot;" title="ngrok output" /></p>
-
+<p><img src="/images/parkbot/ngrok-output.jpg" alt="&amp;ldquo;ngrok output&amp;rdquo;" title="ngrok output"></p>
 <p>And then you configure it in Slack:</p>
-
-<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&quot;slack ngrok&quot;" title="slack ngrok" /></p>
-
-<h2 id="designing-and-building-the-bot-s-business-logic">Designing and Building the Bot&rsquo;s Business Logic<a href="#designing-and-building-the-bot-s-business-logic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&amp;ldquo;slack ngrok&amp;rdquo;" title="slack ngrok"></p>
+<h2 id="designing-and-building-the-bots-business-logic">Designing and Building the Bot&rsquo;s Business Logic<a href="#designing-and-building-the-bots-business-logic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>With all the POCs we did
 <a href="../building-a-slack-bot-with-python-on-gcp">in the first post</a> and all the QoL
 improvements out of the way, now we finally feel comfortable enough with the
 infrastrcture and the <em>build-deploy-test</em> loop to get cracking with developing
 the core logic of the app!</p>
-
-<h3 id="let-s-do-some-product-designing-the-user-flows">Let&rsquo;s do some Product - designing the user flows<a href="#let-s-do-some-product-designing-the-user-flows" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="lets-do-some-product---designing-the-user-flows">Let&rsquo;s do some Product - designing the user flows<a href="#lets-do-some-product---designing-the-user-flows" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>One thing we&rsquo;ve learned since last time with some user surveys was that setting
 up Google Calendar resources is a total pain, so we need to manage the
 repository ourselves. With this architectural change in mind, we wanted to
 design the first user interaction with the bot - setting it up.</p>
-
-<p><img src="https://i.giphy.com/media/CoG8AbJ9oBmOdPuF1L/giphy-downsized.gif" alt="" /></p>
-
+<p><img src="https://i.giphy.com/media/CoG8AbJ9oBmOdPuF1L/giphy-downsized.gif" alt=""></p>
 <blockquote>
 <p>Side note: To do this part well, we&rsquo;ve used a tool I really started to like
 recently - <a href="https://excalidraw.com/">Excalidraw</a>. It&rsquo;s the best virtual
 whiteboard experience I&rsquo;ve had so far, and I pretty much tried them all.</p>
 </blockquote>
-
 <p>The bot seems very simple on the surface. You ask it to reserve a spot, it
 reserves a spot, right? How complex can it be? When starting to actually work
 on planning the user flows with a DDR, we&rsquo;ve discovered multiple layers of
 complexity:</p>
-
 <ul>
 <li><strong>Setup</strong> - how to set the bot up in a self-serve way that isn&rsquo;t horrible?</li>
 <li><strong>Edge cases</strong> - someone wanted to park, but now they can&rsquo;t make it? Add new
@@ -358,33 +267,24 @@ before they make it to the office). Typing <code>/</code> on a mobile device is 
 hopefully serve multiple Slack Workspaces. At the very least, it&rsquo;ll serve the
 first client and the dev env.</li>
 </ul>
-
 <p>Here&rsquo;s what we came up with. You&rsquo;ll need to click the image to scroll around
 and actually read it:</p>
-
-<p><a href="/images/parkbot/user-flow-setup.png"><img src="/images/parkbot/user-flow-setup.png" alt="" /></a></p>
-
+<p><a href="/images/parkbot/user-flow-setup.png"><img src="/images/parkbot/user-flow-setup.png" alt=""></a></p>
 <p>Since we saw that even just the setup flow is pretty complicated on its own,
 we decided to implement a little bit more of the bot so we have better domain
 knowledge before designing the other user flows. It seemed like learning more
 about Slack bots, designing the code itself a little more, and seeing what&rsquo;s
 easy and what&rsquo;s hard were better avenues to getting a better end product than
 spending time designing the rest of the flows.</p>
-
-<h3 id="initial-development-design-mocks-stubs">Initial development - design, mocks, stubs<a href="#initial-development-design-mocks-stubs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="initial-development---design-mocks-stubs">Initial development - design, mocks, stubs<a href="#initial-development---design-mocks-stubs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>In our initial design, we went for a pretty simple design, mostly meant to
 make sure we&rsquo;re adhereing to the
 <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">Single Responsibility Principle</a>
 and to expedite development using this trick:</p>
-
 <p><strong>Create an interface for the parking spot ~repository~, so that developing
 it won&rsquo;t block us from working on business logic and UX.</strong></p>
-
 <p>Our design ended up here:</p>
-
-<p><img src="/images/parkbot/oop-design.png" alt="&quot;OOP design&quot;" title="OOP design" /></p>
-
+<p><img src="/images/parkbot/oop-design.png" alt="&amp;ldquo;OOP design&amp;rdquo;" title="OOP design"></p>
 <p>This design also allowed us to test the designator using <strong>automatic spec for
 mocks</strong>, which proved very useful in our case. Check out how clear and clean
 these tests are!</p>
@@ -432,24 +332,19 @@ these tests are!</p>
 </span></span><span class="line"><span class="cl">        <span class="n">designator</span> <span class="o">=</span> <span class="n">ParkingSpotDesignator</span><span class="p">(</span><span class="n">repo</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="n">return_value</span> <span class="o">=</span> <span class="n">designator</span><span class="o">.</span><span class="n">release_by_username</span><span class="p">(</span><span class="n">test_username</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;You have several reserved spots: 1 2. Which one to release?&#34;</span></span></span></code></pre></div>
-<p>These tests do a TON for the <code>designator</code> without worrying even ONCE about
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">return_value</span> <span class="o">==</span> <span class="s2">&#34;You have several reserved spots: 1 2. Which one to release?&#34;</span>
+</span></span></code></pre></div><p>These tests do a TON for the <code>designator</code> without worrying even ONCE about
 the <code>repository</code>! They tell us a lot about how the interface works and what
 the <code>designator</code> is doing. They help maintain it on a deeper level than &ldquo;it&rsquo;s
 not working&rdquo;.</p>
-
 <p>Cool! Since we also implemented a stub, the bot now responds with semi-coherent
 responses, which is very exciting as well:</p>
-
-<p><img src="/images/parkbot/stub-responses.jpg" alt="" /></p>
-
-<h3 id="let-s-do-some-development-using-bolt">Let&rsquo;s do some Development - using Bolt<a href="#let-s-do-some-development-using-bolt" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<p><img src="/images/parkbot/stub-responses.jpg" alt=""></p>
+<h3 id="lets-do-some-development---using-bolt">Let&rsquo;s do some Development - using Bolt<a href="#lets-do-some-development---using-bolt" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>The first version of the bot was based on Flask, but the moment we wanted to
 do something that was actually Slack-ish (in our case it was extracting the
 user&rsquo;s name based on the context in the request, which includes the <code>user_id</code>)
 we felt like it was difficult.</p>
-
 <p>After looking around a bit we&rsquo;ve found
 <a href="https://slack.dev/bolt-python/tutorial/getting-started">Bolt SDK for Python</a>,
 which seems packed with great features, useful documentation, and easy to use.
@@ -457,30 +352,20 @@ We migrated the functions we&rsquo;ve implemented on Flask to
 use Bolt, instead. We&rsquo;ve still kept Flask as the Web server, so that the test
 endpoint (remember? From the <a href="../building-a-slack-bot-with-python-on-gcp">last post</a>)
 will still work.</p>
-
-<h4 id="let-s-get-sidetracked-web-servers-web-applications-and-wsgi">Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI<a href="#let-s-get-sidetracked-web-servers-web-applications-and-wsgi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
-
+<h4 id="lets-get-sidetracked---web-servers-web-applications-and-wsgi">Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI<a href="#lets-get-sidetracked---web-servers-web-applications-and-wsgi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>Why does the Bolt documentation say:</p>
-
 <blockquote>
 <p>By default, Bolt will use the built-in <code>HTTPServer</code> adapter. <strong>While this</strong>
 <strong>is okay for local development, it is not recommended for production.</strong></p>
 </blockquote>
-
 <p>And why, when you run <code>flask run</code>, it tells you:</p>
-
 <blockquote>
-<p><code>WARNING: This is a development server.
-Do not use it in a production deployment.
-Use a production WSGI server instead.</code></p>
+<p><code>WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.</code></p>
 </blockquote>
-
 <p>And what does that have to do with Whiskey?</p>
-
 <p>Well, since Olga was curious about it, we learned more about WSGI. Instead of
 parroting it all here, I&rsquo;ll try to summarize what we&rsquo;ve understood from
 <a href="https://www.python.org/dev/peps/pep-3333/">PEP 3333</a>:</p>
-
 <ul>
 <li>There are two parts of a complete web app: the app (which is what we care
 about) and the server (which, honestly, is not what we care about right now).</li>
@@ -492,25 +377,19 @@ but that server is mostly for development.</li>
 <li>There are a lot of Production-grade server stacks - seems like for Python,
 Gunicorn with nginx is a good choice.</li>
 </ul>
-
 <p>After spending some time in this rabbit hole, we decided we actually don&rsquo;t
 care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</p>
-
 <p>In the future, we&rsquo;ll consider migrating to the following stack:</p>
-<pre tabindex="0"><code>nginx &lt;-&gt; gunicorn &lt;-&gt; flask &lt;-&gt; bolt</code></pre>
-<p>So this was completely unnecessary sidetrack. Aren&rsquo;t those the best? Just ask
+<pre tabindex="0"><code>nginx &lt;-&gt; gunicorn &lt;-&gt; flask &lt;-&gt; bolt
+</code></pre><p>So this was completely unnecessary sidetrack. Aren&rsquo;t those the best? Just ask
 <a href="https://youtu.be/qEV9qoup2mQ">CGP grey</a>.</p>
-
 <h2 id="next-up">Next up<a href="#next-up" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Next time, we plan to work on:</p>
-
 <ul>
 <li>Listening to messages instead of slash commands to improve UX</li>
 <li>Using Blocks to create beautiful looking responses</li>
 <li>Develop an implementation of the repository using Cloud SQL</li>
 </ul>
-
 <p>Stay tuned!</p>
 
 			</div>
@@ -537,7 +416,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1948 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1785 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-09-28 12:23 &#43;0300</p>
 			</footer>
 		</article>
@@ -562,7 +441,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;

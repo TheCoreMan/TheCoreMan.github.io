@@ -9,12 +9,12 @@
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Devlog #1 | The best-laid plans of mice and men">
 <meta itemprop="description" content="Last time we talked a lot about the WHY. This post is all about the HOW.
- If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first  Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?"><meta itemprop="datePublished" content="2020-05-02T18:02:38+03:00" />
+If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level HLD Planning the level database What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure Envisioning the project structure Back on planet earth&hellip; 🌍 Next time If a task is done and no one marks it in a ticketing system, does it actually work?"><meta itemprop="datePublished" content="2020-05-02T18:02:38+03:00" />
 <meta itemprop="dateModified" content="2020-05-02T18:02:38+03:00" />
 <meta itemprop="wordCount" content="1089"><meta itemprop="image" content="https://i.imgur.com/rPuIykR.png">
 <meta itemprop="keywords" content="devlog,git,ctf,docker,rust,design,requirements," /><meta property="og:title" content="Devlog #1 | The best-laid plans of mice and men" />
 <meta property="og:description" content="Last time we talked a lot about the WHY. This post is all about the HOW.
- If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first  Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level  HLD Planning the level database  What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure  Envisioning the project structure Back on planet earth&hellip; 🌍 Next time  If a task is done and no one marks it in a ticketing system, does it actually work?" />
+If a task is done and no one marks it in a ticketing system, does it actually work? Let&rsquo;s do high-level requirements first Here&rsquo;s how a user will start playing the CTF Here&rsquo;s the general idea for how a user plays a single level HLD Planning the level database What defines &ldquo;Level&rdquo; Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB Level DB folder structure Envisioning the project structure Back on planet earth&hellip; 🌍 Next time If a task is done and no one marks it in a ticketing system, does it actually work?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-1/" /><meta property="og:image" content="https://i.imgur.com/rPuIykR.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-05-02T18:02:38+03:00" />
@@ -111,91 +111,76 @@ MathJax.Hub.Config({
 				<h1>Devlog #1 | The best-laid plans of mice and men</h1>
 			</header>
 			<div class="content">
-				
-
-<p><a href="/posts/dev-log-0">Last time</a> we talked a lot about the WHY. This post is all about the HOW.</p>
-
-<p><img src="https://media.giphy.com/media/3o7aD1fN85p9F0uuIM/giphy.gif" alt="Let's get down to business." /></p>
-
+				<p><a href="/posts/dev-log-0">Last time</a> we talked a lot about the WHY. This post is all about the HOW.</p>
+<p><img src="https://media.giphy.com/media/3o7aD1fN85p9F0uuIM/giphy.gif" alt="Let&amp;rsquo;s get down to business."></p>
 <ul>
 <li><a href="#if-a-task-is-done-and-no-one-marks-it-in-a-ticketing-system-does-it-actually-work">If a task is done and no one marks it in a ticketing system, does it actually work?</a></li>
 <li><a href="#lets-do-high-level-requirements-first">Let&rsquo;s do high-level requirements first</a>
-
 <ul>
 <li><a href="#heres-how-a-user-will-start-playing-the-ctf">Here&rsquo;s how a user will start playing the CTF</a></li>
 <li><a href="#heres-the-general-idea-for-how-a-user-plays-a-single-level">Here&rsquo;s the general idea for how a user plays a single level</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#hld">HLD</a></li>
 <li><a href="#planning-the-level-database">Planning the level database</a>
-
 <ul>
 <li><a href="#what-defines-level">What defines &ldquo;Level&rdquo;</a></li>
 <li><a href="#given-this-definition-of-level-whats-the-structure-of-the-db">Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB</a></li>
 <li><a href="#level-db-folder-structure">Level DB folder structure</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="#envisioning-the-project-structure">Envisioning the project structure</a></li>
 <li><a href="#back-on-planet-earth-">Back on planet earth&hellip; 🌍</a></li>
 <li><a href="#next-time">Next time</a></li>
 </ul>
-
 <h2 id="if-a-task-is-done-and-no-one-marks-it-in-a-ticketing-system-does-it-actually-work">If a task is done and no one marks it in a ticketing system, does it actually work?<a href="#if-a-task-is-done-and-no-one-marks-it-in-a-ticketing-system-does-it-actually-work" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Like I said last time, the first task was to start dumping tasks into a board; <a href="https://github.com/ShayNehmad/make-git-better-2/projects/1">lo and behold</a>. It&rsquo;s still rather empty, but at least there&rsquo;s something tangible to look at.</p>
-
-<p><img src="https://i.imgur.com/rPuIykR.png" alt="project dev board" /></p>
-
-<h2 id="let-s-do-high-level-requirements-first">Let&rsquo;s do high-level requirements first<a href="#let-s-do-high-level-requirements-first" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+<p><img src="https://i.imgur.com/rPuIykR.png" alt="project dev board"></p>
+<h2 id="lets-do-high-level-requirements-first">Let&rsquo;s do high-level requirements first<a href="#lets-do-high-level-requirements-first" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Here is the main &ldquo;User Story&rdquo;. This is the first time I&rsquo;m writing it down. Super helpful to talk about this out loud and write it down, it really makes ideas more concrete. So:</p>
-
-<h3 id="here-s-how-a-user-will-start-playing-the-ctf">Here&rsquo;s how a user will start playing the CTF<a href="#here-s-how-a-user-will-start-playing-the-ctf" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="heres-how-a-user-will-start-playing-the-ctf">Here&rsquo;s how a user will start playing the CTF<a href="#heres-how-a-user-will-start-playing-the-ctf" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <ol>
 <li>They open CTF main page, which explains the rules and gives them a link to <code>ssh</code> to.</li>
 <li>They log on to the server. <em>behind the scenes, they get a new docker just for you using <code>docker-tcp-switchboard</code></em>.</li>
 <li>They clone the repo. <em>behind the scenes, the local <code>git</code> server is already initialized with all the hooks etc. and ready with their <code>ssh</code> key</em></li>
 <li>They read the <code>README</code>, which directs them to checkout <code>start-here</code> and read it again.</li>
 </ol>
-
-<h3 id="here-s-the-general-idea-for-how-a-user-plays-a-single-level">Here&rsquo;s the general idea for how a user plays a single level<a href="#here-s-the-general-idea-for-how-a-user-plays-a-single-level" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="heres-the-general-idea-for-how-a-user-plays-a-single-level">Here&rsquo;s the general idea for how a user plays a single level<a href="#heres-the-general-idea-for-how-a-user-plays-a-single-level" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <ul>
 <li>They read the <code>README</code> to understand how to solve this level. There&rsquo;s a web page link with hints, as well.</li>
 <li>They solve the level. For example, create two files at the root of the repo, <code>git add</code> them, <code>git commit</code>. <em>This is equivalent to <a href="https://github.com/ShayNehmad/make-git-better/tree/start-here">the second level</a> of the original CTF</em>.</li>
 <li><code>git push</code> is the confirmation. That&rsquo;s how they say &ldquo;I&rsquo;m done&rdquo;. <em>How do we check the solutions?</em>
-
 <ul>
 <li>A master <code>pre-receive</code> hook that checks what level they&rsquo;re in and runs the appropriate solution checker (different for each level). <code>pre-receive</code> will pass all of it&rsquo;s arguments to the solution checker and the solution checker return 0 or 1 on success/failure with a message. the pre-receive normally always fail (unless we want to allow push for a specific level).</li>
-<li>If the player didn&rsquo;t win yet:</li>
+<li>If the player didn&rsquo;t win yet:
+<ul>
 <li>Print an appropriate error to indicate what went wrong (like &ldquo;too many commits&rdquo; or &ldquo;I&rsquo;m missing file X&rdquo;)</li>
-<li>If the player won:</li>
-<li>Print the flag(s) 🍾🏆</li>
-</ul></li>
 </ul>
-
+</li>
+<li>If the player won:
+<ul>
+<li>Print the flag(s) 🍾🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="hld">HLD<a href="#hld" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>In <strong>very</strong> broad strokes, it seems like the CTF will have three main &ldquo;moving parts&rdquo;.</p>
-
 <ol>
 <li>The repo itself. It will contain the levels&rsquo; beginning state in their respective branches. There&rsquo;s an assumption here that we&rsquo;re playing against a single repo, but I couldn&rsquo;t find any reason to play against multiples.</li>
 <li>The level database: hooks file, solution checkers, and level structure. This will be comprised of:
-
 <ol>
 <li>Data</li>
 <li>Scripts that parse that data and create the required resources, such as the main hook file, testing suite, and a level browser web page.</li>
-</ol></li>
+</ol>
+</li>
 <li>Build system. Build will be to a docker.</li>
 </ol>
-
 <p>OK, so now that we know more precisely how the CTF will behave, we need to start to work on ONE of the components: Let&rsquo;s move to the level DB first since it seems like the real &ldquo;core&rdquo; of the CTF. I&rsquo;ll have to program around how this DB is built.</p>
-
 <h2 id="planning-the-level-database">Planning the level database<a href="#planning-the-level-database" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <h3 id="what-defines-level">What defines &ldquo;Level&rdquo;<a href="#what-defines-level" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
-<p><img src="https://wompampsupport.azureedge.net/fetchimage?siteId=7575&amp;v=2&amp;jpgQuality=100&amp;width=700&amp;url=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Ffacebook%2F000%2F025%2F476%2Fdefines.jpg" alt="define" /></p>
-
+<p><img src="https://wompampsupport.azureedge.net/fetchimage?siteId=7575&amp;v=2&amp;jpgQuality=100&amp;width=700&amp;url=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Ffacebook%2F000%2F025%2F476%2Fdefines.jpg" alt="define"></p>
 <ul>
 <li><strong>Title</strong>. Like &ldquo;start&rdquo;, &ldquo;branching-1&rdquo;, &ldquo;merging-1&rdquo;, etc. This is the human-readable version of the level, unlike&hellip;</li>
 <li><strong>Branch</strong>. This is this level&rsquo;s actual branch in the repo.</li>
@@ -204,9 +189,7 @@ MathJax.Hub.Config({
 <li><strong>Level page</strong>. This is a <code>.md</code> file that will be uploaded to the challenge site, which accompanies the level&rsquo;s README in the repo. Mostly hints and flavour text.</li>
 <li><strong>Tests</strong>. This describes how to win this level. As much as I can, I&rsquo;d like for this to be something automatic.</li>
 </ul>
-
-<h3 id="given-this-definition-of-level-what-s-the-structure-of-the-db">Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB<a href="#given-this-definition-of-level-what-s-the-structure-of-the-db" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-
+<h3 id="given-this-definition-of-level-whats-the-structure-of-the-db">Given this definition of &ldquo;Level&rdquo;, what&rsquo;s the structure of the DB<a href="#given-this-definition-of-level-whats-the-structure-of-the-db" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>First, we&rsquo;ll have one <code>game_config.toml</code> file that looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Generic stuff</span>
 </span></span><span class="line"><span class="cl"><span class="nx">generic</span> <span class="p">=</span> <span class="s2">&#34;stuff&#34;</span>
@@ -231,15 +214,14 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">  <span class="nx">solutionChecker</span> <span class="p">=</span> <span class="s2">&#34;checkers/merge-1.sh&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">flags</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;kneel-untinted-names&#34;</span><span class="p">,</span> <span class="s2">&#34;upleaped-unprint-odorize&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="c"># Level page is implicitly &#34;pages/merge-1.md&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="c"># Testing info is implicitly in &#34;tests/merge-1.rs&#34;</span></span></span></code></pre></div>
-<h3 id="level-db-folder-structure">Level DB folder structure<a href="#level-db-folder-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</span></span><span class="line"><span class="cl">  <span class="c"># Testing info is implicitly in &#34;tests/merge-1.rs&#34;</span>
+</span></span></code></pre></div><h3 id="level-db-folder-structure">Level DB folder structure<a href="#level-db-folder-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/levels
 </span></span><span class="line"><span class="cl">/levels/game_config.toml
 </span></span><span class="line"><span class="cl">/levels/checkers  <span class="c1"># executable per level</span>
 </span></span><span class="line"><span class="cl">/levels/pages  <span class="c1"># markdown per level</span>
-</span></span><span class="line"><span class="cl">/levels/tests  <span class="c1"># per level. Will start manually</span></span></span></code></pre></div>
-<h2 id="envisioning-the-project-structure">Envisioning the project structure<a href="#envisioning-the-project-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">/levels/tests  <span class="c1"># per level. Will start manually</span>
+</span></span></code></pre></div><h2 id="envisioning-the-project-structure">Envisioning the project structure<a href="#envisioning-the-project-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I think this will be the semi-final directory structure and parts of the project, following the HLD from before:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/
 </span></span><span class="line"><span class="cl">
@@ -254,17 +236,12 @@ MathJax.Hub.Config({
 </span></span><span class="line"><span class="cl">/build
 </span></span><span class="line"><span class="cl">/build/package_for_docker  <span class="c1"># Takes the levels + scripts and packages them for the docker</span>
 </span></span><span class="line"><span class="cl">/build/dockerfile
-</span></span><span class="line"><span class="cl">/build/dockerfile_entrypoint.sh</span></span></code></pre></div>
-<h2 id="back-on-planet-earth">Back on planet earth&hellip; 🌍<a href="#back-on-planet-earth" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
+</span></span><span class="line"><span class="cl">/build/dockerfile_entrypoint.sh
+</span></span></code></pre></div><h2 id="back-on-planet-earth-">Back on planet earth&hellip; 🌍<a href="#back-on-planet-earth-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I &ldquo;wasted&rdquo; some time on installations and reading.</p>
-
 <p>Downloaded <code>Rust</code> and started learning it, since I think it&rsquo;ll make a good fit for all the <code>/scripts</code> code that I need to write, and I&rsquo;m growing a little tired of Python.</p>
-
 <p>I also made Docker work on my WSL using <a href="https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4">this guide</a>. I would have preferred to get WSL2 but I can&rsquo;t join the Windows Insider Program on this PC, so I&rsquo;ll have to wait patiently 😪</p>
-
 <h2 id="next-time">Next time<a href="#next-time" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-
 <p>Next time I&rsquo;m going to go in a totally different direction: Now that the plan feels solid and grounded, I&rsquo;m going to work on getting just the first two levels done and working. This should be a pretty big task since I want a LOT of automation here, but once this infrastructure is laid down, adding more levels should be a walk in the park.</p>
 
 			</div>
@@ -314,7 +291,7 @@ MathJax.Hub.Config({
 
 
 
-	<script src="https://www.mrnice.dev/js/bundle.min.5a42c67b729ee2fa1059251688235399704707e04edb4e28c42c6f6dfa49d1d9.js" integrity="sha256-WkLGe3Ke4voQWSUWiCNTmXBHB+BO204oxCxvbfpJ0dk=" crossorigin="anonymous"></script>
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
 	
 <script type="application/javascript">
 var doNotTrack = false;
