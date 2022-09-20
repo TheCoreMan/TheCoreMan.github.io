@@ -6,7 +6,17 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Jul 2022 14:15:55 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Sep 2022 23:52:52 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Good Cross-functional Team/Bad Cross-functional Team</title>
+      <link>https://www.mrnice.dev/posts/good-cross-functional-team-bad-cross-functional-team/</link>
+      <pubDate>Tue, 20 Sep 2022 23:52:52 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/good-cross-functional-team-bad-cross-functional-team/</guid>
+      <description>News at Reco! Soon - exactly 1 next month from when I&amp;rsquo;m writing this blog post - I&amp;rsquo;m going to take ownership of all delivery in the company. This includes changing my title to VP R&amp;amp;D (from VP of Engineering), building a structure of 4 cross-functional teams, and growing the group members a lot faster. This is a big move for me, and I want it to succeed.
+I wrote this document to help me (and my teams) visualize how will good teams look.</description>
+    </item>
+    
     <item>
       <title>Astrix 🤝 Reco R&amp;D meetup</title>
       <link>https://www.mrnice.dev/posts/astrix-reco-meetup/</link>
@@ -212,16 +222,6 @@ Crowd interaction, controlling my voice, gesturing, joking with the audience now
 Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
 Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
 Why do we need a level browser?</description>
-    </item>
-    
-    <item>
-      <title>basic-1</title>
-      <link>https://www.mrnice.dev/levels/basic-1/</link>
-      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/levels/basic-1/</guid>
-      <description>Sometimes we need to delete files, not only add them. But in git deleting a file means add-ing the deletion to the staging area and committing that change.
-🧩 Hints Click on hints to reveal them.</description>
     </item>
     
   </channel>
