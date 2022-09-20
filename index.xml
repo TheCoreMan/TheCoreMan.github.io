@@ -18,6 +18,15 @@ I wrote this document to help me (and my teams) visualize how will good teams lo
     </item>
     
     <item>
+      <title>Vulnerability Report: Are LucidCharts Safe When Shared to Confluence?</title>
+      <link>https://www.mrnice.dev/posts/astrix-reco-meetup-copy/</link>
+      <pubDate>Mon, 15 Aug 2022 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/astrix-reco-meetup-copy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Astrix 🤝 Reco R&amp;D meetup</title>
       <link>https://www.mrnice.dev/posts/astrix-reco-meetup/</link>
       <pubDate>Mon, 18 Jul 2022 14:15:55 +0300</pubDate>
@@ -209,19 +218,6 @@ Crowd interaction, controlling my voice, gesturing, joking with the audience now
       
       <guid>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
-      <link>https://www.mrnice.dev/posts/dev-log-3/</link>
-      <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/dev-log-3/</guid>
-      <description>“Today I have grown taller from walking with the trees.”
-― Karle Wilson Baker
-Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
-Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
-Why do we need a level browser?</description>
     </item>
     
   </channel>

@@ -28,9 +28,18 @@
     <item>
       <title>recolabs</title>
       <link>https://www.mrnice.dev/tags/recolabs/</link>
-      <pubDate>Mon, 18 Jul 2022 14:15:55 +0300</pubDate>
+      <pubDate>Mon, 15 Aug 2022 14:15:55 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/recolabs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://www.mrnice.dev/tags/security/</link>
+      <pubDate>Mon, 15 Aug 2022 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/security/</guid>
       <description></description>
     </item>
     
@@ -175,15 +184,6 @@
       <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>math</title>
-      <link>https://www.mrnice.dev/tags/math/</link>
-      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/math/</guid>
       <description></description>
     </item>
     

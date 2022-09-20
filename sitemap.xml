@@ -20,10 +20,16 @@
     <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2022-09-20T23:52:52+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/astrix-reco-meetup/</loc>
-    <lastmod>2022-07-18T14:15:55+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/recolabs/</loc>
+    <lastmod>2022-08-15T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/security/</loc>
+    <lastmod>2022-08-15T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/astrix-reco-meetup-copy/</loc>
+    <lastmod>2022-08-15T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/astrix-reco-meetup/</loc>
     <lastmod>2022-07-18T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/golang/</loc>
@@ -121,9 +127,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/tags/swimm/</loc>
     <lastmod>2021-02-14T12:53:17+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/security/</loc>
-    <lastmod>2020-10-18T12:07:50+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/swimming-with-monkeys/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
