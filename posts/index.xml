@@ -5,8 +5,147 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Tue, 20 Sep 2022 23:52:52 +0300</lastBuildDate>
+		<lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
+			<link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
+			<pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
+			<description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
+I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
+Part 1 In this part we&amp;rsquo;re going to:</description>
+			<content type="html"><![CDATA[<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
+wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning
+opportiunity.</p>
+<p>I&rsquo;m also definitely <em>not</em> a DevOps expert, so I had to learn some stuff myself
+along the way. Here&rsquo;s my best approximation at a useful guide for anyone who&rsquo;s
+going to walk the same path! Hopefully I can save you some time.</p>
+<p><img src="https://backstage.io/animations/backstage-logos-hero-8.gif" alt="Backstage logo"></p>
+<h2 id="part-1">Part 1</h2>
+<p>In this part we&rsquo;re going to:</p>
+<ol>
+<li>Set up our repository</li>
+<li>Build a docker image</li>
+<li>Install Backstage on a cluster</li>
+<li>Test our dev-deploy-test loop</li>
+</ol>
+<h2 id="what-youll-need">What you&rsquo;ll need?</h2>
+<p><a href="https://backstage.io/docs/getting-started/#prerequisites">All the backstage prerequisites</a>, and&hellip;</p>
+<ul>
+<li>A working K8s cluster (<code>minikube start</code> should be good enough if you&rsquo;re just
+learning)</li>
+<li><code>kubectl</code> || <code>K9s</code> || <code>Lens</code></li>
+<li><code>helm</code></li>
+<li>A GitHub project with some software components you want to track</li>
+</ul>
+<p>And some patience, cause this ain&rsquo;t gonna be a smooth ride&hellip;</p>
+<h2 id="first-thing-first---get-the-code-and-store-it-in-a-repository">First thing first - get the code and store it in a repository</h2>
+<p>This might be surprising - aren&rsquo;t we going to just <code>helm install</code> this?</p>
+<p>So, no. To get anything done with Backstage beyond <code>hello world</code>, you need to
+mess around with the actual source code. So you&rsquo;re going to want a repo of
+your own; otherwise, you won&rsquo;t be able to track changes which we&rsquo;ll do later
+(like adding authentication to the app).</p>
+<p>Install the latest <code>node</code> LTS by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nvm install <span class="m">16</span>
+</span></span><span class="line"><span class="cl">nvm use <span class="m">16</span>
+</span></span></code></pre></div><blockquote>
+<p>BTW: I opened a PR for the Backstage team to include a <code>.nvmrc</code> file, so you
+should be able to just run <code>nvm use</code> next time. :) Track it here:</p>
+<p><a href="https://github.com/backstage/backstage/pull/14152">GitHub Pull request link</a>.</p>
+</blockquote>
+<p>If you have multiple Node versions running on your machine remember to do this
+for each shell session you open.</p>
+<p>Then run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">npx @backstage/create-app
+</span></span></code></pre></div><p>Choose a name, let it run <code>yarn install</code>, moan internally about modern package
+management and install times while it runs.</p>
+<p>Then to test it you can <code>cd</code> into your new app and run <code>yarn dev</code>. You ought to
+see something like this:</p>
+<p><img src="/images/backstage/initial-setup.png" alt="Screenshot" title="Screenshot after basic installation"></p>
+<p>Now, since we&rsquo;re going to need to perform many changes, most of them on the
+codebase, now&rsquo;s a good time to get the code into a repository. So open a
+GitHub repo, and run the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># if you haven&#39;t already, git config --global init.defaultBranch main</span>
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -sv
+</span></span><span class="line"><span class="cl">git remote add origin &lt;your repo here&gt;
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span><span class="line"><span class="cl">git checkout -b dev
+</span></span></code></pre></div><h2 id="building-a-docker-image-and-pushing-to-a-repository">Building a docker image and pushing to a repository</h2>
+<p>Now that we have the code set up, we need to build an image and push it to a
+repository our cluster can use. In this example I&rsquo;ll be using AWS ECR. Once the
+repository has been created, here&rsquo;s your magic one-liner:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">yarn install --frozen-lockfile <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">    yarn build <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">    docker buildx build . -f packages/backend/Dockerfile --tag my-backstage --platform linux/amd64 <span class="o">&amp;&amp;</span> docker tag my-backstage:latest &lt;ECR_URL_HERE&gt;.amazonaws.com/my-backstage:latest <span class="o">&amp;&amp;</span> 
+</span></span><span class="line"><span class="cl">    docker push &lt;ECR_URL_HERE&gt;.amazonaws.com/my-backstage:latest
+</span></span></code></pre></div><h2 id="setting-up-the-application-on-k8s-using-helm">Setting up the application on K8s using <code>helm</code></h2>
+<h3 id="grab-the-chart">Grab the chart</h3>
+<p>We&rsquo;re going to use <a href="https://github.com/vinzscam/backstage-chart">this helm chart</a>.
+According to <code>helm</code> best practices, we should pull the chart and inspect it, not
+just install it without reading! Thanks for the tip
+<a href="https://www.twitch.tv/rwxrob">twxrob</a>).</p>
+<p><img src="https://avatars.githubusercontent.com/u/3749067?v=4" alt="rwxrob" title="rwxrob"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">helm repo add backstage https://vinzscam.github.io/backstage-chart
+</span></span><span class="line"><span class="cl">helm pull --untar backstage/backstage
+</span></span></code></pre></div><h3 id="install-and-make-sure-it-works">Install, and make sure it works</h3>
+<p>Now is a good time to make sure the image works OK in the cluster. You need to
+update the image in the <code>values.yaml</code> file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"> backstage:
+</span></span><span class="line"><span class="cl">    image:
+</span></span><span class="line"><span class="cl">    -    registry: &#34;&#34;
+</span></span><span class="line"><span class="cl">    -    repository: &#34;&#34;
+</span></span><span class="line"><span class="cl">    -    tag: &#34;&#34;
+</span></span><span class="line"><span class="cl">    +    registry: &#39;&#39;
+</span></span><span class="line"><span class="cl">    +    repository: &lt;ECR_URL_HERE&gt;.amazonaws.com/my-backstage
+</span></span><span class="line"><span class="cl">    +    tag: latest
+</span></span></code></pre></div><p>Install:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">helm install -f values.yaml my-backstage-release .
+</span></span></code></pre></div><p>And test by port-forwarding the app to your local machine. You&rsquo;re going to need
+to port forward port 3000 and port 7007.</p>
+<p><img src="/images/backstage/port-forward.png" alt="Screenshot" title="port forward"></p>
+<p>It should look like this:</p>
+<p><img src="/images/backstage/after-helm.png" alt="Screenshot" title="Screenshot after helm"></p>
+<h2 id="run-the-dev-deploy-test-loop">Run the dev-deploy-test loop</h2>
+<p>So, we have everything we need to start messing around with changes. But now is
+the best time to stop and make sure it all operates smoothly. So let&rsquo;s make a
+very small change, and see what the dev-deploy-test loop looks like for us.</p>
+<p>Let&rsquo;s change the title of the application:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl">❯ gd
+</span></span><span class="line"><span class="cl"><span class="gh">diff --git a/app-config.yaml b/app-config.yaml
+</span></span></span><span class="line"><span class="cl"><span class="gh">index 4a058de..0feb730 100644
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- a/app-config.yaml
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/app-config.yaml
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,5 +1,5 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> app:
+</span></span><span class="line"><span class="cl"> -  title: Scaffolded Backstage App
+</span></span><span class="line"><span class="cl"> +  title: My Backstage App
+</span></span><span class="line"><span class="cl">    baseUrl: http://localhost:3000
+</span></span></code></pre></div><p>Then re-run the magic oneliner from before (the one that starts with <code>yarn</code>)
+to rebuild the docker and push it.</p>
+<p>Finally, restart your deployment:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ k rollout restart deployment/reco-backstage-release
+</span></span><span class="line"><span class="cl">deployment.apps/reco-backstage-release restarted
+</span></span></code></pre></div><p>Click on search, and make sure the change actually worked!</p>
+<p><img src="/images/backstage/backstage-dev-loop.png" alt="Screenshot" title="Screenshot after helm"></p>
+<h2 id="next">Next</h2>
+<p>Now we need to start configuring Backstage to make it useful - set up
+authentication, GitHub integration, and more.</p>
+<p>The first thing you really ought to do is to make the service accessible via
+DNS from outside the cluster - otherwise, you&rsquo;ll have to redo the port forward
+each time, and that&rsquo;s not a pleasent experience <strong>at all</strong>. So get on that,
+first!</p>
+<h3 id="will-there-be-a-part-2">Will there be a part 2?</h3>
+<p>Probably not. Most of the config I did after setting up this Helm is too
+specific to my org (<a href="https://recolabs.dev">reco.ai</a>), so I assume it won&rsquo;t
+really be useful for you. My DMs are open - if anyone will ask, I&rsquo;ll write the
+second part up :)</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Before: Good Cross-functional Team/Bad Cross-functional Team</title>

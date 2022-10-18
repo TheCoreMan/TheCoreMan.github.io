@@ -2,25 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/backstage/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/devops/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/how-to-backstage-part-1/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/howto/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/good-cross-functional-team-bad-cross-functional-team/</loc>
     <lastmod>2022-09-20T23:52:52+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/management/</loc>
     <lastmod>2022-09-20T23:52:52+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2022-09-20T23:52:52+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2022-09-20T23:52:52+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2022-09-20T23:52:52+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/reco/</loc>
-    <lastmod>2022-09-20T23:52:52+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2022-09-20T23:52:52+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/recolabs/</loc>
@@ -99,9 +111,6 @@
     <lastmod>2021-07-02T10:23:18+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</loc>
-    <lastmod>2021-06-12T12:15:16+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/howto/</loc>
     <lastmod>2021-06-12T12:15:16+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/hugo/</loc>

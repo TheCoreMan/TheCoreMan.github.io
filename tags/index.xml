@@ -6,7 +6,34 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Sep 2022 23:52:52 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>backstage</title>
+      <link>https://www.mrnice.dev/tags/backstage/</link>
+      <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/backstage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://www.mrnice.dev/tags/devops/</link>
+      <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>howto</title>
+      <link>https://www.mrnice.dev/tags/howto/</link>
+      <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/howto/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>management</title>
       <link>https://www.mrnice.dev/tags/management/</link>
@@ -157,33 +184,6 @@
       <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/slack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>algorithms</title>
-      <link>https://www.mrnice.dev/tags/algorithms/</link>
-      <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>clojure</title>
-      <link>https://www.mrnice.dev/tags/clojure/</link>
-      <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/clojure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>howto</title>
-      <link>https://www.mrnice.dev/tags/howto/</link>
-      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/howto/</guid>
       <description></description>
     </item>
     
