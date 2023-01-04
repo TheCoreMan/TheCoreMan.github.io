@@ -14,10 +14,14 @@
 			<pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
 			
 			<guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
-			<description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
+			<description>ASDASDASDASDASDASDA
+ASDJKA:SLJKDHJASJK
+I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
 I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&amp;rsquo;re going to:</description>
-			<content type="html"><![CDATA[<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
+			<content type="html"><![CDATA[<p>ASDASDASDASDASDASDA</p>
+<p>ASDJKA:SLJKDHJASJK</p>
+<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
 wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning
 opportiunity.</p>
 <p>I&rsquo;m also definitely <em>not</em> a DevOps expert, so I had to learn some stuff myself
@@ -661,7 +665,7 @@ the <code>inmem_testing</code> case implemented for now:</p>
 files to populate the connection with data (username, password, address, etc.).</p>
 <p>To test all the cases, we&rsquo;ve used a feature of pytest called <code>parametrize</code>,
 but ended up only using it once (since we&rsquo;ve only implemented one):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest.mark.parametrize</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;db_case&#34;</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">    <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">,</span>
@@ -692,7 +696,7 @@ but ended up only using it once (since we&rsquo;ve only implemented one):</p>
 </span></span><span class="line"><span class="cl"><span class="n">Base</span> <span class="o">=</span> <span class="n">mapper_registry</span><span class="o">.</span><span class="n">generate_base</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@enum</span><span class="o">.</span><span class="n">unique</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@enum.unique</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PricingTier</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">free</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">paid</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
@@ -855,7 +859,7 @@ class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
 </span></span><span class="line"><span class="cl"><span class="n">DEMO_MEMBER_ID</span> <span class="o">=</span> <span class="s2">&#34;U02C63W148L&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">DEMO_RESERVATION_DATE</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1994</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">session_with_demo_models</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
@@ -901,7 +905,7 @@ class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
 </span></span><span class="line"><span class="cl">    <span class="n">request</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">session</span>
 </span></span></code></pre></div><p>And here&rsquo;s how the test class that uses the fixture looks:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestAllModelsTogether</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_selecting_reservations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
@@ -997,8 +1001,16 @@ improvements, which we introduced in 3 separate PRs.</p>
 prefer things to surface-level work so badly that they are willing to accept
 images that are 5 times bigger as the default? 🤔</p>
 <p>In any case, the diff was very simple:</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->Dockerfile.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
-<!-- raw HTML omitted -->
+<p><a href="./Dockerfile.1"><code>Dockerfile.1</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- Dockerfile.base	2021-09-11 15:35:49.117069816 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ Dockerfile.1	2021-09-11 15:34:10.003008547 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> # Base image. This version is in the pyproject file as well.
+</span></span><span class="line"><span class="cl"><span class="gd">-FROM python:3.9
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+# See Image Variants on https://hub.docker.com/_/python
+</span></span></span><span class="line"><span class="cl"><span class="gi">+FROM python:3.9-slim
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span></code></pre></div>
 <blockquote>
 <p>Shoutout to <a href="https://willschenk.com/">Will Schenk</a> for the awesome <code>diff</code>
 shortcode. If you have time after reading this blog, make sure to put Will&rsquo;s
@@ -1010,12 +1022,61 @@ first endpoint we&rsquo;ve developed, called <code>spots</code>. But then, we re
 we actually develop that endpoint, the return value will change. So to keep
 things humming nicely, we added a <code>/test</code> URL to the server which we used for
 the test.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->src/valet_parking_slack_bot/server.py.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
-<!-- raw HTML omitted -->
+<p><a href="./src/valet_parking_slack_bot/server.py.1"><code>src/valet_parking_slack_bot/server.py.1</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- server.py.base	2021-09-11 15:49:18.844449939 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ server.py.1	2021-09-11 15:49:26.696418007 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+from datetime import datetime
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> from flask import Flask
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,3 +5,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl"><span class="gd">-
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span> app = Flask(__name__)
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -18,3 +18,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl"><span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
+</span></span></span><span class="line"><span class="cl"><span class="gi">+def healthcheck():
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;message&#34;: &#34;I&#39;m alive!&#34;, 
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;ts&#34;: str(datetime.now())
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    return response
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> if __name__ == &#34;__main__&#34;:
+</span></span><span class="line"><span class="cl"><span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>\ No newline at end of file
+</span></span><span class="line"><span class="cl"><span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></span></span></code></pre></div>
 <p>This is the updated test, where you can see the <strong>TODO</strong> was deleted.
 One of the best feelings is checking boxes ✅</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->tests/test_service_availability.py.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
-<!-- raw HTML omitted -->
+<p><a href="./tests/test_service_availability.py.1"><code>tests/test_service_availability.py.1</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- tests/test_service_availability.py.base	2021-09-11 15:53:42.271063485 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1	2021-09-11 15:53:22.591186320 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> import requests
+</span></span><span class="line"><span class="cl"><span class="gi">+import logging
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi">+logger = logging.getLogger(__name__)
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,9 +7,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl"><span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
+</span></span></span><span class="line"><span class="cl"><span class="gd">-# since the response to this URL will change and the
+</span></span></span><span class="line"><span class="cl"><span class="gd">-# test will fail even though the service is available!
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span> def test_cloud_endpoint():
+</span></span><span class="line"><span class="cl"><span class="gd">-    want = &#34;no spots for you!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = requests.get(test_url)
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>     assert response.ok
+</span></span><span class="line"><span class="cl"><span class="gd">-    assert want.lower() == response.text.lower()    
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    data = response.json()
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;ts&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
+</span></span></span></code></pre></div>
 <p>and it works!</p>
 <p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="Test endpoint" title="Test endpoint"></p>
 <h3 id="adding-basic-ci">Adding basic CI</h3>
@@ -1453,7 +1514,7 @@ structure so far is:</p>
 </span></span><span class="line"><span class="cl"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/spots&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/spots&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">spots</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;dedede&#34;</span>
@@ -1574,7 +1635,7 @@ or &ldquo;Try to spend every day meaningfully&rdquo;.</p>
 <p>This blog post continues directly from <a href="../first-foray-into-clojure-part-1">the previous
 one</a>, so I&rsquo;ll skip the intros. Go read that
 one for context. Let&rsquo;s just jump into it!</p>
-<!-- raw HTML omitted -->
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 <p><strong>Table of Contents</strong></p>
 <ul>
 <li><a href="#runtime-polymorphism">Runtime Polymorphism</a>
@@ -1615,7 +1676,7 @@ one for context. Let&rsquo;s just jump into it!</p>
 </li>
 <li><a href="#what-now">What now?</a></li>
 </ul>
-<!-- raw HTML omitted -->
+<!-- markdown-toc end -->
 <h2 id="runtime-polymorphism">Runtime Polymorphism</h2>
 <blockquote>
 <p>One day someone asked Master Yunmen, “What is the meaning of the teaching?”</p>
@@ -2384,7 +2445,7 @@ $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0
 <p>Or Matrix Multiplication?</p>
 <p>$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$</p>
 <p>Here&rsquo;s the shortest guide I can write for you. This guide assumes you&rsquo;re blogging with Hugo, like this blog. <a href="../how-to-build-this-blog">Read my &ldquo;How to build this blog&rdquo;</a> post to learn how to set something like this up.</p>
-<!-- raw HTML omitted -->
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 <p><strong>Table of Contents</strong></p>
 <ul>
 <li><a href="#1-fork-your-blogs-theme">1. Fork your blog&rsquo;s theme</a></li>
@@ -2399,7 +2460,7 @@ $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0
 </ul>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<!-- markdown-toc end -->
 <h2 id="1-fork-your-blogs-theme">1. Fork your blog&rsquo;s theme</h2>
 <p>We&rsquo;re going to change the blog&rsquo;s theme, so we want to fork the theme we&rsquo;re using, so we can commit and push changes without bothering anyone. Maybe even merge the changes back to the original project later on!</p>
 <p>In my case I&rsquo;m using <a href="https://themes.gohugo.io/hermit/">hermit</a>. In the theme&rsquo;s GitHub page, click &ldquo;Fork&rdquo;:</p>
@@ -2494,7 +2555,7 @@ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last 
 <blockquote>
 <p>If you want, you can read everything I have to say about Clojure by looking at the <a href="/tags/clojure/">Clojure tag</a>.</p>
 </blockquote>
-<!-- raw HTML omitted -->
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 <p><strong>Table of Contents</strong></p>
 <ul>
 <li><a href="#getting-started-with-clojure-koans">Getting started with Clojure Koans</a></li>
@@ -2549,7 +2610,7 @@ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last 
 </li>
 <li><a href="#closing-words">Closing words</a></li>
 </ul>
-<!-- raw HTML omitted -->
+<!-- markdown-toc end -->
 <h2 id="getting-started-with-clojure-koans">Getting started with Clojure Koans</h2>
 <p>The <a href="https://github.com/functional-koans/clojure-koans/blob/master/README.md">README</a> does a good job of explaining how to do the basic installation, but here&rsquo;s the setup you WANT.</p>
 <ol>
@@ -3207,7 +3268,7 @@ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">All code using array.reduce should be rewritten without array.reduce so it&#39;s readable by humans *mutes thread*</p>&mdash; Jake Archibald (@jaffathecake) <a href="https://twitter.com/jaffathecake/status/1213077702300852224?ref_src=twsrc%5Etfw">January 3, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">my rule for .reduce(): only use it when the result has the same type as the items and the reducer is associative, like<br><br>.reduce((a, b) =&gt; a + b, 0)<br><br>✅ summing some numbers<br>✅ multiplying some numbers<br>🚫 building up a list or object<br>🚫 just about anything else (use a loop)</p>&mdash; Sophie Alpert (@sophiebits) <a href="https://twitter.com/sophiebits/status/1099014182261776384?ref_src=twsrc%5Etfw">February 22, 2019</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">my rule for .reduce(): only use it when the result has the same type as the items and the reducer is associative, like<br><br>.reduce((a, b) =&gt; a + b, 0)<br><br>✅ summing some numbers<br>✅ multiplying some numbers<br>🚫 building up a list or object<br>🚫 just about anything else (use a loop)</p>&mdash; ms. sophie bites (@sophiebits) <a href="https://twitter.com/sophiebits/status/1099014182261776384?ref_src=twsrc%5Etfw">February 22, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h2 id="closing-words">Closing words</h2>
@@ -3229,7 +3290,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 <blockquote>
 <p>If you want, you can read everything I have to say about Clojure by looking at the <a href="/tags/clojure/">Clojure tag</a>.</p>
 </blockquote>
-<!-- raw HTML omitted -->
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 <p><strong>Table of Contents</strong></p>
 <ul>
 <li><a href="#starting-from-the-end---my-conclusions-and-experience-learning-clojure-so-far">Starting from the end - my conclusions and experience learning Clojure so far</a></li>
@@ -3249,7 +3310,7 @@ In this post I go over how to setup a basic Clojure development environment and 
 </li>
 <li><a href="#whats-next">What&rsquo;s next?</a></li>
 </ul>
-<!-- raw HTML omitted -->
+<!-- markdown-toc end -->
 <h2 id="starting-from-the-end---my-conclusions-and-experience-learning-clojure-so-far">Starting from the end - my conclusions and experience learning Clojure so far</h2>
 <p>Clojure feels hostile. It feels like a language which was built for seniors. If I don&rsquo;t understand something, it always feels like my fault - the docs are there, the tools are there, I&rsquo;m just not good enough yet.</p>
 <p>Now, I&rsquo;m not a junior developer, by any means. But it felt like the barrier for entry was unnecessarily&hellip; well, not high, just hard. You have to learn so much just to <strong>get</strong> to learn Clojure.</p>
@@ -3712,13 +3773,14 @@ If the program is available on MELPA, you can just add it to the additional-pack
 			<description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
 Also, this is an old blogpost about something that wasn&amp;rsquo;t actually released as part of the project yet. Maybe one day I&amp;rsquo;ll finish it but the documentation value is important.
 After another successful workshop,
-I decided it&amp;rsquo;s time to tackle issue #26 from the project&amp;rsquo;s backlog using rust, Yew, and WebAssembly.</description>
+Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.</description>
 			<content type="html"><![CDATA[<hr>
 <p><em>If you haven&rsquo;t read the rest of the devlogs, <a href="/tags/devlog/">you can find them here</a>. You might be missing some context if you don&rsquo;t.</em></p>
 <p><em>Also, this is an old blogpost about something that wasn&rsquo;t actually released as part of the project yet. Maybe one day I&rsquo;ll finish it but the documentation value is important.</em></p>
 <hr>
 <p>After another successful workshop,</p>
-<!-- raw HTML omitted -->
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.<br><br>(But damn, I miss in-person workshops 😣) <a href="https://t.co/mKYaEfwjqp">pic.twitter.com/mKYaEfwjqp</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1302564182290825216?ref_src=twsrc%5Etfw">September 6, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>I decided it&rsquo;s time to tackle issue #26 from the project&rsquo;s backlog using rust, Yew, and WebAssembly. Here&rsquo;s how it looks now that it&rsquo;s done:</p>
 <p><img src="/images/yew-win-state.gif" alt="win state" title="win state"></p>
 <p>This posts in a live log of HOW I did this.</p>
@@ -6491,7 +6553,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 <p><em>These are both the before and after snapshots. We found out that when generating a report, we query our database almost a million times (for 30 machines)</em> 🤷‍♀‍</p>
 <h2 id="3-improve-performance">3) Improve performance</h2>
 <p>First, you’ll need to determine what’s the performance goal. Programs can almost always be optimized, so you need to choose when to stop working at it. <em>For example, we thought going under 5 seconds for each report generation is OK for our needs, for now.</em></p>
-<p>Usually, there are two types of performance issues: If the bottleneck is with your <strong>data</strong>, use caching (we used <a href="https://github.com/youknowone/ring"><code>ring</code></a>). If the bottlenecks are bad <strong>algorithms</strong> – you’ll have to improve them from a lazy Θ(n<!-- raw HTML omitted -->4<!-- raw HTML omitted -->) to a speedy Θ(n<!-- raw HTML omitted -->2<!-- raw HTML omitted -->).</p>
+<p>Usually, there are two types of performance issues: If the bottleneck is with your <strong>data</strong>, use caching (we used <a href="https://github.com/youknowone/ring"><code>ring</code></a>). If the bottlenecks are bad <strong>algorithms</strong> – you’ll have to improve them from a lazy Θ(n<sup>4</sup>) to a speedy Θ(n<sup>2</sup>).</p>
 <p><em>See how we did both of those in <a href="https://github.com/guardicore/monkey/pull/447">this Pull Request</a>.</em></p>
 <h2 id="-a-word-of-warning">⚠ A word of warning</h2>
 <p>No one is clever enough to improve performance without introducing a new bug. Case in point:</p>
@@ -6537,7 +6599,7 @@ Why Prep The Shell The Terminal(s) The Text Editor The Browser Why It’s that t
 <p>😖 It sucks. You think to yourself, “ah, if only I had time to set this up like I WANT it to be, this machine would’ve been a treat”. But alas; you choose to save time by chugging on with the basic terminal for hours, which end up slowing you down. My point is: Tooling is king.</p>
 <p>Tooling increases <strong>productivity</strong>, lowers <strong>frustration</strong>, and makes you look <strong>cool</strong>. 😎</p>
 <blockquote>
-<p>pro·duc·tiv·i·ty noun; The effectiveness of productive effort, especially in industry, as measured in terms of the rate of output per unit of input. <!-- raw HTML omitted --><a href="https://www.lexico.com/en/definition/productivity">source</a><!-- raw HTML omitted --></p>
+<p>pro·duc·tiv·i·ty noun; The effectiveness of productive effort, especially in industry, as measured in terms of the rate of output per unit of input. <sup><a href="https://www.lexico.com/en/definition/productivity">source</a></sup></p>
 </blockquote>
 <p>ℹ Tooling is important where you intend to actually work. If this is a server you just ssh into to restart a crashed service, then this guide might be somewhat irrelevant.</p>
 <p>So, what do I install the moment I log into a new Linux machine, as a starter pack of efficiency? Grab your coffee and ssh into your neglected server that wants some love.</p>

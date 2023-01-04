@@ -13,7 +13,9 @@
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
-      <description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
+      <description>ASDASDASDASDASDASDA
+ASDJKA:SLJKDHJASJK
+I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
 I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&amp;rsquo;re going to:</description>
     </item>
@@ -195,7 +197,7 @@ If the program is available on MELPA, you can just add it to the additional-pack
       <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
 Also, this is an old blogpost about something that wasn&amp;rsquo;t actually released as part of the project yet. Maybe one day I&amp;rsquo;ll finish it but the documentation value is important.
 After another successful workshop,
-I decided it&amp;rsquo;s time to tackle issue #26 from the project&amp;rsquo;s backlog using rust, Yew, and WebAssembly.</description>
+Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.</description>
     </item>
     
     <item>

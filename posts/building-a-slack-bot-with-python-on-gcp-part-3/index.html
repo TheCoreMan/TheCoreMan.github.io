@@ -24,7 +24,6 @@ Upfront, we had to decide if we&rsquo;ll choose a relational database or somethi
 <meta property="article:published_time" content="2021-10-31T20:04:53+03:00" />
 <meta property="article:modified_time" content="2021-10-31T20:04:53+03:00" />
 
-
 <meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data">
 
 
@@ -251,7 +250,7 @@ the <code>inmem_testing</code> case implemented for now:</p>
 files to populate the connection with data (username, password, address, etc.).</p>
 <p>To test all the cases, we&rsquo;ve used a feature of pytest called <code>parametrize</code>,
 but ended up only using it once (since we&rsquo;ve only implemented one):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest.mark.parametrize</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;db_case&#34;</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">    <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">,</span>
@@ -282,7 +281,7 @@ but ended up only using it once (since we&rsquo;ve only implemented one):</p>
 </span></span><span class="line"><span class="cl"><span class="n">Base</span> <span class="o">=</span> <span class="n">mapper_registry</span><span class="o">.</span><span class="n">generate_base</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@enum</span><span class="o">.</span><span class="n">unique</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@enum.unique</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PricingTier</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">free</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">paid</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
@@ -445,7 +444,7 @@ class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
 </span></span><span class="line"><span class="cl"><span class="n">DEMO_MEMBER_ID</span> <span class="o">=</span> <span class="s2">&#34;U02C63W148L&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">DEMO_RESERVATION_DATE</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1994</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;class&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">session_with_demo_models</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">get_session_for_case</span><span class="p">(</span><span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">create_all_tables</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
@@ -491,7 +490,7 @@ class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
 </span></span><span class="line"><span class="cl">    <span class="n">request</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">session</span>
 </span></span></code></pre></div><p>And here&rsquo;s how the test class that uses the fixture looks:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;session_with_demo_models&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestAllModelsTogether</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_selecting_reservations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_with_demo_models</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">session_with_demo_models</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
@@ -574,7 +573,7 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

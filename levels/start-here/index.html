@@ -11,7 +11,7 @@
 <meta itemprop="description" content="This stage is just a warm-up and it shouldn&rsquo;t be confusing, difficult, or require any sort of special insight or research. This is basically a test to make sure all your setup is OK. Good luck! 👋
 Your challange is Add 2 files to the root of the repo: alice.txt and bob.txt. Commit your changes (should be only one commit!). Push your changes to the remote repo. What do I do with the flag Make sure you copy and save the flags somewhere!"><meta itemprop="datePublished" content="2020-05-23T13:04:22+03:00" />
 <meta itemprop="dateModified" content="2020-05-23T13:04:22+03:00" />
-<meta itemprop="wordCount" content="146">
+<meta itemprop="wordCount" content="311">
 <meta itemprop="keywords" content="" /><meta property="og:title" content="start-here" />
 <meta property="og:description" content="This stage is just a warm-up and it shouldn&rsquo;t be confusing, difficult, or require any sort of special insight or research. This is basically a test to make sure all your setup is OK. Good luck! 👋
 Your challange is Add 2 files to the root of the repo: alice.txt and bob.txt. Commit your changes (should be only one commit!). Push your changes to the remote repo. What do I do with the flag Make sure you copy and save the flags somewhere!" />
@@ -19,7 +19,6 @@ Your challange is Add 2 files to the root of the repo: alice.txt and bob.txt. Co
 <meta property="og:url" content="https://www.mrnice.dev/levels/start-here/" /><meta property="article:section" content="levels" />
 <meta property="article:published_time" content="2020-05-23T13:04:22+03:00" />
 <meta property="article:modified_time" content="2020-05-23T13:04:22+03:00" />
-
 
 <meta name="twitter:title" content="start-here">
 
@@ -300,19 +299,42 @@ MathJax.Hub.Config({
 </span></span></code></pre></div><p>It&rsquo;s on purpose. The important part is that you got the flag 🚩</p>
 <h2 id="-hints">🧩 Hints<a href="#-hints" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Click on hints to reveal them.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<details id="How can I add files to the filesystem?" style="padding-top: 5px;">
+    <summary>How can I add files to the filesystem?</summary>
+    To create files you can use the <code>touch</code> command.
+</details>
+<details id="How can I add files to git?" style="padding-top: 5px;">
+    <summary>How can I add files to git?</summary>
+    To add files to the <a href="https://stackoverflow.com/questions/49228209/whats-the-use-of-the-staging-area-in-git">staging area</a>, you can use the <code>git add</code> command.
+</details>
+<details id="How do I commit my changes?" style="padding-top: 5px;">
+    <summary>How do I commit my changes?</summary>
+    Read about <a href="https://www.atlassian.com/git/tutorials/saving-changes"><code>git commit</code></a>.
+</details>
+<details id="How do push my changes?" style="padding-top: 5px;">
+    <summary>How do push my changes?</summary>
+    In this case, just running <code>git push</code> is enough.
+</details>
+<details id="ლ(¯ロ¯ლ)   What if I f-ed it up" style="padding-top: 5px;">
+    <summary>ლ(¯ロ¯ლ)   What if I f-ed it up</summary>
+    Good! That&rsquo;s a good way to learn. You&rsquo;ll need to figure out how to return things to their original state and start over :)
+</details>
+<details id="ლ(ಠ_ಠ ლ)   What if I f-ed it up, for real" style="padding-top: 5px;">
+    <summary>ლ(ಠ_ಠ ლ)   What if I f-ed it up, for real</summary>
+    First, return to the original commit from which you&rsquo;ve started the challenge (<code>git checkout origin/start-here</code>).
+Then, set the local <code>start-here</code> branch to the current HEAD (<code>git branch -f start-here</code>).
+Now you can try to solve again.
+</details>
+<details id="What do I do with the flag? 🚩" style="padding-top: 5px;">
+    <summary>What do I do with the flag? 🚩</summary>
+    The flag points you to the next branch you need to checkout! <code>git checkout &lt;the flag you've got&gt;</code>.
+</details>
 
 		</div>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

@@ -13,8 +13,9 @@
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/basic-1/</guid>
-      <description>Sometimes we need to delete files, not only add them. But in git deleting a file means add-ing the deletion to the staging area and committing that change.
-🧩 Hints Click on hints to reveal them.</description>
+      <description> Sometimes we need to delete files, not only add them. But in git deleting a file means add-ing the deletion to the staging area and committing that change.
+🧩 Hints Click on hints to reveal them.
+Useful commands for this level git rm, git status, git commit. Nudge me in the right direction? StackOverflow link. </description>
     </item>
     
     <item>
@@ -24,7 +25,9 @@
       
       <guid>https://www.mrnice.dev/levels/basic-2/</guid>
       <description>We can also add and delete directories from git, not only files. This level about that.
-🧩 Hints Click on hints to reveal them.</description>
+🧩 Hints Click on hints to reveal them.
+Creating directories? To create a directory, run mkdir. Adding directories? You can add all files in a directory using git add some/directory/*, or just git add some/directory.
+Be careful to not add all files if you don&amp;rsquo;t actually want all of them!</description>
     </item>
     
     <item>
@@ -46,7 +49,8 @@ Notes for beginners 🧱 CTF structure The level browser 🤔 Unsure what to do?
       <description>For this stage, you must run the script ./setup_hooks_stage.sh first!
 You need to add more than 100 files into the add_files_here directory, and you can&amp;rsquo;t do it in more than 3 commits. Shouldn&amp;rsquo;t be too hard, should it?
 Once you&amp;rsquo;ve solved this stage, be sure to undo what setup_hooks_stage.sh does 😊
-🧩 Hints Click on the hint to see it.</description>
+🧩 Hints Click on the hint to see it.
+How to create many files in bash for x in {1.</description>
     </item>
     
     <item>
@@ -55,9 +59,10 @@ Once you&amp;rsquo;ve solved this stage, be sure to undo what setup_hooks_stage.
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/hooks-2/</guid>
-      <description>For this stage, you must run the script ./setup_hooks_stage.sh first!
+      <description> For this stage, you must run the script ./setup_hooks_stage.sh first!
 Just commit something :)
-🧩 Hints Click on the hint to see it.</description>
+🧩 Hints Click on the hint to see it.
+What are hooks? 🎣 Here&amp;rsquo;s some documentation. </description>
     </item>
     
     <item>
@@ -67,7 +72,10 @@ Just commit something :)
       
       <guid>https://www.mrnice.dev/levels/log-1/</guid>
       <description>The flag is in the commit message of this branch&amp;rsquo;s grandparent.
-🧩 Hints Click on the hint to see it.</description>
+🧩 Hints Click on the hint to see it.
+Grandparent? I mean &amp;ldquo;two commits before this branch&amp;rdquo;.
+This stack overflow answer is a really long but very good explanation of git ancestry. You should read it.
+How can I refer to HEAD&amp;rsquo;s grandparent? This is the best guide on git revision language. Useful commands for this level git show, git log.</description>
     </item>
     
     <item>
@@ -76,8 +84,9 @@ Just commit something :)
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/log-2/</guid>
-      <description>The flag is hidden here
-🧩 Hints Click on the hint to see it.</description>
+      <description> The flag is hidden here
+🧩 Hints Click on the hint to see it.
+Useful commands for this level git log. </description>
     </item>
     
     <item>
@@ -86,8 +95,9 @@ Just commit something :)
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/log-3/</guid>
-      <description>The flag is even more hidden - not in a commit message, but in the file itself!
-🧩 Hints Click on the hint to see it.</description>
+      <description> The flag is even more hidden - not in a commit message, but in the file itself!
+🧩 Hints Click on the hint to see it.
+Useful commands for this level git log. </description>
     </item>
     
     <item>
@@ -119,7 +129,10 @@ You&amp;rsquo;ll have to hop around a little to find the flag. Read the readme t
       <guid>https://www.mrnice.dev/levels/merge-1/</guid>
       <description>There&amp;rsquo;s a script called runme.py. Try to run it.
 Once you&amp;rsquo;re done with this level, remember to push!
-🧩 Hints Click on hints to reveal them.</description>
+🧩 Hints Click on hints to reveal them.
+How do I run it? ./runme.py
+See why in this AskUbuntu thread.
+I ran it, now what? Well, it didn&amp;rsquo;t work, and raised an exception. What does the error say? I got not something we can merge (⊙_⊙;) Make sure you&amp;rsquo;re trying to merge something with the correct name - remember that there are remote branches and local branches, and they are different.</description>
     </item>
     
     <item>
@@ -130,7 +143,9 @@ Once you&amp;rsquo;re done with this level, remember to push!
       <guid>https://www.mrnice.dev/levels/merge-2/</guid>
       <description>There&amp;rsquo;s a script called runme.py. Try to run it.
 What&amp;rsquo;s different this time?
-🧩 Hints Click on the hint to see it.</description>
+🧩 Hints Click on the hint to see it.
+I ran it, now what? Well, it didn&amp;rsquo;t work, and raised an exception. What does the error say? OMG I&amp;rsquo;m in a screen and I don&amp;rsquo;t know how to get out How to close the commit message editor.
+The default editor on this machine is vim, but you can change that.</description>
     </item>
     
     <item>
@@ -141,7 +156,8 @@ What&amp;rsquo;s different this time?
       <guid>https://www.mrnice.dev/levels/merge-3/</guid>
       <description>There&amp;rsquo;s a script called runme.py. Try to run it. It works! So what&amp;rsquo;s the problem?
 Read the readme.
-You&amp;#39;re vs Your from The Oatmeal 🧩 Hints Click on the hint to see it.</description>
+You&amp;#39;re vs Your from The Oatmeal 🧩 Hints Click on the hint to see it.
+I tried to merge but got an error I know, that&amp;rsquo;s the point :) Which one is correct? In this case the correct form is you&#39;re. Useful commands for this level git merge, git checkout, git status.</description>
     </item>
     
     <item>
@@ -152,7 +168,8 @@ You&amp;#39;re vs Your from The Oatmeal 🧩 Hints Click on the hint to see it.<
       <guid>https://www.mrnice.dev/levels/merge-4/</guid>
       <description>There&amp;rsquo;s a script called runme.py. Try to run it.
 This time the conflict is a little harder, but you can solve it!
-🧩 Hints Click on the hint to see it.</description>
+🧩 Hints Click on the hint to see it.
+I tried to merge but got an error I know, that&amp;rsquo;s the point :) Which one is correct? This time, both sides are missing some parts. You&amp;rsquo;ll have to manually combine them. Useful commands for this level git merge, git mergetool, git checkout, git status.</description>
     </item>
     
     <item>
@@ -163,7 +180,8 @@ This time the conflict is a little harder, but you can solve it!
       <guid>https://www.mrnice.dev/levels/merge-5/</guid>
       <description>runme.py is a silly name&amp;hellip; I&amp;rsquo;ll call the script ./should_rename_this.py for now, and I&amp;rsquo;ll rename in another branch. Also, the script needs to print another thing&amp;hellip;
 This time the conflict is quite difficuly to solve, as the problem isn&amp;rsquo;t only content, it&amp;rsquo;s also structure (tree). You can solve it!
-🧩 Hints Click on the hint to see it.</description>
+🧩 Hints Click on the hint to see it.
+Tree? 🌳 The conflict is caused because both branches renamed the same file - changed the directory tree.</description>
     </item>
     
     <item>
@@ -205,8 +223,9 @@ In the topic branch, we will need to add specific resources. To do this, run the
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/remote-1/</guid>
-      <description>Check out the password file, and read the README.
-🧩 Hints Click on the hint to see it.</description>
+      <description> Check out the password file, and read the README.
+🧩 Hints Click on the hint to see it.
+Remote? This is not a TV! Read about the concept of &amp;ldquo;remotes&amp;rdquo; here and see the exact documentation of git remote here. What does &amp;lsquo;forked&amp;rsquo; mean 🍴 You can read about forks here. Useful commands for this level git remote, git fetch, git merge, git status. </description>
     </item>
     
     <item>
@@ -215,8 +234,9 @@ In the topic branch, we will need to add specific resources. To do this, run the
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/revert-1/</guid>
-      <description>Try to run runme.py. What are you getting?
-🧩 Hints Click on the hint to see it.</description>
+      <description> Try to run runme.py. What are you getting?
+🧩 Hints Click on the hint to see it.
+Not sure what to do ┐(&amp;lsquo;～`;)┌ As you can see, an erroneous commit has been introduced. Undo the errors! Revert that commit (the latest one). Useful commands for this level git log, git revert. </description>
     </item>
     
   </channel>

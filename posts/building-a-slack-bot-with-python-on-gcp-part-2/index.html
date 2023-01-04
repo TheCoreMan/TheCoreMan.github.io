@@ -13,7 +13,7 @@ This post is a part of a series, so [check out part 1 for context] (../building-
 Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
 QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&rsquo;s Business Logic Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06+03:00" />
 <meta itemprop="dateModified" content="2021-09-28T12:23:06+03:00" />
-<meta itemprop="wordCount" content="1785"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+<meta itemprop="wordCount" content="2003"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
 <meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic" />
 <meta property="og:description" content="Part two of the joint project with my intelligent and brave wife, Olga!
 This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
@@ -23,7 +23,6 @@ QoL improvements Slimming down the Docker Image size Adding a test endpoint to t
 <meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-28T12:23:06+03:00" />
 <meta property="article:modified_time" content="2021-09-28T12:23:06+03:00" />
-
 
 <meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
 
@@ -150,8 +149,16 @@ improvements, which we introduced in 3 separate PRs.</p>
 prefer things to surface-level work so badly that they are willing to accept
 images that are 5 times bigger as the default? 🤔</p>
 <p>In any case, the diff was very simple:</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->Dockerfile.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
-<!-- raw HTML omitted -->
+<p><a href="./Dockerfile.1"><code>Dockerfile.1</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- Dockerfile.base	2021-09-11 15:35:49.117069816 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ Dockerfile.1	2021-09-11 15:34:10.003008547 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> # Base image. This version is in the pyproject file as well.
+</span></span><span class="line"><span class="cl"><span class="gd">-FROM python:3.9
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+# See Image Variants on https://hub.docker.com/_/python
+</span></span></span><span class="line"><span class="cl"><span class="gi">+FROM python:3.9-slim
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span></code></pre></div>
 <blockquote>
 <p>Shoutout to <a href="https://willschenk.com/">Will Schenk</a> for the awesome <code>diff</code>
 shortcode. If you have time after reading this blog, make sure to put Will&rsquo;s
@@ -163,12 +170,61 @@ first endpoint we&rsquo;ve developed, called <code>spots</code>. But then, we re
 we actually develop that endpoint, the return value will change. So to keep
 things humming nicely, we added a <code>/test</code> URL to the server which we used for
 the test.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->src/valet_parking_slack_bot/server.py.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
-<!-- raw HTML omitted -->
+<p><a href="./src/valet_parking_slack_bot/server.py.1"><code>src/valet_parking_slack_bot/server.py.1</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- server.py.base	2021-09-11 15:49:18.844449939 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ server.py.1	2021-09-11 15:49:26.696418007 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+from datetime import datetime
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> from flask import Flask
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,3 +5,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl"><span class="gd">-
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span> app = Flask(__name__)
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -18,3 +18,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl"><span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
+</span></span></span><span class="line"><span class="cl"><span class="gi">+def healthcheck():
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;message&#34;: &#34;I&#39;m alive!&#34;, 
+</span></span></span><span class="line"><span class="cl"><span class="gi">+            &#34;ts&#34;: str(datetime.now())
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    return response
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> if __name__ == &#34;__main__&#34;:
+</span></span><span class="line"><span class="cl"><span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span>\ No newline at end of file
+</span></span><span class="line"><span class="cl"><span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
+</span></span></span></code></pre></div>
 <p>This is the updated test, where you can see the <strong>TODO</strong> was deleted.
 One of the best feelings is checking boxes ✅</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->tests/test_service_availability.py.1<!-- raw HTML omitted --><!-- raw HTML omitted -->:</p>
-<!-- raw HTML omitted -->
+<p><a href="./tests/test_service_availability.py.1"><code>tests/test_service_availability.py.1</code></a>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- tests/test_service_availability.py.base	2021-09-11 15:53:42.271063485 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1	2021-09-11 15:53:22.591186320 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> import requests
+</span></span><span class="line"><span class="cl"><span class="gi">+import logging
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi">+logger = logging.getLogger(__name__)
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span><span class="line"><span class="cl"><span class="gu">@@ -4,9 +7,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span><span class="line"><span class="cl"><span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
+</span></span></span><span class="line"><span class="cl"><span class="gd">-# since the response to this URL will change and the
+</span></span></span><span class="line"><span class="cl"><span class="gd">-# test will fail even though the service is available!
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span> def test_cloud_endpoint():
+</span></span><span class="line"><span class="cl"><span class="gd">-    want = &#34;no spots for you!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    response = requests.get(test_url)
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span>     assert response.ok
+</span></span><span class="line"><span class="cl"><span class="gd">-    assert want.lower() == response.text.lower()    
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    data = response.json()
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;ts&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
+</span></span></span></code></pre></div>
 <p>and it works!</p>
 <p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="Test endpoint" title="Test endpoint"></p>
 <h3 id="adding-basic-ci">Adding basic CI<a href="#adding-basic-ci" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -416,7 +472,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1785 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2003 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-09-28 12:23 &#43;0300</p>
 			</footer>
 		</article>
@@ -433,7 +489,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>

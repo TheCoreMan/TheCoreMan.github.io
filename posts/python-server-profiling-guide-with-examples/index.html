@@ -24,7 +24,6 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 <meta property="article:published_time" content="2019-11-15T18:04:53+02:00" />
 <meta property="article:modified_time" content="2019-11-15T18:04:53+02:00" />
 
-
 <meta name="twitter:title" content="Python Server Profiling: A quick guide (with real data)">
 
 
@@ -143,7 +142,7 @@ MathJax.Hub.Config({
 <p><em>These are both the before and after snapshots. We found out that when generating a report, we query our database almost a million times (for 30 machines)</em> 🤷‍♀‍</p>
 <h2 id="3-improve-performance">3) Improve performance<a href="#3-improve-performance" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>First, you’ll need to determine what’s the performance goal. Programs can almost always be optimized, so you need to choose when to stop working at it. <em>For example, we thought going under 5 seconds for each report generation is OK for our needs, for now.</em></p>
-<p>Usually, there are two types of performance issues: If the bottleneck is with your <strong>data</strong>, use caching (we used <a href="https://github.com/youknowone/ring"><code>ring</code></a>). If the bottlenecks are bad <strong>algorithms</strong> – you’ll have to improve them from a lazy Θ(n<!-- raw HTML omitted -->4<!-- raw HTML omitted -->) to a speedy Θ(n<!-- raw HTML omitted -->2<!-- raw HTML omitted -->).</p>
+<p>Usually, there are two types of performance issues: If the bottleneck is with your <strong>data</strong>, use caching (we used <a href="https://github.com/youknowone/ring"><code>ring</code></a>). If the bottlenecks are bad <strong>algorithms</strong> – you’ll have to improve them from a lazy Θ(n<sup>4</sup>) to a speedy Θ(n<sup>2</sup>).</p>
 <p><em>See how we did both of those in <a href="https://github.com/guardicore/monkey/pull/447">this Pull Request</a>.</em></p>
 <h2 id="-a-word-of-warning">⚠ A word of warning<a href="#-a-word-of-warning" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>No one is clever enough to improve performance without introducing a new bug. Case in point:</p>
@@ -174,7 +173,7 @@ MathJax.Hub.Config({
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2022 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
