@@ -8,17 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="How to Set Up Backstage On K8s with Helm - part 1, set up for success">
-<meta itemprop="description" content="ASDASDASDASDASDASDA
-ASDJKA:SLJKDHJASJK
-I recently set up Backstage.io on our cluster. It wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning opportiunity.
+<meta itemprop="description" content="I recently set up Backstage.io on our cluster. It wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning opportiunity.
 I&rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&rsquo;s my best approximation at a useful guide for anyone who&rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&rsquo;re going to:"><meta itemprop="datePublished" content="2022-10-15T21:53:20+03:00" />
 <meta itemprop="dateModified" content="2022-10-15T21:53:20+03:00" />
-<meta itemprop="wordCount" content="857"><meta itemprop="image" content="https://backstage.io/img/logo.svg">
+<meta itemprop="wordCount" content="855"><meta itemprop="image" content="https://backstage.io/img/logo.svg">
 <meta itemprop="keywords" content="devops,backstage,howto," /><meta property="og:title" content="How to Set Up Backstage On K8s with Helm - part 1, set up for success" />
-<meta property="og:description" content="ASDASDASDASDASDASDA
-ASDJKA:SLJKDHJASJK
-I recently set up Backstage.io on our cluster. It wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning opportiunity.
+<meta property="og:description" content="I recently set up Backstage.io on our cluster. It wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning opportiunity.
 I&rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&rsquo;s my best approximation at a useful guide for anyone who&rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&rsquo;re going to:" />
 <meta property="og:type" content="article" />
@@ -109,9 +105,7 @@ MathJax.Hub.Config({
 				<h1>How to Set Up Backstage On K8s with Helm - part 1, set up for success</h1>
 			</header>
 			<div class="content">
-				<p>ASDASDASDASDASDASDA</p>
-<p>ASDJKA:SLJKDHJASJK</p>
-<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
+				<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
 wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning
 opportiunity.</p>
 <p>I&rsquo;m also definitely <em>not</em> a DevOps expert, so I had to learn some stuff myself
@@ -259,11 +253,14 @@ second part up :)</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devops">devops</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/backstage">backstage</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/howto">howto</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>857 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>855 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-10-15 21:53 &#43;0300</p>
 			</footer>
 		</article>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>How to Build Your Team to Increase Velocity</span>
+			</a>
 			<a class="prev-post" href="https://www.mrnice.dev/posts/good-cross-functional-team-bad-cross-functional-team/">
 				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Before: Good Cross-functional Team/Bad Cross-functional Team</span>
 			</a>

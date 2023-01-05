@@ -5,8 +5,249 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate>
+		<lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>How to Build Your Team to Increase Velocity</title>
+			<link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>
+			<pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</guid>
+			<description>As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&amp;rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&amp;rsquo;m sharing them here :)
+After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity.</description>
+			<content type="html"><![CDATA[<p>As a manager, I felt the struggle of trying to balance the urgency of delivering
+new features with the importance of maintaining high code quality. That&rsquo;s why
+I went together with a team lead from Reco - Michael Lantsman - to a great
+meetup at Riskified about this subject exactly. It had some great insights,
+so I&rsquo;m sharing them here :)</p>
+<p><img src="/images/riskified_meetup.jpeg" alt="&amp;ldquo;selfie&amp;rdquo;" title="Riskified meetup selfie"></p>
+<p>After some food and beer, Shai Peretz gave a warm introduction, then Itay
+Waxman shared some practical strategies for fast delivery
+without creating tech debt, and finally we had a very insightful panel about
+team velocity.</p>
+<p><img src="/images/riskified-meetup-2.webp" alt="Meetup banner" title="Meetup banner"></p>
+<h2 id="fast-delivery-without-creating-tech-debt">Fast Delivery Without Creating Tech Debt</h2>
+<blockquote>
+<p>Itay Waxman - Engineering Manager &amp; Head of Backend Guild @ Riskified</p>
+<p><a href="mailto:itay@riskified.com">itay@riskified.com</a></p>
+</blockquote>
+<p>Big feature, urgent for now. &ldquo;Has this happened to you&rdquo;?</p>
+<p>Let&rsquo;s think about a better way to deliver without compromising on tech quality.</p>
+<h3 id="the-shock-phase">&ldquo;The Shock phase&rdquo;</h3>
+<p>True dat.</p>
+<ul>
+<li>&ldquo;Fast?&rdquo;
+<ul>
+<li>Skip code review</li>
+<li>A few hacks</li>
+<li>No automated tests</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-pushback-phase">&ldquo;The Pushback phase&rdquo;</h3>
+<ul>
+<li>Reduce scope.</li>
+<li>Downgrade non functional - not 1 second, 10 seconds.</li>
+<li>We can&rsquo;t start before refactor</li>
+<li>Transfer responsibility to another team</li>
+</ul>
+<h3 id="the-practical-phase">&ldquo;The practical phase&rdquo;</h3>
+<blockquote>
+<p>Urgency in mind, quality at stake</p>
+</blockquote>
+<p>From this part alone it&rsquo;s very clear that Itay has a super clear understand
+of the ups and downs of managing development.</p>
+<h3 id="planning-for-delivery">Planning for delivery</h3>
+<p>Working on 3 tasks at once - no idle but value later</p>
+<p>VS working on the same task 3 people; earlier value</p>
+<p>Speed, Quality, Cost - choose two.</p>
+<p>Speed + Quality == Expensive. However, we want to cut down on costs. We need a
+development plan in which the friction is high and the development is not
+&ldquo;blocked&rdquo; all the time.</p>
+<p>So we want to work with &ldquo;all hands on deck&rdquo;. Itay suggests to do it in a smart
+way. The planning cycle:</p>
+<ol>
+<li>Break down the task into small tasks</li>
+<li>Visualize the dependency graph</li>
+<li>Opening bottlenecks and go back to 1</li>
+</ol>
+<h4 id="feature-breakdown">Feature breakdown</h4>
+<p>Make the tasks &ldquo;small&rdquo;. Subjectively, up to 3 days is &ldquo;small&rdquo; - this shows that
+riskified is a very large org. In Reco, 3 days is a feature :sweat-smile:. The
+task must be independent until integration. And the task must be demoable with
+acceptance criteria.</p>
+<p>Small tasks, independent, demoable.</p>
+<h4 id="visualize-the-dependency-graph">Visualize the dependency graph</h4>
+<p>Nice visualization: show the dependencies and ALSO the weight of each task.</p>
+<p>Dependency graph, discover critical path, parallelism capacity, and maximize the
+focus on the critical path.</p>
+<h4 id="opening-bottlenecks">Opening bottlenecks</h4>
+<p>To create less friction, create a simple enablement task to open the bottleneck!</p>
+<p>examples:</p>
+<ul>
+<li>Email API: Start by writing a mock API instead of a real API.</li>
+<li>Dashboard: Start with a layout first, real components later.</li>
+</ul>
+<h3 id="now-the-plan-is-done-lets-move-to-execution">Now the plan is done, let&rsquo;s move to execution</h3>
+<p>How to deal with &ldquo;blocked&rdquo;?</p>
+<p>When blocked:</p>
+<ol>
+<li>Pair.</li>
+<li>Attention for Unblocking.</li>
+</ol>
+<p>Example for 2 - prioritize CRs above new tasks!</p>
+<p>Communication is key:</p>
+<ul>
+<li>Close communication</li>
+<li>Kickoff between dependent tasks</li>
+</ul>
+<p>Bus factor rises more with good communication.</p>
+<h3 id="when-to-use-this-tool">When to use this tool?</h3>
+<h4 id="pros">Pros</h4>
+<ul>
+<li>Close deadline or urgency</li>
+<li>Good reason not to take extra tech debt</li>
+<li>Team knowledge sharing</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Starvation of initiatives (all eggs in one basket)</li>
+<li>Tasks that require a lot of prep work (planning/legacy code)</li>
+<li>Not everyone at the team can take all tasks types (no time for &ldquo;grace&rdquo; period)</li>
+</ul>
+<p>Like all &ldquo;senior&rdquo; advice, Itay&rsquo;s answer is &ldquo;Depends&rdquo;. :)</p>
+<h3 id="qa">Q&amp;A</h3>
+<p>Q: What tools do you use for managing this?
+A: Jira with Kendis: <a href="https://kendis.io/">https://kendis.io/</a></p>
+<p>Q: Overheads (CR, etc.)?
+A: Since task is demo-able it must be delivered - so the estimation includes
+everything (CR, deploy).</p>
+<p>Q: Full stack developers only? If not, what about the bus factor?
+A: No, full stack teams, but you know things by proximity: it&rsquo;s close enough.</p>
+<p>Q: You do the estimations, so the team might not know the area and your
+estimations might be wrong!
+A: The planning is done WITH the developers, not ABOVE them. This is a team
+tool.</p>
+<p>Q: New things? You don&rsquo;t know the estimations? New tech/new product?
+A: My approach is adding a multiplier for uncertainty.</p>
+<p>Q: Interrupts?
+A: Help should be distributed, not always to one person. Also tasks have an
+&ldquo;epic owner&rdquo; that makes sure that everything is OK, so they can be the &ldquo;nexus&rdquo;.</p>
+<p>Q: If you use it all the time, the overall velocity will lower, no?
+A: Need to pick the correct tool for the correct case.</p>
+<p>Q: Team motivation when not working like this?
+A: My team doesn&rsquo;t open a new epic before the current one closes. My team is
+mostly in this mode.</p>
+<h2 id="engineering-managers---panel">Engineering managers - Panel</h2>
+<p>A very strong panel with a lot of experience:</p>
+<ul>
+<li><a href="https://www.linkedin.com/in/victoriya-kalmanovich-81483734">Victoriya Kalmanovich</a>, Gloat</li>
+<li><a href="https://www.linkedin.com/in/eti-dahan-noked/">Eti Dahan Noked</a>, Wilco</li>
+<li><a href="https://www.linkedin.com/in/shaiperetz/">Shai Peretz</a>, Riskified</li>
+<li><a href="https://www.linkedin.com/in/inbalporat/">Inbal Porat</a>, Antidote Health</li>
+</ul>
+<p>The panel was about a pretty &ldquo;wide&rdquo; subject: Agile teams, how to get to maximum
+velocity and optimal delivery. Starting with a simliar question for all the
+panel:</p>
+<h3 id="how-does-it-look-when-a-team-delivering-well">How does it look when a team delivering well?</h3>
+<p><em>Eti</em>: &ldquo;Product is happy&rdquo;. There isn&rsquo;t a single way to do it, every team does it
+differently.</p>
+<p><em>Inbal</em>: What does &ldquo;Good delivery&rdquo; mean? It means good metrics and good questions
+actually. If the plan is good and the team is overdelivering then maybe?</p>
+<p><em>Shai</em>: Best measurement is a happy customer (account mgr, product). The only
+metric that makes a difference is Customer Impact. Eti: What if the impact is
+far? Shai: We must expose the customer as fast as possible.</p>
+<h3 id="which-ceremonies-are-you-working-with">Which &ldquo;ceremonies&rdquo; are you working with?</h3>
+<p><em>Shai</em>: I joined the org when the ceremonies were already in place, but a lot of
+agile. 2 week sprints across the board, but a lot of freedom between the teams
+(and that&rsquo;s important). The focus in the ceremonies should be on early feedback
+and staying focused on bringing value.</p>
+<p><em>Inbal</em>: I worked in a corporate, sprints, 2 weeks, pre planning, retro. Now in
+Antidote (Startup vibes) - are the ceremonies even worth it? After 8 months,
+still need to understand what&rsquo;s right for the teams.</p>
+<p><em>Eti</em>: High level: There&rsquo;s no way to know other then to always self-question.</p>
+<p><em>Victoriya</em>: 2 months ago, I joined to a team that develops a tiny new shiny
+service. But in the context of a heavy &ldquo;Jira&rdquo;. And I found that I&rsquo;m working for
+Jira, instead of the other way around.</p>
+<p><em>Inbal</em>: Retrospective: ranting, this sucked. Action items? No follow up. So it
+didn&rsquo;t serve its purpose. So we started a process with a company called Shamaim
+that helps continuous improvement. Most important point: follow up and have
+deadlines for retros and action items. This cause imporvements.</p>
+<h3 id="who-owns-the-deadlines">Who owns the deadlines?</h3>
+<p><em>Inbal</em>: It was me :) But basically the lowest-ranking manager that owns it.</p>
+<h3 id="and-how-did-the-new-process-help">And how did the new process help?</h3>
+<p><em>Victoriya</em>: It caused real change, and gave people the place to influence.</p>
+<p><em>Eti</em>: It hurt me - physically - when you [Inbal] said that the retros were
+cancelled.</p>
+<p><em>Shai</em>: At riskified, 30 teams, out of which 24 dev teams and 6 DA teams.
+In the past it was a &ldquo;big room meeting&rdquo; but now the scale is too big - hard to
+give up on the old ceremonies but need to make sure it keeps the correct
+context (inverse process from Inbal).</p>
+<h3 id="examples-of-bad-kpis">Examples of bad KPIs</h3>
+<p><em>Inbal</em>: How many bugs is a bad KPI if it doesn&rsquo;t take into consideration the
+impact of the bug as well - 1 critical bug &raquo; 30 small bug. A better KPI is to
+also measure impact and in which step they were discovered. Building KPIs is
+a continuous goal.</p>
+<p><em>Eti</em>: Measuring velocity is also hard. A good KPI is critical bugs that were
+discovered by the customers. Velocity is important only to do
+<code>team = max(team)</code> and not for competition. There&rsquo;s no point in cheating the
+KPI if it&rsquo;s only used internally. How can I be better tomorrow than I was
+yesterday.</p>
+<p><em>Shai</em>: DevOps metrics like MTTR,  MTTD. We also like MTTS (learned from Etsy) -
+Mean Time To Sleep: How many interrupts were in off-hours. This makes sure that
+our processes are stable on a human level.</p>
+<h3 id="how-to-improve-velocity">How to improve velocity</h3>
+<p><em>Eti</em>: I joined Wilco a year ago, and the sprints were 1 week. 2 weeks were even
+worse - we just didn&rsquo;t know how to plan, the plan totally changed after a week.
+So we moved to Kanban. It improved the feeling - lowered the &ldquo;blame game&rdquo;
+instead of working for the process (&ldquo;Scrum said so&rdquo;).</p>
+<p><em>Victoriya</em>: Frontend, Backend, DS were not synced on delivery times - so we
+need to plan for that ahead of time.</p>
+<h3 id="change-a-company-wide-process">Change a company wide process</h3>
+<p><em>Shai</em>: I believe in cross function teams. We&rsquo;re trying that the teams will be
+around business and not tech. This is the ideal and we&rsquo;re not there with all
+the teams (because of old monoliths etc.). Moved the DS teams closer to the dev
+teams. The problem is the professional &ldquo;Guild&rdquo; around them.</p>
+<h4 id="q-eti-how-to-make-sure-cross-organizational-efforts-dont-fall">Q (Eti): How to make sure cross-organizational efforts don&rsquo;t &ldquo;fall&rdquo;?</h4>
+<p><em>Shai</em>: Riskified is big enough to be a Platform group.</p>
+<h3 id="product-hates-you-on-delivery-what-do-you-do">Product hates you on delivery, what do you do?</h3>
+<p><em>Eti</em>: I resent the question. The Product shouldn&rsquo;t measure the team, they should
+be measured WITH the team. My previous job, the product was in the US, it was
+SUPER hard. If the Product asks &ldquo;Why is it not delivered?&rdquo; and they don&rsquo;t
+already know the answer, then there&rsquo;s a structure/personal problem.</p>
+<p>_Shai: HR-wise, product is a different org, but it&rsquo;s in the org chart only.
+Product should bring the customer voice, and developers should join customer
+calls. And product should be involved as early as possible to make sure there&rsquo;s
+no &ldquo;waste&rdquo;. Shai liked that a Product Manager thought that part of their job
+was worrying about the motivaion and connection of the team to the task and
+the customer.</p>
+<h3 id="features-are-easy-to-push-how-to-convince-people-to-invest-in-infra-and-architecture">Features are easy to push. How to convince people to invest in Infra and Architecture?</h3>
+<p><em>Shai</em>: How to talk the languance of &ldquo;value&rdquo;. Need to make sure that the
+platform team talks &ldquo;Why&rdquo; and talks &ldquo;Value&rdquo;. More incidents and more bugs are
+worse for the &ldquo;Why&rdquo;, and if the Product talks about that first in the quarterly
+planning, we&rsquo;re in a good place.</p>
+<p><em>Inbal</em>: Should be part of the culture. Can&rsquo;t be only &ldquo;platform&rdquo; team.</p>
+<p><em>Shai</em>: Need to make sure it&rsquo;s balanced. Don&rsquo;t be a purist.</p>
+<p><em>Eti</em>: The key word is <code>trust</code>. Don&rsquo;t use &ldquo;urgent&rdquo; all the time so the product
+team believes you when you say &ldquo;urgent&rdquo;.</p>
+<h3 id="how-to-make-the-devs-talk-business">How to make the devs talk &ldquo;business&rdquo;?</h3>
+<p><em>Inbal</em>: Watch customer recordings! Gong makes devs a lot more connected (and
+even frustrated).</p>
+<h3 id="q-from-the-crowd-reviewpresentation-at-the-end-of-the-sprint">Q from the crowd: Review/presentation at the end of the sprint</h3>
+<p><em>Eti</em>: Feature &ldquo;celebration&rdquo; was great and valuable. Need to celebrate success!
+Once a week, demo, part of the &ldquo;everyone&rdquo; weekly.</p>
+<p><em>Inbal</em>: Have to demo something in the all-hands.</p>
+<p><em>Victoriya</em>: Recorded demos.</p>
+<p><em>Shai</em>: Write the release notes before the feature (PRFAQ). Also, try to pull it
+into a &ldquo;pre-mortem&rdquo;.</p>
+<h3 id="processes-are-great-what-about-tools---opensource-bought-or-otherwise">Processes are great; what about tools - opensource, bought, or otherwise.</h3>
+<p><em>Victoryia</em>: Logging, metrics, etc. and o11y in general are pretty good.
+Coralogix for example.</p>
+<p><em>Inbal</em>: LogRocket, I like it for B2C.</p>
+<p><em>Eti</em>: Tool that gives the env in every PR <a href="https://livecycle.io/">livecycle</a>.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
@@ -14,14 +255,10 @@
 			<pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
 			
 			<guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
-			<description>ASDASDASDASDASDASDA
-ASDJKA:SLJKDHJASJK
-I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
+			<description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
 I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&amp;rsquo;re going to:</description>
-			<content type="html"><![CDATA[<p>ASDASDASDASDASDASDA</p>
-<p>ASDJKA:SLJKDHJASJK</p>
-<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
+			<content type="html"><![CDATA[<p>I recently set up <a href="https://backstage.io/">Backstage.io</a> on our cluster. It
 wasn&rsquo;t super-easy, so I decided to &ldquo;go deep&rdquo; and tried to make this a learning
 opportiunity.</p>
 <p>I&rsquo;m also definitely <em>not</em> a DevOps expert, so I had to learn some stuff myself

@@ -6,16 +6,24 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Build Your Team to Increase Velocity</title>
+      <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>
+      <pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</guid>
+      <description>As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&amp;rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&amp;rsquo;m sharing them here :)
+After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity.</description>
+    </item>
+    
     <item>
       <title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
       <link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
-      <description>ASDASDASDASDASDASDA
-ASDJKA:SLJKDHJASJK
-I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
+      <description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
 I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&amp;rsquo;re going to:</description>
     </item>
@@ -210,17 +218,6 @@ Another Git workshop in the books, as the game server monitoring graphs can atte
 The talk itself The talk was titled Making Breach &amp;amp; Attack Simulation Accessible and Actionable with Infection Monkey. Watch the recording here:
 Lectures, COVID, and crowd interaction Giving a live talk is something I very much enjoy doing. 🎤
 Crowd interaction, controlling my voice, gesturing, joking with the audience now and then, answering questions; Honestly, I really like it.</description>
-    </item>
-    
-    <item>
-      <title>Devlog #4 | IT&#39;S ALIIIIIIVE</title>
-      <link>https://www.mrnice.dev/posts/dev-log-4/</link>
-      <pubDate>Sat, 04 Jul 2020 18:53:26 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/dev-log-4/</guid>
-      <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
-“The test of the machine is the satisfaction it gives you. There isn&amp;rsquo;t any other test. If the machine produces tranquility it&amp;rsquo;s right. If it disturbs you it&amp;rsquo;s wrong until either the machine or your mind is changed.”
-― Robert M. Pirsig, Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values</description>
     </item>
     
   </channel>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="How to Build Your Team to Increase Velocity">
+<meta itemprop="description" content="As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&rsquo;m sharing them here :)
+After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity."><meta itemprop="datePublished" content="2022-12-19T11:01:11+02:00" />
+<meta itemprop="dateModified" content="2022-12-19T11:01:11+02:00" />
+<meta itemprop="wordCount" content="1844"><meta itemprop="image" content="https://www.mrnice.dev/images/riskified-meetup-2.webp">
+<meta itemprop="keywords" content="management,musings,meetups," /><meta property="og:title" content="How to Build Your Team to Increase Velocity" />
+<meta property="og:description" content="As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&rsquo;m sharing them here :)
+After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/" /><meta property="og:image" content="https://www.mrnice.dev/images/riskified-meetup-2.webp" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-12-19T11:01:11+02:00" />
+<meta property="article:modified_time" content="2022-12-19T11:01:11+02:00" />
+
+<meta name="twitter:title" content="How to Build Your Team to Increase Velocity">
+
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>How to Build Your Team to Increase Velocity</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/riskified-meetup-2.webp');}</style>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad-18183ab4/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">I want to read some posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">I want to know who you are 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">I&#39;m here for make-git-better 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 19, 2022</span></div>
+				<h1>How to Build Your Team to Increase Velocity</h1>
+			</header>
+			<div class="content">
+				<p>As a manager, I felt the struggle of trying to balance the urgency of delivering
+new features with the importance of maintaining high code quality. That&rsquo;s why
+I went together with a team lead from Reco - Michael Lantsman - to a great
+meetup at Riskified about this subject exactly. It had some great insights,
+so I&rsquo;m sharing them here :)</p>
+<p><img src="/images/riskified_meetup.jpeg" alt="&amp;ldquo;selfie&amp;rdquo;" title="Riskified meetup selfie"></p>
+<p>After some food and beer, Shai Peretz gave a warm introduction, then Itay
+Waxman shared some practical strategies for fast delivery
+without creating tech debt, and finally we had a very insightful panel about
+team velocity.</p>
+<p><img src="/images/riskified-meetup-2.webp" alt="Meetup banner" title="Meetup banner"></p>
+<h2 id="fast-delivery-without-creating-tech-debt">Fast Delivery Without Creating Tech Debt<a href="#fast-delivery-without-creating-tech-debt" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<blockquote>
+<p>Itay Waxman - Engineering Manager &amp; Head of Backend Guild @ Riskified</p>
+<p><a href="mailto:itay@riskified.com">itay@riskified.com</a></p>
+</blockquote>
+<p>Big feature, urgent for now. &ldquo;Has this happened to you&rdquo;?</p>
+<p>Let&rsquo;s think about a better way to deliver without compromising on tech quality.</p>
+<h3 id="the-shock-phase">&ldquo;The Shock phase&rdquo;<a href="#the-shock-phase" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>True dat.</p>
+<ul>
+<li>&ldquo;Fast?&rdquo;
+<ul>
+<li>Skip code review</li>
+<li>A few hacks</li>
+<li>No automated tests</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-pushback-phase">&ldquo;The Pushback phase&rdquo;<a href="#the-pushback-phase" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Reduce scope.</li>
+<li>Downgrade non functional - not 1 second, 10 seconds.</li>
+<li>We can&rsquo;t start before refactor</li>
+<li>Transfer responsibility to another team</li>
+</ul>
+<h3 id="the-practical-phase">&ldquo;The practical phase&rdquo;<a href="#the-practical-phase" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<blockquote>
+<p>Urgency in mind, quality at stake</p>
+</blockquote>
+<p>From this part alone it&rsquo;s very clear that Itay has a super clear understand
+of the ups and downs of managing development.</p>
+<h3 id="planning-for-delivery">Planning for delivery<a href="#planning-for-delivery" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Working on 3 tasks at once - no idle but value later</p>
+<p>VS working on the same task 3 people; earlier value</p>
+<p>Speed, Quality, Cost - choose two.</p>
+<p>Speed + Quality == Expensive. However, we want to cut down on costs. We need a
+development plan in which the friction is high and the development is not
+&ldquo;blocked&rdquo; all the time.</p>
+<p>So we want to work with &ldquo;all hands on deck&rdquo;. Itay suggests to do it in a smart
+way. The planning cycle:</p>
+<ol>
+<li>Break down the task into small tasks</li>
+<li>Visualize the dependency graph</li>
+<li>Opening bottlenecks and go back to 1</li>
+</ol>
+<h4 id="feature-breakdown">Feature breakdown<a href="#feature-breakdown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Make the tasks &ldquo;small&rdquo;. Subjectively, up to 3 days is &ldquo;small&rdquo; - this shows that
+riskified is a very large org. In Reco, 3 days is a feature :sweat-smile:. The
+task must be independent until integration. And the task must be demoable with
+acceptance criteria.</p>
+<p>Small tasks, independent, demoable.</p>
+<h4 id="visualize-the-dependency-graph">Visualize the dependency graph<a href="#visualize-the-dependency-graph" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Nice visualization: show the dependencies and ALSO the weight of each task.</p>
+<p>Dependency graph, discover critical path, parallelism capacity, and maximize the
+focus on the critical path.</p>
+<h4 id="opening-bottlenecks">Opening bottlenecks<a href="#opening-bottlenecks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>To create less friction, create a simple enablement task to open the bottleneck!</p>
+<p>examples:</p>
+<ul>
+<li>Email API: Start by writing a mock API instead of a real API.</li>
+<li>Dashboard: Start with a layout first, real components later.</li>
+</ul>
+<h3 id="now-the-plan-is-done-lets-move-to-execution">Now the plan is done, let&rsquo;s move to execution<a href="#now-the-plan-is-done-lets-move-to-execution" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>How to deal with &ldquo;blocked&rdquo;?</p>
+<p>When blocked:</p>
+<ol>
+<li>Pair.</li>
+<li>Attention for Unblocking.</li>
+</ol>
+<p>Example for 2 - prioritize CRs above new tasks!</p>
+<p>Communication is key:</p>
+<ul>
+<li>Close communication</li>
+<li>Kickoff between dependent tasks</li>
+</ul>
+<p>Bus factor rises more with good communication.</p>
+<h3 id="when-to-use-this-tool">When to use this tool?<a href="#when-to-use-this-tool" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="pros">Pros<a href="#pros" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<ul>
+<li>Close deadline or urgency</li>
+<li>Good reason not to take extra tech debt</li>
+<li>Team knowledge sharing</li>
+</ul>
+<h4 id="cons">Cons<a href="#cons" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<ul>
+<li>Starvation of initiatives (all eggs in one basket)</li>
+<li>Tasks that require a lot of prep work (planning/legacy code)</li>
+<li>Not everyone at the team can take all tasks types (no time for &ldquo;grace&rdquo; period)</li>
+</ul>
+<p>Like all &ldquo;senior&rdquo; advice, Itay&rsquo;s answer is &ldquo;Depends&rdquo;. :)</p>
+<h3 id="qa">Q&amp;A<a href="#qa" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Q: What tools do you use for managing this?
+A: Jira with Kendis: <a href="https://kendis.io/">https://kendis.io/</a></p>
+<p>Q: Overheads (CR, etc.)?
+A: Since task is demo-able it must be delivered - so the estimation includes
+everything (CR, deploy).</p>
+<p>Q: Full stack developers only? If not, what about the bus factor?
+A: No, full stack teams, but you know things by proximity: it&rsquo;s close enough.</p>
+<p>Q: You do the estimations, so the team might not know the area and your
+estimations might be wrong!
+A: The planning is done WITH the developers, not ABOVE them. This is a team
+tool.</p>
+<p>Q: New things? You don&rsquo;t know the estimations? New tech/new product?
+A: My approach is adding a multiplier for uncertainty.</p>
+<p>Q: Interrupts?
+A: Help should be distributed, not always to one person. Also tasks have an
+&ldquo;epic owner&rdquo; that makes sure that everything is OK, so they can be the &ldquo;nexus&rdquo;.</p>
+<p>Q: If you use it all the time, the overall velocity will lower, no?
+A: Need to pick the correct tool for the correct case.</p>
+<p>Q: Team motivation when not working like this?
+A: My team doesn&rsquo;t open a new epic before the current one closes. My team is
+mostly in this mode.</p>
+<h2 id="engineering-managers---panel">Engineering managers - Panel<a href="#engineering-managers---panel" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>A very strong panel with a lot of experience:</p>
+<ul>
+<li><a href="https://www.linkedin.com/in/victoriya-kalmanovich-81483734">Victoriya Kalmanovich</a>, Gloat</li>
+<li><a href="https://www.linkedin.com/in/eti-dahan-noked/">Eti Dahan Noked</a>, Wilco</li>
+<li><a href="https://www.linkedin.com/in/shaiperetz/">Shai Peretz</a>, Riskified</li>
+<li><a href="https://www.linkedin.com/in/inbalporat/">Inbal Porat</a>, Antidote Health</li>
+</ul>
+<p>The panel was about a pretty &ldquo;wide&rdquo; subject: Agile teams, how to get to maximum
+velocity and optimal delivery. Starting with a simliar question for all the
+panel:</p>
+<h3 id="how-does-it-look-when-a-team-delivering-well">How does it look when a team delivering well?<a href="#how-does-it-look-when-a-team-delivering-well" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Eti</em>: &ldquo;Product is happy&rdquo;. There isn&rsquo;t a single way to do it, every team does it
+differently.</p>
+<p><em>Inbal</em>: What does &ldquo;Good delivery&rdquo; mean? It means good metrics and good questions
+actually. If the plan is good and the team is overdelivering then maybe?</p>
+<p><em>Shai</em>: Best measurement is a happy customer (account mgr, product). The only
+metric that makes a difference is Customer Impact. Eti: What if the impact is
+far? Shai: We must expose the customer as fast as possible.</p>
+<h3 id="which-ceremonies-are-you-working-with">Which &ldquo;ceremonies&rdquo; are you working with?<a href="#which-ceremonies-are-you-working-with" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Shai</em>: I joined the org when the ceremonies were already in place, but a lot of
+agile. 2 week sprints across the board, but a lot of freedom between the teams
+(and that&rsquo;s important). The focus in the ceremonies should be on early feedback
+and staying focused on bringing value.</p>
+<p><em>Inbal</em>: I worked in a corporate, sprints, 2 weeks, pre planning, retro. Now in
+Antidote (Startup vibes) - are the ceremonies even worth it? After 8 months,
+still need to understand what&rsquo;s right for the teams.</p>
+<p><em>Eti</em>: High level: There&rsquo;s no way to know other then to always self-question.</p>
+<p><em>Victoriya</em>: 2 months ago, I joined to a team that develops a tiny new shiny
+service. But in the context of a heavy &ldquo;Jira&rdquo;. And I found that I&rsquo;m working for
+Jira, instead of the other way around.</p>
+<p><em>Inbal</em>: Retrospective: ranting, this sucked. Action items? No follow up. So it
+didn&rsquo;t serve its purpose. So we started a process with a company called Shamaim
+that helps continuous improvement. Most important point: follow up and have
+deadlines for retros and action items. This cause imporvements.</p>
+<h3 id="who-owns-the-deadlines">Who owns the deadlines?<a href="#who-owns-the-deadlines" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Inbal</em>: It was me :) But basically the lowest-ranking manager that owns it.</p>
+<h3 id="and-how-did-the-new-process-help">And how did the new process help?<a href="#and-how-did-the-new-process-help" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Victoriya</em>: It caused real change, and gave people the place to influence.</p>
+<p><em>Eti</em>: It hurt me - physically - when you [Inbal] said that the retros were
+cancelled.</p>
+<p><em>Shai</em>: At riskified, 30 teams, out of which 24 dev teams and 6 DA teams.
+In the past it was a &ldquo;big room meeting&rdquo; but now the scale is too big - hard to
+give up on the old ceremonies but need to make sure it keeps the correct
+context (inverse process from Inbal).</p>
+<h3 id="examples-of-bad-kpis">Examples of bad KPIs<a href="#examples-of-bad-kpis" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Inbal</em>: How many bugs is a bad KPI if it doesn&rsquo;t take into consideration the
+impact of the bug as well - 1 critical bug &raquo; 30 small bug. A better KPI is to
+also measure impact and in which step they were discovered. Building KPIs is
+a continuous goal.</p>
+<p><em>Eti</em>: Measuring velocity is also hard. A good KPI is critical bugs that were
+discovered by the customers. Velocity is important only to do
+<code>team = max(team)</code> and not for competition. There&rsquo;s no point in cheating the
+KPI if it&rsquo;s only used internally. How can I be better tomorrow than I was
+yesterday.</p>
+<p><em>Shai</em>: DevOps metrics like MTTR,  MTTD. We also like MTTS (learned from Etsy) -
+Mean Time To Sleep: How many interrupts were in off-hours. This makes sure that
+our processes are stable on a human level.</p>
+<h3 id="how-to-improve-velocity">How to improve velocity<a href="#how-to-improve-velocity" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Eti</em>: I joined Wilco a year ago, and the sprints were 1 week. 2 weeks were even
+worse - we just didn&rsquo;t know how to plan, the plan totally changed after a week.
+So we moved to Kanban. It improved the feeling - lowered the &ldquo;blame game&rdquo;
+instead of working for the process (&ldquo;Scrum said so&rdquo;).</p>
+<p><em>Victoriya</em>: Frontend, Backend, DS were not synced on delivery times - so we
+need to plan for that ahead of time.</p>
+<h3 id="change-a-company-wide-process">Change a company wide process<a href="#change-a-company-wide-process" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Shai</em>: I believe in cross function teams. We&rsquo;re trying that the teams will be
+around business and not tech. This is the ideal and we&rsquo;re not there with all
+the teams (because of old monoliths etc.). Moved the DS teams closer to the dev
+teams. The problem is the professional &ldquo;Guild&rdquo; around them.</p>
+<h4 id="q-eti-how-to-make-sure-cross-organizational-efforts-dont-fall">Q (Eti): How to make sure cross-organizational efforts don&rsquo;t &ldquo;fall&rdquo;?<a href="#q-eti-how-to-make-sure-cross-organizational-efforts-dont-fall" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p><em>Shai</em>: Riskified is big enough to be a Platform group.</p>
+<h3 id="product-hates-you-on-delivery-what-do-you-do">Product hates you on delivery, what do you do?<a href="#product-hates-you-on-delivery-what-do-you-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Eti</em>: I resent the question. The Product shouldn&rsquo;t measure the team, they should
+be measured WITH the team. My previous job, the product was in the US, it was
+SUPER hard. If the Product asks &ldquo;Why is it not delivered?&rdquo; and they don&rsquo;t
+already know the answer, then there&rsquo;s a structure/personal problem.</p>
+<p>_Shai: HR-wise, product is a different org, but it&rsquo;s in the org chart only.
+Product should bring the customer voice, and developers should join customer
+calls. And product should be involved as early as possible to make sure there&rsquo;s
+no &ldquo;waste&rdquo;. Shai liked that a Product Manager thought that part of their job
+was worrying about the motivaion and connection of the team to the task and
+the customer.</p>
+<h3 id="features-are-easy-to-push-how-to-convince-people-to-invest-in-infra-and-architecture">Features are easy to push. How to convince people to invest in Infra and Architecture?<a href="#features-are-easy-to-push-how-to-convince-people-to-invest-in-infra-and-architecture" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Shai</em>: How to talk the languance of &ldquo;value&rdquo;. Need to make sure that the
+platform team talks &ldquo;Why&rdquo; and talks &ldquo;Value&rdquo;. More incidents and more bugs are
+worse for the &ldquo;Why&rdquo;, and if the Product talks about that first in the quarterly
+planning, we&rsquo;re in a good place.</p>
+<p><em>Inbal</em>: Should be part of the culture. Can&rsquo;t be only &ldquo;platform&rdquo; team.</p>
+<p><em>Shai</em>: Need to make sure it&rsquo;s balanced. Don&rsquo;t be a purist.</p>
+<p><em>Eti</em>: The key word is <code>trust</code>. Don&rsquo;t use &ldquo;urgent&rdquo; all the time so the product
+team believes you when you say &ldquo;urgent&rdquo;.</p>
+<h3 id="how-to-make-the-devs-talk-business">How to make the devs talk &ldquo;business&rdquo;?<a href="#how-to-make-the-devs-talk-business" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Inbal</em>: Watch customer recordings! Gong makes devs a lot more connected (and
+even frustrated).</p>
+<h3 id="q-from-the-crowd-reviewpresentation-at-the-end-of-the-sprint">Q from the crowd: Review/presentation at the end of the sprint<a href="#q-from-the-crowd-reviewpresentation-at-the-end-of-the-sprint" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Eti</em>: Feature &ldquo;celebration&rdquo; was great and valuable. Need to celebrate success!
+Once a week, demo, part of the &ldquo;everyone&rdquo; weekly.</p>
+<p><em>Inbal</em>: Have to demo something in the all-hands.</p>
+<p><em>Victoriya</em>: Recorded demos.</p>
+<p><em>Shai</em>: Write the release notes before the feature (PRFAQ). Also, try to pull it
+into a &ldquo;pre-mortem&rdquo;.</p>
+<h3 id="processes-are-great-what-about-tools---opensource-bought-or-otherwise">Processes are great; what about tools - opensource, bought, or otherwise.<a href="#processes-are-great-what-about-tools---opensource-bought-or-otherwise" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><em>Victoryia</em>: Logging, metrics, etc. and o11y in general are pretty good.
+Coralogix for example.</p>
+<p><em>Inbal</em>: LogRocket, I like it for B2C.</p>
+<p><em>Eti</em>: Tool that gives the env in every PR <a href="https://livecycle.io/">livecycle</a>.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/good-cross-functional-team-bad-cross-functional-team/">Before: Good Cross-functional Team/Bad Cross-functional Team</a></li>
+	
+	<li><a href="/posts/2021-q2-professional-self-reflection/">2021Q2: Professional Self Reflection</a></li>
+	
+	<li><a href="/posts/code-knowledge-mgmt-swimm/">How to Find the Right Code Knowledge Management Tool</a></li>
+	
+	<li><a href="/posts/my-2020-defcon-talk/">Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</a></li>
+	
+	<li><a href="/posts/the-impact-of-open-source-on-security/">The Impact of Open Source on Security - Q&amp;A</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/management">management</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/musings">musings</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/meetups">meetups</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1844 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-12-19 11:01 &#43;0200</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/how-to-backstage-part-1/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>How to Set Up Backstage On K8s with Helm - part 1, set up for success</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157503704-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
