@@ -18,6 +18,15 @@ After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman
     </item>
     
     <item>
+      <title>We gave a talk at the Go Israel November 2022 Meetup</title>
+      <link>https://www.mrnice.dev/posts/go-israel-november-meetup/</link>
+      <pubDate>Sun, 13 Nov 2022 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/go-israel-november-meetup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
       <link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
@@ -206,18 +215,6 @@ If the program is available on MELPA, you can just add it to the additional-pack
 Also, this is an old blogpost about something that wasn&amp;rsquo;t actually released as part of the project yet. Maybe one day I&amp;rsquo;ll finish it but the documentation value is important.
 After another successful workshop,
 Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.</description>
-    </item>
-    
-    <item>
-      <title>Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</title>
-      <link>https://www.mrnice.dev/posts/my-2020-defcon-talk/</link>
-      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/my-2020-defcon-talk/</guid>
-      <description>I recently gave a talk in DefCon SAFEMODE Red Team Village. It was a very interesting and unique experience, here&amp;rsquo;s what I&amp;rsquo;ve learned.
-The talk itself The talk was titled Making Breach &amp;amp; Attack Simulation Accessible and Actionable with Infection Monkey. Watch the recording here:
-Lectures, COVID, and crowd interaction Giving a live talk is something I very much enjoy doing. 🎤
-Crowd interaction, controlling my voice, gesturing, joking with the audience now and then, answering questions; Honestly, I really like it.</description>
     </item>
     
   </channel>

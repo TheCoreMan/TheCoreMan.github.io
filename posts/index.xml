@@ -250,6 +250,16 @@ Coralogix for example.</p>
 		</item>
 		
 		<item>
+			<title>We gave a talk at the Go Israel November 2022 Meetup</title>
+			<link>https://www.mrnice.dev/posts/go-israel-november-meetup/</link>
+			<pubDate>Sun, 13 Nov 2022 14:15:55 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/go-israel-november-meetup/</guid>
+			<description></description>
+			<content type="html"><![CDATA[]]></content>
+		</item>
+		
+		<item>
 			<title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
 			<link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
 			<pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
