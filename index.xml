@@ -6,7 +6,25 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Jan 2023 14:15:55 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to use simple RSS feeds to monitor SaaS application in Slack - The shortest guide possible</title>
+      <link>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</link>
+      <pubDate>Wed, 25 Jan 2023 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cup O&#39; Go Episode 0: Premiere Episode, Upcoming 1.20 Release and Gophercons World Wide!</title>
+      <link>https://www.mrnice.dev/posts/cup-o-go-episode-0/</link>
+      <pubDate>Mon, 23 Jan 2023 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/cup-o-go-episode-0/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>How to Build Your Team to Increase Velocity</title>
       <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>
@@ -194,27 +212,6 @@ If the program is available on MELPA, you can just add it to the additional-pack
       
       <guid>https://www.mrnice.dev/posts/code-knowledge-mgmt-swimm/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
-      <link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>
-      <pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/swimming-with-monkeys/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</title>
-      <link>https://www.mrnice.dev/posts/dev-log-5/</link>
-      <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/dev-log-5/</guid>
-      <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
-Also, this is an old blogpost about something that wasn&amp;rsquo;t actually released as part of the project yet. Maybe one day I&amp;rsquo;ll finish it but the documentation value is important.
-After another successful workshop,
-Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.</description>
     </item>
     
   </channel>

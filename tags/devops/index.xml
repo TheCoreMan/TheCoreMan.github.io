@@ -6,7 +6,16 @@
     <description>Recent content in devops on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Jan 2023 14:15:55 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to use simple RSS feeds to monitor SaaS application in Slack - The shortest guide possible</title>
+      <link>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</link>
+      <pubDate>Wed, 25 Jan 2023 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
       <link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>

@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/devops/</loc>
+    <lastmod>2023-01-25T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</loc>
+    <lastmod>2023-01-25T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2023-01-25T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2023-01-25T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/reco/</loc>
+    <lastmod>2023-01-25T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2023-01-25T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/cup-o-go-episode-0/</loc>
+    <lastmod>2023-01-23T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/cup-o-go/</loc>
+    <lastmod>2023-01-23T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/golang/</loc>
+    <lastmod>2023-01-23T14:15:55+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/podcasts/</loc>
+    <lastmod>2023-01-23T14:15:55+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</loc>
     <lastmod>2022-12-19T11:01:11+02:00</lastmod>
   </url><url>
@@ -11,20 +41,8 @@
     <loc>https://www.mrnice.dev/tags/meetups/</loc>
     <lastmod>2022-12-19T11:01:11+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2022-12-19T11:01:11+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2022-12-19T11:01:11+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2022-12-19T11:01:11+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
-    <lastmod>2022-12-19T11:01:11+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/reco/</loc>
-    <lastmod>2022-11-13T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/recolabs/</loc>
     <lastmod>2022-11-13T14:15:55+03:00</lastmod>
@@ -33,9 +51,6 @@
     <lastmod>2022-11-13T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/backstage/</loc>
-    <lastmod>2022-10-15T21:53:20+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/devops/</loc>
     <lastmod>2022-10-15T21:53:20+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-backstage-part-1/</loc>
@@ -55,9 +70,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/astrix-reco-meetup/</loc>
     <lastmod>2022-07-18T14:15:55+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/golang/</loc>
-    <lastmod>2022-05-09T22:29:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/open-source/</loc>
     <lastmod>2022-05-09T22:29:06+03:00</lastmod>

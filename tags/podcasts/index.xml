@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>podcasts on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/podcasts/</link>
+    <description>Recent content in podcasts on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Jan 2023 14:15:55 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/podcasts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cup O&#39; Go Episode 0: Premiere Episode, Upcoming 1.20 Release and Gophercons World Wide!</title>
+      <link>https://www.mrnice.dev/posts/cup-o-go-episode-0/</link>
+      <pubDate>Mon, 23 Jan 2023 14:15:55 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/cup-o-go-episode-0/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
