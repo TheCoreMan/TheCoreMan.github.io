@@ -5,8 +5,18 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Wed, 25 Jan 2023 14:15:55 +0300</lastBuildDate>
+		<lastBuildDate>Wed, 22 Feb 2023 17:51:00 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>We gave a talk at GopherCon Israel 2023</title>
+			<link>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</link>
+			<pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</guid>
+			<description></description>
+			<content type="html"><![CDATA[]]></content>
+		</item>
 		
 		<item>
 			<title>How to use simple RSS feeds to monitor SaaS application in Slack - The shortest guide possible</title>

@@ -6,7 +6,34 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Jan 2023 14:15:55 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Feb 2023 17:51:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang</title>
+      <link>https://www.mrnice.dev/tags/golang/</link>
+      <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open-source</title>
+      <link>https://www.mrnice.dev/tags/open-source/</link>
+      <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recolabs</title>
+      <link>https://www.mrnice.dev/tags/recolabs/</link>
+      <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/recolabs/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>devops</title>
       <link>https://www.mrnice.dev/tags/devops/</link>
@@ -31,15 +58,6 @@
       <pubDate>Mon, 23 Jan 2023 14:15:55 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/cup-o-go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://www.mrnice.dev/tags/golang/</link>
-      <pubDate>Mon, 23 Jan 2023 14:15:55 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/golang/</guid>
       <description></description>
     </item>
     
@@ -80,15 +98,6 @@
     </item>
     
     <item>
-      <title>recolabs</title>
-      <link>https://www.mrnice.dev/tags/recolabs/</link>
-      <pubDate>Sun, 13 Nov 2022 14:15:55 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/recolabs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>backstage</title>
       <link>https://www.mrnice.dev/tags/backstage/</link>
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
@@ -112,15 +121,6 @@
       <pubDate>Mon, 15 Aug 2022 14:15:55 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>open-source</title>
-      <link>https://www.mrnice.dev/tags/open-source/</link>
-      <pubDate>Mon, 09 May 2022 22:29:06 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/open-source/</guid>
       <description></description>
     </item>
     
