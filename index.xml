@@ -6,7 +6,17 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Feb 2023 17:51:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS Battle #1 Writeup: Learning CSS</title>
+      <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
+      <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles/</guid>
+      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.
+I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
+    </item>
+    
     <item>
       <title>We gave a talk at GopherCon Israel 2023</title>
       <link>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</link>
@@ -200,18 +210,6 @@ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last 
       <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</guid>
       <description>I started this post AFTER starting to work on a Clojure script, when I realized I didn&amp;rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
 In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &amp;ldquo;Learn Clojure&amp;rdquo; guide, with examples and explanations.</description>
-    </item>
-    
-    <item>
-      <title>How to Add EmacsLisp Programs to Emacs - The Hard Way</title>
-      <link>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</link>
-      <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
-      <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
-A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
-I&amp;rsquo;ve stumbled across it from this StackExchange answer.
-If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
     </item>
     
   </channel>

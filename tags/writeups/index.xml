@@ -6,7 +6,17 @@
     <description>Recent content in writeups on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Mar 2020 21:57:03 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/writeups/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/writeups/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS Battle #1 Writeup: Learning CSS</title>
+      <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
+      <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles/</guid>
+      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.
+I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
+    </item>
+    
     <item>
       <title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
       <link>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</link>

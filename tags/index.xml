@@ -6,7 +6,25 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Feb 2023 17:51:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>css</title>
+      <link>https://www.mrnice.dev/tags/css/</link>
+      <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>writeups</title>
+      <link>https://www.mrnice.dev/tags/writeups/</link>
+      <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/writeups/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>golang</title>
       <link>https://www.mrnice.dev/tags/golang/</link>
@@ -166,24 +184,6 @@
       <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gcp</title>
-      <link>https://www.mrnice.dev/tags/gcp/</link>
-      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/gcp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ORM</title>
-      <link>https://www.mrnice.dev/tags/orm/</link>
-      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/orm/</guid>
       <description></description>
     </item>
     

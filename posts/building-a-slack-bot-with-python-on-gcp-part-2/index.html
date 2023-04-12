@@ -265,7 +265,7 @@ with only some minor changes for Poetry:</p>
 </span></span></span><span class="line"><span class="cl"><span class="sd">        poetry config --list</span><span class="w">        
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install dependencies</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">        </span><span class="w">        </span><span class="l">poetry install</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry install</span><span class="w">        
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Lint with flake8</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        # stop the build if there are Python syntax errors or undefined names
@@ -274,7 +274,7 @@ with only some minor changes for Poetry:</p>
 </span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">        
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test with pytest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">        </span><span class="w">        </span><span class="l">pytest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        pytest</span><span class="w">        
 </span></span></span></code></pre></div><h3 id="setting-up-a-local-development-environment">Setting up a local development environment<a href="#setting-up-a-local-development-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><a href="../building-a-slack-bot-with-python-on-gcp">Last time</a>, we managed to deploy
 our bot to the cloud. Immediate regret followed, as the build-deploy-test loop
