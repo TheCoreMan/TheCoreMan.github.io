@@ -5,8 +5,662 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate>
+		<lastBuildDate>Sun, 16 Apr 2023 20:46:53 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Hugo Flashcard Shortcode for Studying</title>
+			<link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
+			<pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
+			<description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
+CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
+			<content type="html"><![CDATA[
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-a48232d84fd7944e6073fde3c036263f&#34;)"
+    role="button"
+  >
+    What&rsquo;s a flashcard? Click here!
+  </button>
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-a48232d84fd7944e6073fde3c036263f" class="flashcard__back">
+    It&rsquo;s a card with a question on one side and the answer on the other. You can use
+it to study for a test or memorize notes from a book you&rsquo;ve read.
+  </div>
+</div>
+
+
+
+<h2 id="cool-how-do-i-get-it-for-my-hugo-site">Cool! How do I get it for my Hugo site?</h2>
+<p>Download these three files:</p>
+<ul>
+<li><a href="https://github.com/TheCoreMan/TheCoreMan.github.io/blob/869d1627c6bbfaacaa1bbef8a30c0abb2bb967ee/css/flashcard.css">CSS</a></li>
+<li><a href="https://github.com/TheCoreMan/TheCoreMan.github.io/blob/869d1627c6bbfaacaa1bbef8a30c0abb2bb967ee/js/flashcard.js">JS</a></li>
+<li><a href="https://gist.github.com/TheCoreMan/9fff946f3cda9b98e5b8118d34318c47">HTML Shortcode</a></li>
+</ul>
+<p>And put them in the right places in your Hugo project. The JS and CSS files
+go in your <code>static/js/flashcard.js</code> and <code>static/css/flashcard.css</code> respectively.
+The shortcode HTML file goes to <code>layouts/shortcodes/flashcard.html</code> (you can
+also put it in the theme&rsquo;s shortcodes folder if you want to use it in multiple
+sites).</p>
+<p>Here&rsquo;s how you use it:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="nt">flashcard</span> <span class="na">question</span><span class="o">=</span><span class="s">&#34;question&#34;</span> <span class="p">&gt;</span> } }
+</span></span><span class="line"><span class="cl">answer
+</span></span><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="p">/</span><span class="nt">flashcard</span> <span class="p">&gt;</span> } }
+</span></span></code></pre></div><p>Just delete the spaces between the <code>{</code>-s. They are in the to avoid rendering the
+shortcode.</p>
+<h2 id="why-did-i-build-this">Why did I build this?</h2>
+<p>All right, so here&rsquo;s the deal. Recently I&rsquo;ve started prepping for job interviews
+since I&rsquo;m leaving my current job. So I&rsquo;m reading some books <strong>actively</strong>
+by summarizing points from the books in flashcards to help me
+remember them.</p>
+<p>I&rsquo;ve been using <a href="https://docs.logseq.com/#/page/flashcards">logseq&rsquo;s flashcards</a>
+to learn and it&rsquo;s been super engaging.</p>
+<figure><img src="https://user-images.githubusercontent.com/25513724/220608753-f33db466-af72-4611-b603-411440c15ed0.png?sanatize=true" width="50px" height="50px"/>
+</figure>
+
+<p>But! I can&rsquo;t share the flashcards with
+y&rsquo;all from <code>logseq</code>. So, I decided to take a short diversion and <em>build</em> a
+flashcard shortcode for Hugo.</p>
+<h2 id="rtfm-and-plan">RTFM and plan</h2>
+<p><img src="/images/flashcards/rome-quote.png" alt="Quick Decisions are Unsafe Decisions" title="Quick Decisions are Unsafe Decisions"></p>
+<p>I&rsquo;ve avoided my instinct to jump to the code, and instead I&rsquo;ve read the docs
+for Hugo&rsquo;s <a href="https://gohugo.io/content-management/shortcodes/">shortcodes</a> first
+and the <a href="https://gohugo.io/templates/shortcode-templates/">&ldquo;Create Your Own Shortcodes&rdquo; article as well</a>.</p>
+<p>After reading this, here&rsquo;s the plan. The flashcard has two parts: The question
+and the answer. The card should show the question, and when the user clicks on
+it, reveal the answer. I&rsquo;d like to do it with a cool animation in CSS since
+recently I&rsquo;ve been <a href="/posts/learning-css-with-css-battles.md">dabbling in CSS</a>.</p>
+<p>The question will be a <strong>named parameter</strong> to the shortcode, and the answer
+will be the <strong>inner content</strong> of the shortcode. So something like this, just
+without the spaces between the <code>{</code>-s. They are here to avoid rendering 😅</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="nt">flashcard</span> <span class="na">question</span><span class="o">=</span><span class="s">&#34;What is the answer to life, the universe and everything?&#34;</span> <span class="p">&gt;</span> } }
+</span></span><span class="line"><span class="cl">42! <span class="ge">_some markdown_</span> [<span class="nt">things such as links</span>](<span class="na">/posts</span>)
+</span></span><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="p">/</span><span class="nt">flashcard</span> <span class="p">&gt;</span> } }
+</span></span></code></pre></div><h2 id="a-play-by-play">A play-by-play</h2>
+<p><img src="https://i.giphy.com/media/q7UpJegIZjsk0/giphy.gif" alt="Bill O&amp;rsquo;Reilly" title="Bill O'Reilly"></p>
+<h3 id="html-create-a-shortcode-file">HTML: Create a shortcode file</h3>
+<p>This is the first version of the shortcode file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="na">.Get</span><span class="w"> </span><span class="s">&#34;question&#34;</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__front&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Get</span><span class="w"> </span><span class="s">&#34;question&#34;</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">errorf</span><span class="w"> </span><span class="s">&#34;missing value for param &#39;question&#39;: %s&#34;</span><span class="w"> </span><span class="na">.Position</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">end</span><span class="w"> </span><span class="cp">}}</span>
+</span></span></code></pre></div><p>Aaaaand:</p>
+<pre tabindex="0"><code>failed to render shortcode &#34;flashcard&#34;:
+failed to process shortcode: 
+execute of template failed: template: shortcodes/flashcard.html:6:35:
+executing &#34;shortcodes/flashcard.html&#34; at &lt;.Get&gt;:
+can&#39;t evaluate field Get in type string
+</code></pre><p>Huh. Reading it closely, seems like the <code>with</code> template directive changes the
+context of the parameter when you render the template. From Go&rsquo;s documentation:</p>
+<blockquote>
+<p>{{with pipeline}} T1 {{else}} T0 {{end}}</p>
+<p>If the value of the pipeline is empty, dot is unaffected and T0
+is executed; otherwise, <strong>dot is set to the value</strong> of the pipeline
+and T1 is executed.</p>
+<p>~ from <a href="https://pkg.go.dev/text/template#hdr-Actions">template package - text/template - Go Packages</a></p>
+</blockquote>
+<p>Fixed the code to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- This &#34;with&#34; is for error handling, see
+</span></span></span><span class="line"><span class="cl"><span class="c">    https://gohugo.io/templates/shortcode-templates/#error-handling-in-shortcodes
+</span></span></span><span class="line"><span class="cl"><span class="c">  --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="cp">{{</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="na">.Get</span><span class="w"> </span><span class="s">&#34;question&#34;</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__front&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="cp">{{</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">errorf</span><span class="w"> </span><span class="s">&#34;missing value for param &#39;question&#39;: %s&#34;</span><span class="w"> </span><span class="na">.Position</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">end</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>This is the a screenshot of output before any CSS was applied:</p>
+<p><img src="/images/flashcards/in-progress-1.png" alt="&amp;ldquo;In progress 1&amp;rdquo;"></p>
+<h3 id="css-style-it-">CSS: Style it 💅</h3>
+<p>I&rsquo;ve added some CSS to make it look like a flashcard. Writing it was kinda fun,
+based on my experience with <a href="/posts/learning-css-with-css-battles.md">CSS Battles</a>.</p>
+<p><img src="/images/flashcards/in-progress-2.png" alt="&amp;ldquo;In progress 2&amp;rdquo;" title="In progress 2"></p>
+<p>The <a href="https://github.com/TheCoreMan/TheCoreMan.github.io/blob/869d1627c6bbfaacaa1bbef8a30c0abb2bb967ee/css/flashcard.css">final CSS</a> includes support for the next steps as well.</p>
+<h3 id="js-reveal-the-answer-on-click">JS: Reveal the answer on click</h3>
+<blockquote>
+<p>Spoiler alert: This code doesn&rsquo;t work, we discover the problem in the QA
+section.</p>
+</blockquote>
+<p>With the JS implemented, you can click on the question and see the answer. I&rsquo;ve
+added some janky JS code to make it work and I had to retrofit the HTML as well.</p>
+<p>The interesting part in the HTML is using the SHA hash of the question as the
+<code>id</code> of the answer. This way, I can use the <code>id</code> to find the answer in the DOM.
+This is a super useful template function that Hugo provides, <a href="https://gohugo.io/functions/sha/">here is the
+docs</a>. I f**king love Hugo!</p>
+<p>Question:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__front&#34;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;toggleAnswer(</span><span class="cp">{{</span><span class="w"> </span><span class="na">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">sha1</span><span class="w"> </span><span class="cp">}}</span><span class="s">)&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Answer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Get</span><span class="w"> </span><span class="s">&#34;question&#34;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">sha1</span><span class="w"> </span><span class="cp">}}</span><span class="s">&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>JS couldn&rsquo;t be simpler. Toggle the class based on the ID:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">toggleAnswer</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">answerElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">answerElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;unblur&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">answerElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;unblur&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">answerElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;unblur&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="lets-do-some-qa">Let&rsquo;s do some QA</h3>
+<p>I&rsquo;ve added some tests to make sure the shortcode works as expected.</p>
+<h4 id="two-flashcards-with-the-same-question">Two flashcards with the same question</h4>
+<p>This discovered a bug! Instead of opening both flashcards, only the first one
+was opened. According <a href="https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute">to HTML spec</a>,
+the <code>id</code> attribute SHOULD be unique. I added some code to make the <code>id</code> unique,
+which made the HTML slightly more complex:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="c">&lt;!-- get a random string to add to each ID --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="nx">$seed</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">now</span><span class="na">.Format</span><span class="w"> </span><span class="s">&#34;:time_full&#34;</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">$random</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">delimit</span><span class="w"> </span><span class="o">(</span><span class="nx">shuffle</span><span class="w"> </span><span class="o">(</span><span class="nx">split</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">(</span><span class="nx">md5</span><span class="w"> </span><span class="nx">$seed</span><span class="o">)</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- create a unique ID for the answer, based on the question&#39;s SHA and the
+</span></span></span><span class="line"><span class="cl"><span class="c">random string. --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="nx">$questionSHA</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="na">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">sha1</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">$answerID</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">printf</span><span class="w"> </span><span class="s">&#34;answer-id-%s-%s&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">$questionSHA</span><span class="w"> </span><span class="nx">$random</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- The flashcard itself --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;notepad-line&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span>
+</span></span><span class="line"><span class="cl">    <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__front&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;toggleAnswer(</span><span class="cp">{{</span><span class="w"> </span><span class="nx">$answerID</span><span class="w"> </span><span class="cp">}}</span><span class="s">)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">{{</span><span class="w"> </span><span class="na">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;</span><span class="cp">{{</span><span class="w"> </span><span class="nx">$answerID</span><span class="w"> </span><span class="cp">}}</span><span class="s">&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">{{</span><span class="w"> </span><span class="na">$.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div>
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-fa42f337cd34363892d7604ed68f42e0&#34;)"
+    role="button"
+  >
+    What is the capital of France?
+  </button>
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-fa42f337cd34363892d7604ed68f42e0" class="flashcard__back">
+    Paris.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-f36d986743d3827e443f2f0ad60ec423&#34;)"
+    role="button"
+  >
+    What is the capital of France?
+  </button>
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-f36d986743d3827e443f2f0ad60ec423" class="flashcard__back">
+    Paris, again.
+  </div>
+</div>
+
+
+
+<p>Here&rsquo;s how the different IDs look in the DOM now (you can also check it with
+your own dev tools):</p>
+<p><img src="/images/flashcards/answer-ids.png" alt="&amp;ldquo;answer ids&amp;rdquo;" title="answer ids"></p>
+<h4 id="markdown-in-the-question">Markdown in the question</h4>
+<p>✅</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-8d7e4936363f247ef00cdfa264d23483&#34;)"
+    role="button"
+  >
+    Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
+  </button>
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-8d7e4936363f247ef00cdfa264d23483" class="flashcard__back">
+    Yes!
+  </div>
+</div>
+
+
+
+<h4 id="richer-content">Richer content</h4>
+<p>✅</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-6432f8e60833d0642c3fe29d4da73f47&#34;)"
+    role="button"
+  >
+    What is the answer to life, the universe and everything, with some extra content?
+  </button>
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-6432f8e60833d0642c3fe29d4da73f47" class="flashcard__back">
+    <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
+<blockquote>
+<p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
+<p>&ldquo;Tell us!&rdquo;</p>
+<p>&ldquo;All right,&rdquo; said Deep Thought. &ldquo;The Answer to the Great Question&hellip;&rdquo;</p>
+<p>&ldquo;Yes..!&rdquo;</p>
+<p>&ldquo;Of Life, the Universe and Everything&hellip;&rdquo; said Deep Thought.</p>
+<p>&ldquo;Yes&hellip;!&rdquo;</p>
+<p>&ldquo;Is&hellip;&rdquo; said Deep Thought, and paused.</p>
+<p>&ldquo;Yes&hellip;!&rdquo;</p>
+<p>&ldquo;Is&hellip;&rdquo;</p>
+<p>&ldquo;Yes&hellip;!!!&hellip;?&rdquo;</p>
+<p>&ldquo;Forty-two,&rdquo; said Deep Thought, with infinite majesty and calm.”</p>
+</blockquote>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/2/24/Ultimate_Hitchhikers_Guide_front.jpg" alt="hitchhiker" title="hitchhiker"></p>
+
+  </div>
+</div>
+
+
+
+<p>Let&rsquo;s test with the entire markdown test file as the answer, just for completeness:</p>
+<p>✅</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-747ddffa33c422026383ef6d69834e40&#34;)"
+    role="button"
+  >
+    Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
+  </button>
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-747ddffa33c422026383ef6d69834e40" class="flashcard__back">
+    <h1 id="markdown-syntax">Markdown: Syntax</h1>
+<ul>
+<li><a href="#overview">Overview</a>
+<ul>
+<li><a href="#philosophy">Philosophy</a></li>
+<li><a href="#html">Inline HTML</a></li>
+<li><a href="#autoescape">Automatic Escaping for Special Characters</a></li>
+</ul>
+</li>
+<li><a href="#block">Block Elements</a>
+<ul>
+<li><a href="#p">Paragraphs and Line Breaks</a></li>
+<li><a href="#header">Headers</a></li>
+<li><a href="#blockquote">Blockquotes</a></li>
+<li><a href="#list">Lists</a></li>
+<li><a href="#precode">Code Blocks</a></li>
+<li><a href="#hr">Horizontal Rules</a></li>
+</ul>
+</li>
+<li><a href="#span">Span Elements</a>
+<ul>
+<li><a href="#link">Links</a></li>
+<li><a href="#em">Emphasis</a></li>
+<li><a href="#code">Code</a></li>
+<li><a href="#img">Images</a></li>
+</ul>
+</li>
+<li><a href="#misc">Miscellaneous</a>
+<ul>
+<li><a href="#backslash">Backslash Escapes</a></li>
+<li><a href="#autolink">Automatic Links</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> This document is itself written using Markdown; you
+can <a href="/projects/markdown/syntax.text">see the source for it by adding &lsquo;.text&rsquo; to the URL</a>.</p>
+<hr>
+<h2 id="overview">Overview</h2>
+<h3 id="philosophy">Philosophy</h3>
+<p>Markdown is intended to be as easy-to-read and easy-to-write as is feasible.</p>
+<p>Readability, however, is emphasized above all else. A Markdown-formatted
+document should be publishable as-is, as plain text, without looking
+like it&rsquo;s been marked up with tags or formatting instructions. While
+Markdown&rsquo;s syntax has been influenced by several existing text-to-HTML
+filters &ndash; including <a href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a>, <a href="http://www.aaronsw.com/2002/atx/">atx</a>, <a href="http://textism.com/tools/textile/">Textile</a>, <a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>,
+<a href="http://www.triptico.com/software/grutatxt.html">Grutatext</a>, and <a href="http://ettext.taint.org/doc/">EtText</a> &ndash; the single biggest source of
+inspiration for Markdown&rsquo;s syntax is the format of plain text email.</p>
+<h2 id="block-elements">Block Elements</h2>
+<h3 id="paragraphs-and-line-breaks">Paragraphs and Line Breaks</h3>
+<p>A paragraph is simply one or more consecutive lines of text, separated
+by one or more blank lines. (A blank line is any line that looks like a
+blank line &ndash; a line containing nothing but spaces or tabs is considered
+blank.) Normal paragraphs should not be indented with spaces or tabs.</p>
+<p>The implication of the &ldquo;one or more consecutive lines of text&rdquo; rule is
+that Markdown supports &ldquo;hard-wrapped&rdquo; text paragraphs. This differs
+significantly from most other text-to-HTML formatters (including Movable
+Type&rsquo;s &ldquo;Convert Line Breaks&rdquo; option) which translate every line break
+character in a paragraph into a <code>&lt;br /&gt;</code> tag.</p>
+<p>When you <em>do</em> want to insert a <code>&lt;br /&gt;</code> break tag using Markdown, you
+end a line with two or more spaces, then type return.</p>
+<h3 id="headers">Headers</h3>
+<p>Markdown supports two styles of headers, [Setext] [1] and [atx] [2].</p>
+<p>Optionally, you may &ldquo;close&rdquo; atx-style headers. This is purely
+cosmetic &ndash; you can use this if you think it looks better. The
+closing hashes don&rsquo;t even need to match the number of hashes
+used to open the header. (The number of opening hashes
+determines the header level.)</p>
+<h3 id="blockquotes">Blockquotes</h3>
+<p>Markdown uses email-style <code>&gt;</code> characters for blockquoting. If you&rsquo;re
+familiar with quoting passages of text in an email message, then you
+know how to create a blockquote in Markdown. It looks best if you hard
+wrap the text and put a <code>&gt;</code> before every line:</p>
+<blockquote>
+<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.</p>
+</blockquote>
+<p>Markdown allows you to be lazy and only put the <code>&gt;</code> before the first
+line of a hard-wrapped paragraph:</p>
+<blockquote>
+<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
+</blockquote>
+<blockquote>
+<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
+id sem consectetuer libero luctus adipiscing.</p>
+</blockquote>
+<p>Blockquotes can be nested (i.e. a blockquote-in-a-blockquote) by
+adding additional levels of <code>&gt;</code>:</p>
+<blockquote>
+<p>This is the first level of quoting.</p>
+<blockquote>
+<p>This is nested blockquote.</p>
+</blockquote>
+<p>Back to the first level.</p>
+</blockquote>
+<p>Blockquotes can contain other Markdown elements, including headers, lists,
+and code blocks:</p>
+<blockquote>
+<h2 id="this-is-a-header">This is a header.</h2>
+<ol>
+<li>This is the first list item.</li>
+<li>This is the second list item.</li>
+</ol>
+<p>Here&rsquo;s some example code:</p>
+<pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);
+</code></pre>
+</blockquote>
+<p>Any decent text editor should make email-style quoting easy. For
+example, with BBEdit, you can make a selection and choose Increase
+Quote Level from the Text menu.</p>
+<h3 id="lists">Lists</h3>
+<p>Markdown supports ordered (numbered) and unordered (bulleted) lists.</p>
+<p>Unordered lists use asterisks, pluses, and hyphens &ndash; interchangably
+&ndash; as list markers:</p>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<p>is equivalent to:</p>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<p>and:</p>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<p>Ordered lists use numbers followed by periods:</p>
+<ol>
+<li>Bird</li>
+<li>McHale</li>
+<li>Parish</li>
+</ol>
+<p>It&rsquo;s important to note that the actual numbers you use to mark the
+list have no effect on the HTML output Markdown produces. The HTML
+Markdown produces from the above list is:</p>
+<p>If you instead wrote the list in Markdown like this:</p>
+<ol>
+<li>Bird</li>
+<li>McHale</li>
+<li>Parish</li>
+</ol>
+<p>or even:</p>
+<ol start="3">
+<li>Bird</li>
+<li>McHale</li>
+<li>Parish</li>
+</ol>
+<p>you&rsquo;d get the exact same HTML output. The point is, if you want to,
+you can use ordinal numbers in your ordered Markdown lists, so that
+the numbers in your source match the numbers in your published HTML.
+But if you want to be lazy, you don&rsquo;t have to.</p>
+<p>To make lists look nice, you can wrap items with hanging indents:</p>
+<ul>
+<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+viverra nec, fringilla in, laoreet vitae, risus.</li>
+<li>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+Suspendisse id sem consectetuer libero luctus adipiscing.</li>
+</ul>
+<p>But if you want to be lazy, you don&rsquo;t have to:</p>
+<ul>
+<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+viverra nec, fringilla in, laoreet vitae, risus.</li>
+<li>Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+Suspendisse id sem consectetuer libero luctus adipiscing.</li>
+</ul>
+<p>List items may consist of multiple paragraphs. Each subsequent
+paragraph in a list item must be indented by either 4 spaces
+or one tab:</p>
+<ol>
+<li>
+<p>This is a list item with two paragraphs. Lorem ipsum dolor
+sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+mi posuere lectus.</p>
+<p>Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+sit amet velit.</p>
+</li>
+<li>
+<p>Suspendisse id sem consectetuer libero luctus adipiscing.</p>
+</li>
+</ol>
+<p>It looks nice if you indent every line of the subsequent
+paragraphs, but here again, Markdown will allow you to be
+lazy:</p>
+<ul>
+<li>
+<p>This is a list item with two paragraphs.</p>
+<p>This is the second paragraph in the list item. You&rsquo;re
+only required to indent the first line. Lorem ipsum dolor
+sit amet, consectetuer adipiscing elit.</p>
+</li>
+<li>
+<p>Another item in the same list.</p>
+</li>
+</ul>
+<p>To put a blockquote within a list item, the blockquote&rsquo;s <code>&gt;</code>
+delimiters need to be indented:</p>
+<ul>
+<li>
+<p>A list item with a blockquote:</p>
+<blockquote>
+<p>This is a blockquote
+inside a list item.</p>
+</blockquote>
+</li>
+</ul>
+<p>To put a code block within a list item, the code block needs
+to be indented <em>twice</em> &ndash; 8 spaces or two tabs:</p>
+<ul>
+<li>
+<p>A list item with a code block:</p>
+<pre><code>&lt;code goes here&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="code-blocks">Code Blocks</h3>
+<p>Pre-formatted code blocks are used for writing about programming or
+markup source code. Rather than forming normal paragraphs, the lines
+of a code block are interpreted literally. Markdown wraps a code block
+in both <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> tags.</p>
+<p>To produce a code block in Markdown, simply indent every line of the
+block by at least 4 spaces or 1 tab.</p>
+<p>This is a normal paragraph:</p>
+<pre><code>This is a code block.
+</code></pre>
+<p>Here is an example of AppleScript:</p>
+<pre><code>tell application &quot;Foo&quot;
+    beep
+end tell
+</code></pre>
+<p>A code block continues until it reaches a line that is not indented
+(or the end of the article).</p>
+<p>Within a code block, ampersands (<code>&amp;</code>) and angle brackets (<code>&lt;</code> and <code>&gt;</code>)
+are automatically converted into HTML entities. This makes it very
+easy to include example HTML source code using Markdown &ndash; just paste
+it and indent it, and Markdown will handle the hassle of encoding the
+ampersands and angle brackets. For example, this:</p>
+<pre><code>&lt;div class=&quot;footer&quot;&gt;
+    &amp;copy; 2004 Foo Corporation
+&lt;/div&gt;
+</code></pre>
+<p>Regular Markdown syntax is not processed within code blocks. E.g.,
+asterisks are just literal asterisks within a code block. This means
+it&rsquo;s also easy to use Markdown to write about Markdown&rsquo;s own syntax.</p>
+<pre tabindex="0"><code>tell application &#34;Foo&#34;
+    beep
+end tell
+</code></pre><h2 id="span-elements">Span Elements</h2>
+<h3 id="links">Links</h3>
+<p>Markdown supports two style of links: <em>inline</em> and <em>reference</em>.</p>
+<p>In both styles, the link text is delimited by [square brackets].</p>
+<p>To create an inline link, use a set of regular parentheses immediately
+after the link text&rsquo;s closing square bracket. Inside the parentheses,
+put the URL where you want the link to point, along with an <em>optional</em>
+title for the link, surrounded in quotes. For example:</p>
+<p>This is <a href="http://example.com/">an example</a> inline link.</p>
+<p><a href="http://example.net/">This link</a> has no title attribute.</p>
+<h3 id="emphasis">Emphasis</h3>
+<p>Markdown treats asterisks (<code>*</code>) and underscores (<code>_</code>) as indicators of
+emphasis. Text wrapped with one <code>*</code> or <code>_</code> will be wrapped with an
+HTML <code>&lt;em&gt;</code> tag; double <code>*</code>&rsquo;s or <code>_</code>&rsquo;s will be wrapped with an HTML
+<code>&lt;strong&gt;</code> tag. E.g., this input:</p>
+<p><em>single asterisks</em></p>
+<p><em>single underscores</em></p>
+<p><strong>double asterisks</strong></p>
+<p><strong>double underscores</strong></p>
+<h3 id="code">Code</h3>
+<p>To indicate a span of code, wrap it with backtick quotes (<code>`</code>).
+Unlike a pre-formatted code block, a code span indicates code within a
+normal paragraph. For example:</p>
+<p>Use the <code>printf()</code> function.</p>
+
+  </div>
+</div>
+
+
+
+<h2 id="summary">Summary</h2>
+<p>Ship it! Good enough for my needs :)</p>
+<p><img src="https://i.imgur.com/DPVM1.png" alt="ship it good" title="ship it good"></p>
+<blockquote>
+<p>Cover Photo by <a href="https://unsplash.com/@craftedbygc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unseen Studio</a> on <a href="https://unsplash.com/photos/s9CC2SKySJM?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.</p>
+</blockquote>
+]]></content>
+		</item>
 		
 		<item>
 			<title>CSS Battle #1 Writeup: Learning CSS</title>

@@ -6,7 +6,17 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Apr 2023 20:46:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Flashcard Shortcode for Studying</title>
+      <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
+      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
+CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
+    </item>
+    
     <item>
       <title>CSS Battle #1 Writeup: Learning CSS</title>
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
@@ -200,16 +210,6 @@ $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0
       <description>隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
 - 白隠 慧鶴 (Hakuin Ekaku)
 Continuing on the journey of knowledge, I wanted to practice more Clojure. Last time we went over first sections of Learn Clojure: syntax and functions. The main way I learned was by doing the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises!</description>
-    </item>
-    
-    <item>
-      <title>Foray Into Clojure, Part 0: Setup, syntax, functions</title>
-      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</link>
-      <pubDate>Thu, 27 May 2021 01:03:49 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-0/</guid>
-      <description>I started this post AFTER starting to work on a Clojure script, when I realized I didn&amp;rsquo;t feel comfortable enough with the language and tools to actually start working on the script. I needed to feel more comfortable before starting to work.
-In this post I go over how to setup a basic Clojure development environment and I solve all the exercises from the &amp;ldquo;Learn Clojure&amp;rdquo; guide, with examples and explanations.</description>
     </item>
     
   </channel>

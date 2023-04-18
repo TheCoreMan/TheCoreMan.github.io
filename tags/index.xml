@@ -6,13 +6,58 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Apr 2023 20:46:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>css</title>
       <link>https://www.mrnice.dev/tags/css/</link>
-      <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>frontend</title>
+      <link>https://www.mrnice.dev/tags/frontend/</link>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/frontend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://www.mrnice.dev/tags/go/</link>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>html</title>
+      <link>https://www.mrnice.dev/tags/html/</link>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://www.mrnice.dev/tags/hugo/</link>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://www.mrnice.dev/tags/javascript/</link>
+      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/javascript/</guid>
       <description></description>
     </item>
     
@@ -139,51 +184,6 @@
       <pubDate>Mon, 15 Aug 2022 14:15:55 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>meta</title>
-      <link>https://www.mrnice.dev/tags/meta/</link>
-      <pubDate>Wed, 19 Jan 2022 22:29:06 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/meta/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>automation</title>
-      <link>https://www.mrnice.dev/tags/automation/</link>
-      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/automation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cloud</title>
-      <link>https://www.mrnice.dev/tags/cloud/</link>
-      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>database</title>
-      <link>https://www.mrnice.dev/tags/database/</link>
-      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/database/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://www.mrnice.dev/tags/docker/</link>
-      <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/docker/</guid>
       <description></description>
     </item>
     
