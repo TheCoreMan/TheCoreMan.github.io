@@ -6,7 +6,34 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Apr 2023 20:46:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Apr 2023 11:29:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>books</title>
+      <link>https://www.mrnice.dev/tags/books/</link>
+      <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leadership</title>
+      <link>https://www.mrnice.dev/tags/leadership/</link>
+      <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/leadership/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>management</title>
+      <link>https://www.mrnice.dev/tags/management/</link>
+      <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/management/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>css</title>
       <link>https://www.mrnice.dev/tags/css/</link>
@@ -134,15 +161,6 @@
     </item>
     
     <item>
-      <title>management</title>
-      <link>https://www.mrnice.dev/tags/management/</link>
-      <pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/management/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>meetups</title>
       <link>https://www.mrnice.dev/tags/meetups/</link>
       <pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
@@ -166,24 +184,6 @@
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/backstage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>howto</title>
-      <link>https://www.mrnice.dev/tags/howto/</link>
-      <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/howto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>security</title>
-      <link>https://www.mrnice.dev/tags/security/</link>
-      <pubDate>Mon, 15 Aug 2022 14:15:55 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/security/</guid>
       <description></description>
     </item>
     

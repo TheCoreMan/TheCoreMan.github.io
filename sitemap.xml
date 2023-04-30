@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/books/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/leadership/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/management/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/css/</loc>
     <lastmod>2023-04-16T20:46:53+03:00</lastmod>
   </url><url>
@@ -21,15 +42,6 @@
     <lastmod>2023-04-16T20:46:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/javascript/</loc>
-    <lastmod>2023-04-16T20:46:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2023-04-16T20:46:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2023-04-16T20:46:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2023-04-16T20:46:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/learning-css-with-css-battles/</loc>
@@ -69,9 +81,6 @@
     <lastmod>2023-01-23T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</loc>
-    <lastmod>2022-12-19T11:01:11+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/management/</loc>
     <lastmod>2022-12-19T11:01:11+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/meetups/</loc>

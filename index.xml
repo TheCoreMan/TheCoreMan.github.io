@@ -6,7 +6,17 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Apr 2023 20:46:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Apr 2023 11:29:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book report: Turn the Ship Around! A VP R&amp;D&#39;s Summary</title>
+      <link>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</link>
+      <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</guid>
+      <description>Recently I&amp;rsquo;ve read Turn the Ship Around! by L. David Marquet following Anton Drukh&amp;rsquo;s recommendation.
+This summary is mostly for me and for people I&amp;rsquo;ll refer it to - so it&amp;rsquo;s not the most friendly read. But if you don&amp;rsquo;t have time to read the book, this post can serve as a useful TL;DR for you. I highly recommend you do read it - it&amp;rsquo;s a great read and a short one, too!</description>
+    </item>
+    
     <item>
       <title>Hugo Flashcard Shortcode</title>
       <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
@@ -199,17 +209,6 @@ Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
 $$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
 Or Matrix Multiplication?
 $$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
-    </item>
-    
-    <item>
-      <title>Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?</title>
-      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</link>
-      <pubDate>Fri, 04 Jun 2021 20:39:47 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/</guid>
-      <description>隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
-- 白隠 慧鶴 (Hakuin Ekaku)
-Continuing on the journey of knowledge, I wanted to practice more Clojure. Last time we went over first sections of Learn Clojure: syntax and functions. The main way I learned was by doing the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises!</description>
     </item>
     
   </channel>
