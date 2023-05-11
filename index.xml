@@ -6,7 +6,18 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Apr 2023 11:29:00 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 May 2023 11:57:30 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI-assisted API Design 🤖🧑‍🎨</title>
+      <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
+      <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
+      <description>My experience working alongside ChatGPT to generate OpenAPI specs.
+As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;
+With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
+    </item>
+    
     <item>
       <title>Book report: Turn the Ship Around! A VP R&amp;D&#39;s Summary</title>
       <link>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</link>
@@ -195,20 +206,6 @@ Runtime Polymorphism Using multi-arity functions Value-based polymorphism with d
       <description>Every Quarter, I try to spend some time on professional self-reflection. It&amp;rsquo;s part of the journey of being aware of what I&amp;rsquo;m doing, why I&amp;rsquo;m doing it, and getting better all the time.
 This time, I&amp;rsquo;ve decided to blog about it, instead of just putting it in a notebook. Why?
 One of the things I want to do is communicate my professional profile better to other people, so this is a way to do that.</description>
-    </item>
-    
-    <item>
-      <title>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</title>
-      <link>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</link>
-      <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</guid>
-      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
-$$ E=mc^2 $$
-Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
-$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
-Or Matrix Multiplication?
-$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
     </item>
     
   </channel>
