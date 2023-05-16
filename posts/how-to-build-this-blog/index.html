@@ -33,6 +33,20 @@ Create repositories on GitHub GitHub Pages repository Blog content repository In
 
 
 
+<meta
+	name="description"
+	content="I&rsquo;ve been getting some questions as to how I made this blog. So I decided I&rsquo;ll share all the little details so you don&rsquo;t have to 🔍 look it up.
+I&rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
+Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&rsquo;s guide, you need to create a repository with the name &lt;your_username_here&gt;."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png",
+	}
+</script>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,37 +55,12 @@ Create repositories on GitHub GitHub Pages repository Blog content repository In
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>How to Build This Blog</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
 	
-	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
+	
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-    // hack to overcome a shortcoming of Markdown. Discussion at
-    // https://github.com/mojombo/jekyll/issues/199
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i &lt; all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+
 </head>
 
 <body id="page">

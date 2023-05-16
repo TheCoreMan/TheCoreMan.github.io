@@ -28,6 +28,21 @@ Runtime Polymorphism Using multi-arity functions Value-based polymorphism with d
 
 
 
+<meta
+	name="description"
+	content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
+This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
+Table of Contents
+Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?"
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png",
+	}
+</script>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -36,37 +51,38 @@ Runtime Polymorphism Using multi-arity functions Value-based polymorphism with d
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png');}</style>
-	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
+	<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+					extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+			});
+		</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Queue(function() {
+				// Fix <code> tags after MathJax finishes running. This is a
+				// hack to overcome a shortcoming of Markdown. Discussion at
+				// https://github.com/mojombo/jekyll/issues/199
+				var all = MathJax.Hub.getAllJax(), i;
+				for(i = 0; i &lt; all.length; i += 1) {
+					all[i].SourceElement().parentNode.className += ' has-jax';
+				}
+			});
+		</script>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-    // hack to overcome a shortcoming of Markdown. Discussion at
-    // https://github.com/mojombo/jekyll/issues/199
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i &lt; all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+
 </head>
 
 <body id="page">
@@ -578,7 +594,7 @@ always the tool to reach for, but it&rsquo;s obviously very useful to know.</p>
 us to the delightful:</p>
 <p><img src="/images/clj-debug-1.png" alt="Debugging in Spacemacs" title="Debugging in Spacemacs"></p>
 <p>And then to even more amazing:</p>
-<p><img src="/images/debug-clj-2.gif" alt="" title="Debugging in Spacemacs"></p>
+<p><img src="/images/debug-clj-2.gif" alt="&amp;ldquo;Debugging in Spacemacs&amp;rdquo;" title="Debugging in Spacemacs"></p>
 <h2 id="what-now">What now?<a href="#what-now" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>We&rsquo;re at the halfway point!</p>
 <p><img src="/images/clj-koans-list.png" alt="Koans list" title="Koans list"></p>

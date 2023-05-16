@@ -24,6 +24,19 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
 
 
 
+<meta
+	name="description"
+	content="What&rsquo;s a flashcard? Click here! It&rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
+CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png",
+	}
+</script>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -32,37 +45,12 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Hugo Flashcard Shortcode</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/flashcards/cover.jpg');}</style>
-	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
+	
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-    // hack to overcome a shortcoming of Markdown. Discussion at
-    // https://github.com/mojombo/jekyll/issues/199
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i &lt; all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css">
+
 </head>
 
 <body id="page">
@@ -122,12 +110,12 @@ MathJax.Hub.Config({
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-34f6cd78926e0364fde8432a03327f4d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-46d2dce7f333f3446a927f00826ed348&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-34f6cd78926e0364fde8432a03327f4d" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-46d2dce7f333f3446a927f00826ed348" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -298,12 +286,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-624af63896832f374724ede4d3dc03f0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-0cfeaf644f38942376d822dd0436e373&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-624af63896832f374724ede4d3dc03f0" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-0cfeaf644f38942376d822dd0436e373" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -329,12 +317,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-3f6f422f839632c73dd78aee4044d630&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-2974f642f3864decf8a37034d233de06&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-3f6f422f839632c73dd78aee4044d630" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-2974f642f3864decf8a37034d233de06" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -365,12 +353,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-efd4f2c693da432d038734e2f6863047&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d4606e4032298fdff2e4c333647d37a8&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-efd4f2c693da432d038734e2f6863047" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d4606e4032298fdff2e4c333647d37a8" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -398,12 +386,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-496073eaed3f387023648d2df26c443f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-64c238f67e78302d3d462e0fd349fa43&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-496073eaed3f387023648d2df26c443f" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-64c238f67e78302d3d462e0fd349fa43" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -446,12 +434,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-743633f78d30234f22c44fe0dead9668&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-43d36de22043ff3d4c698f783e4207a6&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-743633f78d30234f22c44fe0dead9668" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-43d36de22043ff3d4c698f783e4207a6" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax<a href="#markdown-syntax" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <ul>
 <li><a href="#overview">Overview</a>
