@@ -6,7 +6,18 @@
     <description>Recent content in dev on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Dec 2019 15:34:44 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 May 2023 09:36:21 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optimize your Hugo Blog With Unlighthouse</title>
+      <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
+      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
+      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!
+In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
+    </item>
+    
     <item>
       <title>Debugging Windows: New Users, Powershell, and TLS</title>
       <link>https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/</link>

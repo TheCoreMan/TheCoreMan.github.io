@@ -6,7 +6,18 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 May 2023 11:57:30 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 May 2023 09:36:21 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optimize your Hugo Blog With Unlighthouse</title>
+      <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
+      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
+      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!
+In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
+    </item>
+    
     <item>
       <title>AI-assisted API Design 🤖🧑‍🎨</title>
       <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
@@ -195,17 +206,6 @@ Table of Contents Requirements Why do this, the stupid reason Why do this, the r
 This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
 Table of Contents
 Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?</description>
-    </item>
-    
-    <item>
-      <title>2021Q2: Professional Self Reflection</title>
-      <link>https://www.mrnice.dev/posts/2021-q2-professional-self-reflection/</link>
-      <pubDate>Fri, 02 Jul 2021 10:23:18 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/2021-q2-professional-self-reflection/</guid>
-      <description>Every Quarter, I try to spend some time on professional self-reflection. It&amp;rsquo;s part of the journey of being aware of what I&amp;rsquo;m doing, why I&amp;rsquo;m doing it, and getting better all the time.
-This time, I&amp;rsquo;ve decided to blog about it, instead of just putting it in a notebook. Why?
-One of the things I want to do is communicate my professional profile better to other people, so this is a way to do that.</description>
     </item>
     
   </channel>

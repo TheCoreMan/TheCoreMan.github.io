@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+<meta itemprop="name" content="Optimize your Hugo Blog With Unlighthouse">
+<meta itemprop="description" content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
+In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site."><meta itemprop="datePublished" content="2023-05-16T09:36:21+03:00" />
+<meta itemprop="dateModified" content="2023-05-16T09:36:21+03:00" />
+<meta itemprop="wordCount" content="1715"><meta itemprop="image" content="https://www.mrnice.dev/images/lighthouse/cover.png">
+<meta itemprop="keywords" content="hugo,chrome,web,howto,dev,profiling," /><meta property="og:title" content="Optimize your Hugo Blog With Unlighthouse" />
+<meta property="og:description" content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
+In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/" /><meta property="og:image" content="https://www.mrnice.dev/images/lighthouse/cover.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-16T09:36:21+03:00" />
+<meta property="article:modified_time" content="2023-05-16T09:36:21+03:00" />
+
+<meta name="twitter:title" content="Optimize your Hugo Blog With Unlighthouse">
+
+
+
+<meta
+	name="description"
+	content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
+In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png",
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Optimize your Hugo Blog With Unlighthouse</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/lighthouse/cover.png');}</style>
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:dude500@gmail.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 16, 2023</span></div>
+				<h1>Optimize your Hugo Blog With Unlighthouse</h1>
+			</header>
+			<div class="content">
+				<p>Recently Google let me see the new Analytics dashboard (they moved from&hellip;
+Something something analytics to something something Analytics 4). And one
+of they things I saw was that my blog&rsquo;s performance was bad!</p>
+<p><img src="https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif" alt="&amp;ldquo;I have failed you&amp;rdquo;" title="I have failed you"></p>
+<p>In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it
+a few years ago, so a cleanup for performance and content is probably in
+order.</p>
+<h2 id="get-initial-lighthouse-results">Get initial Lighthouse results<a href="#get-initial-lighthouse-results" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance
+of your site. It&rsquo;s available as a Chrome extension, but also as a CLI tool
+that you can run on your site. So I thought that the first order of business was
+to run <a href="https://github.com/GoogleChrome/lighthouse">Lighthouse</a> on my site and
+see what I&rsquo;m getting both for Mobile and Desktop.</p>
+<p><img src="https://i.giphy.com/media/3ogwG2ZEUYAgBg8F9e/giphy.gif" alt="But wait" title="But wait"></p>
+<p>Then, thanks to a Fireship video, I found out about
+<a href="https://unlighthouse.dev/guide/getting-started">Unlighthouse</a>, which seems even
+better for this use case! Unlighthouse runs Lighthouse reports for all pages
+of your site, and then generates a report with the results.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/0fONene3OIA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>So let&rsquo;s run it! From the
+<a href="https://unlighthouse.dev/guide/getting-started">getting started guide</a>, looks
+like we need to use Node.js 16. To make this &ldquo;clean&rdquo;, add a <code>.nvmrc</code> file to a
+new folder in your Hugo site called <code>performance</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nvm use <span class="m">16</span>
+</span></span><span class="line"><span class="cl">npx unlighthouse --site https://mrnice.dev/
+</span></span></code></pre></div><p>The report is <em>so</em> cool:</p>
+<p><img src="/images/lighthouse/unlighthouse-1.png" alt="Unlighthouse report" title="Unlighthouse report"></p>
+<h2 id="analyzing-the-results">Analyzing the results<a href="#analyzing-the-results" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>This is a lot of information. Let&rsquo;s start looking at it.</p>
+<h3 id="ux-is-more-important-than-the-machine">UX is more important than the machine<a href="#ux-is-more-important-than-the-machine" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Looking at the homepage itself as it loads, there are too many words. I&rsquo;ll slim
+it down - even if the site loads fast, if the homepage is confusing, people will
+bounce out. So let&rsquo;s slim it down.</p>
+<h4 id="before">Before<a href="#before" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p><img src="/images/lighthouse/homepage-before.png" alt="Homepage - before" title="Homepage - before"></p>
+<h4 id="after">After<a href="#after" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p><img src="/images/lighthouse/homepage-after.png" alt="Homepage - after" title="Homepage - after"></p>
+<p>Much better. Let&rsquo;s go the analytics themselves now.</p>
+<h3 id="wait-which-device-and-i-looking-at">Wait, which device and I looking at?<a href="#wait-which-device-and-i-looking-at" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>I know that most people are using my site from Desktop AND Mobile.</p>
+<p><img src="/images/lighthouse/analytics-1.png" alt="&amp;ldquo;Analytics 1&amp;rdquo;" title="Analytics 1"></p>
+<p>We need to look at both. Looking at the report, looks like it&rsquo;s from &ldquo;emulated
+mobile&rdquo;, so we need to re-run it for Desktop. A quick look at the documentation
+<a href="https://unlighthouse.dev/guide/guides/config">for the configuration</a> and the
+<a href="https://unlighthouse.dev/guide/guides/device">&ldquo;selecting device&rdquo; section</a> shows
+that we&rsquo;ll need to set up a configuration file for each option. Since I know
+that eventually I&rsquo;ll want to automate this, it&rsquo;s a good chance to write a shell
+script to work with this. I went a little overboard as I tern to, and used <code>gum</code>
+to build a fun CLI tool for this, which I&rsquo;m dubbing <code>lighthouse-plus.sh</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/zsh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Check that gum is installed</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> ! <span class="nb">command</span> -v gum <span class="p">&amp;</span>&gt; /dev/null
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;gum could not be found, run &#39;brew install gum&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check that currently using node 16</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>node --version<span class="k">)</span> !<span class="o">=</span> *<span class="s2">&#34;v16&#34;</span>* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Please use node 16&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Get device name (&#39;desktop&#39; or &#39;mobile&#39;) from command line argument, if not</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># provided, use `gum choose` to choose interactively</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -z <span class="nv">$1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">device</span><span class="o">=</span><span class="k">$(</span>gum choose <span class="s2">&#34;desktop&#34;</span> <span class="s2">&#34;mobile&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">device</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">npx unlighthouse --config-file <span class="s2">&#34;</span><span class="nv">$device</span><span class="s2">&#34;</span>-unlighthouse.config.ts
+</span></span></code></pre></div><p>Now we can run <code>lighthouse-plus.sh</code> and get the results for both Desktop and
+Mobile. Let&rsquo;s iterate on Desktop and the Home page first: Many fixes will be
+relevant to all pages, and it&rsquo;s the most important page and device. Also, it&rsquo;s
+what I use right now for development so iterations will be faster for me 🤸‍♀️.</p>
+<h3 id="improving-performance">Improving performance<a href="#improving-performance" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="reduce-unused-javascript">Reduce unused JavaScript<a href="#reduce-unused-javascript" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>The first thing that jumps out is that I have two unused JavaScript files:</p>
+<p><img src="/images/lighthouse/results-1.png" alt="&amp;ldquo;results 1&amp;rdquo;" title="results 1"></p>
+<p>The first one, <code>https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js</code>, is
+from <a href="/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/">&ldquo;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&rdquo;</a>,
+which I honestly forgot about. I don&rsquo;t have any math expressions in my blog&rsquo;s
+homepage, so why am I loading it here? Let&rsquo;s look at the old post&hellip;</p>
+<blockquote>
+<p>Choose where to include JS scripts</p>
+<p>To display math we’re going to use a JS script. We’ll include the JS in our
+<code>layouts/_default/baseof.html</code> file, to make sure that we have Math support in
+every single page.</p>
+</blockquote>
+<p>Oh. That&rsquo;s why. I put it there.</p>
+<p><img src="/images/lighthouse/performance-meme.jpeg" alt="&amp;ldquo;Performance meme&amp;rdquo;" title="Performance meme"></p>
+<p>To fix that, I tried using page parameters, and only include the script on pages
+that need it. To debug the templates and figure out which <code>.html</code> file I want to
+edit (instead of <code>baseof.html</code>), I used a cool trick: I added a <code>{{ printf &quot;%#v&quot; . }}</code> to the top of the file, and then looked at the output of the page. This
+gave me a bit of useless info:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="o">&amp;</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageState</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageOutputs</span><span class="p">:</span> <span class="p">[]</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4cc80</span><span class="p">),</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4d040</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageOutputTemplateVariationsState</span><span class="p">:</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">atomic</span><span class="p">.</span><span class="nx">Uint32</span><span class="p">)(</span><span class="mh">0x14000238180</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageOutput</span><span class="p">:</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4cc80</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageCommon</span><span class="p">:</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageCommon</span><span class="p">)(</span><span class="mh">0x14001177200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>I went through a bunch of the <code>html</code> templates in the <code>layouts</code> folder, until I
+found the right one (for my template, it&rsquo;s <code>themes/hermit-fork/layouts/posts/single.html</code>,
+but of course for your site it&rsquo;s going to probably be different).
+Then, when I replaced the previous <code>printf</code> with <code>{{ printf &quot;%#v&quot; .Params }}</code>, I
+saw exactly what I needed:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">maps</span><span class="p">.</span><span class="nx">Params</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;date&#34;</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;draft&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;images&#34;</span><span class="p">:</span> <span class="p">[]</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;/images/math-teacher.png&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;iscjklanguage&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;lastmod&#34;</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;publishdate&#34;</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;render_math&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;tags&#34;</span><span class="p">:</span> <span class="p">[]</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;howto&#34;</span><span class="p">,</span> <span class="s">&#34;hugo&#34;</span><span class="p">,</span> <span class="s">&#34;meta&#34;</span><span class="p">,</span> <span class="s">&#34;math&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;title&#34;</span><span class="p">:</span> <span class="s">&#34;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;toc&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>See the <code>render_math</code> there? It&rsquo;s because I added this parameter to the post&rsquo;s
+front matter:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2021-06-12T12:15:16</span><span class="m">+03</span><span class="p">:</span><span class="m">00</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">images</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;/images/math-teacher.png&#34;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tags</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">howto</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">meta</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">math</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">render_math</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span></code></pre></div><p>I could even live-debug my <code>if</code> statement with <code>{{ if .Params.render_math }}</code>
+which returned <code>true</code>! The final working solution was to add this to the
+template:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gi">+       &lt;!-- MathJax start --&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+       {{ if .Params.render_math -}}
+</span></span></span><span class="line"><span class="cl"><span class="gi">+               &lt;script type=&#34;text/javascript&#34; id=&#34;MathJax-script&#34; async
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+               &lt;/script&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+               &lt;script type=&#34;text/x-mathjax-config&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       MathJax.Hub.Config({
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       tex2jax: {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               inlineMath: [[&#39;\\(&#39;,&#39;\\)&#39;]],
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               displayMath: [[&#39;$$&#39;,&#39;$$&#39;], [&#39;\[&#39;,&#39;\]&#39;]],
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               processEscapes: true,
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               processEnvironments: true,
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;],
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; },
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                       extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       });
+</span></span></span><span class="line"><span class="cl"><span class="gi">+               &lt;/script&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+               &lt;script type=&#34;text/x-mathjax-config&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       MathJax.Hub.Queue(function() {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               // Fix &lt;code&gt; tags after MathJax finishes running. This is a
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               // hack to overcome a shortcoming of Markdown. Discussion at
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               // https://github.com/mojombo/jekyll/issues/199
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               var all = MathJax.Hub.getAllJax(), i;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               for(i = 0; i &lt; all.length; i += 1) {
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                                       all[i].SourceElement().parentNode.className += &#39; has-jax&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                               }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+                       });
+</span></span></span><span class="line"><span class="cl"><span class="gi">+               &lt;/script&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+       {{- end -}}
+</span></span></span><span class="line"><span class="cl"><span class="gi">+       &lt;!-- MathJax end --&gt;
+</span></span></span></code></pre></div><p>Before:</p>
+<p><img src="/images/lighthouse/math-before.png" alt="math-before" title="math-before"></p>
+<p>And after:</p>
+<p><img src="/images/lighthouse/math-after.png" alt="math-after" title="math-after"></p>
+<h4 id="removing-js-from-the-critical-path-with-partytown-">Removing JS from the critical path with Partytown 🎉<a href="#removing-js-from-the-critical-path-with-partytown-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Now the GA-4 GTM script is slowing down the page even more! Damn it!</p>
+<p><img src="https://i.giphy.com/media/ifccuWhj4PVIqdby6C/giphy-downsized.gif" alt="Damn it" title="Damn it"></p>
+<p>I don&rsquo;t want to remove it, but I also don&rsquo;t want it to slow down the page. So I
+opted to install <a href="https://jaydenm.com/blog/setup-partytown-in-hugo/">Partytown, simply following this guide</a>.</p>
+<p>There were a few things that didn&rsquo;t work 1-to-1 from the guide:</p>
+<ol>
+<li>I had to replace the internal analytics partial with a custom one that uses
+<code>type=&quot;text/partytown&quot;</code> instead of normal <code>text/javascript</code>. So I copied the
+original partial from <a href="https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/google_analytics.html">Hugo&rsquo;s files
+on GitHub</a>.</li>
+<li>Since I deploy to GitHub Pages, I had to cause Jekyll to add the <code>~partytown</code>
+directory. Since <a href="https://github.com/orgs/community/discussions/22161">Jekyll doesn&rsquo;t include directories that start with certain
+special characters when building and deploying the site</a>.</li>
+<li>I used <code>nvm</code> and an <code>.nvmrc</code> file to make sure I&rsquo;m using the correct Node.js
+version.</li>
+</ol>
+<p>To fix 2, I added the following <code>_config.yml</code> file to the root of my site (the
+<code>public</code> directory):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">include</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;~partytown&#34;</span><span class="w">
+</span></span></span></code></pre></div><h4 id="improving-cls-cumulative-layout-shift">Improving CLS (Cumulative Layout Shift)<a href="#improving-cls-cumulative-layout-shift" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>This one was simple: Just slapped <code>height</code> and <code>width</code> on the homepage logo. I
+found out that I&rsquo;m loading that image from a 3rd party site instead of from my
+static files, so updated that as well.</p>
+<h3 id="improving-accessibility">Improving accessibility<a href="#improving-accessibility" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>I only got 74?! That sucks, I really want the site to be accessible. There were
+a bunch of issues here:</p>
+<ol>
+<li>No alt text on the site logo. Added descriptive text</li>
+<li>&ldquo;Background and foreground colors do not have a sufficient contrast ratio&rdquo;.
+In the Hermit theme, in <code>_predefined.scss</code>, there&rsquo;s a <code>@mixin</code> called
+<code>dimmed</code>, which lowers the opacity by 40%. While it looks cool, the contrast
+IS hard to read. So I changed it to 90% instead of 60%, and now it&rsquo;s much
+more legible, even if it&rsquo;s not as cool.</li>
+</ol>
+<h3 id="improving-seo">Improving SEO<a href="#improving-seo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="document-does-not-have-a-meta-description">&ldquo;Document does not have a meta description&rdquo;<a href="#document-does-not-have-a-meta-description" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>After Googling for a bit, this seems like a known issue that hasn&rsquo;t been fixed
+yet, <a href="https://github.com/Track3/hermit/pull/121">see Pull Request</a>. I just copy
+pasted the fix from the Pull Request (including the CR comment) by adding the
+description to the <code>structured-data.html</code> partial and the description to my
+<code>config.toml</code> file.</p>
+<p>In <code>config.toml</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;...&#34;</span>
+</span></span></code></pre></div><p>In <code>themes/hermit-fork/layouts/partials/structured-data.html</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">meta</span>
+</span></span><span class="line"><span class="cl">  <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">content</span><span class="o">=</span><span class="s">&#34;{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end -}}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">/&gt;</span>
+</span></span></code></pre></div><h4 id="structured-data-is-valid">&ldquo;Structured data is valid&rdquo;<a href="#structured-data-is-valid" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>I didn&rsquo;t know about this one! Appears that Google has something called
+<a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data">&ldquo;Structured data&rdquo;</a>
+which is a standardized format for providing information about a page and
+classifying the page content. Seems like we want two features here:</p>
+<ol>
+<li>Add the site logo as the Structured Data logo <a href="https://developers.google.com/search/docs/appearance/structured-data/logo">using this guide</a></li>
+<li>For each blog post, add the &ldquo;BlogPosting&rdquo; structured data <a href="https://developers.google.com/search/docs/appearance/structured-data/article">using this guide</a></li>
+</ol>
+<p>I started with 1 for the homepage, by adding this into the <code>structured-data.html</code>
+partial:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;application/ld+json&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;@context&#34;</span><span class="o">:</span> <span class="s2">&#34;https://schema.org&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;@type&#34;</span><span class="o">:</span> <span class="s2">&#34;Organization&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;url&#34;</span><span class="o">:</span> <span class="p">{{</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">BaseURL</span> <span class="p">}},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;logo&#34;</span><span class="o">:</span> <span class="p">{{</span> <span class="p">(</span><span class="nx">print</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">BaseURL</span> <span class="p">.</span><span class="nx">Site</span><span class="p">.</span><span class="nx">Params</span><span class="p">.</span><span class="nx">siteLogoRelPath</span><span class="p">)</span> <span class="p">}},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>And this to the <code>config.toml</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">siteLogoRelPath</span> <span class="p">=</span> <span class="s2">&#34;images/site-logo.png&#34;</span>
+</span></span></code></pre></div><h2 id="re-run-and-compare">Re-run and compare<a href="#re-run-and-compare" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I WIN!</p>
+<p><img src="/images/lighthouse/win.png" alt="win" title="win"></p>
+<h2 id="other-random-cleanups">Other random cleanups<a href="#other-random-cleanups" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="get-rid-of-the-tweet-hugo-shortcode-warning">Get rid of the &ldquo;tweet&rdquo; Hugo shortcode warning<a href="#get-rid-of-the-tweet-hugo-shortcode-warning" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Every time I ran the server I saw these warnings: <code>The &quot;tweet&quot; shortcode will soon require two named parameters: user and id.</code>. I decided to fix it instead
+of continuing to ignore the warnings (I&rsquo;m not a monster). It&rsquo;s a simple change:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">-{ { &lt; tweet 1388749844240535553 &gt; } }
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+{ { &lt; tweet user=&#34;ShayNehmad&#34; id=&#34;1388749844240535553&#34; &gt; } }
+</span></span></span></code></pre></div><h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I learned a TON about Hugo, Jekyll, GitHub, and the Web in general. I am also
+DONE, with only two side-projects left for later: Automate this with CI, and
+add structured data to the blog posts. Another day!</p>
+<blockquote>
+<p>Photo generated by <a href="https://labs.openai.com/">DALL-E</a> with the prompt
+“An expressive oil painting of a lighthouse watching over a sea made from
+paper”.</p>
+</blockquote>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/">How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</a></li>
+	
+	<li><a href="/posts/how-to-build-this-blog/">How to Build This Blog</a></li>
+	
+	<li><a href="/posts/python-server-profiling-guide-with-examples/">Python Server Profiling: A quick guide (with real data)</a></li>
+	
+	<li><a href="/posts/hugo-flashcard-shortcode-for-study/">Hugo Flashcard Shortcode</a></li>
+	
+	<li><a href="/posts/how-to-backstage-part-1/">How to Set Up Backstage On K8s with Helm - part 1, set up for success</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/hugo">hugo</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/chrome">chrome</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/web">web</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/howto">howto</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/dev">dev</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/profiling">profiling</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1715 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-16 09:36 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/ai-assisted-api-design/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>AI-assisted API Design 🤖🧑‍🎨</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+	}
+</script>
+
+</body>
+
+</html>
