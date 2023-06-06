@@ -274,9 +274,9 @@ so we just followed the guide there</a>!</p>
 <p>We tried setting up GCP on Olga&rsquo;s account, but had issues - for some reason,
 we couldn&rsquo;t activate her account. So we ended up using mine.</p>
 <p>First, we created a new project:</p>
-<p><img src="/images/parkbot/gcp-project.png" alt="&amp;ldquo;GCP project&amp;rdquo;" title="GCP project"></p>
+<p><img src="/images/parkbot/gcp-project.png" alt="&ldquo;GCP project&rdquo;" title="GCP project"></p>
 <p>We&rsquo;ve also set up a budget alert to avoid surprises:</p>
-<p><img src="/images/parkbot/gcp-budget-alert.png" alt="&amp;ldquo;Budget Alert&amp;rdquo;" title="Budget Alert"></p>
+<p><img src="/images/parkbot/gcp-budget-alert.png" alt="&ldquo;Budget Alert&rdquo;" title="Budget Alert"></p>
 <p>And finally, I added Olga as a co-owner.</p>
 <p>We could spend more time on this setup, using IaC stuff - but this is good
 enough to start playing around with it.</p>
@@ -317,10 +317,10 @@ structure so far is:</p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;no spots for you!&#34;</span>
 </span></span></code></pre></div><p>And after running it using <code>export FLASK_APP=valet_parking_slack_bot.server</code>
 and <code>flask run</code>, we got this!</p>
-<p><img src="/images/parkbot/server-1.png" alt="&amp;ldquo;Flask app&amp;rdquo;" title="Flask app"></p>
-<p><img src="/images/parkbot/TheSoupNazi.png" alt="&amp;ldquo;Soup Nazi&amp;rdquo;" title="Soup Nazi"></p>
+<p><img src="/images/parkbot/server-1.png" alt="&ldquo;Flask app&rdquo;" title="Flask app"></p>
+<p><img src="/images/parkbot/TheSoupNazi.png" alt="&ldquo;Soup Nazi&rdquo;" title="Soup Nazi"></p>
 <h3 id="containerizing-the-server">Containerizing the server<a href="#containerizing-the-server" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p><img src="/images/parkbot/docker-meme.jpg" alt="&amp;ldquo;Docker meme&amp;rdquo;" title="Docker meme"></p>
+<p><img src="/images/parkbot/docker-meme.jpg" alt="&ldquo;Docker meme&rdquo;" title="Docker meme"></p>
 <p>Now that we have a working server, we should containerize it so that we can
 deploy it to Cloud Run and execute it from there. Here&rsquo;s the Dockerfile, with
 some inline documentation explaining each part:</p>
@@ -371,7 +371,7 @@ the default Cloud Run value needs to be overridden.</p>
 <li><strong>Region</strong>: we chose <code>europe-north-1</code> in Finland since it&rsquo;s <a href="https://cloud.google.com/blog/products/gcp/gcp-arrives-in-the-nordics-with-a-new-region-in-finland">more
 eco-friendly</a>.</li>
 </ul>
-<p><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gcp_finland_hamina65yz.max-1600x1600.JPEG" alt="&amp;ldquo;Finland data center&amp;rdquo;" title="Finland data center"></p>
+<p><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gcp_finland_hamina65yz.max-1600x1600.JPEG" alt="&ldquo;Finland data center&rdquo;" title="Finland data center"></p>
 <p>And finally:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"> ✓ Building and deploying... Done.
 </span></span></code></pre></div><p>We then faced a permissions issue: the service responded with an error indicating
@@ -379,28 +379,28 @@ we were not permitted to invoke it when trying to test it with a <code>curl</cod
 Apperantly, the default on GCP is to not have global permissions to invoke the
 Cloud Run app. Which is probably correct! So, we added the <code>Cloud Run Invoker</code>
 role to the special group <code>allUsers</code>.</p>
-<p><img src="/images/parkbot/allusers-service-permissions.png" alt="&amp;ldquo;Cloud permissions&amp;rdquo;" title="Cloud
+<p><img src="/images/parkbot/allusers-service-permissions.png" alt="&ldquo;Cloud permissions&rdquo;" title="Cloud
 permissions"></p>
 <p>After fixing that, WE SUCESSFULLY DEPLOYED A SERVER TO THE CLOUD!!! How cool is
 that?</p>
-<p><img src="/images/parkbot/server-success.jpg" alt="&amp;ldquo;Response from cloud&amp;rdquo;" title="Response from 
+<p><img src="/images/parkbot/server-success.jpg" alt="&ldquo;Response from cloud&rdquo;" title="Response from 
 cloud server"></p>
 <p><img src="https://i.giphy.com/media/xTk9ZZvJbApGt3vy3C/giphy.gif?cid=ecf05e47ojwmp169tyt0mrhr2s2n456ugxkeaned360tcr02&amp;rid=giphy.gif&amp;ct=g" alt=""></p>
 <p>We then added a test endpoint to check if the server is working as expected, and
 wrote a short unit test to validate it. You can
 <a href="https://github.com/TheCoreMan/valet-parking-slack-bot/pull/1">check out the details in this PR</a>,
 but here&rsquo;s a screenshot that sums it up:</p>
-<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="&amp;ldquo;pytest healthcheck&amp;rdquo;" title="pytest healthcheck"></p>
+<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="&ldquo;pytest healthcheck&rdquo;" title="pytest healthcheck"></p>
 <h3 id="connecting-the-server-to-slack">Connecting the server to Slack<a href="#connecting-the-server-to-slack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>We now wanted to create a Slack App, and connect it to the server. We started
 by creating a test workspace called NiceFam, and then we used
 <a href="https://api.slack.com/apps">the Slack API &ldquo;Your Apps&rdquo; page</a> to create a new app.
 We added it to our test workspace, and configured the <code>/spots</code> test command to
 request our cloud server endpoint:</p>
-<p><img src="/images/parkbot/slash-command.png" alt="&amp;ldquo;Slack slash command configuration&amp;rdquo;" title="Slack slash command configuration"></p>
+<p><img src="/images/parkbot/slash-command.png" alt="&ldquo;Slack slash command configuration&rdquo;" title="Slack slash command configuration"></p>
 <p>The result?</p>
-<p><img src="/images/parkbot/slack-integ-1.png" alt="&amp;ldquo;Slash command preview in Slack&amp;rdquo;" title="Slash command preview in Slack"></p>
-<p><img src="/images/parkbot/slack-integ-2.png" alt="&amp;ldquo;Response from server in Slack&amp;rdquo;" title="Response from server in Slack"></p>
+<p><img src="/images/parkbot/slack-integ-1.png" alt="&ldquo;Slash command preview in Slack&rdquo;" title="Slash command preview in Slack"></p>
+<p><img src="/images/parkbot/slack-integ-2.png" alt="&ldquo;Response from server in Slack&rdquo;" title="Response from server in Slack"></p>
 <p>Woohoo!</p>
 <p><img src="https://i.giphy.com/media/eKraNY98WTfUi6Fd1t/giphy.gif?cid=ecf05e47a1m06l7omtax8mst3d08u7owimby82eljc46l6rl&amp;rid=giphy.gif" alt=""></p>
 <h2 id="whats-next">What&rsquo;s next?<a href="#whats-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -449,7 +449,8 @@ the real deployment will be ready soon!</p>
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

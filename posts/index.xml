@@ -20,7 +20,7 @@ Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a too
 			<content type="html"><![CDATA[<p>Recently Google let me see the new Analytics dashboard (they moved from&hellip;
 Something something analytics to something something Analytics 4). And one
 of they things I saw was that my blog&rsquo;s performance was bad!</p>
-<p><img src="https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif" alt="&amp;ldquo;I have failed you&amp;rdquo;" title="I have failed you"></p>
+<p><img src="https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif" alt="&ldquo;I have failed you&rdquo;" title="I have failed you"></p>
 <p>In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it
 a few years ago, so a cleanup for performance and content is probably in
 order.</p>
@@ -61,7 +61,7 @@ bounce out. So let&rsquo;s slim it down.</p>
 <p>Much better. Let&rsquo;s go the analytics themselves now.</p>
 <h3 id="wait-which-device-and-i-looking-at">Wait, which device and I looking at?</h3>
 <p>I know that most people are using my site from Desktop AND Mobile.</p>
-<p><img src="/images/lighthouse/analytics-1.png" alt="&amp;ldquo;Analytics 1&amp;rdquo;" title="Analytics 1"></p>
+<p><img src="/images/lighthouse/analytics-1.png" alt="&ldquo;Analytics 1&rdquo;" title="Analytics 1"></p>
 <p>We need to look at both. Looking at the report, looks like it&rsquo;s from &ldquo;emulated
 mobile&rdquo;, so we need to re-run it for Desktop. A quick look at the documentation
 <a href="https://unlighthouse.dev/guide/guides/config">for the configuration</a> and the
@@ -101,7 +101,7 @@ what I use right now for development so iterations will be faster for me 🤸‍
 <h3 id="improving-performance">Improving performance</h3>
 <h4 id="reduce-unused-javascript">Reduce unused JavaScript</h4>
 <p>The first thing that jumps out is that I have two unused JavaScript files:</p>
-<p><img src="/images/lighthouse/results-1.png" alt="&amp;ldquo;results 1&amp;rdquo;" title="results 1"></p>
+<p><img src="/images/lighthouse/results-1.png" alt="&ldquo;results 1&rdquo;" title="results 1"></p>
 <p>The first one, <code>https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js</code>, is
 from <a href="/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/">&ldquo;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&rdquo;</a>,
 which I honestly forgot about. I don&rsquo;t have any math expressions in my blog&rsquo;s
@@ -113,7 +113,7 @@ homepage, so why am I loading it here? Let&rsquo;s look at the old post&hellip;<
 every single page.</p>
 </blockquote>
 <p>Oh. That&rsquo;s why. I put it there.</p>
-<p><img src="/images/lighthouse/performance-meme.jpeg" alt="&amp;ldquo;Performance meme&amp;rdquo;" title="Performance meme"></p>
+<p><img src="/images/lighthouse/performance-meme.jpeg" alt="&ldquo;Performance meme&rdquo;" title="Performance meme"></p>
 <p>To fix that, I tried using page parameters, and only include the script on pages
 that need it. To debug the templates and figure out which <code>.html</code> file I want to
 edit (instead of <code>baseof.html</code>), I used a cool trick: I added a <code>{{ printf &quot;%#v&quot; . }}</code> to the top of the file, and then looked at the output of the page. This
@@ -274,7 +274,9 @@ partial:</p>
 </span></span></code></pre></div><p>And this to the <code>config.toml</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">siteLogoRelPath</span> <span class="p">=</span> <span class="s2">&#34;images/site-logo.png&#34;</span>
-</span></span></code></pre></div><h2 id="re-run-and-compare">Re-run and compare</h2>
+</span></span></code></pre></div><p>Then, run your site locally, inspect the <code>&lt;head&gt;</code> until you find the JSON-LD
+tag, copy it, and paste it into the <a href="https://json-ld.org/playground/">JSON-LD Playground</a> to test that it worked out correctly.</p>
+<h2 id="re-run-and-compare">Re-run and compare</h2>
 <p>I WIN!</p>
 <p><img src="/images/lighthouse/win.png" alt="win" title="win"></p>
 <h2 id="other-random-cleanups">Other random cleanups</h2>
@@ -328,7 +330,7 @@ as possible. Try to answer will minimal creativity and maximum strictness.</p>
 </blockquote>
 <p>And then a list of endpoints and what they should do. I can share one, but not
 all the details. This is not an open-source project.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/%22Loose_lips_might_sink_ships%22_-_NARA_-_513543.jpg/1280px-%22Loose_lips_might_sink_ships%22_-_NARA_-_513543.jpg" alt="&amp;ldquo;Loose lips sink ships&amp;rdquo;" title="Loose lips sink ships"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/%22Loose_lips_might_sink_ships%22_-_NARA_-_513543.jpg/1280px-%22Loose_lips_might_sink_ships%22_-_NARA_-_513543.jpg" alt="&ldquo;Loose lips sink ships&rdquo;" title="Loose lips sink ships"></p>
 <p>I will share one API endpoint which is not confidential:</p>
 <blockquote>
 <ol>
@@ -379,7 +381,7 @@ includes two servers, one for local development and one for production:</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">Production server</span><span class="w">
 </span></span></span></code></pre></div></blockquote>
 <h3 id="drying-up-the-spec">DRYing up the spec</h3>
-<p><img src="https://i.redd.it/r2e86rrndns41.jpg" alt="&amp;ldquo;DRY meme&amp;rdquo;" title="DRY meme"></p>
+<p><img src="https://i.redd.it/r2e86rrndns41.jpg" alt="&ldquo;DRY meme&rdquo;" title="DRY meme"></p>
 <p>I wanted to reduce duplication, so I asked the bot to create OpenAPI
 components for me based on the responses. This was my prompt:</p>
 <blockquote>
@@ -421,7 +423,7 @@ Them, update the endpoint&hellip;</p>
 </blockquote>
 <p>And the enum was generated correctly.</p>
 <h2 id="summary">Summary</h2>
-<p><img src="https://i.giphy.com/media/7TtvTUMm9mp20/giphy.gif" alt="&amp;ldquo;thumbs up&amp;rdquo;" title="Thumbs up"></p>
+<p><img src="https://i.giphy.com/media/7TtvTUMm9mp20/giphy.gif" alt="&ldquo;thumbs up&rdquo;" title="Thumbs up"></p>
 <p>This went really REALLY well, and I don&rsquo;t think I&rsquo;ll write manual API
 specifications in the future. It saved me a ton of time.</p>
 <p>There are two things I would have done differently:</p>
@@ -450,7 +452,7 @@ for other projects.</p>
 This summary is mostly for me and for people I&amp;rsquo;ll refer it to - so it&amp;rsquo;s not the most friendly read. But if you don&amp;rsquo;t have time to read the book, this post can serve as a useful TL;DR for you. I highly recommend you do read it - it&amp;rsquo;s a great read and a short one, too!</description>
 			<content type="html"><![CDATA[<p>Recently I&rsquo;ve read <a href="https://www.amazon.com/Turn-Ship-Around-Turning-Followers/dp/1591846404">Turn the Ship Around! by L. David Marquet</a>
 following <a href="https://www.linkedin.com/in/adrukh/">Anton Drukh</a>&rsquo;s recommendation.</p>
-<p><img src="/images/turn-the-ship-around-cover.jpeg" alt="&amp;ldquo;Turn the ship around cover&amp;rdquo;" title="Turn the ship around cover"></p>
+<p><img src="/images/turn-the-ship-around-cover.jpeg" alt="&ldquo;Turn the ship around cover&rdquo;" title="Turn the ship around cover"></p>
 <p>This summary is mostly for me and for people I&rsquo;ll refer it to - so it&rsquo;s not the
 most friendly read. But if you don&rsquo;t have time to read the book, this post
 can serve as a useful TL;DR for you. I highly recommend you do read it -
@@ -631,12 +633,12 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-d38d62804ff42364e336c7d07f3e4a92&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-6927cef733fe3d648f23a43264dd0048&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-d38d62804ff42364e336c7d07f3e4a92" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-6927cef733fe3d648f23a43264dd0048" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -691,7 +693,7 @@ without the spaces between the <code>{</code>-s. They are here to avoid renderin
 </span></span><span class="line"><span class="cl">42! <span class="ge">_some markdown_</span> [<span class="nt">things such as links</span>](<span class="na">/posts</span>)
 </span></span><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="p">/</span><span class="nt">flashcard</span> <span class="p">&gt;</span> } }
 </span></span></code></pre></div><h2 id="a-play-by-play">A play-by-play</h2>
-<p><img src="https://i.giphy.com/media/q7UpJegIZjsk0/giphy.gif" alt="Bill O&amp;rsquo;Reilly" title="Bill O'Reilly"></p>
+<p><img src="https://i.giphy.com/media/q7UpJegIZjsk0/giphy.gif" alt="Bill O&rsquo;Reilly" title="Bill O'Reilly"></p>
 <h3 id="html-create-a-shortcode-file">HTML: Create a shortcode file</h3>
 <p>This is the first version of the shortcode file:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="na">.Get</span><span class="w"> </span><span class="s">&#34;question&#34;</span><span class="w"> </span><span class="cp">}}</span>
@@ -728,11 +730,11 @@ and T1 is executed.</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>This is the a screenshot of output before any CSS was applied:</p>
-<p><img src="/images/flashcards/in-progress-1.png" alt="&amp;ldquo;In progress 1&amp;rdquo;"></p>
+<p><img src="/images/flashcards/in-progress-1.png" alt="&ldquo;In progress 1&rdquo;"></p>
 <h3 id="css-style-it-">CSS: Style it 💅</h3>
 <p>I&rsquo;ve added some CSS to make it look like a flashcard. Writing it was kinda fun,
 based on my experience with <a href="/posts/learning-css-with-css-battles.md">CSS Battles</a>.</p>
-<p><img src="/images/flashcards/in-progress-2.png" alt="&amp;ldquo;In progress 2&amp;rdquo;" title="In progress 2"></p>
+<p><img src="/images/flashcards/in-progress-2.png" alt="&ldquo;In progress 2&rdquo;" title="In progress 2"></p>
 <p>The <a href="https://github.com/TheCoreMan/TheCoreMan.github.io/blob/869d1627c6bbfaacaa1bbef8a30c0abb2bb967ee/css/flashcard.css">final CSS</a> includes support for the next steps as well.</p>
 <h3 id="js-reveal-the-answer-on-click">JS: Reveal the answer on click</h3>
 <blockquote>
@@ -807,12 +809,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-6f322a30dd63697f842cf8343ee74d04&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-f23c4e76322344638a9f7edfd3680d40&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-6f322a30dd63697f842cf8343ee74d04" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-f23c4e76322344638a9f7edfd3680d40" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -838,12 +840,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-863092ec3ded68773f2ffd442406a433&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-a06d37e233836746494ffd243c8fe02d&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-863092ec3ded68773f2ffd442406a433" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-a06d37e233836746494ffd243c8fe02d" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -852,7 +854,7 @@ which made the HTML slightly more complex:</p>
 
 <p>Here&rsquo;s how the different IDs look in the DOM now (you can also check it with
 your own dev tools):</p>
-<p><img src="/images/flashcards/answer-ids.png" alt="&amp;ldquo;answer ids&amp;rdquo;" title="answer ids"></p>
+<p><img src="/images/flashcards/answer-ids.png" alt="&ldquo;answer ids&rdquo;" title="answer ids"></p>
 <h4 id="markdown-in-the-question">Markdown in the question</h4>
 <p>✅</p>
 
@@ -874,12 +876,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d8a723f40474f33920fe66d63483c2ed&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-ff9c423743ae363024708862dedf463d&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d8a723f40474f33920fe66d63483c2ed" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-ff9c423743ae363024708862dedf463d" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -907,12 +909,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d90073324484e6ca283fd6d374ff63e2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-334efd837f4a266203e244369cd7d8f0&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d90073324484e6ca283fd6d374ff63e2" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-334efd837f4a266203e244369cd7d8f0" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -955,12 +957,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-44fe8a264d8e72f39473dd3cf0326063&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-c0644e8d04638a33f2df72323976fde4&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-44fe8a264d8e72f39473dd3cf0326063" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-c0644e8d04638a33f2df72323976fde4" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax</h1>
 <ul>
 <li><a href="#overview">Overview</a>
@@ -2071,7 +2073,7 @@ new features with the importance of maintaining high code quality. That&rsquo;s 
 I went together with a team lead from Reco - Michael Lantsman - to a great
 meetup at Riskified about this subject exactly. It had some great insights,
 so I&rsquo;m sharing them here :)</p>
-<p><img src="/images/riskified_meetup.jpeg" alt="&amp;ldquo;selfie&amp;rdquo;" title="Riskified meetup selfie"></p>
+<p><img src="/images/riskified_meetup.jpeg" alt="&ldquo;selfie&rdquo;" title="Riskified meetup selfie"></p>
 <p>After some food and beer, Shai Peretz gave a warm introduction, then Itay
 Waxman shared some practical strategies for fast delivery
 without creating tech debt, and finally we had a very insightful panel about
@@ -2845,9 +2847,9 @@ by testing how well it can respond to queries required by the business logic.</p
 tools specifically designed for creating ER diargrams, I find them exhausting;
 just whiteboarding allows one to focus on what one cares about, instead of
 focusing on the tool itself.</p>
-<p><img src="/images/parkbot/ER.png" alt="&amp;ldquo;ER Design&amp;rdquo;" title="ER Design"></p>
+<p><img src="/images/parkbot/ER.png" alt="&ldquo;ER Design&rdquo;" title="ER Design"></p>
 <h3 id="the-business-needs-test">The &ldquo;Business needs&rdquo; test</h3>
-<p><img src="https://i.giphy.com/media/3o6Mbbs879ozZ9Yic0/giphy.gif" alt="&amp;ldquo;test&amp;rdquo;" title="Test"></p>
+<p><img src="https://i.giphy.com/media/3o6Mbbs879ozZ9Yic0/giphy.gif" alt="&ldquo;test&rdquo;" title="Test"></p>
 <p>As we mentioned before, one good way to review the ER model is to check whether
 it is useful for the main queries we&rsquo;ll want to ask of it. These queries are
 derived from the main business needs from the application. So let&rsquo;s check that!</p>
@@ -2906,7 +2908,7 @@ sprinkled on top.</li>
 </ol>
 <h3 id="summary">Summary</h3>
 <p>Seems like the schema structure is OK.</p>
-<p><img src="https://i.giphy.com/media/dsKnRuALlWsZG/giphy.gif" alt="&amp;ldquo;summary&amp;rdquo;" title="summary"></p>
+<p><img src="https://i.giphy.com/media/dsKnRuALlWsZG/giphy.gif" alt="&ldquo;summary&rdquo;" title="summary"></p>
 <p>There is something &ldquo;uncomfortable&rdquo; about
 often having to perform an <code>INNER JOIN</code> between spots are reservations. We
 could work around that in various ways, like a database view or duplication of
@@ -2917,7 +2919,7 @@ with a relational database (specifically, <code>PostgreSQL</code>) because it&rs
 relevant for us to practice. Also, <a href="https://db-engines.com/en/ranking">it&rsquo;s the fourth most popular option, behind
 three other relational options</a>, so how
 wrong could this choice be?</p>
-<p><img src="/images/parkbot/db-ranking.png" alt="&amp;ldquo;DB rankings&amp;rdquo;" title="DB rankings"></p>
+<p><img src="/images/parkbot/db-ranking.png" alt="&ldquo;DB rankings&rdquo;" title="DB rankings"></p>
 <p>Now, which ORM to use? We decided to go with <code>SQLAlchemy</code> as an ORM since quick
 research showed it&rsquo;s definitely the standard for Python, very popular with
 <a href="https://pypistats.org/packages/sqlalchemy">close to 50M monthly downloads</a>,
@@ -2947,14 +2949,14 @@ the <code>inmem_testing</code> case implemented for now:</p>
 </span></span><span class="line"><span class="cl">    <span class="n">docker_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">prod</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="k">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="k">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite://&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">session</span>
-</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="k">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Docker session not implemented yet.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="k">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Prod session not implemented yet.&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Unknown case: </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
@@ -3430,16 +3432,16 @@ our bot to the cloud. Immediate regret followed, as the build-deploy-test loop
 got a lot longer! Instead of just changing the code to see what happens, we now
 need to deploy the code to GCP, build a new docker image there, and deploy it.
 That&rsquo;s too much time!</p>
-<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&amp;ldquo;i&amp;rsquo;m waiting&amp;rdquo;" title="i'm waiting"></p>
+<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&ldquo;i&rsquo;m waiting&rdquo;" title="i'm waiting"></p>
 <p>To speed things up, we used <a href="https://ngrok.com/">ngrok</a> to set up a public
 URL for our local web server, and then configured the Slack app to go to that
 URL instead of our cloud endpoint. When we&rsquo;ll release, we&rsquo;ll need to revert
 this change.</p>
 <p>After downloading <code>ngrok</code>, running it was literally just <code>./ngrok http 5000</code>.
 The command gives you a public URL:</p>
-<p><img src="/images/parkbot/ngrok-output.jpg" alt="&amp;ldquo;ngrok output&amp;rdquo;" title="ngrok output"></p>
+<p><img src="/images/parkbot/ngrok-output.jpg" alt="&ldquo;ngrok output&rdquo;" title="ngrok output"></p>
 <p>And then you configure it in Slack:</p>
-<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&amp;ldquo;slack ngrok&amp;rdquo;" title="slack ngrok"></p>
+<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&ldquo;slack ngrok&rdquo;" title="slack ngrok"></p>
 <h2 id="designing-and-building-the-bots-business-logic">Designing and Building the Bot&rsquo;s Business Logic</h2>
 <p>With all the POCs we did
 <a href="../building-a-slack-bot-with-python-on-gcp">in the first post</a> and all the QoL
@@ -3489,7 +3491,7 @@ and to expedite development using this trick:</p>
 <p><strong>Create an interface for the parking spot ~repository~, so that developing
 it won&rsquo;t block us from working on business logic and UX.</strong></p>
 <p>Our design ended up here:</p>
-<p><img src="/images/parkbot/oop-design.png" alt="&amp;ldquo;OOP design&amp;rdquo;" title="OOP design"></p>
+<p><img src="/images/parkbot/oop-design.png" alt="&ldquo;OOP design&rdquo;" title="OOP design"></p>
 <p>This design also allowed us to test the designator using <strong>automatic spec for
 mocks</strong>, which proved very useful in our case. Check out how clear and clean
 these tests are!</p>
@@ -3779,9 +3781,9 @@ so we just followed the guide there</a>!</p>
 <p>We tried setting up GCP on Olga&rsquo;s account, but had issues - for some reason,
 we couldn&rsquo;t activate her account. So we ended up using mine.</p>
 <p>First, we created a new project:</p>
-<p><img src="/images/parkbot/gcp-project.png" alt="&amp;ldquo;GCP project&amp;rdquo;" title="GCP project"></p>
+<p><img src="/images/parkbot/gcp-project.png" alt="&ldquo;GCP project&rdquo;" title="GCP project"></p>
 <p>We&rsquo;ve also set up a budget alert to avoid surprises:</p>
-<p><img src="/images/parkbot/gcp-budget-alert.png" alt="&amp;ldquo;Budget Alert&amp;rdquo;" title="Budget Alert"></p>
+<p><img src="/images/parkbot/gcp-budget-alert.png" alt="&ldquo;Budget Alert&rdquo;" title="Budget Alert"></p>
 <p>And finally, I added Olga as a co-owner.</p>
 <p>We could spend more time on this setup, using IaC stuff - but this is good
 enough to start playing around with it.</p>
@@ -3822,10 +3824,10 @@ structure so far is:</p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;no spots for you!&#34;</span>
 </span></span></code></pre></div><p>And after running it using <code>export FLASK_APP=valet_parking_slack_bot.server</code>
 and <code>flask run</code>, we got this!</p>
-<p><img src="/images/parkbot/server-1.png" alt="&amp;ldquo;Flask app&amp;rdquo;" title="Flask app"></p>
-<p><img src="/images/parkbot/TheSoupNazi.png" alt="&amp;ldquo;Soup Nazi&amp;rdquo;" title="Soup Nazi"></p>
+<p><img src="/images/parkbot/server-1.png" alt="&ldquo;Flask app&rdquo;" title="Flask app"></p>
+<p><img src="/images/parkbot/TheSoupNazi.png" alt="&ldquo;Soup Nazi&rdquo;" title="Soup Nazi"></p>
 <h3 id="containerizing-the-server">Containerizing the server</h3>
-<p><img src="/images/parkbot/docker-meme.jpg" alt="&amp;ldquo;Docker meme&amp;rdquo;" title="Docker meme"></p>
+<p><img src="/images/parkbot/docker-meme.jpg" alt="&ldquo;Docker meme&rdquo;" title="Docker meme"></p>
 <p>Now that we have a working server, we should containerize it so that we can
 deploy it to Cloud Run and execute it from there. Here&rsquo;s the Dockerfile, with
 some inline documentation explaining each part:</p>
@@ -3876,7 +3878,7 @@ the default Cloud Run value needs to be overridden.</p>
 <li><strong>Region</strong>: we chose <code>europe-north-1</code> in Finland since it&rsquo;s <a href="https://cloud.google.com/blog/products/gcp/gcp-arrives-in-the-nordics-with-a-new-region-in-finland">more
 eco-friendly</a>.</li>
 </ul>
-<p><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gcp_finland_hamina65yz.max-1600x1600.JPEG" alt="&amp;ldquo;Finland data center&amp;rdquo;" title="Finland data center"></p>
+<p><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/gcp_finland_hamina65yz.max-1600x1600.JPEG" alt="&ldquo;Finland data center&rdquo;" title="Finland data center"></p>
 <p>And finally:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"> ✓ Building and deploying... Done.
 </span></span></code></pre></div><p>We then faced a permissions issue: the service responded with an error indicating
@@ -3884,28 +3886,28 @@ we were not permitted to invoke it when trying to test it with a <code>curl</cod
 Apperantly, the default on GCP is to not have global permissions to invoke the
 Cloud Run app. Which is probably correct! So, we added the <code>Cloud Run Invoker</code>
 role to the special group <code>allUsers</code>.</p>
-<p><img src="/images/parkbot/allusers-service-permissions.png" alt="&amp;ldquo;Cloud permissions&amp;rdquo;" title="Cloud
+<p><img src="/images/parkbot/allusers-service-permissions.png" alt="&ldquo;Cloud permissions&rdquo;" title="Cloud
 permissions"></p>
 <p>After fixing that, WE SUCESSFULLY DEPLOYED A SERVER TO THE CLOUD!!! How cool is
 that?</p>
-<p><img src="/images/parkbot/server-success.jpg" alt="&amp;ldquo;Response from cloud&amp;rdquo;" title="Response from 
+<p><img src="/images/parkbot/server-success.jpg" alt="&ldquo;Response from cloud&rdquo;" title="Response from 
 cloud server"></p>
 <p><img src="https://i.giphy.com/media/xTk9ZZvJbApGt3vy3C/giphy.gif?cid=ecf05e47ojwmp169tyt0mrhr2s2n456ugxkeaned360tcr02&amp;rid=giphy.gif&amp;ct=g" alt=""></p>
 <p>We then added a test endpoint to check if the server is working as expected, and
 wrote a short unit test to validate it. You can
 <a href="https://github.com/TheCoreMan/valet-parking-slack-bot/pull/1">check out the details in this PR</a>,
 but here&rsquo;s a screenshot that sums it up:</p>
-<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="&amp;ldquo;pytest healthcheck&amp;rdquo;" title="pytest healthcheck"></p>
+<p><img src="https://user-images.githubusercontent.com/6576891/132825484-2bff7ffb-3698-4a44-b9fe-45af67ff61d1.png" alt="&ldquo;pytest healthcheck&rdquo;" title="pytest healthcheck"></p>
 <h3 id="connecting-the-server-to-slack">Connecting the server to Slack</h3>
 <p>We now wanted to create a Slack App, and connect it to the server. We started
 by creating a test workspace called NiceFam, and then we used
 <a href="https://api.slack.com/apps">the Slack API &ldquo;Your Apps&rdquo; page</a> to create a new app.
 We added it to our test workspace, and configured the <code>/spots</code> test command to
 request our cloud server endpoint:</p>
-<p><img src="/images/parkbot/slash-command.png" alt="&amp;ldquo;Slack slash command configuration&amp;rdquo;" title="Slack slash command configuration"></p>
+<p><img src="/images/parkbot/slash-command.png" alt="&ldquo;Slack slash command configuration&rdquo;" title="Slack slash command configuration"></p>
 <p>The result?</p>
-<p><img src="/images/parkbot/slack-integ-1.png" alt="&amp;ldquo;Slash command preview in Slack&amp;rdquo;" title="Slash command preview in Slack"></p>
-<p><img src="/images/parkbot/slack-integ-2.png" alt="&amp;ldquo;Response from server in Slack&amp;rdquo;" title="Response from server in Slack"></p>
+<p><img src="/images/parkbot/slack-integ-1.png" alt="&ldquo;Slash command preview in Slack&rdquo;" title="Slash command preview in Slack"></p>
+<p><img src="/images/parkbot/slack-integ-2.png" alt="&ldquo;Response from server in Slack&rdquo;" title="Response from server in Slack"></p>
 <p>Woohoo!</p>
 <p><img src="https://i.giphy.com/media/eKraNY98WTfUi6Fd1t/giphy.gif?cid=ecf05e47a1m06l7omtax8mst3d08u7owimby82eljc46l6rl&amp;rid=giphy.gif" alt=""></p>
 <h2 id="whats-next">What&rsquo;s next?</h2>
@@ -4396,7 +4398,7 @@ always the tool to reach for, but it&rsquo;s obviously very useful to know.</p>
 us to the delightful:</p>
 <p><img src="/images/clj-debug-1.png" alt="Debugging in Spacemacs" title="Debugging in Spacemacs"></p>
 <p>And then to even more amazing:</p>
-<p><img src="/images/debug-clj-2.gif" alt="&amp;ldquo;Debugging in Spacemacs&amp;rdquo;" title="Debugging in Spacemacs"></p>
+<p><img src="/images/debug-clj-2.gif" alt="&ldquo;Debugging in Spacemacs&rdquo;" title="Debugging in Spacemacs"></p>
 <h2 id="what-now">What now?</h2>
 <p>We&rsquo;re at the halfway point!</p>
 <p><img src="/images/clj-koans-list.png" alt="Koans list" title="Koans list"></p>
@@ -4645,7 +4647,7 @@ have definitely impacted my goals.</p>
 in my goals. Staying healthy and happy in the long term is not just for me now -
 it&rsquo;s for her as well. I often find myself thinking about this picture from The
 Simpsons:</p>
-<p><img src="/images/hereforever.png" alt="don&amp;rsquo;t forget, you&amp;rsquo;re here forever"></p>
+<p><img src="/images/hereforever.png" alt="don&rsquo;t forget, you&rsquo;re here forever"></p>
 <p><img src="/images/doitforher.jpg" alt="do it for her"></p>
 <h2 id="what-skills-knowledge-or-behaviors-have-i-achieved-over-the-last-quarter-that-i-could-continue-to-develop">What skills, knowledge, or behaviors have I achieved over the last quarter that I could continue to develop?</h2>
 <p>I think that the number one thing for the upcoming months for me is Management.
@@ -5268,7 +5270,7 @@ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last 
 <p>On the track that is worn by the wheel?</p>
 <p>— Yun-men, from the Jingde Chuandeng Lu  《景德傳燈錄》</p>
 </blockquote>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Yunmen_mountain.jpg/640px-Yunmen_mountain.jpg" alt="Yun men&amp;rsquo;s mountain"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Yunmen_mountain.jpg/640px-Yunmen_mountain.jpg" alt="Yun men&rsquo;s mountain"></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl"><span class="p">(</span><span class="kd">ns </span><span class="nv">koans.05-sets</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:require</span> <span class="p">[</span><span class="nv">koan-engine.core</span> <span class="ss">:refer</span> <span class="ss">:all</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">            <span class="p">[</span><span class="nv">clojure.set</span> <span class="ss">:as</span> <span class="nv">set</span><span class="p">]))</span>
@@ -6426,7 +6428,7 @@ wasm.js:398 DEBUG src/level.rs:95 Viewing level levelname component
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// ...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><p>Here&rsquo;s how it looks like:</p>
-<p><img src="/images/yew-hashing-3.gif" alt="&amp;ldquo;hashed flags&amp;rdquo;" title="hashed flags"></p>
+<p><img src="/images/yew-hashing-3.gif" alt="&ldquo;hashed flags&rdquo;" title="hashed flags"></p>
 <p>Here is some log output:</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">wasm.js:398 DEBUG src/level.rs:54 Creating level name1 component
 wasm.js:398 DEBUG src/level.rs:54 Creating level name2 component
@@ -7295,7 +7297,7 @@ Why do we need a level browser?</description>
 <p><img src="https://media.giphy.com/media/jVCFgE9CW1bfmI0DGZ/giphy.gif" alt="level browser demo" title="Level browser demo"></p>
 <h3 id="unit-testing">Unit testing</h3>
 <p>I also covered the non-boilerplate parts of the code with unit tests. Since <code>rust</code> has it baked-in to the language and tooling, this is very easy and immediately satisfying.</p>
-<p><img src="https://i.imgur.com/ufD5efV.png" alt="&amp;ldquo;Test Explorer&amp;rdquo;" title="Test Explorer"></p>
+<p><img src="https://i.imgur.com/ufD5efV.png" alt="&ldquo;Test Explorer&rdquo;" title="Test Explorer"></p>
 <p>The unit test for this script was the example we saw eariler:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -7667,7 +7669,7 @@ The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-rece
 			<description>Last time we talked a lot about the WHY. This post is all about the HOW.
 If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level HLD Planning the level database What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time If a task is done and no one marks it in a ticketing system, does it actually work?</description>
 			<content type="html"><![CDATA[<p><a href="/posts/dev-log-0">Last time</a> we talked a lot about the WHY. This post is all about the HOW.</p>
-<p><img src="https://media.giphy.com/media/3o7aD1fN85p9F0uuIM/giphy.gif" alt="Let&amp;rsquo;s get down to business."></p>
+<p><img src="https://media.giphy.com/media/3o7aD1fN85p9F0uuIM/giphy.gif" alt="Let&rsquo;s get down to business."></p>
 <ul>
 <li><a href="#if-a-task-is-done-and-no-one-marks-it-in-a-ticketing-system-does-it-actually-work">If a task is done and no one marks it in a ticketing system, does it actually work?</a></li>
 <li><a href="#lets-do-high-level-requirements-first">Let&rsquo;s do high-level requirements first</a>

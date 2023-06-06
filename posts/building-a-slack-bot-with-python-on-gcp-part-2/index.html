@@ -280,16 +280,16 @@ our bot to the cloud. Immediate regret followed, as the build-deploy-test loop
 got a lot longer! Instead of just changing the code to see what happens, we now
 need to deploy the code to GCP, build a new docker image there, and deploy it.
 That&rsquo;s too much time!</p>
-<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&amp;ldquo;i&amp;rsquo;m waiting&amp;rdquo;" title="i'm waiting"></p>
+<p><img src="https://i.giphy.com/media/xT9KVmINRKGsIzd0YM/giphy.gif" alt="&ldquo;i&rsquo;m waiting&rdquo;" title="i'm waiting"></p>
 <p>To speed things up, we used <a href="https://ngrok.com/">ngrok</a> to set up a public
 URL for our local web server, and then configured the Slack app to go to that
 URL instead of our cloud endpoint. When we&rsquo;ll release, we&rsquo;ll need to revert
 this change.</p>
 <p>After downloading <code>ngrok</code>, running it was literally just <code>./ngrok http 5000</code>.
 The command gives you a public URL:</p>
-<p><img src="/images/parkbot/ngrok-output.jpg" alt="&amp;ldquo;ngrok output&amp;rdquo;" title="ngrok output"></p>
+<p><img src="/images/parkbot/ngrok-output.jpg" alt="&ldquo;ngrok output&rdquo;" title="ngrok output"></p>
 <p>And then you configure it in Slack:</p>
-<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&amp;ldquo;slack ngrok&amp;rdquo;" title="slack ngrok"></p>
+<p><img src="/images/parkbot/ngrok-in-app.jpg" alt="&ldquo;slack ngrok&rdquo;" title="slack ngrok"></p>
 <h2 id="designing-and-building-the-bots-business-logic">Designing and Building the Bot&rsquo;s Business Logic<a href="#designing-and-building-the-bots-business-logic" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>With all the POCs we did
 <a href="../building-a-slack-bot-with-python-on-gcp">in the first post</a> and all the QoL
@@ -339,7 +339,7 @@ and to expedite development using this trick:</p>
 <p><strong>Create an interface for the parking spot ~repository~, so that developing
 it won&rsquo;t block us from working on business logic and UX.</strong></p>
 <p>Our design ended up here:</p>
-<p><img src="/images/parkbot/oop-design.png" alt="&amp;ldquo;OOP design&amp;rdquo;" title="OOP design"></p>
+<p><img src="/images/parkbot/oop-design.png" alt="&ldquo;OOP design&rdquo;" title="OOP design"></p>
 <p>This design also allowed us to test the designator using <strong>automatic spec for
 mocks</strong>, which proved very useful in our case. Check out how clear and clean
 these tests are!</p>
@@ -490,7 +490,8 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

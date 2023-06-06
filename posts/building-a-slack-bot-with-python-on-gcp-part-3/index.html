@@ -132,9 +132,9 @@ by testing how well it can respond to queries required by the business logic.</p
 tools specifically designed for creating ER diargrams, I find them exhausting;
 just whiteboarding allows one to focus on what one cares about, instead of
 focusing on the tool itself.</p>
-<p><img src="/images/parkbot/ER.png" alt="&amp;ldquo;ER Design&amp;rdquo;" title="ER Design"></p>
+<p><img src="/images/parkbot/ER.png" alt="&ldquo;ER Design&rdquo;" title="ER Design"></p>
 <h3 id="the-business-needs-test">The &ldquo;Business needs&rdquo; test<a href="#the-business-needs-test" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p><img src="https://i.giphy.com/media/3o6Mbbs879ozZ9Yic0/giphy.gif" alt="&amp;ldquo;test&amp;rdquo;" title="Test"></p>
+<p><img src="https://i.giphy.com/media/3o6Mbbs879ozZ9Yic0/giphy.gif" alt="&ldquo;test&rdquo;" title="Test"></p>
 <p>As we mentioned before, one good way to review the ER model is to check whether
 it is useful for the main queries we&rsquo;ll want to ask of it. These queries are
 derived from the main business needs from the application. So let&rsquo;s check that!</p>
@@ -193,7 +193,7 @@ sprinkled on top.</li>
 </ol>
 <h3 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Seems like the schema structure is OK.</p>
-<p><img src="https://i.giphy.com/media/dsKnRuALlWsZG/giphy.gif" alt="&amp;ldquo;summary&amp;rdquo;" title="summary"></p>
+<p><img src="https://i.giphy.com/media/dsKnRuALlWsZG/giphy.gif" alt="&ldquo;summary&rdquo;" title="summary"></p>
 <p>There is something &ldquo;uncomfortable&rdquo; about
 often having to perform an <code>INNER JOIN</code> between spots are reservations. We
 could work around that in various ways, like a database view or duplication of
@@ -204,7 +204,7 @@ with a relational database (specifically, <code>PostgreSQL</code>) because it&rs
 relevant for us to practice. Also, <a href="https://db-engines.com/en/ranking">it&rsquo;s the fourth most popular option, behind
 three other relational options</a>, so how
 wrong could this choice be?</p>
-<p><img src="/images/parkbot/db-ranking.png" alt="&amp;ldquo;DB rankings&amp;rdquo;" title="DB rankings"></p>
+<p><img src="/images/parkbot/db-ranking.png" alt="&ldquo;DB rankings&rdquo;" title="DB rankings"></p>
 <p>Now, which ORM to use? We decided to go with <code>SQLAlchemy</code> as an ORM since quick
 research showed it&rsquo;s definitely the standard for Python, very popular with
 <a href="https://pypistats.org/packages/sqlalchemy">close to 50M monthly downloads</a>,
@@ -234,14 +234,14 @@ the <code>inmem_testing</code> case implemented for now:</p>
 </span></span><span class="line"><span class="cl">    <span class="n">docker_testing</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">prod</span> <span class="o">=</span> <span class="n">enum</span><span class="o">.</span><span class="n">auto</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="n">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_session_for_case</span><span class="p">(</span><span class="k">case</span><span class="p">:</span> <span class="n">DbCase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="k">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">inmem_testing</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite://&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">session</span>
-</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="k">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">docker_testing</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Docker session not implemented yet.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="k">case</span> <span class="o">==</span> <span class="n">DbCase</span><span class="o">.</span><span class="n">prod</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&#34;Prod session not implemented yet.&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Unknown case: </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
@@ -574,7 +574,8 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

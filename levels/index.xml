@@ -190,8 +190,9 @@ Tree? 🌳 The conflict is caused because both branches renamed the same file - 
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/owasp-ctf-1/</guid>
-      <description>Click here.
-_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.| |_/ / | | | || |/\| | _ | `--. \ __/ \ \_/ /\ /\ / | | |/\__/ / | \___/ \/ \/\_| |_/\____/\_| ALL LEVELS WHICH DON&amp;rsquo;T START WITH &amp;ldquo;OWASP&amp;rdquo; ARE NOT A PART OF THE APPSECIL2020 CTF!</description>
+      <description>This level was a part of OWASP CTF 2020.
+The focus of this level is AppSec, and specifically, git security. But not git fundamentals, like the rest of the levels in this CTF. So you should probably solve the rest of the levels first.
+_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.</description>
     </item>
     
     <item>
@@ -200,8 +201,9 @@ _____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/levels/owasp-ctf-2/</guid>
-      <description>Click here.
-_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.| |_/ / | | | || |/\| | _ | `--. \ __/ \ \_/ /\ /\ / | | |/\__/ / | \___/ \/ \/\_| |_/\____/\_| ALL LEVELS WHICH DON&amp;rsquo;T START WITH &amp;ldquo;OWASP&amp;rdquo; ARE NOT A PART OF THE APPSECIL2020 CTF!</description>
+      <description>This level was a part of OWASP CTF 2020.
+The focus of this level is AppSec, and specifically, git security. But not git fundamentals, like the rest of the levels in this CTF. So you should probably solve the rest of the levels first.
+_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.</description>
     </item>
     
     <item>
@@ -218,6 +220,22 @@ In the topic branch, we will need to add specific resources. To do this, run the
     </item>
     
     <item>
+      <title>rebase-2</title>
+      <link>https://www.mrnice.dev/levels/rebase-2/</link>
+      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/levels/rebase-2/</guid>
+      <description>In this level, the commits are all out of order. Reorder them using an interactive rebase, and push them in the correct order.
+In case you&amp;rsquo;ve never watch the classic sketch &amp;ldquo;Who&amp;rsquo;s on First?&amp;rdquo;, The correct order is:
+First base: Who
+Second base: What
+Third base: I Don&amp;rsquo;t Know
+And watch it here:
+🧩 Hints Click on the hint to see it.
+I&amp;rsquo;m getting ! [rejected] | part 1 Read the error message carefully, and think about what you&amp;rsquo;re actually trying to do.</description>
+    </item>
+    
+    <item>
       <title>remote-1</title>
       <link>https://www.mrnice.dev/levels/remote-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
@@ -226,17 +244,6 @@ In the topic branch, we will need to add specific resources. To do this, run the
       <description> Check out the password file, and read the README.
 🧩 Hints Click on the hint to see it.
 Remote? This is not a TV! Read about the concept of &amp;ldquo;remotes&amp;rdquo; here and see the exact documentation of git remote here. What does &amp;lsquo;forked&amp;rsquo; mean 🍴 You can read about forks here. Useful commands for this level git remote, git fetch, git merge, git status. </description>
-    </item>
-    
-    <item>
-      <title>revert-1</title>
-      <link>https://www.mrnice.dev/levels/revert-1/</link>
-      <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/levels/revert-1/</guid>
-      <description> Try to run runme.py. What are you getting?
-🧩 Hints Click on the hint to see it.
-Not sure what to do ┐(&amp;lsquo;～`;)┌ As you can see, an erroneous commit has been introduced. Undo the errors! Revert that commit (the latest one). Useful commands for this level git log, git revert. </description>
     </item>
     
   </channel>

@@ -119,12 +119,12 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-d38d62804ff42364e336c7d07f3e4a92&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-6927cef733fe3d648f23a43264dd0048&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-d38d62804ff42364e336c7d07f3e4a92" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-6927cef733fe3d648f23a43264dd0048" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -179,7 +179,7 @@ without the spaces between the <code>{</code>-s. They are here to avoid renderin
 </span></span><span class="line"><span class="cl">42! <span class="ge">_some markdown_</span> [<span class="nt">things such as links</span>](<span class="na">/posts</span>)
 </span></span><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="p">/</span><span class="nt">flashcard</span> <span class="p">&gt;</span> } }
 </span></span></code></pre></div><h2 id="a-play-by-play">A play-by-play<a href="#a-play-by-play" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p><img src="https://i.giphy.com/media/q7UpJegIZjsk0/giphy.gif" alt="Bill O&amp;rsquo;Reilly" title="Bill O'Reilly"></p>
+<p><img src="https://i.giphy.com/media/q7UpJegIZjsk0/giphy.gif" alt="Bill O&rsquo;Reilly" title="Bill O'Reilly"></p>
 <h3 id="html-create-a-shortcode-file">HTML: Create a shortcode file<a href="#html-create-a-shortcode-file" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>This is the first version of the shortcode file:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="na">.Get</span><span class="w"> </span><span class="s">&#34;question&#34;</span><span class="w"> </span><span class="cp">}}</span>
@@ -216,11 +216,11 @@ and T1 is executed.</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>This is the a screenshot of output before any CSS was applied:</p>
-<p><img src="/images/flashcards/in-progress-1.png" alt="&amp;ldquo;In progress 1&amp;rdquo;"></p>
+<p><img src="/images/flashcards/in-progress-1.png" alt="&ldquo;In progress 1&rdquo;"></p>
 <h3 id="css-style-it-">CSS: Style it 💅<a href="#css-style-it-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>I&rsquo;ve added some CSS to make it look like a flashcard. Writing it was kinda fun,
 based on my experience with <a href="/posts/learning-css-with-css-battles.md">CSS Battles</a>.</p>
-<p><img src="/images/flashcards/in-progress-2.png" alt="&amp;ldquo;In progress 2&amp;rdquo;" title="In progress 2"></p>
+<p><img src="/images/flashcards/in-progress-2.png" alt="&ldquo;In progress 2&rdquo;" title="In progress 2"></p>
 <p>The <a href="https://github.com/TheCoreMan/TheCoreMan.github.io/blob/869d1627c6bbfaacaa1bbef8a30c0abb2bb967ee/css/flashcard.css">final CSS</a> includes support for the next steps as well.</p>
 <h3 id="js-reveal-the-answer-on-click">JS: Reveal the answer on click<a href="#js-reveal-the-answer-on-click" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <blockquote>
@@ -295,12 +295,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-6f322a30dd63697f842cf8343ee74d04&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-f23c4e76322344638a9f7edfd3680d40&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-6f322a30dd63697f842cf8343ee74d04" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-f23c4e76322344638a9f7edfd3680d40" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -326,12 +326,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-863092ec3ded68773f2ffd442406a433&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-a06d37e233836746494ffd243c8fe02d&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-863092ec3ded68773f2ffd442406a433" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-a06d37e233836746494ffd243c8fe02d" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -340,7 +340,7 @@ which made the HTML slightly more complex:</p>
 
 <p>Here&rsquo;s how the different IDs look in the DOM now (you can also check it with
 your own dev tools):</p>
-<p><img src="/images/flashcards/answer-ids.png" alt="&amp;ldquo;answer ids&amp;rdquo;" title="answer ids"></p>
+<p><img src="/images/flashcards/answer-ids.png" alt="&ldquo;answer ids&rdquo;" title="answer ids"></p>
 <h4 id="markdown-in-the-question">Markdown in the question<a href="#markdown-in-the-question" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>✅</p>
 
@@ -362,12 +362,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d8a723f40474f33920fe66d63483c2ed&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-ff9c423743ae363024708862dedf463d&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d8a723f40474f33920fe66d63483c2ed" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-ff9c423743ae363024708862dedf463d" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -395,12 +395,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d90073324484e6ca283fd6d374ff63e2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-334efd837f4a266203e244369cd7d8f0&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d90073324484e6ca283fd6d374ff63e2" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-334efd837f4a266203e244369cd7d8f0" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -443,12 +443,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-44fe8a264d8e72f39473dd3cf0326063&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-c0644e8d04638a33f2df72323976fde4&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-44fe8a264d8e72f39473dd3cf0326063" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-c0644e8d04638a33f2df72323976fde4" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax<a href="#markdown-syntax" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <ul>
 <li><a href="#overview">Overview</a>
@@ -783,7 +783,8 @@ normal paragraph. For example:</p>
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

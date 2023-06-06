@@ -126,16 +126,17 @@ Tree? 🌳 The conflict is caused because both branches renamed the same file - 
     10 [ label = "tag-1" ]
     11 [ label = "tag-2" ]
     12 [ label = "hooks-1" ]
-    13 [ label = "rebase-1" ]
+    13 [ label = "hooks-2" ]
     14 [ label = "remote-1" ]
-    15 [ label = "hooks-2" ]
-    16 [ label = "log-1" ]
-    17 [ label = "log-2" ]
-    18 [ label = "log-3" ]
-    19 [ label = "log-4" ]
-    20 [ label = "log-5" ]
-    21 [ label = "owasp-ctf-1" ]
-    22 [ label = "owasp-ctf-2" ]
+    15 [ label = "rebase-1" ]
+    16 [ label = "rebase-2" ]
+    17 [ label = "log-1" ]
+    18 [ label = "log-2" ]
+    19 [ label = "log-3" ]
+    20 [ label = "log-4" ]
+    21 [ label = "log-5" ]
+    22 [ label = "owasp-ctf-1" ]
+    23 [ label = "owasp-ctf-2" ]
     0 -> 1 [ ]
     1 -> 2 [ ]
     2 -> 3 [ ]
@@ -149,15 +150,16 @@ Tree? 🌳 The conflict is caused because both branches renamed the same file - 
     10 -> 11 [ ]
     10 -> 12 [ ]
     12 -> 13 [ ]
-    13 -> 14 [ ]
-    12 -> 15 [ ]
-    4 -> 16 [ ]
-    16 -> 17 [ ]
+    12 -> 14 [ ]
+    5 -> 15 [ ]
+    15 -> 16 [ ]
+    3 -> 17 [ ]
     17 -> 18 [ ]
     18 -> 19 [ ]
     19 -> 20 [ ]
-    0 -> 21 [ ]
+    20 -> 21 [ ]
     0 -> 22 [ ]
+    0 -> 23 [ ]
 }
 
 `;
@@ -217,7 +219,7 @@ Tree? 🌳 The conflict is caused because both branches renamed the same file - 
 	    font: "20px Verdana black"
 	},
 	edges: {
-        color: "#e8eef2",
+	    color: "#e8eef2",
         smooth: {
             type: "continuous"
         }
@@ -227,8 +229,9 @@ Tree? 🌳 The conflict is caused because both branches renamed the same file - 
 	},
 	layout: {
             hierarchical: {
-                sortMethod: "directed",
                 direction: "LR",
+                sortMethod: "directed",
+                shakeTowards: "roots",
             }
         }
     };
@@ -300,7 +303,8 @@ Tree? 🌳 The conflict is caused because both branches renamed the same file - 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 

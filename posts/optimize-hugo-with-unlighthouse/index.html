@@ -22,7 +22,7 @@
 In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
 Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site."><meta itemprop="datePublished" content="2023-05-16T09:36:21+03:00" />
 <meta itemprop="dateModified" content="2023-05-16T09:36:21+03:00" />
-<meta itemprop="wordCount" content="1715"><meta itemprop="image" content="https://www.mrnice.dev/images/lighthouse/cover.png">
+<meta itemprop="wordCount" content="1745"><meta itemprop="image" content="https://www.mrnice.dev/images/lighthouse/cover.png">
 <meta itemprop="keywords" content="hugo,chrome,web,howto,dev,profiling," /><meta property="og:title" content="Optimize your Hugo Blog With Unlighthouse" />
 <meta property="og:description" content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
 In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
@@ -106,7 +106,7 @@ Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that G
 				<p>Recently Google let me see the new Analytics dashboard (they moved from&hellip;
 Something something analytics to something something Analytics 4). And one
 of they things I saw was that my blog&rsquo;s performance was bad!</p>
-<p><img src="https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif" alt="&amp;ldquo;I have failed you&amp;rdquo;" title="I have failed you"></p>
+<p><img src="https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif" alt="&ldquo;I have failed you&rdquo;" title="I have failed you"></p>
 <p>In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it
 a few years ago, so a cleanup for performance and content is probably in
 order.</p>
@@ -147,7 +147,7 @@ bounce out. So let&rsquo;s slim it down.</p>
 <p>Much better. Let&rsquo;s go the analytics themselves now.</p>
 <h3 id="wait-which-device-and-i-looking-at">Wait, which device and I looking at?<a href="#wait-which-device-and-i-looking-at" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>I know that most people are using my site from Desktop AND Mobile.</p>
-<p><img src="/images/lighthouse/analytics-1.png" alt="&amp;ldquo;Analytics 1&amp;rdquo;" title="Analytics 1"></p>
+<p><img src="/images/lighthouse/analytics-1.png" alt="&ldquo;Analytics 1&rdquo;" title="Analytics 1"></p>
 <p>We need to look at both. Looking at the report, looks like it&rsquo;s from &ldquo;emulated
 mobile&rdquo;, so we need to re-run it for Desktop. A quick look at the documentation
 <a href="https://unlighthouse.dev/guide/guides/config">for the configuration</a> and the
@@ -187,7 +187,7 @@ what I use right now for development so iterations will be faster for me 🤸‍
 <h3 id="improving-performance">Improving performance<a href="#improving-performance" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <h4 id="reduce-unused-javascript">Reduce unused JavaScript<a href="#reduce-unused-javascript" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <p>The first thing that jumps out is that I have two unused JavaScript files:</p>
-<p><img src="/images/lighthouse/results-1.png" alt="&amp;ldquo;results 1&amp;rdquo;" title="results 1"></p>
+<p><img src="/images/lighthouse/results-1.png" alt="&ldquo;results 1&rdquo;" title="results 1"></p>
 <p>The first one, <code>https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js</code>, is
 from <a href="/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/">&ldquo;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&rdquo;</a>,
 which I honestly forgot about. I don&rsquo;t have any math expressions in my blog&rsquo;s
@@ -199,7 +199,7 @@ homepage, so why am I loading it here? Let&rsquo;s look at the old post&hellip;<
 every single page.</p>
 </blockquote>
 <p>Oh. That&rsquo;s why. I put it there.</p>
-<p><img src="/images/lighthouse/performance-meme.jpeg" alt="&amp;ldquo;Performance meme&amp;rdquo;" title="Performance meme"></p>
+<p><img src="/images/lighthouse/performance-meme.jpeg" alt="&ldquo;Performance meme&rdquo;" title="Performance meme"></p>
 <p>To fix that, I tried using page parameters, and only include the script on pages
 that need it. To debug the templates and figure out which <code>.html</code> file I want to
 edit (instead of <code>baseof.html</code>), I used a cool trick: I added a <code>{{ printf &quot;%#v&quot; . }}</code> to the top of the file, and then looked at the output of the page. This
@@ -360,7 +360,9 @@ partial:</p>
 </span></span></code></pre></div><p>And this to the <code>config.toml</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">siteLogoRelPath</span> <span class="p">=</span> <span class="s2">&#34;images/site-logo.png&#34;</span>
-</span></span></code></pre></div><h2 id="re-run-and-compare">Re-run and compare<a href="#re-run-and-compare" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</span></span></code></pre></div><p>Then, run your site locally, inspect the <code>&lt;head&gt;</code> until you find the JSON-LD
+tag, copy it, and paste it into the <a href="https://json-ld.org/playground/">JSON-LD Playground</a> to test that it worked out correctly.</p>
+<h2 id="re-run-and-compare">Re-run and compare<a href="#re-run-and-compare" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I WIN!</p>
 <p><img src="/images/lighthouse/win.png" alt="win" title="win"></p>
 <h2 id="other-random-cleanups">Other random cleanups<a href="#other-random-cleanups" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -403,7 +405,7 @@ paper”.</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/hugo">hugo</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/chrome">chrome</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/web">web</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/howto">howto</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/dev">dev</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/profiling">profiling</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1715 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1745 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-05-16 09:36 &#43;0300</p>
 			</footer>
 		</article>
@@ -419,7 +421,8 @@ paper”.</p>
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
 		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 
