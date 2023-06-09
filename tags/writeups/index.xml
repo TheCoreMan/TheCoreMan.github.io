@@ -6,9 +6,20 @@
     <description>Recent content in writeups on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2023 11:35:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/writeups/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Jun 2023 08:03:13 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/writeups/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CSS Battle #1 Writeup: Learning CSS</title>
+      <title>Learning CSS #2: CSS Diner Writeup 🍱🥢</title>
+      <link>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</link>
+      <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</guid>
+      <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
+Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
+I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
+    </item>
+    
+    <item>
+      <title>Learning CSS #1: CSS Battles #1 Writeup</title>
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
       <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
       

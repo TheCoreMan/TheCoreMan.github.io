@@ -6,7 +6,18 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 May 2023 09:36:21 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Jun 2023 08:03:13 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning CSS #2: CSS Diner Writeup 🍱🥢</title>
+      <link>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</link>
+      <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</guid>
+      <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
+Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
+I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
+    </item>
+    
     <item>
       <title>Optimize your Hugo Blog With Unlighthouse</title>
       <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
@@ -50,7 +61,7 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
     </item>
     
     <item>
-      <title>CSS Battle #1 Writeup: Learning CSS</title>
+      <title>Learning CSS #1: CSS Battles #1 Writeup</title>
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
       <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
       
@@ -194,18 +205,6 @@ QoL improvements Slimming down the Docker Image size Adding a test endpoint to t
       <description>A joint project with my beautiful wife Olga! &amp;lt;3
 In this post, we&amp;rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
 Table of Contents Requirements Why do this, the stupid reason Why do this, the real reason Planning Task Management Architecture Working Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack What&amp;rsquo;s next?</description>
-    </item>
-    
-    <item>
-      <title>Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日</title>
-      <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</link>
-      <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</guid>
-      <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.
-This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
-Table of Contents
-Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?</description>
     </item>
     
   </channel>

@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+<meta itemprop="name" content="Learning CSS #2: CSS Diner Writeup 🍱🥢">
+<meta itemprop="description" content="Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
+Start with &ldquo;Why&rdquo;: why practice selectors? I think it&rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
+I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&rsquo;ll end up selecting elements will impact how I structure the HTML itself."><meta itemprop="datePublished" content="2023-06-09T08:03:13+03:00" />
+<meta itemprop="dateModified" content="2023-06-09T08:03:13+03:00" />
+<meta itemprop="wordCount" content="1020"><meta itemprop="image" content="https://www.mrnice.dev/images/diner/selfie.png">
+<meta itemprop="keywords" content="css,writeups," /><meta property="og:title" content="Learning CSS #2: CSS Diner Writeup 🍱🥢" />
+<meta property="og:description" content="Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
+Start with &ldquo;Why&rdquo;: why practice selectors? I think it&rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
+I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&rsquo;ll end up selecting elements will impact how I structure the HTML itself." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/learning-css-with-css-battles-2/" /><meta property="og:image" content="https://www.mrnice.dev/images/diner/selfie.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-09T08:03:13+03:00" />
+<meta property="article:modified_time" content="2023-06-09T08:03:13+03:00" />
+
+<meta name="twitter:title" content="Learning CSS #2: CSS Diner Writeup 🍱🥢">
+
+
+
+<meta
+	name="description"
+	content="Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
+Start with &ldquo;Why&rdquo;: why practice selectors? I think it&rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
+I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&rsquo;ll end up selecting elements will impact how I structure the HTML itself."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Learning CSS #2: CSS Diner Writeup 🍱🥢</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/diner/selfie.png');}</style>
+	<script type="text/javascript" id="MathJax-script" async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+		</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+					extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+			});
+		</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Queue(function() {
+				// Fix <code> tags after MathJax finishes running. This is a
+				// hack to overcome a shortcoming of Markdown. Discussion at
+				// https://github.com/mojombo/jekyll/issues/199
+				var all = MathJax.Hub.getAllJax(), i;
+				for(i = 0; i &lt; all.length; i += 1) {
+					all[i].SourceElement().parentNode.className += ' has-jax';
+				}
+			});
+		</script>
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 9, 2023</span></div>
+				<h1>Learning CSS #2: CSS Diner Writeup 🍱🥢</h1>
+			</header>
+			<div class="content">
+				<p>Met up with <a href="https://twitter.com/sarig_aviv">Aviv Sarig</a> to practice some CSS.
+I found <a href="https://flukeout.github.io/">CSS Diner</a> and we went through it to hone
+our CSS selection skills.</p>
+<p><img src="/images/diner/selfie.png" alt="selfie" title="selfie with Aviv Sarig"></p>
+<h2 id="start-with-why-why-practice-selectors">Start with &ldquo;Why&rdquo;: why practice selectors?<a href="#start-with-why-why-practice-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I think it&rsquo;s important to understand why we need selectors in the first place.
+The answer is simple - to <em>select</em> specific elements in the DOM so we can style
+them the way we want.</p>
+<p>I think that building good semantic HTML is the first step to writing good CSS,
+and that knowing how I&rsquo;ll end up selecting elements will impact how I structure
+the HTML itself.</p>
+<h2 id="css-diner-writeup">CSS Diner Writeup<a href="#css-diner-writeup" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><img src="https://i.giphy.com/media/3og0ILnyK4JHl8FCU0/giphy-downsized-large.gif" alt="bento" title="bento"></p>
+<p>Like any other writeup, be warned - spoilers ahead! If you want to try it out
+yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before reading this.</p>
+<h3 id="type-selectors">type selectors<a href="#type-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Just the name of the element (e.g. &ldquo;Input&rdquo;).</p>
+<p>🍛</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-f3dc79334a6e3480f322846206f47dde&#34;)"
+    role="button"
+  >
+    Level 1 - select all plates
+  </button>
+  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-f3dc79334a6e3480f322846206f47dde" class="flashcard__back">
+    <code>plate</code>
+  </div>
+</div>
+
+
+
+<p>🍱</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-0333a78d634e49d3df2f6c2086f27e44&#34;)"
+    role="button"
+  >
+    Level 2 - select all bento boxes
+  </button>
+  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-0333a78d634e49d3df2f6c2086f27e44" class="flashcard__back">
+    <code>bento</code>
+  </div>
+</div>
+
+
+
+<h3 id="id-selectors">ID selectors<a href="#id-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>With a <code>#</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-3f24dff276083e6da3de406984343c72&#34;)"
+    role="button"
+  >
+    Level 3 - select by ID
+  </button>
+  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-3f24dff276083e6da3de406984343c72" class="flashcard__back">
+    <code>#fancy</code>
+  </div>
+</div>
+
+
+
+<h3 id="descendant-selectors">Descendant selectors<a href="#descendant-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>With a space between the parent and descendant, <code>A B</code>.</p>
+<p><img src="/images/diner/level-4.png" alt="level 4" title="level 4"></p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-6a6d37624fe3340fed8327904cf4382d&#34;)"
+    role="button"
+  >
+    Level 4 - Descendant Selector - Select an element inside another element
+  </button>
+  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-6a6d37624fe3340fed8327904cf4382d" class="flashcard__back">
+    <code>plate apple</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-2c83d683af3fd4e37e3420764df64029&#34;)"
+    role="button"
+  >
+    Level 5 - Combine the Descendant &amp; ID Selectors
+  </button>
+  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-2c83d683af3fd4e37e3420764df64029" class="flashcard__back">
+    <code>#fancy pickle</code>
+  </div>
+</div>
+
+
+
+<h3 id="class-selectors">Class selectors<a href="#class-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>With a <code>.</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-e7f23e0c0d838f964d33f26264da7344&#34;)"
+    role="button"
+  >
+    Level 6 - Select elements by their class
+  </button>
+  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-e7f23e0c0d838f964d33f26264da7344" class="flashcard__back">
+    <code>.small</code>
+  </div>
+</div>
+
+
+
+<h3 id="combining-selectors">Combining selectors<a href="#combining-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>This was very interesting to me: every <code>#</code>, <code>.</code> (and later on: <code>:</code> and <code>[]</code>)
+operator withing a selector is a logical AND. For example,
+level 7&rsquo;s solution is:</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-6d623e3707843f38420ff64a43de92dc&#34;)"
+    role="button"
+  >
+    Level 7 - Combine the Class Selector
+  </button>
+  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-6d623e3707843f38420ff64a43de92dc" class="flashcard__back">
+    <code>orange.small</code>
+  </div>
+</div>
+
+
+
+<p>Translates to, in logical notation:</p>
+<p>$$ orange\space\land\space.small $$</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-63e490fc4fd42a2386723ed3346f807d&#34;)"
+    role="button"
+  >
+    Level 8 - Select the small (class) oranges (type) in the bentos (type)
+  </button>
+  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-63e490fc4fd42a2386723ed3346f807d" class="flashcard__back">
+    <code>bento orange.small</code>
+  </div>
+</div>
+
+
+
+<h3 id="comma-combinator">Comma combinator<a href="#comma-combinator" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>And after the \(\land\) operator, we get the \(\lor\) (Logical OR) operator
+with <code>,</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-2a4848376dcd3342de60f24f3e09f673&#34;)"
+    role="button"
+  >
+    Level 9 - Comma Combinator
+  </button>
+  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-2a4848376dcd3342de60f24f3e09f673" class="flashcard__back">
+    <code>plate, bento</code>
+  </div>
+</div>
+
+
+
+<h3 id="-selector">* selector<a href="#-selector" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><code>*</code> matches any element.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-83e6fd96237ce0f82d406f3d423a4743&#34;)"
+    role="button"
+  >
+    Level 10 - The Universal Selector
+  </button>
+  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-83e6fd96237ce0f82d406f3d423a4743" class="flashcard__back">
+    <code>*</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-ce3346fd4d4d94222337ff7a66e80038&#34;)"
+    role="button"
+  >
+    Level 11 - Combine the Universal Selector
+  </button>
+  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-ce3346fd4d4d94222337ff7a66e80038" class="flashcard__back">
+    <code>plate *</code>
+  </div>
+</div>
+
+
+
+<h3 id="sibling-selectors">Sibling selectors<a href="#sibling-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><strong>Adjacent sibling</strong> - with a <code>+</code>. This was the first new thing I learned so
+far!</p>
+<blockquote>
+<p>This selects all B elements that directly follow A. Elements that follow one
+another are called siblings. They&rsquo;re on the same level, or depth.</p>
+</blockquote>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-d333364227e440fdcd87f296863e40af&#34;)"
+    role="button"
+  >
+    Level 12 - Select an element that directly follows another element
+  </button>
+  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-d333364227e440fdcd87f296863e40af" class="flashcard__back">
+    <code>plate + apple</code>
+  </div>
+</div>
+
+
+
+<p>I didn&rsquo;t understand why we need this, so I asked ChatGPT for some use cases, and
+got some interesting answers. One that Aviv suggested was a gradient effect on
+hover. Some that ChatGPT suggested:</p>
+<ul>
+<li>Apply a different style to the first item in a list</li>
+<li>Create a custom-styled checkbox</li>
+<li>Highlight the current item in a navigation menu</li>
+<li>Style an input field based on user interaction</li>
+<li>Apply specific styles to adjacent table cells</li>
+</ul>
+<blockquote>
+<p>This is a great example, IMO, of using LLMs as a learning partner. 🤖</p>
+</blockquote>
+<p>Then we learned about the <strong>general sibling</strong> selector: <code>~</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-40d33384e76d246302d97483f2fce6af&#34;)"
+    role="button"
+  >
+    Level 13 - Select elements that follows another element
+  </button>
+  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-40d33384e76d246302d97483f2fce6af" class="flashcard__back">
+    <code>bento ~ pickle</code>
+  </div>
+</div>
+
+
+
+<h3 id="child-selectors">Child selectors<a href="#child-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>With <code>A &gt; B</code>. The difference from <code>A B</code> is that <code>&gt;</code> only selects <strong>direct</strong>
+children.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-8df24432fd76a23800dc76fe4369343e&#34;)"
+    role="button"
+  >
+    Level 14 - Select direct children of an element A &gt; B
+  </button>
+  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-8df24432fd76a23800dc76fe4369343e" class="flashcard__back">
+    <code>plate &gt; apple</code>
+  </div>
+</div>
+
+
+
+<h3 id="children-pseudo-selectors">Children pseudo-selectors<a href="#children-pseudo-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>First child pseudo-selector: <code>:first-child</code>. I&rsquo;m not super sharp on what are
+pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">read about it</a>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-de34733a98f0cd6f8d430372fe646242&#34;)"
+    role="button"
+  >
+    Level 15 - Select a first child element inside of another element
+  </button>
+  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-de34733a98f0cd6f8d430372fe646242" class="flashcard__back">
+    <code>plate &gt; orange:first-child</code>
+  </div>
+</div>
+
+
+
+<p>Only child pseudo-selector: <code>:only-child</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-6e0609d3c4f3342f372ddaf4726438e8&#34;)"
+    role="button"
+  >
+    Level 16 - Select an element that are the only element inside of another one.
+  </button>
+  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-6e0609d3c4f3342f372ddaf4726438e8" class="flashcard__back">
+    <code>plate &gt; *:only-child</code>. You can also solve it with
+<code>plate :only-child</code>, and we weren&rsquo;t sure which one is better.
+  </div>
+</div>
+
+
+
+<p>Finally, last-child pseudo-selector: <code>:last-child</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-3d8cef6a33239736e4d2d2440ff86407&#34;)"
+    role="button"
+  >
+    Level 17 - Select the last element inside of another element
+  </button>
+  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-3d8cef6a33239736e4d2d2440ff86407" class="flashcard__back">
+    <code>.small:last-child</code>
+  </div>
+</div>
+
+
+
+<p>Nice tip from the diner:</p>
+<blockquote>
+<p>Pro Tip → In cases where there is only one element, that element counts as the
+first-child, only-child and last-child!</p>
+</blockquote>
+<p>Nth child pseudo-selector: <code>:nth-child()</code>. This one is a bit more complicated,
+since it takes a parameter.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-ed4dfc7902da6f34288f637e44036332&#34;)"
+    role="button"
+  >
+    Level 18 - Select an element by its order in another element
+  </button>
+  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-ed4dfc7902da6f34288f637e44036332" class="flashcard__back">
+    <code>plate:nth-child(3)</code>
+  </div>
+</div>
+
+
+
+<p>Nth last child pseudo-selector: <code>:nth-last-child()</code>. This one is the same as
+<code>:nth-child()</code>, but counts from the end.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-f7382430946d724ed84f66230cdfae33&#34;)"
+    role="button"
+  >
+    Level 19 - Select an element by its order in another element, counting from the back
+  </button>
+  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-f7382430946d724ed84f66230cdfae33" class="flashcard__back">
+    <code>bento:nth-last-child(3)</code>
+  </div>
+</div>
+
+
+
+<p>Something we both failed to understand is why <code>bento:nth-last-child(2)</code> doesn&rsquo;t
+work in this case, but <code>bento:nth-last-child(3)</code> does.</p>
+<p><img src="/images/diner/level-19.png" alt="level-19" title="level 19"></p>
+<p>The reason is that the children selectors are type-agnostic.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-d384fea80332760def62f43c6432947d&#34;)"
+    role="button"
+  >
+    Level 20 - Select the first element of a specific type
+  </button>
+  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-d384fea80332760def62f43c6432947d" class="flashcard__back">
+    <code>apple:first-of-type</code>
+  </div>
+</div>
+
+
+
+<p>Something cool about <code>nth</code> is that you can use interesting &ldquo;formulas&rdquo; to select
+elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-e938f464042ad6780fdf47de2c233633&#34;)"
+    role="button"
+  >
+    Level 21 - Nth of Type Selector
+  </button>
+  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-e938f464042ad6780fdf47de2c233633" class="flashcard__back">
+    <code>plate:nth-of-type(even)</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-a44623d6e284687e9c0f73df3f2d3043&#34;)"
+    role="button"
+  >
+    Level 22 - Nth-of-type Selector with Formula
+  </button>
+  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-a44623d6e284687e9c0f73df3f2d3043" class="flashcard__back">
+    <code>plate:nth-of-type(2n+3)</code>
+  </div>
+</div>
+
+
+
+<p>More pseudo-selectors for more edge cases:</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-6e6f444dfc77da0882303933f24ed623&#34;)"
+    role="button"
+  >
+    Level 23 - Select elements that are the only ones of their type within of their parent element
+  </button>
+  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-6e6f444dfc77da0882303933f24ed623" class="flashcard__back">
+    <code>plate apple:only-of-type</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-240cfd2e83de44a7d43786f3963f6302&#34;)"
+    role="button"
+  >
+    Level 24 - Select the last element of a specific type
+  </button>
+  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-240cfd2e83de44a7d43786f3963f6302" class="flashcard__back">
+    <code>apple:last-of-type, orange:last-of-type</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-a49d3f324e043fd332066fedc7876428&#34;)"
+    role="button"
+  >
+    Level 25 - Select elements that don&rsquo;t have children
+  </button>
+  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-a49d3f324e043fd332066fedc7876428" class="flashcard__back">
+    <code>bento:empty</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-39da6870f3d2823462ecdf4373f604e4&#34;)"
+    role="button"
+  >
+    Level 26 - Select all elements that don&rsquo;t match the negation selector
+  </button>
+  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-39da6870f3d2823462ecdf4373f604e4" class="flashcard__back">
+    <code>apple:not(.small)</code>
+  </div>
+</div>
+
+
+
+<h3 id="attribute-selectors">Attribute selectors<a href="#attribute-selectors" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The <code>[]</code> syntax is used for attribute selectors. For example, <code>[type=&quot;radio&quot;]</code>
+will select all elements with <code>type=&quot;radio&quot;</code>. Seems like class and ID selectors
+are just a special case of attribute selectors. For example, <code>#fancy</code> can be
+written as <code>[id=&quot;fancy&quot;]</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-803dfe96738dc7443406f363efd4222a&#34;)"
+    role="button"
+  >
+    Level 27 - Select all elements that have a specific attribute
+  </button>
+  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-803dfe96738dc7443406f363efd4222a" class="flashcard__back">
+    <code>[for]</code>.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-f2a42c0333ed968442436d6fe78f70d3&#34;)"
+    role="button"
+  >
+    Level 28 - Combining type and attribute selector
+  </button>
+  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-f2a42c0333ed968442436d6fe78f70d3" class="flashcard__back">
+    <code>plate[for]</code>.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-3da66fd3786c94f3843d442230e02ef7&#34;)"
+    role="button"
+  >
+    Level 29 - Select all elements that have a specific attribute value
+  </button>
+  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-3da66fd3786c94f3843d442230e02ef7" class="flashcard__back">
+    <code>[for=&quot;Vitaly&quot;]</code>
+  </div>
+</div>
+
+
+
+<p>Attribute starts with! That&rsquo;s new to me as well! 🆕</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-fe642c334273467d96330a8e24dd8f0f&#34;)"
+    role="button"
+  >
+    Level 30 - Select all elements with an attribute value that starts with specific characters
+  </button>
+  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-fe642c334273467d96330a8e24dd8f0f" class="flashcard__back">
+    <code>[for^=&quot;Sa&quot;]</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-e7022a3404f9f33e6f8dd6836d34427c&#34;)"
+    role="button"
+  >
+    Level 31 - Select all elements with an attribute value that ends with specific characters
+  </button>
+  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-e7022a3404f9f33e6f8dd6836d34427c" class="flashcard__back">
+    <code>[for$=&quot;ato&quot;]</code>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-2f3dc336046722d8f37a4fe40384d69e&#34;)"
+    role="button"
+  >
+    Level 32 - Select all elements with an attribute value that contains specific characters anywhere
+  </button>
+  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-2f3dc336046722d8f37a4fe40384d69e" class="flashcard__back">
+    <code>[for*=&quot;obb&quot;]</code>
+  </div>
+</div>
+
+
+
+<p>Yay! We finished the diner! 🎉 Seems like we rock at CSS.</p>
+<p><img src="/images/diner/win.png" alt="win" title="win"></p>
+<h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Never stop learning! Even though I know CSS, I still learned a few new things:</p>
+<ul>
+<li>Adjacent sibling selector</li>
+<li>General sibling selector</li>
+<li>Thinking about CSS selectors in terms of logical AND and OR</li>
+</ul>
+<p>Also, thanks Aviv! It was fun. 🍱🥢</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/learning-css-with-css-battles/">Learning CSS #1: CSS Battles #1 Writeup</a></li>
+	
+	<li><a href="/posts/hugo-flashcard-shortcode-for-study/">Hugo Flashcard Shortcode</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup-3/">OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup-2/">OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</a></li>
+	
+	<li><a href="/posts/bandit-ctf-writeup/">OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/css">css</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/writeups">writeups</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1020 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-06-09 08:03 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Optimize your Hugo Blog With Unlighthouse</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+	}
+</script>
+
+</body>
+
+</html>
