@@ -6,7 +6,16 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Jun 2023 08:03:13 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Jun 2023 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>E for Engineering: From defense to IT | Better Tech Leadership interview</title>
+      <link>https://www.mrnice.dev/posts/better-tech-leadership/</link>
+      <pubDate>Tue, 20 Jun 2023 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/better-tech-leadership/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Learning CSS #2: CSS Diner Writeup 🍱🥢</title>
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</link>
@@ -194,17 +203,6 @@ Upfront, we had to decide if we&amp;rsquo;ll choose a relational database or som
 This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
 Warning: As our development of this project was a little &amp;ldquo;all over the place&amp;rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
 QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&amp;rsquo;s Business Logic Let&amp;rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&amp;rsquo;s do some Development - using Bolt Let&amp;rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.</description>
-    </item>
-    
-    <item>
-      <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start</title>
-      <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>
-      <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</guid>
-      <description>A joint project with my beautiful wife Olga! &amp;lt;3
-In this post, we&amp;rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
-Table of Contents Requirements Why do this, the stupid reason Why do this, the real reason Planning Task Management Architecture Working Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack What&amp;rsquo;s next?</description>
     </item>
     
   </channel>
