@@ -6,7 +6,34 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Jun 2023 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jul 2023 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>api</title>
+      <link>https://www.mrnice.dev/tags/api/</link>
+      <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://www.mrnice.dev/tags/go/</link>
+      <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lunar</title>
+      <link>https://www.mrnice.dev/tags/lunar/</link>
+      <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/lunar/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>leadership</title>
       <link>https://www.mrnice.dev/tags/leadership/</link>
@@ -116,15 +143,6 @@
     </item>
     
     <item>
-      <title>api</title>
-      <link>https://www.mrnice.dev/tags/api/</link>
-      <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>design</title>
       <link>https://www.mrnice.dev/tags/design/</link>
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
@@ -152,15 +170,6 @@
     </item>
     
     <item>
-      <title>go</title>
-      <link>https://www.mrnice.dev/tags/go/</link>
-      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>html</title>
       <link>https://www.mrnice.dev/tags/html/</link>
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
@@ -175,15 +184,6 @@
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://www.mrnice.dev/tags/golang/</link>
-      <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/golang/</guid>
       <description></description>
     </item>
     
