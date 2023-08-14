@@ -6,7 +6,52 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Jul 2023 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 21:50:07 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>a11y</title>
+      <link>https://www.mrnice.dev/tags/a11y/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/a11y/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>accessibility</title>
+      <link>https://www.mrnice.dev/tags/accessibility/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/accessibility/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cursorless</title>
+      <link>https://www.mrnice.dev/tags/cursorless/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/cursorless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>meta</title>
+      <link>https://www.mrnice.dev/tags/meta/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/meta/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tools</title>
+      <link>https://www.mrnice.dev/tags/tools/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/tools/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>api</title>
       <link>https://www.mrnice.dev/tags/api/</link>
@@ -139,51 +184,6 @@
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/ai/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>design</title>
-      <link>https://www.mrnice.dev/tags/design/</link>
-      <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/design/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>books</title>
-      <link>https://www.mrnice.dev/tags/books/</link>
-      <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/books/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>frontend</title>
-      <link>https://www.mrnice.dev/tags/frontend/</link>
-      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/frontend/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>html</title>
-      <link>https://www.mrnice.dev/tags/html/</link>
-      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/html/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>javascript</title>
-      <link>https://www.mrnice.dev/tags/javascript/</link>
-      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/javascript/</guid>
       <description></description>
     </item>
     

@@ -6,7 +6,18 @@
     <description>Recent content in tools on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Aug 2019 17:26:22 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 21:50:07 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adventures in A11y: Trying Out Cursorless, part 0</title>
+      <link>https://www.mrnice.dev/posts/trying-out-cursorless/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/trying-out-cursorless/</guid>
+      <description>&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&amp;rdquo;
+This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post I should be typing it with my voice.
+How did we get here? On a recent Cup o&amp;rsquo; Go episode I interviewed Josh Bleecher Snyder, and he mentioned that he was using Cursorless to edit his code, since he was dealing with some wrist pain.</description>
+    </item>
+    
     <item>
       <title>What to Pack for a Deserted Linux Island</title>
       <link>https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/</link>

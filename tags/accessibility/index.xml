@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>accessibility on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/accessibility/</link>
+    <description>Recent content in accessibility on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Aug 2023 21:50:07 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/accessibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adventures in A11y: Trying Out Cursorless, part 0</title>
+      <link>https://www.mrnice.dev/posts/trying-out-cursorless/</link>
+      <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/trying-out-cursorless/</guid>
+      <description>&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&amp;rdquo;
+This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post I should be typing it with my voice.
+How did we get here? On a recent Cup o&amp;rsquo; Go episode I interviewed Josh Bleecher Snyder, and he mentioned that he was using Cursorless to edit his code, since he was dealing with some wrist pain.</description>
+    </item>
+    
+  </channel>
+</rss>

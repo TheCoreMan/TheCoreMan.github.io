@@ -5,8 +5,188 @@
 		<description>Recent content in Posts on mrnice.dev</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Sat, 01 Jul 2023 12:07:50 +0300</lastBuildDate>
+		<lastBuildDate>Sat, 12 Aug 2023 21:50:07 +0300</lastBuildDate>
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Adventures in A11y: Trying Out Cursorless, part 0</title>
+			<link>https://www.mrnice.dev/posts/trying-out-cursorless/</link>
+			<pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/trying-out-cursorless/</guid>
+			<description>&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&amp;rdquo;
+This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post I should be typing it with my voice.
+How did we get here? On a recent Cup o&amp;rsquo; Go episode I interviewed Josh Bleecher Snyder, and he mentioned that he was using Cursorless to edit his code, since he was dealing with some wrist pain.</description>
+			<content type="html"><![CDATA[<blockquote>
+<p>&ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse
+for a while. What would you do if they took your keyboard, as well?&rdquo;</p>
+</blockquote>
+<p>This post is starting out by me typing it on my keyboard. However, if things go
+well, by the end of this post I should be typing it with my voice.</p>
+<h2 id="how-did-we-get-here">How did we get here?</h2>
+<p>On a recent <a href="https://cupogo.dev/episodes/go-1-21-0-is-here-time-to-get-hyped-about-1-22-plus-an-interview-with-josh-bleecher-snyder">Cup o&rsquo; Go episode</a>
+I interviewed <a href="https://github.com/josharian">Josh Bleecher Snyder</a>, and he
+mentioned that he was using <a href="https://cursorless.com/">Cursorless</a> to edit his
+code, since he was dealing with some wrist pain. I was intrigued, and decided
+to give it a try. This post is here to document my experience, share it with
+Josh and the Cursorless team to help them with feedback, and perhaps to
+help you get started, as well! Investing time into a11y related projects is an
+important thing to do, and I&rsquo;m happy to do take a few hours out of my weekend to
+help out.</p>
+<h2 id="installation">Installation</h2>
+<p>I&rsquo;m installing on a Macbook Pro M1. <a href="https://www.cursorless.org/docs/user/installation/">Here&rsquo;s the documentation link</a>.
+A few notes from my installation process:</p>
+<h3 id="talon">Talon</h3>
+<p>After installing Talon, you need to open it and do a few things.
+Basically, you have to go into the getting started guide and follow everything
+that&rsquo;s written there, which isn&rsquo;t mentioned in the Cursorless docs. Here are a
+few gotchas that I dealt with.</p>
+<ol>
+<li>Give it permissions for accessibility settings. You&rsquo;ll get the normal MacOS
+pop up.</li>
+<li>You need to open Talon and accept the EULA.</li>
+</ol>
+<p><img src="/images/cursorless/install-1.png" alt="&ldquo;installation 1&rdquo;" title="installation 1"></p>
+<p>Only then can you move to the next step, since
+until you do that, you won&rsquo;t have the <code>~/.talon/user</code> directory.</p>
+<p>You also need to configure a speech engine, see below.</p>
+<h3 id="talonhubcommunity-also-known-as-knausj_talon"><code>talonhub/community</code> (also known as <code>knausj_talon</code>)</h3>
+<p>Installing <code>talonhub/community</code> (also known as <code>knausj_talon</code>) is pretty simple;
+just run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.talon/user
+</span></span><span class="line"><span class="cl">git clone https://github.com/talonhub/community community
+</span></span></code></pre></div><h3 id="vscode--extension">VSCode + extension</h3>
+<p>I already have VSCode, and the extensions are easy to install. As usual, we try
+to do things here with the keyboard only. So to open the extensions section of
+VSCode, open the command palette (with <code>⌘ + P</code>) and write:</p>
+<p><img src="/images/cursorless/install-3.png" alt="&ldquo;Installation 3&rdquo;" title="Installation 3"></p>
+<p>And then you&rsquo;re good to go! Just search for the two extensions needed, <code>Talon</code>
+and <code>Cursorless</code>, and install them.</p>
+<p><img src="/images/cursorless/install-2.png" alt="&ldquo;installation 2&rdquo;" title="installation 2"></p>
+<p>The documentation then says &ldquo;restart Talon&rdquo;. I wish they gave me a command to
+run, but I guesstimated that right-clicking it in the command bar, quitting, and
+then running it again would do the trick. And it did.</p>
+<h2 id="lets-try-to-go-cursorless">Let&rsquo;s try to go Cursorless</h2>
+<blockquote>
+<p>I&rsquo;m still typing with my hands at this point, but my VSCode looks all funny:</p>
+</blockquote>
+<p><img src="/images/cursorless/dots.png" alt="dots" title="dots"></p>
+<p>I&rsquo;ve been following this tutorial video:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/5mAzHGM2M0k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>The tutorial assumes that I have installed everything (which I did), and that
+I&rsquo;m also familiar with the &ldquo;Talon Alphabet&rdquo;. I am NOT, but the video said:</p>
+<blockquote>
+<p>&ldquo;With Talon listening, you can just say &ldquo;help alphabet&rdquo;.</p>
+</blockquote>
+<p>Really? I&rsquo;ve decided to record my first time trying this out. Exciting.</p>
+<p>AAAAAAnd nothing happens. What gives? I read through <a href="https://talon.wiki/getting_started/">Talon&rsquo;s
+Getting Started guide</a> and it mentions
+configuring a speech recognition engine. Looking at my Talon instance, it seems
+like there&rsquo;s no speech engine loaded.</p>
+<p><img src="/images/cursorless/speech-engine.png" alt="Speech engine" title="Speech engine"></p>
+<p>After loading one, I pressed record, and this is my real reaction trying out
+Talon for the first time:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/QA3agzGeBlE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>This was&hellip; WILD. I didn&rsquo;t expect it to do so many things: it messed up my OBS,
+opened GitHub (for some reason), and opened a phone menu. I didn&rsquo;t learn about
+the all-important &ldquo;Talon Sleep&rdquo; and &ldquo;Talon Wake&rdquo; commands yet, but I found them
+in the Getting Started guides and used them to stop the madness.</p>
+<p>Now that I&rsquo;ve learned my lesson, I&rsquo;ll watch the tutorial video all the way
+through before continuing.</p>
+<p>I&rsquo;ve watched the tutorial, so now, finally, time to try out Cursorless itself
+for writing this blog!</p>
+<hr>
+<p>so I&rsquo;m just gonna start talking and see if this thing is typing.l(l)</p>
+<hr>
+<p>OK, so that went&hellip; Poorly. 😅 Check this out:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/bUQWMZ3a4mc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Here&rsquo;s what happened:</p>
+<ol>
+<li>I remembered <code>talon wake</code>.</li>
+<li>I remembered <code>take</code>, but I wasn&rsquo;t sure how to select capital letters.</li>
+<li>I failed opening the Cursorless cheat sheet, instead typing <code>chichie</code>.</li>
+<li>Now that I (mistakenly) had some lowercase letters, I could try out <code>chuck</code>.</li>
+<li>The I started talking, and Cursorless actually typed what I said!</li>
+<li>But then it went off the rails for some reason and selected random sections,
+at which point I called it and just said <code>talon sleep</code>.</li>
+</ol>
+<p>Also, there was another thing bothering me which you can see in the video. I
+have two monitors at home: the laptop and a big screen. The issue was
+that I&rsquo;m currently using laptop monitor, but Talon opened help and the printed
+the subtitles into the big monitor.</p>
+<p>I got into the Slack for some help and immediately someone answered! Thanks,
+Timotimo:</p>
+<p><img src="/images/cursorless/slack.png" alt="Slack" title="Slack help"></p>
+<h2 id="installed-the-talon-hud">Installed the Talon HUD</h2>
+<p>Following Timotimo&rsquo;s advice, I decided to install the
+<a href="https://github.com/chaosparrot/talon_hud">Talon HUD</a> to help with my learning
+and understanding.</p>
+<p><img src="https://github.com/chaosparrot/talon_hud/blob/v0.7.0/docs/intro.png?raw=true" alt="talon hud"></p>
+<p>Unlike what the GitHub README suggests (unzip), I decided to install using <code>git clone</code> into the <code>~/.talon/user</code> directory. So just run the following commands:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.talon/user
+</span></span><span class="line"><span class="cl">git clone git@github.com:chaosparrot/talon_hud.git
+</span></span></code></pre></div><p>Immediately after that, I got this on my screen:</p>
+<p><img src="/images/cursorless/hud-1.png" alt="HUD m" title="HUD 1"></p>
+<p>And trying understand how to work with it again:</p>
+<hr>
+<p>3</p>
+<p>!*.</p>
+<hr>
+<p>And&hellip; it didn&rsquo;t go very well 😅 Check out the videos here:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/BPvJ-ygYSyY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/7fvTzSkrhH0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h3 id="the-talon-hud-walkthrough">The Talon HUD walkthrough</h3>
+<p>I had an issue with Talon not starting up, so I restarted it, and got the Talon
+HUD walkthrough:</p>
+<p><img src="/images/cursorless/hud-2.png" alt="HUD 2" title="HUD 2"></p>
+<p>Following the interactive tutorial was GREAT, and it was a much better way of
+learning voice commands than trying to brute-force it the way I did. I did
+encounter some bugs which doing the walkthrough:</p>
+<p><img src="/images/cursorless/hud-3.png" alt="HUD 3" title="HUD 3"></p>
+<p>So I reported them, like the good OSS citizen that I am!
+<a href="https://github.com/chaosparrot/talon_hud/issues/41">Bug #1</a> and
+<a href="https://github.com/chaosparrot/talon_hud/issues/42">bug #2</a>.</p>
+<p>Finally, I finished the initial walkthrough! It felt really good.
+I&rsquo;ll definitely try the rest of the walkthroughs later!</p>
+<p><img src="/images/cursorless/hud-4.png" alt="HUD 4" title="HUD 4"></p>
+<h2 id="contributing-the-the-talon-speech-dataset">Contributing the the Talon Speech Dataset</h2>
+<p>From the Slack community, I&rsquo;ve found this message:</p>
+<blockquote>
+<p>Reminder: Remember to record: <a href="https://speech.talonvoice.com/">https://speech.talonvoice.com/</a></p>
+</blockquote>
+<p>Curiosity got the better of me, and I clicked the link. And it&rsquo;s another way to
+contribute to the project!</p>
+<p><img src="/images/cursorless/speech-dataset.png" alt="Speech dataset" title="speech dataset"></p>
+<p>My unique identifier is <code>adf35d69-1a27-41af-9d20-2427b00767cc</code> if you want to
+look for my contributions in the public dataset. And I&rsquo;ve contributed four
+recordings!</p>
+<p><img src="/images/cursorless/recordings.png" alt="recordings" title="recordings"></p>
+<h2 id="final-attempt-and-summary">Final attempt and summary</h2>
+<p>So, I really wanted to type this part with Talon. But I&rsquo;m not there yet. As a
+compromise, I&rsquo;m marking this post as a part 0, hoping to come up with part 1
+soon!</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>API Consumption Problems 101 - a hands-on guide</title>
@@ -74,12 +254,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-024a8c3346d6f63370e42f3d97df2e84&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-48f7dd63869334d306c40273ee4ff22a&#34;)"
     role="button"
   >
     Level 1 - select all plates
   </button>
-  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-024a8c3346d6f63370e42f3d97df2e84" class="flashcard__back">
+  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-48f7dd63869334d306c40273ee4ff22a" class="flashcard__back">
     <code>plate</code>
   </div>
 </div>
@@ -106,12 +286,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-633023773c2f49d2af4384ded4668e0f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-9c0fa7f24d62634ed82033363fe4d487&#34;)"
     role="button"
   >
     Level 2 - select all bento boxes
   </button>
-  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-633023773c2f49d2af4384ded4668e0f" class="flashcard__back">
+  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-9c0fa7f24d62634ed82033363fe4d487" class="flashcard__back">
     <code>bento</code>
   </div>
 </div>
@@ -139,12 +319,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-28def34c343e66f7f60d4438227093ad&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-6e922c06044d4e327d383363fa74df8f&#34;)"
     role="button"
   >
     Level 3 - select by ID
   </button>
-  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-28def34c343e66f7f60d4438227093ad" class="flashcard__back">
+  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-6e922c06044d4e327d383363fa74df8f" class="flashcard__back">
     <code>#fancy</code>
   </div>
 </div>
@@ -173,12 +353,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-3d44f2cdd83ae70f693f346402e83726&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-f4463ed79f8022d23ca3347e36f046d8&#34;)"
     role="button"
   >
     Level 4 - Descendant Selector - Select an element inside another element
   </button>
-  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-3d44f2cdd83ae70f693f346402e83726" class="flashcard__back">
+  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-f4463ed79f8022d23ca3347e36f046d8" class="flashcard__back">
     <code>plate apple</code>
   </div>
 </div>
@@ -204,12 +384,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-4ef3ff748930384ad2626037243ced6d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-8e0fe3842606f3393426244fdd3cd77a&#34;)"
     role="button"
   >
     Level 5 - Combine the Descendant &amp; ID Selectors
   </button>
-  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-4ef3ff748930384ad2626037243ced6d" class="flashcard__back">
+  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-8e0fe3842606f3393426244fdd3cd77a" class="flashcard__back">
     <code>#fancy pickle</code>
   </div>
 </div>
@@ -237,12 +417,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-8f6e4f0d23d079374482aec33636f24d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-0d4423f7d308468f3e3f6c6e2a7d2439&#34;)"
     role="button"
   >
     Level 6 - Select elements by their class
   </button>
-  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-8f6e4f0d23d079374482aec33636f24d" class="flashcard__back">
+  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-0d4423f7d308468f3e3f6c6e2a7d2439" class="flashcard__back">
     <code>.small</code>
   </div>
 </div>
@@ -272,12 +452,12 @@ level 7&rsquo;s solution is:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-d032744f9e638c368f234de4607fa3d2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-646de8233d347a9ce72f03d328f4406f&#34;)"
     role="button"
   >
     Level 7 - Combine the Class Selector
   </button>
-  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-d032744f9e638c368f234de4607fa3d2" class="flashcard__back">
+  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-646de8233d347a9ce72f03d328f4406f" class="flashcard__back">
     <code>orange.small</code>
   </div>
 </div>
@@ -305,12 +485,12 @@ level 7&rsquo;s solution is:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-ef4fdf2686436e0d23a3087494d7c233&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-dd84f297e4e30873f643c6f06a224d33&#34;)"
     role="button"
   >
     Level 8 - Select the small (class) oranges (type) in the bentos (type)
   </button>
-  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-ef4fdf2686436e0d23a3087494d7c233" class="flashcard__back">
+  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-dd84f297e4e30873f643c6f06a224d33" class="flashcard__back">
     <code>bento orange.small</code>
   </div>
 </div>
@@ -339,12 +519,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-36a302937047defd8f364264de2cf843&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-2fd37486432ef86da7d406cf303342e9&#34;)"
     role="button"
   >
     Level 9 - Comma Combinator
   </button>
-  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-36a302937047defd8f364264de2cf843" class="flashcard__back">
+  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-2fd37486432ef86da7d406cf303342e9" class="flashcard__back">
     <code>plate, bento</code>
   </div>
 </div>
@@ -372,12 +552,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-ce27368d437d36ff04a402d849fe2633&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-8e67ed2762433cfa4df39d40063f8243&#34;)"
     role="button"
   >
     Level 10 - The Universal Selector
   </button>
-  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-ce27368d437d36ff04a402d849fe2633" class="flashcard__back">
+  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-8e67ed2762433cfa4df39d40063f8243" class="flashcard__back">
     <code>*</code>
   </div>
 </div>
@@ -403,12 +583,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-026fd66c307f4f94824337d3328deae4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-d6426d3c9334678f3d0842fee3a2f740&#34;)"
     role="button"
   >
     Level 11 - Combine the Universal Selector
   </button>
-  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-026fd66c307f4f94824337d3328deae4" class="flashcard__back">
+  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-d6426d3c9334678f3d0842fee3a2f740" class="flashcard__back">
     <code>plate *</code>
   </div>
 </div>
@@ -441,12 +621,12 @@ another are called siblings. They&rsquo;re on the same level, or depth.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-8eaedd447622c34df0396f706823f433&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-04e68fc327426e394343fdf2a3086d7d&#34;)"
     role="button"
   >
     Level 12 - Select an element that directly follows another element
   </button>
-  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-8eaedd447622c34df0396f706823f433" class="flashcard__back">
+  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-04e68fc327426e394343fdf2a3086d7d" class="flashcard__back">
     <code>plate + apple</code>
   </div>
 </div>
@@ -486,12 +666,12 @@ hover. Some that ChatGPT suggested:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-4e873dd642f6a47303c339fd224e68f0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-60ce8960dd423f64d34734a3228e73ff&#34;)"
     role="button"
   >
     Level 13 - Select elements that follows another element
   </button>
-  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-4e873dd642f6a47303c339fd224e68f0" class="flashcard__back">
+  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-60ce8960dd423f64d34734a3228e73ff" class="flashcard__back">
     <code>bento ~ pickle</code>
   </div>
 </div>
@@ -520,12 +700,12 @@ children.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-76a736f3d3ec2f96244f4883d0430d2e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-d4767983d2c02203ea3d36f644834fef&#34;)"
     role="button"
   >
     Level 14 - Select direct children of an element A &gt; B
   </button>
-  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-76a736f3d3ec2f96244f4883d0430d2e" class="flashcard__back">
+  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-d4767983d2c02203ea3d36f644834fef" class="flashcard__back">
     <code>plate &gt; apple</code>
   </div>
 </div>
@@ -554,12 +734,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-3636e39fa27327ed640cd438f42f08d4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-a90cd324e3fde43487036748f266f23d&#34;)"
     role="button"
   >
     Level 15 - Select a first child element inside of another element
   </button>
-  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-3636e39fa27327ed640cd438f42f08d4" class="flashcard__back">
+  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-a90cd324e3fde43487036748f266f23d" class="flashcard__back">
     <code>plate &gt; orange:first-child</code>
   </div>
 </div>
@@ -586,12 +766,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-0976f3d827a4e238fe364434f3d06cd2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-60d743fefa3d7d0cf438329324e28664&#34;)"
     role="button"
   >
     Level 16 - Select an element that are the only element inside of another one.
   </button>
-  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-0976f3d827a4e238fe364434f3d06cd2" class="flashcard__back">
+  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-60d743fefa3d7d0cf438329324e28664" class="flashcard__back">
     <code>plate &gt; *:only-child</code>. You can also solve it with
 <code>plate :only-child</code>, and we weren&rsquo;t sure which one is better.
   </div>
@@ -619,12 +799,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-24328a60dc3f78f73444f6e936d03ed2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-28f4d6f33d8ac7044437263f0d639ee2&#34;)"
     role="button"
   >
     Level 17 - Select the last element inside of another element
   </button>
-  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-24328a60dc3f78f73444f6e936d03ed2" class="flashcard__back">
+  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-28f4d6f33d8ac7044437263f0d639ee2" class="flashcard__back">
     <code>.small:last-child</code>
   </div>
 </div>
@@ -657,12 +837,12 @@ since it takes a parameter.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-46070794fc38a3236433ddfe28d426fe&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-97d30a63402667f3e244eddfc3832f48&#34;)"
     role="button"
   >
     Level 18 - Select an element by its order in another element
   </button>
-  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-46070794fc38a3236433ddfe28d426fe" class="flashcard__back">
+  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-97d30a63402667f3e244eddfc3832f48" class="flashcard__back">
     <code>plate:nth-child(3)</code>
   </div>
 </div>
@@ -690,12 +870,12 @@ since it takes a parameter.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-3fe462dd230c3a0f4d49e37f63864287&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-04f30747922e63d4f683e8d43ad263fc&#34;)"
     role="button"
   >
     Level 19 - Select an element by its order in another element, counting from the back
   </button>
-  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-3fe462dd230c3a0f4d49e37f63864287" class="flashcard__back">
+  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-04f30747922e63d4f683e8d43ad263fc" class="flashcard__back">
     <code>bento:nth-last-child(3)</code>
   </div>
 </div>
@@ -725,12 +905,12 @@ work in this case, but <code>bento:nth-last-child(3)</code> does.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-4d7634f322ea806d4704fc9323fd38e6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-70df43e742ce66363da2fd23443098f8&#34;)"
     role="button"
   >
     Level 20 - Select the first element of a specific type
   </button>
-  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-4d7634f322ea806d4704fc9323fd38e6" class="flashcard__back">
+  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-70df43e742ce66363da2fd23443098f8" class="flashcard__back">
     <code>apple:first-of-type</code>
   </div>
 </div>
@@ -758,12 +938,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-da7402f64d2df33049ece26f43687338&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-434c2ee28d6dfa30786369430f7324df&#34;)"
     role="button"
   >
     Level 21 - Nth of Type Selector
   </button>
-  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-da7402f64d2df33049ece26f43687338" class="flashcard__back">
+  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-434c2ee28d6dfa30786369430f7324df" class="flashcard__back">
     <code>plate:nth-of-type(even)</code>
   </div>
 </div>
@@ -789,12 +969,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-4924ffd3373c08ef7336226ea6d448d0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-d242dc83f7fe083930a6f367d64344e2&#34;)"
     role="button"
   >
     Level 22 - Nth-of-type Selector with Formula
   </button>
-  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-4924ffd3373c08ef7336226ea6d448d0" class="flashcard__back">
+  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-d242dc83f7fe083930a6f367d64344e2" class="flashcard__back">
     <code>plate:nth-of-type(2n+3)</code>
   </div>
 </div>
@@ -821,12 +1001,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-0e0df36273e2a4d82f43643486f37c9d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-784adfd3e620d333c62f4482e640379f&#34;)"
     role="button"
   >
     Level 23 - Select elements that are the only ones of their type within of their parent element
   </button>
-  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-0e0df36273e2a4d82f43643486f37c9d" class="flashcard__back">
+  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-784adfd3e620d333c62f4482e640379f" class="flashcard__back">
     <code>plate apple:only-of-type</code>
   </div>
 </div>
@@ -852,12 +1032,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-38f7a644603e4303cedd369f42f782d2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-23f44d39c30e8f0338d2774e6d62a46f&#34;)"
     role="button"
   >
     Level 24 - Select the last element of a specific type
   </button>
-  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-38f7a644603e4303cedd369f42f782d2" class="flashcard__back">
+  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-23f44d39c30e8f0338d2774e6d62a46f" class="flashcard__back">
     <code>apple:last-of-type, orange:last-of-type</code>
   </div>
 </div>
@@ -883,12 +1063,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-673df8f34203964d7342204e3da8fce6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-4e2dd8e06f349f32f737463dc402a638&#34;)"
     role="button"
   >
     Level 25 - Select elements that don&rsquo;t have children
   </button>
-  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-673df8f34203964d7342204e3da8fce6" class="flashcard__back">
+  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-4e2dd8e06f349f32f737463dc402a638" class="flashcard__back">
     <code>bento:empty</code>
   </div>
 </div>
@@ -914,12 +1094,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-24284d0e698f636e04cd47fd37233f3a&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-2f0467d306df836734ca83e24f49e2d3&#34;)"
     role="button"
   >
     Level 26 - Select all elements that don&rsquo;t match the negation selector
   </button>
-  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-24284d0e698f636e04cd47fd37233f3a" class="flashcard__back">
+  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-2f0467d306df836734ca83e24f49e2d3" class="flashcard__back">
     <code>apple:not(.small)</code>
   </div>
 </div>
@@ -950,12 +1130,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-ff2a37f986436e0e3d63384d427c2d04&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-634402e3f73d64864de9f2fc320738da&#34;)"
     role="button"
   >
     Level 27 - Select all elements that have a specific attribute
   </button>
-  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-ff2a37f986436e0e3d63384d427c2d04" class="flashcard__back">
+  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-634402e3f73d64864de9f2fc320738da" class="flashcard__back">
     <code>[for]</code>.
   </div>
 </div>
@@ -981,12 +1161,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-844237f9246420fc36f3a7ed083dd3e6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-c8e8232e967d3203df4f3a44466d0f37&#34;)"
     role="button"
   >
     Level 28 - Combining type and attribute selector
   </button>
-  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-844237f9246420fc36f3a7ed083dd3e6" class="flashcard__back">
+  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-c8e8232e967d3203df4f3a44466d0f37" class="flashcard__back">
     <code>plate[for]</code>.
   </div>
 </div>
@@ -1012,12 +1192,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-424e926d3333e476af4203d708fc6df8&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-4433efe4d0d7306342688d27f236c9fa&#34;)"
     role="button"
   >
     Level 29 - Select all elements that have a specific attribute value
   </button>
-  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-424e926d3333e476af4203d708fc6df8" class="flashcard__back">
+  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-4433efe4d0d7306342688d27f236c9fa" class="flashcard__back">
     <code>[for=&quot;Vitaly&quot;]</code>
   </div>
 </div>
@@ -1044,12 +1224,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-66f79f3e38240c8e4dd3f27a3432406d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-f63d743d9864cff203e703a42e84d362&#34;)"
     role="button"
   >
     Level 30 - Select all elements with an attribute value that starts with specific characters
   </button>
-  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-66f79f3e38240c8e4dd3f27a3432406d" class="flashcard__back">
+  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-f63d743d9864cff203e703a42e84d362" class="flashcard__back">
     <code>[for^=&quot;Sa&quot;]</code>
   </div>
 </div>
@@ -1075,12 +1255,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-876ef03e444cd2d0fa36732d63f28493&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-3d473c83f04df34fa2d669627e024e38&#34;)"
     role="button"
   >
     Level 31 - Select all elements with an attribute value that ends with specific characters
   </button>
-  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-876ef03e444cd2d0fa36732d63f28493" class="flashcard__back">
+  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-3d473c83f04df34fa2d669627e024e38" class="flashcard__back">
     <code>[for$=&quot;ato&quot;]</code>
   </div>
 </div>
@@ -1106,12 +1286,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-34322467dff8704469d3fea0c3d38e62&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-362883a2f7430dd26644fdc93f37ee04&#34;)"
     role="button"
   >
     Level 32 - Select all elements with an attribute value that contains specific characters anywhere
   </button>
-  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-34322467dff8704469d3fea0c3d38e62" class="flashcard__back">
+  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-362883a2f7430dd26644fdc93f37ee04" class="flashcard__back">
     <code>[for*=&quot;obb&quot;]</code>
   </div>
 </div>
@@ -1756,12 +1936,12 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-6644c779f23dd32e83fa20863df043e4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-9fe3ca74384d2ff426376d80620e4d33&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-6644c779f23dd32e83fa20863df043e4" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-9fe3ca74384d2ff426376d80620e4d33" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -1932,12 +2112,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-33694d0270f82f686d7fd324c4ae33e4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-4324d0dce484f023e366df2673738f9a&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-33694d0270f82f686d7fd324c4ae33e4" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-4324d0dce484f023e366df2673738f9a" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -1963,12 +2143,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-473f4286940322aef70df8ec363436dd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-9c8a48422742360df340d37edff6363e&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-473f4286940322aef70df8ec363436dd" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-9c8a48422742360df340d37edff6363e" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -1999,12 +2179,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-3a82632e3344ded3902676748f0ff4cd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-ded48f4d34026e9327f26a7603f3c483&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-3a82632e3344ded3902676748f0ff4cd" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-ded48f4d34026e9327f26a7603f3c483" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -2032,12 +2212,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d773f336e89e4ff3c82263a4d440d620&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-83d37447eaf6206e84f3304d3926dfc2&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d773f336e89e4ff3c82263a4d440d620" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-83d37447eaf6206e84f3304d3926dfc2" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -2080,12 +2260,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-e643f24c70667a4383df3ef32942d08d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-4307c43dd23fa67238d4f4068e2f39e6&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-e643f24c70667a4383df3ef32942d08d" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-4307c43dd23fa67238d4f4068e2f39e6" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax</h1>
 <ul>
 <li><a href="#overview">Overview</a>
