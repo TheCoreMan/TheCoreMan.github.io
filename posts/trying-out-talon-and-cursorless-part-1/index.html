@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+<meta itemprop="name" content="Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1">
+<meta itemprop="description" content="Everyone benefits from accessibility.
+Accessible design improves access to information on the web for individuals with and without disabilities. Well-designed, accessible web sites expedite the delivery of information and services. Providing accessible websites and electronic documents allows a greater variety of consumers to obtain information regardless of their individual needs.
+~From National DB&rsquo;s accessibility toolkit
+This post is a part of a series. Check out the previous posts for more context."><meta itemprop="datePublished" content="2023-08-19T13:35:06+03:00" />
+<meta itemprop="dateModified" content="2023-08-19T13:35:06+03:00" />
+<meta itemprop="wordCount" content="645"><meta itemprop="image" content="https://www.mrnice.dev/images/cursorless/cursorless-icon.png">
+<meta itemprop="keywords" content="a11y,accessibility,tools,talon,cursorless," /><meta property="og:title" content="Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1" />
+<meta property="og:description" content="Everyone benefits from accessibility.
+Accessible design improves access to information on the web for individuals with and without disabilities. Well-designed, accessible web sites expedite the delivery of information and services. Providing accessible websites and electronic documents allows a greater variety of consumers to obtain information regardless of their individual needs.
+~From National DB&rsquo;s accessibility toolkit
+This post is a part of a series. Check out the previous posts for more context." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/" /><meta property="og:image" content="https://www.mrnice.dev/images/cursorless/cursorless-icon.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-19T13:35:06+03:00" />
+<meta property="article:modified_time" content="2023-08-19T13:35:06+03:00" />
+
+<meta name="twitter:title" content="Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1">
+
+
+
+<meta
+	name="description"
+	content="Everyone benefits from accessibility.
+Accessible design improves access to information on the web for individuals with and without disabilities. Well-designed, accessible web sites expedite the delivery of information and services. Providing accessible websites and electronic documents allows a greater variety of consumers to obtain information regardless of their individual needs.
+~From National DB&rsquo;s accessibility toolkit
+This post is a part of a series. Check out the previous posts for more context."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/cursorless/cursorless-icon.png');}</style>
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><button id="toc-btn" class="hdr-btn desktop-only-ib" title="Table of Contents"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 19, 2023</span></div>
+				<h1>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1</h1>
+			</header>
+			<div class="content">
+				<blockquote>
+<p>Everyone benefits from accessibility.</p>
+<p>Accessible design improves access to information on the web for individuals with
+and without disabilities. Well-designed, accessible web sites expedite the
+delivery of information and services. Providing accessible websites and
+electronic documents allows a greater variety of consumers to obtain information
+regardless of their individual needs.</p>
+<p>~From <a href="https://www.nationaldb.org/for-state-deaf-blind-projects/accessibility-toolkit/">National DB&rsquo;s accessibility toolkit</a></p>
+</blockquote>
+<p>This post is a part of a series. <a href="/tags/a11y">Check out the previous posts for more context</a>.</p>
+<p>Since all this voice-activated a11y stuff works a lot better over video, this
+post will mostly be video content. Which is not normal for how my content works.
+I&rsquo;ll include a beautified version video transcript here, as well.</p>
+<p>In this post, I&rsquo;ll focus on combining Talon with Vimium for web navigation.</p>
+<h2 id="whats-vimium">What&rsquo;s <code>vimium</code>?<a href="#whats-vimium" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><a href="https://vimium.github.io/">Here&rsquo;s their homepage</a>. It&rsquo;s my first go-to Chrome
+extension on every new computer setup. At this point I find it difficult to use
+the web without it!</p>
+<p>Go install it now and type <code>?</code> - you&rsquo;ll see all the help there.</p>
+<h2 id="talon--vimium-for-web-navigation">Talon + Vimium for web navigation<a href="#talon--vimium-for-web-navigation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/sZP57nwVBCA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h3 id="intro">Intro<a href="#intro" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>All right, so while working on finalizing this blog post, I just put in the last
+fixes before I publish it. I found a really cool combo of how my current setup,
+optimized for productivity, works pretty well with Talon and keyboard shortcuts.</p>
+<h3 id="objective">Objective<a href="#objective" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Run my local Hugo server.</li>
+<li>Navigate to Chrome.</li>
+<li>Look at my blog running on localhost.</li>
+<li>Navigate the web using vimium, a Chrome extension with Vim-like bindings.</li>
+</ul>
+<h3 id="experience-with-vimium-and-talon">Experience with Vimium and Talon<a href="#experience-with-vimium-and-talon" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Vimium works really well with Talon. It&rsquo;s going to take me a while to get used
+to it because I&rsquo;m still learning. As you can see, I have <code>F</code> and <code>J</code> on my home
+row highlighted, which is helpful. Let&rsquo;s give it a shot.</p>
+<h3 id="commands-demonstrated">Commands Demonstrated<a href="#commands-demonstrated" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li><code>talon wake</code></li>
+<li><code>harp urge go right enter</code></li>
+<li><code>Focus Chrome go address look odd cap enter</code></li>
+<li><code>Talent sleep</code></li>
+</ul>
+<h3 id="using-vimium">Using Vimium<a href="#using-vimium" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>(Note: This is where you might use tabs to navigate. I&rsquo;ll show you how to use vimium instead.)</p>
+<p>Vimium works super well. Clicking <code>F</code> brings up all the links, and they are just
+single letters, making it easy to navigate. For example:</p>
+<ul>
+<li><code>talon wake</code></li>
+<li><code>jury</code></li>
+<li><code>talon sleep</code></li>
+</ul>
+<p>I pressed <code>J</code> because it was mapped to the posts I navigated</p>
+<h3 id="other-commands">Other Commands<a href="#other-commands" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li><code>Talon awake</code></li>
+<li><code>fine</code></li>
+<li><code>gust</code></li>
+<li><code>scroll down</code></li>
+<li><code>fine</code></li>
+<li><code>Escape</code></li>
+<li><code>fine shift air shift each</code></li>
+<li><code>Talon sleep</code></li>
+</ul>
+<h2 id="engaging-with-the-talon-community">Engaging with the Talon community<a href="#engaging-with-the-talon-community" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>While trying to memorize the Talon Alphabet, I found two seemingly weird picks
+for the letters: <code>k</code> is <code>crunch</code> and <code>i</code> is <code>sit</code>. So I asked in <a href="https://talonvoice.slack.com/archives/C7ENXA7C4/p1692374495593049">Talon&rsquo;s Slack
+<code>#help</code> channel</a>
+what&rsquo;s going on. I got a really interesting answer from one of the community
+members:</p>
+<blockquote>
+<p>The talon alphabet has been carefully optimised to maximise efficiency and
+accuracy, which includes lots of complex considerations such as avoiding
+adjacent plosives to enable more rapid chaining and diverse phonemes for
+improved accuracy</p>
+</blockquote>
+<p>So cool! So I decided to trust the community and just work on memorizing the
+Talon Alphabet the best way I know, which is a physical cheatsheet. Just like
+university!</p>
+<p><img src="/images/cursorless/cheatsheet.jpg" alt="A cursorless cheatsheet" title="A cursorless cheatsheet"></p>
+<h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I&rsquo;m still learning Talon + Cursoerless and trying to engage with the community
+as much as I can. I hope that by writing this content I&rsquo;m:</p>
+<ol>
+<li>Bringing awareness to a11y projects</li>
+<li>Supporting the community with some documentation and content</li>
+<li>Learning more about how to build my own software in an accessible way</li>
+</ol>
+<p>However, this is far from being relevant to an actual workflow for me at the
+moment. It&rsquo;s really <em>really</em> <strong>really</strong> slow for me when I actually try to
+hunker down and get some work done. I&rsquo;ll to practice it a lot more and only then
+will I be able to install it on my work machine, not just my personal one.</p>
+<p>Really hoping to continue this series in the future and contribute more to the
+Talon + Cursorless stack. Doing OSS while improving a11y feels like time well
+spent.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/trying-out-talon-and-cursorless-part-0/">Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0</a></li>
+	
+	<li><a href="/posts/what-to-pack-for-a-deserted-linux-island/">What to Pack for a Deserted Linux Island</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/a11y">a11y</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/accessibility">accessibility</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/tools">tools</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/talon">talon</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cursorless">cursorless</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>645 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-19 13:35 &#43;0300</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">Table of Contents</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#whats-vimium">What&rsquo;s <code>vimium</code>?</a></li>
+    <li><a href="#talon--vimium-for-web-navigation">Talon + Vimium for web navigation</a>
+      <ul>
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#objective">Objective</a></li>
+        <li><a href="#experience-with-vimium-and-talon">Experience with Vimium and Talon</a></li>
+        <li><a href="#commands-demonstrated">Commands Demonstrated</a></li>
+        <li><a href="#using-vimium">Using Vimium</a></li>
+        <li><a href="#other-commands">Other Commands</a></li>
+      </ul>
+    </li>
+    <li><a href="#engaging-with-the-talon-community">Engaging with the Talon community</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+	}
+</script>
+
+</body>
+
+</html>

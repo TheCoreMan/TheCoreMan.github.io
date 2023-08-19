@@ -3,30 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.mrnice.dev/tags/a11y/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/accessibility/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/trying-out-cursorless/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <loc>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</loc>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/cursorless/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/meta/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/</loc>
-    <lastmod>2023-08-12T21:50:07+03:00</lastmod>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/talon/</loc>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/tools/</loc>
+    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/</loc>
     <lastmod>2023-08-12T21:50:07+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/api/</loc>
@@ -172,6 +175,9 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</loc>
     <lastmod>2022-05-09T22:29:06+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/meta/</loc>
+    <lastmod>2022-01-19T22:29:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/print-hello-world-were-recolabs/</loc>
     <lastmod>2022-01-19T22:29:06+03:00</lastmod>

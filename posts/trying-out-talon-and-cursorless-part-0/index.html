@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+<meta itemprop="name" content="Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0">
+<meta itemprop="description" content="&ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&rdquo;
+This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post some part should be typed out with my voice.
+Every part that is in between lines (like this one) is actually typed out with Cursorless and with my voice, not my keyboard."><meta itemprop="datePublished" content="2023-08-12T21:50:07+03:00" />
+<meta itemprop="dateModified" content="2023-08-12T21:50:07+03:00" />
+<meta itemprop="wordCount" content="1150"><meta itemprop="image" content="https://www.mrnice.dev/images/cursorless/cursorless-icon.png">
+<meta itemprop="keywords" content="a11y,accessibility,tools,talon,cursorless," /><meta property="og:title" content="Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0" />
+<meta property="og:description" content="&ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&rdquo;
+This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post some part should be typed out with my voice.
+Every part that is in between lines (like this one) is actually typed out with Cursorless and with my voice, not my keyboard." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/" /><meta property="og:image" content="https://www.mrnice.dev/images/cursorless/cursorless-icon.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-12T21:50:07+03:00" />
+<meta property="article:modified_time" content="2023-08-12T21:50:07+03:00" />
+
+<meta name="twitter:title" content="Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0">
+
+
+
+<meta
+	name="description"
+	content="&ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&rdquo;
+This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post some part should be typed out with my voice.
+Every part that is in between lines (like this one) is actually typed out with Cursorless and with my voice, not my keyboard."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/cursorless/cursorless-icon.png');}</style>
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><button id="toc-btn" class="hdr-btn desktop-only-ib" title="Table of Contents"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 12, 2023</span></div>
+				<h1>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0</h1>
+			</header>
+			<div class="content">
+				<blockquote>
+<p>&ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse
+for a while. What would you do if they took your keyboard, as well?&rdquo;</p>
+</blockquote>
+<p>This post is starting out by me typing it on my keyboard. However, if things go
+well, by the end of this post some part should be typed out with my voice.</p>
+<hr>
+<p>Every part that is in between lines (like this one) is actually typed out with Cursorless
+and with my voice, not my keyboard.I&rsquo;ll try to keep some of the mistakes in
+which is why these parts might be slightly weirdly formatted or even have some mistakes.</p>
+<p>what you&rsquo;re reading right now has actually been written at the end of the post
+after I&rsquo;ve learned everything that is detailed out  below.</p>
+<hr>
+<h2 id="how-did-we-get-here">How did we get here?<a href="#how-did-we-get-here" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>On a recent <a href="https://cupogo.dev/episodes/go-1-21-0-is-here-time-to-get-hyped-about-1-22-plus-an-interview-with-josh-bleecher-snyder">Cup o&rsquo; Go episode</a>
+I interviewed <a href="https://github.com/josharian">Josh Bleecher Snyder</a>, and he
+mentioned that he was using <a href="https://cursorless.com/">Cursorless</a> to edit his
+code, since he was dealing with some wrist pain. I was intrigued, and decided
+to give it a try. This post is here to document my experience, share it with
+Josh and the Cursorless team to help them with feedback, and perhaps to
+help you get started, as well! Investing time into a11y related projects is an
+important thing to do, and I&rsquo;m happy to do take a few hours out of my weekend to
+help out.</p>
+<h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I&rsquo;m installing on a Macbook Pro M1. <a href="https://www.cursorless.org/docs/user/installation/">Here&rsquo;s the documentation link</a>.
+A few notes from my installation process:</p>
+<h3 id="talon">Talon<a href="#talon" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>After installing Talon, you need to open it and do a few things.
+Basically, you have to go into the getting started guide and follow everything
+that&rsquo;s written there, which isn&rsquo;t mentioned in the Cursorless docs. Here are a
+few gotchas that I dealt with.</p>
+<ol>
+<li>Give it permissions for accessibility settings. You&rsquo;ll get the normal MacOS
+pop up.</li>
+<li>You need to open Talon and accept the EULA.</li>
+</ol>
+<p><img src="/images/cursorless/install-1.png" alt="&ldquo;installation 1&rdquo;" title="installation 1"></p>
+<p>Only then can you move to the next step, since
+until you do that, you won&rsquo;t have the <code>~/.talon/user</code> directory.</p>
+<p>You also need to configure a speech engine, see below.</p>
+<h3 id="talonhubcommunity-also-known-as-knausj_talon"><code>talonhub/community</code> (also known as <code>knausj_talon</code>)<a href="#talonhubcommunity-also-known-as-knausj_talon" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Installing <code>talonhub/community</code> (also known as <code>knausj_talon</code>) is pretty simple;
+just run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.talon/user
+</span></span><span class="line"><span class="cl">git clone https://github.com/talonhub/community community
+</span></span></code></pre></div><h3 id="vscode--extension">VSCode + extension<a href="#vscode--extension" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>I already have VSCode, and the extensions are easy to install. As usual, we try
+to do things here with the keyboard only. So to open the extensions section of
+VSCode, open the command palette (with <code>⌘ + P</code>) and write:</p>
+<p><img src="/images/cursorless/install-3.png" alt="&ldquo;Installation 3&rdquo;" title="Installation 3"></p>
+<p>And then you&rsquo;re good to go! Just search for the two extensions needed, <code>Talon</code>
+and <code>Cursorless</code>, and install them.</p>
+<p><img src="/images/cursorless/install-2.png" alt="&ldquo;installation 2&rdquo;" title="installation 2"></p>
+<p>The documentation then says &ldquo;restart Talon&rdquo;. I wish they gave me a command to
+run, but I guesstimated that right-clicking it in the command bar, quitting, and
+then running it again would do the trick. And it did.</p>
+<h2 id="lets-try-to-go-cursorless">Let&rsquo;s try to go Cursorless<a href="#lets-try-to-go-cursorless" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<blockquote>
+<p>I&rsquo;m still typing with my hands at this point, but my VSCode looks all funny:</p>
+</blockquote>
+<p><img src="/images/cursorless/dots.png" alt="dots" title="dots"></p>
+<p>I&rsquo;ve been following this tutorial video:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/5mAzHGM2M0k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>The tutorial assumes that I have installed everything (which I did), and that
+I&rsquo;m also familiar with the &ldquo;Talon Alphabet&rdquo;. I am NOT, but the video said:</p>
+<blockquote>
+<p>&ldquo;With Talon listening, you can just say &ldquo;help alphabet&rdquo;.</p>
+</blockquote>
+<p>Really? I&rsquo;ve decided to record my first time trying this out. Exciting.</p>
+<p>AAAAAAnd nothing happens. What gives? I read through <a href="https://talon.wiki/getting_started/">Talon&rsquo;s
+Getting Started guide</a> and it mentions
+configuring a speech recognition engine. Looking at my Talon instance, it seems
+like there&rsquo;s no speech engine loaded.</p>
+<p><img src="/images/cursorless/speech-engine.png" alt="Speech engine" title="Speech engine"></p>
+<p>After loading one, I pressed record, and this is my real reaction trying out
+Talon for the first time:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/QA3agzGeBlE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>This was&hellip; WILD. I didn&rsquo;t expect it to do so many things: it messed up my OBS,
+opened GitHub (for some reason), and opened a phone menu. I didn&rsquo;t learn about
+the all-important &ldquo;Talon Sleep&rdquo; and &ldquo;Talon Wake&rdquo; commands yet, but I found them
+in the Getting Started guides and used them to stop the madness.</p>
+<p>Now that I&rsquo;ve learned my lesson, I&rsquo;ll watch the tutorial video all the way
+through before continuing.</p>
+<p>I&rsquo;ve watched the tutorial, so now, finally, time to try out Cursorless itself
+for writing this blog!</p>
+<hr>
+<p>so I&rsquo;m just gonna start talking and see if this thing is typing.l(l)</p>
+<hr>
+<p>OK, so that went&hellip; Poorly. 😅 Check this out:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/bUQWMZ3a4mc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Here&rsquo;s what happened:</p>
+<ol>
+<li>I remembered <code>talon wake</code>.</li>
+<li>I remembered <code>take</code>, but I wasn&rsquo;t sure how to select capital letters.</li>
+<li>I failed opening the Cursorless cheat sheet, instead typing <code>chichie</code>.</li>
+<li>Now that I (mistakenly) had some lowercase letters, I could try out <code>chuck</code>.</li>
+<li>The I started talking, and Cursorless actually typed what I said!</li>
+<li>But then it went off the rails for some reason and selected random sections,
+at which point I called it and just said <code>talon sleep</code>.</li>
+</ol>
+<p>Also, there was another thing bothering me which you can see in the video. I
+have two monitors at home: the laptop and a big screen. The issue was
+that I&rsquo;m currently using laptop monitor, but Talon opened help and the printed
+the subtitles into the big monitor.</p>
+<p>I got into the Slack for some help and immediately someone answered! Thanks,
+Timotimo:</p>
+<p><img src="/images/cursorless/slack.png" alt="Slack" title="Slack help"></p>
+<h2 id="installed-the-talon-hud">Installed the Talon HUD<a href="#installed-the-talon-hud" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Following Timotimo&rsquo;s advice, I decided to install the
+<a href="https://github.com/chaosparrot/talon_hud">Talon HUD</a> to help with my learning
+and understanding.</p>
+<p><img src="https://github.com/chaosparrot/talon_hud/blob/v0.7.0/docs/intro.png?raw=true" alt="talon hud"></p>
+<p>Unlike what the GitHub README suggests (unzip), I decided to install using <code>git clone</code> into the <code>~/.talon/user</code> directory. So just run the following commands:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.talon/user
+</span></span><span class="line"><span class="cl">git clone git@github.com:chaosparrot/talon_hud.git
+</span></span></code></pre></div><p>Immediately after that, I got this on my screen:</p>
+<p><img src="/images/cursorless/hud-1.png" alt="HUD m" title="HUD 1"></p>
+<p>And trying understand how to work with it again:</p>
+<hr>
+<p>3</p>
+<p>!*.</p>
+<hr>
+<p>And&hellip; it didn&rsquo;t go very well 😅 Check out the videos here:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/BPvJ-ygYSyY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/7fvTzSkrhH0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h3 id="the-talon-hud-walkthrough">The Talon HUD walkthrough<a href="#the-talon-hud-walkthrough" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>I had an issue with Talon not starting up, so I restarted it, and got the Talon
+HUD walkthrough:</p>
+<p><img src="/images/cursorless/hud-2.png" alt="HUD 2" title="HUD 2"></p>
+<p>Following the interactive tutorial was GREAT, and it was a much better way of
+learning voice commands than trying to brute-force it the way I did. I did
+encounter some bugs which doing the walkthrough:</p>
+<p><img src="/images/cursorless/hud-3.png" alt="HUD 3" title="HUD 3"></p>
+<p>So I reported them, like the good OSS citizen that I am!
+<a href="https://github.com/chaosparrot/talon_hud/issues/41">Bug #1</a> and
+<a href="https://github.com/chaosparrot/talon_hud/issues/42">bug #2</a>.</p>
+<p>Finally, I finished the initial walkthrough! It felt really good.
+I&rsquo;ll definitely try the rest of the walkthroughs later!</p>
+<p><img src="/images/cursorless/hud-4.png" alt="HUD 4" title="HUD 4"></p>
+<h2 id="contributing-the-the-talon-speech-dataset">Contributing the the Talon Speech Dataset<a href="#contributing-the-the-talon-speech-dataset" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>From the Slack community, I&rsquo;ve found this message:</p>
+<blockquote>
+<p>Reminder: Remember to record: <a href="https://speech.talonvoice.com/">https://speech.talonvoice.com/</a></p>
+</blockquote>
+<p>Curiosity got the better of me, and I clicked the link. And it&rsquo;s another way to
+contribute to the project.</p>
+<p><img src="/images/cursorless/speech-dataset.png" alt="Speech dataset" title="speech dataset"></p>
+<p>My unique identifier is <code>adf35d69-1a27-41af-9d20-2427b00767cc</code> if you want to
+look for my contributions in the public dataset: I&rsquo;ve contributed four
+recordings.</p>
+<p><img src="/images/cursorless/recordings.png" alt="recordings" title="recordings"></p>
+<h2 id="final-attempt-and-summary">Final attempt and summary<a href="#final-attempt-and-summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>So, I really wanted to type this part with Talon. But I&rsquo;m not there yet. As a
+compromise, I&rsquo;m marking this post as a part 0, hoping to come up with part 1
+soon!</p>
+<p>I think that investing my time and effort into Talon + Cursorless would give me
+great insight into a11y in general and is</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/what-to-pack-for-a-deserted-linux-island/">What to Pack for a Deserted Linux Island</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/a11y">a11y</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/accessibility">accessibility</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/tools">tools</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/talon">talon</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cursorless">cursorless</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1150 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-12 21:50 &#43;0300</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">Table of Contents</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-did-we-get-here">How did we get here?</a></li>
+    <li><a href="#installation">Installation</a>
+      <ul>
+        <li><a href="#talon">Talon</a></li>
+        <li><a href="#talonhubcommunity-also-known-as-knausj_talon"><code>talonhub/community</code> (also known as <code>knausj_talon</code>)</a></li>
+        <li><a href="#vscode--extension">VSCode + extension</a></li>
+      </ul>
+    </li>
+    <li><a href="#lets-try-to-go-cursorless">Let&rsquo;s try to go Cursorless</a></li>
+    <li><a href="#installed-the-talon-hud">Installed the Talon HUD</a>
+      <ul>
+        <li><a href="#the-talon-hud-walkthrough">The Talon HUD walkthrough</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing-the-the-talon-speech-dataset">Contributing the the Talon Speech Dataset</a></li>
+    <li><a href="#final-attempt-and-summary">Final attempt and summary</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>API Consumption Problems 101 - a hands-on guide</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2023 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+	}
+</script>
+
+</body>
+
+</html>
