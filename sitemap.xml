@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/mermaid-on-webflow/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/diagrams/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/mermaid/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/web/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/webflow/</loc>
+    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/a11y/</loc>
     <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
@@ -12,15 +36,6 @@
     <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/cursorless/</loc>
-    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2023-08-19T13:35:06+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2023-08-19T13:35:06+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/talon/</loc>
@@ -81,9 +96,6 @@
     <lastmod>2023-05-16T09:36:21+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/profiling/</loc>
-    <lastmod>2023-05-16T09:36:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/web/</loc>
     <lastmod>2023-05-16T09:36:21+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/ai/</loc>
@@ -444,9 +456,6 @@
     <lastmod>2019-12-26T15:34:44+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/about/</loc>
-    <lastmod>2019-12-26T13:48:04+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/now/</loc>
     <lastmod>2019-12-26T13:48:04+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/development/</loc>

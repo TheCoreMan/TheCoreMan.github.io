@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>diagrams on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/diagrams/</link>
+    <description>Recent content in diagrams on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Sep 2023 23:22:46 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/diagrams/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
+      <link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>
+      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/mermaid-on-webflow/</guid>
+      <description>How to set up a Mermaid.js diagram on your Webflow site, the shortest guide possible:
+Install Mermaid for a specific post Add an HTML Embed Code by clicking on this button:
+Copy this HTML Embed Code snippet to the top of the post.
+&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; // Include mermaid.js import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;; // Initialize the Mermaid chart mermaid.initialize({ startOnLoad: true, // Apply the dark theme - replace with what you want.</description>
+    </item>
+    
+  </channel>
+</rss>

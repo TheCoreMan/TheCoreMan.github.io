@@ -6,7 +6,19 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Aug 2023 13:35:06 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Sep 2023 23:22:46 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
+      <link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>
+      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/mermaid-on-webflow/</guid>
+      <description>How to set up a Mermaid.js diagram on your Webflow site, the shortest guide possible:
+Install Mermaid for a specific post Add an HTML Embed Code by clicking on this button:
+Copy this HTML Embed Code snippet to the top of the post.
+&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; // Include mermaid.js import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;; // Initialize the Mermaid chart mermaid.initialize({ startOnLoad: true, // Apply the dark theme - replace with what you want.</description>
+    </item>
+    
     <item>
       <title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1</title>
       <link>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</link>
@@ -192,15 +204,6 @@ Part 1 In this part we&amp;rsquo;re going to:</description>
       <pubDate>Mon, 18 Jul 2022 14:15:55 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/posts/astrix-reco-meetup/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>We Attended the Go Israel March 2022 Meetup</title>
-      <link>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</link>
-      <pubDate>Mon, 09 May 2022 22:29:06 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</guid>
       <description></description>
     </item>
     
