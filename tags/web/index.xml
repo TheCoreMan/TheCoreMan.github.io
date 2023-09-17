@@ -6,7 +6,19 @@
     <description>Recent content in web on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 23:22:46 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to add a status page to your Hugo blog</title>
+      <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
+      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
+      <description>Shortest guide possible, let&amp;rsquo;s go ⚡️
+Setting up a status page I recommend onlineornot.com.
+Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s https://mrnice.dev. Create a new check on that URL. Pick &amp;ldquo;Monitor a website&amp;rdquo;. Create a status page, and choose your subdomain. I went with mrnicedev ~&amp;gt; you&amp;rsquo;ll end up with a URL like https://mrnicedev.onlineornot.com. You should get something that looks like this:
+Adding the status page link to your blog We&amp;rsquo;ll do it from the config.</description>
+    </item>
+    
     <item>
       <title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
       <link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>

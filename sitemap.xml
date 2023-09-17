@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/dev/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/statuspage-on-hugo/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/howto/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/hugo/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/monitoring/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/web/</loc>
+    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/mermaid-on-webflow/</loc>
     <lastmod>2023-09-01T23:22:46+03:00</lastmod>
   </url><url>
@@ -9,18 +36,6 @@
     <lastmod>2023-09-01T23:22:46+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/mermaid/</loc>
-    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
-    <lastmod>2023-09-01T23:22:46+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/web/</loc>
     <lastmod>2023-09-01T23:22:46+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/webflow/</loc>
@@ -84,15 +99,6 @@
     <lastmod>2023-06-09T08:03:13+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/chrome/</loc>
-    <lastmod>2023-05-16T09:36:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/dev/</loc>
-    <lastmod>2023-05-16T09:36:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/howto/</loc>
-    <lastmod>2023-05-16T09:36:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/hugo/</loc>
     <lastmod>2023-05-16T09:36:21+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</loc>

@@ -6,7 +6,52 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 23:22:46 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dev</title>
+      <link>https://www.mrnice.dev/tags/dev/</link>
+      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/dev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>howto</title>
+      <link>https://www.mrnice.dev/tags/howto/</link>
+      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/howto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://www.mrnice.dev/tags/hugo/</link>
+      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monitoring</title>
+      <link>https://www.mrnice.dev/tags/monitoring/</link>
+      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>https://www.mrnice.dev/tags/web/</link>
+      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      
+      <guid>https://www.mrnice.dev/tags/web/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>diagrams</title>
       <link>https://www.mrnice.dev/tags/diagrams/</link>
@@ -22,15 +67,6 @@
       <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/mermaid/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>web</title>
-      <link>https://www.mrnice.dev/tags/web/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/web/</guid>
       <description></description>
     </item>
     
@@ -148,42 +184,6 @@
       <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
       
       <guid>https://www.mrnice.dev/tags/css/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>writeups</title>
-      <link>https://www.mrnice.dev/tags/writeups/</link>
-      <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/writeups/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>chrome</title>
-      <link>https://www.mrnice.dev/tags/chrome/</link>
-      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/chrome/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dev</title>
-      <link>https://www.mrnice.dev/tags/dev/</link>
-      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/dev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>howto</title>
-      <link>https://www.mrnice.dev/tags/howto/</link>
-      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
-      
-      <guid>https://www.mrnice.dev/tags/howto/</guid>
       <description></description>
     </item>
     
