@@ -6,34 +6,30 @@
     <description>Recent content in linux on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Mar 2020 21:10:59 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Mar 2020 21:10:59 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Build This Blog</title>
       <link>https://www.mrnice.dev/posts/how-to-build-this-blog/</link>
       <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/how-to-build-this-blog/</guid>
       <description>I&amp;rsquo;ve been getting some questions as to how I made this blog. So I decided I&amp;rsquo;ll share all the little details so you don&amp;rsquo;t have to 🔍 look it up.
 I&amp;rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
 Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
     </item>
-    
     <item>
       <title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
       <link>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</link>
       <pubDate>Mon, 02 Mar 2020 21:57:03 +0200</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/bandit-ctf-writeup-3/</guid>
       <description>See all the bandit writeups for the other levels.
 Election day? More like CTF day 🚩
 SPOILER ALERT Level 22 -&amp;gt; Level 23 cron breakdown Script breakdown Shebang First variable - myname Second variable - mytarget Writing the password Level 23 -&amp;gt; Level 24 Level 24 -&amp;gt; Level 25 Level 25 -&amp;gt; Level 26 Level 26 -&amp;gt; Level 27 Level 27 -&amp;gt; Level 28 Level 28 -&amp;gt; Level 29 Level 29 -&amp;gt; Level 30 Level 30 -&amp;gt; Level 31 Bonus round - what&amp;rsquo;s up with the secret tag Level 31 -&amp;gt; Level 32 Bonus round - how did the server respond with a message Level 32 -&amp;gt; Level 33 Level 33 -&amp;gt; Level 34 SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.</description>
     </item>
-    
     <item>
       <title>OTW Bandit CTF 🚩 Writeup - Part 2 - Levels 13 to 22</title>
       <link>https://www.mrnice.dev/posts/bandit-ctf-writeup-2/</link>
       <pubDate>Sat, 15 Feb 2020 21:57:03 +0200</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/bandit-ctf-writeup-2/</guid>
       <description>See all the bandit writeups for the other levels.
 Coffee? ✅
@@ -42,29 +38,24 @@ Laptops? ✅
 Then let&amp;rsquo;s goooooo
 SPOILER ALERT Level 13 -&amp;gt; Level 14 Level 14 -&amp;gt; Level 15 Level 15 -&amp;gt; Level 16 Level 16 -&amp;gt; Level 17 Level 17 -&amp;gt; Level 18 Level 18 -&amp;gt; Level 19 Level 19 -&amp;gt; Level 20 Level 20 -&amp;gt; Level 21 Level 21 -&amp;gt; Level 22 Level 22 and beyond SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.</description>
     </item>
-    
     <item>
       <title>OTW Bandit CTF 🚩 Writeup - Part 1 - Levels 0 to 13</title>
       <link>https://www.mrnice.dev/posts/bandit-ctf-writeup/</link>
       <pubDate>Sat, 01 Feb 2020 13:23:19 +0200</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/bandit-ctf-writeup/</guid>
       <description>See all the bandit writeups for the other levels.
 It&amp;rsquo;s a lovely, lazy Saturday. Not much to do. We&amp;rsquo;re already after our morning workout, had some nice breakfast, ☕ in hand, Spotify on point with some chill vibes (Neotokyo by Ed Harrison). So my wife and I decided to try to solve OverTheWire&amp;rsquo;s Bandit CTF together and write up what we&amp;rsquo;ve learned.
 SPOILER ALERT Level 0 Level 0 -&amp;gt; Level 1 Level 1 -&amp;gt; Level 2 Level 2 -&amp;gt; Level 3 Level 3 -&amp;gt; Level 4 Level 4 -&amp;gt; Level 5 Level 5 -&amp;gt; Level 6 Level 6 -&amp;gt; Level 7 Level 7 -&amp;gt; Level 8 Level 8 -&amp;gt; Level 9 Level 9 -&amp;gt; Level 10 Level 10 -&amp;gt; Level 11 Level 11 -&amp;gt; Level 12 Level 12 -&amp;gt; Level 13 Level 13 and beyond SPOILER ALERT THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU.</description>
     </item>
-    
     <item>
       <title>What to Pack for a Deserted Linux Island</title>
       <link>https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/</link>
       <pubDate>Sun, 11 Aug 2019 17:26:22 +0200</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/</guid>
       <description>This post has appeared as an article on issue #1 of PagedOut! magazine.
 Things I insist on installing on every new Linux server I work on, and you should too.
 Why Prep The Shell The Terminal(s) The Text Editor The Browser Why It’s that time again. You finally manage to ssh into your brand-new server, aaaand…
 😖 It sucks. You think to yourself, “ah, if only I had time to set this up like I WANT it to be, this machine would’ve been a treat”.</description>
     </item>
-    
   </channel>
 </rss>

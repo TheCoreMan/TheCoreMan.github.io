@@ -6,18 +6,17 @@
     <description>Recent content in database on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</link>
       <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</guid>
       <description>Part three of the joint project with my incredibly sharp wife, Olga!
 This post is a part of a series, so [check out the entire series for context] (https://www.mrnice.dev/tags/slack/).
 In this post, we&amp;rsquo;ll dive into how we&amp;rsquo;ve implemented a Database in our application. The post starts with the design, then moves to implementation of DB connectivity, then the data models themselves, and finally some testing.
 Upfront, we had to decide if we&amp;rsquo;ll choose a relational database or something else - and we decided to go relational.</description>
     </item>
-    
   </channel>
 </rss>

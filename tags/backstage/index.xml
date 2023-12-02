@@ -6,17 +6,16 @@
     <description>Recent content in backstage on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/backstage/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Oct 2022 21:53:20 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/backstage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Set Up Backstage On K8s with Helm - part 1, set up for success</title>
       <link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
       <description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
 I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
 Part 1 In this part we&amp;rsquo;re going to:</description>
     </item>
-    
   </channel>
 </rss>

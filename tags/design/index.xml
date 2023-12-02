@@ -6,27 +6,24 @@
     <description>Recent content in design on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 May 2023 11:57:30 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 May 2023 11:57:30 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI-assisted API Design 🤖🧑‍🎨</title>
       <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
       <description>My experience working alongside ChatGPT to generate OpenAPI specs.
 As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;
 With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
     </item>
-    
     <item>
       <title>Devlog #1 | The best-laid plans of mice and men</title>
       <link>https://www.mrnice.dev/posts/dev-log-1/</link>
       <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/dev-log-1/</guid>
       <description>Last time we talked a lot about the WHY. This post is all about the HOW.
 If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level HLD Planning the level database What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time If a task is done and no one marks it in a ticketing system, does it actually work?</description>
     </item>
-    
   </channel>
 </rss>

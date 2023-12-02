@@ -6,17 +6,16 @@
     <description>Recent content in testing on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2020 20:15:28 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Apr 2020 20:15:28 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/testing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing AWS Lambda and API Gateway</title>
       <link>https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/</link>
       <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/</guid>
       <description>Recently, I had to fix some bugs in a Python AWS lambda which gets triggered by an API Gateway. I&amp;rsquo;ve found that the way that Lambdas work makes you want to develop it badly. So I hope you can use these tips when you develop your Lambdas to do it better.
 I worked on a Python Lambda, so this is what you&amp;rsquo;ll see in this post.
 How to test AWS Lambda + API Gateway successfully Whitebox: Cover the logic in regular unit tests Blackbox: Cover the Gateway API Gateway API Stages Writing the tests Choose which tests you want to run using pytest&amp;rsquo;s -k switch What now How to test AWS Lambda + API Gateway successfully The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:</description>
     </item>
-    
   </channel>
 </rss>

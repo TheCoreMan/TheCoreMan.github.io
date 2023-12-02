@@ -6,34 +6,29 @@
     <description>Recent content in go on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What is an API proxy?</title>
       <link>https://www.mrnice.dev/posts/what-is-an-api-proxy/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/what-is-an-api-proxy/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>API Consumption Problems 101 - a hands-on guide</title>
       <link>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</link>
       <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Hugo Flashcard Shortcode</title>
       <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
       <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
 CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
     </item>
-    
   </channel>
 </rss>

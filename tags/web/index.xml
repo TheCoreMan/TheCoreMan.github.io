@@ -6,53 +6,46 @@
     <description>Recent content in web on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to add a status page to your Hugo blog</title>
       <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
       <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
       <description>Shortest guide possible, let&amp;rsquo;s go ⚡️
 Setting up a status page I recommend onlineornot.com.
 Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s https://mrnice.dev. Create a new check on that URL. Pick &amp;ldquo;Monitor a website&amp;rdquo;. Create a status page, and choose your subdomain. I went with mrnicedev ~&amp;gt; you&amp;rsquo;ll end up with a URL like https://mrnicedev.onlineornot.com. You should get something that looks like this:
 Adding the status page link to your blog We&amp;rsquo;ll do it from the config.</description>
     </item>
-    
     <item>
       <title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
       <link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/mermaid-on-webflow/</guid>
       <description>How to set up a Mermaid.js diagram on your Webflow site, the shortest guide possible:
 Install Mermaid for a specific post Add an HTML Embed Code by clicking on this button:
 Copy this HTML Embed Code snippet to the top of the post.
 &amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; // Include mermaid.js import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;; // Initialize the Mermaid chart mermaid.initialize({ startOnLoad: true, // Apply the dark theme - replace with what you want.</description>
     </item>
-    
     <item>
       <title>Optimize your Hugo Blog With Unlighthouse</title>
       <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
       <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
       <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!
 In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
 Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
     </item>
-    
     <item>
       <title>Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</title>
       <link>https://www.mrnice.dev/posts/dev-log-5/</link>
       <pubDate>Fri, 09 Oct 2020 16:09:49 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/dev-log-5/</guid>
       <description>If you haven&amp;rsquo;t read the rest of the devlogs, you can find them here. You might be missing some context if you don&amp;rsquo;t.
 Also, this is an old blogpost about something that wasn&amp;rsquo;t actually released as part of the project yet. Maybe one day I&amp;rsquo;ll finish it but the documentation value is important.
 After another successful workshop,
 Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.</description>
     </item>
-    
   </channel>
 </rss>

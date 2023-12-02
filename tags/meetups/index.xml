@@ -6,25 +6,22 @@
     <description>Recent content in meetups on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/meetups/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/meetups/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Build Your Team to Increase Velocity</title>
       <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>
       <pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</guid>
       <description>As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&amp;rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&amp;rsquo;m sharing them here :)
 After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity.</description>
     </item>
-    
     <item>
       <title>We gave a talk at the Go Israel November 2022 Meetup</title>
       <link>https://www.mrnice.dev/posts/go-israel-november-meetup/</link>
       <pubDate>Sun, 13 Nov 2022 14:15:55 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/go-israel-november-meetup/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

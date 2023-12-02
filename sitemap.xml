@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/advent-of-cyber-2023/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/ctf/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/cyber/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/tryhackme/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/writeup/</loc>
+    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/dev/</loc>
     <lastmod>2023-09-17T22:58:53+03:00</lastmod>
   </url><url>
@@ -15,15 +39,6 @@
     <lastmod>2023-09-17T22:58:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/monitoring/</loc>
-    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2023-09-17T22:58:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/web/</loc>
@@ -283,9 +298,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/tags/training/</loc>
     <lastmod>2020-10-18T12:07:50+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/ctf/</loc>
-    <lastmod>2020-10-09T16:09:49+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/devlog/</loc>
     <lastmod>2020-10-09T16:09:49+03:00</lastmod>

@@ -6,52 +6,45 @@
     <description>Recent content in cloud on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</link>
       <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</guid>
       <description>Part three of the joint project with my incredibly sharp wife, Olga!
 This post is a part of a series, so [check out the entire series for context] (https://www.mrnice.dev/tags/slack/).
 In this post, we&amp;rsquo;ll dive into how we&amp;rsquo;ve implemented a Database in our application. The post starts with the design, then moves to implementation of DB connectivity, then the data models themselves, and finally some testing.
 Upfront, we had to decide if we&amp;rsquo;ll choose a relational database or something else - and we decided to go relational.</description>
     </item>
-    
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</link>
       <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</guid>
       <description>Part two of the joint project with my intelligent and brave wife, Olga!
 This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
 Warning: As our development of this project was a little &amp;ldquo;all over the place&amp;rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
 QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&amp;rsquo;s Business Logic Let&amp;rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&amp;rsquo;s do some Development - using Bolt Let&amp;rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.</description>
     </item>
-    
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>
       <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</guid>
       <description>A joint project with my beautiful wife Olga! &amp;lt;3
 In this post, we&amp;rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
 Table of Contents Requirements Why do this, the stupid reason Why do this, the real reason Planning Task Management Architecture Working Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack What&amp;rsquo;s next?</description>
     </item>
-    
     <item>
       <title>Testing AWS Lambda and API Gateway</title>
       <link>https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/</link>
       <pubDate>Thu, 02 Apr 2020 20:15:28 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/testing-aws-lambda-and-api-gateway/</guid>
       <description>Recently, I had to fix some bugs in a Python AWS lambda which gets triggered by an API Gateway. I&amp;rsquo;ve found that the way that Lambdas work makes you want to develop it badly. So I hope you can use these tips when you develop your Lambdas to do it better.
 I worked on a Python Lambda, so this is what you&amp;rsquo;ll see in this post.
 How to test AWS Lambda + API Gateway successfully Whitebox: Cover the logic in regular unit tests Blackbox: Cover the Gateway API Gateway API Stages Writing the tests Choose which tests you want to run using pytest&amp;rsquo;s -k switch What now How to test AWS Lambda + API Gateway successfully The main thing I found to be useful during the development process of AWS Lambdas that are triggered by a Gateway was testing them automatically, in two ways:</description>
     </item>
-    
   </channel>
 </rss>

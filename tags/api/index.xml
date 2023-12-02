@@ -6,35 +6,30 @@
     <description>Recent content in api on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What is an API proxy?</title>
       <link>https://www.mrnice.dev/posts/what-is-an-api-proxy/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/what-is-an-api-proxy/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>API Consumption Problems 101 - a hands-on guide</title>
       <link>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</link>
       <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>AI-assisted API Design 🤖🧑‍🎨</title>
       <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
       <description>My experience working alongside ChatGPT to generate OpenAPI specs.
 As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;
 With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
     </item>
-    
   </channel>
 </rss>

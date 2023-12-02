@@ -6,62 +6,53 @@
     <description>Recent content in docker on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</link>
       <pubDate>Sun, 31 Oct 2021 20:04:53 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</guid>
       <description>Part three of the joint project with my incredibly sharp wife, Olga!
 This post is a part of a series, so [check out the entire series for context] (https://www.mrnice.dev/tags/slack/).
 In this post, we&amp;rsquo;ll dive into how we&amp;rsquo;ve implemented a Database in our application. The post starts with the design, then moves to implementation of DB connectivity, then the data models themselves, and finally some testing.
 Upfront, we had to decide if we&amp;rsquo;ll choose a relational database or something else - and we decided to go relational.</description>
     </item>
-    
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</link>
       <pubDate>Tue, 28 Sep 2021 12:23:06 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/</guid>
       <description>Part two of the joint project with my intelligent and brave wife, Olga!
 This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
 Warning: As our development of this project was a little &amp;ldquo;all over the place&amp;rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
 QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&amp;rsquo;s Business Logic Let&amp;rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&amp;rsquo;s do some Development - using Bolt Let&amp;rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.</description>
     </item>
-    
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</link>
       <pubDate>Fri, 27 Aug 2021 15:18:40 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</guid>
       <description>A joint project with my beautiful wife Olga! &amp;lt;3
 In this post, we&amp;rsquo;ll go over how we built a Slack Bot that helped my company manage parking spots.
 Table of Contents Requirements Why do this, the stupid reason Why do this, the real reason Planning Task Management Architecture Working Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack What&amp;rsquo;s next?</description>
     </item>
-    
     <item>
       <title>Devlog #2 | Automation applied to an efficient operation will magnify efficiency</title>
       <link>https://www.mrnice.dev/posts/dev-log-2/</link>
       <pubDate>Tue, 12 May 2020 20:20:31 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/dev-log-2/</guid>
       <description>Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
 The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I&amp;rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.</description>
     </item>
-    
     <item>
       <title>Devlog #1 | The best-laid plans of mice and men</title>
       <link>https://www.mrnice.dev/posts/dev-log-1/</link>
       <pubDate>Sat, 02 May 2020 18:02:38 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/dev-log-1/</guid>
       <description>Last time we talked a lot about the WHY. This post is all about the HOW.
 If a task is done and no one marks it in a ticketing system, does it actually work? Let&amp;rsquo;s do high-level requirements first Here&amp;rsquo;s how a user will start playing the CTF Here&amp;rsquo;s the general idea for how a user plays a single level HLD Planning the level database What defines &amp;ldquo;Level&amp;rdquo; Given this definition of &amp;ldquo;Level&amp;rdquo;, what&amp;rsquo;s the structure of the DB Level DB folder structure Envisioning the project structure Back on planet earth&amp;hellip; 🌍 Next time If a task is done and no one marks it in a ticketing system, does it actually work?</description>
     </item>
-    
   </channel>
 </rss>

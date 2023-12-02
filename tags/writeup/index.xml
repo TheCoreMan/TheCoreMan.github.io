@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>writeup on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/writeup/</link>
+    <description>Recent content in writeup on mrnice.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Dec 2023 22:11:08 +0200</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/writeup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Checking out Advent of Cyber 2023</title>
+      <link>https://www.mrnice.dev/posts/advent-of-cyber-2023/</link>
+      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
+      <guid>https://www.mrnice.dev/posts/advent-of-cyber-2023/</guid>
+      <description>To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see {{ .flag }} in the text, it means that I&amp;rsquo;ve redacted the flag.
+Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on the planet.
+Getting started The signup/login UX leaves something to be desired. You start off on the advent page, then sign up, and after the initial signup you are not redirected to the advent.</description>
+    </item>
+  </channel>
+</rss>

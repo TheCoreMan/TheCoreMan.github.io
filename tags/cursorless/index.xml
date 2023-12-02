@@ -6,29 +6,26 @@
     <description>Recent content in cursorless on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Aug 2023 13:35:06 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/cursorless/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Aug 2023 13:35:06 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/cursorless/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1</title>
       <link>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</link>
       <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</guid>
       <description>Everyone benefits from accessibility.
 Accessible design improves access to information on the web for individuals with and without disabilities. Well-designed, accessible web sites expedite the delivery of information and services. Providing accessible websites and electronic documents allows a greater variety of consumers to obtain information regardless of their individual needs.
 ~From National DB&amp;rsquo;s accessibility toolkit
 This post is a part of a series. Check out the previous posts for more context.</description>
     </item>
-    
     <item>
       <title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0</title>
       <link>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/</link>
       <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/</guid>
       <description>&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&amp;rdquo;
 This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post some part should be typed out with my voice.
 Every part that is in between lines (like this one) is actually typed out with Cursorless and with my voice, not my keyboard.</description>
     </item>
-    
   </channel>
 </rss>

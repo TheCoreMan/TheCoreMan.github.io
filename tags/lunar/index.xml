@@ -6,24 +6,21 @@
     <description>Recent content in lunar on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/lunar/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/lunar/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What is an API proxy?</title>
       <link>https://www.mrnice.dev/posts/what-is-an-api-proxy/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/what-is-an-api-proxy/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>API Consumption Problems 101 - a hands-on guide</title>
       <link>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</link>
       <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

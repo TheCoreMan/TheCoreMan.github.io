@@ -6,24 +6,21 @@
     <description>Recent content in zero-trust on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2020 12:07:50 +0300</lastBuildDate><atom:link href="https://www.mrnice.dev/tags/zero-trust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Feb 2020 12:07:50 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/zero-trust/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Monkey See, Centra do: How to Assess Your Zero Trust Status and Mitigate</title>
       <link>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</link>
       <pubDate>Wed, 26 Feb 2020 12:07:50 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Infection Monkey for Zero Trust</title>
       <link>https://www.mrnice.dev/posts/monkey-zero-trust/</link>
       <pubDate>Tue, 29 Oct 2019 12:07:50 +0300</pubDate>
-      
       <guid>https://www.mrnice.dev/posts/monkey-zero-trust/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
