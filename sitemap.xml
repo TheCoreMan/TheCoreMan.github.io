@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/algorithms/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/books/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/data/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/database/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/flashcards/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/learning/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/orca/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/advent-of-cyber-2023/</loc>
     <lastmod>2023-12-02T22:11:08+02:00</lastmod>
   </url><url>
@@ -9,15 +42,6 @@
     <lastmod>2023-12-02T22:11:08+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/cyber/</loc>
-    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2023-12-02T22:11:08+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2023-12-02T22:11:08+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/tryhackme/</loc>
@@ -134,12 +158,6 @@
     <loc>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</loc>
     <lastmod>2023-04-30T11:29:00+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/books/</loc>
-    <lastmod>2023-04-30T11:29:00+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/flashcards/</loc>
-    <lastmod>2023-04-16T20:46:53+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/frontend/</loc>
     <lastmod>2023-04-16T20:46:53+03:00</lastmod>
   </url><url>
@@ -227,9 +245,6 @@
     <loc>https://www.mrnice.dev/tags/cloud/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/database/</loc>
-    <lastmod>2021-10-31T20:04:53+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/docker/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
@@ -256,9 +271,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/</loc>
     <lastmod>2021-08-27T15:18:40+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/algorithms/</loc>
-    <lastmod>2021-08-01T08:32:00+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/clojure/</loc>
     <lastmod>2021-08-01T08:32:00+03:00</lastmod>

@@ -6,8 +6,15 @@
     <description>Recent content in database on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Oct 2021 20:04:53 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2024 02:29:20 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>
+      <link>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</guid>
+      <description>How did we get here Back when I left Reco, my parting gift to everyone at the company was books 📚. At the time, these were books I haven&amp;rsquo;t read, but were recommended by the interwebz. The idea was to stay in touch with the team by gifting them good books and loaning them from time to time. That&amp;rsquo;s how I wrote a book report about &amp;ldquo;Turn the Ship Around&amp;rdquo;, for example.</description>
+    </item>
     <item>
       <title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
       <link>https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-3/</link>

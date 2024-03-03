@@ -6,8 +6,57 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Dec 2023 22:11:08 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2024 02:29:20 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>algorithms</title>
+      <link>https://www.mrnice.dev/tags/algorithms/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>books</title>
+      <link>https://www.mrnice.dev/tags/books/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/books/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>data</title>
+      <link>https://www.mrnice.dev/tags/data/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>database</title>
+      <link>https://www.mrnice.dev/tags/database/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/database/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>flashcards</title>
+      <link>https://www.mrnice.dev/tags/flashcards/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/flashcards/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>learning</title>
+      <link>https://www.mrnice.dev/tags/learning/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>orca</title>
+      <link>https://www.mrnice.dev/tags/orca/</link>
+      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+      <guid>https://www.mrnice.dev/tags/orca/</guid>
+      <description></description>
+    </item>
     <item>
       <title>ctf</title>
       <link>https://www.mrnice.dev/tags/ctf/</link>
@@ -97,55 +146,6 @@
       <link>https://www.mrnice.dev/tags/api/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
       <guid>https://www.mrnice.dev/tags/api/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>go</title>
-      <link>https://www.mrnice.dev/tags/go/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>lunar</title>
-      <link>https://www.mrnice.dev/tags/lunar/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/lunar/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>a11y</title>
-      <link>https://www.mrnice.dev/tags/a11y/</link>
-      <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/a11y/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>accessibility</title>
-      <link>https://www.mrnice.dev/tags/accessibility/</link>
-      <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/accessibility/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>cursorless</title>
-      <link>https://www.mrnice.dev/tags/cursorless/</link>
-      <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/cursorless/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>talon</title>
-      <link>https://www.mrnice.dev/tags/talon/</link>
-      <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/talon/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>tools</title>
-      <link>https://www.mrnice.dev/tags/tools/</link>
-      <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/tools/</guid>
       <description></description>
     </item>
   </channel>
