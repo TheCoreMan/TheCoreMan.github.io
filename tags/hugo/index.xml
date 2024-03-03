@@ -13,48 +13,35 @@
       <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
       <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
-      <description>Shortest guide possible, let&amp;rsquo;s go ⚡️
-Setting up a status page I recommend onlineornot.com.
-Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s https://mrnice.dev. Create a new check on that URL. Pick &amp;ldquo;Monitor a website&amp;rdquo;. Create a status page, and choose your subdomain. I went with mrnicedev ~&amp;gt; you&amp;rsquo;ll end up with a URL like https://mrnicedev.onlineornot.com. You should get something that looks like this:
-Adding the status page link to your blog We&amp;rsquo;ll do it from the config.</description>
+      <description>Shortest guide possible, let&amp;rsquo;s go ⚡️&#xA;Setting up a status page I recommend onlineornot.com.&#xA;Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s https://mrnice.dev. Create a new check on that URL. Pick &amp;ldquo;Monitor a website&amp;rdquo;. Create a status page, and choose your subdomain. I went with mrnicedev ~&amp;gt; you&amp;rsquo;ll end up with a URL like https://mrnicedev.onlineornot.com. You should get something that looks like this:&#xA;Adding the status page link to your blog We&amp;rsquo;ll do it from the config.</description>
     </item>
     <item>
       <title>Optimize your Hugo Blog With Unlighthouse</title>
       <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
       <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
-      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!
-In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
-Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
+      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!&#xA;In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.&#xA;Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
     </item>
     <item>
       <title>Hugo Flashcard Shortcode</title>
       <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
-      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
-CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
+      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:&#xA;CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
     </item>
     <item>
       <title>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</title>
       <link>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</link>
       <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</guid>
-      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
-$$ E=mc^2 $$
-Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
-$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
-Or Matrix Multiplication?
-$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
+      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?&#xA;$$ E=mc^2 $$&#xA;Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?&#xA;$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$&#xA;Or Matrix Multiplication?&#xA;$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
     </item>
     <item>
       <title>How to Build This Blog</title>
       <link>https://www.mrnice.dev/posts/how-to-build-this-blog/</link>
       <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-build-this-blog/</guid>
-      <description>I&amp;rsquo;ve been getting some questions as to how I made this blog. So I decided I&amp;rsquo;ll share all the little details so you don&amp;rsquo;t have to 🔍 look it up.
-I&amp;rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
-Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
+      <description>I&amp;rsquo;ve been getting some questions as to how I made this blog. So I decided I&amp;rsquo;ll share all the little details so you don&amp;rsquo;t have to 🔍 look it up.&#xA;I&amp;rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).&#xA;Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
     </item>
   </channel>
 </rss>

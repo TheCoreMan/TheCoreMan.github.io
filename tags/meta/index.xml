@@ -20,29 +20,21 @@
       <link>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</link>
       <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</guid>
-      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?
-$$ E=mc^2 $$
-Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?
-$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$
-Or Matrix Multiplication?
-$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
+      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?&#xA;$$ E=mc^2 $$&#xA;Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?&#xA;$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$&#xA;Or Matrix Multiplication?&#xA;$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
     </item>
     <item>
       <title>How to Build This Blog</title>
       <link>https://www.mrnice.dev/posts/how-to-build-this-blog/</link>
       <pubDate>Mon, 30 Mar 2020 21:10:59 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-build-this-blog/</guid>
-      <description>I&amp;rsquo;ve been getting some questions as to how I made this blog. So I decided I&amp;rsquo;ll share all the little details so you don&amp;rsquo;t have to 🔍 look it up.
-I&amp;rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).
-Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
+      <description>I&amp;rsquo;ve been getting some questions as to how I made this blog. So I decided I&amp;rsquo;ll share all the little details so you don&amp;rsquo;t have to 🔍 look it up.&#xA;I&amp;rsquo;ll try to be as cross-platform as I can, but I did all of this on Ubuntu (via WSL).&#xA;Create repositories on GitHub GitHub Pages repository Blog content repository Install Hugo Initialize blog content Connecting the blog repo to the Pages repo Connect to a custom domain Buying and configuring a domain Configuring the CNAME Configuring the base URL SSL 🔐 Quality of life Easy deployment Other fun stuff you can do 🐣 Set up twitter cards 🖼 Add a logo 📊 Add Google Analytics 🎨 Add custom CSS files 📣 Add social links Summary Create repositories on GitHub GitHub Pages repository Like it says in GitHub&amp;rsquo;s guide, you need to create a repository with the name &amp;lt;your_username_here&amp;gt;.</description>
     </item>
     <item>
       <title>The first Post</title>
       <link>https://www.mrnice.dev/posts/first-post/</link>
       <pubDate>Thu, 01 Jan 1970 00:00:01 +0200</pubDate>
       <guid>https://www.mrnice.dev/posts/first-post/</guid>
-      <description>The blank page So many possibilities, but so much anxiety. How do I make this interesting? Who will even read this? Have I picked the best theme? What should my other posts be? How do I go forward from here? Is this for me, or for you?
-Here&amp;rsquo;s a poem about it as well if you thought I wasn&amp;rsquo;t dramatic enough Beating the blank page / Alan j Wright A Battle-Cry for the Brave Young Writer.</description>
+      <description>The blank page So many possibilities, but so much anxiety. How do I make this interesting? Who will even read this? Have I picked the best theme? What should my other posts be? How do I go forward from here? Is this for me, or for you?&#xA;Here&amp;rsquo;s a poem about it as well if you thought I wasn&amp;rsquo;t dramatic enough Beating the blank page / Alan j Wright A Battle-Cry for the Brave Young Writer.</description>
     </item>
   </channel>
 </rss>

@@ -13,9 +13,7 @@
       <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
-      <description>My experience working alongside ChatGPT to generate OpenAPI specs.
-As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;
-With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
+      <description>My experience working alongside ChatGPT to generate OpenAPI specs.&#xA;As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;&#xA;With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
     </item>
   </channel>
 </rss>

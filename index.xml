@@ -13,29 +13,21 @@
       <link>https://www.mrnice.dev/posts/advent-of-cyber-2023/</link>
       <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
       <guid>https://www.mrnice.dev/posts/advent-of-cyber-2023/</guid>
-      <description>To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see {{ .flag }} in the text, it means that I&amp;rsquo;ve redacted the flag.
-Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on the planet.
-Getting started The signup/login UX leaves something to be desired. You start off on the advent page, then sign up, and after the initial signup you are not redirected to the advent.</description>
+      <description>To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see {{ .flag }} in the text, it means that I&amp;rsquo;ve redacted the flag.&#xA;Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on the planet.&#xA;Getting started The signup/login UX leaves something to be desired. You start off on the advent page, then sign up, and after the initial signup you are not redirected to the advent.</description>
     </item>
     <item>
       <title>How to add a status page to your Hugo blog</title>
       <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
       <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
-      <description>Shortest guide possible, let&amp;rsquo;s go ⚡️
-Setting up a status page I recommend onlineornot.com.
-Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s https://mrnice.dev. Create a new check on that URL. Pick &amp;ldquo;Monitor a website&amp;rdquo;. Create a status page, and choose your subdomain. I went with mrnicedev ~&amp;gt; you&amp;rsquo;ll end up with a URL like https://mrnicedev.onlineornot.com. You should get something that looks like this:
-Adding the status page link to your blog We&amp;rsquo;ll do it from the config.</description>
+      <description>Shortest guide possible, let&amp;rsquo;s go ⚡️&#xA;Setting up a status page I recommend onlineornot.com.&#xA;Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s https://mrnice.dev. Create a new check on that URL. Pick &amp;ldquo;Monitor a website&amp;rdquo;. Create a status page, and choose your subdomain. I went with mrnicedev ~&amp;gt; you&amp;rsquo;ll end up with a URL like https://mrnicedev.onlineornot.com. You should get something that looks like this:&#xA;Adding the status page link to your blog We&amp;rsquo;ll do it from the config.</description>
     </item>
     <item>
       <title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
       <link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/mermaid-on-webflow/</guid>
-      <description>How to set up a Mermaid.js diagram on your Webflow site, the shortest guide possible:
-Install Mermaid for a specific post Add an HTML Embed Code by clicking on this button:
-Copy this HTML Embed Code snippet to the top of the post.
-&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; // Include mermaid.js import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;; // Initialize the Mermaid chart mermaid.initialize({ startOnLoad: true, // Apply the dark theme - replace with what you want.</description>
+      <description>How to set up a Mermaid.js diagram on your Webflow site, the shortest guide possible:&#xA;Install Mermaid for a specific post Add an HTML Embed Code by clicking on this button:&#xA;Copy this HTML Embed Code snippet to the top of the post.&#xA;&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; // Include mermaid.js import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;; // Initialize the Mermaid chart mermaid.initialize({ startOnLoad: true, // Apply the dark theme - replace with what you want.</description>
     </item>
     <item>
       <title>What is an API proxy?</title>
@@ -49,19 +41,14 @@ Copy this HTML Embed Code snippet to the top of the post.
       <link>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</link>
       <pubDate>Sat, 19 Aug 2023 13:35:06 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</guid>
-      <description>Everyone benefits from accessibility.
-Accessible design improves access to information on the web for individuals with and without disabilities. Well-designed, accessible web sites expedite the delivery of information and services. Providing accessible websites and electronic documents allows a greater variety of consumers to obtain information regardless of their individual needs.
-~From National DB&amp;rsquo;s accessibility toolkit
-This post is a part of a series. Check out the previous posts for more context.</description>
+      <description>Everyone benefits from accessibility.&#xA;Accessible design improves access to information on the web for individuals with and without disabilities. Well-designed, accessible web sites expedite the delivery of information and services. Providing accessible websites and electronic documents allows a greater variety of consumers to obtain information regardless of their individual needs.&#xA;~From National DB&amp;rsquo;s accessibility toolkit&#xA;This post is a part of a series. Check out the previous posts for more context.</description>
     </item>
     <item>
       <title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 0</title>
       <link>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/</link>
       <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/</guid>
-      <description>&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&amp;rdquo;
-This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post some part should be typed out with my voice.
-Every part that is in between lines (like this one) is actually typed out with Cursorless and with my voice, not my keyboard.</description>
+      <description>&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse for a while. What would you do if they took your keyboard, as well?&amp;rdquo;&#xA;This post is starting out by me typing it on my keyboard. However, if things go well, by the end of this post some part should be typed out with my voice.&#xA;Every part that is in between lines (like this one) is actually typed out with Cursorless and with my voice, not my keyboard.</description>
     </item>
     <item>
       <title>API Consumption Problems 101 - a hands-on guide</title>
@@ -82,51 +69,42 @@ Every part that is in between lines (like this one) is actually typed out with C
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</link>
       <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</guid>
-      <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
-Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
-I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
+      <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.&#xA;Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.&#xA;I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
     </item>
     <item>
       <title>Optimize your Hugo Blog With Unlighthouse</title>
       <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
       <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
-      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!
-In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
-Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
+      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!&#xA;In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.&#xA;Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
     </item>
     <item>
       <title>AI-assisted API Design 🤖🧑‍🎨</title>
       <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
-      <description>My experience working alongside ChatGPT to generate OpenAPI specs.
-As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;
-With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
+      <description>My experience working alongside ChatGPT to generate OpenAPI specs.&#xA;As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;&#xA;With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
     </item>
     <item>
       <title>Book report: Turn the Ship Around! A VP R&amp;D&#39;s Summary</title>
       <link>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</link>
       <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</guid>
-      <description>Recently I&amp;rsquo;ve read Turn the Ship Around! by L. David Marquet following Anton Drukh&amp;rsquo;s recommendation.
-This summary is mostly for me and for people I&amp;rsquo;ll refer it to - so it&amp;rsquo;s not the most friendly read. But if you don&amp;rsquo;t have time to read the book, this post can serve as a useful TL;DR for you. I highly recommend you do read it - it&amp;rsquo;s a great read and a short one, too!</description>
+      <description>Recently I&amp;rsquo;ve read Turn the Ship Around! by L. David Marquet following Anton Drukh&amp;rsquo;s recommendation.&#xA;This summary is mostly for me and for people I&amp;rsquo;ll refer it to - so it&amp;rsquo;s not the most friendly read. But if you don&amp;rsquo;t have time to read the book, this post can serve as a useful TL;DR for you. I highly recommend you do read it - it&amp;rsquo;s a great read and a short one, too!</description>
     </item>
     <item>
       <title>Hugo Flashcard Shortcode</title>
       <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
-      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
-CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
+      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:&#xA;CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
     </item>
     <item>
       <title>Learning CSS #1: CSS Battles #1 Writeup</title>
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
       <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles/</guid>
-      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.
-I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
+      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.&#xA;I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
     </item>
     <item>
       <title>We gave a talk at GopherCon Israel 2023</title>
@@ -154,8 +132,7 @@ I&amp;rsquo;ve started learning CSS for real at work recently to be able to do f
       <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>
       <pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</guid>
-      <description>As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&amp;rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&amp;rsquo;m sharing them here :)
-After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity.</description>
+      <description>As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&amp;rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&amp;rsquo;m sharing them here :)&#xA;After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity.</description>
     </item>
     <item>
       <title>We gave a talk at the Go Israel November 2022 Meetup</title>
@@ -169,9 +146,7 @@ After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman
       <link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
-      <description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.
-I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.
-Part 1 In this part we&amp;rsquo;re going to:</description>
+      <description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.&#xA;I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.&#xA;Part 1 In this part we&amp;rsquo;re going to:</description>
     </item>
   </channel>
 </rss>

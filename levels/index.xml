@@ -13,87 +13,63 @@
       <link>https://www.mrnice.dev/levels/basic-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/basic-1/</guid>
-      <description> Sometimes we need to delete files, not only add them. But in git deleting a file means add-ing the deletion to the staging area and committing that change.
-🧩 Hints Click on hints to reveal them.
-Useful commands for this level git rm, git status, git commit. Nudge me in the right direction? StackOverflow link. </description>
+      <description> Sometimes we need to delete files, not only add them. But in git deleting a file means add-ing the deletion to the staging area and committing that change.&#xA;🧩 Hints Click on hints to reveal them.&#xA;Useful commands for this level git rm, git status, git commit. Nudge me in the right direction? StackOverflow link. </description>
     </item>
     <item>
       <title>basic-2</title>
       <link>https://www.mrnice.dev/levels/basic-2/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/basic-2/</guid>
-      <description>We can also add and delete directories from git, not only files. This level about that.
-🧩 Hints Click on hints to reveal them.
-Creating directories? To create a directory, run mkdir. Adding directories? You can add all files in a directory using git add some/directory/*, or just git add some/directory.
-Be careful to not add all files if you don&amp;rsquo;t actually want all of them!</description>
+      <description>We can also add and delete directories from git, not only files. This level about that.&#xA;🧩 Hints Click on hints to reveal them.&#xA;Creating directories? To create a directory, run mkdir. Adding directories? You can add all files in a directory using git add some/directory/*, or just git add some/directory.&#xA;Be careful to not add all files if you don&amp;rsquo;t actually want all of them!</description>
     </item>
     <item>
       <title>clone</title>
       <link>https://www.mrnice.dev/levels/clone/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/clone/</guid>
-      <description>Welcome to make-git-better CTF 🚩
-Notes for beginners 🧱 CTF structure The level browser 🤔 Unsure what to do? ▶ I am ready to play Connect to the game server Clone the repository 🧩 Hints Notes for beginners 🧱 CTF structure This CTF, like most other CTFs, is separated into levels. You start at the &amp;ldquo;clone&amp;rdquo; level (where you are right now), and try to finish it. When you&amp;rsquo;ll finish a level, you will get some information about how to start the next one!</description>
+      <description>Welcome to make-git-better CTF 🚩&#xA;Notes for beginners 🧱 CTF structure The level browser 🤔 Unsure what to do? ▶ I am ready to play Connect to the game server Clone the repository 🧩 Hints Notes for beginners 🧱 CTF structure This CTF, like most other CTFs, is separated into levels. You start at the &amp;ldquo;clone&amp;rdquo; level (where you are right now), and try to finish it. When you&amp;rsquo;ll finish a level, you will get some information about how to start the next one!</description>
     </item>
     <item>
       <title>hooks-1</title>
       <link>https://www.mrnice.dev/levels/hooks-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/hooks-1/</guid>
-      <description>For this stage, you must run the script ./setup_hooks_stage.sh first!
-You need to add more than 100 files into the add_files_here directory, and you can&amp;rsquo;t do it in more than 3 commits. Shouldn&amp;rsquo;t be too hard, should it?
-Once you&amp;rsquo;ve solved this stage, be sure to undo what setup_hooks_stage.sh does 😊
-🧩 Hints Click on the hint to see it.
-How to create many files in bash for x in {1.</description>
+      <description>For this stage, you must run the script ./setup_hooks_stage.sh first!&#xA;You need to add more than 100 files into the add_files_here directory, and you can&amp;rsquo;t do it in more than 3 commits. Shouldn&amp;rsquo;t be too hard, should it?&#xA;Once you&amp;rsquo;ve solved this stage, be sure to undo what setup_hooks_stage.sh does 😊&#xA;🧩 Hints Click on the hint to see it.&#xA;How to create many files in bash for x in {1.</description>
     </item>
     <item>
       <title>hooks-2</title>
       <link>https://www.mrnice.dev/levels/hooks-2/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/hooks-2/</guid>
-      <description> For this stage, you must run the script ./setup_hooks_stage.sh first!
-Just commit something :)
-🧩 Hints Click on the hint to see it.
-What are hooks? 🎣 Here&amp;rsquo;s some documentation. </description>
+      <description> For this stage, you must run the script ./setup_hooks_stage.sh first!&#xA;Just commit something :)&#xA;🧩 Hints Click on the hint to see it.&#xA;What are hooks? 🎣 Here&amp;rsquo;s some documentation. </description>
     </item>
     <item>
       <title>log-1</title>
       <link>https://www.mrnice.dev/levels/log-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/log-1/</guid>
-      <description>The flag is in the commit message of this branch&amp;rsquo;s grandparent.
-🧩 Hints Click on the hint to see it.
-Grandparent? I mean &amp;ldquo;two commits before this branch&amp;rdquo;.
-This stack overflow answer is a really long but very good explanation of git ancestry. You should read it.
-How can I refer to HEAD&amp;rsquo;s grandparent? This is the best guide on git revision language. Useful commands for this level git show, git log.</description>
+      <description>The flag is in the commit message of this branch&amp;rsquo;s grandparent.&#xA;🧩 Hints Click on the hint to see it.&#xA;Grandparent? I mean &amp;ldquo;two commits before this branch&amp;rdquo;.&#xA;This stack overflow answer is a really long but very good explanation of git ancestry. You should read it.&#xA;How can I refer to HEAD&amp;rsquo;s grandparent? This is the best guide on git revision language. Useful commands for this level git show, git log.</description>
     </item>
     <item>
       <title>log-2</title>
       <link>https://www.mrnice.dev/levels/log-2/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/log-2/</guid>
-      <description> The flag is hidden here
-🧩 Hints Click on the hint to see it.
-Useful commands for this level git log. </description>
+      <description> The flag is hidden here&#xA;🧩 Hints Click on the hint to see it.&#xA;Useful commands for this level git log. </description>
     </item>
     <item>
       <title>log-3</title>
       <link>https://www.mrnice.dev/levels/log-3/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/log-3/</guid>
-      <description> The flag is even more hidden - not in a commit message, but in the file itself!
-🧩 Hints Click on the hint to see it.
-Useful commands for this level git log. </description>
+      <description> The flag is even more hidden - not in a commit message, but in the file itself!&#xA;🧩 Hints Click on the hint to see it.&#xA;Useful commands for this level git log. </description>
     </item>
     <item>
       <title>log-4</title>
       <link>https://www.mrnice.dev/levels/log-4/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/log-4/</guid>
-      <description>I said a hip hop, The hippie to the hippie The hip hip a hop, and you don&amp;rsquo;t stop, a rock it To the bang bang boogie, say up jump the boogie, To the rhythm of the boogie, the beat.
--Nile Rodgers / Bernard Edwards, &amp;ldquo;Rapper&amp;rsquo;s Delight&amp;rdquo;
-You&amp;rsquo;ll have to hop around a little to find the flag. Read the readme to start.
-🧩 Hints Click on the hint to see it.</description>
+      <description>I said a hip hop, The hippie to the hippie The hip hip a hop, and you don&amp;rsquo;t stop, a rock it To the bang bang boogie, say up jump the boogie, To the rhythm of the boogie, the beat.&#xA;-Nile Rodgers / Bernard Edwards, &amp;ldquo;Rapper&amp;rsquo;s Delight&amp;rdquo;&#xA;You&amp;rsquo;ll have to hop around a little to find the flag. Read the readme to start.&#xA;🧩 Hints Click on the hint to see it.</description>
     </item>
     <item>
       <title>log-5</title>
@@ -107,104 +83,70 @@ You&amp;rsquo;ll have to hop around a little to find the flag. Read the readme t
       <link>https://www.mrnice.dev/levels/merge-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/merge-1/</guid>
-      <description>There&amp;rsquo;s a script called runme.py. Try to run it.
-Once you&amp;rsquo;re done with this level, remember to push!
-🧩 Hints Click on hints to reveal them.
-How do I run it? ./runme.py
-See why in this AskUbuntu thread.
-I ran it, now what? Well, it didn&amp;rsquo;t work, and raised an exception. What does the error say? I got not something we can merge (⊙_⊙;) Make sure you&amp;rsquo;re trying to merge something with the correct name - remember that there are remote branches and local branches, and they are different.</description>
+      <description>There&amp;rsquo;s a script called runme.py. Try to run it.&#xA;Once you&amp;rsquo;re done with this level, remember to push!&#xA;🧩 Hints Click on hints to reveal them.&#xA;How do I run it? ./runme.py&#xA;See why in this AskUbuntu thread.&#xA;I ran it, now what? Well, it didn&amp;rsquo;t work, and raised an exception. What does the error say? I got not something we can merge (⊙_⊙;) Make sure you&amp;rsquo;re trying to merge something with the correct name - remember that there are remote branches and local branches, and they are different.</description>
     </item>
     <item>
       <title>merge-2</title>
       <link>https://www.mrnice.dev/levels/merge-2/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/merge-2/</guid>
-      <description>There&amp;rsquo;s a script called runme.py. Try to run it.
-What&amp;rsquo;s different this time?
-🧩 Hints Click on the hint to see it.
-I ran it, now what? Well, it didn&amp;rsquo;t work, and raised an exception. What does the error say? OMG I&amp;rsquo;m in a screen and I don&amp;rsquo;t know how to get out How to close the commit message editor.
-The default editor on this machine is vim, but you can change that.</description>
+      <description>There&amp;rsquo;s a script called runme.py. Try to run it.&#xA;What&amp;rsquo;s different this time?&#xA;🧩 Hints Click on the hint to see it.&#xA;I ran it, now what? Well, it didn&amp;rsquo;t work, and raised an exception. What does the error say? OMG I&amp;rsquo;m in a screen and I don&amp;rsquo;t know how to get out How to close the commit message editor.&#xA;The default editor on this machine is vim, but you can change that.</description>
     </item>
     <item>
       <title>merge-3</title>
       <link>https://www.mrnice.dev/levels/merge-3/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/merge-3/</guid>
-      <description>There&amp;rsquo;s a script called runme.py. Try to run it. It works! So what&amp;rsquo;s the problem?
-Read the readme.
-You&amp;#39;re vs Your from The Oatmeal 🧩 Hints Click on the hint to see it.
-I tried to merge but got an error I know, that&amp;rsquo;s the point :) Which one is correct? In this case the correct form is you&#39;re. Useful commands for this level git merge, git checkout, git status.</description>
+      <description>There&amp;rsquo;s a script called runme.py. Try to run it. It works! So what&amp;rsquo;s the problem?&#xA;Read the readme.&#xA;You&amp;#39;re vs Your from The Oatmeal 🧩 Hints Click on the hint to see it.&#xA;I tried to merge but got an error I know, that&amp;rsquo;s the point :) Which one is correct? In this case the correct form is you&#39;re. Useful commands for this level git merge, git checkout, git status.</description>
     </item>
     <item>
       <title>merge-4</title>
       <link>https://www.mrnice.dev/levels/merge-4/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/merge-4/</guid>
-      <description>There&amp;rsquo;s a script called runme.py. Try to run it.
-This time the conflict is a little harder, but you can solve it!
-🧩 Hints Click on the hint to see it.
-I tried to merge but got an error I know, that&amp;rsquo;s the point :) Which one is correct? This time, both sides are missing some parts. You&amp;rsquo;ll have to manually combine them. Useful commands for this level git merge, git mergetool, git checkout, git status.</description>
+      <description>There&amp;rsquo;s a script called runme.py. Try to run it.&#xA;This time the conflict is a little harder, but you can solve it!&#xA;🧩 Hints Click on the hint to see it.&#xA;I tried to merge but got an error I know, that&amp;rsquo;s the point :) Which one is correct? This time, both sides are missing some parts. You&amp;rsquo;ll have to manually combine them. Useful commands for this level git merge, git mergetool, git checkout, git status.</description>
     </item>
     <item>
       <title>merge-5</title>
       <link>https://www.mrnice.dev/levels/merge-5/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/merge-5/</guid>
-      <description>runme.py is a silly name&amp;hellip; I&amp;rsquo;ll call the script ./should_rename_this.py for now, and I&amp;rsquo;ll rename in another branch. Also, the script needs to print another thing&amp;hellip;
-This time the conflict is quite difficuly to solve, as the problem isn&amp;rsquo;t only content, it&amp;rsquo;s also structure (tree). You can solve it!
-🧩 Hints Click on the hint to see it.
-Tree? 🌳 The conflict is caused because both branches renamed the same file - changed the directory tree.</description>
+      <description>runme.py is a silly name&amp;hellip; I&amp;rsquo;ll call the script ./should_rename_this.py for now, and I&amp;rsquo;ll rename in another branch. Also, the script needs to print another thing&amp;hellip;&#xA;This time the conflict is quite difficuly to solve, as the problem isn&amp;rsquo;t only content, it&amp;rsquo;s also structure (tree). You can solve it!&#xA;🧩 Hints Click on the hint to see it.&#xA;Tree? 🌳 The conflict is caused because both branches renamed the same file - changed the directory tree.</description>
     </item>
     <item>
       <title>owasp-ctf-1</title>
       <link>https://www.mrnice.dev/levels/owasp-ctf-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/owasp-ctf-1/</guid>
-      <description>This level was a part of OWASP CTF 2020.
-The focus of this level is AppSec, and specifically, git security. But not git fundamentals, like the rest of the levels in this CTF. So you should probably solve the rest of the levels first.
-_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.</description>
+      <description>This level was a part of OWASP CTF 2020.&#xA;The focus of this level is AppSec, and specifically, git security. But not git fundamentals, like the rest of the levels in this CTF. So you should probably solve the rest of the levels first.&#xA;_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.</description>
     </item>
     <item>
       <title>owasp-ctf-2</title>
       <link>https://www.mrnice.dev/levels/owasp-ctf-2/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/owasp-ctf-2/</guid>
-      <description>This level was a part of OWASP CTF 2020.
-The focus of this level is AppSec, and specifically, git security. But not git fundamentals, like the rest of the levels in this CTF. So you should probably solve the rest of the levels first.
-_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.</description>
+      <description>This level was a part of OWASP CTF 2020.&#xA;The focus of this level is AppSec, and specifically, git security. But not git fundamentals, like the rest of the levels in this CTF. So you should probably solve the rest of the levels first.&#xA;_____ _ _ ___ ___________ | _ || | | |/ _ \ / ___| ___ \ | | | || | | / /_\ \\ `--.</description>
     </item>
     <item>
       <title>rebase-1</title>
       <link>https://www.mrnice.dev/levels/rebase-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/rebase-1/</guid>
-      <description>This level is a little harder. Don&amp;rsquo;t panic!
-In this level, we have a base branch and a topic branch.
-The base branch is parallelizing-barnhardtite-base and the topic branch is parallelizing-barnhardtite-topic Notice the difference: ^^^^^ The base branch introduced a script called runme.py, which prints all the resources in the runme_resources/ folder.
-Try to run it now.
-In the topic branch, we will need to add specific resources. To do this, run the add_resources.</description>
+      <description>This level is a little harder. Don&amp;rsquo;t panic!&#xA;In this level, we have a base branch and a topic branch.&#xA;The base branch is parallelizing-barnhardtite-base and the topic branch is parallelizing-barnhardtite-topic Notice the difference: ^^^^^ The base branch introduced a script called runme.py, which prints all the resources in the runme_resources/ folder.&#xA;Try to run it now.&#xA;In the topic branch, we will need to add specific resources. To do this, run the add_resources.</description>
     </item>
     <item>
       <title>rebase-2</title>
       <link>https://www.mrnice.dev/levels/rebase-2/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/rebase-2/</guid>
-      <description>In this level, the commits are all out of order. Reorder them using an interactive rebase, and push them in the correct order.
-In case you&amp;rsquo;ve never watch the classic sketch &amp;ldquo;Who&amp;rsquo;s on First?&amp;rdquo;, The correct order is:
-First base: Who
-Second base: What
-Third base: I Don&amp;rsquo;t Know
-(By the way, if you haven&amp;rsquo;t watched it, you should. It&amp;rsquo;s a classic.)
-🧩 Hints Click on the hint to see it.</description>
+      <description>In this level, the commits are all out of order. Reorder them using an interactive rebase, and push them in the correct order.&#xA;In case you&amp;rsquo;ve never watch the classic sketch &amp;ldquo;Who&amp;rsquo;s on First?&amp;rdquo;, The correct order is:&#xA;First base: Who&#xA;Second base: What&#xA;Third base: I Don&amp;rsquo;t Know&#xA;(By the way, if you haven&amp;rsquo;t watched it, you should. It&amp;rsquo;s a classic.)&#xA;🧩 Hints Click on the hint to see it.</description>
     </item>
     <item>
       <title>remote-1</title>
       <link>https://www.mrnice.dev/levels/remote-1/</link>
       <pubDate>Sat, 23 May 2020 13:04:22 +0300</pubDate>
       <guid>https://www.mrnice.dev/levels/remote-1/</guid>
-      <description> Check out the password file, and read the README.
-🧩 Hints Click on the hint to see it.
-Remote? This is not a TV! Read about the concept of &amp;ldquo;remotes&amp;rdquo; here and see the exact documentation of git remote here. What does &amp;lsquo;forked&amp;rsquo; mean 🍴 You can read about forks here. Useful commands for this level git remote, git fetch, git merge, git status. </description>
+      <description> Check out the password file, and read the README.&#xA;🧩 Hints Click on the hint to see it.&#xA;Remote? This is not a TV! Read about the concept of &amp;ldquo;remotes&amp;rdquo; here and see the exact documentation of git remote here. What does &amp;lsquo;forked&amp;rsquo; mean 🍴 You can read about forks here. Useful commands for this level git remote, git fetch, git merge, git status. </description>
     </item>
   </channel>
 </rss>

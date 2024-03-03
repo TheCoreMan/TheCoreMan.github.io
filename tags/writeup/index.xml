@@ -13,9 +13,7 @@
       <link>https://www.mrnice.dev/posts/advent-of-cyber-2023/</link>
       <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
       <guid>https://www.mrnice.dev/posts/advent-of-cyber-2023/</guid>
-      <description>To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see {{ .flag }} in the text, it means that I&amp;rsquo;ve redacted the flag.
-Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on the planet.
-Getting started The signup/login UX leaves something to be desired. You start off on the advent page, then sign up, and after the initial signup you are not redirected to the advent.</description>
+      <description>To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see {{ .flag }} in the text, it means that I&amp;rsquo;ve redacted the flag.&#xA;Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on the planet.&#xA;Getting started The signup/login UX leaves something to be desired. You start off on the advent page, then sign up, and after the initial signup you are not redirected to the advent.</description>
     </item>
   </channel>
 </rss>

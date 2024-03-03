@@ -572,12 +572,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-f23d68af43f9dd0e67864334720c432e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-3d6322f968f7062f4eda74d3084c343e&#34;)"
     role="button"
   >
     Level 1 - select all plates
   </button>
-  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-f23d68af43f9dd0e67864334720c432e" class="flashcard__back">
+  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-3d6322f968f7062f4eda74d3084c343e" class="flashcard__back">
     <code>plate</code>
   </div>
 </div>
@@ -604,12 +604,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-62724343f7d4a3328e89d03f6ce4d06f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-42fe6c374d3e8df27f2300a9d3468364&#34;)"
     role="button"
   >
     Level 2 - select all bento boxes
   </button>
-  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-62724343f7d4a3328e89d03f6ce4d06f" class="flashcard__back">
+  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-42fe6c374d3e8df27f2300a9d3468364" class="flashcard__back">
     <code>bento</code>
   </div>
 </div>
@@ -637,12 +637,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-a7e4d820f8440c33332d6e7df646f392&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-87df03ae06d46f3e42c9743d2323f864&#34;)"
     role="button"
   >
     Level 3 - select by ID
   </button>
-  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-a7e4d820f8440c33332d6e7df646f392" class="flashcard__back">
+  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-87df03ae06d46f3e42c9743d2323f864" class="flashcard__back">
     <code>#fancy</code>
   </div>
 </div>
@@ -671,12 +671,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-f72c07fadfe904e4846363d3d2642383&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-d2dea463f80c2ef473f3926364378d40&#34;)"
     role="button"
   >
     Level 4 - Descendant Selector - Select an element inside another element
   </button>
-  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-f72c07fadfe904e4846363d3d2642383" class="flashcard__back">
+  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-d2dea463f80c2ef473f3926364378d40" class="flashcard__back">
     <code>plate apple</code>
   </div>
 </div>
@@ -702,12 +702,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-63d432fd7634e428300239ae7648dfcf&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-e4a404d77d9c36332f2f4328e680f3d6&#34;)"
     role="button"
   >
     Level 5 - Combine the Descendant &amp; ID Selectors
   </button>
-  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-63d432fd7634e428300239ae7648dfcf" class="flashcard__back">
+  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-e4a404d77d9c36332f2f4328e680f3d6" class="flashcard__back">
     <code>#fancy pickle</code>
   </div>
 </div>
@@ -735,12 +735,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-d8c7634af062044d2f38f9d4363e372e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-3fea486736d2346927c43fe80d2430df&#34;)"
     role="button"
   >
     Level 6 - Select elements by their class
   </button>
-  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-d8c7634af062044d2f38f9d4363e372e" class="flashcard__back">
+  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-3fea486736d2346927c43fe80d2430df" class="flashcard__back">
     <code>.small</code>
   </div>
 </div>
@@ -770,12 +770,12 @@ level 7&rsquo;s solution is:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-36a2f00646738442d323eed9ffd3874c&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-706a26f244c840f69e38ef33d3437dd2&#34;)"
     role="button"
   >
     Level 7 - Combine the Class Selector
   </button>
-  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-36a2f00646738442d323eed9ffd3874c" class="flashcard__back">
+  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-706a26f244c840f69e38ef33d3437dd2" class="flashcard__back">
     <code>orange.small</code>
   </div>
 </div>
@@ -803,12 +803,12 @@ level 7&rsquo;s solution is:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-d2fa6247083f90334cd2e43de476f638&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-c636242796f043df4328d3480e3de7af&#34;)"
     role="button"
   >
     Level 8 - Select the small (class) oranges (type) in the bentos (type)
   </button>
-  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-d2fa6247083f90334cd2e43de476f638" class="flashcard__back">
+  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-c636242796f043df4328d3480e3de7af" class="flashcard__back">
     <code>bento orange.small</code>
   </div>
 </div>
@@ -837,12 +837,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-ef2f432e874f360c34d8a20d764933d6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-c640243d7e88e4a7f4fd223360f363d9&#34;)"
     role="button"
   >
     Level 9 - Comma Combinator
   </button>
-  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-ef2f432e874f360c34d8a20d764933d6" class="flashcard__back">
+  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-c640243d7e88e4a7f4fd223360f363d9" class="flashcard__back">
     <code>plate, bento</code>
   </div>
 </div>
@@ -870,12 +870,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-fe62c77ea323346d0249d8df860f3344&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-4742d2fffe6c7d8238d43e36034390a6&#34;)"
     role="button"
   >
     Level 10 - The Universal Selector
   </button>
-  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-fe62c77ea323346d0249d8df860f3344" class="flashcard__back">
+  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-4742d2fffe6c7d8238d43e36034390a6" class="flashcard__back">
     <code>*</code>
   </div>
 </div>
@@ -901,12 +901,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-742e34dfc430f86f3492e6682dd0733a&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-c347ee6f26640283daf73d8340294fd3&#34;)"
     role="button"
   >
     Level 11 - Combine the Universal Selector
   </button>
-  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-742e34dfc430f86f3492e6682dd0733a" class="flashcard__back">
+  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-c347ee6f26640283daf73d8340294fd3" class="flashcard__back">
     <code>plate *</code>
   </div>
 </div>
@@ -939,12 +939,12 @@ another are called siblings. They&rsquo;re on the same level, or depth.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-f348f2d43706704cd6e29df4336a382e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-720e648fdd0494823fe364a2fcd76333&#34;)"
     role="button"
   >
     Level 12 - Select an element that directly follows another element
   </button>
-  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-f348f2d43706704cd6e29df4336a382e" class="flashcard__back">
+  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-720e648fdd0494823fe364a2fcd76333" class="flashcard__back">
     <code>plate + apple</code>
   </div>
 </div>
@@ -984,12 +984,12 @@ hover. Some that ChatGPT suggested:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-26f7de82748ed333d3604ca6f434920f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-66f3973ca34287f2408d034243fdeed6&#34;)"
     role="button"
   >
     Level 13 - Select elements that follows another element
   </button>
-  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-26f7de82748ed333d3604ca6f434920f" class="flashcard__back">
+  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-66f3973ca34287f2408d034243fdeed6" class="flashcard__back">
     <code>bento ~ pickle</code>
   </div>
 </div>
@@ -1018,12 +1018,12 @@ children.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-3323f3cfd446f778e6404e02d398d6a2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-f3894e6f26d77af306ce44803d23d243&#34;)"
     role="button"
   >
     Level 14 - Select direct children of an element A &gt; B
   </button>
-  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-3323f3cfd446f778e6404e02d398d6a2" class="flashcard__back">
+  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-f3894e6f26d77af306ce44803d23d243" class="flashcard__back">
     <code>plate &gt; apple</code>
   </div>
 </div>
@@ -1052,12 +1052,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-0664fd038e29f4fd73c23a8624e3374d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-043afdc8908f4344d6f367de32e26273&#34;)"
     role="button"
   >
     Level 15 - Select a first child element inside of another element
   </button>
-  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-0664fd038e29f4fd73c23a8624e3374d" class="flashcard__back">
+  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-043afdc8908f4344d6f367de32e26273" class="flashcard__back">
     <code>plate &gt; orange:first-child</code>
   </div>
 </div>
@@ -1084,12 +1084,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-e63d6e2a3f43c2423347dd4609807f8f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-2e033f964f760adcf2483847d4d623e3&#34;)"
     role="button"
   >
     Level 16 - Select an element that are the only element inside of another one.
   </button>
-  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-e63d6e2a3f43c2423347dd4609807f8f" class="flashcard__back">
+  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-2e033f964f760adcf2483847d4d623e3" class="flashcard__back">
     <code>plate &gt; *:only-child</code>. You can also solve it with
 <code>plate :only-child</code>, and we weren&rsquo;t sure which one is better.
   </div>
@@ -1117,12 +1117,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-42f42f39732de68733dd648a03c0e6f4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-4d23343904f4882f6d0d767a6c3ef3e2&#34;)"
     role="button"
   >
     Level 17 - Select the last element inside of another element
   </button>
-  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-42f42f39732de68733dd648a03c0e6f4" class="flashcard__back">
+  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-4d23343904f4882f6d0d767a6c3ef3e2" class="flashcard__back">
     <code>.small:last-child</code>
   </div>
 </div>
@@ -1155,12 +1155,12 @@ since it takes a parameter.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-d233633c8424e626f09d74a7efd0f438&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-2f6dd34ea83d00f64c26749e43f73238&#34;)"
     role="button"
   >
     Level 18 - Select an element by its order in another element
   </button>
-  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-d233633c8424e626f09d74a7efd0f438" class="flashcard__back">
+  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-2f6dd34ea83d00f64c26749e43f73238" class="flashcard__back">
     <code>plate:nth-child(3)</code>
   </div>
 </div>
@@ -1188,12 +1188,12 @@ since it takes a parameter.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-a0f366738f4928ecdf3436d43e2427d0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-f7d0743afc4846f6ed9328634e3d0232&#34;)"
     role="button"
   >
     Level 19 - Select an element by its order in another element, counting from the back
   </button>
-  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-a0f366738f4928ecdf3436d43e2427d0" class="flashcard__back">
+  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-f7d0743afc4846f6ed9328634e3d0232" class="flashcard__back">
     <code>bento:nth-last-child(3)</code>
   </div>
 </div>
@@ -1223,12 +1223,12 @@ work in this case, but <code>bento:nth-last-child(3)</code> does.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-2e3df894073dc3a60fe262df34786434&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-39674803220f463344cafd3fee7d2d86&#34;)"
     role="button"
   >
     Level 20 - Select the first element of a specific type
   </button>
-  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-2e3df894073dc3a60fe262df34786434" class="flashcard__back">
+  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-39674803220f463344cafd3fee7d2d86" class="flashcard__back">
     <code>apple:first-of-type</code>
   </div>
 </div>
@@ -1256,12 +1256,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-424f3ed8d7743ff268d343ca236e0960&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-88c4de443ff634233f0903267ded267a&#34;)"
     role="button"
   >
     Level 21 - Nth of Type Selector
   </button>
-  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-424f3ed8d7743ff268d343ca236e0960" class="flashcard__back">
+  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-88c4de443ff634233f0903267ded267a" class="flashcard__back">
     <code>plate:nth-of-type(even)</code>
   </div>
 </div>
@@ -1287,12 +1287,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-92024f46a4634eddf808333f3672dc7e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-42ecdd323d480930623e8f43a4f66f77&#34;)"
     role="button"
   >
     Level 22 - Nth-of-type Selector with Formula
   </button>
-  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-92024f46a4634eddf808333f3672dc7e" class="flashcard__back">
+  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-42ecdd323d480930623e8f43a4f66f77" class="flashcard__back">
     <code>plate:nth-of-type(2n+3)</code>
   </div>
 </div>
@@ -1319,12 +1319,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-32cf408439d82d3f2643eed0743af676&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-844d0f3fea374693223730d6e8f6d42c&#34;)"
     role="button"
   >
     Level 23 - Select elements that are the only ones of their type within of their parent element
   </button>
-  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-32cf408439d82d3f2643eed0743af676" class="flashcard__back">
+  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-844d0f3fea374693223730d6e8f6d42c" class="flashcard__back">
     <code>plate apple:only-of-type</code>
   </div>
 </div>
@@ -1350,12 +1350,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-dff34342ae48d3c9330fe0226647d687&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-3a63383908404fec7f6d4d3622724dfe&#34;)"
     role="button"
   >
     Level 24 - Select the last element of a specific type
   </button>
-  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-dff34342ae48d3c9330fe0226647d687" class="flashcard__back">
+  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-3a63383908404fec7f6d4d3622724dfe" class="flashcard__back">
     <code>apple:last-of-type, orange:last-of-type</code>
   </div>
 </div>
@@ -1381,12 +1381,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-6f20d3f72fd9ed84a834c3e044367236&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-7fe23a673364ff2203ed804443dc968d&#34;)"
     role="button"
   >
     Level 25 - Select elements that don&rsquo;t have children
   </button>
-  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-6f20d3f72fd9ed84a834c3e044367236" class="flashcard__back">
+  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-7fe23a673364ff2203ed804443dc968d" class="flashcard__back">
     <code>bento:empty</code>
   </div>
 </div>
@@ -1412,12 +1412,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-63f6f7d4a48d3e273c43de34220896f0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-4060e69dd7f3247364d2f832343fae8c&#34;)"
     role="button"
   >
     Level 26 - Select all elements that don&rsquo;t match the negation selector
   </button>
-  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-63f6f7d4a48d3e273c43de34220896f0" class="flashcard__back">
+  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-4060e69dd7f3247364d2f832343fae8c" class="flashcard__back">
     <code>apple:not(.small)</code>
   </div>
 </div>
@@ -1448,12 +1448,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-3443cd6662783f74f892020adef4e33d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-08dc2e60a2d743648f642d3334fef397&#34;)"
     role="button"
   >
     Level 27 - Select all elements that have a specific attribute
   </button>
-  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-3443cd6662783f74f892020adef4e33d" class="flashcard__back">
+  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-08dc2e60a2d743648f642d3334fef397" class="flashcard__back">
     <code>[for]</code>.
   </div>
 </div>
@@ -1479,12 +1479,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-634ef624303d430ffa824c627d7d839e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-7420fd830e3232e6ad9634f364d847fc&#34;)"
     role="button"
   >
     Level 28 - Combining type and attribute selector
   </button>
-  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-634ef624303d430ffa824c627d7d839e" class="flashcard__back">
+  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-7420fd830e3232e6ad9634f364d847fc" class="flashcard__back">
     <code>plate[for]</code>.
   </div>
 </div>
@@ -1510,12 +1510,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-02e9278dec60368a74f424f3f333d46d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-43604d6f20a233de438d4f82c69fe773&#34;)"
     role="button"
   >
     Level 29 - Select all elements that have a specific attribute value
   </button>
-  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-02e9278dec60368a74f424f3f333d46d" class="flashcard__back">
+  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-43604d6f20a233de438d4f82c69fe773" class="flashcard__back">
     <code>[for=&quot;Vitaly&quot;]</code>
   </div>
 </div>
@@ -1542,12 +1542,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-09f24e36da3ff342d4083726de83c467&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-e2d3a342e438840764dfc9ff0332d667&#34;)"
     role="button"
   >
     Level 30 - Select all elements with an attribute value that starts with specific characters
   </button>
-  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-09f24e36da3ff342d4083726de83c467" class="flashcard__back">
+  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-e2d3a342e438840764dfc9ff0332d667" class="flashcard__back">
     <code>[for^=&quot;Sa&quot;]</code>
   </div>
 </div>
@@ -1573,12 +1573,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-d6239d7d7683ff638e4fa42c423430e0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-3f360f4262704da3c68f4279e3de3d48&#34;)"
     role="button"
   >
     Level 31 - Select all elements with an attribute value that ends with specific characters
   </button>
-  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-d6239d7d7683ff638e4fa42c423430e0" class="flashcard__back">
+  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-3f360f4262704da3c68f4279e3de3d48" class="flashcard__back">
     <code>[for$=&quot;ato&quot;]</code>
   </div>
 </div>
@@ -1604,12 +1604,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-43e9d32c22668d03a4ff4084f63e7d73&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-384e678f073fa946234c23324dfe06dd&#34;)"
     role="button"
   >
     Level 32 - Select all elements with an attribute value that contains specific characters anywhere
   </button>
-  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-43e9d32c22668d03a4ff4084f63e7d73" class="flashcard__back">
+  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-384e678f073fa946234c23324dfe06dd" class="flashcard__back">
     <code>[for*=&quot;obb&quot;]</code>
   </div>
 </div>
@@ -2254,12 +2254,12 @@ CSS JS HTML Shortcode And put them in the right places in your Hugo project. The
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-43303664e72808cda4723df692e3ffd4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-4238232c4098637e3fd0d74ea6f346df&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-43303664e72808cda4723df692e3ffd4" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-4238232c4098637e3fd0d74ea6f346df" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -2430,12 +2430,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-66d8f48ddf424637f3a23ce72090433e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-c6f32a749fd8e02336833ed42467d0f4&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-66d8f48ddf424637f3a23ce72090433e" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-c6f32a749fd8e02336833ed42467d0f4" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -2461,12 +2461,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-d424362fc4336768f0ad0934e238e7fd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-a3ff832684f43e46d29de027d03347c6&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-d424362fc4336768f0ad0934e238e7fd" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-a3ff832684f43e46d29de027d03347c6" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -2497,12 +2497,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-daf94eef73d420662f433738c462d803&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-6f930de74a36420678d3de33fc4248f2&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-daf94eef73d420662f433738c462d803" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-6f930de74a36420678d3de33fc4248f2" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -2530,12 +2530,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d73239d6d3a46ee34620cf4f2870f834&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-72d904ff4e6233deaf4683674d038c23&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-d73239d6d3a46ee34620cf4f2870f834" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-72d904ff4e6233deaf4683674d038c23" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -2578,12 +2578,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-0d43626342329dc6e3fe80d3f8447fa7&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-83d66a32fd89e42fd7740430e43623cf&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-0d43626342329dc6e3fe80d3f8447fa7" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-83d66a32fd89e42fd7740430e43623cf" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax</h1>
 <ul>
 <li><a href="#cool-how-do-i-get-it-for-my-hugo-site">Cool! How do I get it for my Hugo site?</a></li>
@@ -2625,6 +2625,7 @@ your own dev tools):</p>
 </ul>
 </li>
 <li><a href="#summary">Summary</a></li>
+<li><a href="#keep-this-open-to-copy-the-snippet-if-you-want">Keep this open to copy the snippet, if you want</a></li>
 </ul>
 <p><strong>Note:</strong> This document is itself written using Markdown; you
 can <a href="/projects/markdown/syntax.text">see the source for it by adding &lsquo;.text&rsquo; to the URL</a>.</p>
@@ -2886,6 +2887,38 @@ normal paragraph. For example:</p>
 <blockquote>
 <p>Cover Photo by <a href="https://unsplash.com/@craftedbygc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unseen Studio</a> on <a href="https://unsplash.com/photos/s9CC2SKySJM?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.</p>
 </blockquote>
+<h2 id="keep-this-open-to-copy-the-snippet-if-you-want">Keep this open to copy the snippet, if you want</h2>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-7f36ea44304d33f468279d20863fd2ce&#34;)"
+    role="button"
+  >
+    TODO
+  </button>
+  <div id="answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-7f36ea44304d33f468279d20863fd2ce" class="flashcard__back">
+    
+  </div>
+</div>
+
+
+
 ]]></content>
 		</item>
 		
@@ -9069,7 +9102,7 @@ The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-rece
 </span></span><span class="line"><span class="cl">        <span class="k">then</span> reject-solution <span class="s2">&#34;Bob is missing! Try again.&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">fi</span>
 </span></span></code></pre></div><p>But since we&rsquo;re running on the server we don&rsquo;t have the working directory deployed. After looking around I found the <a href="https://stackoverflow.com/questions/160608/do-a-git-export-like-svn-export/163769#163769">git archive</a> command and came up with this:</p>
-<script type="application/javascript" src="https://gist.github.com/ShayNehmad/95d1d6b447e2ff15a66b2af3b5c41db1.js?file=dump-commit-to-directory.sh"></script>
+<script src="https://gist.github.com/ShayNehmad/95d1d6b447e2ff15a66b2af3b5c41db1.js?file=dump-commit-to-directory.sh"></script>
 
 <h3 id="manually-performing-all-the-actions-to-deploy-a-game-server">Manually performing all the actions to deploy a game server</h3>
 <p>This was a very useful step, and I&rsquo;m glad I did it. Writing down every little thing that I had to deal with while deploying the game made the actual development of CODE that will do it which I did later much more natural. It makes a lot more sense to automate something that was performed manually instead of doing it ahead of time. Here are the actions I performed from adding a new stage to deploying it:</p>
@@ -9742,9 +9775,9 @@ Create repositories on GitHub GitHub Pages repository Blog content repository In
 <h3 id="easy-deployment">Easy deployment</h3>
 <p>Hugo&rsquo;s really fast, which is nice when you build your blog. Here&rsquo;s a top that speed up deployment even more, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#put-it-into-a-script">based on Hugo&rsquo;s documentation on the subject</a>.</p>
 <p>Create a <code>deploy.sh</code> and <code>deploy.ps1</code> scripst in the root of your <code>blog</code> repository. These scripts will build the site and <code>add</code> + <code>commit</code> + <code>push</code> the changes in the <code>public</code> directory for you. Here are some gist you can easily code and paste:</p>
-<script type="application/javascript" src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.sh"></script>
+<script src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.sh"></script>
 
-<script type="application/javascript" src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.ps1"></script>
+<script src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.ps1"></script>
 
 <h2 id="other-fun-stuff-you-can-do">Other fun stuff you can do</h2>
 <h3 id="-set-up-twitter-cards">🐣 Set up twitter cards</h3>

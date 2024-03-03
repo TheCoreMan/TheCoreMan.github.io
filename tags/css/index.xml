@@ -13,25 +13,21 @@
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</link>
       <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</guid>
-      <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.
-Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.
-I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
+      <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.&#xA;Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.&#xA;I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
     </item>
     <item>
       <title>Hugo Flashcard Shortcode</title>
       <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
-      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:
-CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
+      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:&#xA;CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
     </item>
     <item>
       <title>Learning CSS #1: CSS Battles #1 Writeup</title>
       <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
       <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles/</guid>
-      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.
-I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
+      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.&#xA;I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
     </item>
   </channel>
 </rss>

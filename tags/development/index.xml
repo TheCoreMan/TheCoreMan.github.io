@@ -13,10 +13,7 @@
       <link>https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/</link>
       <pubDate>Fri, 15 Nov 2019 18:04:53 +0200</pubDate>
       <guid>https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/</guid>
-      <description>This post has appeared as an article on issue #2 of PagedOut! magazine.
-I improved performance issues in a Python server and survived to tell you the tale.
-0) Discover your problem is performance This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.
-For us, it started with this a demo of the new version of Infection Monkey that had &amp;gt;35 machines.</description>
+      <description>This post has appeared as an article on issue #2 of PagedOut! magazine.&#xA;I improved performance issues in a Python server and survived to tell you the tale.&#xA;0) Discover your problem is performance This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.&#xA;For us, it started with this a demo of the new version of Infection Monkey that had &amp;gt;35 machines.</description>
     </item>
   </channel>
 </rss>

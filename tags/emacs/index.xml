@@ -13,10 +13,7 @@
       <link>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</link>
       <pubDate>Mon, 17 May 2021 15:36:58 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/shortest-guide-how-to-add-programs-to-emacs/</guid>
-      <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:
-A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.
-I&amp;rsquo;ve stumbled across it from this StackExchange answer.
-If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
+      <description>Adding EmacsLips programs to extend Emacs&amp;rsquo;s functionality from source is something I&amp;rsquo;ve found non-obvious (had to open multiple tabs for). Today I&amp;rsquo;ve decided to figure it out, and it&amp;rsquo;s actually very simple, so here&amp;rsquo;s the guide:&#xA;A - Find the program you want to add In my case, it was &amp;ldquo;Transpose Frame&amp;rdquo; by irie.&#xA;I&amp;rsquo;ve stumbled across it from this StackExchange answer.&#xA;If the program is available on MELPA, you can just add it to the additional-packages list in your .</description>
     </item>
   </channel>
 </rss>

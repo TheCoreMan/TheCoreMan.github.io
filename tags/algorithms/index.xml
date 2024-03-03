@@ -13,21 +13,14 @@
       <link>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</link>
       <pubDate>Sun, 01 Aug 2021 08:32:00 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/</guid>
-      <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.
-This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!
-Table of Contents
-Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?</description>
+      <description>&amp;ldquo;日々是好日&amp;rdquo; (Nichinichi kore kōnichi) means &amp;ldquo;Every day is a good day&amp;rdquo; or &amp;ldquo;Try to spend every day meaningfully&amp;rdquo;.&#xA;This blog post continues directly from the previous one, so I&amp;rsquo;ll skip the intros. Go read that one for context. Let&amp;rsquo;s just jump into it!&#xA;Table of Contents&#xA;Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?</description>
     </item>
     <item>
       <title>Devlog #3 | I have grown taller from walking with the trees 🌳</title>
       <link>https://www.mrnice.dev/posts/dev-log-3/</link>
       <pubDate>Thu, 28 May 2020 18:08:50 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/dev-log-3/</guid>
-      <description>“Today I have grown taller from walking with the trees.”
-― Karle Wilson Baker
-Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
-Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
-Why do we need a level browser?</description>
+      <description>“Today I have grown taller from walking with the trees.”&#xA;― Karle Wilson Baker&#xA;Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.&#xA;Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.&#xA;Why do we need a level browser?</description>
     </item>
   </channel>
 </rss>
