@@ -17,23 +17,35 @@
 		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
 	</script>
 	
-<meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
-<meta itemprop="description" content="Part two of the joint project with my intelligent and brave wife, Olga!
-This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
-Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
-QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&rsquo;s Business Logic Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs."><meta itemprop="datePublished" content="2021-09-28T12:23:06+03:00" />
-<meta itemprop="dateModified" content="2021-09-28T12:23:06+03:00" />
-<meta itemprop="wordCount" content="2003"><meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" />
-<meta itemprop="keywords" content="python,gcp,slack,automation,cloud,docker,serverless," /><meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic" />
-<meta property="og:description" content="Part two of the joint project with my intelligent and brave wife, Olga!
-This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
-Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
-QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&rsquo;s Business Logic Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/" /><meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-28T12:23:06+03:00" />
-<meta property="article:modified_time" content="2021-09-28T12:23:06+03:00" />
 
+  <meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
+  <meta itemprop="description" content="Part two of the joint project with my intelligent and brave wife, Olga!
+This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
+Warning: As our development of this project was a little &ldquo;all over the place&rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
+QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&rsquo;s Business Logic Let&rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&rsquo;s do some Development - using Bolt Let&rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.">
+  <meta itemprop="datePublished" content="2021-09-28T12:23:06+03:00">
+  <meta itemprop="dateModified" content="2021-09-28T12:23:06+03:00">
+  <meta itemprop="wordCount" content="2003">
+  <meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+  <meta itemprop="keywords" content="Python,Gcp,Slack,Automation,Cloud,Docker,Serverless"><meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp-part-2/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
+  <meta property="og:description" content="Part two of the joint project with my intelligent and brave wife, Olga!
+This post is a part of a series, so [check out part 1 for context] (../building-a-slack-bot-with-python-on-gcp).
+Warning: As our development of this project was a little &amp;ldquo;all over the place&amp;rdquo; as we try to fit it to our busy lives and the Holiday Season, the blog post is a little all over the place as well.
+QoL improvements Slimming down the Docker Image size Adding a test endpoint to the server, to make sure it works Adding basic CI Setting up a local development environment Designing and Building the Bot&amp;rsquo;s Business Logic Let&amp;rsquo;s do some Product - designing the user flows Initial development - design, mocks, stubs Let&amp;rsquo;s do some Development - using Bolt Let&amp;rsquo;s get sidetracked - Web servers, web applications, and WSGI Next up QoL improvements Before moving on the the next big tasks, we wanted to do some small QoL improvements, which we introduced in 3 separate PRs.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-09-28T12:23:06+03:00">
+    <meta property="article:modified_time" content="2021-09-28T12:23:06+03:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Gcp">
+    <meta property="article:tag" content="Slack">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Cloud">
+    <meta property="article:tag" content="Docker">
+    <meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
 
 <meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic">
 
@@ -80,8 +92,8 @@ QoL improvements Slimming down the Docker Image size Adding a test endpoint to t
 				<nav class="site-nav hide-in-mobile">
 					
 				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
-				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 
 				</nav>
 			</div>
@@ -93,8 +105,8 @@ QoL improvements Slimming down the Docker Image size Adding a test endpoint to t
 	<div id="mobile-menu" class="animated fast">
 		<ul>
 			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
-			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 		</ul>
 	</div>
 
@@ -107,6 +119,7 @@ QoL improvements Slimming down the Docker Image size Adding a test endpoint to t
 				<h1>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</h1>
 			</header>
 			<div class="content">
+				
 				<p>Part two of the joint project with my intelligent and brave wife,
 <a href="https://www.linkedin.com/in/olga-beskrovniy-4469b276/">Olga</a>!</p>
 <p>This post is a part of a series, so [check out part 1 for context]
@@ -143,6 +156,7 @@ improvements, which we introduced in 3 separate PRs.</p>
 <p>This one even got a tweet.</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Made my Docker image size 20% (from almost 1GB to 196MB) by adding `-slim` to the base image. Sane defaults, anyone? <a href="https://t.co/6yt17kEWpo">pic.twitter.com/6yt17kEWpo</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1436245245428224002?ref_src=twsrc%5Etfw">September 10, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <p>Sometimes things don&rsquo;t make sense to me. Why is the DEFAULT image the one with
 &ldquo;batteries-included&rdquo;, all the bloat, and the huge one? Do developers really
@@ -470,6 +484,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 			<hr class="post-end">
 			<footer class="post-info">
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/gcp">gcp</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/slack">slack</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/cloud">cloud</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/docker">docker</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/serverless">serverless</a></span>
 				</p>
@@ -513,7 +528,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
 

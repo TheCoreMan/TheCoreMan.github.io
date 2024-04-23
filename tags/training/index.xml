@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>training on mrnice.dev</title>
+    <title>Training on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/training/</link>
-    <description>Recent content in training on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Training on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 18 Oct 2020 12:07:50 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/training/index.xml" rel="self" type="application/rss+xml" />

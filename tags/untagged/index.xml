@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Untagged on mrnice.dev</title>
+    <link>http://localhost:1313/tags/untagged/</link>
+    <description>Recent content in Untagged on mrnice.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Dec 2023 22:11:14 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advent of Code 2023</title>
+      <link>http://localhost:1313/posts/advent-of-code-2023/</link>
+      <pubDate>Sat, 02 Dec 2023 22:11:14 +0200</pubDate>
+      <guid>http://localhost:1313/posts/advent-of-code-2023/</guid>
+      <description>Doing the Advent of Code this year is an escapist activity I have on hand. This blog post is being written in the middle of the 2023 Israel-Hamas war. I&amp;rsquo;m mostly doing reserve duty, but if I find free time here and there, I think it&amp;rsquo;s a good idea to solve a few puzzles.&#xA;Hey, Better than doomscrolling, right?&#xA;Let&amp;rsquo;s turn off Co-Pilot Eric says:&#xA;(If you want to use AI to help you solve puzzles, I can&amp;rsquo;t really stop you, but I feel like it&amp;rsquo;s harder to get better at programming if you ask an AI to do the programming for you.</description>
+    </item>
+    <item>
+      <title>Bluehat Il 2020</title>
+      <link>http://localhost:1313/posts/bluehat-il-2020/</link>
+      <pubDate>Wed, 05 Feb 2020 10:03:10 +0200</pubDate>
+      <guid>http://localhost:1313/posts/bluehat-il-2020/</guid>
+      <description>Theme is wierd, I was in the red side&#xA;Day 1 Intro Every year we pick a theme. Last year was privacy - offensive cyber, use of technology to violate human rights. But MicroSoft has no problem selling infrastructure to NSO. Hmmm&amp;hellip;.&#xA;Theme for this year:&#xA;Differences and similarities&#xA;Keeping Windows Secure Keeping windows secure is hard:&#xA;5.7 Million source code files 1100 PR per day 3,600 developer commiting to windows 440 official branches Windows is evolving: PCs, XBOX, IOT, Hololens, Cloud.</description>
+    </item>
+    <item>
+      <title>Scoutsuite Exploratory Surgery</title>
+      <link>http://localhost:1313/posts/scoutsuite-exploratory-surgery/</link>
+      <pubDate>Tue, 31 Dec 2019 13:46:34 +0200</pubDate>
+      <guid>http://localhost:1313/posts/scoutsuite-exploratory-surgery/</guid>
+      <description>Setup I set up the following machines, and I&amp;rsquo;m debugging Directly from PyCharm using remote SSH shell:&#xA;An AWS machine with Full Admin IAM role. i-05c3679394ad7c6d5 An Azure machine with the Reader role b95047a4-b17a-4a39-8b03-901dc475c046 Conclusions Installations There are quite a lot of extra dependencies this bestows on the Monkey (mostly cloud stuff)).&#xA;First execution - AWS Went with AWS. Ran using Python 3.7 - python3.7 scout.py aws. This means we need to know ahead of time which provider we are planning to scan and pass the parameter accordingly.</description>
+    </item>
+  </channel>
+</rss>

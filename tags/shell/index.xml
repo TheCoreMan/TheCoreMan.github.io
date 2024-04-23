@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/shell/</link>
+    <description>Recent content in Shell on mrnice.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Apr 2024 18:11:13 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🎧🍏 AirPods (well, any bluetooth) alias for MacOS</title>
+      <link>https://www.mrnice.dev/posts/airpods-alias/</link>
+      <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
+      <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
+    </item>
+    <item>
+      <title>What to Pack for a Deserted Linux Island</title>
+      <link>https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/</link>
+      <pubDate>Sun, 11 Aug 2019 17:26:22 +0200</pubDate>
+      <guid>https://www.mrnice.dev/posts/what-to-pack-for-a-deserted-linux-island/</guid>
+      <description>This post has appeared as an article on issue #1 of PagedOut! magazine.&#xA;Things I insist on installing on every new Linux server I work on, and you should too.&#xA;Why Prep The Shell The Terminal(s) The Text Editor The Browser Why It’s that time again. You finally manage to ssh into your brand-new server, aaaand…&#xA;😖 It sucks. You think to yourself, “ah, if only I had time to set this up like I WANT it to be, this machine would’ve been a treat”.</description>
+    </item>
+  </channel>
+</rss>

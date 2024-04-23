@@ -17,21 +17,33 @@
 		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
 	</script>
 	
-<meta itemprop="name" content="Optimize your Hugo Blog With Unlighthouse">
-<meta itemprop="description" content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
-In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
-Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site."><meta itemprop="datePublished" content="2023-05-16T09:36:21+03:00" />
-<meta itemprop="dateModified" content="2023-05-16T09:36:21+03:00" />
-<meta itemprop="wordCount" content="1745"><meta itemprop="image" content="https://www.mrnice.dev/images/lighthouse/cover.png" />
-<meta itemprop="keywords" content="hugo,chrome,web,howto,dev,profiling," /><meta property="og:title" content="Optimize your Hugo Blog With Unlighthouse" />
-<meta property="og:description" content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
-In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
-Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/" /><meta property="og:image" content="https://www.mrnice.dev/images/lighthouse/cover.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-05-16T09:36:21+03:00" />
-<meta property="article:modified_time" content="2023-05-16T09:36:21+03:00" />
 
+  <meta itemprop="name" content="Optimize your Hugo Blog With Unlighthouse">
+  <meta itemprop="description" content="Recently Google let me see the new Analytics dashboard (they moved from&hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&rsquo;s performance was bad!
+In general the blog&rsquo;s infrastructure didn&rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that Google provides to measure the performance of your site.">
+  <meta itemprop="datePublished" content="2023-05-16T09:36:21+03:00">
+  <meta itemprop="dateModified" content="2023-05-16T09:36:21+03:00">
+  <meta itemprop="wordCount" content="1745">
+  <meta itemprop="image" content="https://www.mrnice.dev/images/lighthouse/cover.png">
+  <meta itemprop="keywords" content="Hugo,Chrome,Web,Howto,Dev,Profiling"><meta property="og:url" content="https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="Optimize your Hugo Blog With Unlighthouse">
+  <meta property="og:description" content="Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!
+In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.
+Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-05-16T09:36:21+03:00">
+    <meta property="article:modified_time" content="2023-05-16T09:36:21+03:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="article:tag" content="Chrome">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="Howto">
+    <meta property="article:tag" content="Dev">
+    <meta property="article:tag" content="Profiling">
+    <meta property="og:image" content="https://www.mrnice.dev/images/lighthouse/cover.png">
 
 <meta name="twitter:title" content="Optimize your Hugo Blog With Unlighthouse">
 
@@ -77,8 +89,8 @@ Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that G
 				<nav class="site-nav hide-in-mobile">
 					
 				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
-				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 
 				</nav>
 			</div>
@@ -90,8 +102,8 @@ Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that G
 	<div id="mobile-menu" class="animated fast">
 		<ul>
 			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
-			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 		</ul>
 	</div>
 
@@ -104,6 +116,7 @@ Get initial Lighthouse results What&rsquo;s Lighthouse? It&rsquo;s a tool that G
 				<h1>Optimize your Hugo Blog With Unlighthouse</h1>
 			</header>
 			<div class="content">
+				
 				<p>Recently Google let me see the new Analytics dashboard (they moved from&hellip;
 Something something analytics to something something Analytics 4). And one
 of they things I saw was that my blog&rsquo;s performance was bad!</p>
@@ -123,9 +136,12 @@ see what I&rsquo;m getting both for Mobile and Desktop.</p>
 better for this use case! Unlighthouse runs Lighthouse reports for all pages
 of your site, and then generates a report with the results.</p>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/0fONene3OIA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+
+    
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0fONene3OIA?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
+      ></iframe>
+    </div>
 
 <p>So let&rsquo;s run it! From the
 <a href="https://unlighthouse.dev/guide/getting-started">getting started guide</a>, looks
@@ -404,6 +420,7 @@ paper”.</p>
 			<hr class="post-end">
 			<footer class="post-info">
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/hugo">hugo</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/chrome">chrome</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/web">web</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/howto">howto</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/dev">dev</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/profiling">profiling</a></span>
 				</p>
@@ -447,7 +464,7 @@ paper”.</p>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
 

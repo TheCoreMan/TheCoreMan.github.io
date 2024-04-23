@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>security on mrnice.dev</title>
+    <title>Security on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/security/</link>
-    <description>Recent content in security on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Security on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Aug 2022 14:15:55 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>clojure on mrnice.dev</title>
+    <title>Clojure on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/clojure/</link>
-    <description>Recent content in clojure on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Clojure on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Aug 2021 08:32:00 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/clojure/index.xml" rel="self" type="application/rss+xml" />

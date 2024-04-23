@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+
+  <meta itemprop="name" content="📇 Study guide: Learning Rust With Entirely Too Many Linked Lists">
+  <meta itemprop="description" content="This is a &ldquo;learning cheatsheet&rdquo; of Learn Rust With Entirely Too Many Linked Lists, which you can use as a way to test yourself and do some spaced repetition to memorize the concepts and highlights from it.
+Why? Whenever I start programming in Rust, I get &ldquo;stuck&rdquo; somewhere around the Box keyword and just give up. This year, I&rsquo;m planning to do some Rust programming (even if just for fun) and I REALLY want to nail down the fundamentals.">
+  <meta itemprop="datePublished" content="2023-12-10T21:33:29+02:00">
+  <meta itemprop="dateModified" content="2023-12-10T21:33:29+02:00">
+  <meta itemprop="wordCount" content="1063">
+  <meta itemprop="image" content="http://localhost:1313/images/rust/gopher-eating-rust.jpg">
+  <meta itemprop="keywords" content="Rust,Learning,Flashcards"><meta property="og:url" content="http://localhost:1313/posts/learning-rust-with-entirely-too-many-linked-lists-highlights/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="📇 Study guide: Learning Rust With Entirely Too Many Linked Lists">
+  <meta property="og:description" content="This is a &amp;ldquo;learning cheatsheet&amp;rdquo; of Learn Rust With Entirely Too Many Linked Lists, which you can use as a way to test yourself and do some spaced repetition to memorize the concepts and highlights from it.
+Why? Whenever I start programming in Rust, I get &amp;ldquo;stuck&amp;rdquo; somewhere around the Box keyword and just give up. This year, I&amp;rsquo;m planning to do some Rust programming (even if just for fun) and I REALLY want to nail down the fundamentals.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-10T21:33:29+02:00">
+    <meta property="article:modified_time" content="2023-12-10T21:33:29+02:00">
+    <meta property="article:tag" content="Rust">
+    <meta property="article:tag" content="Learning">
+    <meta property="article:tag" content="Flashcards">
+    <meta property="og:image" content="http://localhost:1313/images/rust/gopher-eating-rust.jpg">
+
+<meta name="twitter:title" content="📇 Study guide: Learning Rust With Entirely Too Many Linked Lists">
+
+
+
+<meta
+	name="description"
+	content="This is a &ldquo;learning cheatsheet&rdquo; of Learn Rust With Entirely Too Many Linked Lists, which you can use as a way to test yourself and do some spaced repetition to memorize the concepts and highlights from it.
+Why? Whenever I start programming in Rust, I get &ldquo;stuck&rdquo; somewhere around the Box keyword and just give up. This year, I&rsquo;m planning to do some Rust programming (even if just for fun) and I REALLY want to nail down the fundamentals."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "http://localhost:1313/",
+		"logo": "http://localhost:1313/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>📇 Study guide: Learning Rust With Entirely Too Many Linked Lists</title>
+	<link rel="stylesheet" href="http://localhost:1313/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('http://localhost:1313/images/rust/gopher-eating-rust.jpg');}</style>
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="http://localhost:1313/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="http://localhost:1313/posts/">Posts 📖</a>
+				<a href="http://localhost:1313/ctf/">git CTF 🚩</a>
+				<a href="http://localhost:1313/about/">About me 🧔</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="http://localhost:1313/posts/">Posts 📖</a></li>
+			<li><a href="http://localhost:1313/ctf/">git CTF 🚩</a></li>
+			<li><a href="http://localhost:1313/about/">About me 🧔</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 10, 2023</span></div>
+				<h1>📇 Study guide: Learning Rust With Entirely Too Many Linked Lists</h1>
+			</header>
+			<div class="content">
+				
+				<p>This is a &ldquo;learning cheatsheet&rdquo; of
+<a href="https://rust-unofficial.github.io/too-many-lists/">Learn Rust With Entirely Too Many Linked Lists</a>,
+which you can use as a way to test yourself and do some spaced repetition to
+memorize the concepts and highlights from it.</p>
+<h2 id="why">Why?<a href="#why" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><img src="https://camo.githubusercontent.com/1d24e64022fd725f1896890b3ce14c560f075dc1f80f0b0baae3ece8981c882a/68747470733a2f2f70617065722d6174746163686d656e74732e64726f70626f782e636f6d2f735f353445314239364546464546443239343536323930324443354239393731443335434436423635304243383744313230303341333041343635313737363230315f313538363531343237353631385f696d6167652e706e67" alt="rust learning curve"></p>
+<p>Whenever I start programming in Rust, I get &ldquo;stuck&rdquo; somewhere around the <code>Box</code>
+keyword and just give up. This year, I&rsquo;m planning to do some Rust programming
+(even if just for fun) and I REALLY want to nail down the fundamentals. Gotta
+walk before I can run.</p>
+<h2 id="how">How?<a href="#how" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>By using <a href="/posts/hugo-flashcard-shortcode-for-study">my own flashcards</a>!</p>
+<blockquote>
+<p>Well, I&rsquo;ll probably write these out in LogSeq first and then move them into
+this post, but you get the idea.</p>
+</blockquote>
+<p>LFG 🚀</p>
+<h2 id="getting-started">Getting started<a href="#getting-started" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<pre tabindex="0"><code>rustup update
+cdc  # ❯ which cdc: aliased to cd $HOME/Desktop/code
+gh repo create rust-too-many-linked-lists
+cd rust-too-many-linked-lists
+cargo new --lib lists
+cd lists
+</code></pre><h2 id="a-bad-stack">A Bad Stack<a href="#a-bad-stack" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>You understand why I love this book? Right from the start, you get this error:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ cargo build
+</span></span><span class="line"><span class="cl">   Compiling lists v0.1.0 <span class="o">(</span>/Users/shay/Desktop/code/rust-too-many-linked-lists/lists<span class="o">)</span>
+</span></span><span class="line"><span class="cl">error<span class="o">[</span>E0072<span class="o">]</span>: recursive <span class="nb">type</span> <span class="sb">`</span>List<span class="sb">`</span> has infinite size
+</span></span><span class="line"><span class="cl"> --&gt; src/first.rs:1:1
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="m">1</span> <span class="p">|</span> pub enum List <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">|</span> ^^^^^^^^^^^^^
+</span></span><span class="line"><span class="cl"><span class="m">2</span> <span class="p">|</span>     Empty,
+</span></span><span class="line"><span class="cl"><span class="m">3</span> <span class="p">|</span>     Elem<span class="o">(</span>i32, List<span class="o">)</span>,
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>               ---- recursive without indirection
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>
+</span></span><span class="line"><span class="cl">help: insert some indirection <span class="o">(</span>e.g., a <span class="sb">`</span>Box<span class="sb">`</span>, <span class="sb">`</span>Rc<span class="sb">`</span>, or <span class="sb">`</span><span class="p">&amp;</span><span class="sb">`</span><span class="o">)</span> to <span class="nb">break</span> the cycle
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="m">3</span> <span class="p">|</span>     Elem<span class="o">(</span>i32, Box&lt;List&gt;<span class="o">)</span>,
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>               ++++    +
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For more information about this error, try <span class="sb">`</span>rustc --explain E0072<span class="sb">`</span>.
+</span></span><span class="line"><span class="cl">error: could not compile <span class="sb">`</span>lists<span class="sb">`</span> <span class="o">(</span>lib<span class="o">)</span> due to <span class="m">1</span> previous error
+</span></span></code></pre></div><p>I mean, come on. This is already giving me &ldquo;quit&rdquo; vibes. But we soldier on!</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-c6e19e8922603387e6fa996e97a75d0683f465e0-40444f7836a3fdd3f7382220e693ced6&#34;)"
+    role="button"
+  >
+    <code>pub</code>
+  </button>
+  <div id="answer-id-c6e19e8922603387e6fa996e97a75d0683f465e0-40444f7836a3fdd3f7382220e693ced6" class="flashcard__back">
+    <code>pub</code> for &ldquo;public&rdquo; says we want people outside of a module to be able to use the thing. In Go,
+we would have just Capitalized the thing, which is <em>perfect</em>.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-9a296580379006d6dc28b2233b082f091a4d057b-24cf36634f4da847d033e90e87f36d22&#34;)"
+    role="button"
+  >
+    <code>Box&lt;T&gt;</code>
+  </button>
+  <div id="answer-id-9a296580379006d6dc28b2233b082f091a4d057b-24cf36634f4da847d033e90e87f36d22" class="flashcard__back">
+    <p><a href="https://doc.rust-lang.org/std/boxed/index.html">Box documentation</a>.</p>
+<blockquote>
+<p>Box&lt;T&gt;, casually referred to as a &lsquo;box&rsquo;, provides the simplest form of heap
+allocation in Rust. Boxes provide ownership for this allocation, and drop
+their contents when they go out of scope.</p>
+</blockquote>
+<p>OK, so reminds me of an smart pointer in C++.</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-4fb2fe95d8c4db13a56ba782fc5290e6fd0a3b99-3646f32af74d37fc4860e280d33249de&#34;)"
+    role="button"
+  >
+    <code>enum</code>
+  </button>
+  <div id="answer-id-4fb2fe95d8c4db13a56ba782fc5290e6fd0a3b99-3646f32af74d37fc4860e280d33249de" class="flashcard__back">
+    <p>A <em>sum type</em>: a type that can have different values which may be different types.</p>
+<p>Because of this property, enums are laid out in memory in such a way that they
+need enough space to store the largest of their variants (+ alignment padding).</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-cd4287c0f229efdcf98be50e9f63bfbe6753de2b-73da7263f3dc2fd8fe0239644648e304&#34;)"
+    role="button"
+  >
+    <code>struct</code> VS <code>enum</code>
+  </button>
+  <div id="answer-id-cd4287c0f229efdcf98be50e9f63bfbe6753de2b-73da7263f3dc2fd8fe0239644648e304" class="flashcard__back">
+    Enums let us declare a type that can contain one of seceral values, structs let
+us declare a type that contains many values at once.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-4453d5f6cfd596222692783a11d6e2f5109946e5-42fdfe4467043c68e27839df260d3a33&#34;)"
+    role="button"
+  >
+    <code>impl</code>
+  </button>
+  <div id="answer-id-4453d5f6cfd596222692783a11d6e2f5109946e5-42fdfe4467043c68e27839df260d3a33" class="flashcard__back">
+    <code>impl</code> is how we associate actual code with a type. So a way to create methods
+for a specific type, or implement a trait for a type.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-ee521c50439b917a9d9472bc5a77a8120edc3598-363486304cf49af73dd4e876d02f232e&#34;)"
+    role="button"
+  >
+    Declaring functions VS methods
+  </button>
+  <div id="answer-id-ee521c50439b917a9d9472bc5a77a8120edc3598-363486304cf49af73dd4e876d02f232e" class="flashcard__back">
+    <p>Functions:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">param1</span>: <span class="nc">Type1</span><span class="p">,</span><span class="w"> </span><span class="n">param2</span>: <span class="nc">Type2</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ReturnType</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// function body
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Methods:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">arg2</span>: <span class="nc">Type2</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ReturnType</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// body
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-ff1c3594205efc03e740f92b15bbb7f44aa50869-7dfe262e078943da30644c2638d3ff43&#34;)"
+    role="button"
+  >
+    Where&rsquo;s my <code>return</code>?
+  </button>
+  <div id="answer-id-ff1c3594205efc03e740f92b15bbb7f44aa50869-7dfe262e078943da30644c2638d3ff43" class="flashcard__back">
+    No need for a <code>return</code> keyword in Rust, the last expression in a function is
+implicitly returned.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-fb90337370d256b4cd120779100385ae8cc08f97-e432f088a3246706fd3e769fd34234cd&#34;)"
+    role="button"
+  >
+    The three primary forms of ownership in Rust
+  </button>
+  <div id="answer-id-fb90337370d256b4cd120779100385ae8cc08f97-e432f088a3246706fd3e769fd34234cd" class="flashcard__back">
+    <ul>
+<li><code>self</code> - Value: &ldquo;True&rdquo; ownership (you can destroy it)</li>
+<li><code>&amp;mut self</code> - Mutable reference: Temporary exclusive access (you can mutate it)</li>
+<li><code>&amp;self</code> - Shared reference: Temporary shared access (you can read it, but not modify it)</li>
+</ul>
+
+  </div>
+</div>
+
+
+
+<p>Interesting note here, the book says:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="w"> </span><span class="n">cargo</span><span class="w"> </span><span class="n">build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">error</span><span class="p">[</span><span class="n">E0507</span><span class="p">]</span>: <span class="nc">cannot</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">borrowed</span><span class="w"> </span><span class="n">content</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">-</span>-&gt; <span class="nc">src</span><span class="o">/</span><span class="n">first</span><span class="p">.</span><span class="n">rs</span>:<span class="mi">19</span>:<span class="mi">19</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">19</span><span class="w"> </span><span class="o">|</span><span class="w">             </span><span class="n">next</span>: <span class="nc">self</span><span class="p">.</span><span class="n">head</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="o">|</span><span class="w">                   </span><span class="o">^^^^^^^^^</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">borrowed</span><span class="w"> </span><span class="n">content</span><span class="w">
+</span></span></span></code></pre></div><p>While I see:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="n">error</span><span class="p">[</span><span class="n">E0507</span><span class="p">]</span>: <span class="nc">cannot</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="err">`</span><span class="bp">self</span><span class="p">.</span><span class="n">head</span><span class="err">`</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">mutable</span><span class="w"> </span><span class="n">reference</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">-</span>-&gt; <span class="nc">src</span><span class="o">/</span><span class="n">first</span><span class="p">.</span><span class="n">rs</span>:<span class="mi">23</span>:<span class="mi">19</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">23</span><span class="w"> </span><span class="o">|</span><span class="w">             </span><span class="n">next</span>: <span class="nc">self</span><span class="p">.</span><span class="n">head</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="o">|</span><span class="w">                   </span><span class="o">^^^^^^^^^</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="n">occurs</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="err">`</span><span class="bp">self</span><span class="p">.</span><span class="n">head</span><span class="err">`</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="k">type</span> <span class="err">`</span><span class="n">Link</span><span class="err">`</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">implement</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">`</span><span class="nb">Copy</span><span class="err">`</span><span class="w"> </span><span class="k">trait</span><span class="w">
+</span></span></span></code></pre></div><p>Seems like the error messages from the compiler have gotten a lot friendlier,
+but in this case, they would have led my down the wrong path; I don&rsquo;t want to
+implement the <code>Copy</code> trait to implement <code>push</code> here, I want to actually change
+<code>self.head</code> to first point to <code>Link::Empty</code> (as I build <code>new_node</code> to point at
+what used to be there) and after <code>new_node</code> has been built I want to change it
+to <code>new_node</code>.</p>
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-1a46fbddaff026bd3ccfe909b60b77f56cc27001-8d4d7f4938d460320664efe73a323c2f&#34;)"
+    role="button"
+  >
+    cannot move out of <code>...</code> which is behind a mutable reference
+  </button>
+  <div id="answer-id-1a46fbddaff026bd3ccfe909b60b77f56cc27001-8d4d7f4938d460320664efe73a323c2f" class="flashcard__back">
+    <p>If we got a mutable reference, that means we don&rsquo;t have &ldquo;true&rdquo; ownership; we
+have temporary exclusive access, which means we can mutate. But we
+specifically cannot destroy whatever we have a mutable reference to.</p>
+<p>We would like to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">thingy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// This causes a move and is not allowed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="n">new_ownership</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thingy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">thingy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i_put_it_right_back_i_swear</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>But that won&rsquo;t fly, since between the first and second line of this function we
+might have an
+<a href="https://doc.rust-lang.org/nightly/nomicon/exception-safety.html">exception</a> and
+<code>thingy</code> will be destroyed. We want to be ready for &ldquo;unwinding&rdquo; the stack.</p>
+<p>To atomically replace a value in a way Rust accepts, we need to use
+<a href="https://doc.rust-lang.org/std/mem/fn.replace.html"><code>std::mem::replace</code></a>. This
+moves the second argument into the first, and returns the old value of the first
+argument for us to use where we need it. This allows us to &ldquo;steal&rdquo; <code>thingy</code>
+without introducing exception un-safety.</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-baeb1d1b034cfaf9003387bb93f0335be257092d-e2479dc62d064f8d836f3f0ea3234437&#34;)"
+    role="button"
+  >
+    <code>Option\&lt;T\&gt;</code>
+  </button>
+  <div id="answer-id-baeb1d1b034cfaf9003387bb93f0335be257092d-e2479dc62d064f8d836f3f0ea3234437" class="flashcard__back">
+    <p><a href="https://doc.rust-lang.org/std/option/index.html">Option documentation</a>.</p>
+<p>Represents an optional value: either <code>Some</code> value, or <code>None</code>.</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-049cd5dd3e50d958281f5b385943da3375946bd8-443ae6c0463d3d42728720fe8fd9f363&#34;)"
+    role="button"
+  >
+    <code>match</code>
+  </button>
+  <div id="answer-id-049cd5dd3e50d958281f5b385943da3375946bd8-443ae6c0463d3d42728720fe8fd9f363" class="flashcard__back">
+    <p><a href="https://doc.rust-lang.org/std/keyword.match.html">Match documentation</a>.</p>
+<p>Basically a switch-case with all the fancy syntax you could want.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">match</span><span class="w"> </span><span class="n">on_a_thing</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">an_arm</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">do_something</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">another_arm</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">do_something_else</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Useful for the afore-menioned <code>Option</code> type:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">match</span><span class="w"> </span><span class="n">thing</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nb">Some</span><span class="p">(</span><span class="n">thing</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">do_something_with</span><span class="p">(</span><span class="n">thing</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">do_something_else</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-7c3bf29b434d697224a01ec05a0493fb9a6415ef-63ef47a8f366344f42dd7d3009ce2238&#34;)"
+    role="button"
+  >
+    <code>unimplemented!()</code>
+  </button>
+  <div id="answer-id-7c3bf29b434d697224a01ec05a0493fb9a6415ef-63ef47a8f366344f42dd7d3009ce2238" class="flashcard__back">
+    <ul>
+<li><code>!</code> indicates a macro</li>
+<li>The <code>unimplemented</code> macro:</li>
+</ul>
+<blockquote>
+<p>Indicates unimplemented code by panicking with a message of &ldquo;not implemented&rdquo;.</p>
+</blockquote>
+<p>And&hellip; Why would I want that?</p>
+<blockquote>
+<p>This allows your code to type-check, which is useful if you are prototyping or
+implementing a trait that requires multiple methods which you don&rsquo;t plan to
+use all of.</p>
+</blockquote>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-c2078df6bb1dbd5f1f4250fbf0bf2e4f7ef20e27-369d38dc643678ed2fe3244030f247af&#34;)"
+    role="button"
+  >
+    <code>unimplemented!()</code> vs <code>todo!()</code>
+  </button>
+  <div id="answer-id-c2078df6bb1dbd5f1f4250fbf0bf2e4f7ef20e27-369d38dc643678ed2fe3244030f247af" class="flashcard__back">
+    <p>The difference between <code>unimplemented!</code> and <code>todo!</code> is that while <code>todo!</code>
+conveys an intent of implementing the functionality later and the message is
+&ldquo;not yet implemented&rdquo;, <code>unimplemented!</code> makes no such claims. Its message is
+&ldquo;not implemented&rdquo;. So it&rsquo;s semantic only.</p>
+<p>(Also, by reading the code, it looks like <code>todo!</code> is newer.)</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-0820b32b206b7352858e8903a838ed14319acdfd-63440446293f7228e303f83d6fddca7e&#34;)"
+    role="button"
+  >
+    Testing
+  </button>
+  <div id="answer-id-0820b32b206b7352858e8903a838ed14319acdfd-63440446293f7228e303f83d6fddca7e" class="flashcard__back">
+    <p>Keep your tests in the same file and mark the module with <code>#[cfg(test)]</code> (to
+indicate we only want to compile this module when we&rsquo;re running tests).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="n">Thingy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">it_works</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">Thingy</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then run with <code>cargo test</code>.</p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+<link rel="stylesheet" href="/css/flashcard.css" />
+<script src="/js/flashcard.js"></script>
+
+
+<div class="flashcard">
+  <div class="notepad-line"></div>
+  <button
+    class="flashcard__front"
+    onclick="toggleAnswer(&#34;answer-id-0fa1cbf4a2dfd8627eeef2c4ff3a20aad5d47f8e-8e47efd3966f84d4373c002d2af36243&#34;)"
+    role="button"
+  >
+    <code>trait</code>
+  </button>
+  <div id="answer-id-0fa1cbf4a2dfd8627eeef2c4ff3a20aad5d47f8e-8e47efd3966f84d4373c002d2af36243" class="flashcard__back">
+    <p>Traits are interfaces. :) For example, the <code>Drop</code> trait means &ldquo;when you go out
+of scope, you get a chance to cleamup&rdquo;, and it looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Drop</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">drop</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+  </div>
+</div>
+
+
+
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/hugo-flashcard-shortcode-for-study/">Hugo Flashcard Shortcode</a></li>
+	
+	<li><a href="/posts/dev-log-5/">Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</a></li>
+	
+	<li><a href="/posts/dev-log-3/">Devlog #3 | I have grown taller from walking with the trees 🌳</a></li>
+	
+	<li><a href="/posts/dev-log-2/">Devlog #2 | Automation applied to an efficient operation will magnify efficiency</a></li>
+	
+	<li><a href="/posts/dev-log-1/">Devlog #1 | The best-laid plans of mice and men</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="http://localhost:1313/tags/rust">rust</a></span><span class="tag"><a href="http://localhost:1313/tags/learning">learning</a></span><span class="tag"><a href="http://localhost:1313/tags/flashcards">flashcards</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1063 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-12-10 21:33 &#43;0200</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="http://localhost:1313/posts/designing-data-intensive-applications-bookclub-flashcards/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Designing Data-Intensive Applications: Flashcards for a Book Club</span>
+			</a>
+			<a class="prev-post" href="http://localhost:1313/posts/advent-of-code-2023/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Advent of Code 2023</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2024 <a href="http://localhost:1313/"></a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+			&#183; <a href="http://localhost:1313/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			&#183; <a href="https://mrnicedev.onlineornot.com/" title="Status" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" class="feather"><rect width="24" height="24" opacity="0"/><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z"/><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="http://localhost:1313/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
+	}
+</script>
+
+</body>
+
+</html>

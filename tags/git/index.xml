@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on mrnice.dev</title>
+    <title>Git on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/git/</link>
-    <description>Recent content in git on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Git on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 Oct 2020 16:09:49 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/git/index.xml" rel="self" type="application/rss+xml" />

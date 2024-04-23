@@ -4,148 +4,148 @@
     <title>Tags on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/</link>
     <description>Recent content in Tags on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Mar 2024 02:29:20 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2024 19:31:13 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>algorithms</title>
-      <link>https://www.mrnice.dev/tags/algorithms/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>books</title>
-      <link>https://www.mrnice.dev/tags/books/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/books/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>data</title>
-      <link>https://www.mrnice.dev/tags/data/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/data/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>database</title>
-      <link>https://www.mrnice.dev/tags/database/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/database/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>flashcards</title>
-      <link>https://www.mrnice.dev/tags/flashcards/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/flashcards/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>learning</title>
-      <link>https://www.mrnice.dev/tags/learning/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/learning/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>orca</title>
-      <link>https://www.mrnice.dev/tags/orca/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/orca/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ctf</title>
-      <link>https://www.mrnice.dev/tags/ctf/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/ctf/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>cyber</title>
-      <link>https://www.mrnice.dev/tags/cyber/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/cyber/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>tryhackme</title>
-      <link>https://www.mrnice.dev/tags/tryhackme/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/tryhackme/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>writeup</title>
-      <link>https://www.mrnice.dev/tags/writeup/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/writeup/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>dev</title>
-      <link>https://www.mrnice.dev/tags/dev/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/dev/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>howto</title>
-      <link>https://www.mrnice.dev/tags/howto/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/howto/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>hugo</title>
+      <title>Hugo</title>
       <link>https://www.mrnice.dev/tags/hugo/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.mrnice.dev/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
-      <title>monitoring</title>
+      <title>Meta</title>
+      <link>https://www.mrnice.dev/tags/meta/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/meta/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Short</title>
+      <link>https://www.mrnice.dev/tags/short/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/short/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shell</title>
+      <link>https://www.mrnice.dev/tags/shell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/shell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tools</title>
+      <link>https://www.mrnice.dev/tags/tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/tools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Algorithms</title>
+      <link>https://www.mrnice.dev/tags/algorithms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Books</title>
+      <link>https://www.mrnice.dev/tags/books/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/books/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data</title>
+      <link>https://www.mrnice.dev/tags/data/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>https://www.mrnice.dev/tags/database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/database/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Flashcards</title>
+      <link>https://www.mrnice.dev/tags/flashcards/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/flashcards/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Learning</title>
+      <link>https://www.mrnice.dev/tags/learning/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Orca</title>
+      <link>https://www.mrnice.dev/tags/orca/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/orca/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ctf</title>
+      <link>https://www.mrnice.dev/tags/ctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/ctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cyber</title>
+      <link>https://www.mrnice.dev/tags/cyber/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/cyber/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tryhackme</title>
+      <link>https://www.mrnice.dev/tags/tryhackme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/tryhackme/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Writeup</title>
+      <link>https://www.mrnice.dev/tags/writeup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/writeup/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dev</title>
+      <link>https://www.mrnice.dev/tags/dev/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/dev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Howto</title>
+      <link>https://www.mrnice.dev/tags/howto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/howto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Monitoring</title>
       <link>https://www.mrnice.dev/tags/monitoring/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.mrnice.dev/tags/monitoring/</guid>
       <description></description>
     </item>
     <item>
-      <title>web</title>
+      <title>Web</title>
       <link>https://www.mrnice.dev/tags/web/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.mrnice.dev/tags/web/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>diagrams</title>
-      <link>https://www.mrnice.dev/tags/diagrams/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/diagrams/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>mermaid</title>
-      <link>https://www.mrnice.dev/tags/mermaid/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/mermaid/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>webflow</title>
-      <link>https://www.mrnice.dev/tags/webflow/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/webflow/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>api</title>
-      <link>https://www.mrnice.dev/tags/api/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/api/</guid>
       <description></description>
     </item>
   </channel>

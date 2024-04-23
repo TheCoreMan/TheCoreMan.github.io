@@ -4,10 +4,24 @@
     <title>mrnice.dev</title>
     <link>https://www.mrnice.dev/</link>
     <description>Recent content on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Mar 2024 02:29:20 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2024 19:31:13 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding shorts to the blog</title>
+      <link>https://www.mrnice.dev/posts/shorts/</link>
+      <pubDate>Tue, 23 Apr 2024 19:31:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/shorts/</guid>
+      <description>So, I&amp;rsquo;m sick. Strep. Missed the Seder, as well.&#xA;Taking a few days off to recover, time to play around with the blog.&#xA;Why add shorts if you already have posts? Shorts are more than a tweet, less than a post.&#xA;Stream of consciousness notes that don&amp;rsquo;t merit a more dedicated write-up.&#xA;Inspired by Brandur Leach&amp;rsquo;s fragments in his beautiful corner of the web.&#xA;My hope is that this short-form, more than a tweet, less than a post format will help me publish more often.</description>
+    </item>
+    <item>
+      <title>🎧🍏 AirPods (well, any bluetooth) alias for MacOS</title>
+      <link>https://www.mrnice.dev/posts/airpods-alias/</link>
+      <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
+      <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
+    </item>
     <item>
       <title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>
       <link>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</link>
@@ -132,20 +146,6 @@
       <link>https://www.mrnice.dev/posts/cup-o-go-episode-0/</link>
       <pubDate>Mon, 23 Jan 2023 14:15:55 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/cup-o-go-episode-0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>How to Build Your Team to Increase Velocity</title>
-      <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>
-      <pubDate>Mon, 19 Dec 2022 11:01:11 +0200</pubDate>
-      <guid>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</guid>
-      <description>As a manager, I felt the struggle of trying to balance the urgency of delivering new features with the importance of maintaining high code quality. That&amp;rsquo;s why I went together with a team lead from Reco - Michael Lantsman - to a great meetup at Riskified about this subject exactly. It had some great insights, so I&amp;rsquo;m sharing them here :)&#xA;After some food and beer, Shai Peretz gave a warm introduction, then Itay Waxman shared some practical strategies for fast delivery without creating tech debt, and finally we had a very insightful panel about team velocity.</description>
-    </item>
-    <item>
-      <title>We gave a talk at the Go Israel November 2022 Meetup</title>
-      <link>https://www.mrnice.dev/posts/go-israel-november-meetup/</link>
-      <pubDate>Sun, 13 Nov 2022 14:15:55 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/go-israel-november-meetup/</guid>
       <description></description>
     </item>
   </channel>

@@ -17,23 +17,31 @@
 		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
 	</script>
 	
-<meta itemprop="name" content="Python Server Profiling: A quick guide (with real data)">
-<meta itemprop="description" content="This post has appeared as an article on issue #2 of PagedOut! magazine.
-I improved performance issues in a Python server and survived to tell you the tale.
-0) Discover your problem is performance This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.
-For us, it started with this a demo of the new version of Infection Monkey that had &gt;35 machines."><meta itemprop="datePublished" content="2019-11-15T18:04:53+02:00" />
-<meta itemprop="dateModified" content="2019-11-15T18:04:53+02:00" />
-<meta itemprop="wordCount" content="468">
-<meta itemprop="keywords" content="python,profiling,development,dev," /><meta property="og:title" content="Python Server Profiling: A quick guide (with real data)" />
-<meta property="og:description" content="This post has appeared as an article on issue #2 of PagedOut! magazine.
-I improved performance issues in a Python server and survived to tell you the tale.
-0) Discover your problem is performance This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.
-For us, it started with this a demo of the new version of Infection Monkey that had &gt;35 machines." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-11-15T18:04:53+02:00" />
-<meta property="article:modified_time" content="2019-11-15T18:04:53+02:00" />
 
+  <meta itemprop="name" content="Python Server Profiling: A quick guide (with real data)">
+  <meta itemprop="description" content="This post has appeared as an article on issue #2 of PagedOut! magazine.
+I improved performance issues in a Python server and survived to tell you the tale.
+0) Discover your problem is performance This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.
+For us, it started with this a demo of the new version of Infection Monkey that had &gt;35 machines.">
+  <meta itemprop="datePublished" content="2019-11-15T18:04:53+02:00">
+  <meta itemprop="dateModified" content="2019-11-15T18:04:53+02:00">
+  <meta itemprop="wordCount" content="468">
+  <meta itemprop="keywords" content="Python,Profiling,Development,Dev"><meta property="og:url" content="https://www.mrnice.dev/posts/python-server-profiling-guide-with-examples/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="Python Server Profiling: A quick guide (with real data)">
+  <meta property="og:description" content="This post has appeared as an article on issue #2 of PagedOut! magazine.
+I improved performance issues in a Python server and survived to tell you the tale.
+0) Discover your problem is performance This can come up via Stress testing ⏱️, User tickets 🎫 or as the underlying cause of other bugs 🐛.
+For us, it started with this a demo of the new version of Infection Monkey that had &amp;gt;35 machines.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-15T18:04:53+02:00">
+    <meta property="article:modified_time" content="2019-11-15T18:04:53+02:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Profiling">
+    <meta property="article:tag" content="Development">
+    <meta property="article:tag" content="Dev">
 
 <meta name="twitter:title" content="Python Server Profiling: A quick guide (with real data)">
 
@@ -87,8 +95,8 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 				<nav class="site-nav hide-in-mobile">
 					
 				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
-				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 
 				</nav>
 			</div>
@@ -100,8 +108,8 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 	<div id="mobile-menu" class="animated fast">
 		<ul>
 			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
-			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 		</ul>
 	</div>
 
@@ -113,6 +121,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 				<h1>Python Server Profiling: A quick guide (with real data)</h1>
 			</header>
 			<div class="content">
+				
 				<p>This post has appeared as an article on <a href="https://pagedout.institute/download/PagedOut_002_beta1.pdf">issue #2</a> of <a href="https://pagedout.institute/">PagedOut! magazine</a>.</p>
 <p><img src="https://pagedout.institute/download/PagedOut_002_wallpaper_30.png" alt="pagedout2"></p>
 <p><em>I improved performance issues in a Python server and survived to tell you the tale.</em></p>
@@ -154,6 +163,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 			<hr class="post-end">
 			<footer class="post-info">
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/python">python</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/profiling">profiling</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/development">development</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/dev">dev</a></span>
 				</p>
@@ -197,7 +207,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
 

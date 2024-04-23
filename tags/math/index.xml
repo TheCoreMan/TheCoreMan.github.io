@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>math on mrnice.dev</title>
+    <title>Math on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/math/</link>
-    <description>Recent content in math on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Math on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 12 Jun 2021 12:15:16 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/math/index.xml" rel="self" type="application/rss+xml" />

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>devops on mrnice.dev</title>
+    <title>Devops on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/devops/</link>
-    <description>Recent content in devops on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Devops on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 25 Jan 2023 14:15:55 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />

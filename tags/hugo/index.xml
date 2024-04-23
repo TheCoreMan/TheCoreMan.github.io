@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on mrnice.dev</title>
+    <title>Hugo on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/hugo/</link>
-    <description>Recent content in hugo on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Hugo on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2024 19:31:13 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding shorts to the blog</title>
+      <link>https://www.mrnice.dev/posts/shorts/</link>
+      <pubDate>Tue, 23 Apr 2024 19:31:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/shorts/</guid>
+      <description>So, I&amp;rsquo;m sick. Strep. Missed the Seder, as well.&#xA;Taking a few days off to recover, time to play around with the blog.&#xA;Why add shorts if you already have posts? Shorts are more than a tweet, less than a post.&#xA;Stream of consciousness notes that don&amp;rsquo;t merit a more dedicated write-up.&#xA;Inspired by Brandur Leach&amp;rsquo;s fragments in his beautiful corner of the web.&#xA;My hope is that this short-form, more than a tweet, less than a post format will help me publish more often.</description>
+    </item>
     <item>
       <title>How to add a status page to your Hugo blog</title>
       <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>

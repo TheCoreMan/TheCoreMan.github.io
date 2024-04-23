@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tools on mrnice.dev</title>
+    <title>Tools on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/tools/</link>
-    <description>Recent content in tools on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Tools on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Aug 2023 13:35:06 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2024 18:11:13 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🎧🍏 AirPods (well, any bluetooth) alias for MacOS</title>
+      <link>https://www.mrnice.dev/posts/airpods-alias/</link>
+      <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
+      <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
+    </item>
     <item>
       <title>Adventures in A11y: Trying Out Talon &amp; Cursorless, part 1</title>
       <link>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-1/</link>

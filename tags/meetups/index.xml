@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>meetups on mrnice.dev</title>
+    <title>Meetups on mrnice.dev</title>
     <link>https://www.mrnice.dev/tags/meetups/</link>
-    <description>Recent content in meetups on mrnice.dev</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Meetups on mrnice.dev</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/meetups/index.xml" rel="self" type="application/rss+xml" />

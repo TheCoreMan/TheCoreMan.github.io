@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Learning and Teaching on mrnice.dev</title>
+    <link>http://localhost:1313/tags/learning-and-teaching/</link>
+    <description>Recent content in Learning and Teaching on mrnice.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Jan 2020 18:17:10 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/learning-and-teaching/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Much Git Should I Learn or the Levels of Git Knowledge</title>
+      <link>http://localhost:1313/posts/how-much-git-should-i-learn-or-the-levels-of-git-knowledge/</link>
+      <pubDate>Fri, 10 Jan 2020 18:17:10 +0200</pubDate>
+      <guid>http://localhost:1313/posts/how-much-git-should-i-learn-or-the-levels-of-git-knowledge/</guid>
+      <description> Learning pyramid Transcribe WhatsApp Resources (git CTF) </description>
+    </item>
+  </channel>
+</rss>

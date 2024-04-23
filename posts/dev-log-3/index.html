@@ -17,25 +17,36 @@
 		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
 	</script>
 	
-<meta itemprop="name" content="Devlog #3 | I have grown taller from walking with the trees 🌳">
-<meta itemprop="description" content="“Today I have grown taller from walking with the trees.”
-― Karle Wilson Baker
-Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
-Today we&rsquo;re automating another big part of the challenge: creating the level browser.
-Why do we need a level browser?"><meta itemprop="datePublished" content="2020-05-28T18:08:50+03:00" />
-<meta itemprop="dateModified" content="2020-05-28T18:08:50+03:00" />
-<meta itemprop="wordCount" content="1816"><meta itemprop="image" content="https://www.mrnice.dev/goodwillhunting.jpg" />
-<meta itemprop="keywords" content="devlog,git,ctf,rust,algorithms," /><meta property="og:title" content="Devlog #3 | I have grown taller from walking with the trees 🌳" />
-<meta property="og:description" content="“Today I have grown taller from walking with the trees.”
-― Karle Wilson Baker
-Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
-Today we&rsquo;re automating another big part of the challenge: creating the level browser.
-Why do we need a level browser?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-3/" /><meta property="og:image" content="https://www.mrnice.dev/goodwillhunting.jpg" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-05-28T18:08:50+03:00" />
-<meta property="article:modified_time" content="2020-05-28T18:08:50+03:00" />
 
+  <meta itemprop="name" content="Devlog #3 | I have grown taller from walking with the trees 🌳">
+  <meta itemprop="description" content="“Today I have grown taller from walking with the trees.”
+― Karle Wilson Baker
+Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Today we&rsquo;re automating another big part of the challenge: creating the level browser.
+Why do we need a level browser?">
+  <meta itemprop="datePublished" content="2020-05-28T18:08:50+03:00">
+  <meta itemprop="dateModified" content="2020-05-28T18:08:50+03:00">
+  <meta itemprop="wordCount" content="1816">
+  <meta itemprop="image" content="https://www.mrnice.dev/goodwillhunting.jpg">
+  <meta itemprop="keywords" content="Devlog,Git,Ctf,Rust,Algorithms"><meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-3/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="Devlog #3 | I have grown taller from walking with the trees 🌳">
+  <meta property="og:description" content="“Today I have grown taller from walking with the trees.”
+― Karle Wilson Baker
+Welcome back to my devlog series, where I discuss the development of make-git-better version 2 - a git CTF challenge. Last time we finished developing a script that automated generating the main git server hook for the CTF.
+Today we&amp;rsquo;re automating another big part of the challenge: creating the level browser.
+Why do we need a level browser?">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-28T18:08:50+03:00">
+    <meta property="article:modified_time" content="2020-05-28T18:08:50+03:00">
+    <meta property="article:tag" content="Devlog">
+    <meta property="article:tag" content="Git">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Rust">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="og:image" content="https://www.mrnice.dev/goodwillhunting.jpg">
 
 <meta name="twitter:title" content="Devlog #3 | I have grown taller from walking with the trees 🌳">
 
@@ -90,8 +101,8 @@ Why do we need a level browser?"
 				<nav class="site-nav hide-in-mobile">
 					
 				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
-				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 
 				</nav>
 			</div>
@@ -103,8 +114,8 @@ Why do we need a level browser?"
 	<div id="mobile-menu" class="animated fast">
 		<ul>
 			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
-			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 		</ul>
 	</div>
 
@@ -117,6 +128,7 @@ Why do we need a level browser?"
 				<h1>Devlog #3 | I have grown taller from walking with the trees 🌳</h1>
 			</header>
 			<div class="content">
+				
 				<blockquote>
 <p>“Today I have grown taller from walking with the trees.”</p>
 <p>― Karle Wilson Baker</p>
@@ -164,16 +176,16 @@ Why do we need a level browser?"
 <p>Also, potentially, it would be cool to have a place to put your flags and get the next level/a code to the &ldquo;final&rdquo; level.</p>
 <p>So I need a place to put auxiliary content for each level. The options were either in the level itself as text files that are a part of the game repository or as a separate webpage. I decided to go with a webpage since combining the two seemed to not really work in the last version of this challenge and webpages allow for more content types to be easily embedded. A good example of a CTF doing this is <a href="https://overthewire.org/wargames/bandit/">OverTheWire</a>.</p>
 <figure><img src="https://i.imgur.com/DmHX6S7.png"
-         alt="OverTheWire Level Browser"/><figcaption>
-            <h4>OverTheWire Level Browser</h4>
-        </figcaption>
+    alt="OverTheWire Level Browser"><figcaption>
+      <h4>OverTheWire Level Browser</h4>
+    </figcaption>
 </figure>
 
 <p>However, unlike OverTheWire, the level structure in this CTF is not linear, so the level browser can&rsquo;t just be a list. Logically, it&rsquo;s an <a href="https://en.wikipedia.org/wiki/Arborescence_(graph_theory)">Arborescence</a>: a directed, acyclic, rooted tree 🌳 graph where the Nodes are levels and the Edges are flags. I drew some inspiration from Google&rsquo;s beginner CTF page:</p>
 <p><a href="https://capturetheflag.withgoogle.com/#beginners/"><figure><img src="https://i.imgur.com/2VbUMUc.png"
-         alt="Google CTF Level Browser"/><figcaption>
-            <h4>Google CTF Level Browser</h4>
-        </figcaption>
+    alt="Google CTF Level Browser"><figcaption>
+      <h4>Google CTF Level Browser</h4>
+    </figcaption>
 </figure>
 </a></p>
 <p>And set out to implement it myself.</p>
@@ -208,8 +220,9 @@ Why do we need a level browser?"
 <h2 id="implementation">Implementation<a href="#implementation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="refactoring-the-project-structure">Refactoring the project structure<a href="#refactoring-the-project-structure" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Professor rework dropped in for a visit&hellip;</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Professor Rework looking kinda thicc ngl <a href="https://t.co/HUlQJV6JlO">pic.twitter.com/HUlQJV6JlO</a></p>&mdash; randy (@bigrando420) <a href="https://twitter.com/bigrando420/status/1242886023643725829?ref_src=twsrc%5Etfw">March 25, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Professor Rework looking kinda thicc ngl <a href="https://t.co/HUlQJV6JlO">pic.twitter.com/HUlQJV6JlO</a></p>&mdash; randy (@primalrandy) <a href="https://twitter.com/primalrandy/status/1242886023643725829?ref_src=twsrc%5Etfw">March 25, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <p><a href="/posts/dev-log-2#parsing-game-configtoml">Last time</a> we created some data structures that represent a single Level and the Game Config, but it was all in a single file. Now that we&rsquo;re planning to write another script, it&rsquo; time to move stuff out of single files into a common library under <code>/lib</code> and separate different scripts into different files under a <code>/bin</code>. This resulted in the following directory structure:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># This is executable scripts</span>
@@ -227,6 +240,7 @@ Why do we need a level browser?"
 <p>While developing this part, I really struggled with the concept of <em>ownership</em> and <em>lifetimes</em> in Rust. However, after a few hours of frustrating debugging, the <a href="https://www.rust-lang.org/community">Rust community</a> really helped me figure those issues out (which is why you see a lot of <code>.clone()</code>s dotted around the code).</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">OMG, the <a href="https://twitter.com/rustlang?ref_src=twsrc%5Etfw">@rustlang</a> <a href="https://twitter.com/discord?ref_src=twsrc%5Etfw">@discord</a> is supportive and awesome. I couldn&#39;t figure out lifetimes in my script, and they saved me (after hours of painful debugging). Such a cool community! Feel like a <a href="https://twitter.com/hashtag/Rustacean?src=hash&amp;ref_src=twsrc%5Etfw">#Rustacean</a> already 🦀<br><br>Note to self: Clone first, optimize later. <a href="https://t.co/9j8d7QeDiT">pic.twitter.com/9j8d7QeDiT</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1264726269293445120?ref_src=twsrc%5Etfw">May 25, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <p>Here&rsquo;s the code:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="w">
@@ -432,6 +446,7 @@ Why do we need a level browser?"
 			<hr class="post-end">
 			<footer class="post-info">
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/devlog">devlog</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/git">git</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ctf">ctf</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/rust">rust</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/algorithms">algorithms</a></span>
 				</p>
@@ -475,7 +490,7 @@ Why do we need a level browser?"
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
 

@@ -17,19 +17,28 @@
 		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
 	</script>
 	
-<meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
-<meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete."><meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00" />
-<meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00" />
-<meta itemprop="wordCount" content="1227">
-<meta itemprop="keywords" content="windows,debugging,powershell,monkey,dev," /><meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS" />
-<meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-12-26T15:34:44+02:00" />
-<meta property="article:modified_time" content="2019-12-26T15:34:44+02:00" />
 
+  <meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
+  <meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.">
+  <meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00">
+  <meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00">
+  <meta itemprop="wordCount" content="1227">
+  <meta itemprop="keywords" content="Windows,Debugging,Powershell,Monkey,Dev"><meta property="og:url" content="https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS">
+  <meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-12-26T15:34:44+02:00">
+    <meta property="article:modified_time" content="2019-12-26T15:34:44+02:00">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Debugging">
+    <meta property="article:tag" content="Powershell">
+    <meta property="article:tag" content="Monkey">
+    <meta property="article:tag" content="Dev">
 
 <meta name="twitter:title" content="Debugging Windows: New Users, Powershell, and TLS">
 
@@ -81,8 +90,8 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 				<nav class="site-nav hide-in-mobile">
 					
 				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
-				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
 
 				</nav>
 			</div>
@@ -94,8 +103,8 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 	<div id="mobile-menu" class="animated fast">
 		<ul>
 			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
-			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
 		</ul>
 	</div>
 
@@ -107,6 +116,7 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 				<h1>Debugging Windows: New Users, Powershell, and TLS</h1>
 			</header>
 			<div class="content">
+				
 				<h2 id="a-little-context">A little context<a href="#a-little-context" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I wanted to work on <a href="https://github.com/guardicore/monkey/pull/517">this PR in Infection Monkey</a>. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.</p>
 <h2 id="toc">ToC<a href="#toc" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -245,6 +255,7 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 			<hr class="post-end">
 			<footer class="post-info">
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/windows">windows</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/debugging">debugging</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/powershell">powershell</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/monkey">monkey</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/dev">dev</a></span>
 				</p>
@@ -288,7 +299,7 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip':false});
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
 

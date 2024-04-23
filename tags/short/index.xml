@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Short on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/short/</link>
+    <description>Recent content in Short on mrnice.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Apr 2024 19:31:13 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/short/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding shorts to the blog</title>
+      <link>https://www.mrnice.dev/posts/shorts/</link>
+      <pubDate>Tue, 23 Apr 2024 19:31:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/shorts/</guid>
+      <description>So, I&amp;rsquo;m sick. Strep. Missed the Seder, as well.&#xA;Taking a few days off to recover, time to play around with the blog.&#xA;Why add shorts if you already have posts? Shorts are more than a tweet, less than a post.&#xA;Stream of consciousness notes that don&amp;rsquo;t merit a more dedicated write-up.&#xA;Inspired by Brandur Leach&amp;rsquo;s fragments in his beautiful corner of the web.&#xA;My hope is that this short-form, more than a tweet, less than a post format will help me publish more often.</description>
+    </item>
+    <item>
+      <title>🎧🍏 AirPods (well, any bluetooth) alias for MacOS</title>
+      <link>https://www.mrnice.dev/posts/airpods-alias/</link>
+      <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
+      <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
+    </item>
+  </channel>
+</rss>
