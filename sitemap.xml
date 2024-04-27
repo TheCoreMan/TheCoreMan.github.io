@@ -2,25 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2024-04-27T12:16:14+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2024-04-27T12:16:14+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/automation/</loc>
+    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/go/</loc>
+    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/hugo/</loc>
+    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/refresh-hugo-post-date/</loc>
+    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/short/</loc>
+    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/shorts/</loc>
     <lastmod>2024-04-23T19:31:13+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/hugo/</loc>
-    <lastmod>2024-04-23T19:31:13+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/meta/</loc>
-    <lastmod>2024-04-23T19:31:13+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2024-04-23T19:31:13+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2024-04-23T19:31:13+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/short/</loc>
-    <lastmod>2024-04-23T19:31:13+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2024-04-23T19:31:13+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/airpods-alias/</loc>
@@ -99,9 +108,6 @@
     <lastmod>2023-09-01T23:22:46+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/api/</loc>
-    <lastmod>2023-09-01T23:22:44+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/go/</loc>
     <lastmod>2023-09-01T23:22:44+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/lunar/</loc>
@@ -250,9 +256,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/print-hello-world-were-recolabs/</loc>
     <lastmod>2022-01-19T22:29:06+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/automation/</loc>
-    <lastmod>2021-10-31T20:04:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/cloud/</loc>
     <lastmod>2021-10-31T20:04:53+03:00</lastmod>

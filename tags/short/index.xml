@@ -6,8 +6,15 @@
     <description>Recent content in Short on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2024 19:31:13 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 27 Apr 2024 12:10:52 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/short/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick script to refresh a Hugo Post Date</title>
+      <link>https://www.mrnice.dev/posts/refresh-hugo-post-date/</link>
+      <pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/refresh-hugo-post-date/</guid>
+      <description>I tend to go back to old, unpublished posts every now and restart my work on them. They&amp;rsquo;re just resting, hiding behind the -D flag of hugo server.&#xA;But when I want to publish said post, I want the date to be the current date, not the creation date. So I wrote a script to update the date of a post to the current date.&#xA;Here&amp;rsquo;s the script in action:</description>
+    </item>
     <item>
       <title>Adding shorts to the blog</title>
       <link>https://www.mrnice.dev/posts/shorts/</link>

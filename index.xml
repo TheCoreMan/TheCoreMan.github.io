@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2024 19:31:13 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 27 Apr 2024 12:10:52 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick script to refresh a Hugo Post Date</title>
+      <link>https://www.mrnice.dev/posts/refresh-hugo-post-date/</link>
+      <pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/refresh-hugo-post-date/</guid>
+      <description>I tend to go back to old, unpublished posts every now and restart my work on them. They&amp;rsquo;re just resting, hiding behind the -D flag of hugo server.&#xA;But when I want to publish said post, I want the date to be the current date, not the creation date. So I wrote a script to update the date of a post to the current date.&#xA;Here&amp;rsquo;s the script in action:</description>
+    </item>
     <item>
       <title>Adding shorts to the blog</title>
       <link>https://www.mrnice.dev/posts/shorts/</link>
@@ -139,13 +146,6 @@
       <link>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</link>
       <pubDate>Wed, 25 Jan 2023 14:15:55 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cup O&#39; Go Episode 0: Premiere Episode, Upcoming 1.20 Release and Gophercons World Wide!</title>
-      <link>https://www.mrnice.dev/posts/cup-o-go-episode-0/</link>
-      <pubDate>Mon, 23 Jan 2023 14:15:55 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/cup-o-go-episode-0/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+
+  <meta itemprop="name" content="Quick script to refresh a Hugo Post Date">
+  <meta itemprop="description" content="I tend to go back to old, unpublished posts every now and restart my work on them. They&rsquo;re just resting, hiding behind the -D flag of hugo server.
+But when I want to publish said post, I want the date to be the current date, not the creation date. So I wrote a script to update the date of a post to the current date.
+Here&rsquo;s the script in action:">
+  <meta itemprop="datePublished" content="2024-04-27T12:10:52+03:00">
+  <meta itemprop="dateModified" content="2024-04-27T12:10:52+03:00">
+  <meta itemprop="wordCount" content="754">
+  <meta itemprop="keywords" content="Hugo,Go,Automation,Short"><meta property="og:url" content="https://www.mrnice.dev/posts/refresh-hugo-post-date/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="Quick script to refresh a Hugo Post Date">
+  <meta property="og:description" content="I tend to go back to old, unpublished posts every now and restart my work on them. They’re just resting, hiding behind the -D flag of hugo server.
+But when I want to publish said post, I want the date to be the current date, not the creation date. So I wrote a script to update the date of a post to the current date.
+Here’s the script in action:">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-04-27T12:10:52+03:00">
+    <meta property="article:modified_time" content="2024-04-27T12:10:52+03:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="article:tag" content="Go">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Short">
+
+<meta name="twitter:title" content="Quick script to refresh a Hugo Post Date">
+
+
+
+<meta
+	name="description"
+	content="I tend to go back to old, unpublished posts every now and restart my work on them. They&rsquo;re just resting, hiding behind the -D flag of hugo server.
+But when I want to publish said post, I want the date to be the current date, not the creation date. So I wrote a script to update the date of a post to the current date.
+Here&rsquo;s the script in action:"
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Quick script to refresh a Hugo Post Date</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 27, 2024</span></div>
+				<h1>Quick script to refresh a Hugo Post Date</h1>
+			</header>
+			<div class="content">
+				
+				<div class="short-disclaimer">
+					<p><blockquote>
+<p>This is a <a href="/posts/shorts/">short 🩳</a>; a note that doesn&rsquo;t merit a full post. <a href="/tags/short">See all shorts here</a>.</p>
+</blockquote></p>
+				
+				<p>I tend to go back to old, unpublished posts every now and restart my work on
+them. They&rsquo;re just resting, hiding behind the <code>-D</code> flag of <code>hugo server</code>.</p>
+<p>But when I want to publish said post, I want the date to be the current date,
+not the creation date. So I wrote a script to update the date of a post to the
+current date.</p>
+<p>Here&rsquo;s the script in action:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ go run main.go -file ../../content/posts/example.md -verbose
+</span></span><span class="line"><span class="cl">12:16PM DBG Current frontmatter <span class="nv">Date</span><span class="o">=</span>2024-04-27T12:10:21+03:00
+</span></span><span class="line"><span class="cl">12:16PM DBG After editing frontmatter <span class="nv">date</span><span class="o">=</span>2024-04-27T12:16:14+03:00
+</span></span><span class="line"><span class="cl">12:16PM INF Refreshed by <span class="nv">diff</span><span class="o">=</span>5m53s
+</span></span><span class="line"><span class="cl">12:16PM INF Successfully updated the date! 🎉 <span class="nv">post</span><span class="o">=</span>../../content/posts/example.md
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">-date: &#34;2023-12-10T21:33:29+02:00&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+date: &#34;2024-04-27T12:16:14+03:00&#34;
+</span></span></span></code></pre></div><p>Here&rsquo;s the code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// A short script to update the date in the frontmatter of a Hugo post.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// The date is updated to the current date and time.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Run this script with `go run scripts/refresh-post-date/main.go -file path/to/post.md`,
+</span></span></span><span class="line"><span class="cl"><span class="c1">// and you&#39;ll see:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   &gt; ❯ go run main.go -file path/to/post.md
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   &gt; 12:10PM INF Refreshed by diff=1m55s
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   &gt; 12:10PM INF Successfully updated the date! 🎉 post=path/to/post.md
+</span></span></span><span class="line"><span class="cl"><span class="c1">// You can add the `-verbose` flag to see more detailed logs.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;errors&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;flag&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/rs/zerolog&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/rs/zerolog/log&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;gopkg.in/yaml.v3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">const</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">FrontmatterSeparatorLength</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">HugoTimeFormatAsGoFormat</span>   <span class="p">=</span> <span class="s">&#34;2006-01-02T15:04:05-07:00&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">parseFrontmatter</span><span class="p">(</span><span class="nx">fullPost</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fullPostAsString</span> <span class="o">:=</span> <span class="nb">string</span><span class="p">(</span><span class="nx">fullPost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// The frontmatter is between two lines of `---`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">startIndex</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">fullPostAsString</span><span class="p">,</span> <span class="s">&#34;---&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">startIndex</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;failed to find the start of the frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">endIndex</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Index</span><span class="p">(</span><span class="nx">fullPostAsString</span><span class="p">[</span><span class="nx">startIndex</span><span class="o">+</span><span class="nx">FrontmatterSeparatorLength</span><span class="p">:],</span> <span class="s">&#34;---&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">endIndex</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;failed to find the end of the frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">endIndex</span> <span class="o">+=</span> <span class="nx">startIndex</span> <span class="o">+</span> <span class="nx">FrontmatterSeparatorLength</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">fullPostAsString</span><span class="p">[</span><span class="nx">startIndex</span><span class="p">:</span><span class="nx">endIndex</span><span class="p">]),</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">parseFrontmatterFromFullPostToMap</span><span class="p">(</span><span class="nx">fullPost</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">any</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">frontmatterMap</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">any</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">frontmatterContent</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">parseFrontmatter</span><span class="p">(</span><span class="nx">fullPost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">yamlErr</span> <span class="o">:=</span> <span class="nx">yaml</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">frontmatterContent</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">frontmatterMap</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">yamlErr</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">yamlErr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">frontmatterMap</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span> <span class="p">=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">Output</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">ConsoleWriter</span><span class="p">{</span><span class="nx">Out</span><span class="p">:</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">})</span> <span class="c1">//nolint:exhaustruct
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">filePath</span> <span class="o">:=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;file&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;File path&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">verbose</span> <span class="o">:=</span> <span class="nx">flag</span><span class="p">.</span><span class="nf">Bool</span><span class="p">(</span><span class="s">&#34;verbose&#34;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s">&#34;Verbose output&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">flag</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="o">*</span><span class="nx">filePath</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">flag</span><span class="p">.</span><span class="nf">Usage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">().</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Please provide a file path&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="o">*</span><span class="nx">verbose</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span> <span class="p">=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">Level</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">DebugLevel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span> <span class="p">=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">Level</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">InfoLevel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">refreshDateInPost</span><span class="p">(</span><span class="o">*</span><span class="nx">filePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// refreshDateInPost updates the date in the frontmatter of a Hugo post.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Expects frontmatter in YAML format and between `---` separators.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// The date is updated to the current date and time, so make sure you&#39;re not in
+</span></span></span><span class="line"><span class="cl"><span class="c1">// the middle of editing the post when running this script.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// See https://gohugo.io/content-management/front-matter/ for more information.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">refreshDateInPost</span><span class="p">(</span><span class="nx">hugoPostFilePath</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">content</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="nx">hugoPostFilePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to read file&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">currentFrontmatter</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">parseFrontmatterFromFullPostToMap</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to parse frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">currentDate</span> <span class="o">:=</span> <span class="nx">currentFrontmatter</span><span class="p">[</span><span class="s">&#34;date&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Debug</span><span class="p">().</span><span class="nf">Any</span><span class="p">(</span><span class="s">&#34;Date&#34;</span><span class="p">,</span> <span class="nx">currentDate</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Current frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">newDate</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Format</span><span class="p">(</span><span class="nx">HugoTimeFormatAsGoFormat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">currentFrontmatter</span><span class="p">[</span><span class="s">&#34;date&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">newDate</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Debug</span><span class="p">().</span><span class="nf">Any</span><span class="p">(</span><span class="s">&#34;date&#34;</span><span class="p">,</span> <span class="nx">currentFrontmatter</span><span class="p">[</span><span class="s">&#34;date&#34;</span><span class="p">]).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;After editing frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">oldDateTime</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">HugoTimeFormatAsGoFormat</span><span class="p">,</span> <span class="nx">currentDate</span><span class="p">.(</span><span class="kt">string</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to parse old date&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">newDateTime</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">HugoTimeFormatAsGoFormat</span><span class="p">,</span> <span class="nx">newDate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to parse new date&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">diff</span> <span class="o">:=</span> <span class="nx">newDateTime</span><span class="p">.</span><span class="nf">Sub</span><span class="p">(</span><span class="nx">oldDateTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Info</span><span class="p">().</span><span class="nf">Str</span><span class="p">(</span><span class="s">&#34;diff&#34;</span><span class="p">,</span> <span class="nx">diff</span><span class="p">.</span><span class="nf">String</span><span class="p">()).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Refreshed by&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">newFrontmatter</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">yaml</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">currentFrontmatter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to marshal frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">oldFrontmatter</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">parseFrontmatter</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Error</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to parse frontmatter&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">newContent</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span> <span class="nb">string</span><span class="p">(</span><span class="nx">oldFrontmatter</span><span class="p">),</span> <span class="s">&#34;---\n&#34;</span><span class="o">+</span><span class="nb">string</span><span class="p">(</span><span class="nx">newFrontmatter</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">WriteFile</span><span class="p">(</span><span class="nx">hugoPostFilePath</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">newContent</span><span class="p">),</span> <span class="mi">0</span><span class="nx">o644</span><span class="p">)</span> <span class="c1">//nolint:gosec,gomnd
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Error</span><span class="p">().</span><span class="nf">Err</span><span class="p">(</span><span class="nx">err</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Failed to write to file&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Info</span><span class="p">().</span><span class="nf">Str</span><span class="p">(</span><span class="s">&#34;post&#34;</span><span class="p">,</span> <span class="nx">hugoPostFilePath</span><span class="p">).</span><span class="nf">Msg</span><span class="p">(</span><span class="s">&#34;Successfully updated the date! 🎉&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>And here&rsquo;s a link to a <a href="https://gist.github.com/TheCoreMan/fa528341dbff05d0fc37f4837fabb959">gist</a>
+as well.</p>
+<p>Now, I can finally go to that old post I wanted to write and start working on
+it. &hellip;What was it about again? 🤔</p>
+<h2 id="a-rant-about-gos-time-formatting">A rant about Go&rsquo;s Time formatting<a href="#a-rant-about-gos-time-formatting" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Go time formats bite me on the ass, AGAIN. <em>grumble</em></p>
+<p>I&rsquo;ve <a href="https://github.com/golang/go/issues/66364">proposed to support letter-based formats, such as &ldquo;yyyy-mm-dd HH:MM:SS&rdquo;
+</a> in <code>time.Parse</code>. For more context
+<a href="https://cupogo.dev/episodes/computer-says-no-plus-one-shell-to-rule-them-all-with-xiaq">listen to this Cup o&rsquo; Go episode</a>
+where I talk about it.</p>
+<p>What happened this time?</p>
+<ol>
+<li>Trying to write some code to mess around with my Hugo blog.</li>
+<li>Find <a href="https://www.jvt.me/posts/2019/03/24/datetime-hugo/">this post</a> and <a href="https://github.com/gohugoio/hugoDocs/pull/770/files">pull request</a> from Jamie Tanna.</li>
+<li>OK, so I need ISO 8061 time format. SURELY I won&rsquo;t have to write one out, right? Writing <code>time.I</code> in the IDE and waiting for the ISO to show up in the autocomplete&hellip;</li>
+<li>OK, nothing&hellip; Let&rsquo;s look it up <a href="https://stackoverflow.com/questions/35479041/how-to-convert-iso-8601-time-in-golang">online</a></li>
+<li>Debug some more, and discover I need an even more custom format (need to add a <code>:</code> in the timezone)</li>
+<li>&hellip;</li>
+<li>Cry and copy-paste the string from StackOverflow since there&rsquo;s no chance I&rsquo;ll be able to write it first try.</li>
+</ol>
+<p>Ended up with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">const</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">HugoTimeFormatAsGoFormat</span>   <span class="p">=</span> <span class="s">&#34;2006-01-02T15:04:05-07:00&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div>
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/shorts/">Adding shorts to the blog</a></li>
+	
+	<li><a href="/posts/hugo-flashcard-shortcode-for-study/">Hugo Flashcard Shortcode</a></li>
+	
+	<li><a href="/posts/airpods-alias/">🎧🍏 AirPods (well, any bluetooth) alias for MacOS</a></li>
+	
+	<li><a href="/posts/statuspage-on-hugo/">How to add a status page to your Hugo blog</a></li>
+	
+	<li><a href="/posts/what-is-an-api-proxy/">What is an API proxy?</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/hugo">hugo</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/go">go</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/automation">automation</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/short">short</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>754 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-04-27 12:10 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/shorts/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Adding shorts to the blog</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2024 <a href="https://www.mrnice.dev/"></a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			&#183; <a href="https://mrnicedev.onlineornot.com/" title="Status" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" class="feather"><rect width="24" height="24" opacity="0"/><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z"/><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
+	}
+</script>
+
+</body>
+
+</html>
