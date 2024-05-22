@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Apr 2024 12:10:52 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 22 May 2024 17:42:55 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shay Nehmad&#39;s Now page</title>
+      <link>https://www.mrnice.dev/now/</link>
+      <pubDate>Wed, 22 May 2024 17:42:55 +0300</pubDate>
+      <guid>https://www.mrnice.dev/now/</guid>
+      <description>What Shay&amp;rsquo;s up to now.</description>
+    </item>
     <item>
       <title>Quick script to refresh a Hugo Post Date</title>
       <link>https://www.mrnice.dev/posts/refresh-hugo-post-date/</link>
@@ -139,13 +146,6 @@
       <link>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</link>
       <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>How to use simple RSS feeds to monitor SaaS application in Slack - The shortest guide possible</title>
-      <link>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</link>
-      <pubDate>Wed, 25 Jan 2023 14:15:55 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/how-to-use-simple-rss-feeds-to-monitor-saas-application-in-slack/</guid>
       <description></description>
     </item>
   </channel>
