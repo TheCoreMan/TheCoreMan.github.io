@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2024 17:42:55 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 22 May 2024 18:34:02 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Added a Now Page to my Hugo Blog</title>
+      <link>https://www.mrnice.dev/posts/added-a-now-page/</link>
+      <pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/added-a-now-page/</guid>
+      <description>/now.&#xA;What&amp;rsquo;s a now page? Well, the person behind it, Derek Sivers, explains it best on his blog .&#xA;How to add a now page for Hugo Derek&amp;rsquo;s explanation doesn&amp;rsquo;t include how to do it with Hugo! Since some people might be interested in that, and it&amp;rsquo;s not 100% the same formula as adding a new post, here&amp;rsquo;s how:&#xA;hugo new now.md &amp;hellip;Wait, that&amp;rsquo;s it 😅. Just don&amp;rsquo;t write the posts/ you normally do when running hugo new.</description>
+    </item>
     <item>
       <title>Shay Nehmad&#39;s Now page</title>
       <link>https://www.mrnice.dev/now/</link>
@@ -140,13 +147,6 @@
       <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles/</guid>
       <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.&#xA;I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
-    </item>
-    <item>
-      <title>We gave a talk at GopherCon Israel 2023</title>
-      <link>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</link>
-      <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>
