@@ -44,6 +44,13 @@
       <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
     </item>
     <item>
+      <title>A few Go tools for production-level developer applications (Orca Meetup)</title>
+      <link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
+      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>
       <link>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</link>
       <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
@@ -140,13 +147,6 @@
       <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
       <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:&#xA;CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
-    </item>
-    <item>
-      <title>Learning CSS #1: CSS Battles #1 Writeup</title>
-      <link>https://www.mrnice.dev/posts/learning-css-with-css-battles/</link>
-      <pubDate>Wed, 12 Apr 2023 11:35:20 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles/</guid>
-      <description>You might be asking yourself how did you get here? I know I&amp;rsquo;m sort of asking myself the same question: the TL;DR is I never stop learning, and right now I needed to learn some CSS for my job.&#xA;I&amp;rsquo;ve started learning CSS for real at work recently to be able to do full-stack E2E development. So far, CSS was a &amp;ldquo;hack it until it works&amp;rdquo; kind of thing for me, and I&amp;rsquo;ve never done it properly.</description>
     </item>
   </channel>
 </rss>

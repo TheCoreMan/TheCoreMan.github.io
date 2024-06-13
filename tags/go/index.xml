@@ -16,6 +16,13 @@
       <description>I tend to go back to old, unpublished posts every now and restart my work on them. They&amp;rsquo;re just resting, hiding behind the -D flag of hugo server.&#xA;But when I want to publish said post, I want the date to be the current date, not the creation date. So I wrote a script to update the date of a post to the current date.&#xA;Here&amp;rsquo;s the script in action:</description>
     </item>
     <item>
+      <title>A few Go tools for production-level developer applications (Orca Meetup)</title>
+      <link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
+      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>What is an API proxy?</title>
       <link>https://www.mrnice.dev/posts/what-is-an-api-proxy/</link>
       <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>

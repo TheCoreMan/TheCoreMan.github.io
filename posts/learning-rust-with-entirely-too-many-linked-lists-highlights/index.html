@@ -19,8 +19,8 @@
 	
 
   <meta itemprop="name" content="📇 Study guide: Learning Rust With Entirely Too Many Linked Lists">
-  <meta itemprop="description" content="This is a &ldquo;learning cheatsheet&rdquo; of Learn Rust With Entirely Too Many Linked Lists, which you can use as a way to test yourself and do some spaced repetition to memorize the concepts and highlights from it.
-Why? Whenever I start programming in Rust, I get &ldquo;stuck&rdquo; somewhere around the Box keyword and just give up. This year, I&rsquo;m planning to do some Rust programming (even if just for fun) and I REALLY want to nail down the fundamentals.">
+  <meta itemprop="description" content="This is a “learning cheatsheet” of Learn Rust With Entirely Too Many Linked Lists, which you can use as a way to test yourself and do some spaced repetition to memorize the concepts and highlights from it.
+Why? Whenever I start programming in Rust, I get “stuck” somewhere around the Box keyword and just give up. This year, I’m planning to do some Rust programming (even if just for fun) and I REALLY want to nail down the fundamentals.">
   <meta itemprop="datePublished" content="2024-04-27T12:16:14+03:00">
   <meta itemprop="dateModified" content="2024-04-27T12:16:14+03:00">
   <meta itemprop="wordCount" content="1063">
@@ -30,7 +30,7 @@ Why? Whenever I start programming in Rust, I get &ldquo;stuck&rdquo; somewhere a
   <meta property="og:title" content="📇 Study guide: Learning Rust With Entirely Too Many Linked Lists">
   <meta property="og:description" content="This is a “learning cheatsheet” of Learn Rust With Entirely Too Many Linked Lists, which you can use as a way to test yourself and do some spaced repetition to memorize the concepts and highlights from it.
 Why? Whenever I start programming in Rust, I get “stuck” somewhere around the Box keyword and just give up. This year, I’m planning to do some Rust programming (even if just for fun) and I REALLY want to nail down the fundamentals.">
-  <meta property="og:locale" content="en-us">
+  <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-04-27T12:16:14+03:00">
@@ -179,12 +179,12 @@ cd lists
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c6e19e8922603387e6fa996e97a75d0683f465e0-ff423e469234ad3677e4830fd0c3862d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c6e19e8922603387e6fa996e97a75d0683f465e0-24d437dc6832a303ff4fd3680e27e469&#34;)"
     role="button"
   >
     <code>pub</code>
   </button>
-  <div id="answer-id-c6e19e8922603387e6fa996e97a75d0683f465e0-ff423e469234ad3677e4830fd0c3862d" class="flashcard__back">
+  <div id="answer-id-c6e19e8922603387e6fa996e97a75d0683f465e0-24d437dc6832a303ff4fd3680e27e469" class="flashcard__back">
     <code>pub</code> for &ldquo;public&rdquo; says we want people outside of a module to be able to use the thing. In Go,
 we would have just Capitalized the thing, which is <em>perfect</em>.
   </div>
@@ -211,12 +211,12 @@ we would have just Capitalized the thing, which is <em>perfect</em>.
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-9a296580379006d6dc28b2233b082f091a4d057b-d8608e347339720dd2ffe2344466ca3f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-9a296580379006d6dc28b2233b082f091a4d057b-ce232066d34383d3fe9760247f844adf&#34;)"
     role="button"
   >
     <code>Box&lt;T&gt;</code>
   </button>
-  <div id="answer-id-9a296580379006d6dc28b2233b082f091a4d057b-d8608e347339720dd2ffe2344466ca3f" class="flashcard__back">
+  <div id="answer-id-9a296580379006d6dc28b2233b082f091a4d057b-ce232066d34383d3fe9760247f844adf" class="flashcard__back">
     <p><a href="https://doc.rust-lang.org/std/boxed/index.html">Box documentation</a>.</p>
 <blockquote>
 <p>Box&lt;T&gt;, casually referred to as a &lsquo;box&rsquo;, provides the simplest form of heap
@@ -249,12 +249,12 @@ their contents when they go out of scope.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4fb2fe95d8c4db13a56ba782fc5290e6fd0a3b99-e073d8f684d0d6f7442a633e2f432c93&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4fb2fe95d8c4db13a56ba782fc5290e6fd0a3b99-8746a38f206f294323d3e64fd0347dec&#34;)"
     role="button"
   >
     <code>enum</code>
   </button>
-  <div id="answer-id-4fb2fe95d8c4db13a56ba782fc5290e6fd0a3b99-e073d8f684d0d6f7442a633e2f432c93" class="flashcard__back">
+  <div id="answer-id-4fb2fe95d8c4db13a56ba782fc5290e6fd0a3b99-8746a38f206f294323d3e64fd0347dec" class="flashcard__back">
     <p>A <em>sum type</em>: a type that can have different values which may be different types.</p>
 <p>Because of this property, enums are laid out in memory in such a way that they
 need enough space to store the largest of their variants (+ alignment padding).</p>
@@ -283,12 +283,12 @@ need enough space to store the largest of their variants (+ alignment padding).<
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-cd4287c0f229efdcf98be50e9f63bfbe6753de2b-4f2f34ee23c02736380986ddfd443a67&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-cd4287c0f229efdcf98be50e9f63bfbe6753de2b-30ff442a6d9368242e038d7e6cf743d3&#34;)"
     role="button"
   >
     <code>struct</code> VS <code>enum</code>
   </button>
-  <div id="answer-id-cd4287c0f229efdcf98be50e9f63bfbe6753de2b-4f2f34ee23c02736380986ddfd443a67" class="flashcard__back">
+  <div id="answer-id-cd4287c0f229efdcf98be50e9f63bfbe6753de2b-30ff442a6d9368242e038d7e6cf743d3" class="flashcard__back">
     Enums let us declare a type that can contain one of seceral values, structs let
 us declare a type that contains many values at once.
   </div>
@@ -315,12 +315,12 @@ us declare a type that contains many values at once.
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4453d5f6cfd596222692783a11d6e2f5109946e5-3f86d4cfd9a4342efe8334702d660372&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4453d5f6cfd596222692783a11d6e2f5109946e5-64e2492d03338d77ff6268cd30e4a3f4&#34;)"
     role="button"
   >
     <code>impl</code>
   </button>
-  <div id="answer-id-4453d5f6cfd596222692783a11d6e2f5109946e5-3f86d4cfd9a4342efe8334702d660372" class="flashcard__back">
+  <div id="answer-id-4453d5f6cfd596222692783a11d6e2f5109946e5-64e2492d03338d77ff6268cd30e4a3f4" class="flashcard__back">
     <code>impl</code> is how we associate actual code with a type. So a way to create methods
 for a specific type, or implement a trait for a type.
   </div>
@@ -347,12 +347,12 @@ for a specific type, or implement a trait for a type.
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ee521c50439b917a9d9472bc5a77a8120edc3598-6e22ff83473df3a70349d2386c6d0e44&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ee521c50439b917a9d9472bc5a77a8120edc3598-8a429f6343e66c4430f20dd73d8ef273&#34;)"
     role="button"
   >
     Declaring functions VS methods
   </button>
-  <div id="answer-id-ee521c50439b917a9d9472bc5a77a8120edc3598-6e22ff83473df3a70349d2386c6d0e44" class="flashcard__back">
+  <div id="answer-id-ee521c50439b917a9d9472bc5a77a8120edc3598-8a429f6343e66c4430f20dd73d8ef273" class="flashcard__back">
     <p>Functions:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">param1</span>: <span class="nc">Type1</span><span class="p">,</span><span class="w"> </span><span class="n">param2</span>: <span class="nc">Type2</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ReturnType</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// function body
@@ -386,12 +386,12 @@ for a specific type, or implement a trait for a type.
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ff1c3594205efc03e740f92b15bbb7f44aa50869-6233d474fc84d0adf267e3620f43e983&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ff1c3594205efc03e740f92b15bbb7f44aa50869-fdc2334698307f664f42ad843e70de32&#34;)"
     role="button"
   >
     Where&rsquo;s my <code>return</code>?
   </button>
-  <div id="answer-id-ff1c3594205efc03e740f92b15bbb7f44aa50869-6233d474fc84d0adf267e3620f43e983" class="flashcard__back">
+  <div id="answer-id-ff1c3594205efc03e740f92b15bbb7f44aa50869-fdc2334698307f664f42ad843e70de32" class="flashcard__back">
     No need for a <code>return</code> keyword in Rust, the last expression in a function is
 implicitly returned.
   </div>
@@ -418,12 +418,12 @@ implicitly returned.
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-fb90337370d256b4cd120779100385ae8cc08f97-90eec24fa62836d47860f37f333424dd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-fb90337370d256b4cd120779100385ae8cc08f97-de0233c8023e32a8d96664ff34447f7d&#34;)"
     role="button"
   >
     The three primary forms of ownership in Rust
   </button>
-  <div id="answer-id-fb90337370d256b4cd120779100385ae8cc08f97-90eec24fa62836d47860f37f333424dd" class="flashcard__back">
+  <div id="answer-id-fb90337370d256b4cd120779100385ae8cc08f97-de0233c8023e32a8d96664ff34447f7d" class="flashcard__back">
     <ul>
 <li><code>self</code> - Value: &ldquo;True&rdquo; ownership (you can destroy it)</li>
 <li><code>&amp;mut self</code> - Mutable reference: Temporary exclusive access (you can mutate it)</li>
@@ -473,12 +473,12 @@ to <code>new_node</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1a46fbddaff026bd3ccfe909b60b77f56cc27001-036f74422ef786daf2034cde3389436d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1a46fbddaff026bd3ccfe909b60b77f56cc27001-4d032423f67e4a6dd2368f87403cf3e9&#34;)"
     role="button"
   >
     cannot move out of <code>...</code> which is behind a mutable reference
   </button>
-  <div id="answer-id-1a46fbddaff026bd3ccfe909b60b77f56cc27001-036f74422ef786daf2034cde3389436d" class="flashcard__back">
+  <div id="answer-id-1a46fbddaff026bd3ccfe909b60b77f56cc27001-4d032423f67e4a6dd2368f87403cf3e9" class="flashcard__back">
     <p>If we got a mutable reference, that means we don&rsquo;t have &ldquo;true&rdquo; ownership; we
 have temporary exclusive access, which means we can mutate. But we
 specifically cannot destroy whatever we have a mutable reference to.</p>
@@ -522,12 +522,12 @@ without introducing exception un-safety.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-baeb1d1b034cfaf9003387bb93f0335be257092d-32af327d4894ee3364c663804fdd27f0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-baeb1d1b034cfaf9003387bb93f0335be257092d-3623d3f40d7229d7686e4c8340ff34ea&#34;)"
     role="button"
   >
     <code>Option\&lt;T\&gt;</code>
   </button>
-  <div id="answer-id-baeb1d1b034cfaf9003387bb93f0335be257092d-32af327d4894ee3364c663804fdd27f0" class="flashcard__back">
+  <div id="answer-id-baeb1d1b034cfaf9003387bb93f0335be257092d-3623d3f40d7229d7686e4c8340ff34ea" class="flashcard__back">
     <p><a href="https://doc.rust-lang.org/std/option/index.html">Option documentation</a>.</p>
 <p>Represents an optional value: either <code>Some</code> value, or <code>None</code>.</p>
 
@@ -555,12 +555,12 @@ without introducing exception un-safety.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-049cd5dd3e50d958281f5b385943da3375946bd8-866ae4f0784e22c73f94df30343d62d3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-049cd5dd3e50d958281f5b385943da3375946bd8-2d372a42693efd3384d30f0ec8f67446&#34;)"
     role="button"
   >
     <code>match</code>
   </button>
-  <div id="answer-id-049cd5dd3e50d958281f5b385943da3375946bd8-866ae4f0784e22c73f94df30343d62d3" class="flashcard__back">
+  <div id="answer-id-049cd5dd3e50d958281f5b385943da3375946bd8-2d372a42693efd3384d30f0ec8f67446" class="flashcard__back">
     <p><a href="https://doc.rust-lang.org/std/keyword.match.html">Match documentation</a>.</p>
 <p>Basically a switch-case with all the fancy syntax you could want.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">match</span><span class="w"> </span><span class="n">on_a_thing</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -599,12 +599,12 @@ without introducing exception un-safety.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-7c3bf29b434d697224a01ec05a0493fb9a6415ef-26840c9f6e343f332d3f480a2ded4677&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-7c3bf29b434d697224a01ec05a0493fb9a6415ef-e348d669f03f4a2378c33220d4e764df&#34;)"
     role="button"
   >
     <code>unimplemented!()</code>
   </button>
-  <div id="answer-id-7c3bf29b434d697224a01ec05a0493fb9a6415ef-26840c9f6e343f332d3f480a2ded4677" class="flashcard__back">
+  <div id="answer-id-7c3bf29b434d697224a01ec05a0493fb9a6415ef-e348d669f03f4a2378c33220d4e764df" class="flashcard__back">
     <ul>
 <li><code>!</code> indicates a macro</li>
 <li>The <code>unimplemented</code> macro:</li>
@@ -643,12 +643,12 @@ use all of.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c2078df6bb1dbd5f1f4250fbf0bf2e4f7ef20e27-6d3d83efc69e763f27a4230d3f484042&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c2078df6bb1dbd5f1f4250fbf0bf2e4f7ef20e27-4d3f7e2072f33642f0ddc68649384ae3&#34;)"
     role="button"
   >
     <code>unimplemented!()</code> vs <code>todo!()</code>
   </button>
-  <div id="answer-id-c2078df6bb1dbd5f1f4250fbf0bf2e4f7ef20e27-6d3d83efc69e763f27a4230d3f484042" class="flashcard__back">
+  <div id="answer-id-c2078df6bb1dbd5f1f4250fbf0bf2e4f7ef20e27-4d3f7e2072f33642f0ddc68649384ae3" class="flashcard__back">
     <p>The difference between <code>unimplemented!</code> and <code>todo!</code> is that while <code>todo!</code>
 conveys an intent of implementing the functionality later and the message is
 &ldquo;not yet implemented&rdquo;, <code>unimplemented!</code> makes no such claims. Its message is
@@ -679,12 +679,12 @@ conveys an intent of implementing the functionality later and the message is
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-0820b32b206b7352858e8903a838ed14319acdfd-46e486ac7824fff6d330309de7d23234&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-0820b32b206b7352858e8903a838ed14319acdfd-d34fd3643f4707d9e288c420a3f623e6&#34;)"
     role="button"
   >
     Testing
   </button>
-  <div id="answer-id-0820b32b206b7352858e8903a838ed14319acdfd-46e486ac7824fff6d330309de7d23234" class="flashcard__back">
+  <div id="answer-id-0820b32b206b7352858e8903a838ed14319acdfd-d34fd3643f4707d9e288c420a3f623e6" class="flashcard__back">
     <p>Keep your tests in the same file and mark the module with <code>#[cfg(test)]</code> (to
 indicate we only want to compile this module when we&rsquo;re running tests).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
@@ -722,12 +722,12 @@ indicate we only want to compile this module when we&rsquo;re running tests).</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-0fa1cbf4a2dfd8627eeef2c4ff3a20aad5d47f8e-6846f438d94702f3a022ed7ec63343fd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-0fa1cbf4a2dfd8627eeef2c4ff3a20aad5d47f8e-3e38e3f42dfc4d60f2a34379466d7820&#34;)"
     role="button"
   >
     <code>trait</code>
   </button>
-  <div id="answer-id-0fa1cbf4a2dfd8627eeef2c4ff3a20aad5d47f8e-6846f438d94702f3a022ed7ec63343fd" class="flashcard__back">
+  <div id="answer-id-0fa1cbf4a2dfd8627eeef2c4ff3a20aad5d47f8e-3e38e3f42dfc4d60f2a34379466d7820" class="flashcard__back">
     <p>Traits are interfaces. :) For example, the <code>Drop</code> trait means &ldquo;when you go out
 of scope, you get a chance to cleamup&rdquo;, and it looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Drop</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -772,7 +772,7 @@ of scope, you get a chance to cleamup&rdquo;, and it looks like this:</p>
 		</article>
 		<div class="post-nav thin">
 			<a class="next-post" href="http://localhost:1313/posts/added-a-now-page/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Added a Now Page</span>
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Added a Now Page to my Hugo Blog</span>
 			</a>
 			<a class="prev-post" href="http://localhost:1313/posts/refresh-hugo-post-date/">
 				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Quick script to refresh a Hugo Post Date</span>
