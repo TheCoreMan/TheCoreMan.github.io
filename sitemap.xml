@@ -2,11 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/go/</loc>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/howto/</loc>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2024-06-12T17:29:18+03:00</lastmod>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/orca/</loc>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2024-06-12T17:29:18+03:00</lastmod>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/shell/</loc>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</loc>
+    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/added-a-now-page/</loc>
     <lastmod>2024-05-22T18:34:02+03:00</lastmod>
@@ -17,16 +35,10 @@
     <loc>https://www.mrnice.dev/tags/short/</loc>
     <lastmod>2024-05-22T18:34:02+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
-    <lastmod>2024-05-22T18:34:02+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/now/</loc>
     <lastmod>2024-05-22T17:42:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/automation/</loc>
-    <lastmod>2024-04-27T12:10:52+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/go/</loc>
     <lastmod>2024-04-27T12:10:52+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/refresh-hugo-post-date/</loc>
@@ -41,17 +53,8 @@
     <loc>https://www.mrnice.dev/posts/airpods-alias/</loc>
     <lastmod>2024-04-23T18:11:13+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/shell/</loc>
-    <lastmod>2024-04-23T18:11:13+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/tools/</loc>
     <lastmod>2024-04-23T18:11:13+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</loc>
-    <lastmod>2024-03-23T23:22:44+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/meetups/</loc>
-    <lastmod>2024-03-23T23:22:44+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/algorithms/</loc>
     <lastmod>2024-03-03T02:29:20+02:00</lastmod>
@@ -74,9 +77,6 @@
     <loc>https://www.mrnice.dev/tags/learning/</loc>
     <lastmod>2024-03-03T02:29:20+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/orca/</loc>
-    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/posts/advent-of-cyber-2023/</loc>
     <lastmod>2023-12-02T22:11:08+02:00</lastmod>
   </url><url>
@@ -96,9 +96,6 @@
     <lastmod>2023-09-17T22:58:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/statuspage-on-hugo/</loc>
-    <lastmod>2023-09-17T22:58:53+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/howto/</loc>
     <lastmod>2023-09-17T22:58:53+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/monitoring/</loc>
@@ -234,6 +231,9 @@
     <lastmod>2023-01-23T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</loc>
+    <lastmod>2022-12-19T11:01:11+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/meetups/</loc>
     <lastmod>2022-12-19T11:01:11+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/musings/</loc>

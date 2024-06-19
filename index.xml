@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2024 18:34:02 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 18 Jun 2024 09:48:22 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</title>
+      <link>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</link>
+      <pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
+      <guid>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Added a Now Page to my Hugo Blog</title>
       <link>https://www.mrnice.dev/posts/added-a-now-page/</link>
@@ -42,13 +49,6 @@
       <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
       <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
-    </item>
-    <item>
-      <title>A few Go tools for production-level developer applications (Orca Meetup)</title>
-      <link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
-      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
-      <description></description>
     </item>
     <item>
       <title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>

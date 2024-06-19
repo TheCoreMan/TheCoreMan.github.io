@@ -6,15 +6,8 @@
     <description>Recent content in Meetups on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Mar 2024 23:22:44 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/meetups/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>A few Go tools for production-level developer applications (Orca Meetup)</title>
-      <link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
-      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
-      <description></description>
-    </item>
     <item>
       <title>How to Build Your Team to Increase Velocity</title>
       <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>

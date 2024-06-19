@@ -6,8 +6,36 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 May 2024 18:34:02 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 18 Jun 2024 09:48:22 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://www.mrnice.dev/tags/go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Howto</title>
+      <link>https://www.mrnice.dev/tags/howto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/howto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Orca</title>
+      <link>https://www.mrnice.dev/tags/orca/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/orca/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shell</title>
+      <link>https://www.mrnice.dev/tags/shell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.mrnice.dev/tags/shell/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Hugo</title>
       <link>https://www.mrnice.dev/tags/hugo/</link>
@@ -30,13 +58,6 @@
       <description></description>
     </item>
     <item>
-      <title>Go</title>
-      <link>https://www.mrnice.dev/tags/go/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.mrnice.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Meta</title>
       <link>https://www.mrnice.dev/tags/meta/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -44,24 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>Shell</title>
-      <link>https://www.mrnice.dev/tags/shell/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.mrnice.dev/tags/shell/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Tools</title>
       <link>https://www.mrnice.dev/tags/tools/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.mrnice.dev/tags/tools/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Meetups</title>
-      <link>https://www.mrnice.dev/tags/meetups/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.mrnice.dev/tags/meetups/</guid>
       <description></description>
     </item>
     <item>
@@ -104,13 +111,6 @@
       <link>https://www.mrnice.dev/tags/learning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://www.mrnice.dev/tags/learning/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Orca</title>
-      <link>https://www.mrnice.dev/tags/orca/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.mrnice.dev/tags/orca/</guid>
       <description></description>
     </item>
     <item>
