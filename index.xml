@@ -51,6 +51,13 @@
       <description>So, one early morning, and I’m just getting my coffee. For fun, let’s automate connecting to bluetooth AirPods without touching the mouse. Quick Google brings up blueutil, and a tiny bit of jq was all the glue needed:&#xA;brew install blueutil blueutil --connect $(blueutil --paired --format json-pretty | jq -r &amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address) The first time you run this, you&amp;rsquo;ll need to give the terminal permission to get access to bluetooth:</description>
     </item>
     <item>
+      <title>A few Go tools for production-level developer applications (Orca Meetup)</title>
+      <link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
+      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>
       <link>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</link>
       <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
@@ -140,13 +147,6 @@
       <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</guid>
       <description>Recently I&amp;rsquo;ve read Turn the Ship Around! by L. David Marquet following Anton Drukh&amp;rsquo;s recommendation.&#xA;This summary is mostly for me and for people I&amp;rsquo;ll refer it to - so it&amp;rsquo;s not the most friendly read. But if you don&amp;rsquo;t have time to read the book, this post can serve as a useful TL;DR for you. I highly recommend you do read it - it&amp;rsquo;s a great read and a short one, too!</description>
-    </item>
-    <item>
-      <title>Hugo Flashcard Shortcode</title>
-      <link>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</link>
-      <pubDate>Sun, 16 Apr 2023 20:46:53 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/hugo-flashcard-shortcode-for-study/</guid>
-      <description>What&amp;rsquo;s a flashcard? Click here! It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use it to study for a test or memorize notes from a book you&amp;rsquo;ve read. Cool! How do I get it for my Hugo site? Download these three files:&#xA;CSS JS HTML Shortcode And put them in the right places in your Hugo project. The JS and CSS files go in your static/js/flashcard.</description>
     </item>
   </channel>
 </rss>
