@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/devex/</loc>
+    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/devex-adventure/</loc>
+    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/go/</loc>
     <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/howto/</loc>
     <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/orca/</loc>
     <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/shell/</loc>
-    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</loc>

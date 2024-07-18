@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jun 2024 09:48:22 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2024 03:24:45 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DevEx Adventure</title>
+      <link>https://www.mrnice.dev/posts/devex-adventure/</link>
+      <pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/devex-adventure/</guid>
+      <description>Developer Experience The adventure begins... Shay Nehmad for Angular Ventures, 2024&#xA;Developer Experience Who am I? Shay Nehmad&#xA;Ex-Reco, currently doing Engineering Enablement &amp; Experience @Orca Security&#xA;Developer Experience Who are you? The adventure begins... Our quest today: understanding and improving the developer journey in your startup. Every decision will be a dice roll that impacts your journey. You&#39;ll learn how to defer hiring me for as long as you can ;)</description>
+    </item>
     <item>
       <title>בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</title>
       <link>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</link>
@@ -140,13 +147,6 @@
       <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
       <description>My experience working alongside ChatGPT to generate OpenAPI specs.&#xA;As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;&#xA;With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
-    </item>
-    <item>
-      <title>Book report: Turn the Ship Around! A VP R&amp;D&#39;s Summary</title>
-      <link>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</link>
-      <pubDate>Sun, 30 Apr 2023 11:29:00 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/turn-the-ship-around-a-vp-rnd-summary/</guid>
-      <description>Recently I&amp;rsquo;ve read Turn the Ship Around! by L. David Marquet following Anton Drukh&amp;rsquo;s recommendation.&#xA;This summary is mostly for me and for people I&amp;rsquo;ll refer it to - so it&amp;rsquo;s not the most friendly read. But if you don&amp;rsquo;t have time to read the book, this post can serve as a useful TL;DR for you. I highly recommend you do read it - it&amp;rsquo;s a great read and a short one, too!</description>
     </item>
   </channel>
 </rss>

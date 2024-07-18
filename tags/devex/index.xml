@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Devex on mrnice.dev</title>
-    <link>http://localhost:1313/tags/devex/</link>
+    <link>https://www.mrnice.dev/tags/devex/</link>
     <description>Recent content in Devex on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jun 2024 17:29:18 +0300</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/devex/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Jul 2024 03:24:45 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/devex/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DevEx Adventure</title>
-      <link>http://localhost:1313/posts/devex-adventure/</link>
-      <pubDate>Wed, 12 Jun 2024 17:29:18 +0300</pubDate>
-      <guid>http://localhost:1313/posts/devex-adventure/</guid>
-      <description>TODO: Embed reveal.js TODO: Dice rolling HTML element</description>
+      <link>https://www.mrnice.dev/posts/devex-adventure/</link>
+      <pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/devex-adventure/</guid>
+      <description>Developer Experience The adventure begins... Shay Nehmad for Angular Ventures, 2024&#xA;Developer Experience Who am I? Shay Nehmad&#xA;Ex-Reco, currently doing Engineering Enablement &amp; Experience @Orca Security&#xA;Developer Experience Who are you? The adventure begins... Our quest today: understanding and improving the developer journey in your startup. Every decision will be a dice roll that impacts your journey. You&#39;ll learn how to defer hiring me for as long as you can ;)</description>
     </item>
   </channel>
 </rss>
