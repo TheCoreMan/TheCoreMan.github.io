@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/the-ideal-team-player/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/books/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/leadership/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/management/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2024-08-08T21:48:01+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/devex/</loc>
     <lastmod>2024-07-18T03:24:45+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/devex-adventure/</loc>
-    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2024-07-18T03:24:45+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2024-07-18T03:24:45+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/go/</loc>
@@ -69,9 +81,6 @@
     <lastmod>2024-03-23T23:22:44+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/algorithms/</loc>
-    <lastmod>2024-03-03T02:29:20+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/books/</loc>
     <lastmod>2024-03-03T02:29:20+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/data/</loc>
@@ -159,12 +168,6 @@
     <lastmod>2023-07-01T12:07:50+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/better-tech-leadership/</loc>
-    <lastmod>2023-06-20T12:07:50+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/leadership/</loc>
-    <lastmod>2023-06-20T12:07:50+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/management/</loc>
     <lastmod>2023-06-20T12:07:50+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/podcasts/</loc>

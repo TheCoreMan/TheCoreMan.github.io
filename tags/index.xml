@@ -6,8 +6,29 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jul 2024 03:24:45 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2024 21:48:01 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Books</title>
+      <link>https://www.mrnice.dev/tags/books/</link>
+      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+      <guid>https://www.mrnice.dev/tags/books/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Leadership</title>
+      <link>https://www.mrnice.dev/tags/leadership/</link>
+      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+      <guid>https://www.mrnice.dev/tags/leadership/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Management</title>
+      <link>https://www.mrnice.dev/tags/management/</link>
+      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+      <guid>https://www.mrnice.dev/tags/management/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Devex</title>
       <link>https://www.mrnice.dev/tags/devex/</link>
@@ -93,13 +114,6 @@
       <description></description>
     </item>
     <item>
-      <title>Books</title>
-      <link>https://www.mrnice.dev/tags/books/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/books/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Data</title>
       <link>https://www.mrnice.dev/tags/data/</link>
       <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
@@ -132,20 +146,6 @@
       <link>https://www.mrnice.dev/tags/ctf/</link>
       <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
       <guid>https://www.mrnice.dev/tags/ctf/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cyber</title>
-      <link>https://www.mrnice.dev/tags/cyber/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/cyber/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tryhackme</title>
-      <link>https://www.mrnice.dev/tags/tryhackme/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/tryhackme/</guid>
       <description></description>
     </item>
   </channel>

@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jul 2024 03:24:45 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2024 21:48:01 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book report: The Ideal Team Player</title>
+      <link>https://www.mrnice.dev/posts/the-ideal-team-player/</link>
+      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/the-ideal-team-player/</guid>
+      <description>TL;DR The three virtues Humility Hunger Smart Where&amp;rsquo;s the proof? Compared to Turn the Ship Around! The Goal The story Hiring &amp;amp; promoting Employee Development Trusted Advisors What about performance? Dollar-store psychology Conclusion Improve myself Improve my team Recently I&amp;rsquo;ve read The Ideal Team Player by Patrick Lencioni following Yoav Alon&amp;rsquo;s recommendation. I&amp;rsquo;ve read it on a train: best way to read books. You can&amp;rsquo;t do anything else, and your fellow passengers think you&amp;rsquo;re smart.</description>
+    </item>
     <item>
       <title>DevProd Adventure</title>
       <link>https://www.mrnice.dev/posts/devex-adventure/</link>
@@ -140,13 +147,6 @@
       <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
       <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!&#xA;In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.&#xA;Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
-    </item>
-    <item>
-      <title>AI-assisted API Design 🤖🧑‍🎨</title>
-      <link>https://www.mrnice.dev/posts/ai-assisted-api-design/</link>
-      <pubDate>Thu, 11 May 2023 11:57:30 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/ai-assisted-api-design/</guid>
-      <description>My experience working alongside ChatGPT to generate OpenAPI specs.&#xA;As part of a client job (as a newly-minted freelancer!) I got, I needed to design an API. I decided to write an OpenAPI spec. I&amp;rsquo;m so used to gRPC that looking at the OpenAPI JSONs and YAMLs doesn&amp;rsquo;t &amp;ldquo;gel&amp;rdquo; well in my brain, but I do know the basics of API design. And, well&amp;hellip;&#xA;With that in mind, and since the project itself revolves around LLMs, I decided to write the spec together with ChatGPT.</description>
     </item>
   </channel>
 </rss>
