@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 08 Aug 2024 21:48:01 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 09 Sep 2024 22:29:59 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GopherCon Israel 2024</title>
+      <link>https://www.mrnice.dev/posts/gophercon-israel-2024/</link>
+      <pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/gophercon-israel-2024/</guid>
+      <description>GopherCon Israel 2024! What a fun day.&#xA;Started by seeing lots of familiar faces! Miki Tebeka, Yarden Laifenfeld, Liri Sokol, Guy Brandwine, Itamar Knafo, Ran Bar-Zik and more. It&amp;rsquo;s a lot of fun knowing people and saying hi to everyone, and meeting new people, too.&#xA;I arrived there and met some people from Orca Security (where I work right now). These are my raw notes from the event, not too much editing, mostly for my peeps from Orca&amp;rsquo;s Golang Guild.</description>
+    </item>
     <item>
       <title>Book report: The Ideal Team Player</title>
       <link>https://www.mrnice.dev/posts/the-ideal-team-player/</link>
@@ -20,7 +27,7 @@
       <link>https://www.mrnice.dev/posts/devex-adventure/</link>
       <pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/devex-adventure/</guid>
-      <description>Developer Experience The adventure begins... Shay Nehmad for Angular Ventures, 2024&#xA;Developer Experience Who am I? Shay Nehmad&#xA;Ex-Reco, currently Engineering Enablement &amp; Experience @Orca Security&#xA;Developer Experience Who are you? The adventure begins... Our quest today: understanding and improving the developer journey in your startup. Every decision will be a dice roll that impacts your journey. You&#39;ll learn how to defer hiring me for as long as you can ;)</description>
+      <description>Context This is a presentation I gave at Angular Ventures in 2024. It&amp;rsquo;s about the new-ish and emerging concept of Developer Experience, and what I&amp;rsquo;ve learned about it over the last year of doing it.&#xA;It&amp;rsquo;s a Reveal.js presentation, so you can view it in your browser on Desktop only. Use the arrow keys and Esc to navigate, and press s to see the speaker notes.&#xA;Presentation Developer Experience The adventure begins.</description>
     </item>
     <item>
       <title>בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</title>
@@ -140,13 +147,6 @@
       <pubDate>Fri, 09 Jun 2023 08:03:13 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/learning-css-with-css-battles-2/</guid>
       <description>Met up with Aviv Sarig to practice some CSS. I found CSS Diner and we went through it to hone our CSS selection skills.&#xA;Start with &amp;ldquo;Why&amp;rdquo;: why practice selectors? I think it&amp;rsquo;s important to understand why we need selectors in the first place. The answer is simple - to select specific elements in the DOM so we can style them the way we want.&#xA;I think that building good semantic HTML is the first step to writing good CSS, and that knowing how I&amp;rsquo;ll end up selecting elements will impact how I structure the HTML itself.</description>
-    </item>
-    <item>
-      <title>Optimize your Hugo Blog With Unlighthouse</title>
-      <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
-      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
-      <description>Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip; Something something analytics to something something Analytics 4). And one of they things I saw was that my blog&amp;rsquo;s performance was bad!&#xA;In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it a few years ago, so a cleanup for performance and content is probably in order.&#xA;Get initial Lighthouse results What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance of your site.</description>
     </item>
   </channel>
 </rss>

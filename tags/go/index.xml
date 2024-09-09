@@ -6,8 +6,15 @@
     <description>Recent content in Go on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jun 2024 09:48:22 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 09 Sep 2024 22:29:59 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GopherCon Israel 2024</title>
+      <link>https://www.mrnice.dev/posts/gophercon-israel-2024/</link>
+      <pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/gophercon-israel-2024/</guid>
+      <description>GopherCon Israel 2024! What a fun day.&#xA;Started by seeing lots of familiar faces! Miki Tebeka, Yarden Laifenfeld, Liri Sokol, Guy Brandwine, Itamar Knafo, Ran Bar-Zik and more. It&amp;rsquo;s a lot of fun knowing people and saying hi to everyone, and meeting new people, too.&#xA;I arrived there and met some people from Orca Security (where I work right now). These are my raw notes from the event, not too much editing, mostly for my peeps from Orca&amp;rsquo;s Golang Guild.</description>
+    </item>
     <item>
       <title>בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</title>
       <link>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</link>
