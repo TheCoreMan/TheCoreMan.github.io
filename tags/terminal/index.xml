@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Terminal on mrnice.dev</title>
+    <link>https://www.mrnice.dev/tags/terminal/</link>
+    <description>Recent content in Terminal on mrnice.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Oct 2024 21:28:15 +0300</lastBuildDate>
+    <atom:link href="https://www.mrnice.dev/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🦪 5 Shell Tricks, because why not</title>
+      <link>https://www.mrnice.dev/posts/shell-tricks-bag/</link>
+      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+      <guid>https://www.mrnice.dev/posts/shell-tricks-bag/</guid>
+      <description>&lt;p&gt;No time, let&amp;rsquo;s just go. This is &lt;code&gt;zsh&lt;/code&gt; on MacOS.&lt;/p&gt;&#xA;&lt;h2 id=&#34;copy-current-dir-name&#34;&gt;Copy current dir name&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Useful for when you copy a pyproject from another directory and want to rename the project to the current directory&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;basename &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; pbcopy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pomodoro-&#34;&gt;Pomodoro 🍅&lt;/h2&gt;&#xA;&lt;p&gt;added two new functions to my .zshrc file: &lt;code&gt;work&lt;/code&gt; and &lt;code&gt;rest&lt;/code&gt;, which give me a&#xA;built-in #pomodoro in the terminal. From &lt;a href=&#34;https://patloeber.com/pomodoro-app-cli-macos/&#34;&gt;Simple CLI Pomodoro timer for macOS&#xA;by Patrick Loeber&lt;/a&gt;.&#xA;This also taught me a nice library which might be useful for work: &lt;a href=&#34;https://github.com/julienXX/terminal-notifier&#34;&gt;terminal-notifier&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

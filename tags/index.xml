@@ -6,8 +6,29 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Sep 2024 22:29:59 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2024 21:28:15 +0300</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shell</title>
+      <link>https://www.mrnice.dev/tags/shell/</link>
+      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+      <guid>https://www.mrnice.dev/tags/shell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Short</title>
+      <link>https://www.mrnice.dev/tags/short/</link>
+      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+      <guid>https://www.mrnice.dev/tags/short/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Terminal</title>
+      <link>https://www.mrnice.dev/tags/terminal/</link>
+      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+      <guid>https://www.mrnice.dev/tags/terminal/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Go</title>
       <link>https://www.mrnice.dev/tags/go/</link>
@@ -65,24 +86,10 @@
       <description></description>
     </item>
     <item>
-      <title>Shell</title>
-      <link>https://www.mrnice.dev/tags/shell/</link>
-      <pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/shell/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Hugo</title>
       <link>https://www.mrnice.dev/tags/hugo/</link>
       <pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
       <guid>https://www.mrnice.dev/tags/hugo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Short</title>
-      <link>https://www.mrnice.dev/tags/short/</link>
-      <pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/short/</guid>
       <description></description>
     </item>
     <item>
@@ -139,13 +146,6 @@
       <link>https://www.mrnice.dev/tags/flashcards/</link>
       <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
       <guid>https://www.mrnice.dev/tags/flashcards/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Learning</title>
-      <link>https://www.mrnice.dev/tags/learning/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/learning/</guid>
       <description></description>
     </item>
   </channel>

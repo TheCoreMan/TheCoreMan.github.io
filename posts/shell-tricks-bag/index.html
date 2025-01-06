@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+
+  <meta itemprop="name" content="🦪 5 Shell Tricks, because why not">
+  <meta itemprop="description" content="No time, let’s just go. This is zsh on MacOS.
+Copy current dir name Useful for when you copy a pyproject from another directory and want to rename the project to the current directory
+basename $(pwd) | pbcopy Pomodoro 🍅 added two new functions to my .zshrc file: work and rest, which give me a built-in #pomodoro in the terminal. From Simple CLI Pomodoro timer for macOS by Patrick Loeber. This also taught me a nice library which might be useful for work: terminal-notifier.">
+  <meta itemprop="datePublished" content="2024-10-26T21:28:15+03:00">
+  <meta itemprop="dateModified" content="2024-10-26T21:28:15+03:00">
+  <meta itemprop="wordCount" content="625">
+  <meta itemprop="keywords" content="Short,Shell,Terminal"><meta property="og:url" content="https://www.mrnice.dev/posts/shell-tricks-bag/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="🦪 5 Shell Tricks, because why not">
+  <meta property="og:description" content="No time, let’s just go. This is zsh on MacOS.
+Copy current dir name Useful for when you copy a pyproject from another directory and want to rename the project to the current directory
+basename $(pwd) | pbcopy Pomodoro 🍅 added two new functions to my .zshrc file: work and rest, which give me a built-in #pomodoro in the terminal. From Simple CLI Pomodoro timer for macOS by Patrick Loeber. This also taught me a nice library which might be useful for work: terminal-notifier.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-26T21:28:15+03:00">
+    <meta property="article:modified_time" content="2024-10-26T21:28:15+03:00">
+    <meta property="article:tag" content="Short">
+    <meta property="article:tag" content="Shell">
+    <meta property="article:tag" content="Terminal">
+
+<meta name="twitter:title" content="🦪 5 Shell Tricks, because why not">
+
+
+
+<meta
+	name="description"
+	content="No time, let&rsquo;s just go. This is zsh on MacOS.
+Copy current dir name
+
+Useful for when you copy a pyproject from another directory and want to rename the project to the current directory
+
+basename $(pwd) | pbcopy
+Pomodoro 🍅
+added two new functions to my .zshrc file: work and rest, which give me a
+built-in #pomodoro in the terminal. From Simple CLI Pomodoro timer for macOS
+by Patrick Loeber.
+This also taught me a nice library which might be useful for work: terminal-notifier."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>🦪 5 Shell Tricks, because why not</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 26, 2024</span></div>
+				<h1>🦪 5 Shell Tricks, because why not</h1>
+			</header>
+			<div class="content">
+				
+				<div class="short-disclaimer">
+					<p><blockquote>
+<p>This is a <a href="/posts/shorts/">short 🩳</a>; a note that doesn&rsquo;t merit a full post. <a href="/tags/short">See all shorts here</a>.</p>
+</blockquote></p>
+				
+				<p>No time, let&rsquo;s just go. This is <code>zsh</code> on MacOS.</p>
+<h2 id="copy-current-dir-name">Copy current dir name<a href="#copy-current-dir-name" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<blockquote>
+<p>Useful for when you copy a pyproject from another directory and want to rename the project to the current directory</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">basename <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span> <span class="p">|</span> pbcopy
+</span></span></code></pre></div><h2 id="pomodoro-">Pomodoro 🍅<a href="#pomodoro-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>added two new functions to my .zshrc file: <code>work</code> and <code>rest</code>, which give me a
+built-in #pomodoro in the terminal. From <a href="https://patloeber.com/pomodoro-app-cli-macos/">Simple CLI Pomodoro timer for macOS
+by Patrick Loeber</a>.
+This also taught me a nice library which might be useful for work: <a href="https://github.com/julienXX/terminal-notifier">terminal-notifier</a>.</p>
+<h2 id="grab-the-latest-downloaded-thing">Grab the latest downloaded thing<a href="#grab-the-latest-downloaded-thing" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Added a new function to grab the latest downloaded file to the current directory with some pretty printing:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">grab_download<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Define variables</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">latest_file</span><span class="o">=</span><span class="k">$(</span>ls -dtr1 ~/Downloads/* <span class="p">|</span> tail -1<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">current_dir</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Check if gum is installed</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> ! <span class="nb">command</span> -v gum <span class="p">&amp;</span>&gt; /dev/null
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;gum is not installed. Please install gum from https://github.com/charmbracelet/gum&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Display information about the latest file</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">file_info</span><span class="o">=</span><span class="k">$(</span>file <span class="s2">&#34;</span><span class="nv">$latest_file</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    gum style --bold --foreground <span class="s2">&#34;#FFA500&#34;</span> --border normal --border-foreground <span class="s2">&#34;#00FF00&#34;</span> <span class="s2">&#34;📄 Latest Downloaded File:&#34;</span> <span class="o">&amp;&amp;</span> gum style --italic --foreground <span class="s2">&#34;#00FFFF&#34;</span> <span class="s2">&#34;</span><span class="nv">$file_info</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Copy the latest file to the current directory with a loader/spinner</span>
+</span></span><span class="line"><span class="cl">    gum spin --spinner dot --title <span class="s2">&#34;Copying file...&#34;</span> -- cp -p <span class="s2">&#34;</span><span class="nv">$latest_file</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$current_dir</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Inform the user of the successful copy operation</span>
+</span></span><span class="line"><span class="cl">    gum style --bold --foreground <span class="s2">&#34;#00FF00&#34;</span> <span class="s2">&#34;✅ Successfully copied the latest downloaded file to the current directory!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Print the final absolute path of the copied file</span>
+</span></span><span class="line"><span class="cl">    gum style --bold --foreground <span class="s2">&#34;#FFA500&#34;</span> <span class="s2">&#34;📂 It&#39;s here:&#34;</span> <span class="o">&amp;&amp;</span> gum style --italic --foreground <span class="s2">&#34;#00FFFF&#34;</span> <span class="s2">&#34;</span><span class="nv">$current_dir</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="if-its-an-ai-generated-image-for-a-blog">If it&rsquo;s an AI generated image for a blog?<a href="#if-its-an-ai-generated-image-for-a-blog" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>Another trick: from <code>webp</code> to <code>png</code> can be simply done with <code>ffmpeg</code>: <code>ffmpeg -i something.webp something.png</code>.</li>
+</ul>
+<h2 id="daily-blogging-in-a-confluence-corp">Daily blogging in a Confluence Corp<a href="#daily-blogging-in-a-confluence-corp" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>If you&rsquo;re company is using Confluence as its knowledge base, you can do this
+&ldquo;morning routine&rdquo; to start your day right.</p>
+<p>Notes:</p>
+<ul>
+<li><code>my-company-login</code> is whatever thing you need to do to get the SSO out of the way so it doesn&rsquo;t bother your flow while you work.</li>
+<li><code>my-company</code> and <code>my.company</code> is whatever your company is.</li>
+<li><code>123456</code> is the space ID of the blog space. I&rsquo;d recommend choosing the most
+general place with the most permissions. The whole point is to make it easy
+to find.</li>
+<li>This script opens GitHub and JumpCloud because they were the things I had
+to log into through every morning, YMMV.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">blogtitle</span><span class="o">=</span><span class="s1">&#39;date &#34;+Shay&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;s Work Blog // %Y%m%d W%W %A&#34; | tr -d &#39;</span><span class="se">\&#39;</span><span class="s1">&#39;\n&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Simpler version if you can&#39;t get your hands on an API key</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># alias blog=&#39;blogtitle | pbcopy &amp;&amp; open -a &#34;Google Chrome&#34; &#34;https://my-company.atlassian.net/wiki/spaces/SOMESPACE/blogs&#34;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">blog</span><span class="o">=</span><span class="s1">&#39;curl --request POST \
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --url &#34;https://my-company.atlassian.net/wiki/api/v2/blogposts&#34; \
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --user &#34;shay.nehmad@my.company:KEY&#34; \
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --header &#34;Accept: application/json&#34; \
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --header &#34;Content-Type: application/json&#34; \
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --data &#34;{\&#34;spaceId\&#34;: \&#34;123456\&#34;, \&#34;status\&#34;: \&#34;draft\&#34;, \&#34;title\&#34;: \&#34;$(blogtitle)\&#34;}&#34; | jq -r &#34;\&#34;https://my-company.atlassian.net/wiki\&#34; + ._links.tinyui&#34; | pbcopy&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">morning</span><span class="o">=</span><span class="s1">&#39;echo &#34;☕️ Good morning!&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">my-company-login &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">echo &#34;📝 Opening blog...&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">blog &amp;&amp; echo &#34;$(pbpaste) copied to clipboard.&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">echo &#34;🧑‍💻 Opening GitHub...&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">open -a &#34;Google Chrome&#34; &#34;https://github.com/my-company/&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">echo &#34;🧑‍💻 Opening JumpCloud...&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">open -a &#34;Google Chrome&#34; &#34;https://console.jumpcloud.com/login#/&#34; &amp;&amp;\
+</span></span></span><span class="line"><span class="cl"><span class="s1">echo &#34;📚 Have a productive day! Remember to zero your Email + Slack&#34;&#39;</span>
+</span></span></code></pre></div><h2 id="git-branches-cleanup">Git branches cleanup<a href="#git-branches-cleanup" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I&rsquo;ve added a new alias to clean up my local branches.
+It&rsquo;s a bit aggressive, but I like it - it makes using things like <a href="https://github.com/junegunn/fzf-git.sh">fzf-git</a> better.
+It removes all branches that are merged into <code>main</code> except for <code>main</code> itself.
+It also prunes the remote branches.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">alias</span> git-clean-branches<span class="o">=</span><span class="s2">&#34;git branch --merged main | grep -v -e &#39;main&#39; -e &#39;\*&#39; | xargs -n 1 git branch -d &amp;&amp; git remote prune origin || echo &#39;No local branches to remove, so nothing done.&#39;&#34;</span>
+</span></span></code></pre></div><p>This alongside other normal commands like <code>git gc</code> and
+<code>git fetch --all --prune</code> makes sure my git is clean, up to date, and as fast
+as it can be.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/airpods-alias/">🎧🍏 AirPods (well, any bluetooth) alias for MacOS</a></li>
+	
+	<li><a href="/posts/how-to-build-a-command-line-aka-cli-app-with-go/">בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</a></li>
+	
+	<li><a href="/posts/added-a-now-page/">Added a Now Page to my Hugo Blog</a></li>
+	
+	<li><a href="/posts/refresh-hugo-post-date/">Quick script to refresh a Hugo Post Date</a></li>
+	
+	<li><a href="/posts/shorts/">Adding shorts to the blog</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/short">short</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/shell">shell</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/terminal">terminal</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>625 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-10-26 21:28 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/gophercon-israel-2024/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>GopherCon Israel 2024</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			&#183; <a href="https://mrnicedev.onlineornot.com/" title="Status" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" class="feather"><rect width="24" height="24" opacity="0"/><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z"/><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
+	}
+</script>
+
+</body>
+
+</html>

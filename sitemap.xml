@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/shell/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/short/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/terminal/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/shell-tricks-bag/</loc>
+    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/tags/go/</loc>
     <lastmod>2024-09-09T22:29:59+03:00</lastmod>
   </url><url>
@@ -9,15 +30,6 @@
     <lastmod>2024-09-09T22:29:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/meetup/</loc>
-    <lastmod>2024-09-09T22:29:59+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2024-09-09T22:29:59+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2024-09-09T22:29:59+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2024-09-09T22:29:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/the-ideal-team-player/</loc>
@@ -44,9 +56,6 @@
     <loc>https://www.mrnice.dev/tags/orca/</loc>
     <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/shell/</loc>
-    <lastmod>2024-06-18T09:48:22+02:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</loc>
     <lastmod>2024-06-18T09:48:22+02:00</lastmod>
   </url><url>
@@ -54,9 +63,6 @@
     <lastmod>2024-05-22T18:34:02+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/hugo/</loc>
-    <lastmod>2024-05-22T18:34:02+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/short/</loc>
     <lastmod>2024-05-22T18:34:02+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/now/</loc>

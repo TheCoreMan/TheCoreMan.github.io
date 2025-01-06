@@ -20,7 +20,7 @@
 
   <meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
   <meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.">
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete. The third problem: Unsupported TLS version Conclusions More context 👩‍🔧 If you’re here for the technical stuff only you can skip this section.">
   <meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00">
   <meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00">
   <meta itemprop="wordCount" content="1227">
@@ -28,7 +28,7 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
   <meta property="og:site_name" content="mrnice.dev">
   <meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS">
   <meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.">
+ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete. The third problem: Unsupported TLS version Conclusions More context 👩‍🔧 If you’re here for the technical stuff only you can skip this section.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -53,8 +53,28 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 
 <meta
 	name="description"
-	content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
-ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete."
+	content="A little context
+I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+ToC
+
+A little context
+ToC
+
+More context
+
+
+How I wanted to do it
+The problems
+
+The first problem: The application failed to initialize properly (0xc0000124)
+The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete.
+The third problem: Unsupported TLS version
+
+
+Conclusions
+
+More context
+👩‍🔧 If you&rsquo;re here for the technical stuff only you can skip this section."
 />
 <script type="application/ld+json">
 	{
@@ -276,7 +296,7 @@ ToC A little context ToC More context How I wanted to do it The problems The fir
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2024 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

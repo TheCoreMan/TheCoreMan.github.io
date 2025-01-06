@@ -22,7 +22,7 @@
   <meta itemprop="description" content="Adding EmacsLips programs to extend Emacs’s functionality from source is something I’ve found non-obvious (had to open multiple tabs for). Today I’ve decided to figure it out, and it’s actually very simple, so here’s the guide:
 A - Find the program you want to add In my case, it was “Transpose Frame” by irie.
 I’ve stumbled across it from this StackExchange answer.
-If the program is available on MELPA, you can just add it to the additional-packages list in your .">
+If the program is available on MELPA, you can just add it to the additional-packages list in your .spacemacs config (see section D). However, if it’s not, or if you want to do it from source, or you want to do it once “the hard way” to learn (like I did in this blogpost) you’ll need the .el file that has the program. Grab that file’s URL.">
   <meta itemprop="datePublished" content="2021-05-17T15:36:58+03:00">
   <meta itemprop="dateModified" content="2021-05-17T15:36:58+03:00">
   <meta itemprop="wordCount" content="543">
@@ -33,7 +33,7 @@ If the program is available on MELPA, you can just add it to the additional-pack
   <meta property="og:description" content="Adding EmacsLips programs to extend Emacs’s functionality from source is something I’ve found non-obvious (had to open multiple tabs for). Today I’ve decided to figure it out, and it’s actually very simple, so here’s the guide:
 A - Find the program you want to add In my case, it was “Transpose Frame” by irie.
 I’ve stumbled across it from this StackExchange answer.
-If the program is available on MELPA, you can just add it to the additional-packages list in your .">
+If the program is available on MELPA, you can just add it to the additional-packages list in your .spacemacs config (see section D). However, if it’s not, or if you want to do it from source, or you want to do it once “the hard way” to learn (like I did in this blogpost) you’ll need the .el file that has the program. Grab that file’s URL.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -51,9 +51,12 @@ If the program is available on MELPA, you can just add it to the additional-pack
 <meta
 	name="description"
 	content="Adding EmacsLips programs to extend Emacs&rsquo;s functionality from source is something I&rsquo;ve found non-obvious (had to open multiple tabs for). Today I&rsquo;ve decided to figure it out, and it&rsquo;s actually very simple, so here&rsquo;s the guide:
-A - Find the program you want to add In my case, it was &ldquo;Transpose Frame&rdquo; by irie.
+A - Find the program you want to add
+In my case, it was &ldquo;Transpose Frame&rdquo; by irie.
+
 I&rsquo;ve stumbled across it from this StackExchange answer.
-If the program is available on MELPA, you can just add it to the additional-packages list in your ."
+
+If the program is available on MELPA, you can just add it to the additional-packages list in your .spacemacs config (see section D). However, if it&rsquo;s not, or if you want to do it from source, or you want to do it once &ldquo;the hard way&rdquo; to learn (like I did in this blogpost) you&rsquo;ll need the .el file that has the program. Grab that file&rsquo;s URL."
 />
 <script type="application/ld+json">
 	{
@@ -204,7 +207,7 @@ If the program is available on MELPA, you can just add it to the additional-pack
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2024 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

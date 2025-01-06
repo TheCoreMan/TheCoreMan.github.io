@@ -13,7 +13,7 @@
       <link>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</link>
       <pubDate>Sat, 12 Jun 2021 12:15:16 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-add-math-expressions-to-hugo-blog-the-shortest-guide-possible/</guid>
-      <description>Want your blog to include Math Expressions, like the Mass–energy equivalence formula?&#xA;$$ E=mc^2 $$&#xA;Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?&#xA;$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$&#xA;Or Matrix Multiplication?&#xA;$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$</description>
+      <description>&lt;p&gt;Want your blog to include Math Expressions, like the Mass–energy equivalence formula?&lt;/p&gt;&#xA;&lt;p&gt;$$ E=mc^2 $$&lt;/p&gt;&#xA;&lt;p&gt;Or L&amp;rsquo;Hôpital&amp;rsquo;s rule?&lt;/p&gt;&#xA;&lt;p&gt;$$ \mathop {\lim }\limits_{x \to c} \frac{{f\left( x \right)}}{{g\left( x \right)}} = \mathop {\lim }\limits_{x \to c} \frac{{f&amp;rsquo;\left( x \right)}}{{g&amp;rsquo;\left( x \right)}} $$&lt;/p&gt;&#xA;&lt;p&gt;Or Matrix Multiplication?&lt;/p&gt;&#xA;&lt;p&gt;$$ \begin{pmatrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 0 \end{pmatrix} $$&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -13,7 +13,7 @@
       <link>https://www.mrnice.dev/posts/how-to-backstage-part-1/</link>
       <pubDate>Sat, 15 Oct 2022 21:53:20 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/how-to-backstage-part-1/</guid>
-      <description>I recently set up Backstage.io on our cluster. It wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning opportiunity.&#xA;I&amp;rsquo;m also definitely not a DevOps expert, so I had to learn some stuff myself along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s going to walk the same path! Hopefully I can save you some time.&#xA;Part 1 In this part we&amp;rsquo;re going to:</description>
+      <description>&lt;p&gt;I recently set up &lt;a href=&#34;https://backstage.io/&#34;&gt;Backstage.io&lt;/a&gt; on our cluster. It&#xA;wasn&amp;rsquo;t super-easy, so I decided to &amp;ldquo;go deep&amp;rdquo; and tried to make this a learning&#xA;opportiunity.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m also definitely &lt;em&gt;not&lt;/em&gt; a DevOps expert, so I had to learn some stuff myself&#xA;along the way. Here&amp;rsquo;s my best approximation at a useful guide for anyone who&amp;rsquo;s&#xA;going to walk the same path! Hopefully I can save you some time.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://backstage.io/animations/backstage-logos-hero-8.gif&#34; alt=&#34;Backstage logo&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;part-1&#34;&gt;Part 1&lt;/h2&gt;&#xA;&lt;p&gt;In this part we&amp;rsquo;re going to:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

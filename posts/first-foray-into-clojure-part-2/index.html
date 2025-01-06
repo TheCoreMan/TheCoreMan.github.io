@@ -22,7 +22,7 @@
   <meta itemprop="description" content="“日々是好日” (Nichinichi kore kōnichi) means “Every day is a good day” or “Try to spend every day meaningfully”.
 This blog post continues directly from the previous one, so I’ll skip the intros. Go read that one for context. Let’s just jump into it!
 Table of Contents
-Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?">
+Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?! Finally, with no for, that’s what I needed Clojure Debugging What now? Runtime Polymorphism One day someone asked Master Yunmen, “What is the meaning of the teaching?”">
   <meta itemprop="datePublished" content="2021-08-01T08:32:00+03:00">
   <meta itemprop="dateModified" content="2021-08-01T08:32:00+03:00">
   <meta itemprop="wordCount" content="2759">
@@ -33,7 +33,7 @@ Runtime Polymorphism Using multi-arity functions Value-based polymorphism with d
   <meta property="og:description" content="“日々是好日” (Nichinichi kore kōnichi) means “Every day is a good day” or “Try to spend every day meaningfully”.
 This blog post continues directly from the previous one, so I’ll skip the intros. Go read that one for context. Let’s just jump into it!
 Table of Contents
-Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?">
+Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?! Finally, with no for, that’s what I needed Clojure Debugging What now? Runtime Polymorphism One day someone asked Master Yunmen, “What is the meaning of the teaching?”">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -49,10 +49,58 @@ Runtime Polymorphism Using multi-arity functions Value-based polymorphism with d
 
 <meta
 	name="description"
-	content="&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo; or &ldquo;Try to spend every day meaningfully&rdquo;.
-This blog post continues directly from the previous one, so I&rsquo;ll skip the intros. Go read that one for context. Let&rsquo;s just jump into it!
+	content="
+&ldquo;日々是好日&rdquo; (Nichinichi kore kōnichi) means &ldquo;Every day is a good day&rdquo;
+or &ldquo;Try to spend every day meaningfully&rdquo;.
+
+This blog post continues directly from the previous
+one, so I&rsquo;ll skip the intros. Go read that
+one for context. Let&rsquo;s just jump into it!
+
 Table of Contents
-Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?"
+
+Runtime Polymorphism
+
+Using multi-arity functions
+Value-based polymorphism with defmulti
+
+Comparison to other languages
+Breaking down what the code means
+Open to extension
+
+
+
+
+Lazy Sequences
+
+iterate is also zero-based
+Standing on the shoulders of giants - using identity
+
+
+Sequence Comprehensions
+
+:when and other predefined keyword modifiers
+
+
+Creating Functions
+
+The let special form
+Function composition with comp
+
+
+Recursion
+
+Use comment
+loop?! Finally, with no for, that&rsquo;s what I needed
+Clojure Debugging
+
+
+What now?
+
+
+Runtime Polymorphism
+
+One day someone asked Master Yunmen, “What is the meaning of the teaching?”"
 />
 <script type="application/ld+json">
 	{
@@ -666,7 +714,7 @@ here</a>.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2024 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

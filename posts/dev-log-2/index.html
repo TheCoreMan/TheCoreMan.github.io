@@ -21,7 +21,7 @@
   <meta itemprop="name" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
   <meta itemprop="description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
-The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I’m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.">
+The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I’m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.toml Replacing level titles with their branches 🌿 Output the result into a working pre-receive hook file Setting up the game inside a Docker container Requirements: What should the Dockerfile do Implementation: What does the Dockerfile actually do What can be improved? What’s next? Side note: This time I’ve been working with my little brother Barak. His invaluable help (and willingness to work with me) is what will probably tip the scales in favor of this project actually making it to the finish line.">
   <meta itemprop="datePublished" content="2020-05-12T20:20:31+03:00">
   <meta itemprop="dateModified" content="2020-05-12T20:20:31+03:00">
   <meta itemprop="wordCount" content="2553">
@@ -31,7 +31,7 @@ The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-rece
   <meta property="og:title" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
   <meta property="og:description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
-The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I’m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.">
+The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I’m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.toml Replacing level titles with their branches 🌿 Output the result into a working pre-receive hook file Setting up the game inside a Docker container Requirements: What should the Dockerfile do Implementation: What does the Dockerfile actually do What can be improved? What’s next? Side note: This time I’ve been working with my little brother Barak. His invaluable help (and willingness to work with me) is what will probably tip the scales in favor of this project actually making it to the finish line.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -60,7 +60,45 @@ The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-rece
 	name="description"
 	content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
-The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I&rsquo;m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config."
+
+
+The first step was doing it manually, once 👨🏽‍🏭⚒
+
+Writing a pre-receive hook
+
+Looking at the push contents during the pre-receive execution
+
+
+Manually performing all the actions to deploy a game server
+
+
+Starting to automate 🤖
+
+Generating the pre-receive hook automatically 🤖
+
+I guess I&rsquo;m a Rustacean now 🦀
+Requirements: What does the script need to do
+Implementation: Breaking the problem into smaller problems, and solving them one by one
+
+Parsing game-config.toml
+Replacing level titles with their branches 🌿
+Output the result into a working pre-receive hook file
+
+
+
+
+Setting up the game inside a Docker container
+
+Requirements: What should the Dockerfile do
+Implementation: What does the Dockerfile actually do
+What can be improved?
+
+
+
+
+What&rsquo;s next?
+
+Side note: This time I&rsquo;ve been working with my little brother Barak. His invaluable help (and willingness to work with me) is what will probably tip the scales in favor of this project actually making it to the finish line."
 />
 <script type="application/ld+json">
 	{
@@ -480,7 +518,7 @@ The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-rece
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2024 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>

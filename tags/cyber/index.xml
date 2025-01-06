@@ -13,7 +13,7 @@
       <link>https://www.mrnice.dev/posts/advent-of-cyber-2023/</link>
       <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
       <guid>https://www.mrnice.dev/posts/advent-of-cyber-2023/</guid>
-      <description>To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see {{ .flag }} in the text, it means that I&amp;rsquo;ve redacted the flag.&#xA;Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on the planet.&#xA;Getting started The signup/login UX leaves something to be desired. You start off on the advent page, then sign up, and after the initial signup you are not redirected to the advent.</description>
+      <description>&lt;p&gt;To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see&#xA;&lt;code&gt;{{ .flag }}&lt;/code&gt; in the text, it means that I&amp;rsquo;ve redacted the flag.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on&#xA;the planet.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;The signup/login UX leaves something to be desired. You start off on the advent&#xA;page, then sign up, and after the initial signup you are not redirected to the&#xA;advent. Need to go look for it again. Then it&amp;rsquo;s &amp;ldquo;join room&amp;rdquo;, whatever that means.&#xA;Anyways, not a big deal, but I thought it&amp;rsquo;s a bit annoying.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
