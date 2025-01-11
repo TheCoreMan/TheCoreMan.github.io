@@ -2,19 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</loc>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/ai/</loc>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/lunar/</loc>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/meetup/</loc>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/security/</loc>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/shell/</loc>
     <lastmod>2024-10-26T21:28:15+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/short/</loc>
-    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2024-10-26T21:28:15+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/terminal/</loc>
@@ -27,9 +42,6 @@
     <lastmod>2024-09-09T22:29:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/gophercon-israel-2024/</loc>
-    <lastmod>2024-09-09T22:29:59+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/meetup/</loc>
     <lastmod>2024-09-09T22:29:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/the-ideal-team-player/</loc>
@@ -152,9 +164,6 @@
     <loc>https://www.mrnice.dev/tags/api/</loc>
     <lastmod>2023-09-01T23:22:44+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/lunar/</loc>
-    <lastmod>2023-09-01T23:22:44+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/posts/what-is-an-api-proxy/</loc>
     <lastmod>2023-09-01T23:22:44+03:00</lastmod>
   </url><url>
@@ -202,9 +211,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/tags/profiling/</loc>
     <lastmod>2023-05-16T09:36:21+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/ai/</loc>
-    <lastmod>2023-05-11T11:57:30+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/ai-assisted-api-design/</loc>
     <lastmod>2023-05-11T11:57:30+03:00</lastmod>
@@ -274,9 +280,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/good-cross-functional-team-bad-cross-functional-team/</loc>
     <lastmod>2022-09-20T23:52:52+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/security/</loc>
-    <lastmod>2022-08-15T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/lucid-vuln-report/</loc>
     <lastmod>2022-08-15T14:15:55+03:00</lastmod>

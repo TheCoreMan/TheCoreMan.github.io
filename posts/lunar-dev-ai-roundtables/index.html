@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+
+  <meta itemprop="name" content="🌘 AI Roundtables @lunar.dev">
+  <meta itemprop="description" content="Thank You, Lunar Team Before diving into all the AI insights: thanks Luli, Gabbay, Chen from lunar.dev for arranging these meetups and letting me be a part of what y’all are building. Leading the charge on AI thought leadership is hard with so much BS in the air.
+I definitely learned a ton, met cool folks from the industry, and even had fun. So thanks! 🙏
+Alright, enough schmoozing. Let’s get to the good stuff. I wrote down these notes during the meetup, so obviously I might have missed some things; if you were there and want to add something, please reach out.">
+  <meta itemprop="datePublished" content="2025-01-10T22:19:17+02:00">
+  <meta itemprop="dateModified" content="2025-01-10T22:19:17+02:00">
+  <meta itemprop="wordCount" content="2686">
+  <meta itemprop="image" content="https://www.mrnice.dev/images/lunar-ai-meetup/selfie.jpeg">
+  <meta itemprop="keywords" content="AI,Security,Lunar,Meetup"><meta property="og:url" content="https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="🌘 AI Roundtables @lunar.dev">
+  <meta property="og:description" content="Thank You, Lunar Team Before diving into all the AI insights: thanks Luli, Gabbay, Chen from lunar.dev for arranging these meetups and letting me be a part of what y’all are building. Leading the charge on AI thought leadership is hard with so much BS in the air.
+I definitely learned a ton, met cool folks from the industry, and even had fun. So thanks! 🙏
+Alright, enough schmoozing. Let’s get to the good stuff. I wrote down these notes during the meetup, so obviously I might have missed some things; if you were there and want to add something, please reach out.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-10T22:19:17+02:00">
+    <meta property="article:modified_time" content="2025-01-10T22:19:17+02:00">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="Lunar">
+    <meta property="article:tag" content="Meetup">
+    <meta property="og:image" content="https://www.mrnice.dev/images/lunar-ai-meetup/selfie.jpeg">
+
+<meta name="twitter:title" content="🌘 AI Roundtables @lunar.dev">
+
+
+
+<meta
+	name="description"
+	content="Thank You, Lunar Team
+Before diving into all the AI insights: thanks Luli, Gabbay, Chen
+from lunar.dev for arranging these meetups and letting
+me be a part of what y&rsquo;all are building. Leading the charge on AI thought
+leadership is hard with so much BS in the air.
+I definitely learned a ton, met cool folks from the industry, and even had fun.
+So thanks! 🙏
+
+Alright, enough schmoozing. Let&rsquo;s get to the good stuff. I wrote down these notes
+during the meetup, so obviously I might have missed some things; if you were there
+and want to add something, please reach out."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>🌘 AI Roundtables @lunar.dev</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/lunar-ai-meetup/selfie.jpeg');}</style>
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 10, 2025</span></div>
+				<h1>🌘 AI Roundtables @lunar.dev</h1>
+			</header>
+			<div class="content">
+				
+				<h2 id="thank-you-lunar-team">Thank You, Lunar Team<a href="#thank-you-lunar-team" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Before diving into all the AI insights: thanks <strong>Luli</strong>, <strong>Gabbay</strong>, <strong>Chen</strong>
+from <a href="https://www.lunar.dev/">lunar.dev</a> for arranging these meetups and letting
+me be a part of what y&rsquo;all are building. Leading the charge on AI thought
+leadership is hard with so much BS in the air.</p>
+<p>I definitely learned a ton, met cool folks from the industry, and even had fun.
+So thanks! 🙏</p>
+<p><img src="/images/lunar-ai-meetup/selfie.jpeg" alt="selfie"></p>
+<p>Alright, enough schmoozing. Let&rsquo;s get to the good stuff. I wrote down these notes
+during the meetup, so obviously I might have missed some things; if you were there
+and want to add something, please <a href="/about/#-nc-shay_nehmad-443">reach out</a>.</p>
+<h2 id="reflections-on-two-lunardev-ai-roundtable-meetups">Reflections on Two #lunardev AI Roundtable Meetups<a href="#reflections-on-two-lunardev-ai-roundtable-meetups" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I recently attended not one, but two AI roundtable meetups arranged by Lunar
+(and hosted in some VC offices: Mizmaa and Pitango).
+Between the jokes, snacks, and occasional mild existential panic, I walked away
+with a deeper appreciation of just how messy (and exciting) this whole
+generative AI scene can be. In this post, I’ll recap the highlights, share some
+of the biggest challenges the groups grappled with, and offer a few insights
+into where I think AI landscape might be heading next.</p>
+<blockquote>
+<p><strong>“The real money might be in building tools for the tool makers.”</strong></p>
+<p>A sentiment shared by multiple attendees, echoing the new generation of
+AI-savvy developers.</p>
+</blockquote>
+<hr>
+<h2 id="meetup-2-deep-dives-into-llms-and-agentic-systems">Meetup #2: Deep Dives into LLMs and Agentic Systems<a href="#meetup-2-deep-dives-into-llms-and-agentic-systems" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><img src="/images/lunar-ai-meetup/meetup-invite-2.png" alt="invite-2"></p>
+<h3 id="attendees-and-their-missions">Attendees and Their Missions<a href="#attendees-and-their-missions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Alright, so picture this; I&rsquo;m invited to a roundtable meeting. It&rsquo;s filled with
+super strong folks from different verticals, all doing hardcore AI in production:
+security (Wiz, Cybereason), industrial giants (Siemens), data-driven startups (Nimbleways,
+Claroty), stealth-mode innovators (Qualify), and more. Everyone brought a unique
+problem or perspective:</p>
+<ul>
+<li><strong>Michael at <a href="https://www.nimbleway.com/">Nimbleway</a></strong> is on a mission to
+scrape HTML with LLMs and package data “as a service.” Their main hurdle?
+Determining whether manual approvals belong in the production loop or in the
+training loop — or maybe both.</li>
+<li><strong><a href="https://www.linkedin.com/in/tal-waitzenberg-570a91136/">Tal</a> at <a href="https://www.wiz.io/">Wiz</a></strong>
+is all about LLM automation for security value. The stakes are high: a misstep
+in automation or remediation could cause serious breakage.</li>
+<li><strong><a href="https://www.linkedin.com/in/david-columbus/">David</a> at Siemens</strong> is building
+an AI-native app in an industrial setting. Everything from latency to risk
+management has about a thousand times more urgency when the production floor
+is involved.</li>
+<li><strong>Dan</strong> is working on stealth security solutions for LLMs, dealing with
+verifying requests and responses under strict latency constraints.</li>
+</ul>
+<p>One interesting technical/training trick that was raised was reversing training
+to get faster results.</p>
+<p>After you train a model to give good &ldquo;expert&rdquo; results in a specific space,
+you get a really long response (to include all the justifications and
+chain-of-thought). But you only really care about the final verdict. So Dan told
+us about a really cool technique where you reverse the training data, so that the
+model learns to give the final verdict first, and then the justifications, you
+get results of the same quality, but much faster. Here’s a snippet of
+pseudo-code illustrating the kind of “fast path” verification approach Dan
+talked about, from what I understood during the meetup:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">llm_verify</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">llm_response</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">streamed_bytes</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decision</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Simulate streaming response</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">0.2</span><span class="p">:</span>  <span class="c1"># 200ms threshold</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chunk</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">stream_verification</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">llm_response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">streamed_bytes</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">streamed_bytes</span> <span class="o">&gt;=</span> <span class="n">MIN_REQUIRED_BYTES</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">decision</span> <span class="o">=</span> <span class="n">process_streamed_data</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">decision</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="s2">&#34;Verification took too long!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">decision</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">process_streamed_data</span><span class="p">(</span><span class="n">chunk</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Process the streamed data to make a decision</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># This is a placeholder function</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;safe&#34;</span> <span class="k">if</span> <span class="s2">&#34;safe&#34;</span> <span class="ow">in</span> <span class="n">chunk</span> <span class="k">else</span> <span class="s2">&#34;unsafe&#34;</span>
+</span></span></code></pre></div><p>By reversing the training data, he ensures the model quickly outputs a “yes/no”
+or “safe/unsafe” before generating a more verbose explanation—saving precious
+milliseconds. But because it&rsquo;s the same data, just in reverse, you get the same
+results.</p>
+<p>How cool is that?!</p>
+<p><img src="/images/lunar-ai-meetup/flip-it.gif" alt="reverse it"></p>
+<h3 id="common-themes-and-takeaways">Common Themes and Takeaways<a href="#common-themes-and-takeaways" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h4 id="production-challenges">Production Challenges<a href="#production-challenges" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Shipping an AI model to production is fundamentally different from deploying a
+typical web service or microservice - the customer expectations are different,
+but the usual constraints are the same&hellip; Like cost, latency, reliability; all
+magnified by the unpredictable nature of LLM outputs. It’s not just about uptime
+anymore; it’s about ensuring the LLM doesn’t hallucinate an answer that&rsquo;s going
+to land you in jail!</p>
+<p>We talked a lot about how users might be more &ldquo;forgiving&rdquo; of AI-generated content
+but that depends on the context and risk level. Overall everybody agreed that it
+sucks that as an industry we&rsquo;re accepting the fact that our products are going
+to become less reliable and more unpredictable, but shrugged - if users are OK
+with it because overall it makes them more empowered, then that&rsquo;s the way it is;
+&ldquo;Money Talks&rdquo;.</p>
+<p><img src="/images/lunar-ai-meetup/money-talks.png" alt="money-talks"></p>
+<h4 id="the-risk-spectrum">The Risk Spectrum<a href="#the-risk-spectrum" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Several people noted that some use cases inherently have higher risk (e.g.,
+auto-remediation in security systems) while others are more forgiving (like
+text-to-query for analytics). A wise approach is to start with internal
+rollouts, gather feedback, and only then gradually move to production.</p>
+<p>Gradual rollouts are nothing new but there&rsquo;s a lot more to think about - e.g.
+generating a response once that&rsquo;s good and then the page refreshes and the
+response is worse now?</p>
+<h4 id="latency-vs-accuracy">Latency vs. Accuracy<a href="#latency-vs-accuracy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Dan’s story of needing sub-200ms responses for an LLM-based approval system
+highlighted a classic trade-off: do you slow down the conversation for a
+thorough check, or sacrifice depth for speed?</p>
+<p>The real twist is that it&rsquo;s possible to not have to eat the cost of the tradeoff:</p>
+<blockquote>
+<p><strong>“Being a critic is easier than being a creator.”</strong><br>
+Verification can be quicker than generation, which paves the way for “checker
+bots” that keep your creative LLM on the straight and narrow without turning
+your user experience into a waiting room.</p>
+</blockquote>
+<h4 id="llm-ops-observability-and-monitoring">LLM Ops: Observability and Monitoring<a href="#llm-ops-observability-and-monitoring" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>Teams at Claroty and Nimble both stressed the need to track cost, latency,
+acceptance rates, prompt sizes, and more. Some set alerts at 80% of usage to
+avoid “accidental bankruptcy.” Others build custom caching or structured
+responses to handle nondeterminism. If you’ve been ignoring LLM observability,
+consider this your sign to build a dashboard yesterday.</p>
+<p>For a deeper dive into modern AI stack design principles, Luli pointed to the
+<a href="https://menlovc.com/perspective/the-modern-ai-stack-design-principles-for-the-future-of-enterprise-ai-architectures/">Menlo Ventures blog post</a>,
+which outlines how enterprise architectures are evolving to accommodate LLMs.</p>
+<p><img src="https://menlovc.com/wp-content/uploads/2024/01/modern_ai_stack-market_map-020724-scaled.webp" alt="ai"></p>
+<h2 id="meetup-1-generative-ai-and-the-changing-api-landscape">Meetup #1: Generative AI and the Changing API Landscape<a href="#meetup-1-generative-ai-and-the-changing-api-landscape" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><img src="/images/lunar-ai-meetup/meetup-invite.png" alt="invite"></p>
+<h3 id="the-new-api-frontier">The New API Frontier<a href="#the-new-api-frontier" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The first meetup pivoted to how GenAI is reshaping the API world. The fact is
+that Lunar is an API company, so it makes sense the focus was on that. The gist:
+<em>we’re seeing a shift from well-defined, parameter-based APIs to chat-based or
+“conversational” APIs, where the request shape might be dynamic</em>.</p>
+<blockquote>
+<p>Note that I don&rsquo;t necessarily agree with this, and specifically think this is
+a really BAD idea. It&rsquo;s just going to cause bad, unreliable APIs and systems.
+After the first N calls, at some point you want to sit down and write a spec.
+The <a href="/posts/ai-assisted-api-design.md">LLM can help you with that</a>, but that
+should be the end goal, not the starting point.</p>
+</blockquote>
+<p>That means new standards (or maybe none at all!), bigger context windows, and a
+whole lot more complexity. One participant joked we’re basically turning
+“machine-to-machine” calls into “machine-to-slightly-sassy-machine” dialogues.</p>
+<h3 id="challenges-in-genai">Challenges in GenAI<a href="#challenges-in-genai" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>
+<p><strong>Compliance vs. “Real” Security</strong></p>
+<p>With agentified systems, regulatory compliance is one thing. Annoying but
+solvable with the right guardrails in place. True security, however, involves
+RBAC, access control, and the question of how to delegate authority to an AI
+agent or chat interface.</p>
+<p>If your app automatically grants new permissions based on an LLM’s
+recommendation, you better have a rock-solid trust model behind it. It&rsquo;s also
+not super obvious how to solve AuthN for agentic systems for normal consumers
+that don&rsquo;t want to worry about API keys and just use OAuth.</p>
+</li>
+<li>
+<p><strong>Language Preferences</strong></p>
+<p>Many users prefer querying AI in their native tongue, and it works (even if
+you don&rsquo;t put a lot of effort into i18ning it. This
+multi-lingual angle gives a ton of value. It might add complexity to training
+data and model selection — especially if your AI-based search needs to handle
+complex stuff - but generally a surprisingly small amount of effort can go a
+long way.</p>
+</li>
+<li>
+<p><strong>Benchmark Workflow</strong></p>
+<p>There’s no standard workflow for AI product development. <strong>Naor</strong> shared
+experiences around generating searches directly on Elastic or Mongo with AI and
+struggling to be based on OpenAPI or Frontend, while
+<strong>Itai</strong> pointed out that the underlying infrastructures change so fast that
+heavy fine-tuning often leads to chasing your tail.</p>
+<blockquote>
+<p><strong>“If you invest a lot into fine-tuning, you’ll find yourself re-fine-tuning
+every time your domain changes.”</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="the-ai-stack-is-constantly-evolving">The AI Stack Is Constantly Evolving<a href="#the-ai-stack-is-constantly-evolving" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>VCs like Pitango note that more than half of new “model-maker” startups
+have raised significant funding:</p>
+<blockquote>
+<p>&ldquo;The emerging AI stack, complete with new opportunities to rebuild entire
+industries, offers real potential. Yet cost, accuracy, latency, and security
+remain the big four areas where solutions are more duct-tape than best practice.&rdquo;</p>
+</blockquote>
+<p>My take? Surprise surprise, the VC that invests in AI startups thinks that AI
+startups are a good investment. 😉</p>
+<h3 id="example-at-scale-wix">Example at scale: Wix<a href="#example-at-scale-wix" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>We talked about AI for internal PMs - not the AI for external users. So, not
+this:</p>
+<p><img src="/images/lunar-ai-meetup/ai-tools-for-wix-users.png" alt="AI tools for Wix users"></p>
+<p>At Wix, an “orchestration team” apparently builds abstractions so that product
+managers can just say, “I want an AI agent that can do X and Y; hook it up!”.
+That’s the dream scenario: frictionless AI integration. But behind the scenes,
+it’s likely a labyrinth of microservices, prompts, caching layers, and more.</p>
+<p>The specific use case that was brought up was using AI to generate a &ldquo;Tax builder&rdquo;
+tool for e-commerce users for Wix. Building that is complicated and repetitive,
+since there are a ton of tax codes all over the globe. So instead of asking the
+PM to build it, the PM asked for an agent from the orchestration
+team, with high-level natural language requirements, and just gets an agent back.</p>
+<p>The roundtable was super interested and asked a ton of questions about why do this,
+what exactly was the implementation, how do you know it&rsquo;s working, etc. But I
+didn&rsquo;t write it down in my notes ☹️, too many snacks at that time 🥒.</p>
+<h2 id="common-insights--observations">Common Insights &amp; Observations<a href="#common-insights--observations" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Throughout both meetups, I shared some personal thoughts and experiences from
+working with AI:</p>
+<ul>
+<li>
+<p><strong>Slow Rollout &amp; Human-in-the-Loop</strong></p>
+<blockquote>
+<p>“Start with internal users, gather feedback until it’s good enough, and then roll out gradually.”</p>
+</blockquote>
+<p>This was repeated by people like Tal, Michael, and David, who are all dealing with different levels of risk in production.</p>
+</li>
+<li>
+<p><strong>Context &amp; RAG (Retrieval Augmented Generation)</strong></p>
+<p>If your LLM is prone to hallucination, feeding it relevant documents or a
+knowledge base (often referred to as RAG) can dramatically boost its reliability.
+Combined with few-shot examples, you can drastically reduce nonsense answers.
+For many use cases, the context window
+is big enough to supply good answers - but as you scale, this costs more and more,
+so even if the answers are good enough maybe loading the system prompt with
+more and more context is not the best idea.</p>
+</li>
+<li>
+<p><strong>Agentifying Existing Apps</strong></p>
+<p>David’s approach at Siemens: represent chat histories as a single string for
+easier portability between open-source and commercial LLMs. Similarly, <strong>Amir</strong> at
+LogicBlocks is exploring RPA automation through LLM-based agents.</p>
+<blockquote>
+<p>&ldquo;RPA is dead&rdquo; - Amir, LogicBlocks</p>
+</blockquote>
+<p>Everyone’s trying to figure out how to keep these systems “agnostic” so they
+can switch providers or models without rewriting entire pipelines. New foundational
+models and cost cutting options like moving providers are the drivers here.</p>
+</li>
+<li>
+<p><strong>Where People Want AI vs. Where They Don’t</strong></p>
+<p>The biggest surprise for me? Many enterprise clients actually <strong>want</strong> AI in
+user-facing dashboards, but get wary when you propose hooking LLMs into core
+back-end workflows or database queries. The trust factor isn’t there yet,
+but it’s slowly building.</p>
+</li>
+</ul>
+<h2 id="key-takeaways-and-a-glimpse-at-whats-next">Key Takeaways and a Glimpse at What’s Next<a href="#key-takeaways-and-a-glimpse-at-whats-next" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="agent-to-agent-interactions"><strong>Agent-to-Agent Interactions</strong><a href="#agent-to-agent-interactions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>More than one person is exploring how LLMs can talk to other LLMs, automating
+entire workflows and possibly &ldquo;unleashing an AI communications revolution&rdquo;.</p>
+<p><img src="/images/lunar-ai-meetup/agent-llm-meme.png" alt="agent-llm-meme"></p>
+<p>⚠️ opinion ahead:</p>
+<p>Like I already mentioned, I think this is a bad idea. It&rsquo;s going to be a mess.
+Very very <em>very</em> specific agents, with very very <em>very</em> specific tasks, might be
+OK at doing junior-level work with a low <em>enough</em> error rate to be acceptable.
+And the fact that they&rsquo;re &ldquo;free&rdquo; (unless you count the tokens) and &ldquo;fast&rdquo; (unless
+you count the latency, and the redos) might make them acceptable if they&rsquo;re working
+against a stable system. But two LLMs talking to each other? Sounds to me like we&rsquo;re
+going to get a lot of &ldquo;I&rsquo;m sorry, Dave, I can&rsquo;t do that&rdquo; moments&hellip; And worse if
+they&rsquo;re both trying to please and they have real permissions. Like, can&rsquo;t you
+just imagine the following happening:</p>
+<p><img src="/images/lunar-ai-meetup/cb-fake-chat-gpt-post.png" alt="two-llms-talking"></p>
+<h3 id="iterate-iterate-iterate"><strong>Iterate, Iterate, Iterate</strong><a href="#iterate-iterate-iterate" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Everything old is new again. There are some truths about software engineering
+that havent changed and this one is one of them: you can’t just launch and forget.
+AI applications need constant iteration, monitoring, and possibly retraining
+(or prompt tweaking) to stay effective. Since chat interfaces are so &ldquo;fuzzy&rdquo;,
+and humans are creative, if you have enough usage you can expect to see many
+new inputs that you didn&rsquo;t think of.</p>
+<h3 id="human-in-the-loop-for-critical-use-cases"><strong>Human-in-the-Loop for Critical Use Cases</strong><a href="#human-in-the-loop-for-critical-use-cases" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Manual reviews aren’t going away any time soon, especially for high-risk or
+regulated scenarios. Strategically placing a person to sign off on critical AI
+decisions is still the best way to balance innovation with safety.</p>
+<p>Here, other than implementing this into your product, a lot of explainability
+and stability of outputs is paramount. You don&rsquo;t want to regenerate recommendations
+every time the page refreshes; you want one great recommendation that will stick.
+So if the person in charge of signing off on the AI&rsquo;s decisions can&rsquo;t understand
+why the AI is recommending something, they&rsquo;re not going to sign off on it - and
+if they did figure it out and approve, they&rsquo;re going to be very upset if the
+recommendation changes.</p>
+<p><img src="/images/lunar-ai-meetup/one-shot-one-kill.png" alt="one shot one kill"></p>
+<h3 id="new-opportunities-for-tooling"><strong>New Opportunities for Tooling</strong><a href="#new-opportunities-for-tooling" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The complexities around prompts, contexts, caching, and verifying outputs open
+the door for new developer tools. As was said more than once:</p>
+<blockquote>
+<p><strong>“The real money might be in building tools for the tool makers.”</strong></p>
+</blockquote>
+<p>Seems to me like there are two big winners from this:</p>
+<ul>
+<li>Companies who will build tools for deploying AI to production (all across the stack:
+Lunar is a great example of something like this). This is the &ldquo;during a gold rush,
+sell shovels&rdquo; argument.</li>
+<li>Companies who will be building products that are only possible with AI.</li>
+</ul>
+<p>Why aren&rsquo;t &ldquo;regular companies who use AI&rdquo; on this list? Because they have
+competitors who are going to be using the same tools and the same AI. So there
+they&rsquo;re not big winners - just everybody&rsquo;s getting better. This <em>might</em> cause
+an overall lower cost for product development, but I&rsquo;m not seeing it for now
+just because of the low quality of the tools.</p>
+<h2 id="almost-final-thoughts">(Almost) Final Thoughts<a href="#almost-final-thoughts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Leaving these meetups, I felt equal parts excited (&ldquo;oh, that&rsquo;s a really cool
+idea/technique!&rdquo;) and overwhelmed (&ldquo;OMG, I have so much to catch up on&hellip;&rdquo;).
+We’re at a point where the barrier to <strong>starting</strong> with AI is lower than ever.
+Just grab an API key and get rocking. But the barrier to <strong>maintaining</strong> AI in
+production is pretty high. It’s a wild, shifting landscape, and the best
+approach for now seems to be:</p>
+<ul>
+<li>thoughtful, incremental adoption</li>
+<li>with strong monitoring</li>
+<li>a willingness to learn from unexpected fiascos</li>
+<li>trying to use a foundational model instead of building everything from scratch</li>
+</ul>
+<p>If you’re about to embark on your AI journey, consider these meetups a friendly
+warning: <strong>expect the unpredictable.</strong> Build guardrails, track your costs, keep
+a human in the loop for critical decisions, and brace yourself for the day when
+“machine-to-machine” becomes “machine-to-slightly-sassy-machine.” Because if
+there’s one thing everyone agreed on, it’s that this space is just getting started
+and it’s not slowing down anytime soon.</p>
+<h2 id="really-final-thoughts">Really final thoughts<a href="#really-final-thoughts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>This was super interesting but the fundamentals of the space haven&rsquo;t changed.
+While there&rsquo;s a lot to learn, knowing basics of how computers work, problem
+solving, product management, collaboration, and communication are still very
+useful skills.</p>
+<p>Thanks again to the Lunar team for hosting these meetups! I&rsquo;m flattered that I
+was invited and happy for the networking opportunities. 🚀</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/gophercon-israel-2024/">GopherCon Israel 2024</a></li>
+	
+	<li><a href="/posts/what-is-an-api-proxy/">What is an API proxy?</a></li>
+	
+	<li><a href="/posts/api-consumption-problems-101-a-hands-on-guide/">API Consumption Problems 101 - a hands-on guide</a></li>
+	
+	<li><a href="/posts/lucid-vuln-report/">Vulnerability Report: Are LucidCharts Safe When Shared to Confluence?</a></li>
+	
+	<li><a href="/posts/swimming-with-monkeys/">Swimm.io and Infection Monkey - Open Source Contributor Summit</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/ai">AI</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/security">security</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/lunar">lunar</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/meetup">meetup</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2686 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2025-01-10 22:19 &#43;0200</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/shell-tricks-bag/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>🦪 5 Shell Tricks, because why not</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			&#183; <a href="https://mrnicedev.onlineornot.com/" title="Status" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" class="feather"><rect width="24" height="24" opacity="0"/><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z"/><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
+	}
+</script>
+
+</body>
+
+</html>

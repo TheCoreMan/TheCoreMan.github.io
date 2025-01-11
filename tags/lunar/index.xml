@@ -6,8 +6,15 @@
     <description>Recent content in Lunar on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 23:22:44 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2025 22:19:17 +0200</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/lunar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🌘 AI Roundtables @lunar.dev</title>
+      <link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
+      <pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
+      <guid>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</guid>
+      <description>&lt;h2 id=&#34;thank-you-lunar-team&#34;&gt;Thank You, Lunar Team&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into all the AI insights: thanks &lt;strong&gt;Luli&lt;/strong&gt;, &lt;strong&gt;Gabbay&lt;/strong&gt;, &lt;strong&gt;Chen&lt;/strong&gt;&#xA;from &lt;a href=&#34;https://www.lunar.dev/&#34;&gt;lunar.dev&lt;/a&gt; for arranging these meetups and letting&#xA;me be a part of what y&amp;rsquo;all are building. Leading the charge on AI thought&#xA;leadership is hard with so much BS in the air.&lt;/p&gt;&#xA;&lt;p&gt;I definitely learned a ton, met cool folks from the industry, and even had fun.&#xA;So thanks! 🙏&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/lunar-ai-meetup/selfie.jpeg&#34; alt=&#34;selfie&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Alright, enough schmoozing. Let&amp;rsquo;s get to the good stuff. I wrote down these notes&#xA;during the meetup, so obviously I might have missed some things; if you were there&#xA;and want to add something, please &lt;a href=&#34;https://www.mrnice.dev/about/#-nc-shay_nehmad-443&#34;&gt;reach out&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>What is an API proxy?</title>
       <link>https://www.mrnice.dev/posts/what-is-an-api-proxy/</link>
