@@ -19,19 +19,17 @@
 	
 
   <meta itemprop="name" content="🌘 AI Roundtables @lunar.dev">
-  <meta itemprop="description" content="Thank You, Lunar Team Before diving into all the AI insights: thanks Luli, Gabbay, Chen from lunar.dev for arranging these meetups and letting me be a part of what y’all are building. Leading the charge on AI thought leadership is hard with so much BS in the air.
-I definitely learned a ton, met cool folks from the industry, and even had fun. So thanks! 🙏
-Alright, enough schmoozing. Let’s get to the good stuff. I wrote down these notes during the meetup, so obviously I might have missed some things; if you were there and want to add something, please reach out.">
+  <meta itemprop="description" content="Thank You, Lunar Team Before diving into all the AI insights: thanks Eyal Solomon (aka Luli, CEO) and Roy Gabbay (aka Gabbay, CTO), and Rotem (VP R&amp;D), from lunar.dev for arranging these meetups and letting me be a part of what y’all are building. Leading the charge on AI thought leadership is hard with so much BS in the air.
+I definitely learned a ton, met cool folks from the industry, and even had fun. So thanks! 🙏">
   <meta itemprop="datePublished" content="2025-01-10T22:19:17+02:00">
   <meta itemprop="dateModified" content="2025-01-10T22:19:17+02:00">
-  <meta itemprop="wordCount" content="2722">
+  <meta itemprop="wordCount" content="2737">
   <meta itemprop="image" content="https://www.mrnice.dev/images/lunar-ai-meetup/selfie.jpeg">
   <meta itemprop="keywords" content="AI,Security,Lunar,Meetup"><meta property="og:url" content="https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/">
   <meta property="og:site_name" content="mrnice.dev">
   <meta property="og:title" content="🌘 AI Roundtables @lunar.dev">
-  <meta property="og:description" content="Thank You, Lunar Team Before diving into all the AI insights: thanks Luli, Gabbay, Chen from lunar.dev for arranging these meetups and letting me be a part of what y’all are building. Leading the charge on AI thought leadership is hard with so much BS in the air.
-I definitely learned a ton, met cool folks from the industry, and even had fun. So thanks! 🙏
-Alright, enough schmoozing. Let’s get to the good stuff. I wrote down these notes during the meetup, so obviously I might have missed some things; if you were there and want to add something, please reach out.">
+  <meta property="og:description" content="Thank You, Lunar Team Before diving into all the AI insights: thanks Eyal Solomon (aka Luli, CEO) and Roy Gabbay (aka Gabbay, CTO), and Rotem (VP R&amp;D), from lunar.dev for arranging these meetups and letting me be a part of what y’all are building. Leading the charge on AI thought leadership is hard with so much BS in the air.
+I definitely learned a ton, met cool folks from the industry, and even had fun. So thanks! 🙏">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -50,16 +48,13 @@ Alright, enough schmoozing. Let’s get to the good stuff. I wrote down these no
 <meta
 	name="description"
 	content="Thank You, Lunar Team
-Before diving into all the AI insights: thanks Luli, Gabbay, Chen
+Before diving into all the AI insights: thanks Eyal Solomon (aka Luli, CEO)
+and Roy Gabbay (aka Gabbay, CTO), and Rotem (VP R&amp;D),
 from lunar.dev for arranging these meetups and letting
 me be a part of what y&rsquo;all are building. Leading the charge on AI thought
 leadership is hard with so much BS in the air.
 I definitely learned a ton, met cool folks from the industry, and even had fun.
-So thanks! 🙏
-
-Alright, enough schmoozing. Let&rsquo;s get to the good stuff. I wrote down these notes
-during the meetup, so obviously I might have missed some things; if you were there
-and want to add something, please reach out."
+So thanks! 🙏"
 />
 <script type="application/ld+json">
 	{
@@ -124,7 +119,8 @@ and want to add something, please reach out."
 			<div class="content">
 				
 				<h2 id="thank-you-lunar-team">Thank You, Lunar Team<a href="#thank-you-lunar-team" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Before diving into all the AI insights: thanks <strong>Luli</strong>, <strong>Gabbay</strong>, <strong>Chen</strong>
+<p>Before diving into all the AI insights: thanks Eyal Solomon (aka <strong>Luli</strong>, CEO)
+and Roy Gabbay (aka <strong>Gabbay</strong>, CTO), and <strong>Rotem</strong> (VP R&amp;D),
 from <a href="https://www.lunar.dev/">lunar.dev</a> for arranging these meetups and letting
 me be a part of what y&rsquo;all are building. Leading the charge on AI thought
 leadership is hard with so much BS in the air.</p>
@@ -177,12 +173,13 @@ for LLMs, dealing with verifying requests and responses under strict latency con
 to get faster results.</p>
 <p>After you train a model to give good &ldquo;expert&rdquo; results in a specific space,
 you get a really long response (to include all the justifications and
-chain-of-thought). But you only really care about the final verdict. So Dan told
+chain-of-thought). But you only really care about the final verdict. So one of the
+attendees told
 us about a really cool technique where you reverse the training data, so that the
 model learns to give the final verdict first, and then the justifications, you
 get results of the same quality, but much faster. Here’s a snippet of
-pseudo-code illustrating the kind of “fast path” verification approach Dan
-talked about, from what I understood during the meetup:</p>
+pseudo-code illustrating the kind of that “fast path” verification approach,
+from what I understood during the meetup:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">llm_verify</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">llm_response</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">streamed_bytes</span> <span class="o">=</span> <span class="mi">0</span>
@@ -258,7 +255,8 @@ which outlines how enterprise architectures are evolving to accommodate LLMs.</p
 <p><img src="/images/lunar-ai-meetup/meetup-invite.png" alt="invite"></p>
 <h3 id="the-new-api-frontier">The New API Frontier<a href="#the-new-api-frontier" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>The first meetup pivoted to how GenAI is reshaping the API world. The fact is
-that Lunar is an API company, so it makes sense the focus was on that. The gist:
+that Lunar is an API consumption management company, so it makes sense the focus
+was on that. The gist:
 <em>we’re seeing a shift from well-defined, parameter-based APIs to chat-based or
 “conversational” APIs, where the request shape might be dynamic</em>.</p>
 <blockquote>
@@ -480,7 +478,7 @@ was invited and happy for the networking opportunities. 🚀</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/ai">AI</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/security">security</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/lunar">lunar</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/meetup">meetup</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2722 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2737 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2025-01-10 22:19 &#43;0200</p>
 			</footer>
 		</article>
