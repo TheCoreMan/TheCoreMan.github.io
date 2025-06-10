@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Typescript on mrnice.dev</title>
-    <link>http://localhost:1313/tags/typescript/</link>
+    <link>https://www.mrnice.dev/tags/typescript/</link>
     <description>Recent content in Typescript on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 06 Mar 2025 07:14:57 -0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.mrnice.dev/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Nestjs Lifecycle</title>
-      <link>http://localhost:1313/posts/nestjs-lifecycle/</link>
+      <title>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</title>
+      <link>https://www.mrnice.dev/posts/nestjs-lifecycle/</link>
       <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
-      <guid>http://localhost:1313/posts/nestjs-lifecycle/</guid>
-      <description>&lt;p&gt;First blogpost about stuff I&amp;rsquo;ve learned since I started working at &lt;a href=&#34;https://www.opsinsecurity.com/&#34;&gt;Opsin&#xA;Security&lt;/a&gt;! Check out this &lt;a href=&#34;https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY&#34;&gt;post for more&#xA;details&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;nestjs-lifecycle-issues&#34;&gt;NestJS lifecycle issues&lt;/h2&gt;&#xA;&lt;p&gt;Recently at work I filed a new ticket on Linear related to NestJS: when modules&lt;/p&gt;&#xA;&lt;h2 id=&#34;building-the-skeleton&#34;&gt;Building the skeleton&lt;/h2&gt;&#xA;&lt;p&gt;First let&amp;rsquo;s generate some modules by running &lt;code&gt;nest g module&lt;/code&gt; commands.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/nestjs/generate-modules.png&#34; alt=&#34;generate modules&#34;&gt;&lt;/p&gt;</description>
+      <guid>https://www.mrnice.dev/posts/nestjs-lifecycle/</guid>
+      <description>&lt;p&gt;First blogpost about stuff I&amp;rsquo;ve learned since I (Shay Nehmad) started working at&#xA;&lt;a href=&#34;https://www.opsinsecurity.com/&#34;&gt;Opsin Security&lt;/a&gt;!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/opsin-logo.svg&#34; alt=&#34;opsin-logo&#34; title=&#34;Opsin Security logo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Check out this &lt;a href=&#34;https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY&#34;&gt;post for more&#xA;details&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;nestjs-lifecycle-issues&#34;&gt;NestJS lifecycle issues&lt;/h2&gt;&#xA;&lt;p&gt;Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It&#xA;was a followup on a ramble on a Slack thread:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/nestjs/slack.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When a certain shared module &lt;em&gt;started&lt;/em&gt; (vagueness on purpose), even though I&#xA;wanted it to load only once, it was being loaded multiple times. In this&#xA;case it was annoying because it was the database module - and it ran migrations&#xA;multiple times each load. Here&amp;rsquo;s how it looked in the logs (simplified):&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

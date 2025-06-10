@@ -6,8 +6,15 @@
     <description>Recent content on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 22:19:17 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 06 Mar 2025 07:14:57 -0800</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</title>
+      <link>https://www.mrnice.dev/posts/nestjs-lifecycle/</link>
+      <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+      <guid>https://www.mrnice.dev/posts/nestjs-lifecycle/</guid>
+      <description>&lt;p&gt;First blogpost about stuff I&amp;rsquo;ve learned since I (Shay Nehmad) started working at&#xA;&lt;a href=&#34;https://www.opsinsecurity.com/&#34;&gt;Opsin Security&lt;/a&gt;!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/opsin-logo.svg&#34; alt=&#34;opsin-logo&#34; title=&#34;Opsin Security logo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Check out this &lt;a href=&#34;https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY&#34;&gt;post for more&#xA;details&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;nestjs-lifecycle-issues&#34;&gt;NestJS lifecycle issues&lt;/h2&gt;&#xA;&lt;p&gt;Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It&#xA;was a followup on a ramble on a Slack thread:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/nestjs/slack.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When a certain shared module &lt;em&gt;started&lt;/em&gt; (vagueness on purpose), even though I&#xA;wanted it to load only once, it was being loaded multiple times. In this&#xA;case it was annoying because it was the database module - and it ran migrations&#xA;multiple times each load. Here&amp;rsquo;s how it looked in the logs (simplified):&lt;/p&gt;</description>
+    </item>
     <item>
       <title>🌘 AI Roundtables @lunar.dev</title>
       <link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
@@ -140,13 +147,6 @@
       <pubDate>Sat, 12 Aug 2023 21:50:07 +0300</pubDate>
       <guid>https://www.mrnice.dev/posts/trying-out-talon-and-cursorless-part-0/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;ldquo;Shay, you mentioned some number of episodes ago that the army took your mouse&#xA;for a while. What would you do if they took your keyboard, as well?&amp;rdquo;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;This post is starting out by me typing it on my keyboard. However, if things go&#xA;well, by the end of this post some part should be typed out with my voice.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Every part that is in between lines (like this one) is actually typed out with Cursorless&#xA;and with my voice, not my keyboard.I&amp;rsquo;ll try to keep some of the mistakes in&#xA;which is why these parts might be slightly weirdly formatted or even have some mistakes.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>API Consumption Problems 101 - a hands-on guide</title>
-      <link>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</link>
-      <pubDate>Sat, 01 Jul 2023 12:07:50 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/api-consumption-problems-101-a-hands-on-guide/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

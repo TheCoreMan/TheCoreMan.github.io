@@ -6,8 +6,22 @@
     <description>Recent content in Tags on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 22:19:17 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 06 Mar 2025 07:14:57 -0800</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nestjs</title>
+      <link>https://www.mrnice.dev/tags/nestjs/</link>
+      <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+      <guid>https://www.mrnice.dev/tags/nestjs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Typescript</title>
+      <link>https://www.mrnice.dev/tags/typescript/</link>
+      <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+      <guid>https://www.mrnice.dev/tags/typescript/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
       <link>https://www.mrnice.dev/tags/ai/</link>
@@ -132,20 +146,6 @@
       <link>https://www.mrnice.dev/tags/tools/</link>
       <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
       <guid>https://www.mrnice.dev/tags/tools/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Meetups</title>
-      <link>https://www.mrnice.dev/tags/meetups/</link>
-      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/meetups/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Algorithms</title>
-      <link>https://www.mrnice.dev/tags/algorithms/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/algorithms/</guid>
       <description></description>
     </item>
   </channel>

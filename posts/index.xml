@@ -9,6 +9,266 @@
 		<atom:link href="https://www.mrnice.dev/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
+			<title>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</title>
+			<link>https://www.mrnice.dev/posts/nestjs-lifecycle/</link>
+			<pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+			
+			<guid>https://www.mrnice.dev/posts/nestjs-lifecycle/</guid>
+			<description>&lt;p&gt;First blogpost about stuff I&amp;rsquo;ve learned since I (Shay Nehmad) started working at
+&lt;a href=&#34;https://www.opsinsecurity.com/&#34;&gt;Opsin Security&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/opsin-logo.svg&#34; alt=&#34;opsin-logo&#34; title=&#34;Opsin Security logo&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Check out this &lt;a href=&#34;https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY&#34;&gt;post for more
+details&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;nestjs-lifecycle-issues&#34;&gt;NestJS lifecycle issues&lt;/h2&gt;
+&lt;p&gt;Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It
+was a followup on a ramble on a Slack thread:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/nestjs/slack.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When a certain shared module &lt;em&gt;started&lt;/em&gt; (vagueness on purpose), even though I
+wanted it to load only once, it was being loaded multiple times. In this
+case it was annoying because it was the database module - and it ran migrations
+multiple times each load. Here&amp;rsquo;s how it looked in the logs (simplified):&lt;/p&gt;</description>
+			<content type="html"><![CDATA[<p>First blogpost about stuff I&rsquo;ve learned since I (Shay Nehmad) started working at
+<a href="https://www.opsinsecurity.com/">Opsin Security</a>!</p>
+<p><img src="/images/opsin-logo.svg" alt="opsin-logo" title="Opsin Security logo"></p>
+<p>Check out this <a href="https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY">post for more
+details</a>.</p>
+<h2 id="nestjs-lifecycle-issues">NestJS lifecycle issues</h2>
+<p>Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It
+was a followup on a ramble on a Slack thread:</p>
+<p><img src="/images/nestjs/slack.png" alt="alt text"></p>
+<p>When a certain shared module <em>started</em> (vagueness on purpose), even though I
+wanted it to load only once, it was being loaded multiple times. In this
+case it was annoying because it was the database module - and it ran migrations
+multiple times each load. Here&rsquo;s how it looked in the logs (simplified):</p>
+<pre tabindex="0"><code class="language-log" data-lang="log">&gt; nest start
+
+69061 2/26/2025, 3:21:16 PM     LOG [NestFactory] Starting Nest application... +0ms
+...
+69061 2/26/2025, 3:21:16 PM     LOG [InstanceLoader] ConfigModule dependencies initialized +1ms
+69061 2/26/2025, 3:21:16 PM   DEBUG [DatabaseConnectionProvider] Connecting to DB using pg... +0ms
+69061 2/26/2025, 3:21:16 PM   DEBUG [DatabaseConnectionProvider] Connecting to DB using pg... +0ms
+69061 2/26/2025, 3:21:16 PM   DEBUG [DatabaseConnectionProvider] Connecting to DB using pg... +0ms
+...
+69061 2/26/2025, 3:21:17 PM   DEBUG [DatabaseConnectionProvider] Running migrations using dbmate... +0ms
+69061 2/26/2025, 3:21:17 PM     LOG [DatabaseConnectionProvider] Migrations ran successfully - {
+  output: &#39;Applying: 20250120134452_REDACRED.sql\n&#39; +
+    &#39;Applied: 20250120134452_REDACTED.sql in 9.877167ms\n&#39; +
+...
+} +0ms
+69061 2/26/2025, 3:21:17 PM   DEBUG [DatabaseConnectionProvider] Running migrations using dbmate... +0ms
+69061 2/26/2025, 3:21:17 PM     LOG [DatabaseConnectionProvider] Migrations ran successfully - { output: &#39;&#39; } +0ms
+...
+69061 2/26/2025, 3:21:17 PM   DEBUG [DatabaseConnectionProvider] Running migrations using dbmate... +0ms
+69061 2/26/2025, 3:21:17 PM     LOG [DatabaseConnectionProvider] Migrations ran successfully - { output: &#39;&#39; } +0ms
+69061 2/26/2025, 3:21:17 PM     LOG [NestApplication] Nest application successfully started +0ms
+69061 2/26/2025, 3:21:17 PM     LOG [bootstrap] Listening on http://[::1]:4000 +0ms
+</code></pre><p>It didn&rsquo;t cause any bugs in prod, but it polluted the logs and made my skin
+crawl - exactly the sorts of issues that you shouldn&rsquo;t let fester too long&hellip;</p>
+<blockquote>
+<p>Note: we run the migrations using the simple and effective <a href="https://github.com/amacneil/dbmate"><code>dbmate</code></a>, which I&rsquo;ve been using for years now.</p>
+</blockquote>
+<h2 id="rtfm-gg-ez">RTFM GG EZ</h2>
+<p>I started looking into the NestJS docs. My module called the <code>migrate</code> function
+during the <a href="https://docs.nestjs.com/fundamentals/lifecycle-events#onmoduleinit"><code>onModuleInit</code></a>
+lifecycle hook. From the name, it sounded like it was the right place to call
+it. The docs say:</p>
+<blockquote>
+<p>&ldquo;<code>onModuleInit()</code>: Called once the host module&rsquo;s dependencies have been
+resolved.&rdquo;</p>
+</blockquote>
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7z7_NCc_gZY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<p>The docs say &ldquo;once&rdquo;. The code runs multiple times. What gives?</p>
+<h2 id="the-quick-fix-because-im-at-a-startup">The quick fix, because I&rsquo;m at a startup</h2>
+<p>I wanted to delve into this deeply, but startup life means &ldquo;find a pragmatic
+solution and move on&rdquo;. So, if you have a similar issue, here&rsquo;s a quick panecea:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kd">@Injectable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">ModuleThatShouldOnlyInitOnce</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">implements</span> <span class="nx">OnModuleInit</span><span class="p">,</span> <span class="nx">OnModuleDestroy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">private</span> <span class="kr">static</span> <span class="nx">initialized</span>: <span class="kt">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kr">async</span> <span class="nx">onModuleInit() {</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">ModuleThatShouldOnlyInitOnce</span><span class="p">.</span><span class="nx">initialized</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">doInitStuff</span><span class="p">();</span>  <span class="c1">// e.g. run migrations
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">ModuleThatShouldOnlyInitOnce</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>You can repeat this trick for the <code>destroy</code> hook if it&rsquo;s not idempotent as well.
+If you we&rsquo;re just looking for how to fix: that&rsquo;s it!</p>
+<hr>
+<h2 id="figuring-out-the-lifecycle-for-real">Figuring out the lifecycle, for real</h2>
+<p>So, I fixed the issue, and my fix worked. I&rsquo;ve moved on with my life. But what
+if the docs are wrong? Or what if I misunderstood them? I&rsquo;ve been using NestJS
+for a while now; shouldn&rsquo;t I contribute to the internet&rsquo;s collective knowledge
+of how the framework works a bit more?</p>
+<p>I thought about two ways to do this:</p>
+<ol>
+<li><strong>Read the source code</strong> - I could read the NestJS source code, figure out
+how it works, and write a blog post about it.</li>
+<li><strong>Write a demo app</strong> - I could write a demo app that demonstrates the
+lifecycle events.</li>
+</ol>
+<h3 id="wading-in-the-source-code">Wading in the source code</h3>
+<p>I was happy to see <a href="https://github.com/nestjs/nest/blob/master/packages/core/nest-application.ts#L173-176">this</a>
+in NestJS&rsquo;s <code>NestApplication</code> class:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl">  <span class="kr">public</span> <span class="kr">async</span> <span class="nx">init</span><span class="p">()</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">this</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isInitialized</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p><img src="/images/vindication.gif" alt="vindication" title="vindication"></p>
+<p>The NestJS team and me are on the same page :) So, let&rsquo;s find the relevant call
+stack and read it slowly and carefully. Most function calls here are links to
+the actual source code:</p>
+<ol>
+<li>The app initialized in <code>NestApplication.init()</code>, which calls:</li>
+<li><a href="https://github.com/nestjs/nest/blob/master/packages/core/nest-application.ts#L187"><code>await this.callInitHook();</code></a>, which calls:</li>
+<li><a href="https://github.com/nestjs/nest/blob/master/packages/core/nest-application-context.ts#L473"><code>getModulesToTriggerHooksOn(): Module[] {</code></a> - this returns a list of modules that should be initialized, sorted by their distance, to create a topological sort (according to the <a href="https://github.com/nestjs/nest/blob/master/integration/hooks/e2e/on-module-init.spec.ts#L41">unit test</a>). This list is NOT deduped (at least anywhere I can see).</li>
+<li>Then, for each module in the array, <code>callInitHook()</code> calls the <a href="https://github.com/nestjs/nest/blob/master/packages/core/hooks/on-module-init.hook.ts#L37C23-L37C41"><code>callModuleInitHook</code></a> method. Which you&rsquo;d think just calls the <code>onModuleInit</code> method. But it does a lot more! It looks like this, and let&rsquo;s break it down:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">callModuleInitHook</span><span class="p">(</span><span class="nx">module</span>: <span class="kt">Module</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">providers</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">getNonAliasProviders</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Module (class) instance is the first element of the providers array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// Lifecycle hook has to be called once all classes are properly initialized
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">moduleClassHost</span><span class="p">]</span> <span class="o">=</span> <span class="nx">providers</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span><span class="o">!</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">instances</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">module</span><span class="p">.</span><span class="nx">controllers</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">providers</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">module</span><span class="p">.</span><span class="nx">injectables</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">module</span><span class="p">.</span><span class="nx">middlewares</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">nonTransientInstances</span> <span class="o">=</span> <span class="nx">getNonTransientInstances</span><span class="p">(</span><span class="nx">instances</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">await</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">callOperator</span><span class="p">(</span><span class="nx">nonTransientInstances</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">transientInstances</span> <span class="o">=</span> <span class="nx">getTransientInstances</span><span class="p">(</span><span class="nx">instances</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">await</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">callOperator</span><span class="p">(</span><span class="nx">transientInstances</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Call the instance itself
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">moduleClassInstance</span> <span class="o">=</span> <span class="nx">moduleClassHost</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">moduleClassInstance</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hasOnModuleInitHook</span><span class="p">(</span><span class="nx">moduleClassInstance</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">moduleClassHost</span><span class="p">.</span><span class="nx">isDependencyTreeStatic</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="nx">moduleClassInstance</span><span class="p">.</span><span class="nx">onModuleInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></div><p>So, what does callModuleInitHook do:</p>
+<ol start="5">
+<li>Gets all the module&rsquo;s <a href="https://github.com/nestjs/nest/blob/master/packages/core/hooks/on-module-init.hook.ts#L42">instances</a> of <a href="https://github.com/nestjs/nest/blob/master/packages/core/hooks/on-module-init.hook.ts#L38">providers</a>, <a href="https://github.com/nestjs/nest/blob/master/packages/core/hooks/on-module-init.hook.ts#L43-L46">controllers, injectables, and middlewares</a></li>
+<li>Separates the transiant and non-transiant providers</li>
+</ol>
+<p>Hold up; WTF are [non-]transiant providers? I had to look this up, and
+<code>getTransientInstances</code> filters and returns providers that construct a new
+instance for every injection (useful for stateless helpers), while
+<code>getNonTransientInstances</code> returns providers that are not transient (typically
+singleton or request-scoped). Importantly: By default, providers in NestJS are
+<strong>singletons</strong> within the scope of the application or module. This means a
+single instance is created and shared across the app.</p>
+<p>Back to the code&hellip;</p>
+<ol start="7">
+<li>It calls <a href="https://github.com/nestjs/nest/blob/master/packages/core/hooks/on-module-init.hook.ts#L23"><code>callOperator</code></a>,
+which filters non-nil instances and modules that don&rsquo;t have an <code>onModuleInit</code>
+method, and then calls the <code>onModuleInit</code> method on each of them.</li>
+<li>Finally, it calls the <code>onModuleInit()</code> method on the module class itself.</li>
+</ol>
+<p><img src="/images/phew.gif" alt="phew" title="phew"></p>
+<p>After reading all this code, I feel confident that there isn&rsquo;t a straightforward
+mechanism I can see to promise that a module&rsquo;s <code>onModuleInit</code> method will only
+be called once.</p>
+<p>There might be one. I wasn&rsquo;t able to find it after this pretty thorough
+investigation, and the blackbox behavior of my bug from before seems to
+confirm my investigation. But I may have missed something.</p>
+<p>The fact is if I couldn&rsquo;t figure it out yet after reading the docs and the
+code, even if there is a &ldquo;correct&rdquo; way to do it, it&rsquo;s not obvious enough.</p>
+<p>The only thing worth mentioning is that the <code>callOperator</code> function filters
+non-nil instances. But is that enough? not really, since they all run in parallel
+(using <a href="https://github.com/nestjs/nest/blob/master/packages/core/hooks/on-module-init.hook.ts#L49-L50"><code>await Promise.all(callOperator(nonTransientInstances))</code></a>), so if the it might be that multiple instances
+are initialized in parallel.</p>
+<p>The code is complex enough that I don&rsquo;t think static analysis will help me
+understand it better. To the blackbox-mobile!</p>
+<h3 id="writing-a-demo-app">Writing a demo app</h3>
+<p><img src="/images/nestjs/generate-modules.png" alt="generate modules" title="generate modules"></p>
+<p>For each one of the modules, I added prints in the <code>onModuleInit</code> hook, like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kd">@Module</span><span class="p">({})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">FeatureModuleAModule</span> <span class="kr">implements</span> <span class="nx">OnModuleInit</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">onModuleInit() {</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;FeatureModuleA initialized&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Before adding any dependencies, we&rsquo;re getting:</p>
+<pre tabindex="0"><code class="language-log" data-lang="log">FeatureModuleA initialized
+FeatureModuleB initialized
+SharedModuleA initialized
+SharedModuleB initialized
+</code></pre><p>And I added the dependencies like so:</p>
+<ol>
+<li><code>FeatureModuleA</code> depends on <code>SharedModuleA</code></li>
+<li><code>FeatureModuleB</code> depends on <code>FeatureModuleA</code> and <code>SharedModuleB</code></li>
+</ol>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+    FA[FeatureModuleA] --&gt;|depends on| SA[SharedModuleA];
+    FB[FeatureModuleB] --&gt;|depends on| FA;
+    FB --&gt;|depends on| SB[SharedModuleB];
+</code></pre><p><img src="/images/nestjs/mermaid-1.png" alt="mermaid 1" title="mermaid 1"></p>
+<p>Now we&rsquo;re getting:</p>
+<pre tabindex="0"><code class="language-log" data-lang="log">FeatureModuleA initialized
+SharedModuleA initialized
+SharedModuleB initialized
+FeatureModuleB initialized
+</code></pre><p>Now let&rsquo;s make <code>SharedModuleB</code> depend on <code>FeatureModuleA</code>:</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+    FA[FeatureModuleA] --&gt;|depends on| SA[SharedModuleA];
+    FB[FeatureModuleB] --&gt;|depends on| FA;
+    FB --&gt;|depends on| SB[SharedModuleB];
+    SB --&gt;|depends on| FA;
+</code></pre><p><img src="/images/nestjs/mermaid-2.png" alt="mermaid 2" title="mermaid 2"></p>
+<p>And now, we&rsquo;re getting:</p>
+<pre tabindex="0"><code class="language-log" data-lang="log">SharedModuleA initialized
+FeatureModuleA initialized
+SharedModuleB initialized
+FeatureModuleB initialized
+</code></pre><p>So, a different order (topological sort) of the same modules. But no duplicates.
+That means that the problem is with providers that implement OnModuleInit and
+not modules on their own. Let&rsquo;s try to add a shared provider:</p>
+<p><img src="/images/nestjs/generate-shared-provider.png" alt="shared provider" title="shared provider"></p>
+<p>And I&rsquo;ve the shared provider provided from <code>SharedModuleB</code>.</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+    FA[FeatureModuleA] --&gt;|depends on| SA[SharedModuleA];
+    FB[FeatureModuleB] --&gt;|depends on| FA;
+    FB --&gt;|depends on| SB[SharedModuleB];
+    SB --&gt;|depends on| FA;
+    SB ==&gt;|provides| SP[SharedProvider];
+</code></pre><p><img src="/images/nestjs/mermaid-3.png" alt="mermaid 3" title="mermaid 3"></p>
+<p>Finally, now we get a reproduction!</p>
+<pre tabindex="0"><code class="language-log" data-lang="log">SharedModuleA initialized
+FeatureModuleA initialized
+SharedProvider initialized  &lt;-- from SharedModuleA
+SharedModuleB initialized
+FeatureModuleB initialized
+SharedProvider initialized  &lt;-- from SharedModuleB
+</code></pre><p><img src="/images/phoenix-wright-ace-attorney.png" alt="phoenix-wright-ace-attorney" title="phoenix wright ace attorney"></p>
+<p>So, the documentation is inaccurate when it comes to PROVIDERS that implement
+<code>OnModuleInit</code>. The <code>onModuleInit</code> method is called for each provider that
+implements the <code>OnModuleInit</code> interface, and not just once per module. This is
+the root cause of the issue I was having. The fix I implemented in the quick
+fix section is the correct fix, and it works for both modules and providers.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p><img src="/images/weirdal-foil.webp" alt="weirdal-foil" title="weird al foil"></p>
+<ol>
+<li>Don&rsquo;t trust the docs</li>
+<li>Don&rsquo;t trust the code</li>
+<li>Don&rsquo;t trust anyone</li>
+<li>Simple fix is normally the best fix</li>
+</ol>
+]]></content>
+		</item>
+		
+		<item>
 			<title>🌘 AI Roundtables @lunar.dev</title>
 			<link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
 			<pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
@@ -2549,12 +2809,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a2f0b4c23287d5ea0505a706ad0ed31af8f77a38-efa044833d27d98c04d62e6627f433f3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a2f0b4c23287d5ea0505a706ad0ed31af8f77a38-76343f6c647e39442ae08f32dd28f30d&#34;)"
     role="button"
   >
     What is the difference between a <em>data-intensive</em> application and a <em>compute-intensive</em> application?
   </button>
-  <div id="answer-id-a2f0b4c23287d5ea0505a706ad0ed31af8f77a38-efa044833d27d98c04d62e6627f433f3" class="flashcard__back">
+  <div id="answer-id-a2f0b4c23287d5ea0505a706ad0ed31af8f77a38-76343f6c647e39442ae08f32dd28f30d" class="flashcard__back">
     If data is the primary challenge - quantity, complexity, speed of change - then the application is <em>data-intensive</em>. If CPU Cycles are the bottleneck, then the application is <em>compute-intensive</em>.
   </div>
 </div>
@@ -2580,12 +2840,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3839aa0d82f8db882be17b1bd5875bd0be6e3639-83e6f72963263044f8ddef430c2da347&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3839aa0d82f8db882be17b1bd5875bd0be6e3639-3d082686d433f2326047fe4d4e7fc3a9&#34;)"
     role="button"
   >
     What are three primary concerns in most software systems discussed in [[Designing Data-Intensive Applications]]?
   </button>
-  <div id="answer-id-3839aa0d82f8db882be17b1bd5875bd0be6e3639-83e6f72963263044f8ddef430c2da347" class="flashcard__back">
+  <div id="answer-id-3839aa0d82f8db882be17b1bd5875bd0be6e3639-3d082686d433f2326047fe4d4e7fc3a9" class="flashcard__back">
     <ul>
 <li><strong>Reliability</strong> The system should continue to work <em>correctly</em> (performing the correct function at the desired level of performance) even in the face of <em>adversity</em> (hardware, software,and humans faults).</li>
 <li><strong>Scalability</strong> As the system <em>grows</em> (in data volume,traffic volume,or complexity),there should be reasonable ways of dealing with that growth.</li>
@@ -2616,12 +2876,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3ff326417d942ff5cb3e10e1cd3274cc16135dd5-2eff3d3c347ddf80e9644022436783a6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3ff326417d942ff5cb3e10e1cd3274cc16135dd5-246703e433d6374a24f283fdde0cf689&#34;)"
     role="button"
   >
     Reliability: What&rsquo;s the difference between a <strong>fault</strong> and a <strong>failure</strong>?
   </button>
-  <div id="answer-id-3ff326417d942ff5cb3e10e1cd3274cc16135dd5-2eff3d3c347ddf80e9644022436783a6" class="flashcard__back">
+  <div id="answer-id-3ff326417d942ff5cb3e10e1cd3274cc16135dd5-246703e433d6374a24f283fdde0cf689" class="flashcard__back">
     <ul>
 <li><strong>Fault</strong> - one component of the system deviating from spec.</li>
 <li><strong>Failure</strong> - the system as a whole stops providing the required service to the user.</li>
@@ -2652,12 +2912,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-658ac83f1e241297195758ca8b4fb9a87d228678-433af84036462fc92ede7d3d247f3680&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-658ac83f1e241297195758ca8b4fb9a87d228678-0933da464d863fe827c6d43ff3e04227&#34;)"
     role="button"
   >
     Scalability: What are <strong>load parameters</strong>?
   </button>
-  <div id="answer-id-658ac83f1e241297195758ca8b4fb9a87d228678-433af84036462fc92ede7d3d247f3680" class="flashcard__back">
+  <div id="answer-id-658ac83f1e241297195758ca8b4fb9a87d228678-0933da464d863fe827c6d43ff3e04227" class="flashcard__back">
     <ul>
 <li>Load parameters describe the current load on the system - with them we can discuss growth. The load parameters change per application. Examples of load parameters include requests per second from a web server, ratio of reads to writes in a DB, number of concurrently active users, hit rates of caches.</li>
 <li>Twitter example: Post tweet: 5K/s avg, 12K/s peak. Home timeline: 300K/s. By describing the load parameters we see that the scaling challenge is due to the fact that each user follows many people and each user is followed by many people.</li>
@@ -2687,12 +2947,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4f9f9dbd49700604ed2bdbc5b1c3100c53c589fa-c0987264dd34636e43af20d8ff734e23&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4f9f9dbd49700604ed2bdbc5b1c3100c53c589fa-d70209637482afd43ec3e443df2f8366&#34;)"
     role="button"
   >
     Scalability: What are <strong>performance metrics</strong>?
   </button>
-  <div id="answer-id-4f9f9dbd49700604ed2bdbc5b1c3100c53c589fa-c0987264dd34636e43af20d8ff734e23" class="flashcard__back">
+  <div id="answer-id-4f9f9dbd49700604ed2bdbc5b1c3100c53c589fa-d70209637482afd43ec3e443df2f8366" class="flashcard__back">
     <ul>
 <li><strong>Performance metrics</strong> are what happens when load increases (see Scalability: What are <strong>load parameters</strong>? #card [[Designing Data-Intensive Applications]] [[DDIA-C1]] [[DDIA-P1]]). There are two ways to look at performance metrics:
 <ul>
@@ -2726,12 +2986,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-14d5e770cca3a1a7420ebbef104dab70b883ed1d-42dfde2d76e407334acf08682463393f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-14d5e770cca3a1a7420ebbef104dab70b883ed1d-a940d43307fe82dfdf622467384e3c36&#34;)"
     role="button"
   >
     Scalability: What are some examples of ways to describe performance?
   </button>
-  <div id="answer-id-14d5e770cca3a1a7420ebbef104dab70b883ed1d-42dfde2d76e407334acf08682463393f" class="flashcard__back">
+  <div id="answer-id-14d5e770cca3a1a7420ebbef104dab70b883ed1d-a940d43307fe82dfdf622467384e3c36" class="flashcard__back">
     <ul>
 <li>Response time</li>
 <li>Latency (etymology: <em>latent</em>)
@@ -2772,12 +3032,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3b57a451e4ab483526335f78036bb9376f8d8631-ecd9e660373f44230fd4f332d8628a74&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3b57a451e4ab483526335f78036bb9376f8d8631-424f62fa33d6f344780cd3d69ee73028&#34;)"
     role="button"
   >
     Scalability: What are the two main approaches for coping with load?
   </button>
-  <div id="answer-id-3b57a451e4ab483526335f78036bb9376f8d8631-ecd9e660373f44230fd4f332d8628a74" class="flashcard__back">
+  <div id="answer-id-3b57a451e4ab483526335f78036bb9376f8d8631-424f62fa33d6f344780cd3d69ee73028" class="flashcard__back">
     <p>Horizontal and vertical scaling.</p>
 <ul>
 <li>Vertical scaling (scaling up): moving to a more powerful machine</li>
@@ -2807,12 +3067,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d8f302cd9f252411bb51609d254c35d500a0cfb0-ff04cd73dae0493e87f332634d264862&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d8f302cd9f252411bb51609d254c35d500a0cfb0-f2c3e0488d3496d3446377fda602f23e&#34;)"
     role="button"
   >
     Maintainability: what are three focus points when designing software for maintainability?
   </button>
-  <div id="answer-id-d8f302cd9f252411bb51609d254c35d500a0cfb0-ff04cd73dae0493e87f332634d264862" class="flashcard__back">
+  <div id="answer-id-d8f302cd9f252411bb51609d254c35d500a0cfb0-f2c3e0488d3496d3446377fda602f23e" class="flashcard__back">
     <ul>
 <li>Operability: make it easy for operations teams to keep the system running smoothly.</li>
 <li>Simplicity: Make it easy for new engineers to understand the system by removing complexity.</li>
@@ -2845,12 +3105,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4760656930a2499a835bb3684496e8775e108b5b-4f3320e9f72a64ce7433348f6dd8d260&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4760656930a2499a835bb3684496e8775e108b5b-87d334ffe6426d2af932c6703384de40&#34;)"
     role="button"
   >
     What are the three main data models used today? Give an example for a DB and a query language for each one.
   </button>
-  <div id="answer-id-4760656930a2499a835bb3684496e8775e108b5b-4f3320e9f72a64ce7433348f6dd8d260" class="flashcard__back">
+  <div id="answer-id-4760656930a2499a835bb3684496e8775e108b5b-87d334ffe6426d2af932c6703384de40" class="flashcard__back">
     <ul>
 <li><strong>Relational</strong> model: tables and joins.
 <ul>
@@ -2896,12 +3156,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-499617e11e0a022c0df4eb9fa1b1f9813b240f65-377d86306c4d33e28d2af462304ef94f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-499617e11e0a022c0df4eb9fa1b1f9813b240f65-603483722f4d4e32dfa3ce706f3d4968&#34;)"
     role="button"
   >
     What is normalization and denormalization?
   </button>
-  <div id="answer-id-499617e11e0a022c0df4eb9fa1b1f9813b240f65-377d86306c4d33e28d2af462304ef94f" class="flashcard__back">
+  <div id="answer-id-499617e11e0a022c0df4eb9fa1b1f9813b240f65-603483722f4d4e32dfa3ce706f3d4968" class="flashcard__back">
     <ul>
 <li><strong>Normalization</strong>: the process of organizing a database to reduce redundancy and improve data integrity. Normalization usually involves dividing a database into two or more tables and defining relationships between the tables, which requires <em>many-to-one</em> relationships and don&rsquo;t fit well with the Document model.</li>
 <li><strong>Denormalization</strong>: the process of trying to improve the read performance of a database at the expense of losing some write performance, by adding redundant copies of data or by grouping data. Denormalization is a common practice in the Document model, where joins are not supported.</li>
@@ -2931,12 +3191,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4f7661592e1104bcec193020ff148aa1660c07ff-38fe633f76a9634d2840f2704cded234&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4f7661592e1104bcec193020ff148aa1660c07ff-fcd7e4238484f0632a6d9fd4e3032637&#34;)"
     role="button"
   >
     When a DB is considered schema-less, what does it actually mean?
   </button>
-  <div id="answer-id-4f7661592e1104bcec193020ff148aa1660c07ff-38fe633f76a9634d2840f2704cded234" class="flashcard__back">
+  <div id="answer-id-4f7661592e1104bcec193020ff148aa1660c07ff-fcd7e4238484f0632a6d9fd4e3032637" class="flashcard__back">
     <ul>
 <li>Data always has schema - otherwise the app can&rsquo;t use it. In DBs that do enforce schema explicitly, the schema is enforced <em>on-write</em>. In schema-less DBs the schema is enforced <em>on-read</em>.</li>
 </ul>
@@ -2965,12 +3225,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c103fb443a4bf67c562ea09aed65b1d85e7c2eb1-3648f3622daf0c2477f93de6e4380d34&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c103fb443a4bf67c562ea09aed65b1d85e7c2eb1-3736028694d3fea0d4fdc278f432e634&#34;)"
     role="button"
   >
     What is the difference between a <strong>schema-on-write</strong> and a <strong>schema-on-read</strong> approach?
   </button>
-  <div id="answer-id-c103fb443a4bf67c562ea09aed65b1d85e7c2eb1-3648f3622daf0c2477f93de6e4380d34" class="flashcard__back">
+  <div id="answer-id-c103fb443a4bf67c562ea09aed65b1d85e7c2eb1-3736028694d3fea0d4fdc278f432e634" class="flashcard__back">
     <ul>
 <li><strong>Schema-on-write</strong> (traditional approach): the schema is defined before data is written to the database. The database ensures all data written complies with the schema.</li>
 <li><strong>Schema-on-read</strong> (flexible schema): the schema is defined when the data is read from the database. The database does not enforce a schema.</li>
@@ -3000,12 +3260,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-2f71e2aae49c7780bb76f484789e69a54ba0f926-446f9e33c3f2daf03268d4207376de48&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-2f71e2aae49c7780bb76f484789e69a54ba0f926-c2483e33da327078e66d3f4fdf024946&#34;)"
     role="button"
   >
     What are the trade-offs between <strong>schema-on-write</strong> and <strong>schema-on-read</strong>?
   </button>
-  <div id="answer-id-2f71e2aae49c7780bb76f484789e69a54ba0f926-446f9e33c3f2daf03268d4207376de48" class="flashcard__back">
+  <div id="answer-id-2f71e2aae49c7780bb76f484789e69a54ba0f926-c2483e33da327078e66d3f4fdf024946" class="flashcard__back">
     <ul>
 <li><strong>Schema-on-write</strong>:
 <ul>
@@ -3045,12 +3305,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-61b61f31d95357f47b8ecf1c8199d59c59984334-63d30e78cef642af3843d29064f37d24&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-61b61f31d95357f47b8ecf1c8199d59c59984334-8d3744e4a04ff62629e33d0cf8d37632&#34;)"
     role="button"
   >
     Which use-case fits which data model?
   </button>
-  <div id="answer-id-61b61f31d95357f47b8ecf1c8199d59c59984334-63d30e78cef642af3843d29064f37d24" class="flashcard__back">
+  <div id="answer-id-61b61f31d95357f47b8ecf1c8199d59c59984334-8d3744e4a04ff62629e33d0cf8d37632" class="flashcard__back">
     <ul>
 <li>This is a pretty complicated question without s single, straightforward answer. Generally there are a few considerations that boil down to WHICH QUERIES you want to run. In modern data apps you usually end up with a few data models.</li>
 </ul>
@@ -3081,12 +3341,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f0f980175230439488e10dcda419dfefaa164e0e-73f66d4e2a7f83d048e439d30c34f226&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f0f980175230439488e10dcda419dfefaa164e0e-378fdc0fedae8476d3f3242032639644&#34;)"
     role="button"
   >
     Storage and retrieval: What are the two main categories for storage engines?
   </button>
-  <div id="answer-id-f0f980175230439488e10dcda419dfefaa164e0e-73f66d4e2a7f83d048e439d30c34f226" class="flashcard__back">
+  <div id="answer-id-f0f980175230439488e10dcda419dfefaa164e0e-378fdc0fedae8476d3f3242032639644" class="flashcard__back">
     <ul>
 <li><strong>OLTP-optimized</strong>: Online Transaction Processing systems are the user-facing systems. They see many requests but each request usually pertains to just a few rows. The bottleneck here is usually disk time..</li>
 <li><strong>OLAP-optimized</strong>: Online Analytics Processing.</li>
@@ -3116,12 +3376,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f6876558f458a7aad2afeef323665ae7ac3489a3-2d447cf6f304fea843d86063e3d27932&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f6876558f458a7aad2afeef323665ae7ac3489a3-893e6a4d76724ffdd80344c322e3063f&#34;)"
     role="button"
   >
     Compare OLTP and OLAP on&hellip;
   </button>
-  <div id="answer-id-f6876558f458a7aad2afeef323665ae7ac3489a3-2d447cf6f304fea843d86063e3d27932" class="flashcard__back">
+  <div id="answer-id-f6876558f458a7aad2afeef323665ae7ac3489a3-893e6a4d76724ffdd80344c322e3063f" class="flashcard__back">
     <ul>
 <li><strong>Main read pattern</strong>: OLTP: Small number of records per query fetched by key. OLAP: Aggregate over a large number of records.</li>
 <li><strong>Main write pattern</strong>: OLTP: Random-access low latency writes (from user inputs). OLAP: Bulk imports (with ETLs),event streams.</li>
@@ -3154,12 +3414,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-84cc5a4eb170ef5ea3ea062d853135b0363c9451-70437c6392f86addf3e4e22463f4803d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-84cc5a4eb170ef5ea3ea062d853135b0363c9451-073cf4d28a74346293d62e34f0fe63d8&#34;)"
     role="button"
   >
     What is the &lsquo;star&rsquo; schema for OLAP?
   </button>
-  <div id="answer-id-84cc5a4eb170ef5ea3ea062d853135b0363c9451-70437c6392f86addf3e4e22463f4803d" class="flashcard__back">
+  <div id="answer-id-84cc5a4eb170ef5ea3ea062d853135b0363c9451-073cf4d28a74346293d62e34f0fe63d8" class="flashcard__back">
     <ul>
 <li>One wide table for &ldquo;facts&rdquo; that&rsquo;s very big, and includes references to smaller tables using foreign keys.</li>
 <li>e.g.: the date will be an ID in the &ldquo;facts&rdquo; table and there will be a date &ldquo;dimension&rdquo; which is used when querying, e.g., &ldquo;Which products were bought on a holiday?&rdquo;.</li>
@@ -3189,12 +3449,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ace57d676c9a33066d223b0499d4693fa870db94-406872a8334ce36694343dd27dff2e0f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ace57d676c9a33066d223b0499d4693fa870db94-36f344260a478609c23fe32374dfe8dd&#34;)"
     role="button"
   >
     What is column oriented storage and why does it make sense for OLAP?
   </button>
-  <div id="answer-id-ace57d676c9a33066d223b0499d4693fa870db94-406872a8334ce36694343dd27dff2e0f" class="flashcard__back">
+  <div id="answer-id-ace57d676c9a33066d223b0499d4693fa870db94-36f344260a478609c23fe32374dfe8dd" class="flashcard__back">
     <ul>
 <li>Instead of storing data by rows, store each column in a &ldquo;file&rdquo; and all the files sorted in the same way (so item number 27 in a column file is the value in the 27th row). This is useful since usually OLAP doesn&rsquo;t query with <code>SELECT *</code> but only the columns needed for the filtering and aggregation. This works well with the star schema, see What is the &ldquo;star&rdquo; schema for OLAP? #card [[Designing Data-Intensive Applications]] [[DDIA-C3]] [[DDIA-P1]]</li>
 </ul>
@@ -3223,12 +3483,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-410a8e1510e8f381ce7a3f3c3d52191172d1395f-3f22d6684ad437c634e807f0f23439de&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-410a8e1510e8f381ce7a3f3c3d52191172d1395f-3342448e7a3f03f6842d6dd06732ecf9&#34;)"
     role="button"
   >
     What are the two main storage engine types for OLTP?
   </button>
-  <div id="answer-id-410a8e1510e8f381ce7a3f3c3d52191172d1395f-3f22d6684ad437c634e807f0f23439de" class="flashcard__back">
+  <div id="answer-id-410a8e1510e8f381ce7a3f3c3d52191172d1395f-3342448e7a3f03f6842d6dd06732ecf9" class="flashcard__back">
     <ul>
 <li>Log structured - only append to files and delete old ones, never update.</li>
 <li>Update in place - overwrite pages. B-trees are an example.</li>
@@ -3258,12 +3518,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c7354f2d12e3bdfa4715e57c8938cf6aaeac9c68-3f3f287d34062d4e72e433089664dfca&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c7354f2d12e3bdfa4715e57c8938cf6aaeac9c68-2da46e6e33f2087206f3c9d744fd8334&#34;)"
     role="button"
   >
     Databases Data Structures: What are Hash Indexes?
   </button>
-  <div id="answer-id-c7354f2d12e3bdfa4715e57c8938cf6aaeac9c68-3f3f287d34062d4e72e433089664dfca" class="flashcard__back">
+  <div id="answer-id-c7354f2d12e3bdfa4715e57c8938cf6aaeac9c68-2da46e6e33f2087206f3c9d744fd8334" class="flashcard__back">
     The simplest index. A hash table where the key is the indexed column and the value is the row pointer. This is good for point queries but not for range queries.
   </div>
 </div>
@@ -3289,12 +3549,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-404f062ed83e37520504a142520f5ecb25a08c0d-026ed4f3f4ec7d827f3663a42483d930&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-404f062ed83e37520504a142520f5ecb25a08c0d-64047fe7e8f86a9fd2c4d36333d22340&#34;)"
     role="button"
   >
     Databases Data Structures: What are SSTables and LSM-Trees?
   </button>
-  <div id="answer-id-404f062ed83e37520504a142520f5ecb25a08c0d-026ed4f3f4ec7d827f3663a42483d930" class="flashcard__back">
+  <div id="answer-id-404f062ed83e37520504a142520f5ecb25a08c0d-64047fe7e8f86a9fd2c4d36333d22340" class="flashcard__back">
     <ul>
 <li><strong>SSTables</strong> (Sorted String Tables) are a file format for storing key-value pairs, sorted by key. SSTables are immutable and append-only, which makes them suitable for storing data on disk.</li>
 <li><strong>LSM-Trees</strong> (Log-Structured Merge-Trees) are a data structure that provides a way to store key-value pairs in a disk-based storage engine. It&rsquo;s optimized for write-heavy workloads and is used in many databases, including Apache Cassandra and Google&rsquo;s Bigtable.</li>
@@ -3324,12 +3584,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f350c87f70fd68b0de90709c80d139f38bba1879-094ff2334e223408fa7cd37ed46386d6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f350c87f70fd68b0de90709c80d139f38bba1879-f83442fe6d42c60708f3a23e3d9347d6&#34;)"
     role="button"
   >
     Databases Data Structures: What are B-Trees?
   </button>
-  <div id="answer-id-f350c87f70fd68b0de90709c80d139f38bba1879-094ff2334e223408fa7cd37ed46386d6" class="flashcard__back">
+  <div id="answer-id-f350c87f70fd68b0de90709c80d139f38bba1879-f83442fe6d42c60708f3a23e3d9347d6" class="flashcard__back">
     <p>A B-tree is a self-balancing tree data structure that maintains sorted data and allows searches, sequential access, insertions, and deletions in logarithmic time. The B-tree is a generalization of a binary search tree in that a node can have more than two children. Unlike self-balancing binary search trees, the B-tree is well suited for storage systems that read and write relatively large blocks of data, such as disks.</p>
 <p>In the context of PostgreSQL, B-trees are the default index type and are used for various types of queries.</p>
 
@@ -3357,12 +3617,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-9a9afa97b410a6e44a732fb8c9609be7a5cbab21-48d6d36f03234938d2ae3420e674f7fc&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-9a9afa97b410a6e44a732fb8c9609be7a5cbab21-69f3a74376dd2424f083fc33e20684ed&#34;)"
     role="button"
   >
     Databases Data Structures: When should we store data within the index?
   </button>
-  <div id="answer-id-9a9afa97b410a6e44a732fb8c9609be7a5cbab21-48d6d36f03234938d2ae3420e674f7fc" class="flashcard__back">
+  <div id="answer-id-9a9afa97b410a6e44a732fb8c9609be7a5cbab21-69f3a74376dd2424f083fc33e20684ed" class="flashcard__back">
     Storing data within the index can be beneficial when the index is a covering index for a query. This means that the index contains all the columns that are needed for the query, so the database can answer the query entirely from the index without needing to look at the table. This can be faster than looking up the rows in the table, especially if the index is much smaller than the table.
   </div>
 </div>
@@ -3388,12 +3648,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-fbb66590b60e3e95c43db6a64b4d997ff76647fb-d37e03e28dd936430a26fcf73446284f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-fbb66590b60e3e95c43db6a64b4d997ff76647fb-37e4ae286f487f3d930dd2036c3f4624&#34;)"
     role="button"
   >
     Databases Data Structures: What are multi-column indexes?
   </button>
-  <div id="answer-id-fbb66590b60e3e95c43db6a64b4d997ff76647fb-d37e03e28dd936430a26fcf73446284f" class="flashcard__back">
+  <div id="answer-id-fbb66590b60e3e95c43db6a64b4d997ff76647fb-37e4ae286f487f3d930dd2036c3f4624" class="flashcard__back">
     An index that spans multiple columns. This can be useful when you have queries that filter on multiple columns, and when you have queries that sort on multiple columns.
   </div>
 </div>
@@ -3421,12 +3681,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ead25ab7d1ec0ae4946612795daf7199056db2d8-0a3d2d78f304efc8443762fd3964362e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ead25ab7d1ec0ae4946612795daf7199056db2d8-340622ef30f32d3346ca677449dedf88&#34;)"
     role="button"
   >
     Encoding and evolution: What are the three main types of data encoding (serialization)?
   </button>
-  <div id="answer-id-ead25ab7d1ec0ae4946612795daf7199056db2d8-0a3d2d78f304efc8443762fd3964362e" class="flashcard__back">
+  <div id="answer-id-ead25ab7d1ec0ae4946612795daf7199056db2d8-340622ef30f32d3346ca677449dedf88" class="flashcard__back">
     <ul>
 <li>Programming language specific, like Python&rsquo;s <code>pickle</code> or Java&rsquo;s <code>serializable</code>. Generally not a good choice, since you lock into a specific language (harder to integrate later down the line) and they normally have major security flaws and performance issues.</li>
 <li>Textual formats, like JSON, XML, and CSV. These are human readable and widely used but don&rsquo;t have builtin support for schemas, are inherently inefficient, and are sometimes vague when talking about binary data.</li>
@@ -3457,12 +3717,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-675f713cd40f3f3fd684667e1b066a3a368609fe-82373344dfe6fd742830f39dc0e646a2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-675f713cd40f3f3fd684667e1b066a3a368609fe-de626332ffd744348d90a6f02437e38c&#34;)"
     role="button"
   >
     What are problems with encoding in textual formats?
   </button>
-  <div id="answer-id-675f713cd40f3f3fd684667e1b066a3a368609fe-82373344dfe6fd742830f39dc0e646a2" class="flashcard__back">
+  <div id="answer-id-675f713cd40f3f3fd684667e1b066a3a368609fe-de626332ffd744348d90a6f02437e38c" class="flashcard__back">
     <ul>
 <li><strong>No schema</strong>: no way to specify what fields are required, what their types are, and what the structure of the data is.</li>
 <li><strong>Ambiguity</strong>: e.g., CSV doesn&rsquo;t specify whether a field is a string or a number.</li>
@@ -3494,12 +3754,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-33bb6d4a6fa11ae81ff76724921c8c2a7763b584-f234038fa236cd373428e4efd9406d76&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-33bb6d4a6fa11ae81ff76724921c8c2a7763b584-2f897d463322046e3346a8dd047fc3fe&#34;)"
     role="button"
   >
     Encoding and evolution: What are the three main types of dataflow?
   </button>
-  <div id="answer-id-33bb6d4a6fa11ae81ff76724921c8c2a7763b584-f234038fa236cd373428e4efd9406d76" class="flashcard__back">
+  <div id="answer-id-33bb6d4a6fa11ae81ff76724921c8c2a7763b584-2f897d463322046e3346a8dd047fc3fe" class="flashcard__back">
     <ul>
 <li>Through a database</li>
 <li>REST/RPC</li>
@@ -3530,12 +3790,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-704430bafd746212efb38fd6a7e4704d5a08398f-09a308436d78c22f23446f3edfd73e46&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-704430bafd746212efb38fd6a7e4704d5a08398f-fd42afe3273490848662e063cd3f73d4&#34;)"
     role="button"
   >
     Encoding and evolution: In Schema evolution, what do the following terms mean?
   </button>
-  <div id="answer-id-704430bafd746212efb38fd6a7e4704d5a08398f-09a308436d78c22f23446f3edfd73e46" class="flashcard__back">
+  <div id="answer-id-704430bafd746212efb38fd6a7e4704d5a08398f-fd42afe3273490848662e063cd3f73d4" class="flashcard__back">
     <ul>
 <li><strong>Forward compatibility</strong>: New writer, old reader.</li>
 <li><strong>Backwards compatibility</strong>: Old writer, new reader.</li>
@@ -3568,12 +3828,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a4c6eddb84a268482d4501a7e7c87579efb061b1-22f237f6476a8de3c344e0d433906df8&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a4c6eddb84a268482d4501a7e7c87579efb061b1-f34d64023d378f28cd4a963e6e430f72&#34;)"
     role="button"
   >
     What are the two common ways that data is distributed across multiple nodes?
   </button>
-  <div id="answer-id-a4c6eddb84a268482d4501a7e7c87579efb061b1-22f237f6476a8de3c344e0d433906df8" class="flashcard__back">
+  <div id="answer-id-a4c6eddb84a268482d4501a7e7c87579efb061b1-f34d64023d378f28cd4a963e6e430f72" class="flashcard__back">
     <ul>
 <li>Replication: Keep a copy of the same data on several nodes. This provides redundancy.</li>
 <li>Partitioning: Split a big database into smaller subsets called partitions so that different partitions can reside on different nodes (also referred to as <em>sharding</em>).</li>
@@ -3603,12 +3863,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a03fc727a2242e638b56644f2cede34774d57296-da24f42930f8073e734cfe234d6636d8&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a03fc727a2242e638b56644f2cede34774d57296-478fcdd0233a243469f68fd742363ee0&#34;)"
     role="button"
   >
     What are some reasons to distribute data?
   </button>
-  <div id="answer-id-a03fc727a2242e638b56644f2cede34774d57296-da24f42930f8073e734cfe234d6636d8" class="flashcard__back">
+  <div id="answer-id-a03fc727a2242e638b56644f2cede34774d57296-478fcdd0233a243469f68fd742363ee0" class="flashcard__back">
     <ul>
 <li>Scalability: If data volume, read load, write load grows bigger than a single machine can handle.</li>
 <li>Fault tolerance/high availability: If the app needs to continue working even if a machine/machines/network/data center goes down.</li>
@@ -3641,12 +3901,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-b412ad9829213f65dcd7e9a72ea2302233df29b0-9d2d4f308733fc6d23728f6ea434604e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-b412ad9829213f65dcd7e9a72ea2302233df29b0-d62ffe6294723d8c3e467f0440d383a3&#34;)"
     role="button"
   >
     What purposes can replication serve?
   </button>
-  <div id="answer-id-b412ad9829213f65dcd7e9a72ea2302233df29b0-9d2d4f308733fc6d23728f6ea434604e" class="flashcard__back">
+  <div id="answer-id-b412ad9829213f65dcd7e9a72ea2302233df29b0-d62ffe6294723d8c3e467f0440d383a3" class="flashcard__back">
     <ul>
 <li>Scalability: If data volume, read load, write load grows bigger than a single machine can handle.</li>
 <li>Fault tolerance/high availability: If the app needs to continue working even if a machine/machines/network/data center goes down.</li>
@@ -3678,12 +3938,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4c49ed7c0c0f56abfde231d06d07a73c06afeb97-7fa4233c7df66d8483e3920f3d20464e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4c49ed7c0c0f56abfde231d06d07a73c06afeb97-238e3c4d3def074933fa2d66424068f7&#34;)"
     role="button"
   >
     What are the three main approaches to replication?
   </button>
-  <div id="answer-id-4c49ed7c0c0f56abfde231d06d07a73c06afeb97-7fa4233c7df66d8483e3920f3d20464e" class="flashcard__back">
+  <div id="answer-id-4c49ed7c0c0f56abfde231d06d07a73c06afeb97-238e3c4d3def074933fa2d66424068f7" class="flashcard__back">
     <ul>
 <li><strong>Single-leader (master-slave) replication</strong>: One node is the leader, and the others are followers. The leader receives all the writes and the followers replicate the writes from the leader. The followers can also serve read queries.</li>
 <li><strong>Multi-leader replication</strong>: Any node can accept writes. This is more complex than single-leader replication, and it&rsquo;s hard to resolve conflicts.</li>
@@ -3714,12 +3974,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f3ab705d4133098bb3de8c3f84325b351b60ffeb-660943834c42e0fd2f7f33234e7a6d8d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f3ab705d4133098bb3de8c3f84325b351b60ffeb-732d4d703f3c8a4086649d2ef2643e3f&#34;)"
     role="button"
   >
     Compare synchronous and asynchronous replication.
   </button>
-  <div id="answer-id-f3ab705d4133098bb3de8c3f84325b351b60ffeb-660943834c42e0fd2f7f33234e7a6d8d" class="flashcard__back">
+  <div id="answer-id-f3ab705d4133098bb3de8c3f84325b351b60ffeb-732d4d703f3c8a4086649d2ef2643e3f" class="flashcard__back">
     <p>Replication can be synchronous or asynchronous. In synchronous replication, the leader waits until followers confirm that they have received the write before reporting success to the user. In asynchronous replication, the leader sends the write to the followers and reports success to the user without waiting for the followers to acknowledge the write.</p>
 <p>Async replication can be fast when everything is working well, it can creates an effect called <em>replication lag</em>.</p>
 
@@ -3747,12 +4007,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-379af56f90f46cc2214746c00dd8d66f0c778837-9626d4d2ee407f30fda8f3246387343c&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-379af56f90f46cc2214746c00dd8d66f0c778837-3d6f364236984340cfae7f74d2d38e20&#34;)"
     role="button"
   >
     What is replication lag?
   </button>
-  <div id="answer-id-379af56f90f46cc2214746c00dd8d66f0c778837-9626d4d2ee407f30fda8f3246387343c" class="flashcard__back">
+  <div id="answer-id-379af56f90f46cc2214746c00dd8d66f0c778837-3d6f364236984340cfae7f74d2d38e20" class="flashcard__back">
     Replication lag is the delay between the time a write is made on the leader and the time it is reflected on the followers. This can be due to network latency, slow followers, or a high write load on the leader.
   </div>
 </div>
@@ -3778,12 +4038,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-b8680fa03879f3496774aba91430d1c73dd5ed2f-d433f42636433607e2aedc8d9f27840f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-b8680fa03879f3496774aba91430d1c73dd5ed2f-d77f440e826df293263da3e806c34f43&#34;)"
     role="button"
   >
     Replication lag consistency models - how should an application behave under replication lag?
   </button>
-  <div id="answer-id-b8680fa03879f3496774aba91430d1c73dd5ed2f-d433f42636433607e2aedc8d9f27840f" class="flashcard__back">
+  <div id="answer-id-b8680fa03879f3496774aba91430d1c73dd5ed2f-d77f440e826df293263da3e806c34f43" class="flashcard__back">
     <ul>
 <li><strong>Read-after-write consistency</strong>: If a user writes some data and then reads it back, they should always see the value that they wrote.</li>
 <li><strong>Monotonic reads</strong>: After a user has read the value of a key, they should not see the value of that key go backwards in time.</li>
@@ -3816,12 +4076,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-e5f27a77f4de34701f9afc81bd71a4456fc38b28-d30f7676f2f4e8ed296c42843a33304d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-e5f27a77f4de34701f9afc81bd71a4456fc38b28-a230fe44d44937833606e76f22c8d3fd&#34;)"
     role="button"
   >
     What is shared-nothing (also known as horizontal) partitioning?
   </button>
-  <div id="answer-id-e5f27a77f4de34701f9afc81bd71a4456fc38b28-d30f7676f2f4e8ed296c42843a33304d" class="flashcard__back">
+  <div id="answer-id-e5f27a77f4de34701f9afc81bd71a4456fc38b28-a230fe44d44937833606e76f22c8d3fd" class="flashcard__back">
     <ul>
 <li>Each piece of data belongs to exactly one partition.</li>
 <li>The main reason to want partitioning is <em>scalability</em>.</li>
@@ -3851,12 +4111,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-da645f14612fe141feff3d786c7ba80c36c69709-37423278e26fda8400f346c46f393dde&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-da645f14612fe141feff3d786c7ba80c36c69709-83de3d44020f74d42f2e36739c6a8f63&#34;)"
     role="button"
   >
     Partitioning VS Replication
   </button>
-  <div id="answer-id-da645f14612fe141feff3d786c7ba80c36c69709-37423278e26fda8400f346c46f393dde" class="flashcard__back">
+  <div id="answer-id-da645f14612fe141feff3d786c7ba80c36c69709-83de3d44020f74d42f2e36739c6a8f63" class="flashcard__back">
     <ul>
 <li>A large dataset can be distributed across many disks, and the query load can be distributed across many processors.</li>
 <li>When combining replication and partitioning with a leader-follower replication model, each node acts as a leader for some partitions and as a following for other partitions.</li>
@@ -3886,12 +4146,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c9a394be4426fe4f9df57d023a7e8389bbeab7d0-7343a6d4d2d33e0763ef024248c6f89f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c9a394be4426fe4f9df57d023a7e8389bbeab7d0-6f236cd8d87334430e26ed4f79240af3&#34;)"
     role="button"
   >
     What is partitioning fairness VS skew and why does it matter?
   </button>
-  <div id="answer-id-c9a394be4426fe4f9df57d023a7e8389bbeab7d0-7343a6d4d2d33e0763ef024248c6f89f" class="flashcard__back">
+  <div id="answer-id-c9a394be4426fe4f9df57d023a7e8389bbeab7d0-6f236cd8d87334430e26ed4f79240af3" class="flashcard__back">
     <ul>
 <li>fairness: when the data and query loads are spread evenly,causing <code>n</code> nodes to by able to process $$n$$ times throughput. skew is the opposite. Extreme skew is having ALL data written to and read from a single partition.</li>
 <li>It matters because if you have a lot of skew,you&rsquo;ll get a partition with load - a hot spot. The the app is data intensive,this will cause a bottleneck.</li>
@@ -3922,12 +4182,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-914b843d953c4e8b308958e6200bfd14a31af6ea-374663f2e89d23ad76428ec4dff00343&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-914b843d953c4e8b308958e6200bfd14a31af6ea-62fa30e67df04643f28ce49473823dd3&#34;)"
     role="button"
   >
     What are two ways to partition simple key-value data?
   </button>
-  <div id="answer-id-914b843d953c4e8b308958e6200bfd14a31af6ea-374663f2e89d23ad76428ec4dff00343" class="flashcard__back">
+  <div id="answer-id-914b843d953c4e8b308958e6200bfd14a31af6ea-62fa30e67df04643f28ce49473823dd3" class="flashcard__back">
     <ul>
 <li>Partition by <strong>key range</strong>: like encyclopedia volumes.
 <ul>
@@ -3967,12 +4227,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-65a4bee92a7668d4fced52e4d57c82266d8c1580-2334d03ea042d482c63ff689e73d7f46&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-65a4bee92a7668d4fced52e4d57c82266d8c1580-a43e3d4f42c3864803df2fd267e06793&#34;)"
     role="button"
   >
     Why are secondary indexes a problem when partitioning?
   </button>
-  <div id="answer-id-65a4bee92a7668d4fced52e4d57c82266d8c1580-2334d03ea042d482c63ff689e73d7f46" class="flashcard__back">
+  <div id="answer-id-65a4bee92a7668d4fced52e4d57c82266d8c1580-a43e3d4f42c3864803df2fd267e06793" class="flashcard__back">
     <ul>
 <li>The secondary index is used for searching, it&rsquo;s usually not unique, and it doesn&rsquo;t map nearly to partitions. If you partition by user ID, there&rsquo;s no reason that the <code>name</code> secondary index will map nicely to partitions.</li>
 </ul>
@@ -4001,12 +4261,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-bdbe82eb6e707dff47b95531f357985a914b24e9-084282f6fa7df34dce64643293d33e07&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-bdbe82eb6e707dff47b95531f357985a914b24e9-62783a724438e0f2f94cd34f0d3d663e&#34;)"
     role="button"
   >
     What are the two ways to partition secondary indexes?
   </button>
-  <div id="answer-id-bdbe82eb6e707dff47b95531f357985a914b24e9-084282f6fa7df34dce64643293d33e07" class="flashcard__back">
+  <div id="answer-id-bdbe82eb6e707dff47b95531f357985a914b24e9-62783a724438e0f2f94cd34f0d3d663e" class="flashcard__back">
     <ul>
 <li><strong>Partition secondary index by document</strong>: each partition maintains its own indexes (local index). This means that you need to do <em>scatter/gather</em>: need to send the query to ALL the partitions, and combine the results. This is prone to tail latency amplification (see Latency (etymology: <em>latent</em>) )</li>
 <li><strong>Partition secondary index by term</strong>: indexes are global, and have a different partitioning scheme than the key. The index might point to a document on a different node. This means that updates are async (&ldquo;eventually consistent&rdquo;).</li>
@@ -4036,12 +4296,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-36cfac8360c666b13cef36f5ccdab10f896a67d4-3c430d669447a2f332de40e263f87f8d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-36cfac8360c666b13cef36f5ccdab10f896a67d4-80cff34447ea70f83d6934e36d2326d2&#34;)"
     role="button"
   >
     What is partition <strong>rebalancing</strong>?
   </button>
-  <div id="answer-id-36cfac8360c666b13cef36f5ccdab10f896a67d4-3c430d669447a2f332de40e263f87f8d" class="flashcard__back">
+  <div id="answer-id-36cfac8360c666b13cef36f5ccdab10f896a67d4-80cff34447ea70f83d6934e36d2326d2" class="flashcard__back">
     <ul>
 <li>Move data and request from one node to another, because we want to add more CPUs (due to query load), add more disk space (due to dataset size), or remove a failed machine.</li>
 <li>This means shuffling around partitions between nodes.</li>
@@ -4078,12 +4338,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ada9b094a5d9dc05ee7024aeac8f3203cf3c91d3-8fdd40ef607663743294cf823ad3e342&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ada9b094a5d9dc05ee7024aeac8f3203cf3c91d3-3803f834dff243a3d02d7964c27e466e&#34;)"
     role="button"
   >
     What strategies exist for rebalancing?
   </button>
-  <div id="answer-id-ada9b094a5d9dc05ee7024aeac8f3203cf3c91d3-8fdd40ef607663743294cf823ad3e342" class="flashcard__back">
+  <div id="answer-id-ada9b094a5d9dc05ee7024aeac8f3203cf3c91d3-3803f834dff243a3d02d7964c27e466e" class="flashcard__back">
     <ul>
 <li>Bad: $$mod ^ n(hash (key))$$ , where $$n$$ = number of nodes. This is bad because when the nodes change, need to move all the data around, which makes rebalancing very expensive.</li>
 <li>Fixed number of partitions: define a LOT more partitions than nodes. When a new node is added,it can copy whole partitions to create fairness. Same for removal. The problem is it&rsquo;s hard to know how many partitions to add,too many partitions incur overhead but too few make rebalancing costly.</li>
@@ -4115,12 +4375,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c8add8c376f4b4f558ff4a1db28a6e5d3995755e-7e26983304d4e68a436d7033d22cff4f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c8add8c376f4b4f558ff4a1db28a6e5d3995755e-e0f43d2f33a3dcd77489324f08626e46&#34;)"
     role="button"
   >
     What is <strong>Request Routing</strong>?
   </button>
-  <div id="answer-id-c8add8c376f4b4f558ff4a1db28a6e5d3995755e-7e26983304d4e68a436d7033d22cff4f" class="flashcard__back">
+  <div id="answer-id-c8add8c376f4b4f558ff4a1db28a6e5d3995755e-e0f43d2f33a3dcd77489324f08626e46" class="flashcard__back">
     <ul>
 <li>Now that the data is partitioned, when I want to query it, it&rsquo;s in one out of many partitions. If we have multiple nodes and we support rebalancing, that means the request needs to be routed to the correct node. This is the general problem of &ldquo;service discovery&rdquo;.</li>
 <li>At a high level, there are three approaches to this problem:
@@ -4168,12 +4428,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c6a0767a9fbc7939b3c4fe818fa30051689edcde-26ed364a83f34d468339d0e722fcf074&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c6a0767a9fbc7939b3c4fe818fa30051689edcde-f3d23a69007644ff4c2e28d3863d3e47&#34;)"
     role="button"
   >
     What are transactions (high-level)?
   </button>
-  <div id="answer-id-c6a0767a9fbc7939b3c4fe818fa30051689edcde-26ed364a83f34d468339d0e722fcf074" class="flashcard__back">
+  <div id="answer-id-c6a0767a9fbc7939b3c4fe818fa30051689edcde-f3d23a69007644ff4c2e28d3863d3e47" class="flashcard__back">
     A transaction is a way to group multiple reads and writes into a single, atomic operation. This means that either all the reads and writes in the transaction are applied, or none of them are.
   </div>
 </div>
@@ -4199,12 +4459,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-73f7758bd7fd966fd1e610dedfa9633dcdff316d-63f627dc8de70223e048d94a4336f34f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-73f7758bd7fd966fd1e610dedfa9633dcdff316d-67fe27a40f286339e4383f6420dcdd43&#34;)"
     role="button"
   >
     What role do transactions play in database systems?
   </button>
-  <div id="answer-id-73f7758bd7fd966fd1e610dedfa9633dcdff316d-63f627dc8de70223e048d94a4336f34f" class="flashcard__back">
+  <div id="answer-id-73f7758bd7fd966fd1e610dedfa9633dcdff316d-67fe27a40f286339e4383f6420dcdd43" class="flashcard__back">
     <ul>
 <li>Transactions simplify error scenarios and concurrency issues by executing all reads and writes as one operation.</li>
 <li>They offer safety guarantees, allowing the application to ignore certain potential errors.</li>
@@ -4235,12 +4495,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-52415af15cf9e38668f044555e6bdca441096635-43703a6d268f643ee48c4f0d2d3f2739&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-52415af15cf9e38668f044555e6bdca441096635-760e34d8ea3228f4df9fd743343c0626&#34;)"
     role="button"
   >
     What does Atomicity ensure in ACID properties of transactions?
   </button>
-  <div id="answer-id-52415af15cf9e38668f044555e6bdca441096635-43703a6d268f643ee48c4f0d2d3f2739" class="flashcard__back">
+  <div id="answer-id-52415af15cf9e38668f044555e6bdca441096635-760e34d8ea3228f4df9fd743343c0626" class="flashcard__back">
     <ul>
 <li>Atomicity ensures that multiple writes within a transaction are treated as a single operation.</li>
 <li>If a fault occurs after some writes are processed, the transaction can be aborted, not affecting the database&rsquo;s consistency.</li>
@@ -4271,12 +4531,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6186053ce55bc2b71dd4b8e68a9c022c0212dbfb-8f74e3623fe94f4d3436cda32002d786&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6186053ce55bc2b71dd4b8e68a9c022c0212dbfb-48733e327df602463f494c23de6a8fd0&#34;)"
     role="button"
   >
     What is meant by Consistency in ACID properties?
   </button>
-  <div id="answer-id-6186053ce55bc2b71dd4b8e68a9c022c0212dbfb-8f74e3623fe94f4d3436cda32002d786" class="flashcard__back">
+  <div id="answer-id-6186053ce55bc2b71dd4b8e68a9c022c0212dbfb-48733e327df602463f494c23de6a8fd0" class="flashcard__back">
     <ul>
 <li>Consistency ensures that invariants or rules about the data are always true, maintaining the integrity of the database.</li>
 <li>It&rsquo;s a property of the application, depending on the application&rsquo;s notion of invariants, not the database itself.</li>
@@ -4307,12 +4567,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1bab5a25c8691e881dc3d03b8ca1f1fe19581344-e34d8764eda60236f34d3438c7f90f22&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1bab5a25c8691e881dc3d03b8ca1f1fe19581344-fd6a0908f4674343228fcd3ee372d634&#34;)"
     role="button"
   >
     How does Isolation in ACID properties work?
   </button>
-  <div id="answer-id-1bab5a25c8691e881dc3d03b8ca1f1fe19581344-e34d8764eda60236f34d3438c7f90f22" class="flashcard__back">
+  <div id="answer-id-1bab5a25c8691e881dc3d03b8ca1f1fe19581344-fd6a0908f4674343228fcd3ee372d634" class="flashcard__back">
     <ul>
 <li>Isolation keeps concurrently executing transactions separate from each other.</li>
 <li>It aims for <strong>serializability</strong>, where each transaction pretends it&rsquo;s the only one running, yielding results as if transactions ran one after another.</li>
@@ -4343,12 +4603,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f649c19e1757d4d6260b9b9dd78b4431e63e7aae-093e08f22a333d3dc6444ef462f8677d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f649c19e1757d4d6260b9b9dd78b4431e63e7aae-44f9d0af676f82043387ed33e63c24d2&#34;)"
     role="button"
   >
     List examples of various possible race conditions that isolation helps solve. Remember - there are many levels of isolation.
   </button>
-  <div id="answer-id-f649c19e1757d4d6260b9b9dd78b4431e63e7aae-093e08f22a333d3dc6444ef462f8677d" class="flashcard__back">
+  <div id="answer-id-f649c19e1757d4d6260b9b9dd78b4431e63e7aae-44f9d0af676f82043387ed33e63c24d2" class="flashcard__back">
     <ul>
 <li><strong>Dirty Reads</strong>: Reading uncommitted data from another transaction. 🙈</li>
 </ul>
@@ -4830,12 +5090,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-dc3dfe4410aa64b9509b6bce46d5b2497e980421-3f47d32802e6630369a47f3d4f248dec&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-dc3dfe4410aa64b9509b6bce46d5b2497e980421-e6200e337ddcd7a4264ff33248f63849&#34;)"
     role="button"
   >
     What does Durability guarantee in a transaction?
   </button>
-  <div id="answer-id-dc3dfe4410aa64b9509b6bce46d5b2497e980421-3f47d32802e6630369a47f3d4f248dec" class="flashcard__back">
+  <div id="answer-id-dc3dfe4410aa64b9509b6bce46d5b2497e980421-e6200e337ddcd7a4264ff33248f63849" class="flashcard__back">
     <ul>
 <li>Durability ensures that once a transaction has successfully committed, the changes it made are permanent and will not be lost even in the event of a system failure.</li>
 <li>This means data has been written to nonvolatile storage or successfully replicated across nodes, safeguarding against hardware faults or crashes.</li>
@@ -4865,12 +5125,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5a6b21febbffb898e20592ce3918a15f42006154-e4200386373d233af69d48fe74f264dc&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5a6b21febbffb898e20592ce3918a15f42006154-708820ca24d43dff396633d674e432fe&#34;)"
     role="button"
   >
     How are errors and aborts handled in transactions?
   </button>
-  <div id="answer-id-5a6b21febbffb898e20592ce3918a15f42006154-e4200386373d233af69d48fe74f264dc" class="flashcard__back">
+  <div id="answer-id-5a6b21febbffb898e20592ce3918a15f42006154-708820ca24d43dff396633d674e432fe" class="flashcard__back">
     <ul>
 <li>Transactions can be aborted and safely retried if an error occurs, ensuring data integrity.</li>
 <li>In leaderless replication datastores, error recovery is the application&rsquo;s responsibility.</li>
@@ -4901,12 +5161,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-acf2975dc868e82cb77b6faee6be99c128f675b4-2473e339d8d6e46a3fd0846f0f7c3422&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-acf2975dc868e82cb77b6faee6be99c128f675b4-f332046976348827f4ad3feed4630cd2&#34;)"
     role="button"
   >
     What are the implications of weak isolation levels in transactions?
   </button>
-  <div id="answer-id-acf2975dc868e82cb77b6faee6be99c128f675b4-2473e339d8d6e46a3fd0846f0f7c3422" class="flashcard__back">
+  <div id="answer-id-acf2975dc868e82cb77b6faee6be99c128f675b4-f332046976348827f4ad3feed4630cd2" class="flashcard__back">
     <ul>
 <li>Weak isolation levels attempt to mitigate concurrency issues but do not protect against all of them.</li>
 <li>Common weak isolation levels include <strong>Read Committed</strong> and <strong>Snapshot Isolation</strong>, each with specific guarantees against dirty reads and writes.</li>
@@ -4937,12 +5197,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-afdb509a8139bcdb1eb5b61fbad6203b3ccbe1f8-f23903e44d60233f28df4ac877d646e3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-afdb509a8139bcdb1eb5b61fbad6203b3ccbe1f8-74f942c0733e63df46283f0da6e3824d&#34;)"
     role="button"
   >
     What is Serializable Isolation in transactions?
   </button>
-  <div id="answer-id-afdb509a8139bcdb1eb5b61fbad6203b3ccbe1f8-f23903e44d60233f28df4ac877d646e3" class="flashcard__back">
+  <div id="answer-id-afdb509a8139bcdb1eb5b61fbad6203b3ccbe1f8-74f942c0733e63df46283f0da6e3824d" class="flashcard__back">
     <ul>
 <li>Serializable Isolation is the strongest level of isolation in database transactions.</li>
 <li>It ensures that transactions are executed in a way that the outcome is the same as if they had been executed serially, one after the other.</li>
@@ -4973,12 +5233,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-95dc0901155b4863ab1958970aeff2001ead65d3-d3266886f43fca70ed43ed30f2344792&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-95dc0901155b4863ab1958970aeff2001ead65d3-4340a920edfc346e6fd23fd833724876&#34;)"
     role="button"
   >
     How does Snapshot Isolation work in transactions?
   </button>
-  <div id="answer-id-95dc0901155b4863ab1958970aeff2001ead65d3-d3266886f43fca70ed43ed30f2344792" class="flashcard__back">
+  <div id="answer-id-95dc0901155b4863ab1958970aeff2001ead65d3-4340a920edfc346e6fd23fd833724876" class="flashcard__back">
     <ul>
 <li>Snapshot Isolation allows transactions to operate on a consistent snapshot of the database.</li>
 <li>It prevents dirty reads and writes by ensuring transactions only see committed data as of the snapshot time.</li>
@@ -5009,12 +5269,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5ec3d250df5eee2506e3f9f10c50334bd7fbb1bc-8ce4d06df46484333ff93e7a2763022d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5ec3d250df5eee2506e3f9f10c50334bd7fbb1bc-0f66ef273dd4a8d42c9f334438732e60&#34;)"
     role="button"
   >
     How can lost updates be prevented in database transactions?
   </button>
-  <div id="answer-id-5ec3d250df5eee2506e3f9f10c50334bd7fbb1bc-8ce4d06df46484333ff93e7a2763022d" class="flashcard__back">
+  <div id="answer-id-5ec3d250df5eee2506e3f9f10c50334bd7fbb1bc-0f66ef273dd4a8d42c9f334438732e60" class="flashcard__back">
     <ul>
 <li><strong>Atomic Write Operations:</strong> Use database features like atomic increment operations to avoid the need for read-modify-write cycles.</li>
 </ul>
@@ -5054,12 +5314,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5d130df2bfdc06cbc9a9687875f656e1068cd090-4f908646274f3d7fa433e6338cded220&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5d130df2bfdc06cbc9a9687875f656e1068cd090-76d39fd3fea2238f74004644e3cd2683&#34;)"
     role="button"
   >
     What is Two-Phase Locking (2PL) in database transactions?
   </button>
-  <div id="answer-id-5d130df2bfdc06cbc9a9687875f656e1068cd090-4f908646274f3d7fa433e6338cded220" class="flashcard__back">
+  <div id="answer-id-5d130df2bfdc06cbc9a9687875f656e1068cd090-76d39fd3fea2238f74004644e3cd2683" class="flashcard__back">
     <ul>
 <li>Two-Phase Locking (2PL) is a mechanism to ensure serializability in transactions.</li>
 <li>It involves a phase where locks are acquired on all required resources without releasing any, followed by a phase where all the locks are released.</li>
@@ -5090,12 +5350,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6f04221d5202f5e0add8997eab46611206b6cf16-2f76d08fdeea9036446433f332748c2d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6f04221d5202f5e0add8997eab46611206b6cf16-6942e2324d3dc73d360670e3f4a8f4f8&#34;)"
     role="button"
   >
     What is Serializable Snapshot Isolation (SSI)?
   </button>
-  <div id="answer-id-6f04221d5202f5e0add8997eab46611206b6cf16-2f76d08fdeea9036446433f332748c2d" class="flashcard__back">
+  <div id="answer-id-6f04221d5202f5e0add8997eab46611206b6cf16-6942e2324d3dc73d360670e3f4a8f4f8" class="flashcard__back">
     <ul>
 <li>SSI is an advanced isolation level that combines snapshot isolation with mechanisms to detect and resolve serialization conflicts.</li>
 <li>It allows transactions to read from a consistent snapshot while also ensuring that the end result is as if the transactions were executed serially.</li>
@@ -5128,12 +5388,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-37de15a312ac62d4b550dc906fb61d4f0b7285d6-2f3e6d73f8f2d67c04a38302ed349446&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-37de15a312ac62d4b550dc906fb61d4f0b7285d6-c9f33d4274ea634d6e62fd08307284f3&#34;)"
     role="button"
   >
     💩➡️🪭 What&rsquo;s the difference between a fault, a failure, and a partial failure?
   </button>
-  <div id="answer-id-37de15a312ac62d4b550dc906fb61d4f0b7285d6-2f3e6d73f8f2d67c04a38302ed349446" class="flashcard__back">
+  <div id="answer-id-37de15a312ac62d4b550dc906fb61d4f0b7285d6-c9f33d4274ea634d6e62fd08307284f3" class="flashcard__back">
     <ul>
 <li><strong>Fault</strong>: A component deviating from its spec.</li>
 <li><strong>Failure</strong>: The system as a whole stops providing the required service to the user.</li>
@@ -5164,12 +5424,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-12ab566974ed65d8b23702306b2f116d1f031727-e2f7d2603623337c94f406d4ea8d3f48&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-12ab566974ed65d8b23702306b2f116d1f031727-fe2ff340ad3c4d67320693d8728e4643&#34;)"
     role="button"
   >
     🛜 Unreliable Networks: What are some things that can go wrong in a network?
   </button>
-  <div id="answer-id-12ab566974ed65d8b23702306b2f116d1f031727-e2f7d2603623337c94f406d4ea8d3f48" class="flashcard__back">
+  <div id="answer-id-12ab566974ed65d8b23702306b2f116d1f031727-fe2ff340ad3c4d67320693d8728e4643" class="flashcard__back">
     <ol>
 <li>Request lost</li>
 <li>Request waiting in a queue to be delivered later</li>
@@ -5203,12 +5463,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-495f842045b7f284dd1a716ccd1a59b196bbd102-d742f663486a230ed73340ed4289fc3f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-495f842045b7f284dd1a716ccd1a59b196bbd102-e37fc62d60382ed24f843d3640a4f739&#34;)"
     role="button"
   >
     ⏰ Unreliable Clocks: What are some things that can go wrong with time in a distributed system?
   </button>
-  <div id="answer-id-495f842045b7f284dd1a716ccd1a59b196bbd102-d742f663486a230ed73340ed4289fc3f" class="flashcard__back">
+  <div id="answer-id-495f842045b7f284dd1a716ccd1a59b196bbd102-e37fc62d60382ed24f843d3640a4f739" class="flashcard__back">
     <p>A node&rsquo;s clock may be out of sync with the other nodes (even if you have set up NTP), may jump forwards and backwards unexpectedly, and it&rsquo;s hard to rely on it since we don&rsquo;t have a good measure of the clock&rsquo;s confidence interval.</p>
 <p>Also, a process may pause for a substantial amount of time, be declared dead by the other nodes, and then resume without realizing it was paused.</p>
 <p>Reasons for process to pause:</p>
@@ -5246,12 +5506,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-9d2492dc27d3967decaf6f7b0efa0d06f361ac8a-00df23d3ae228cd7448363669f4fe473&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-9d2492dc27d3967decaf6f7b0efa0d06f361ac8a-64ff0338e4c87a6e3229240376fdd3d4&#34;)"
     role="button"
   >
     What it the difference between time-of-day and monotonic clocks?
   </button>
-  <div id="answer-id-9d2492dc27d3967decaf6f7b0efa0d06f361ac8a-00df23d3ae228cd7448363669f4fe473" class="flashcard__back">
+  <div id="answer-id-9d2492dc27d3967decaf6f7b0efa0d06f361ac8a-64ff0338e4c87a6e3229240376fdd3d4" class="flashcard__back">
     <ul>
 <li><strong>Time-of-day clocks</strong>. Return the current date and time according to some calendar (<em>wall-clock time</em>). If the local clock is toof ar ahead of the NTP server, it may be forcibly reset and appear to jump back to a previous point in time. <strong>This makes it is unsuitable for measuring elapsed time.</strong></li>
 <li><strong>Monotonic clocks</strong>. <code>System.nanoTime()</code>. They are guaranteed to always move forward. The difference between clock reads can tell you how much time elapsed between two checks. <strong>The <em>absolute</em> value of the clock is meaningless.</strong> NTP allows the clock rate to be speeded up or slowed down by up to 0.05%, but <strong>NTP cannot cause the monotonic clock to jump forward or backward</strong>. <strong>In a distributed system, using a monotonic clock for measuring elapsed time (eg: timeouts), is usually fine</strong>.</li>
@@ -5281,12 +5541,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a64c9b1f6332ac84d1ab48f83e79d7722e49281b-0792f3de0f3dc64468a637423efd2483&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a64c9b1f6332ac84d1ab48f83e79d7722e49281b-2f6ed78083fde3d7c3943a422f443606&#34;)"
     role="button"
   >
     The first step of building fault-tolerance in distributed systems is <em>detection</em>; why might detecting issues be difficult?
   </button>
-  <div id="answer-id-a64c9b1f6332ac84d1ab48f83e79d7722e49281b-0792f3de0f3dc64468a637423efd2483" class="flashcard__back">
+  <div id="answer-id-a64c9b1f6332ac84d1ab48f83e79d7722e49281b-2f6ed78083fde3d7c3943a422f443606" class="flashcard__back">
     Most systems (especially shared-nothing systems with no specialty hardware) have no way know if a node failed, so they rely on <strong>timeouts</strong>. Timeouts can&rsquo;t diff between node failure and network issues.
   </div>
 </div>
@@ -5312,12 +5572,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1ae76aee37881060ee94df027dc8f3a87254bd8f-f26778fc432ed4dd4289af0433e66033&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1ae76aee37881060ee94df027dc8f3a87254bd8f-369ade0f43f78ce064d4383762d4223f&#34;)"
     role="button"
   >
     In distributed systems, can a node rely on its own judgement of a situation?
   </button>
-  <div id="answer-id-1ae76aee37881060ee94df027dc8f3a87254bd8f-f26778fc432ed4dd4289af0433e66033" class="flashcard__back">
+  <div id="answer-id-1ae76aee37881060ee94df027dc8f3a87254bd8f-369ade0f43f78ce064d4383762d4223f" class="flashcard__back">
     <p>No, since there are some scenarios that make it hard to know for sure:</p>
 <ul>
 <li>Node semi-disconnected from the rest of the network (ingress OK, egress dead)</li>
@@ -5347,12 +5607,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-204dc2d64d7b22dcde392cdf9a5312a4d51c61d3-662f24304e2e3f436370fa8893dd47dc&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-204dc2d64d7b22dcde392cdf9a5312a4d51c61d3-43f9f422e633da62d47f40e8d708c336&#34;)"
     role="button"
   >
     Give examples of when there&rsquo;s a need for one of some thing in a distributed system.
   </button>
-  <div id="answer-id-204dc2d64d7b22dcde392cdf9a5312a4d51c61d3-662f24304e2e3f436370fa8893dd47dc" class="flashcard__back">
+  <div id="answer-id-204dc2d64d7b22dcde392cdf9a5312a4d51c61d3-43f9f422e633da62d47f40e8d708c336" class="flashcard__back">
     <ul>
 <li><strong>Leader node for a database partition</strong>, to avoid split-brain scenarios.</li>
 <li><strong>Master node for a distributed lock for a particular resource</strong>, to prevent concurrent access and potential data corruption.</li>
@@ -5383,12 +5643,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5dd06592eefae3dedb8a9503e034f3ae9a67511b-0df2d3ff2440d3c74347363a6e68e982&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5dd06592eefae3dedb8a9503e034f3ae9a67511b-308fe04fa846df24394d262d6373e37c&#34;)"
     role="button"
   >
     What is a quorum?
   </button>
-  <div id="answer-id-5dd06592eefae3dedb8a9503e034f3ae9a67511b-0df2d3ff2440d3c74347363a6e68e982" class="flashcard__back">
+  <div id="answer-id-5dd06592eefae3dedb8a9503e034f3ae9a67511b-308fe04fa846df24394d262d6373e37c" class="flashcard__back">
     A quorum is the minimum number of votes that a distributed transaction has to obtain in order to take effect. The quorum is a majority of the nodes in the system. For example, in a system with 5 nodes, the quorum is 3. This is to ensure that a majority of nodes agree on a decision, preventing split-brain scenarios.
   </div>
 </div>
@@ -5414,12 +5674,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-feeb3641369fcbb75ef4fda78659663e38855d7a-0f84497f072dae32c836d634e2f3436d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-feeb3641369fcbb75ef4fda78659663e38855d7a-40d33d7e2397c42068e4f8d623f4a63f&#34;)"
     role="button"
   >
     What are fencing tokens?
   </button>
-  <div id="answer-id-feeb3641369fcbb75ef4fda78659663e38855d7a-0f84497f072dae32c836d634e2f3436d" class="flashcard__back">
+  <div id="answer-id-feeb3641369fcbb75ef4fda78659663e38855d7a-40d33d7e2397c42068e4f8d623f4a63f" class="flashcard__back">
     A way to make sure that a lock service can handle a node that thinks it holds the lock, but it doesn&rsquo;t anymore. With each lock/lease granted, the service also gives an incrementing number called a <em>fencing token</em>. When a node uses that lock, it includes the fencing token in the request. If the lock service sees that the token is too old, it knows that the node is out of date and can safely ignore the request.
   </div>
 </div>
@@ -5445,12 +5705,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-0c6af624badedaa4e19dcf6f37108b5406d3f660-82308e2347fe3a7463cf44f036d6dd92&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-0c6af624badedaa4e19dcf6f37108b5406d3f660-6ef3e3dd820f74c49724a266d3f03483&#34;)"
     role="button"
   >
     What are Byzantine faults?
   </button>
-  <div id="answer-id-0c6af624badedaa4e19dcf6f37108b5406d3f660-82308e2347fe3a7463cf44f036d6dd92" class="flashcard__back">
+  <div id="answer-id-0c6af624badedaa4e19dcf6f37108b5406d3f660-6ef3e3dd820f74c49724a266d3f03483" class="flashcard__back">
     Nodes acting badly on purpose instead of by accident. Relevant where there are malicious actors that are trying to defraud others, or where physical hardware is failing in a way that causes it to send incorrect data (radiation in aerospace).
   </div>
 </div>
@@ -5478,12 +5738,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5f1913cdebbc1e84bdf32e0516fe3ef76accc7cc-028ffa63829f4ee4364d477d062333dc&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5f1913cdebbc1e84bdf32e0516fe3ef76accc7cc-d482337de0a44d87696c33ff02f4e362&#34;)"
     role="button"
   >
     What is Linearizability?
   </button>
-  <div id="answer-id-5f1913cdebbc1e84bdf32e0516fe3ef76accc7cc-028ffa63829f4ee4364d477d062333dc" class="flashcard__back">
+  <div id="answer-id-5f1913cdebbc1e84bdf32e0516fe3ef76accc7cc-d482337de0a44d87696c33ff02f4e362" class="flashcard__back">
     <p>Linearizability is a guarantee about the behavior of operations in a distributed system. It is a guarantee about the <em>real-time ordering</em> of operations. It is the strongest consistency model.</p>
 <p>In an eventually consistent database, if you ask two replicas for the current value of a data item, you might get two different answers. In a linearizable database, there is always one correct answer, and it&rsquo;s the same no matter which replica you ask.</p>
 
@@ -5511,12 +5771,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5ea38daba0ed4d5307cdf91d61dead770f176cb5-374933e4d68632dfd20c84af7ef23046&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5ea38daba0ed4d5307cdf91d61dead770f176cb5-da28f0c6833fe4f067d379364d44e232&#34;)"
     role="button"
   >
     What is the difference between linearizability and serializability?
   </button>
-  <div id="answer-id-5ea38daba0ed4d5307cdf91d61dead770f176cb5-374933e4d68632dfd20c84af7ef23046" class="flashcard__back">
+  <div id="answer-id-5ea38daba0ed4d5307cdf91d61dead770f176cb5-da28f0c6833fe4f067d379364d44e232" class="flashcard__back">
     <p><strong>Serializability</strong>: Transactions behave the same as if they had executed <em>some</em> serial order.</p>
 <p><strong>Linearizability</strong>: Recency guarantee on reads and writes of a register (individual object).</p>
 
@@ -5544,12 +5804,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-49e9bd15791ff750907e1fd3ef55328520277d1c-f03f686763e2dd3d4a7ce943234280f4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-49e9bd15791ff750907e1fd3ef55328520277d1c-23f36fc7322e90483648fd73644e0dda&#34;)"
     role="button"
   >
     Can a DB using SSI be linearizable?
   </button>
-  <div id="answer-id-49e9bd15791ff750907e1fd3ef55328520277d1c-f03f686763e2dd3d4a7ce943234280f4" class="flashcard__back">
+  <div id="answer-id-49e9bd15791ff750907e1fd3ef55328520277d1c-23f36fc7322e90483648fd73644e0dda" class="flashcard__back">
     No, by design. SSI makes reads from a consistent snapshot, but it doesn&rsquo;t guarantee that the snapshot is the latest one. It&rsquo;s a trade-off between consistency and performance.
   </div>
 </div>
@@ -5575,12 +5835,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-8d2769d5927f2b5ff62477832bd7ea1685040dee-d94ea2ce0336748342f26f37d0f84d36&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-8d2769d5927f2b5ff62477832bd7ea1685040dee-92647eca8df36648330ef2d40d233f74&#34;)"
     role="button"
   >
     When would we choose a linearizeable system? What are some examples of systems that are linearizeable?
   </button>
-  <div id="answer-id-8d2769d5927f2b5ff62477832bd7ea1685040dee-d94ea2ce0336748342f26f37d0f84d36" class="flashcard__back">
+  <div id="answer-id-8d2769d5927f2b5ff62477832bd7ea1685040dee-92647eca8df36648330ef2d40d233f74" class="flashcard__back">
     <p>Basically, only where it&rsquo;s very important.</p>
 <ul>
 <li>Locking</li>
@@ -5615,12 +5875,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-22c8083f07ed71603b9d3b08569ebc84ac6ca74c-683ed63de4374234629fd4a0c382ff70&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-22c8083f07ed71603b9d3b08569ebc84ac6ca74c-83f430f67dd3268e24032ac634fd49e7&#34;)"
     role="button"
   >
     What is the CAP theorem?
   </button>
-  <div id="answer-id-22c8083f07ed71603b9d3b08569ebc84ac6ca74c-683ed63de4374234629fd4a0c382ff70" class="flashcard__back">
+  <div id="answer-id-22c8083f07ed71603b9d3b08569ebc84ac6ca74c-83f430f67dd3268e24032ac634fd49e7" class="flashcard__back">
     Consistency, Availability, Partition Tolerance. Pick two.
   </div>
 </div>
@@ -5646,12 +5906,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d71463db8c75b97727e53f54a3e6333dbc9bb449-38fadfc6f7494274ede3336d32042860&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d71463db8c75b97727e53f54a3e6333dbc9bb449-40377aff326398d06f3e2d2434e6cd84&#34;)"
     role="button"
   >
     What are the two types of ordering guarantees?
   </button>
-  <div id="answer-id-d71463db8c75b97727e53f54a3e6333dbc9bb449-38fadfc6f7494274ede3336d32042860" class="flashcard__back">
+  <div id="answer-id-d71463db8c75b97727e53f54a3e6333dbc9bb449-40377aff326398d06f3e2d2434e6cd84" class="flashcard__back">
     <ul>
 <li><strong>Total order</strong>: If any two operations happen, you can tell which one happened first.</li>
 <li><strong>Causal order</strong>: Two events are ordered if the are causally related. Partial order.</li>
@@ -5681,12 +5941,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-149d7f11115c1b23eb361340106b802ee878fc17-3d3446864fa77d0220ff8c6de29e3334&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-149d7f11115c1b23eb361340106b802ee878fc17-608df232d39324743f67468cf4a3eed0&#34;)"
     role="button"
   >
     Where can one implement linearizability?
   </button>
-  <div id="answer-id-149d7f11115c1b23eb361340106b802ee878fc17-3d3446864fa77d0220ff8c6de29e3334" class="flashcard__back">
+  <div id="answer-id-149d7f11115c1b23eb361340106b802ee878fc17-608df232d39324743f67468cf4a3eed0" class="flashcard__back">
     <p>The simplest approach would be to have a single copy of the data, but this would not be able to tolerate faults.</p>
 <ul>
 <li>Single-leader repolication is potentially linearizable. 🤔</li>
@@ -5718,12 +5978,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6779b160bc07890b1c9674de26f3313fd667b93d-823463dfd74e46ca9fe8d36334270f20&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6779b160bc07890b1c9674de26f3313fd667b93d-03f7ff2e4036d4643dec723d2389648a&#34;)"
     role="button"
   >
     What is the problem with Committing a transaction on a distributed system?
   </button>
-  <div id="answer-id-6779b160bc07890b1c9674de26f3313fd667b93d-823463dfd74e46ca9fe8d36334270f20" class="flashcard__back">
+  <div id="answer-id-6779b160bc07890b1c9674de26f3313fd667b93d-03f7ff2e4036d4643dec723d2389648a" class="flashcard__back">
     If you have multiple nodes, some nodes might not agree with the commit due to constraints, some might fail (network or node crash), and some nodes might successfully commit the transaction. This leads to inconsistency.
   </div>
 </div>
@@ -5749,12 +6009,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-54493f13f3e1d4d577e4a0ca91a17f09b50e27b3-4d4dc68f2f93376037e0e23862fa4d34&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-54493f13f3e1d4d577e4a0ca91a17f09b50e27b3-34a23f83ed27269f87dd40634f64e3c0&#34;)"
     role="button"
   >
     What is the Two-Phase Commit (2PC) algorithm?
   </button>
-  <div id="answer-id-54493f13f3e1d4d577e4a0ca91a17f09b50e27b3-4d4dc68f2f93376037e0e23862fa4d34" class="flashcard__back">
+  <div id="answer-id-54493f13f3e1d4d577e4a0ca91a17f09b50e27b3-34a23f83ed27269f87dd40634f64e3c0" class="flashcard__back">
     <p>2PC uses a coordinator (<em>transaction manager</em>). When the application is ready to commit, the coordinator begins phase 1: it sends a <em>prepare</em> request to each of the nodes, asking them whether are able to commit.</p>
 <ul>
 <li>If all participants reply &ldquo;yes&rdquo;, the coordinator sends out a <em>commit</em> request in phase 2, and the commit takes place.</li>
@@ -6016,12 +6276,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-25cac19b9bcac78032754bd670e50ee8f1e9e56c-46f384f2e6df033334c9a27d278de460&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-25cac19b9bcac78032754bd670e50ee8f1e9e56c-3fc083674d4e7d83f4233f024a2e69d6&#34;)"
     role="button"
   >
     On a high level, systems that store and process data are categorized into two categories:
   </button>
-  <div id="answer-id-25cac19b9bcac78032754bd670e50ee8f1e9e56c-46f384f2e6df033334c9a27d278de460" class="flashcard__back">
+  <div id="answer-id-25cac19b9bcac78032754bd670e50ee8f1e9e56c-3fc083674d4e7d83f4233f024a2e69d6" class="flashcard__back">
     <ul>
 <li><strong>Systems of record</strong>, which are source of truth,first write here,this is by definition the winner on discreprency</li>
 <li>and <strong>derived data systems</strong> which are the result of taking existing data and processing/transforming it. Caches,indexes,matviews are examples.</li>
@@ -6051,12 +6311,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ef09767cc1a64ee4291b0a18635f57f62dc5a30c-36ed4ec2a60d6d78f9233f44f3278340&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ef09767cc1a64ee4291b0a18635f57f62dc5a30c-046efde94df326343638c274308da2f7&#34;)"
     role="button"
   >
     Three different types of systems:
   </button>
-  <div id="answer-id-ef09767cc1a64ee4291b0a18635f57f62dc5a30c-36ed4ec2a60d6d78f9233f44f3278340" class="flashcard__back">
+  <div id="answer-id-ef09767cc1a64ee4291b0a18635f57f62dc5a30c-046efde94df326343638c274308da2f7" class="flashcard__back">
     <ul>
 <li><strong>Services (online)</strong>, where the interesting metric is response time</li>
 <li><strong>Batch processing (offline)</strong>, where the interesting metric is throughput</li>
@@ -6087,12 +6347,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a84fc32f47758a1ab31dbfd8f62a21f455b7340a-6ea43062e23cfdd79d8834623407ff34&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a84fc32f47758a1ab31dbfd8f62a21f455b7340a-f86374f62ce0d4423d89ae303247df36&#34;)"
     role="button"
   >
     Why can a chain of Unix commands easily scale to a larger dataset over a naive language impl?
   </button>
-  <div id="answer-id-a84fc32f47758a1ab31dbfd8f62a21f455b7340a-6ea43062e23cfdd79d8834623407ff34" class="flashcard__back">
+  <div id="answer-id-a84fc32f47758a1ab31dbfd8f62a21f455b7340a-f86374f62ce0d4423d89ae303247df36" class="flashcard__back">
     <ul>
 <li>Automatic deal with datasets that are larger than memory by spilling to disk</li>
 <li>Disk is used well because of sequential I/O optimization: Mergesort,we saw this in chapter 3,storage and retrival.</li>
@@ -6123,12 +6383,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c6dd6cc2cbafea0a8a42c53693f2ed074a052c42-ac42286d623ed30077d33484f34fe69f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c6dd6cc2cbafea0a8a42c53693f2ed074a052c42-3eec4842f0486372d04d73369f26a3df&#34;)"
     role="button"
   >
     What are the four main tenants of the Unix philosophy? (asking because later on we learn about Hadoop and MapReduce which embody this philosophy for distributed comp):
   </button>
-  <div id="answer-id-c6dd6cc2cbafea0a8a42c53693f2ed074a052c42-ac42286d623ed30077d33484f34fe69f" class="flashcard__back">
+  <div id="answer-id-c6dd6cc2cbafea0a8a42c53693f2ed074a052c42-3eec4842f0486372d04d73369f26a3df" class="flashcard__back">
     <ul>
 <li>Make each program do one thing well.</li>
 <li>Expect that the output of one program will be the input of another: a uniform interface, usually text files</li>
@@ -6161,12 +6421,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c6b3d400f4cd0d86b81d3f54667e6411f2671afb-f4f0dac0f46d6e4d3373e24862393827&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c6b3d400f4cd0d86b81d3f54667e6411f2671afb-3f86c2fd033637f6234eed84a409247d&#34;)"
     role="button"
   >
     If the unix tools are so great, what is their biggest limitation, and why do we need something else?
   </button>
-  <div id="answer-id-c6b3d400f4cd0d86b81d3f54667e6411f2671afb-f4f0dac0f46d6e4d3373e24862393827" class="flashcard__back">
+  <div id="answer-id-c6b3d400f4cd0d86b81d3f54667e6411f2671afb-3f86c2fd033637f6234eed84a409247d" class="flashcard__back">
     <ul>
 <li>Only run on a single machine! That&rsquo;s where Hadoop comes in.</li>
 </ul>
@@ -6195,12 +6455,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d56b3652e9735bcf2ff13008160f1ecc427ca077-e432f2d00a694e3448726f63d38f7dc3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d56b3652e9735bcf2ff13008160f1ecc427ca077-3da60c2833e02e84f329f6d743df6474&#34;)"
     role="button"
   >
     HDFS review:
   </button>
-  <div id="answer-id-d56b3652e9735bcf2ff13008160f1ecc427ca077-e432f2d00a694e3448726f63d38f7dc3" class="flashcard__back">
+  <div id="answer-id-d56b3652e9735bcf2ff13008160f1ecc427ca077-3da60c2833e02e84f329f6d743df6474" class="flashcard__back">
     <ul>
 <li>Where unix uses stdin stdout, mapreduce uses reading and writing from files on a distributed filesystem.</li>
 <li>HDFS is based on the share-nothing principle, What is shared-nothing (also known as horizontal) partitioning? [[Designing Data-Intensive Applications]] [[DDIA-C6]] [[DDIA-P2]] #card</li>
@@ -6232,12 +6492,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f41b9dbda4668a6a12a69e7bb4e9b36880adcddc-8f33d03442628fdefe477393dc6a4602&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f41b9dbda4668a6a12a69e7bb4e9b36880adcddc-48f24ddd06433e3682f02c73fa4e3967&#34;)"
     role="button"
   >
     What is MapReduce?
   </button>
-  <div id="answer-id-f41b9dbda4668a6a12a69e7bb4e9b36880adcddc-8f33d03442628fdefe477393dc6a4602" class="flashcard__back">
+  <div id="answer-id-f41b9dbda4668a6a12a69e7bb4e9b36880adcddc-48f24ddd06433e3682f02c73fa4e3967" class="flashcard__back">
     A programming framework with which you can write code to process large datasets in a distributed filesystem like HDFS.
   </div>
 </div>
@@ -6263,12 +6523,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-66fc0cd60e2e0095ea450e88ab2b2d87f094e651-8fc44329434feedd373806262a0d637f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-66fc0cd60e2e0095ea450e88ab2b2d87f094e651-93c28d3373dff2ed440427ea603668f4&#34;)"
     role="button"
   >
     MapReduce has four steps:
   </button>
-  <div id="answer-id-66fc0cd60e2e0095ea450e88ab2b2d87f094e651-8fc44329434feedd373806262a0d637f" class="flashcard__back">
+  <div id="answer-id-66fc0cd60e2e0095ea450e88ab2b2d87f094e651-93c28d3373dff2ed440427ea603668f4" class="flashcard__back">
     <ol>
 <li>Read input file and break up into <em>records</em></li>
 <li>Mapper: Extract the key and value from each record. For each record may emit zero or more key-value pairs. Stateless.</li>
@@ -6300,12 +6560,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-be67c8996b966704171756d1304428eabf3033f3-d96430874f0648d22ef47336a3dcf32e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-be67c8996b966704171756d1304428eabf3033f3-6da630f4e3643c32472d97328fef8d40&#34;)"
     role="button"
   >
     How is MapReduce different from a pipeline of Unix commands?
   </button>
-  <div id="answer-id-be67c8996b966704171756d1304428eabf3033f3-d96430874f0648d22ef47336a3dcf32e" class="flashcard__back">
+  <div id="answer-id-be67c8996b966704171756d1304428eabf3033f3-6da630f4e3643c32472d97328fef8d40" class="flashcard__back">
     <p>MapReduce can parallelize a computation across many machines, without having to write code to explicitly handle the parallelism. It also handles fault tolerance and data distribution.</p>
 <p>It&rsquo;s parallelization is based on <em>partitioning</em>. The reduce task takes the files from the mappers and merges them together, preserving the sort order.</p>
 
@@ -6333,12 +6593,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c83a5dd3ca7c6f6d0b977399a1d3fcb39c2cdcf7-6247639436f42fea480d8c3d20f3d73e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c83a5dd3ca7c6f6d0b977399a1d3fcb39c2cdcf7-f4e3344acf0438d8d922376e6fd30672&#34;)"
     role="button"
   >
     What are MapReduce workflows and why are they needed?
   </button>
-  <div id="answer-id-c83a5dd3ca7c6f6d0b977399a1d3fcb39c2cdcf7-6247639436f42fea480d8c3d20f3d73e" class="flashcard__back">
+  <div id="answer-id-c83a5dd3ca7c6f6d0b977399a1d3fcb39c2cdcf7-f4e3344acf0438d8d922376e6fd30672" class="flashcard__back">
     <p>Single round of sorting means that you can&rsquo;t do multiple rounds of MapReduce in a single job. This is a problem for some algorithms, like iterative algorithms (e.g., PageRank, K-means clustering). This is why MapReduce workflows are needed.</p>
 <p>To handle dependencies between jobs there are workflow schedules for Hadoop like Oozie, Azkaban, Airflow and Pinball. Various high-level tools for Hadoop such as Pig, Hive, Cascading, Crunch, and FlumeJava also set up workflows of multiple MapReduce stages that are wired up automatically.</p>
 
@@ -6366,12 +6626,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-96f2c633634dac773d53a376518bcfd254bf1709-738824eff7e4430936236f6cdad3d240&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-96f2c633634dac773d53a376518bcfd254bf1709-4382dfec24e73afdf304749863626d30&#34;)"
     role="button"
   >
     Reduce-Side Joins: What are joins in the context of batch processing?
   </button>
-  <div id="answer-id-96f2c633634dac773d53a376518bcfd254bf1709-738824eff7e4430936236f6cdad3d240" class="flashcard__back">
+  <div id="answer-id-96f2c633634dac773d53a376518bcfd254bf1709-4382dfec24e73afdf304749863626d30" class="flashcard__back">
     <p>When a MapReduce job is given a set of files as input, it reads the entire content of all of those files (like a full table scan). When talking about joining data in MapReduce we mean resolving all associations, because we read the entire content of all of those files.</p>
 <p>Good example is correlating user activity with user profile data.</p>
 
@@ -6399,12 +6659,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5b618ff5865ea7aa5d2740e1b8805eee65dd59d8-84c3e2e4f0af3d73d982064f637d6432&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5b618ff5865ea7aa5d2740e1b8805eee65dd59d8-2cf4324234686fd0437dd6fe380379ae&#34;)"
     role="button"
   >
     What&rsquo;s the simplest implementation for reduce-side join, and how to get better throughput?
   </button>
-  <div id="answer-id-5b618ff5865ea7aa5d2740e1b8805eee65dd59d8-84c3e2e4f0af3d73d982064f637d6432" class="flashcard__back">
+  <div id="answer-id-5b618ff5865ea7aa5d2740e1b8805eee65dd59d8-2cf4324234686fd0437dd6fe380379ae" class="flashcard__back">
     Simplest - go over the activity events one by one and query the user database (which is on a remote server) for every ID. To get better throughput, the computation must be local to one machine. Use a local copy of the user database.
   </div>
 </div>
@@ -6430,12 +6690,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a9dddbb59fe757a540950198a8f69c097a158697-437600f443d2e646e7ad8f32f298d3c3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a9dddbb59fe757a540950198a8f69c097a158697-36ff494822d836ecdf3307e34204da76&#34;)"
     role="button"
   >
     How does reduce-side sort-merge join?
   </button>
-  <div id="answer-id-a9dddbb59fe757a540950198a8f69c097a158697-437600f443d2e646e7ad8f32f298d3c3" class="flashcard__back">
+  <div id="answer-id-a9dddbb59fe757a540950198a8f69c097a158697-36ff494822d836ecdf3307e34204da76" class="flashcard__back">
     <p>Two mappers - one does activity, one does user database. Partition the mapper output by key. One sort is done, the effect is that all activity and database info for the same ID are adjacent in the reducer input. The reducer can then perform the actual join.</p>
 <p>One way to look at this architecture is that we&rsquo;re bringing related data together in the same place by having mappers &ldquo;send messages&rdquo; to the reducers. This is a common pattern in distributed systems.</p>
 
@@ -6463,12 +6723,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-143801fe30da17746a91206a44f3a72cae030c4e-f046337e272d2f443d0c83e6d439af68&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-143801fe30da17746a91206a44f3a72cae030c4e-3f6473cd2364fe403d82d60892e37a4f&#34;)"
     role="button"
   >
     What are linchpin objects/hot keys when doing reduce-side joins? How to deal with them?
   </button>
-  <div id="answer-id-143801fe30da17746a91206a44f3a72cae030c4e-f046337e272d2f443d0c83e6d439af68" class="flashcard__back">
+  <div id="answer-id-143801fe30da17746a91206a44f3a72cae030c4e-3f6473cd2364fe403d82d60892e37a4f" class="flashcard__back">
     <p>Large amount of data related to the same key (celeb in a social network). Such disproportionately active database records are called linchpin objects or hot keys. If we collect all the data for a hot key in one reducer, that reducer will have a lot of work to do, and the other reducers will be idle. This is a problem because it makes the job slow.</p>
 <p>There are a a few algorithms; <em>skewed join</em> in Pig and Hive, <em>sharded join</em> in Crunch. Basically all of them involve sending the hot keys to multiple reducers, and the differences lie in detection.</p>
 
@@ -6496,12 +6756,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-597d96bc9a12eba393a83b88d8adcc60eb624bc3-a7d42c3f46408294dde02f637e6f3833&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-597d96bc9a12eba393a83b88d8adcc60eb624bc3-70e34f366ed9443dff2d84283762c0a3&#34;)"
     role="button"
   >
     Compare Map-side joins to Reduce-side joins:
   </button>
-  <div id="answer-id-597d96bc9a12eba393a83b88d8adcc60eb624bc3-a7d42c3f46408294dde02f637e6f3833" class="flashcard__back">
+  <div id="answer-id-597d96bc9a12eba393a83b88d8adcc60eb624bc3-70e34f366ed9443dff2d84283762c0a3" class="flashcard__back">
     <p>Reduce-side:</p>
 <ul>
 <li>Pro: No assumptions and the input data</li>
@@ -6531,12 +6791,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a3a491ecb722b8ba0e2c79f2976f8aa0febc7065-fdf7c406d7e2234d9a0e3f6368432483&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a3a491ecb722b8ba0e2c79f2976f8aa0febc7065-32706784342029e6f83a63cf43efdd4d&#34;)"
     role="button"
   >
     What are the types of Map-side joins?
   </button>
-  <div id="answer-id-a3a491ecb722b8ba0e2c79f2976f8aa0febc7065-fdf7c406d7e2234d9a0e3f6368432483" class="flashcard__back">
+  <div id="answer-id-a3a491ecb722b8ba0e2c79f2976f8aa0febc7065-32706784342029e6f83a63cf43efdd4d" class="flashcard__back">
     <ul>
 <li>Broadcast hash join: small table is broadcast to all mappers, and the join is done in the mapper. This is good for small tables that fits in memory.</li>
 <li>Partitioned hash joins: both tables are partitioned in the same way, and the join is done in the mapper. If the partitioning is done correctly, you can be sure that all the records you might want to join are located in the same numbered partition, and so it is sufficient for each mapper to only read one partition from each of the input datasets. This is good for large tables.</li>
@@ -6566,12 +6826,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-9887f255afdc5a953db4872ec3f73fb9862e30d8-6d6327cf47e3dffa6400e4233428389d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-9887f255afdc5a953db4872ec3f73fb9862e30d8-372c7ff294644e0ddf036333d468ea82&#34;)"
     role="button"
   >
     Give examples for output of batch workflows - where would we use it?
   </button>
-  <div id="answer-id-9887f255afdc5a953db4872ec3f73fb9862e30d8-6d6327cf47e3dffa6400e4233428389d" class="flashcard__back">
+  <div id="answer-id-9887f255afdc5a953db4872ec3f73fb9862e30d8-372c7ff294644e0ddf036333d468ea82" class="flashcard__back">
     <p>The output of a batch workflow is often a derived data set, such as an index or a cache. This is used in a service (online) system, where the interesting metric is response time. The batch workflow is used to precompute the derived data set, so that the service can respond to user requests more quickly.</p>
 <ul>
 <li>Search indexes; If you need to perform a full-text search over a fixed set of documents, then a batch workflow can be used to build a search index. If the indexed set of documents changes, the index needs to be rebuilt. It&rsquo;s possible to build indexes incrementally, but it&rsquo;s more complex.</li>
@@ -6602,12 +6862,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-fdd173dcef1ccd8075dba19c0f687afd7ab4675a-9a6e6233467208ded4204ff748c333fd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-fdd173dcef1ccd8075dba19c0f687afd7ab4675a-733fd0cfed2964433873a46e4f82260d&#34;)"
     role="button"
   >
     How to write the results from batch workflow for an app to use?
   </button>
-  <div id="answer-id-fdd173dcef1ccd8075dba19c0f687afd7ab4675a-9a6e6233467208ded4204ff748c333fd" class="flashcard__back">
+  <div id="answer-id-fdd173dcef1ccd8075dba19c0f687afd7ab4675a-733fd0cfed2964433873a46e4f82260d" class="flashcard__back">
     <p>Don&rsquo;t write it directly to the DB using the client lib from within the reducer, because:</p>
 <ol>
 <li>Network round-trip for each record means poor performance</li>
@@ -6640,12 +6900,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4174b149323276ed930347b17204baa662ea67fe-92fa7fd684784203f3dd66e0c333442e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4174b149323276ed930347b17204baa662ea67fe-4e04269d433ea687607dff32f3d38c24&#34;)"
     role="button"
   >
     What does &lsquo;Materialization of Intermediate State&rsquo; mean?
   </button>
-  <div id="answer-id-4174b149323276ed930347b17204baa662ea67fe-92fa7fd684784203f3dd66e0c333442e" class="flashcard__back">
+  <div id="answer-id-4174b149323276ed930347b17204baa662ea67fe-4e04269d433ea687607dff32f3d38c24" class="flashcard__back">
     <p>In a workflow there are many jobs - the process of writing out the intermediate state between the jobs to files is called <em>materialization of intermediate state</em>. This is a good practice because it makes it easier to debug and inspect the intermediate state, and it also makes it easier to recover from a failure.</p>
 <p>Spark, Flink, and other dataflow engines achieve fault tolerance without emitting ALL intermediate state by recomputing from other data that&rsquo;s still available (latest previous stage that exists or the input data). That means that MapReduce jobs should be deterministic.</p>
 
@@ -6673,12 +6933,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-123b49a5a0cee940c7c672c3a6faf55088e8686a-7fd28d3a3046483d3e2e3964cf6f0472&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-123b49a5a0cee940c7c672c3a6faf55088e8686a-4a3d40c3ff267e0d6d647232438ef983&#34;)"
     role="button"
   >
     Downsides of materializing intermediate state:
   </button>
-  <div id="answer-id-123b49a5a0cee940c7c672c3a6faf55088e8686a-7fd28d3a3046483d3e2e3964cf6f0472" class="flashcard__back">
+  <div id="answer-id-123b49a5a0cee940c7c672c3a6faf55088e8686a-4a3d40c3ff267e0d6d647232438ef983" class="flashcard__back">
     <ul>
 <li>MapReduce job can only start when ALL the previous ones ended</li>
 <li>Mappers are sometimes very simple and could have been chained to the prev reducer</li>
@@ -6711,12 +6971,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3ee969d8abb79e01cb69b17459627a1cb8c11ee3-d3f6ef7c6443a2339ed234872004f86d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3ee969d8abb79e01cb69b17459627a1cb8c11ee3-de2447d84f830d6f73a394f2e63320c6&#34;)"
     role="button"
   >
     What&rsquo;s the big assumption in batch processing that isn&rsquo;t true for stream processing?
   </button>
-  <div id="answer-id-3ee969d8abb79e01cb69b17459627a1cb8c11ee3-d3f6ef7c6443a2339ed234872004f86d" class="flashcard__back">
+  <div id="answer-id-3ee969d8abb79e01cb69b17459627a1cb8c11ee3-de2447d84f830d6f73a394f2e63320c6" class="flashcard__back">
     <p>The input is bounded - i.e., of a known and finite size - so the batch process knows when it has finished reading its input. For example, you can sort the input of a batch job, but you can&rsquo;t do that for a stream because the very last input record could be the one with the lowest key .</p>
 <p>In reality a lot of data is unbounded.</p>
 
@@ -6744,12 +7004,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a482e12b062c31528b4844915e2bd780f08f3309-60dfaf808e349463fd62d2e32374c374&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a482e12b062c31528b4844915e2bd780f08f3309-0a423f02c64d78323448ef376e9d6df3&#34;)"
     role="button"
   >
     Terminology time! The name of an input to a stream process is usually called&hellip; it&rsquo;s a&hellip; it&rsquo;s generated by&hellip; processed by&hellip; and grouped into&hellip;
   </button>
-  <div id="answer-id-a482e12b062c31528b4844915e2bd780f08f3309-60dfaf808e349463fd62d2e32374c374" class="flashcard__back">
+  <div id="answer-id-a482e12b062c31528b4844915e2bd780f08f3309-0a423f02c64d78323448ef376e9d6df3" class="flashcard__back">
     <ul>
 <li>Called an event.</li>
 <li>It&rsquo;s a small,self-contained,immutable object containing the details of something that happened at some point in time.</li>
@@ -6781,12 +7041,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-90e57974a073201e570ef96bc6036b8707d40049-2f06ec8467298d2ffd7334ade0443336&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-90e57974a073201e570ef96bc6036b8707d40049-6c2346683323f2dd470aed89f47ef304&#34;)"
     role="button"
   >
     Messaging system types: Within the publish/subscribe model, there&rsquo;s a wide range of approaches, no right answer. Two questions to diff the types of messaging systems:
   </button>
-  <div id="answer-id-90e57974a073201e570ef96bc6036b8707d40049-2f06ec8467298d2ffd7334ade0443336" class="flashcard__back">
+  <div id="answer-id-90e57974a073201e570ef96bc6036b8707d40049-6c2346683323f2dd470aed89f47ef304" class="flashcard__back">
     <ul>
 <li>What happens if the producers send messages faster than the consumers can process them? Three options:
 <ul>
@@ -6825,12 +7085,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-22b9b5c950f55327cb057e57ddd0b781de2d47e3-746d6cd36a8f7fe020e4f3433829234d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-22b9b5c950f55327cb057e57ddd0b781de2d47e3-2728fe3eff4736083d6924c34d04ad36&#34;)"
     role="button"
   >
     Give some examples of direct messaging from producers to consumers, and explain the downsides
   </button>
-  <div id="answer-id-22b9b5c950f55327cb057e57ddd0b781de2d47e3-746d6cd36a8f7fe020e4f3433829234d" class="flashcard__back">
+  <div id="answer-id-22b9b5c950f55327cb057e57ddd0b781de2d47e3-2728fe3eff4736083d6924c34d04ad36" class="flashcard__back">
     <ul>
 <li>UDP multicast, where low latency is important</li>
 <li>Brokerless messaging libraries such as ZeroMQ</li>
@@ -6866,12 +7126,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6d5c417b732e50b6fd2a2ee985c31abf2b8cbaeb-0663e38a4dd224e234c7fd4f309f6837&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6d5c417b732e50b6fd2a2ee985c31abf2b8cbaeb-282460d43e76329cf843edff43a3760d&#34;)"
     role="button"
   >
     High level, what are message brokers?
   </button>
-  <div id="answer-id-6d5c417b732e50b6fd2a2ee985c31abf2b8cbaeb-0663e38a4dd224e234c7fd4f309f6837" class="flashcard__back">
+  <div id="answer-id-6d5c417b732e50b6fd2a2ee985c31abf2b8cbaeb-282460d43e76329cf843edff43a3760d" class="flashcard__back">
     <p>DB optimized for message streams. Data is centralized there. It&rsquo;s a server where producers and consumers connect as clients.</p>
 <p>It&rsquo;s a way to decouple producers and consumers, and to buffer messages if the consumers are not ready to process them immediately. It also provides durability and fault tolerance, removing the burden from the application code (unlike direct messaging).</p>
 <p>Using a message broker makes consumers generally <em>async</em> since the producer doesn&rsquo;t wait for a consumer to pick up a message.</p>
@@ -6900,12 +7160,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-e436fb0b6fb0f722ec6a003618b769cf23031d7c-43ff3e9dd30a73e6286fc643280474d2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-e436fb0b6fb0f722ec6a003618b769cf23031d7c-28877de6202d3d4933a3366f4ffc044e&#34;)"
     role="button"
   >
     Differences between normal DBs and message brokers
   </button>
-  <div id="answer-id-e436fb0b6fb0f722ec6a003618b769cf23031d7c-43ff3e9dd30a73e6286fc643280474d2" class="flashcard__back">
+  <div id="answer-id-e436fb0b6fb0f722ec6a003618b769cf23031d7c-28877de6202d3d4933a3366f4ffc044e" class="flashcard__back">
     <ul>
 <li>small working set is assumed.</li>
 <li>automatically delete messages that have been consumed.</li>
@@ -6937,12 +7197,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f36acc0c29852c8b3d0c48a3aaad9e5814dab634-8d2ade46206e42479f8ffcd333063374&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f36acc0c29852c8b3d0c48a3aaad9e5814dab634-43d24d3e4982f067ffe3806a7c33246d&#34;)"
     role="button"
   >
     What are the two main patters of messaging when multiple consumers are reading from the same topic?
   </button>
-  <div id="answer-id-f36acc0c29852c8b3d0c48a3aaad9e5814dab634-8d2ade46206e42479f8ffcd333063374" class="flashcard__back">
+  <div id="answer-id-f36acc0c29852c8b3d0c48a3aaad9e5814dab634-43d24d3e4982f067ffe3806a7c33246d" class="flashcard__back">
     <ul>
 <li>⚖️ Load balancing: Each message is delivered to one of the consumers. The broker may assign messages to consumers arbitrarily.</li>
 <li>🪭 Fan-out: Each message is delivered to all of the consumers.</li>
@@ -6972,12 +7232,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-b1fcf244fa3d421ef164d9e1677ccf4903cefd6b-67f9a4d3f742e0d33cf20d82e4334686&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-b1fcf244fa3d421ef164d9e1677ccf4903cefd6b-3204e3204d48f2e79a36d63d4fc736f8&#34;)"
     role="button"
   >
     How do message brokers deal with message loss due to consumer crash?
   </button>
-  <div id="answer-id-b1fcf244fa3d421ef164d9e1677ccf4903cefd6b-67f9a4d3f742e0d33cf20d82e4334686" class="flashcard__back">
+  <div id="answer-id-b1fcf244fa3d421ef164d9e1677ccf4903cefd6b-3204e3204d48f2e79a36d63d4fc736f8" class="flashcard__back">
     <p>In order to ensure that the message is not lost, message brokers use acknowledgements: a client must explicitly tell the broker when it has finished processing a message so that the broker can remove it from the queue.</p>
 <p>Note that the message might have been processed and the ACK got lost in the network - to handle this we use atomic commit protocols, see 2PC card.</p>
 
@@ -7005,12 +7265,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-39135cf14ed7e5d3d38caad1d26a9af06834354f-f0323f8fda64967e43edd7c038263442&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-39135cf14ed7e5d3d38caad1d26a9af06834354f-3de34f24e6f38d30892604d7734c6a2f&#34;)"
     role="button"
   >
     What is the result of load balancing and redelivery?
   </button>
-  <div id="answer-id-39135cf14ed7e5d3d38caad1d26a9af06834354f-f0323f8fda64967e43edd7c038263442" class="flashcard__back">
+  <div id="answer-id-39135cf14ed7e5d3d38caad1d26a9af06834354f-3de34f24e6f38d30892604d7734c6a2f" class="flashcard__back">
     Messages can get reordered. If they are independent, this is fine. If they are not, you need to use a different pattern.
   </div>
 </div>
@@ -7036,12 +7296,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-06d533f6ead52ece3114ee04be5f6db640e0b14e-d7363a6402d3374d4f49e682f3028ecf&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-06d533f6ead52ece3114ee04be5f6db640e0b14e-6ee3747009842fff3632adc24683d4d3&#34;)"
     role="button"
   >
     What are log-messaged brokers? Give examples of these.
   </button>
-  <div id="answer-id-06d533f6ead52ece3114ee04be5f6db640e0b14e-d7363a6402d3374d4f49e682f3028ecf" class="flashcard__back">
+  <div id="answer-id-06d533f6ead52ece3114ee04be5f6db640e0b14e-6ee3747009842fff3632adc24683d4d3" class="flashcard__back">
     <p>A log is simply an append-only sequence of records on disk. The same structure can be used to implement a message broker: a producer sends a message by appending it to the end of the log, and consumer receives messages by reading the log sequentially. If a consumer reaches the end of the log, it waits for a notification that a new message has been appended.</p>
 <p>To scale to higher throughput than a single disk can offer, the log can be partitioned. Different partitions can then be hosted on different machines. A topic can then be defined as a group of partitions that all carry messages of the same type.</p>
 <p>Within each partition, the broker assigns monotonically increasing sequence number, or offset, to every message.</p>
@@ -7071,12 +7331,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-30e3e6f1c1ad04ff7a1806c5bc2629d807be83fd-03ca2df347d273d66e30e492434f8f86&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-30e3e6f1c1ad04ff7a1806c5bc2629d807be83fd-f3ae634248cd037f4742689e36d2df30&#34;)"
     role="button"
   >
     When to use logs and when to use traditional messaging?
   </button>
-  <div id="answer-id-30e3e6f1c1ad04ff7a1806c5bc2629d807be83fd-03ca2df347d273d66e30e492434f8f86" class="flashcard__back">
+  <div id="answer-id-30e3e6f1c1ad04ff7a1806c5bc2629d807be83fd-f3ae634248cd037f4742689e36d2df30" class="flashcard__back">
     In situations where messages may be expensive to process and you want to parallelize processing on a message-by-message basis, and where message ordering is not so important, the JMS/AMQP style of message broker is preferable. In situations with high message throughput, where each message is fast to process and where message ordering is important, the log-based approach works very well.
   </div>
 </div>
@@ -7102,12 +7362,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-dd7aba0103dba5b3448e415c378a99947ad29515-fd6973c4032e638e038a24f6243fd4d7&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-dd7aba0103dba5b3448e415c378a99947ad29515-9348836e724d46fc72df4fd6303e302a&#34;)"
     role="button"
   >
     What&rsquo;s the deciding factor of the partitioning key?
   </button>
-  <div id="answer-id-dd7aba0103dba5b3448e415c378a99947ad29515-fd6973c4032e638e038a24f6243fd4d7" class="flashcard__back">
+  <div id="answer-id-dd7aba0103dba5b3448e415c378a99947ad29515-9348836e724d46fc72df4fd6303e302a" class="flashcard__back">
     Ordering.
   </div>
 </div>
@@ -7133,12 +7393,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c772c4b9eead5d0482e8cbcef8e5096675fb15e0-3a3264f8386f7740dd3f0426dcee4329&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c772c4b9eead5d0482e8cbcef8e5096675fb15e0-36f7a6ddf4e2844d339082363f0c427e&#34;)"
     role="button"
   >
     What is a consumer offset?
   </button>
-  <div id="answer-id-c772c4b9eead5d0482e8cbcef8e5096675fb15e0-3a3264f8386f7740dd3f0426dcee4329" class="flashcard__back">
+  <div id="answer-id-c772c4b9eead5d0482e8cbcef8e5096675fb15e0-36f7a6ddf4e2844d339082363f0c427e" class="flashcard__back">
     <p>which messages have been processed: al messages with an offset less than a consumer current offset have already been processed, and all messages with a greater offset have not yet been seen. This adds opportunity for optimization, like skipping messages that have already been processed, and for batching and pipelining.</p>
 <p>The offset is very similar to the log sequence number that is commonly found in single-leader database replication. The message broker behaves like a leader database, and the consumer like a follower.</p>
 
@@ -7166,12 +7426,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a5fbcd8820f5d51a7c42a480326c897b447ed79c-d27f634ff8d0824ac923e330e37d6464&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a5fbcd8820f5d51a7c42a480326c897b447ed79c-ff234a89603cd6e623304dde43f78724&#34;)"
     role="button"
   >
     What is consumer lag?
   </button>
-  <div id="answer-id-a5fbcd8820f5d51a7c42a480326c897b447ed79c-d27f634ff8d0824ac923e330e37d6464" class="flashcard__back">
+  <div id="answer-id-a5fbcd8820f5d51a7c42a480326c897b447ed79c-ff234a89603cd6e623304dde43f78724" class="flashcard__back">
     <p>When a consumer cannot keep up with the rate of messages being produced, the number of messages that have been produced but not yet consumed is called the consumer lag. This is a critical metric for monitoring the health of a stream processing system.</p>
 <p>Only the slow consumer is affected.</p>
 
@@ -7199,12 +7459,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c14c58c2a89ffb91aea6abf033b344bb94338ccb-a9348f627d8c64edf3f0644d2203e337&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c14c58c2a89ffb91aea6abf033b344bb94338ccb-6026fa4332e207d93de46738f3c84fd4&#34;)"
     role="button"
   >
     Why is log-based messaging better for experimentation and recovery?
   </button>
-  <div id="answer-id-c14c58c2a89ffb91aea6abf033b344bb94338ccb-a9348f627d8c64edf3f0644d2203e337" class="flashcard__back">
+  <div id="answer-id-c14c58c2a89ffb91aea6abf033b344bb94338ccb-6026fa4332e207d93de46738f3c84fd4" class="flashcard__back">
     You can start a consumer with a different offset to replay old messages. This is unlike traditional messaging systems, where the broker forgets messages after they have been delivered to consumers, and so it is not possible to reprocess old messages.
   </div>
 </div>
@@ -7230,12 +7490,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-94da8e427f85b3c48c425c2a83e3769606868a12-3804dad78e436f220f6df3ce34246937&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-94da8e427f85b3c48c425c2a83e3769606868a12-443ffd337ee6ca0336876f04489d222d&#34;)"
     role="button"
   >
     What is a problem that arises with heterogeneous data systems?
   </button>
-  <div id="answer-id-94da8e427f85b3c48c425c2a83e3769606868a12-3804dad78e436f220f6df3ce34246937" class="flashcard__back">
+  <div id="answer-id-94da8e427f85b3c48c425c2a83e3769606868a12-443ffd337ee6ca0336876f04489d222d" class="flashcard__back">
     <p>Keeping two systems in sync. As the same or related data appears in several different places, they need to be kept in sync. If an item is updated in the DB, it needs to be updated in the cache, search index, etc.</p>
 <p>If doing a batch process to keep the data in sync is too slow, an alternative is <em>dual writes</em>, but that has SERIOUS problems (race conditions, fault tolerance) that lead to inconsistency.</p>
 <p>Ultimately the solution is one source of truth.</p>
@@ -7264,12 +7524,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d9fbe6ee64afd44b329665b3747942ad1bf8addf-064ed73784c4e6d2d23f382936f40af3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d9fbe6ee64afd44b329665b3747942ad1bf8addf-36fe84424d6774f0286cd20f3ae3339d&#34;)"
     role="button"
   >
     What is Change Data Capture (CDC)? Give examples
   </button>
-  <div id="answer-id-d9fbe6ee64afd44b329665b3747942ad1bf8addf-064ed73784c4e6d2d23f382936f40af3" class="flashcard__back">
+  <div id="answer-id-d9fbe6ee64afd44b329665b3747942ad1bf8addf-36fe84424d6774f0286cd20f3ae3339d" class="flashcard__back">
     <p>CDC is the process of observing all data changes in a database, recording them in a log, and making them available in a stream.</p>
 <p>Examples</p>
 <ul>
@@ -7302,12 +7562,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-36e0eb58355338364db136d0288b26a1727dcf78-3209f36448667fcd20d2ee34a78f43d3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-36e0eb58355338364db136d0288b26a1727dcf78-2a374d3d7f04f04e282c89364ed633f6&#34;)"
     role="button"
   >
     How to build a new sink from a CDC?
   </button>
-  <div id="answer-id-36e0eb58355338364db136d0288b26a1727dcf78-3209f36448667fcd20d2ee34a78f43d3" class="flashcard__back">
+  <div id="answer-id-36e0eb58355338364db136d0288b26a1727dcf78-2a374d3d7f04f04e282c89364ed633f6" class="flashcard__back">
     <p>If you keep all the CDC you can rebuilt from scratch.</p>
 <p>Normally this is too much so a snapshot is saved with the relevant offset in the CDC.</p>
 
@@ -7335,12 +7595,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5d82982d80299c9a15cb4bbe19be43f21e349888-34406c2ef4e93d74f2d3736a6f8023d8&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5d82982d80299c9a15cb4bbe19be43f21e349888-2da6897f0443d23ed43368fc26034ef7&#34;)"
     role="button"
   >
     What is log compaction?
   </button>
-  <div id="answer-id-5d82982d80299c9a15cb4bbe19be43f21e349888-34406c2ef4e93d74f2d3736a6f8023d8" class="flashcard__back">
+  <div id="answer-id-5d82982d80299c9a15cb4bbe19be43f21e349888-2da6897f0443d23ed43368fc26034ef7" class="flashcard__back">
     An update with a special null value (called <em>tombstone</em>) is written to the log, and the compaction process removes all previous updates for that key. The disk space depends only on the content of the database, not on the history of updates.
   </div>
 </div>
@@ -7366,12 +7626,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-51a51cab9f2538d91cd3f71340833d816bf1a9b4-7cf33830764f44d22349d3e682d0eaf6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-51a51cab9f2538d91cd3f71340833d816bf1a9b4-02d4d08f3ea47f6d3fc436263784e239&#34;)"
     role="button"
   >
     What is Event Sourcing?
   </button>
-  <div id="answer-id-51a51cab9f2538d91cd3f71340833d816bf1a9b4-7cf33830764f44d22349d3e682d0eaf6" class="flashcard__back">
+  <div id="answer-id-51a51cab9f2538d91cd3f71340833d816bf1a9b4-02d4d08f3ea47f6d3fc436263784e239" class="flashcard__back">
     <p>Event sourcing is a way of persisting the state of a business entity by storing the history of changes as a log of events. Each event represents a state change at a specific point in time. The current state of the entity is derived by replaying the events.</p>
 <p>Commands VS Events: A command is a request to change the state of a system, and an event is a record of a state change. A consumer can reject a command, but it can&rsquo;t reject an event.</p>
 
@@ -7399,12 +7659,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4ef7a500a16837f30b6ed453f11505fe2a015fda-33c82f4a4f64d73028364e79e63fdd02&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4ef7a500a16837f30b6ed453f11505fe2a015fda-8023230d649dfa43448ec237fefd7366&#34;)"
     role="button"
   >
     What is CQRS?
   </button>
-  <div id="answer-id-4ef7a500a16837f30b6ed453f11505fe2a015fda-33c82f4a4f64d73028364e79e63fdd02" class="flashcard__back">
+  <div id="answer-id-4ef7a500a16837f30b6ed453f11505fe2a015fda-8023230d649dfa43448ec237fefd7366" class="flashcard__back">
     Command Query Responsibility Segregation. It&rsquo;s a pattern that separates the responsibility for handling commands from the responsibility for handling queries. This can be useful for scaling, because the read and write workloads are different and can be scaled independently.
   </div>
 </div>
@@ -7430,12 +7690,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d9d0ca0a3f48f0773ab24ba13d1f231f6c66aa77-cef34f67dd30f0442ed78636a4282393&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d9d0ca0a3f48f0773ab24ba13d1f231f6c66aa77-068c43334f4a3dd602f69e37d2e2f784&#34;)"
     role="button"
   >
     What&rsquo;s the biggest downside of event sourcing and CDC?
   </button>
-  <div id="answer-id-d9d0ca0a3f48f0773ab24ba13d1f231f6c66aa77-cef34f67dd30f0442ed78636a4282393" class="flashcard__back">
+  <div id="answer-id-d9d0ca0a3f48f0773ab24ba13d1f231f6c66aa77-068c43334f4a3dd602f69e37d2e2f784" class="flashcard__back">
     Concurrency control. Consumers are usually async, so a user may make a write to the log, the read from a log-derived view and find that their write has not yet been reflected in the read view.
   </div>
 </div>
@@ -7461,12 +7721,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5d3c8d9d6b305185899aa475678f19ec24383cde-ef879736f622f444d3033adde42860c3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5d3c8d9d6b305185899aa475678f19ec24383cde-d4c03d4633e28420f83f6ad29fe36747&#34;)"
     role="button"
   >
     What are some limitations of immutability?
   </button>
-  <div id="answer-id-5d3c8d9d6b305185899aa475678f19ec24383cde-ef879736f622f444d3033adde42860c3" class="flashcard__back">
+  <div id="answer-id-5d3c8d9d6b305185899aa475678f19ec24383cde-d4c03d4633e28420f83f6ad29fe36747" class="flashcard__back">
     <ul>
 <li>Can&rsquo;t keep an immutable log forever, so you need to delete old data.</li>
 <li>For administrative/legal reasons you may need to delete data in spite of immutability (GDPR).</li>
@@ -7496,12 +7756,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-59d6c81910c10707df6283b60015acf3acd036e9-d3322f446936e807f382eddf474a6c30&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-59d6c81910c10707df6283b60015acf3acd036e9-34dfcd4e2e7642d80f834f2a93663370&#34;)"
     role="button"
   >
     Processing: What can you do with the stream once you have it?
   </button>
-  <div id="answer-id-59d6c81910c10707df6283b60015acf3acd036e9-d3322f446936e807f382eddf474a6c30" class="flashcard__back">
+  <div id="answer-id-59d6c81910c10707df6283b60015acf3acd036e9-34dfcd4e2e7642d80f834f2a93663370" class="flashcard__back">
     <ol>
 <li>You can take the data in the events and write it to the database, cache, search index, or similar storage system, from where it can then be queried by other clients.</li>
 <li>You can push the events to users in some way, for example by sending email alerts or push notifications, or to a real-time dashboard.</li>
@@ -7532,12 +7792,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-9df95f08462c3b7731fc039b07465b86fbc4f153-44df08223634fd743cd033ef26e9867a&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-9df95f08462c3b7731fc039b07465b86fbc4f153-6d44a236429ef623ff7ddc873038304e&#34;)"
     role="button"
   >
     List 4 uses of stream processing
   </button>
-  <div id="answer-id-9df95f08462c3b7731fc039b07465b86fbc4f153-44df08223634fd743cd033ef26e9867a" class="flashcard__back">
+  <div id="answer-id-9df95f08462c3b7731fc039b07465b86fbc4f153-6d44a236429ef623ff7ddc873038304e" class="flashcard__back">
     <ul>
 <li><strong>Complex event processing</strong>:
 <ul>
@@ -7590,12 +7850,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-e2bd74d86229f6bd2feeff52e322c506fc114ab5-8f80e303fd6d4434372a32fdec692467&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-e2bd74d86229f6bd2feeff52e322c506fc114ab5-63ef3302848fed4472f036c2ad9d7634&#34;)"
     role="button"
   >
     What is difficult with reasoning about time in a stream processor?
   </button>
-  <div id="answer-id-e2bd74d86229f6bd2feeff52e322c506fc114ab5-8f80e303fd6d4434372a32fdec692467" class="flashcard__back">
+  <div id="answer-id-e2bd74d86229f6bd2feeff52e322c506fc114ab5-63ef3302848fed4472f036c2ad9d7634" class="flashcard__back">
     <ul>
 <li>There&rsquo;s a difference between event time and processing time. Confusing them will lead to bad data.</li>
 <li>You need to deal with straggler events that arrive after the window has closed. Broadly, two options:
@@ -7630,12 +7890,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-109a7422d51ea32d211d64ff999e7b0fa4a5ecb4-330dec36f7d8362964402f4df7e8342a&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-109a7422d51ea32d211d64ff999e7b0fa4a5ecb4-2dcdaf2e86e7630434f38372f036d449&#34;)"
     role="button"
   >
     What are the three timestamps needed to adjust for incorrect device clocks?
   </button>
-  <div id="answer-id-109a7422d51ea32d211d64ff999e7b0fa4a5ecb4-330dec36f7d8362964402f4df7e8342a" class="flashcard__back">
+  <div id="answer-id-109a7422d51ea32d211d64ff999e7b0fa4a5ecb4-2dcdaf2e86e7630434f38372f036d449" class="flashcard__back">
     <ol>
 <li>Event time according to the device that generated the event.</li>
 <li>Sending time according to the device that sent the event.</li>
@@ -7666,12 +7926,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4da7fcdfa421540679e368c41b74bf030dc7e735-f2e463247d48a4cf7680e36033329ddf&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4da7fcdfa421540679e368c41b74bf030dc7e735-f42446630ae2c9738fd30d4e73fd8326&#34;)"
     role="button"
   >
     What are the four types of time windows?
   </button>
-  <div id="answer-id-4da7fcdfa421540679e368c41b74bf030dc7e735-f2e463247d48a4cf7680e36033329ddf" class="flashcard__back">
+  <div id="answer-id-4da7fcdfa421540679e368c41b74bf030dc7e735-f42446630ae2c9738fd30d4e73fd8326" class="flashcard__back">
     <ul>
 <li>Tumbling window: Fixed length. If you have a 1-minute tumbling window, all events between 10:03:00 and 10:03:59 will be grouped in one window, next window would be 10:04:00-10:04:59</li>
 <li>Hopping window: Fixed length, but allows windows to overlap in order to provide some smoothing. If you have a 5-minute window with a hop size of 1 minute, it would contain the events between 10:03:00 and 10:07:59, next window would cover 10:04:00-10:08:59</li>
@@ -7703,12 +7963,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-28a4189d1a4e0e6760a088c8c4c0cab03cfc0728-4f3c6e2786a0d2e6443d70fd982f3433&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-28a4189d1a4e0e6760a088c8c4c0cab03cfc0728-e40d20d64e36a4838ff6fdc372439327&#34;)"
     role="button"
   >
     What is challenging about stream joins?
   </button>
-  <div id="answer-id-28a4189d1a4e0e6760a088c8c4c0cab03cfc0728-4f3c6e2786a0d2e6443d70fd982f3433" class="flashcard__back">
+  <div id="answer-id-28a4189d1a4e0e6760a088c8c4c0cab03cfc0728-e40d20d64e36a4838ff6fdc372439327" class="flashcard__back">
     new events can arrive at any time.
   </div>
 </div>
@@ -7734,12 +7994,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-928af70fce9505e94bb62c7df59f818d57d69312-43388d32407ea033424edf6f66792cfd&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-928af70fce9505e94bb62c7df59f818d57d69312-f922636ee3c38f4406ad2778dd4f3340&#34;)"
     role="button"
   >
     What are the three types of stream joins? Explain each one.
   </button>
-  <div id="answer-id-928af70fce9505e94bb62c7df59f818d57d69312-43388d32407ea033424edf6f66792cfd" class="flashcard__back">
+  <div id="answer-id-928af70fce9505e94bb62c7df59f818d57d69312-f922636ee3c38f4406ad2778dd4f3340" class="flashcard__back">
     <ul>
 <li>Stream-stream join (Window join):
 <ul>
@@ -7785,12 +8045,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4e9edc582e3d443c753724e0f462251edf10a93c-37646de00248a42fc4f693d3273ed38f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4e9edc582e3d443c753724e0f462251edf10a93c-48f430df3daf26733642907e364cd28e&#34;)"
     role="button"
   >
     Fault tolerance in stream processing: Why is it harder than batch?
   </button>
-  <div id="answer-id-4e9edc582e3d443c753724e0f462251edf10a93c-37646de00248a42fc4f693d3273ed38f" class="flashcard__back">
+  <div id="answer-id-4e9edc582e3d443c753724e0f462251edf10a93c-48f430df3daf26733642907e364cd28e" class="flashcard__back">
     Because you can&rsquo;t wait until the task is finished to make its output visible. A stream is infinite and so you can never finish processing it.
   </div>
 </div>
@@ -7816,12 +8076,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d1b4f25f50124fb544255674b0b8fdc2e765cba2-867f7cd60e4d63f234282d3e3f34a490&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d1b4f25f50124fb544255674b0b8fdc2e765cba2-fc9408433fa63e4426760d3f22dde837&#34;)"
     role="button"
   >
     What is microbatching and checkpointing?
   </button>
-  <div id="answer-id-d1b4f25f50124fb544255674b0b8fdc2e765cba2-867f7cd60e4d63f234282d3e3f34a490" class="flashcard__back">
+  <div id="answer-id-d1b4f25f50124fb544255674b0b8fdc2e765cba2-fc9408433fa63e4426760d3f22dde837" class="flashcard__back">
     <p>Break the stream into small blocks and tread each blcok like a miniature batch process. This is how Spark Streaming does it.</p>
 <p>Checkpointing is the process of writing the state of the computation to a durable storage system, such as HDFS. If the computation fails, it can be restarted from the last checkpoint.</p>
 
@@ -7849,12 +8109,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-e5a99aa1dc2d7a47121ce1c490bfa0a2d21ab315-60f4484ff339c330282a7ddd3e7266e4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-e5a99aa1dc2d7a47121ce1c490bfa0a2d21ab315-36f46f93c4f32d86d4ae70373d284e20&#34;)"
     role="button"
   >
     What is the difference between exactly-once and at-least-once processing?
   </button>
-  <div id="answer-id-e5a99aa1dc2d7a47121ce1c490bfa0a2d21ab315-60f4484ff339c330282a7ddd3e7266e4" class="flashcard__back">
+  <div id="answer-id-e5a99aa1dc2d7a47121ce1c490bfa0a2d21ab315-36f46f93c4f32d86d4ae70373d284e20" class="flashcard__back">
     <ul>
 <li>Exactly-once processing: Each event is processed exactly once. This is the strongest guarantee, but it&rsquo;s also the most expensive to implement.</li>
 <li>At-least-once processing: Each event is processed at least once, but possibly multiple times. This is the weakest guarantee, but it&rsquo;s also the cheapest to implement.</li>
@@ -7884,12 +8144,12 @@ break the hardest ones (I&rsquo;m looking at you, chapter 7) to two sessions.</p
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ae8ad8f685658386d76fc9e4b3c3cc5abddc03a6-43c3d2a4f6626dd4e803f82374739e0f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ae8ad8f685658386d76fc9e4b3c3cc5abddc03a6-f37636ade29e820806cd434f37243f4d&#34;)"
     role="button"
   >
     What is idempotence?
   </button>
-  <div id="answer-id-ae8ad8f685658386d76fc9e4b3c3cc5abddc03a6-43c3d2a4f6626dd4e803f82374739e0f" class="flashcard__back">
+  <div id="answer-id-ae8ad8f685658386d76fc9e4b3c3cc5abddc03a6-f37636ade29e820806cd434f37243f4d" class="flashcard__back">
     An operation is idempotent if it has the same effect whether it is executed once or multiple times. This is important for at-least-once processing, because if an event is processed multiple times, the processing must be idempotent to avoid producing incorrect results.
   </div>
 </div>
@@ -8543,12 +8803,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-2a96f3820f6473e37643de844c30dd2f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-90dd86c483422e4f6e02f7a333fd6374&#34;)"
     role="button"
   >
     Level 1 - select all plates
   </button>
-  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-2a96f3820f6473e37643de844c30dd2f" class="flashcard__back">
+  <div id="answer-id-98b410b8fbe385f16e4aaf66114bd45fab6cc4e2-90dd86c483422e4f6e02f7a333fd6374" class="flashcard__back">
     <code>plate</code>
   </div>
 </div>
@@ -8575,12 +8835,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-303d72632efe7948842d40c36f3afd64&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-244d8ffc3334d24de37732e96fa66800&#34;)"
     role="button"
   >
     Level 2 - select all bento boxes
   </button>
-  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-303d72632efe7948842d40c36f3afd64" class="flashcard__back">
+  <div id="answer-id-a9b1f1065d5ba432b5297bd4ca0cec8a0919f6e2-244d8ffc3334d24de37732e96fa66800" class="flashcard__back">
     <code>bento</code>
   </div>
 </div>
@@ -8608,12 +8868,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-38670e4dad8936702f24d3cf3e34264f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-030c243fad26674de4e873fd6493832f&#34;)"
     role="button"
   >
     Level 3 - select by ID
   </button>
-  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-38670e4dad8936702f24d3cf3e34264f" class="flashcard__back">
+  <div id="answer-id-4d80f434fe316efb8b10f0859895d9795aa434f1-030c243fad26674de4e873fd6493832f" class="flashcard__back">
     <code>#fancy</code>
   </div>
 </div>
@@ -8642,12 +8902,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-d8468f32e2daf3e324077fdc96463043&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-74fe3ff3a22044ec3d47289063d6d683&#34;)"
     role="button"
   >
     Level 4 - Descendant Selector - Select an element inside another element
   </button>
-  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-d8468f32e2daf3e324077fdc96463043" class="flashcard__back">
+  <div id="answer-id-520b7ce3634bd39c770b81ec87b950db2e18c609-74fe3ff3a22044ec3d47289063d6d683" class="flashcard__back">
     <code>plate apple</code>
   </div>
 </div>
@@ -8673,12 +8933,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-d363e438e9f3dc644203224d77fa80f6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-464f2f73a68cd9df3e40328d6327e043&#34;)"
     role="button"
   >
     Level 5 - Combine the Descendant &amp; ID Selectors
   </button>
-  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-d363e438e9f3dc644203224d77fa80f6" class="flashcard__back">
+  <div id="answer-id-0749cd2bfa68db7609506eab04d8b87de1d400a2-464f2f73a68cd9df3e40328d6327e043" class="flashcard__back">
     <code>#fancy pickle</code>
   </div>
 </div>
@@ -8706,12 +8966,12 @@ yourself, go to <a href="https://flukeout.github.io/">CSS Diner</a> before readi
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-3703cda4e2d3408648223fe7d3f4669f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-ff60af4e36d73e4238d48c323d726904&#34;)"
     role="button"
   >
     Level 6 - Select elements by their class
   </button>
-  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-3703cda4e2d3408648223fe7d3f4669f" class="flashcard__back">
+  <div id="answer-id-57752a534d8cda95b123ed41bfe52fffa276e0c0-ff60af4e36d73e4238d48c323d726904" class="flashcard__back">
     <code>.small</code>
   </div>
 </div>
@@ -8741,12 +9001,12 @@ level 7&rsquo;s solution is:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-e633037cf406284f278d64def29d343a&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-8f4d2c6383a203607264de3e947ff3d4&#34;)"
     role="button"
   >
     Level 7 - Combine the Class Selector
   </button>
-  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-e633037cf406284f278d64def29d343a" class="flashcard__back">
+  <div id="answer-id-8950a4eb4d12538989c718f94c3b1f1a834cbd08-8f4d2c6383a203607264de3e947ff3d4" class="flashcard__back">
     <code>orange.small</code>
   </div>
 </div>
@@ -8774,12 +9034,12 @@ level 7&rsquo;s solution is:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-e0874c38fdd427236264a306d49fef33&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-0fa84e3243f3d432247d79f3e6d0c686&#34;)"
     role="button"
   >
     Level 8 - Select the small (class) oranges (type) in the bentos (type)
   </button>
-  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-e0874c38fdd427236264a306d49fef33" class="flashcard__back">
+  <div id="answer-id-3ac65818e2fe48cd11ec17a0dd3e686d39749b97-0fa84e3243f3d432247d79f3e6d0c686" class="flashcard__back">
     <code>bento orange.small</code>
   </div>
 </div>
@@ -8808,12 +9068,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-6f3384ffd034063d9e223624d7ca784e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-da433fff0d8d079846e6442322373ce6&#34;)"
     role="button"
   >
     Level 9 - Comma Combinator
   </button>
-  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-6f3384ffd034063d9e223624d7ca784e" class="flashcard__back">
+  <div id="answer-id-80285cdcfda691565017e155ef7bcdb8369d01d1-da433fff0d8d079846e6442322373ce6" class="flashcard__back">
     <code>plate, bento</code>
   </div>
 </div>
@@ -8841,12 +9101,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-04373346cf4f7df6632ade308922de84&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-4d09d333f844fc623402866e3f77ade2&#34;)"
     role="button"
   >
     Level 10 - The Universal Selector
   </button>
-  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-04373346cf4f7df6632ade308922de84" class="flashcard__back">
+  <div id="answer-id-215b92d0157e76fa7338ee8e4b15c29db667e244-4d09d333f844fc623402866e3f77ade2" class="flashcard__back">
     <code>*</code>
   </div>
 </div>
@@ -8872,12 +9132,12 @@ with <code>,</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-2466ec9e37873d283036df404da3f2f4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-169aa8ad36c454426d720eb96342db46d8d51748-23434de9636780282fd7f4e4da63cf30&#34;)"
     role="button"
   >
     Level 11 - Combine the Universal Selector
   </button>
-  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-2466ec9e37873d283036df404da3f2f4" class="flashcard__back">
+  <div id="answer-id-169aa8ad36c454426d720eb96342db46d8d51748-23434de9636780282fd7f4e4da63cf30" class="flashcard__back">
     <code>plate *</code>
   </div>
 </div>
@@ -8910,12 +9170,12 @@ another are called siblings. They&rsquo;re on the same level, or depth.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-6d2f0a30f6e649c833474f337242dde8&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-8caf0424268d063967e4d43fd23e3f73&#34;)"
     role="button"
   >
     Level 12 - Select an element that directly follows another element
   </button>
-  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-6d2f0a30f6e649c833474f337242dde8" class="flashcard__back">
+  <div id="answer-id-133b34ace630d7e81c1105c7e235f8b979ec1b9f-8caf0424268d063967e4d43fd23e3f73" class="flashcard__back">
     <code>plate + apple</code>
   </div>
 </div>
@@ -8955,12 +9215,12 @@ hover. Some that ChatGPT suggested:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-d42f4de496f0f363487c83302e6a2d73&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-d6933608ca428f40ed3f436d3242f7e7&#34;)"
     role="button"
   >
     Level 13 - Select elements that follows another element
   </button>
-  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-d42f4de496f0f363487c83302e6a2d73" class="flashcard__back">
+  <div id="answer-id-ef9365c98f3487f8d926334f7b9aafb4d5734e45-d6933608ca428f40ed3f436d3242f7e7" class="flashcard__back">
     <code>bento ~ pickle</code>
   </div>
 </div>
@@ -8989,12 +9249,12 @@ children.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-a2446e23fd3d3e34f6086d40f872c739&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-643df067248e39c443d73026e238fadf&#34;)"
     role="button"
   >
     Level 14 - Select direct children of an element A &gt; B
   </button>
-  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-a2446e23fd3d3e34f6086d40f872c739" class="flashcard__back">
+  <div id="answer-id-c664b98d26b9313387a43c6bca1b53b2a0b386ff-643df067248e39c443d73026e238fadf" class="flashcard__back">
     <code>plate &gt; apple</code>
   </div>
 </div>
@@ -9023,12 +9283,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-d0f3d4623892d04cefa63743782fe463&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-2d6436ad4f279c4dfef38384632e7300&#34;)"
     role="button"
   >
     Level 15 - Select a first child element inside of another element
   </button>
-  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-d0f3d4623892d04cefa63743782fe463" class="flashcard__back">
+  <div id="answer-id-c914edb6ebbf3ed13339620eff5ac93408380571-2d6436ad4f279c4dfef38384632e7300" class="flashcard__back">
     <code>plate &gt; orange:first-child</code>
   </div>
 </div>
@@ -9055,12 +9315,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-f24d8a336376294f4d023c7f4e638de0&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-f4683f7fc3d6642930d8042e4ad372e3&#34;)"
     role="button"
   >
     Level 16 - Select an element that are the only element inside of another one.
   </button>
-  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-f24d8a336376294f4d023c7f4e638de0" class="flashcard__back">
+  <div id="answer-id-a67940749121f492c19f029d016f6d73b37fc4ce-f4683f7fc3d6642930d8042e4ad372e3" class="flashcard__back">
     <code>plate &gt; *:only-child</code>. You can also solve it with
 <code>plate :only-child</code>, and we weren&rsquo;t sure which one is better.
   </div>
@@ -9088,12 +9348,12 @@ pseudo-selectors, so I <a href="https://developer.mozilla.org/en-US/docs/Web/CSS
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-0fdd60a4393f7238e34fe466c8d72342&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-a09dce32644342ed847d6383206f37ff&#34;)"
     role="button"
   >
     Level 17 - Select the last element inside of another element
   </button>
-  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-0fdd60a4393f7238e34fe466c8d72342" class="flashcard__back">
+  <div id="answer-id-fca46aa64950babfedf2a2f9e034ab8b4a03de89-a09dce32644342ed847d6383206f37ff" class="flashcard__back">
     <code>.small:last-child</code>
   </div>
 </div>
@@ -9126,12 +9386,12 @@ since it takes a parameter.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-3347d33406f9dfdc2fe2483486026e7a&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-7a26f8d30224736c6de4334ef4093df8&#34;)"
     role="button"
   >
     Level 18 - Select an element by its order in another element
   </button>
-  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-3347d33406f9dfdc2fe2483486026e7a" class="flashcard__back">
+  <div id="answer-id-27e059001b173c3c81a2c507ba78d5381e0730e2-7a26f8d30224736c6de4334ef4093df8" class="flashcard__back">
     <code>plate:nth-child(3)</code>
   </div>
 </div>
@@ -9159,12 +9419,12 @@ since it takes a parameter.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-2333032688ef7724d3fd4f496c6ad40e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-6f228283f44d394e33cd40770ade366f&#34;)"
     role="button"
   >
     Level 19 - Select an element by its order in another element, counting from the back
   </button>
-  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-2333032688ef7724d3fd4f496c6ad40e" class="flashcard__back">
+  <div id="answer-id-5c75a5cc918fbac59f776b8175779813bd4afbfc-6f228283f44d394e33cd40770ade366f" class="flashcard__back">
     <code>bento:nth-last-child(3)</code>
   </div>
 </div>
@@ -9194,12 +9454,12 @@ work in this case, but <code>bento:nth-last-child(3)</code> does.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-73ff863ee0629462f483cd7a24dd0334&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-20d32828fe36d496f63047aef37d3c44&#34;)"
     role="button"
   >
     Level 20 - Select the first element of a specific type
   </button>
-  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-73ff863ee0629462f483cd7a24dd0334" class="flashcard__back">
+  <div id="answer-id-d7780b4f5c474dcd8847f3faea267caea24b32d7-20d32828fe36d496f63047aef37d3c44" class="flashcard__back">
     <code>apple:first-of-type</code>
   </div>
 </div>
@@ -9227,12 +9487,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-8f440e8dd70326364dafe2f94336237c&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-4203ddfdf74a8482336e2669043f37ce&#34;)"
     role="button"
   >
     Level 21 - Nth of Type Selector
   </button>
-  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-8f440e8dd70326364dafe2f94336237c" class="flashcard__back">
+  <div id="answer-id-77dea1d14b5395a02e4bfbf35ccddf2d198b428e-4203ddfdf74a8482336e2669043f37ce" class="flashcard__back">
     <code>plate:nth-of-type(even)</code>
   </div>
 </div>
@@ -9258,12 +9518,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-934e6463246f80dad4fec0872d733f23&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-a7e3882433f30dcf9e67242d40f436d6&#34;)"
     role="button"
   >
     Level 22 - Nth-of-type Selector with Formula
   </button>
-  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-934e6463246f80dad4fec0872d733f23" class="flashcard__back">
+  <div id="answer-id-ca57822a55ffe532599100c3735f74c9a837f61f-a7e3882433f30dcf9e67242d40f436d6" class="flashcard__back">
     <code>plate:nth-of-type(2n+3)</code>
   </div>
 </div>
@@ -9290,12 +9550,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-34f70fd628c0e3e64d38497f3d63a224&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-42ed430fd3f7d367492a8460e3f286c3&#34;)"
     role="button"
   >
     Level 23 - Select elements that are the only ones of their type within of their parent element
   </button>
-  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-34f70fd628c0e3e64d38497f3d63a224" class="flashcard__back">
+  <div id="answer-id-c98db12a62121a49b21bb93b91d7845aed1e81f4-42ed430fd3f7d367492a8460e3f286c3" class="flashcard__back">
     <code>plate apple:only-of-type</code>
   </div>
 </div>
@@ -9321,12 +9581,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-263d3f43dcf4e87690283324d06fe7a4&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-90a37371ee168b261b5358fe57b662277d314665-8f43324360c3ad02f89d77d346fe26e4&#34;)"
     role="button"
   >
     Level 24 - Select the last element of a specific type
   </button>
-  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-263d3f43dcf4e87690283324d06fe7a4" class="flashcard__back">
+  <div id="answer-id-90a37371ee168b261b5358fe57b662277d314665-8f43324360c3ad02f89d77d346fe26e4" class="flashcard__back">
     <code>apple:last-of-type, orange:last-of-type</code>
   </div>
 </div>
@@ -9352,12 +9612,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-cd246ef22d4740d439af3780336e38f6&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-f93e72844740d3c623def6d6a8f04332&#34;)"
     role="button"
   >
     Level 25 - Select elements that don&rsquo;t have children
   </button>
-  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-cd246ef22d4740d439af3780336e38f6" class="flashcard__back">
+  <div id="answer-id-5f60c69e22f9283a44c8beaf0f2f229820ea634f-f93e72844740d3c623def6d6a8f04332" class="flashcard__back">
     <code>bento:empty</code>
   </div>
 </div>
@@ -9383,12 +9643,12 @@ elements. For example, <code>even</code> and  \( A \times n + B \) :</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-c3ef48fa7dd96740423e36d0234632f8&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-d78ac7f463e404f23fde806223d96433&#34;)"
     role="button"
   >
     Level 26 - Select all elements that don&rsquo;t match the negation selector
   </button>
-  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-c3ef48fa7dd96740423e36d0234632f8" class="flashcard__back">
+  <div id="answer-id-312701a4b6dc891692a605e5411a3f533dcb8a59-d78ac7f463e404f23fde806223d96433" class="flashcard__back">
     <code>apple:not(.small)</code>
   </div>
 </div>
@@ -9419,12 +9679,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-eff78d623c2643340d9d043a3287e46f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83053773908abea6db960fc6978a29509ffc6c86-8ee32363ff0474606d723afc48492d3d&#34;)"
     role="button"
   >
     Level 27 - Select all elements that have a specific attribute
   </button>
-  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-eff78d623c2643340d9d043a3287e46f" class="flashcard__back">
+  <div id="answer-id-83053773908abea6db960fc6978a29509ffc6c86-8ee32363ff0474606d723afc48492d3d" class="flashcard__back">
     <code>[for]</code>.
   </div>
 </div>
@@ -9450,12 +9710,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-33e679df7a403dd24f84603462f3c82e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-69447382df8360d23efa32f046edc734&#34;)"
     role="button"
   >
     Level 28 - Combining type and attribute selector
   </button>
-  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-33e679df7a403dd24f84603462f3c82e" class="flashcard__back">
+  <div id="answer-id-16c2a92e65121f124095a3fdd7e6712f4b2af843-69447382df8360d23efa32f046edc734" class="flashcard__back">
     <code>plate[for]</code>.
   </div>
 </div>
@@ -9481,12 +9741,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-df4de04967836adfc632f32e44830327&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-f3a4ed047936ef4f0238234827dc366d&#34;)"
     role="button"
   >
     Level 29 - Select all elements that have a specific attribute value
   </button>
-  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-df4de04967836adfc632f32e44830327" class="flashcard__back">
+  <div id="answer-id-f1adf42291353e04cb49b1c3eeb8c4bf3345ab73-f3a4ed047936ef4f0238234827dc366d" class="flashcard__back">
     <code>[for=&quot;Vitaly&quot;]</code>
   </div>
 </div>
@@ -9513,12 +9773,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-ad342ff66032344c79083d4f36dee287&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-838f6442336430932dca62ffe7d704de&#34;)"
     role="button"
   >
     Level 30 - Select all elements with an attribute value that starts with specific characters
   </button>
-  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-ad342ff66032344c79083d4f36dee287" class="flashcard__back">
+  <div id="answer-id-781027de8cdbc468e85f33b82c722318b3ca67af-838f6442336430932dca62ffe7d704de" class="flashcard__back">
     <code>[for^=&quot;Sa&quot;]</code>
   </div>
 </div>
@@ -9544,12 +9804,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-84632694d04ff3d8e3e2302d76c7a34f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6a67fa861f8545c32646bf821b33a01966c048de-0d84689d027233ac3ef3663724d44eff&#34;)"
     role="button"
   >
     Level 31 - Select all elements with an attribute value that ends with specific characters
   </button>
-  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-84632694d04ff3d8e3e2302d76c7a34f" class="flashcard__back">
+  <div id="answer-id-6a67fa861f8545c32646bf821b33a01966c048de-0d84689d027233ac3ef3663724d44eff" class="flashcard__back">
     <code>[for$=&quot;ato&quot;]</code>
   </div>
 </div>
@@ -9575,12 +9835,12 @@ written as <code>[id=&quot;fancy&quot;]</code>.</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-f3fea07884df22343697d03c4643e6d2&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-ff0703d447322d23d36f6ce48486a39e&#34;)"
     role="button"
   >
     Level 32 - Select all elements with an attribute value that contains specific characters anywhere
   </button>
-  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-f3fea07884df22343697d03c4643e6d2" class="flashcard__back">
+  <div id="answer-id-5169328db3c9ed2ad0f232273a5fc4c7018a8b52-ff0703d447322d23d36f6ce48486a39e" class="flashcard__back">
     <code>[for*=&quot;obb&quot;]</code>
   </div>
 </div>
@@ -10235,12 +10495,12 @@ be able to actually deliver on the answers!</p>
   &lt;div class=&#34;notepad-line&#34;&gt;&lt;/div&gt;
   &lt;button
     class=&#34;flashcard__front&#34;
-    onclick=&#34;toggleAnswer(&amp;#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-227f6433d884039fed7da603fe3c6244&amp;#34;)&#34;
+    onclick=&#34;toggleAnswer(&amp;#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-62437d687d8e3f334fa9f624de43c020&amp;#34;)&#34;
     role=&#34;button&#34;
   &gt;
     What&amp;rsquo;s a flashcard? Click here!
   &lt;/button&gt;
-  &lt;div id=&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-227f6433d884039fed7da603fe3c6244&#34; class=&#34;flashcard__back&#34;&gt;
+  &lt;div id=&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-62437d687d8e3f334fa9f624de43c020&#34; class=&#34;flashcard__back&#34;&gt;
     It&amp;rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&amp;rsquo;ve read.
   &lt;/div&gt;
@@ -10279,12 +10539,12 @@ sites).&lt;/p&gt;</description>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-227f6433d884039fed7da603fe3c6244&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-62437d687d8e3f334fa9f624de43c020&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-227f6433d884039fed7da603fe3c6244" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-62437d687d8e3f334fa9f624de43c020" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -10455,12 +10715,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-d9633cf87d324434ef638a2d4e607f20&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-6743d3f844ad6862e92473ef3002fdc3&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-d9633cf87d324434ef638a2d4e607f20" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-6743d3f844ad6862e92473ef3002fdc3" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -10486,12 +10746,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-af8c03e42367fde46f02d34367d92483&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-2e34464dff3c389d83e4d267026307af&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-af8c03e42367fde46f02d34367d92483" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-2e34464dff3c389d83e4d267026307af" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -10522,12 +10782,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-0e83469fa20847233f6436347ddcfd2e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-e47303d2682ff23d3c6a43440f867ed9&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-0e83469fa20847233f6436347ddcfd2e" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-e47303d2682ff23d3c6a43440f867ed9" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -10555,12 +10815,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-8432f3443d66f3d0027daf94e6237e8c&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-347d4240f6ae9d076283e3f63d28c4f3&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-8432f3443d66f3d0027daf94e6237e8c" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-347d4240f6ae9d076283e3f63d28c4f3" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -10603,12 +10863,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-4a7e63fff4748360602d3dc3243e28d9&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-94f262e08336dafd43742f8c303e74d6&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-4a7e63fff4748360602d3dc3243e28d9" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-94f262e08336dafd43742f8c303e74d6" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax</h1>
 <ul>
 <li><a href="#cool-how-do-i-get-it-for-my-hugo-site">Cool! How do I get it for my Hugo site?</a></li>
@@ -10932,12 +11192,12 @@ normal paragraph. For example:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-2a78d9036cd3f6e42633f0837244df4e&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-7638f8ded43f623e96f020cd432a4473&#34;)"
     role="button"
   >
     TODO
   </button>
-  <div id="answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-2a78d9036cd3f6e42633f0837244df4e" class="flashcard__back">
+  <div id="answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-7638f8ded43f623e96f020cd432a4473" class="flashcard__back">
     
   </div>
 </div>
