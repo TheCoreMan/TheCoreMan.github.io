@@ -19,15 +19,15 @@
 	
 
   <meta itemprop="name" content="It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown">
-  <meta itemprop="description" content="A deep dive into the NestJS lifecycle, exploring the nuances of module initialization and provider behavior.">
+  <meta itemprop="description" content="A deep dive into the NestJS lifecycle, exploring the nuances of module initialization and provider behavior, because the docs were ambiguous and confused me.">
   <meta itemprop="datePublished" content="2025-03-06T07:14:57-08:00">
   <meta itemprop="dateModified" content="2025-03-06T07:14:57-08:00">
-  <meta itemprop="wordCount" content="1395">
+  <meta itemprop="wordCount" content="1512">
   <meta itemprop="image" content="https://www.mrnice.dev/images/nestjs/nestjs-circle-of-life.png">
   <meta itemprop="keywords" content="Nestjs,Typescript"><meta property="og:url" content="https://www.mrnice.dev/posts/nestjs-lifecycle/">
   <meta property="og:site_name" content="mrnice.dev">
   <meta property="og:title" content="It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown">
-  <meta property="og:description" content="A deep dive into the NestJS lifecycle, exploring the nuances of module initialization and provider behavior.">
+  <meta property="og:description" content="A deep dive into the NestJS lifecycle, exploring the nuances of module initialization and provider behavior, because the docs were ambiguous and confused me.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -43,7 +43,7 @@
 
 <meta
 	name="description"
-	content="A deep dive into the NestJS lifecycle, exploring the nuances of module initialization and provider behavior."
+	content="A deep dive into the NestJS lifecycle, exploring the nuances of module initialization and provider behavior, because the docs were ambiguous and confused me."
 />
 <script type="application/ld+json">
 	{
@@ -116,7 +116,7 @@ details</a>.</p>
 <p>Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It
 was a followup on a ramble on a Slack thread:</p>
 <p><img src="/images/nestjs/slack.png" alt="alt text"></p>
-<p>When a certain shared module <em>started</em> (vagueness on purpose), even though I
+<p>When a certain shared <del>module</del> provider <em>started</em> (vagueness on purpose), even though I
 wanted it to load only once, it was being loaded multiple times. In this
 case it was annoying because it was the database module - and it ran migrations
 multiple times each load. Here&rsquo;s how it looked in the logs (simplified):</p>
@@ -162,6 +162,23 @@ resolved.&rdquo;</p>
     </div>
 
 <p>The docs say &ldquo;once&rdquo;. The code runs multiple times. What gives?</p>
+<hr>
+<p>EDIT a few days after writing this blog post.</p>
+<p>THE DOCS ARE RIGHT, BUT ONLY TECHNICALLY RIGHT. Which makes life harder
+for us mere mortals, especially &ldquo;English as a second language&rdquo; types. This
+sentence, as pointed out to me by Diego González on <a href="https://rands-leadership.slack.com/archives/C0R7KB37Z/p1749667019270899?thread_ts=1749665390.613379&amp;cid=C0R7KB37Z">Rands</a>:</p>
+<blockquote>
+<p>Not trying to be the :actually: guy :smile: but this:</p>
+<p>“onModuleInit(): Called once the host module’s dependencies have been resolved.”</p>
+<p>simply means:</p>
+<p>“onModuleInit(): Called <strong>after</strong> the host module’s dependencies have been resolved.”</p>
+<p>and not:</p>
+<p>“onModuleInit(): Called <strong>one time</strong> [after] the host module’s dependencies have been resolved.”</p>
+</blockquote>
+<p><img src="/images/doh.gif" alt="doh" title="doh"></p>
+<p>So I <a href="https://github.com/nestjs/docs.nestjs.com/pull/3281">opened a pull request</a>
+to NestJS to clarify the docs, let&rsquo;s see what they say.</p>
+<hr>
 <h2 id="the-quick-fix-because-im-at-a-startup">The quick fix, because I&rsquo;m at a startup<a href="#the-quick-fix-because-im-at-a-startup" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I wanted to delve into this deeply, but startup life means &ldquo;find a pragmatic
 solution and move on&rdquo;. So, if you have a similar issue, here&rsquo;s a quick panecea:</p>
@@ -327,10 +344,10 @@ not modules on their own. Let&rsquo;s try to add a shared provider:</p>
 <p>Finally, now we get a reproduction!</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">SharedModuleA initialized
 FeatureModuleA initialized
-SharedProvider initialized  &lt;-- from SharedModuleA
+SharedProvider initialized  &lt;-- from SharedModuleB
 SharedModuleB initialized
 FeatureModuleB initialized
-SharedProvider initialized  &lt;-- from SharedModuleB
+SharedProvider initialized  &lt;-- from FeatureModuleB
 </code></pre><p><img src="/images/phoenix-wright-ace-attorney.png" alt="phoenix-wright-ace-attorney" title="phoenix wright ace attorney"></p>
 <p>So, the documentation is inaccurate when it comes to PROVIDERS that implement
 <code>OnModuleInit</code>. The <code>onModuleInit</code> method is called for each provider that
@@ -340,6 +357,7 @@ fix section is the correct fix, and it works for both modules and providers.</p>
 <h2 id="conclusion">Conclusion<a href="#conclusion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><img src="/images/weirdal-foil.webp" alt="weirdal-foil" title="weird al foil"></p>
 <ol>
+<li>Read docs slowly. Slow is smooth, smooth is fast</li>
 <li>Don&rsquo;t trust the docs</li>
 <li>Don&rsquo;t trust the code</li>
 <li>Don&rsquo;t trust anyone</li>
@@ -355,7 +373,7 @@ fix section is the correct fix, and it works for both modules and providers.</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/nestjs">nestjs</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/typescript">typescript</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1395 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1512 Words</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2025-03-06 07:14 -0800</p>
 			</footer>
 		</article>
