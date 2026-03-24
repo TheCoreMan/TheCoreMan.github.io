@@ -100,7 +100,7 @@ Requirements
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
 	
 
@@ -368,28 +368,28 @@ and <code>flask run</code>, we got this!</p>
 deploy it to Cloud Run and execute it from there. Here&rsquo;s the Dockerfile, with
 some inline documentation explaining each part:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="c"># Base image. This version is in the pyproject file as well.</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> python:3.9</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Install various system dependencies.</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> pip install <span class="s2">&#34;poetry==1.1.8&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Install various system dependencies.</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">RUN</span> pip install <span class="s2">&#34;poetry==1.1.8&#34;</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Install various project dependencies.</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Copy only requirements to cache them in docker layer.</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> poetry.lock pyproject.toml /app/<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Install Python dependencies.</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> poetry config virtualenvs.create <span class="nb">false</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">&amp;&amp;</span> poetry install --no-interaction --no-ansi<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Install various project dependencies.</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Copy only requirements to cache them in docker layer.</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> poetry.lock pyproject.toml /app/<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Install Python dependencies.</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">RUN</span> poetry config virtualenvs.create <span class="nb">false</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="o">&amp;&amp;</span> poetry install --no-interaction --no-ansi<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Run the server.</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> src/ /app/<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 5000</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">&#34;valet_parking_slack_bot.server.py&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Run the server.</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> src/ /app/<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">EXPOSE</span><span class="w"> </span><span class="s">5000</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">&#34;valet_parking_slack_bot.server.py&#34;</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> <span class="o">[</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>	<span class="s2">&#34;flask&#34;</span>, <span class="s2">&#34;run&#34;</span>, <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>	<span class="s2">&#34;--host=0.0.0.0&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="o">]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">CMD</span> <span class="o">[</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">	<span class="s2">&#34;flask&#34;</span>, <span class="s2">&#34;run&#34;</span>, <span class="se">\
+</span></span></span><span class="line"><span class="cl">	<span class="s2">&#34;--host=0.0.0.0&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="o">]</span><span class="err">
 </span></span></span></code></pre></div><h3 id="deploying-the-app-to-the-cloud">Deploying the app to the cloud<a href="#deploying-the-app-to-the-cloud" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>The moment we&rsquo;ve all been waiting for! This was really easy, all things
 considered. GCP has some problems, but the Dev experience is not one of them!</p>
@@ -492,7 +492,7 @@ the real deployment will be ready soon!</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -510,7 +510,9 @@ the real deployment will be ready soon!</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -518,6 +520,8 @@ the real deployment will be ready soon!</p>
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

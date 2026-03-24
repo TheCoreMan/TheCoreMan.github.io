@@ -81,7 +81,7 @@ because it&rsquo;s to most relevant for us to practice right now :)"
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 3 | The Data</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
 	
 
@@ -452,10 +452,10 @@ but ended up only using it once (since we&rsquo;ve only implemented one):</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Reservation: </span><span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="si">{</span><span class="s1">&#39;Active&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="k">else</span> <span class="s1">&#39;Inactive&#39;</span><span class="si">}</span><span class="s2"> </span><span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">by </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">member_id</span><span class="si">}</span><span class="s2"> </span><span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">member_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">member_name</span> <span class="k">else</span> <span class="s1">&#39;unknown name&#39;</span><span class="si">}</span><span class="s2">) </span><span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s2">for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2"> spot </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spot</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span></span><span class="line"><span class="cl"><span class="si">{</span><span class="s1">&#39;Active&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="k">else</span> <span class="s1">&#39;Inactive&#39;</span><span class="si">}</span><span class="s2"> </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="s2">by </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">member_id</span><span class="si">}</span><span class="s2"> </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">member_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">member_name</span> <span class="k">else</span> <span class="s1">&#39;unknown name&#39;</span><span class="si">}</span><span class="s2">) </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="s2">for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2"> spot </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spot</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span></code></pre></div><p>We&rsquo;ve also writted some accompanied tests, to demonstrate usage (and prove that
 the schema was implemented successfully). In order to write the tests, we had
 to develop a <code>pytest.fixture</code> to provide a session with data for each test
@@ -547,9 +547,8 @@ class. Here&rsquo;s how the fixture looks, mostly setting up data:</p>
 <p>Well, we&rsquo;ve done some more work around other parts of the code and set up a
 website. The next thing is integration and making sure it &ldquo;all works together&rdquo;,
 and then actually setting it up for a client. Let&rsquo;s hope we find the time! :)</p>
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/dO1rMeYnOmM?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/dO1rMeYnOmM?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 
@@ -596,7 +595,7 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -614,7 +613,9 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -622,6 +623,8 @@ and then actually setting it up for a client. Let&rsquo;s hope we find the time!
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

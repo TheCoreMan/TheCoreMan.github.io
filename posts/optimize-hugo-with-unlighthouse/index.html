@@ -81,7 +81,7 @@ see what I&rsquo;m getting both for Mobile and Desktop."
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Optimize your Hugo Blog With Unlighthouse</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/lighthouse/cover.png');}</style>
 	
 
@@ -145,9 +145,8 @@ see what I&rsquo;m getting both for Mobile and Desktop.</p>
 <a href="https://unlighthouse.dev/guide/getting-started">Unlighthouse</a>, which seems even
 better for this use case! Unlighthouse runs Lighthouse reports for all pages
 of your site, and then generates a report with the results.</p>
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0fONene3OIA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0fONene3OIA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 <p>So let&rsquo;s run it! From the
@@ -181,7 +180,7 @@ that eventually I&rsquo;ll want to automate this, it&rsquo;s a good chance to wr
 script to work with this. I went a little overboard as I tern to, and used <code>gum</code>
 to build a fun CLI tool for this, which I&rsquo;m dubbing <code>lighthouse-plus.sh</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/zsh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Check that gum is installed</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> ! <span class="nb">command</span> -v gum <span class="p">&amp;</span>&gt; /dev/null
 </span></span><span class="line"><span class="cl"><span class="k">then</span>
@@ -228,51 +227,51 @@ every single page.</p>
 that need it. To debug the templates and figure out which <code>.html</code> file I want to
 edit (instead of <code>baseof.html</code>), I used a cool trick: I added a <code>{{ printf &quot;%#v&quot; . }}</code> to the top of the file, and then looked at the output of the page. This
 gave me a bit of useless info:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="o">&amp;</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageState</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pageOutputs</span><span class="p">:</span> <span class="p">[]</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4cc80</span><span class="p">),</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4d040</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pageOutputTemplateVariationsState</span><span class="p">:</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">atomic</span><span class="p">.</span><span class="nx">Uint32</span><span class="p">)(</span><span class="mh">0x14000238180</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pageOutput</span><span class="p">:</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4cc80</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">pageCommon</span><span class="p">:</span> <span class="p">(</span> <span class="o">*</span> <span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageCommon</span><span class="p">)(</span><span class="mh">0x14001177200</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>I went through a bunch of the <code>html</code> templates in the <code>layouts</code> folder, until I
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="o">&amp;</span><span class="w"> </span><span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageState</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">pageOutputs</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4cc80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4d040</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">pageOutputTemplateVariationsState</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">Uint32</span><span class="p">)(</span><span class="mh">0x14000238180</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">pageOutput</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageOutput</span><span class="p">)(</span><span class="mh">0x14000c4cc80</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">pageCommon</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">hugolib</span><span class="p">.</span><span class="nx">pageCommon</span><span class="p">)(</span><span class="mh">0x14001177200</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>I went through a bunch of the <code>html</code> templates in the <code>layouts</code> folder, until I
 found the right one (for my template, it&rsquo;s <code>themes/hermit-fork/layouts/posts/single.html</code>,
 but of course for your site it&rsquo;s going to probably be different).
 Then, when I replaced the previous <code>printf</code> with <code>{{ printf &quot;%#v&quot; .Params }}</code>, I
 saw exactly what I needed:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">maps</span><span class="p">.</span><span class="nx">Params</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;date&#34;</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;draft&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;images&#34;</span><span class="p">:</span> <span class="p">[]</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="s">&#34;/images/math-teacher.png&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;iscjklanguage&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;lastmod&#34;</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;publishdate&#34;</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;render_math&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;tags&#34;</span><span class="p">:</span> <span class="p">[]</span> <span class="kt">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="s">&#34;howto&#34;</span><span class="p">,</span> <span class="s">&#34;hugo&#34;</span><span class="p">,</span> <span class="s">&#34;meta&#34;</span><span class="p">,</span> <span class="s">&#34;math&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;title&#34;</span><span class="p">:</span> <span class="s">&#34;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="s">&#34;toc&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>See the <code>render_math</code> there? It&rsquo;s because I added this parameter to the post&rsquo;s
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">maps</span><span class="p">.</span><span class="nx">Params</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;date&#34;</span><span class="p">:</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;draft&#34;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;images&#34;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;/images/math-teacher.png&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;iscjklanguage&#34;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;lastmod&#34;</span><span class="p">:</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;publishdate&#34;</span><span class="p">:</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nf">Date</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">June</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Local</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;render_math&#34;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;tags&#34;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;howto&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;hugo&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;meta&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;math&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">},</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;title&#34;</span><span class="p">:</span><span class="w"> </span><span class="s">&#34;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;toc&#34;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>See the <code>render_math</code> there? It&rsquo;s because I added this parameter to the post&rsquo;s
 front matter:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2021-06-12T12:15:16</span><span class="m">+03</span><span class="p">:</span><span class="m">00</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">images</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2021-06-12T12:15:16</span><span class="m">+03</span><span class="p">:</span><span class="m">00</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">images</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;/images/math-teacher.png&#34;</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tags</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">howto</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">hugo</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">meta</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">math</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">render_math</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">render_math</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
 </span></span></span></code></pre></div><p>I could even live-debug my <code>if</code> statement with <code>{{ if .Params.render_math }}</code>
 which returned <code>true</code>! The final working solution was to add this to the
 template:</p>
@@ -394,7 +393,7 @@ tag, copy it, and paste it into the <a href="https://json-ld.org/playground/">JS
 <p>Every time I ran the server I saw these warnings: <code>The &quot;tweet&quot; shortcode will soon require two named parameters: user and id.</code>. I decided to fix it instead
 of continuing to ignore the warnings (I&rsquo;m not a monster). It&rsquo;s a simple change:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">-{ { &lt; tweet 1388749844240535553 &gt; } }
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+{ { &lt; tweet user=&#34;ShayNehmad&#34; id=&#34;1388749844240535553&#34; &gt; } }
+</span></span></span><span class="line"><span class="cl"><span class="gi">+{ { &lt; tweet user=&#34;ShayNehmad&#34; id=&#34;1388749844240535553&#34; &gt; } }
 </span></span></span></code></pre></div><h2 id="summary">Summary<a href="#summary" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>I learned a TON about Hugo, Jekyll, GitHub, and the Web in general. I am also
 DONE, with only two side-projects left for later: Automate this with CI, and
@@ -448,7 +447,7 @@ paper”.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -466,7 +465,9 @@ paper”.</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -474,6 +475,8 @@ paper”.</p>
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

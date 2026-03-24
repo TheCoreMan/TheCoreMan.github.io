@@ -70,7 +70,7 @@ hands-on."
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Learning CSS #1: CSS Battles #1 Writeup</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://cssbattle.dev/targets/5@2x.png');}</style>
 	
 
@@ -129,9 +129,8 @@ hands-on.</p>
 CSS. I watched the recent CSS battle video: It was super cool and I wanted
 to try it out for myself. If you&rsquo;re into CSS I highly recommend you check
 Kevin&rsquo;s content out. If you&rsquo;re reading this, thanks Kevin!</p>
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/CdcS2LKqBPE?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/CdcS2LKqBPE?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 <p>⚠️ Spoilers ahead! I&rsquo;ll post my solutions in full. If you want to play along
@@ -291,7 +290,7 @@ element.</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">centered</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span></code></pre></div><p>Then I can add the <code>centered</code> class to all the elements I want to center.
@@ -303,7 +302,7 @@ I used the <code>border-radius</code> property, which is just one of these prope
 we have multiple circles, I created a <code>circle</code> class:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">circle</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span></code></pre></div><p>Then I added the <code>circle</code> class to the first circle, and the <code>centered</code> class,
 and a &ldquo;c1&rdquo; <code>id</code> for the unique values such as color and size:</p>
@@ -318,7 +317,7 @@ and a &ldquo;c1&rdquo; <code>id</code> for the unique values such as color and s
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">centered</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -329,7 +328,7 @@ and a &ldquo;c1&rdquo; <code>id</code> for the unique values such as color and s
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">circle</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  
@@ -364,7 +363,7 @@ and a &ldquo;c1&rdquo; <code>id</code> for the unique values such as color and s
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">centered</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">rect</span> <span class="p">{</span>
@@ -373,7 +372,7 @@ and a &ldquo;c1&rdquo; <code>id</code> for the unique values such as color and s
 </span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#243D83</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">circle</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">#</span><span class="nn">c1</span> <span class="p">{</span>
@@ -433,7 +432,7 @@ wanted to figure out for a while now.</p>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
@@ -480,7 +479,7 @@ that pseudo-element:</p>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">240</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">240</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span></code></pre></div><p>Then position each ID separately within the parent container (and give them the
@@ -520,7 +519,7 @@ laid out like we want in 3D space.</p>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">240</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">240</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">drop</span> <span class="p">{</span>
@@ -569,16 +568,16 @@ a chance to do this 6 targets ago! 😅 I&rsquo;m getting better at this!</p>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">g</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">slice</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">a</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#51B5A9</span><span class="p">;</span>
@@ -610,12 +609,12 @@ keep it short, here&rsquo;s the code:</p>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">250</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">leaf</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">60</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mf">66.66</span><span class="kt">%</span> <span class="mi">0</span> <span class="mf">66.66</span><span class="kt">%</span> <span class="mi">0</span>
@@ -634,7 +633,7 @@ keep it short, here&rsquo;s the code:</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>BTW, here&rsquo;s the &ldquo;minified&rdquo; version for the Code Golf element:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;co&#34;</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;l a&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;l b&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;l c&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">co</span><span class="o">,</span><span class="p">.</span><span class="nc">l</span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span><span class="n">inset</span><span class="p">:</span><span class="mi">0</span><span class="p">}.</span><span class="nc">b</span><span class="o">,</span><span class="p">.</span><span class="nc">co</span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="kc">auto</span><span class="p">}</span><span class="nt">body</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#0b2429</span><span class="p">}.</span><span class="nc">co</span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mi">250</span><span class="kt">px</span><span class="p">;</span><span class="k">height</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">}.</span><span class="nc">l</span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mi">60</span><span class="kt">%</span><span class="p">;</span><span class="k">height</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span><span class="k">border-radius</span><span class="p">:</span><span class="mf">66.66</span><span class="kt">%</span> <span class="mi">0</span><span class="p">}.</span><span class="nc">a</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#1a4341</span><span class="p">}.</span><span class="nc">b</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#998235</span><span class="p">}.</span><span class="nc">c</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#f3ac3c</span><span class="p">;</span><span class="k">left</span><span class="p">:</span><span class="mi">40</span><span class="kt">%</span><span class="p">}&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">co</span><span class="o">,</span><span class="p">.</span><span class="nc">l</span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span><span class="k">inset</span><span class="p">:</span><span class="mi">0</span><span class="p">}.</span><span class="nc">b</span><span class="o">,</span><span class="p">.</span><span class="nc">co</span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="kc">auto</span><span class="p">}</span><span class="nt">body</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#0b2429</span><span class="p">}.</span><span class="nc">co</span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mi">250</span><span class="kt">px</span><span class="p">;</span><span class="k">height</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">}.</span><span class="nc">l</span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mi">60</span><span class="kt">%</span><span class="p">;</span><span class="k">height</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span><span class="k">border-radius</span><span class="p">:</span><span class="mf">66.66</span><span class="kt">%</span> <span class="mi">0</span><span class="p">}.</span><span class="nc">a</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#1a4341</span><span class="p">}.</span><span class="nc">b</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#998235</span><span class="p">}.</span><span class="nc">c</span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#f3ac3c</span><span class="p">;</span><span class="k">left</span><span class="p">:</span><span class="mi">40</span><span class="kt">%</span><span class="p">}&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </span></span></code></pre></div><h2 id="target-8-forking-crazy">Target #8: Forking Crazy<a href="#target-8-forking-crazy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><img src="https://cssbattle.dev/targets/8@2x.png" alt="Target #8" title="Target #8"></p>
 <p>No idea! Let&rsquo;s give it a shot. I started with the pole. Then I thought about
@@ -687,7 +686,7 @@ Phew! The missing area was filled with a <code>box-shadow</code>.</p>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">140</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span><span class="p">;</span>
@@ -759,11 +758,11 @@ things we already know how to do from previous steps. Here&rsquo;s the code:</p>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">centered</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">diamond</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">45</span><span class="kt">deg</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">r2</span> <span class="p">{</span>
@@ -777,7 +776,7 @@ things we already know how to do from previous steps. Here&rsquo;s the code:</p>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">circle</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#393E46</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
@@ -828,17 +827,17 @@ honestly there isn&rsquo;t a ton to explain if you know how to use
 </span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span> <span class="mh">#E38F66</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">circle-1</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">top</span><span class="p">:</span> <span class="mi">40</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">circle-1-inner</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">aspect-ratio</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">inset</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -915,7 +914,7 @@ perform better FE code reviews.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -933,7 +932,9 @@ perform better FE code reviews.</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -941,6 +942,8 @@ perform better FE code reviews.</p>
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

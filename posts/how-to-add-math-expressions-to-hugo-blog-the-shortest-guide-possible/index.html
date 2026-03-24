@@ -78,7 +78,7 @@ $$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>How to Add Math Expressions to Hugo Blog - the Shortest Guide Possible</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/math-teacher.png');}</style>
 	<script type="text/javascript" id="MathJax-script" async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -242,7 +242,7 @@ See <a href="/posts/optimize-hugo-with-unlighthouse/">this post</a> for details.
 <p>NOTE: We had to escape (i.e. put a <code>\</code> before) our underscores. Make sure to turn all <code>_</code> into <code>\_</code> inside your math expression. That&rsquo;s because <em>underscores mark italicized text in markdown</em>, and our parser might mess up the Math Expression, so MathJax won&rsquo;t be able to read it.</p>
 <h3 id="multiline-expressions">Multiline expressions<a href="#multiline-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>This markdown:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ \begin{pmatrix} 0 <span class="err">&amp;</span> 1 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix}\begin{pmatrix} 0 <span class="err">&amp;</span> 0 \\\\ 1 <span class="err">&amp;</span> 0 \end{pmatrix}=\begin{pmatrix} 1 <span class="err">&amp;</span> 0 \\\\ 0 <span class="err">&amp;</span> 0 \end{pmatrix} $$
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">$$ \begin{pmatrix} 0 &amp; 1 \\\\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\\\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\\\ 0 &amp; 0 \end{pmatrix} $$
 </span></span></code></pre></div><p>Produces this math expression:</p>
 <p>$$ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix}=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix} $$</p>
 <p>NOTE: We had to escape (i.e. put a <code>\</code> before) our backslashes TWICE. Make sure to turn all <code>\\</code> into <code>\\\\</code>.</p>
@@ -289,7 +289,7 @@ See <a href="/posts/optimize-hugo-with-unlighthouse/">this post</a> for details.
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -307,7 +307,9 @@ See <a href="/posts/optimize-hugo-with-unlighthouse/">this post</a> for details.
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -315,6 +317,8 @@ See <a href="/posts/optimize-hugo-with-unlighthouse/">this post</a> for details.
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

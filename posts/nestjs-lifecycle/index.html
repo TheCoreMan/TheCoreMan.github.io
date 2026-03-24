@@ -61,7 +61,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/nestjs/nestjs-circle-of-life.png');}</style>
 	
 
@@ -156,9 +156,8 @@ it. The docs say:</p>
 <p>&ldquo;<code>onModuleInit()</code>: Called once the host module&rsquo;s dependencies have been
 resolved.&rdquo;</p>
 </blockquote>
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7z7_NCc_gZY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7z7_NCc_gZY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 <p>The docs say &ldquo;once&rdquo;. The code runs multiple times. What gives?</p>
@@ -192,7 +191,7 @@ solution and move on&rdquo;. So, if you have a similar issue, here&rsquo;s a qui
 </span></span><span class="line"><span class="cl">      <span class="k">return</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">doInitStuff</span><span class="p">();</span>  <span class="c1">// e.g. run migrations
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">ModuleThatShouldOnlyInitOnce</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">    <span class="nx">ModuleThatShouldOnlyInitOnce</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>You can repeat this trick for the <code>destroy</code> hook if it&rsquo;s not idempotent as well.
@@ -230,8 +229,8 @@ the actual source code:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">callModuleInitHook</span><span class="p">(</span><span class="nx">module</span>: <span class="kt">Module</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">void</span><span class="p">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">providers</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">getNonAliasProviders</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Module (class) instance is the first element of the providers array
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// Lifecycle hook has to be called once all classes are properly initialized
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">moduleClassHost</span><span class="p">]</span> <span class="o">=</span> <span class="nx">providers</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span><span class="o">!</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">  <span class="c1">// Lifecycle hook has to be called once all classes are properly initialized
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">moduleClassHost</span><span class="p">]</span> <span class="o">=</span> <span class="nx">providers</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span><span class="o">!</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">instances</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">module</span><span class="p">.</span><span class="nx">controllers</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="nx">providers</span><span class="p">,</span>
@@ -246,7 +245,7 @@ the actual source code:</p>
 </span></span><span class="line"><span class="cl">  <span class="k">await</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">callOperator</span><span class="p">(</span><span class="nx">transientInstances</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Call the instance itself
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">moduleClassInstance</span> <span class="o">=</span> <span class="nx">moduleClassHost</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">moduleClassInstance</span> <span class="o">=</span> <span class="nx">moduleClassHost</span><span class="p">.</span><span class="nx">instance</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">moduleClassInstance</span> <span class="o">&amp;&amp;</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">hasOnModuleInitHook</span><span class="p">(</span><span class="nx">moduleClassInstance</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
@@ -307,23 +306,29 @@ SharedModuleB initialized
 <li><code>FeatureModuleA</code> depends on <code>SharedModuleA</code></li>
 <li><code>FeatureModuleB</code> depends on <code>FeatureModuleA</code> and <code>SharedModuleB</code></li>
 </ol>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+<pre class="mermaid">
+  graph TD;
     FA[FeatureModuleA] --&gt;|depends on| SA[SharedModuleA];
     FB[FeatureModuleB] --&gt;|depends on| FA;
     FB --&gt;|depends on| SB[SharedModuleB];
-</code></pre><p><img src="/images/nestjs/mermaid-1.png" alt="mermaid 1" title="mermaid 1"></p>
+</pre>
+
+<p><img src="/images/nestjs/mermaid-1.png" alt="mermaid 1" title="mermaid 1"></p>
 <p>Now we&rsquo;re getting:</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">FeatureModuleA initialized
 SharedModuleA initialized
 SharedModuleB initialized
 FeatureModuleB initialized
 </code></pre><p>Now let&rsquo;s make <code>SharedModuleB</code> depend on <code>FeatureModuleA</code>:</p>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+<pre class="mermaid">
+  graph TD;
     FA[FeatureModuleA] --&gt;|depends on| SA[SharedModuleA];
     FB[FeatureModuleB] --&gt;|depends on| FA;
     FB --&gt;|depends on| SB[SharedModuleB];
     SB --&gt;|depends on| FA;
-</code></pre><p><img src="/images/nestjs/mermaid-2.png" alt="mermaid 2" title="mermaid 2"></p>
+</pre>
+
+<p><img src="/images/nestjs/mermaid-2.png" alt="mermaid 2" title="mermaid 2"></p>
 <p>And now, we&rsquo;re getting:</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">SharedModuleA initialized
 FeatureModuleA initialized
@@ -334,13 +339,16 @@ That means that the problem is with providers that implement OnModuleInit and
 not modules on their own. Let&rsquo;s try to add a shared provider:</p>
 <p><img src="/images/nestjs/generate-shared-provider.png" alt="shared provider" title="shared provider"></p>
 <p>And I&rsquo;ve the shared provider provided from <code>SharedModuleB</code>.</p>
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph TD;
+<pre class="mermaid">
+  graph TD;
     FA[FeatureModuleA] --&gt;|depends on| SA[SharedModuleA];
     FB[FeatureModuleB] --&gt;|depends on| FA;
     FB --&gt;|depends on| SB[SharedModuleB];
     SB --&gt;|depends on| FA;
     SB ==&gt;|provides| SP[SharedProvider];
-</code></pre><p><img src="/images/nestjs/mermaid-3.png" alt="mermaid 3" title="mermaid 3"></p>
+</pre>
+
+<p><img src="/images/nestjs/mermaid-3.png" alt="mermaid 3" title="mermaid 3"></p>
 <p>Finally, now we get a reproduction!</p>
 <pre tabindex="0"><code class="language-log" data-lang="log">SharedModuleA initialized
 FeatureModuleA initialized
@@ -378,6 +386,9 @@ fix section is the correct fix, and it works for both modules and providers.</p>
 			</footer>
 		</article>
 		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Some software will become more fragile - not mine</span>
+			</a>
 			<a class="prev-post" href="https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/">
 				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>🌘 AI Roundtables @lunar.dev</span>
 			</a>
@@ -387,7 +398,7 @@ fix section is the correct fix, and it works for both modules and providers.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -405,7 +416,9 @@ fix section is the correct fix, and it works for both modules and providers.</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -413,6 +426,13 @@ fix section is the correct fix, and it works for both modules and providers.</p>
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
 
 </body>
 

@@ -2,28 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mrnice.dev/tags/ai/</loc>
+    <lastmod>2026-03-22T22:43:56-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2026-03-22T22:43:56-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2026-03-22T22:43:56-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/software/</loc>
+    <lastmod>2026-03-22T22:43:56-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</loc>
+    <lastmod>2026-03-22T22:43:56-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2026-03-22T22:43:56-07:00</lastmod>
+  </url><url>
     <loc>https://www.mrnice.dev/posts/nestjs-lifecycle/</loc>
     <lastmod>2025-03-06T07:14:57-08:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2025-03-06T07:14:57-08:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/nestjs/</loc>
-    <lastmod>2025-03-06T07:14:57-08:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2025-03-06T07:14:57-08:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2025-03-06T07:14:57-08:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/typescript/</loc>
     <lastmod>2025-03-06T07:14:57-08:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</loc>
-    <lastmod>2025-01-10T22:19:17+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/ai/</loc>
     <lastmod>2025-01-10T22:19:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/lunar/</loc>

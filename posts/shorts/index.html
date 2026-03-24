@@ -60,7 +60,7 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Adding shorts to the blog</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	
 	
 
@@ -146,10 +146,10 @@ proper post, so I added this simple <code>if</code> to
 <code>theme/hermit-fork/layouts/posts/single.html</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gh">diff --git a/layouts/posts/single.html b/layouts/posts/single.html
 </span></span></span><span class="line"><span class="cl"><span class="gh">index 04db74e..11cbd2e 100644
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- a/layouts/posts/single.html
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/layouts/posts/single.html
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -54,6 +54,10 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+{{ if isset .Params &#34;short&#34; }}
+</span></span></span><span class="line"><span class="cl"><span class="gd">--- a/layouts/posts/single.html
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ b/layouts/posts/single.html
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -54,6 +54,10 @@
+</span></span></span><span class="line"><span class="cl"><span class="gi">+{{ if isset .Params &#34;short&#34; }}
 </span></span></span><span class="line"><span class="cl"><span class="gi">+&lt;div class=&#34;short-disclaimer&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="gi">+        &lt;p&gt;{{ &#34;&gt; This is a [short 🩳](/posts/shorts/); a note that doesn&#39;t merit a full post. [See all shorts here](/tags/short).&#34; | markdownify | safeHTML }}&lt;/p&gt;
 </span></span></span><span class="line"><span class="cl"><span class="gi">+{{ end }}
@@ -161,11 +161,11 @@ in this case: <code>/posts/shorts</code>) is marked as a short but doesn&rsquo;t
 tag in the tag list.</p>
 <p>With this front matter:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Adding shorts to the blog&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2024-04-23T19:31:13</span><span class="m">+03</span><span class="p">:</span><span class="m">00</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">short</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span><span class="c"># &lt;-- Note that short is set to true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tags</span><span class="p">:</span><span class="w">        </span><span class="c"># &lt;-- But the tag list doesn&#39;t contain &#34;short&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2024-04-23T19:31:13</span><span class="m">+03</span><span class="p">:</span><span class="m">00</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">toc</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">short</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span><span class="c"># &lt;-- Note that short is set to true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w">        </span><span class="c"># &lt;-- But the tag list doesn&#39;t contain &#34;short&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">meta</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">hugo</span><span class="w">
 </span></span></span></code></pre></div><p>I&rsquo;m getting this error:</p>
@@ -180,10 +180,10 @@ Error: error building site: logged 1 error(s)
 <p>By adding this to the <code>single.html</code> template:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gh">diff --git a/layouts/posts/single.html b/layouts/posts/single.html
 </span></span></span><span class="line"><span class="cl"><span class="gh">index 04db74e..32574ac 100644
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- a/layouts/posts/single.html
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/layouts/posts/single.html
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -64,6 +68,10 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+&lt;!-- Validate that if the post is a short, the .Params.Tags list contains the word &#34;short&#34;. If it doesn&#39;t, raise an error. --&gt;
+</span></span></span><span class="line"><span class="cl"><span class="gd">--- a/layouts/posts/single.html
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ b/layouts/posts/single.html
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -64,6 +68,10 @@
+</span></span></span><span class="line"><span class="cl"><span class="gi">+&lt;!-- Validate that if the post is a short, the .Params.Tags list contains the word &#34;short&#34;. If it doesn&#39;t, raise an error. --&gt;
 </span></span></span><span class="line"><span class="cl"><span class="gi">+{{- if and (isset .Params &#34;short&#34;) (not (in .Params.tags &#34;short&#34; )) }}
 </span></span></span><span class="line"><span class="cl"><span class="gi">+{{ errorf &#34;Post %s is marked as short, but is lacking the tag &#39;short&#39;.\nThe tags I&#39;m seeing are %v.\nAdd it to the tags, please.&#34; .Page.Path .Params.tags }}
 </span></span></span><span class="line"><span class="cl"><span class="gi">+{{- end }}
@@ -195,13 +195,13 @@ I had to fix. It reversed the order of parameters in the <code>in</code> functio
 short&rsquo;s title, like so:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gh">diff --git a/layouts/_default/list.html b/layouts/_default/list.html
 </span></span></span><span class="line"><span class="cl"><span class="gh">index b12a955..c02a498 100644
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gd">--- a/layouts/_default/list.html
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/layouts/_default/list.html
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -25,7 +25,11 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+{{ if isset .Params &#34;short&#34; }}
+</span></span></span><span class="line"><span class="cl"><span class="gd">--- a/layouts/_default/list.html
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ b/layouts/_default/list.html
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -25,7 +25,11 @@
+</span></span></span><span class="line"><span class="cl"><span class="gi">+{{ if isset .Params &#34;short&#34; }}
 </span></span></span><span class="line"><span class="cl"><span class="gi">+&lt;span class=&#34;post-title&#34;&gt;🩳 {{.Title}}&lt;/span&gt;
 </span></span></span><span class="line"><span class="cl"><span class="gi">+{{ else }}
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> &lt;span class=&#34;post-title&#34;&gt;{{.Title}}&lt;/span&gt;
+</span></span></span><span class="line"><span class="cl"> &lt;span class=&#34;post-title&#34;&gt;{{.Title}}&lt;/span&gt;
 </span></span><span class="line"><span class="cl"><span class="gi">+{{ end }}
 </span></span></span></code></pre></div><p>It looks like this now:</p>
 <p><img src="/images/shorts/shorts-in-list.png" alt="shorts-in-list"></p>
@@ -255,7 +255,7 @@ writing. I hope this short format will help me do that more often.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -273,7 +273,9 @@ writing. I hope this short format will help me do that more often.</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -281,6 +283,8 @@ writing. I hope this short format will help me do that more often.</p>
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

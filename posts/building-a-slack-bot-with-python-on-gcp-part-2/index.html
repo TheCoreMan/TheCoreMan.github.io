@@ -102,7 +102,7 @@ improvements, which we introduced in 3 separate PRs."
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>We Built a Slack Bot for Valet Parking Services: 🅿️art 2 | The Logic</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/parkbot/randall-park.jpeg');}</style>
 	
 
@@ -193,13 +193,13 @@ images that are 5 times bigger as the default? 🤔</p>
 <p>In any case, the diff was very simple:</p>
 <p><a href="./Dockerfile.1"><code>Dockerfile.1</code></a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- Dockerfile.base	2021-09-11 15:35:49.117069816 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ Dockerfile.1	2021-09-11 15:34:10.003008547 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,3 +1,4 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> # Base image. This version is in the pyproject file as well.
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ Dockerfile.1	2021-09-11 15:34:10.003008547 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -1,3 +1,4 @@
+</span></span></span><span class="line"><span class="cl"> # Base image. This version is in the pyproject file as well.
 </span></span><span class="line"><span class="cl"><span class="gd">-FROM python:3.9
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+# See Image Variants on https://hub.docker.com/_/python
+</span></span></span><span class="line"><span class="cl"><span class="gi">+# See Image Variants on https://hub.docker.com/_/python
 </span></span></span><span class="line"><span class="cl"><span class="gi">+FROM python:3.9-slim
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span></span><span class="line"><span class="cl"> 
 </span></span></code></pre></div>
 <blockquote>
 <p>Shoutout to <a href="https://willschenk.com/">Will Schenk</a> for the awesome <code>diff</code>
@@ -214,16 +214,16 @@ things humming nicely, we added a <code>/test</code> URL to the server which we 
 the test.</p>
 <p><a href="./src/valet_parking_slack_bot/server.py.1"><code>src/valet_parking_slack_bot/server.py.1</code></a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- server.py.base	2021-09-11 15:49:18.844449939 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ server.py.1	2021-09-11 15:49:26.696418007 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1 +1,2 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="gi">+from datetime import datetime
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> from flask import Flask
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ server.py.1	2021-09-11 15:49:26.696418007 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -1 +1,2 @@
+</span></span></span><span class="line"><span class="cl"><span class="gi">+from datetime import datetime
+</span></span></span><span class="line"><span class="cl"> from flask import Flask
 </span></span><span class="line"><span class="cl"><span class="gu">@@ -4,3 +5,2 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="gd">-
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span> app = Flask(__name__)
+</span></span></span><span class="line"><span class="cl"> app = Flask(__name__)
 </span></span><span class="line"><span class="cl"><span class="gu">@@ -18,3 +18,11 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="gi">+@app.route(&#39;/test/healthcheck&#39;, methods=[&#39;GET&#39;])
 </span></span></span><span class="line"><span class="cl"><span class="gi">+def healthcheck():
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    response = {
@@ -232,37 +232,37 @@ the test.</p>
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    }
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    return response
 </span></span></span><span class="line"><span class="cl"><span class="gi">+
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> if __name__ == &#34;__main__&#34;:
+</span></span></span><span class="line"><span class="cl"> if __name__ == &#34;__main__&#34;:
 </span></span><span class="line"><span class="cl"><span class="gd">-    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span>\ No newline at end of file
+</span></span></span><span class="line"><span class="cl">\ No newline at end of file
 </span></span><span class="line"><span class="cl"><span class="gi">+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=int(environ.get(&#34;PORT&#34;, 5000)))
 </span></span></span></code></pre></div>
 <p>This is the updated test, where you can see the <strong>TODO</strong> was deleted.
 One of the best feelings is checking boxes ✅</p>
 <p><a href="./tests/test_service_availability.py.1"><code>tests/test_service_availability.py.1</code></a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- tests/test_service_availability.py.base	2021-09-11 15:53:42.271063485 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ tests/test_service_availability.py.1	2021-09-11 15:53:22.591186320 +0300
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -1,2 +1,5 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> import requests
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ tests/test_service_availability.py.1	2021-09-11 15:53:22.591186320 +0300
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -1,2 +1,5 @@
+</span></span></span><span class="line"><span class="cl"> import requests
 </span></span><span class="line"><span class="cl"><span class="gi">+import logging
 </span></span></span><span class="line"><span class="cl"><span class="gi">+
 </span></span></span><span class="line"><span class="cl"><span class="gi">+logger = logging.getLogger(__name__)
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span> 
+</span></span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="gu">@@ -4,9 +7,11 @@
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span> 
+</span></span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="gd">-# TODO: Add a &#34;healthcheck&#34; endpoint to the app,
 </span></span></span><span class="line"><span class="cl"><span class="gd">-# since the response to this URL will change and the
 </span></span></span><span class="line"><span class="cl"><span class="gd">-# test will fail even though the service is available!
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span> def test_cloud_endpoint():
+</span></span></span><span class="line"><span class="cl"> def test_cloud_endpoint():
 </span></span><span class="line"><span class="cl"><span class="gd">-    want = &#34;no spots for you!&#34;
 </span></span></span><span class="line"><span class="cl"><span class="gd">-    response = requests.get(service_cloud_url + &#34;/spots&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    test_url = f&#34;{service_cloud_url}/test/healthcheck&#34;
 </span></span></span><span class="line"><span class="cl"><span class="gi">+
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    response = requests.get(test_url)
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span>     assert response.ok
+</span></span></span><span class="line"><span class="cl">     assert response.ok
 </span></span><span class="line"><span class="cl"><span class="gd">-    assert want.lower() == response.text.lower()    
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+    data = response.json()
+</span></span></span><span class="line"><span class="cl"><span class="gi">+    data = response.json()
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;message&#34;] == &#34;I&#39;m alive!&#34;
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    assert data[&#34;ts&#34;]
 </span></span></span><span class="line"><span class="cl"><span class="gi">+    logger.info(f&#34;requested {test_url}, got {str(data)}&#34;)
@@ -276,17 +276,17 @@ CI currently runs <code>flake8</code> and <code>pytest</code>. We based it off o
 <a href="https://github.com/actions/starter-workflows/blob/main/ci/python-app.yml">Python Application</a>
 with only some minor changes for Poetry:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This workflow will install Python dependencies, run tests and lint with a single version of Python</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Python application</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Python application</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="l">dev ]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">jobs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
@@ -304,19 +304,19 @@ with only some minor changes for Poetry:</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Configure poetry</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        poetry config virtualenvs.create false
-</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry config --list</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry config --list</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install dependencies</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry install</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="sd">        poetry install</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Lint with flake8</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        # stop the build if there are Python syntax errors or undefined names
 </span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 </span></span></span><span class="line"><span class="cl"><span class="sd">        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-</span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="sd">        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test with pytest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span></span></span><span class="line"><span class="cl"><span class="sd">        pytest</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="sd">        pytest</span><span class="w">
 </span></span></span></code></pre></div><h3 id="setting-up-a-local-development-environment">Setting up a local development environment<a href="#setting-up-a-local-development-environment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p><a href="../building-a-slack-bot-with-python-on-gcp">Last time</a>, we managed to deploy
 our bot to the cloud. Immediate regret followed, as the build-deploy-test loop
@@ -533,7 +533,7 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -551,7 +551,9 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -559,6 +561,8 @@ care about it enough at this point, and we&rsquo;ll stick with Flask and Bolt.</
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

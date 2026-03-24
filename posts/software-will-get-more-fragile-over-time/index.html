@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+
+  <meta itemprop="name" content="Some software will become more fragile - not mine">
+  <meta itemprop="description" content="This blogpost is mostly a rant.
+In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the hugo new command:
+❯ hugo new posts/software-will-get-more-fragile-over-time.md WARN deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler &#39;files&#39; setting, see https://gohugo.io/configuration/module/#files Another warning I’ll have to fix. Throw it onto the pile. OK, let’s run the Hugo server, then?">
+  <meta itemprop="datePublished" content="2026-03-22T22:43:56-07:00">
+  <meta itemprop="dateModified" content="2026-03-22T22:43:56-07:00">
+  <meta itemprop="wordCount" content="1764">
+  <meta itemprop="keywords" content="Software,Ai"><meta property="og:url" content="https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/">
+  <meta property="og:site_name" content="mrnice.dev">
+  <meta property="og:title" content="Some software will become more fragile - not mine">
+  <meta property="og:description" content="This blogpost is mostly a rant.
+In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the hugo new command:
+❯ hugo new posts/software-will-get-more-fragile-over-time.md WARN deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler &#39;files&#39; setting, see https://gohugo.io/configuration/module/#files Another warning I’ll have to fix. Throw it onto the pile. OK, let’s run the Hugo server, then?">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-22T22:43:56-07:00">
+    <meta property="article:modified_time" content="2026-03-22T22:43:56-07:00">
+    <meta property="article:tag" content="Software">
+    <meta property="article:tag" content="Ai">
+
+<meta name="twitter:title" content="Some software will become more fragile - not mine">
+
+
+
+<meta
+	name="description"
+	content="
+This blogpost is mostly a rant.
+In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the hugo new command:
+❯ hugo new posts/software-will-get-more-fragile-over-time.md
+WARN  deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler &#39;files&#39; setting, see https://gohugo.io/configuration/module/#files
+Another warning I&rsquo;ll have to fix. Throw it onto the pile. OK, let&rsquo;s run the Hugo server, then?"
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Some software will become more fragile - not mine</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
+	
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 22, 2026</span></div>
+				<h1>Some software will become more fragile - not mine</h1>
+			</header>
+			<div class="content">
+				
+				<p><img src="https://brainmade.org/white-logo.svg" alt="Brainmade mark"></p>
+<p>This blogpost is mostly a rant.</p>
+<p>In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the <code>hugo new</code> command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ hugo new posts/software-will-get-more-fragile-over-time.md
+</span></span><span class="line"><span class="cl">WARN  deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler <span class="s1">&#39;files&#39;</span> setting, see https://gohugo.io/configuration/module/#files
+</span></span></code></pre></div><p>Another warning I&rsquo;ll have to fix. Throw it onto the pile. OK, let&rsquo;s run the Hugo server, then?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ERROR error building site: render: <span class="o">[</span>en v1.0.0 guest<span class="o">]</span> failed to render pages: render of <span class="s2">&#34;/&#34;</span> failed: <span class="s2">&#34;/Users/shay/Desktop/code/blog/themes/hermit-fork/layouts/index.html:41:73&#34;</span>: execute of template failed: template: index.html:41:73: executing <span class="s2">&#34;main&#34;</span> at &lt;.Site.Params.author.name&gt;: can<span class="s1">&#39;t evaluate field name in type string
+</span></span></span><span class="line"><span class="cl"><span class="s1">render of &#34;/Users/shay/Desktop/code/blog/content/levels/hooks-1.md&#34; failed: &#34;/Users/shay/Desktop/code/blog/themes/hermit-fork/layouts/_default/single.html:39:3&#34;: execute of template failed: template: single.html:39:3: executing &#34;footer&#34; at &lt;partialCached &#34;footer.html&#34; .&gt;: error calling partialCached: &#34;/Users/shay/Desktop/code/blog/themes/hermit-fork/layouts/partials/footer.html:2:74&#34;: execute of template failed: template: _partials/footer.html:2:74: executing &#34;_partials/footer.html&#34; at &lt;.Site.Params.author.name&gt;: can&#39;</span>t evaluate field name in <span class="nb">type</span> string
+</span></span></code></pre></div><p>Ugh&hellip; OK, let&rsquo;s quickly fix it. Moved the name for some reason. Now what?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ERROR The <span class="s2">&#34;twitter&#34;</span>, <span class="s2">&#34;tweet&#34;</span>, and <span class="s2">&#34;twitter_simple&#34;</span> shortcodes were deprecated in v0.142.0 and removed in v0.156.0. Please use the <span class="s2">&#34;x&#34;</span> shortcode instead.
+</span></span><span class="line"><span class="cl">ERROR The <span class="s2">&#34;gist&#34;</span> shortcode was deprecated in v0.143.0 and removed in v0.156.0.
+</span></span></code></pre></div><p><img src="/images/im-tired-boss.gif" alt=""></p>
+<h2 id="is-software-changing-faster">Is software changing faster?<a href="#is-software-changing-faster" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I don&rsquo;t have any empirical stats to back this up. But yeah, definitely <em>feels</em> like the software I&rsquo;m using is rapidly changing. At my current role at Opsin Security and as a Bay Area techie, I sorta have to stay on the &ldquo;cutting edge&rdquo; of software. Following up with Claude releases. Doomscrolling tech Twitter. Reading new substacks. And man&hellip; Things sure seem to be <em>moving fast</em>. What&rsquo;s that saying?</p>
+<blockquote>
+<p>Move fast and make sure to stay backwards compatible.</p>
+</blockquote>
+<p>No, that&rsquo;s not it.</p>
+<p><img src="/images/gilfoyle-meme.webp" alt=""></p>
+<p>Anyways. I feel like software is changing faster. And it feels like that to people around me as well.</p>
+<h3 id="what-sort-of-change">What sort of change?<a href="#what-sort-of-change" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>More features, maybe? AI ✨ stuff ✨ all over the place? Security updates because of supply chain vulns. Deprecated language versions, deprecated image layers, closed-down startups that were open core and now that core is hollow and sad.</p>
+<p>Of course I want to be secure and update. But the rate of change and the justification is getting harder.</p>
+<p>A <del>house of cards with some code on top</del> web software project is usually made up of a TON of layers. Why do so many of them break so much? Because of non-backward compatible changes. These changes are usually considered &ldquo;for the better&rdquo;!</p>
+<p>ARE THEY? Most of them feel like either <a href="https://pluralistic.net/2023/01/21/potemkin-ai">enshittification</a>, updates that are just updates of updates. Some pedantic changes that I don&rsquo;t care about but someone thought was extremely important; I can <em>guarantee</em> you it&rsquo;s not.</p>
+<p>There are great new features that I&rsquo;m happy to use, performance improvements, interesting ideas! There are. But not all of it.</p>
+<h2 id="why-is-my-software-so-getting-so-fragile">Why is <strong>my</strong> software so getting so fragile<a href="#why-is-my-software-so-getting-so-fragile" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>So, this <del>rant</del> blogpost came because a project of mine with 6+ years of uptime stopped working recently. A user that wanted to play the <a href="/ctf"><code>git</code> CTF</a> approached me and informed me that the server is down. Huh? This was running perfectly for 6+ years, other than one unsuccessful DDOS attack 4 years ago! What happened?</p>
+<p>Here&rsquo;s the timeline:</p>
+<ul>
+<li>I set up the server <a href="/posts/dev-log-4">around 2020</a>.</li>
+<li>Around a year ago, I started getting deprecation notices for the EC2 server in my inbox. It&rsquo;s Amazon Linux 1, which is &ldquo;no longer supported&rdquo;.</li>
+<li>In January, the server died. AWS claimed it was a hardware failure.</li>
+</ul>
+<p><img src="/images/aws-hardware-issue.jpg" alt=""></p>
+<p>So far? OK. I understand them wanted to sunset support for an operating system that was created in 2010. I understand how much work the security patching is. And the hardware failure? Big disaapointment, but &ldquo;the cloud&rdquo; is just someone else&rsquo;s computer. And computers sometimes turn off.</p>
+<p><img src="/images/anan-meme.jpg" alt=""></p>
+<p>When approaching to fix the server though&hellip; I didn&rsquo;t exactly remember how to deploy it. It was 6 years ago! Luckily, past Shay was smart and wrote future Shay some documentation.</p>
+<p><img src="/images/time-machine.gif" alt=""></p>
+<p>The documentation is available <a href="https://github.com/TheCoreMan/make-git-better-2/blob/dev/README.md">on GitHub</a>, but here&rsquo;s the important snippet:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gu">## Build
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### Ansible
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Using Ansible, you can build and deploy the game server from nothing.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s">```bash
+</span></span></span><span class="line"><span class="cl"><span class="nb">cd</span> build/ansible
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/ctf.mrnice.dev/your.server.com/g&#39;</span> hosts
+</span></span><span class="line"><span class="cl">ansible-playbook -v -i hosts build.yaml
+</span></span><span class="line"><span class="cl"><span class="s">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Make sure that you have Ansible configured correctly with your SSH keys.
+</span></span><span class="line"><span class="cl">[<span class="nt">Here&#39;s the docs</span>](<span class="na">https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html</span>).
+</span></span><span class="line"><span class="cl"><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">Note: Remember to expose 22 to your IP. If you&#39;re like me with AWS EC2, you
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">need to add a rule to the security group. Like this:
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt;
+</span></span></span><span class="line"><span class="cl"><span class="ge">&gt; `aws ec2 authorize-security-group-ingress --group-id PUT_HERE --protocol tcp --port 22 --cidr &#34;$(curl -s https://wtfismyip.com/json | jq -r &#39;.YourFuckingIPAddress&#39;)/32&#34;`
+</span></span></span></code></pre></div><p>All I wanted was for these commands to Just Work™. I tested them. Documented them. So why not?</p>
+<p>But of course&hellip;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ ansible-playbook -v -i hosts2 build.yaml
+</span></span><span class="line"><span class="cl">zsh: /Users/shay/Library/Python/3.11/bin/ansible-playbook: bad interpreter: /opt/homebrew/opt/python@3.11/bin/python3.11: no such file or directory
+</span></span><span class="line"><span class="cl">No config file found<span class="p">;</span> using defaults
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PLAY <span class="o">[</span>ctfservers<span class="o">]</span> *****************************************************************************************************************************************************************************************************
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TASK <span class="o">[</span>Gathering Facts<span class="o">]</span> ************************************************************************************************************************************************************************************************
+</span></span><span class="line"><span class="cl"><span class="o">[</span>WARNING<span class="o">]</span>: Host <span class="s1">&#39;ctf&#39;</span> is using the discovered Python interpreter at <span class="s1">&#39;/usr/bin/python3&#39;</span>, but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html <span class="k">for</span> more information.
+</span></span><span class="line"><span class="cl"><span class="o">[</span>ERROR<span class="o">]</span>: Task failed: Action failed: The following modules failed to execute: ansible.legacy.setup.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Task failed: Action failed.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;&lt;&lt;</span> caused by &gt;&gt;&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The following modules failed to execute: ansible.legacy.setup.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+--<span class="o">[</span> Sub-Event <span class="m">1</span> of <span class="m">1</span> <span class="o">]</span>---
+</span></span><span class="line"><span class="cl"><span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> Module result deserialization failed: No start of json char found See stdout/stderr <span class="k">for</span> the returned output.
+</span></span><span class="line"><span class="cl"><span class="p">|</span>
+</span></span><span class="line"><span class="cl">+--<span class="o">[</span> End Sub-Event <span class="o">]</span>---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">fatal: <span class="o">[</span>ctf<span class="o">]</span>: FAILED! <span class="o">=</span>&gt; <span class="o">{</span><span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{}</span>, <span class="s2">&#34;changed&#34;</span>: false, <span class="s2">&#34;failed_modules&#34;</span>: <span class="o">{</span><span class="s2">&#34;ansible.legacy.setup&#34;</span>: <span class="o">{</span><span class="s2">&#34;ansible_facts&#34;</span>: <span class="o">{</span><span class="s2">&#34;discovered_interpreter_python&#34;</span>: <span class="s2">&#34;/usr/bin/python3&#34;</span><span class="o">}</span>, <span class="s2">&#34;exception&#34;</span>: <span class="s2">&#34;(traceback unavailable)&#34;</span>, <span class="s2">&#34;failed&#34;</span>: true, <span class="s2">&#34;module_stderr&#34;</span>: <span class="s2">&#34;Shared connection to ctf.mrnice.dev closed.\r\n&#34;</span>, <span class="s2">&#34;module_stdout&#34;</span>: <span class="s2">&#34;  File \&#34;/home/ec2-user/.ansible/tmp/ansible-tmp-1774149309.036684-55442-55961845761351/AnsiballZ_setup.py\&#34;, line 3\r\n    from __future__ import annotations\r\n    ^\r\nSyntaxError: future feature annotations is not defined\r\n&#34;</span>, <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;Module result deserialization failed: No start of json char found&#34;</span>, <span class="s2">&#34;rc&#34;</span>: 1<span class="o">}}</span>, <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;The following modules failed to execute: ansible.legacy.setup.&#34;</span><span class="o">}</span>
+</span></span></code></pre></div><p>The problem was that the <code>ansible</code> version I was on (which I was on because it got auto-updated when I was running <code>brew update</code> at some point) doesn&rsquo;t work anymore with Python 3.6. And of course, can&rsquo;t install a newer version of Python on my Amazon Linux 1!</p>
+<p>Fuckin&rsquo; Python again.</p>
+<h3 id="the-fix">The fix<a href="#the-fix" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Thank god for <a href="https://crmarsh.com/">Charlie Marsh</a>! <code>uvx --from 'ansible-core==2.16.*' ansible-playbook -vvv -i hosts2 build.yaml</code> worked. Locked <code>ansible</code> to a version that worked with the <code>python3</code> version I had installed on the EC2 server. And it all booted back to life. But man, for 15 minutes there, I was VERY frustrated.</p>
+<h2 id="why-are-you-talking-about-this">Why are you talking about this?<a href="#why-are-you-talking-about-this" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>As software engineers we now, because of AI Agents, have the capability to introduce a lot more AI-generated code than we used to. We can send more Slack messages, write more blogs, generate more slop AI brainrot videos, draft longer emails. Some software engineers take that <a href="https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04">to</a> <a href="https://steve-yegge.medium.com/bags-and-the-creator-economy-249b924a621a">the</a> <a href="https://steve-yegge.medium.com/welcome-to-the-wasteland-a-thousand-gas-towns-a5eb9bc8dc1f">extreme</a>. We are so focused on running fast we don&rsquo;t mind breaking really important things like <a href="https://deepdelver.substack.com/p/delve-fake-compliance-as-a-service">trust</a>.</p>
+<p>But. If our software will be consumed by anyone else, and we are not careful, this will mean pain for them.</p>
+<p>Living in the Bay Area and working on AI security, it seems like EVERYONE is pulling the OTHER way. Nobody cares about building things that last because &ldquo;software is disposable&rdquo; and &ldquo;the SaaSpocalypse happened&rdquo; and other <em>nonesense</em>. As devs it will be very easy to agree to this. It&rsquo;s so easy to just generate more and more and more code. Everybody&rsquo;s encouraging you to do it!</p>
+<p>Maybe I&rsquo;m a luddite, but here&rsquo;s what I&rsquo;ll try to do differently from now on:</p>
+<h3 id="what-i-will-try-to-do-differently-and-i-implore-you-to-try-as-well">What I will TRY to do differently, and I implore you to try as well<a href="#what-i-will-try-to-do-differently-and-i-implore-you-to-try-as-well" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Don&rsquo;t spit out cryptic error messages that send my users researching. It&rsquo;s possible to test old versions with new ones, catch the error, understand it, and translate it? Do it.</p>
+<blockquote>
+<p>Note that I&rsquo;m not saying &ldquo;test every software against every version ever&rdquo;. But if you know someone used your library in 2020, it&rsquo;s very reasonable that they will use it in 2026.</p>
+</blockquote>
+<p>Next time I need to reach for a tool for a project that should last longer than a month, I&rsquo;ll assume the project will last 10 years. And I&rsquo;ll imagine - how can I reboot this and make sure it Just Work™s?</p>
+<blockquote>
+<p>In other words, I&rsquo;m never leaving postgres for another DB.</p>
+</blockquote>
+<p>I will think harder about my software OVER TIME. How can I protect my software from the rotting winds of change it&rsquo;s bound to brush up against? How can I make it resilient to other developers working 10x as hard producing more code? Software was already rotting fast, but if everyone&rsquo;s a 10x coder then software might rot 100x faster because everybody&rsquo;s importing everybody&rsquo;s else&rsquo;s slopware.</p>
+<blockquote>
+<p>This is a useful thing to add to every architecture session or DDR template. For every 3rd party dependency, how can we protect against breakage? And for people who consider the component we&rsquo;re building: how can we make this component not be a pain in their ass?</p>
+<p>Most of these documents only describe the software in SPACE (data structures, classes, deployment charts). Very few describe the software in TIME. Fewer of those describe it over a long enough time horizon to take into consideration non-backwards-compatible changes in 3rd party libraries and tools.</p>
+</blockquote>
+<p>Prefer tools that are staticly built to scripts and interpreted languages. And prefer languages and tools that respect backwards compatibility. It&rsquo;s just not worth my time to go with the &ldquo;easy&rdquo; option.</p>
+<blockquote>
+<p>Or in short, Go &raquo;&gt; Python.</p>
+</blockquote>
+<p>Maybe I&rsquo;ll stop upgrading everything. Only upgrade libraries and tools when I <strong>need</strong> a feature, or when it&rsquo;s critical infrastructure where I&rsquo;m contractually obligated to do so for security purposes, or the upgrades are ALWAYS easy.</p>
+<blockquote>
+<p>This is actually harder than not upgrading.</p>
+</blockquote>
+<p>Another important lesson: Fewer dependencies and tools? I think so. As the <a href="https://go-proverbs.github.io/">Go proverbs</a> state, &ldquo;A little copying is better than a little dependency.&rdquo;</p>
+<blockquote>
+<p>Although, honestly, I don&rsquo;t know what I&rsquo;ll replace Ansible with that will be better for maintainability.</p>
+</blockquote>
+<p>Freeze the dev environment. When working on a project, don&rsquo;t just state it depends on &ldquo;ansible&rdquo; - state which version.</p>
+<blockquote>
+<p>Yes yes I know that are workspace management tools and devcontainers and all that. They will get deprecated as well. Less tools not more.</p>
+</blockquote>
+<h2 id="closing-thoughts">Closing thoughts<a href="#closing-thoughts" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I&rsquo;m happy my server still has users playing it. The project being alive is a good thing.</p>
+<p>This was a good exercise. For most developers it&rsquo;s hard to see projects in a 5-10 year scale, because:</p>
+<ul>
+<li>Most projects don&rsquo;t last that long</li>
+<li>Most developers aren&rsquo;t that experienced</li>
+<li>Most people don&rsquo;t write retros</li>
+</ul>
+<p>So I&rsquo;m glad I documented this moment of frustration to try and learn from it.</p>
+<p>But <em>man</em>, can things Just Work™ sometimes?</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/ai-assisted-api-design/">AI-assisted API Design 🤖🧑‍🎨</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/software">software</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/ai">ai</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1764 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-03-22 22:43 -0700</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.mrnice.dev/posts/nestjs-lifecycle/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			&#183; <a href="https://mrnicedev.onlineornot.com/" title="Status" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" class="feather"><rect width="24" height="24" opacity="0"/><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z"/><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
+	}
+</script>
+
+
+
+</body>
+
+</html>

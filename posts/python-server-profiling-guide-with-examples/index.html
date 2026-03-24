@@ -79,7 +79,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Python Server Profiling: A quick guide (with real data)</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	
 	
 
@@ -134,7 +134,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 <h2 id="05-briefly-consider-re-writing-in-golang">0.5) Briefly consider re-writing in Golang<a href="#05-briefly-consider-re-writing-in-golang" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><em>Cry inside when you realize you’re not going to do that. Promise yourself to rethink the tech stack for the next feature. Rinse and repeat.</em></p>
 <p><img src="https://go-gopher.appspot.com/static/star100.jpg" alt="gopher"></p>
-<h2 id="1-identify-the-bottlenecks-using-pyspyhttpsgithubcombenfredpy-spy">1) Identify the bottlenecks using <a href="https://github.com/benfred/py-spy">PySpy</a><a href="#1-identify-the-bottlenecks-using-pyspyhttpsgithubcombenfredpy-spy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="1-identify-the-bottlenecks-using-pyspy">1) Identify the bottlenecks using <a href="https://github.com/benfred/py-spy">PySpy</a><a href="#1-identify-the-bottlenecks-using-pyspy" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>The problem with Server profiling is that profilers measure a program from start to finish. When you run a server, it doesn’t stop, but waits for requests. Enter <strong>PySpy</strong>, which is a <strong>sampling profiler</strong> for Python. Quick start guide:</p>
 <ol>
 <li>Run the server. Let’s say its PID is 12345.</li>
@@ -146,7 +146,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 <p>This is what our first run of <code>py-spy top</code> returned:</p>
 <p><img src="https://i.imgur.com/N6unTdU.png" alt="pyspy"></p>
 <p>So we found out we call <code>local_ip_addresses()</code> often, and we’re also spending time on MongoDB calls.</p>
-<h2 id="2-profile-the-problems-using-yappihttpsgithubcomsumercyappi">2) Profile the problems using <a href="https://github.com/sumerc/yappi">Yappi</a><a href="#2-profile-the-problems-using-yappihttpsgithubcomsumercyappi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="2-profile-the-problems-using-yappi">2) Profile the problems using <a href="https://github.com/sumerc/yappi">Yappi</a><a href="#2-profile-the-problems-using-yappi" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Write a scratch file which only calls required initialization and calls the problematic methods. <em>In our case, the problem only occurred with a large database, so we had to recreate that as well. “External” factors often are a part of profiling.</em></p>
 <p>Now, we can profile that scratch file instead of the server using <code>Yappi</code>. We should get a performance graph and know exactly how much time each method is taking.</p>
 <p><img src="https://i.imgur.com/clKieUv.png" alt="yappi"></p>
@@ -186,7 +186,7 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -204,7 +204,9 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -212,6 +214,8 @@ For us, it started with this a demo of the new version of Infection Monkey that 
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

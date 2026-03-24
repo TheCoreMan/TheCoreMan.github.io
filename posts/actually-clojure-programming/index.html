@@ -69,7 +69,7 @@ The point of the script is to take a CSV file (that&rsquo;s easily editable by t
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>First Foray Into Clojure, Part 1: CSV to HTML Table</title>
-	<link rel="stylesheet" href="http://localhost:1313/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="http://localhost:1313/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	
 	
 
@@ -127,11 +127,11 @@ The point of the script is to take a CSV file (that&rsquo;s easily editable by t
 <p>The point of the script is to take a CSV file (that&rsquo;s easily editable by the humans that need to edit it) and turn it into an HTML snippet that I&rsquo;d use later on inside a static Hugo website. This is somewhat similar to what I&rsquo;ve done in my <a href="https://www.mrnice.dev/posts/dev-log-3/">Dev Log #3</a>.</p>
 <p>We&rsquo;ll need special treatment for the <code>row-style</code> header.</p>
 <p>Let&rsquo;s say that the CSV columns are:</p>
-<pre tabindex="0"><code class="language-csv" data-lang="csv">a,b,c,row-class
-1,1,1,red
-clo,j,ure,yellow
-Also,Unicode!,🥑,green
-</code></pre><p>That means that the output should be something like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csv" data-lang="csv"><span class="line"><span class="cl"><span class="s">a</span><span class="p">,</span><span class="s">b</span><span class="p">,</span><span class="s">c</span><span class="p">,</span><span class="s">row-class</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">1</span><span class="p">,</span><span class="s">1</span><span class="p">,</span><span class="s">1</span><span class="p">,</span><span class="s">red</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">clo</span><span class="p">,</span><span class="s">j</span><span class="p">,</span><span class="s">ure</span><span class="p">,</span><span class="s">yellow</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">Also</span><span class="p">,</span><span class="s">Unicode!</span><span class="p">,</span><span class="s">🥑</span><span class="p">,</span><span class="s">green</span><span class="p">
+</span></span></span></code></pre></div><p>That means that the output should be something like:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>a<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
@@ -247,7 +247,7 @@ Also,Unicode!,🥑,green
 <li><a href="https://clojure.org/guides/learn/syntax">&ldquo;Learn Clojure&rdquo;</a> from Clojure&rsquo;s website - <strong>with the exercises</strong>! See part 0.</li>
 </ul>
 <p>TODO - open a new blogpost called &ldquo;First forey into Clojure - part 0, setting up and learning the basics&rdquo;</p>
-<h4 id="heading"><a href="#heading" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<h4></h4>
 <h3 id="now-to-actual-work">Now to actual work<a href="#now-to-actual-work" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Let&rsquo;s start with reading the CSV file. Quick doc + exapmle search later:</p>
 
@@ -286,7 +286,7 @@ Also,Unicode!,🥑,green
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="http://localhost:1313/"></a></p>
+		<p>&copy; 2026 <a href="http://localhost:1313/"></a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="http://localhost:1313/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -312,6 +312,8 @@ Also,Unicode!,🥑,green
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

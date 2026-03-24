@@ -111,7 +111,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>OTW Bandit CTF 🚩 Writeup - Part 3 - Levels 22 to 34</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	
 	
 
@@ -219,7 +219,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 <h3 id="script-breakdown">Script breakdown<a href="#script-breakdown" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>This part is all about reading and understanding <code>bash</code> scripts, which is a very useful skill to have. So let&rsquo;s take our time with this. When we <code>cat</code> the file, this is what we get:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
 </span></span><span class="line"><span class="cl">
@@ -234,7 +234,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 </span></span></span></code></pre></div><p>This line is called the <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang line</a> - it tells the program loader which program should run this text file. In our case, this is a <code>bash</code> file.</p>
 <h4 id="first-variable---myname">First variable - myname<a href="#first-variable---myname" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
 </span></span></code></pre></div><p>Here, we see three interesting things: we define a variable called <code>myname</code>, and assign to it the output of the command <code>whoami</code>. <code>whoami</code> prints the current user, and the <code>$()</code> is the POSIX command substitution syntax - that means it executes the command inside <code>$()</code> and pastes back the result of that command.</p>
 <p>Let&rsquo;s run <code>whoami</code>, what do we get?</p>
@@ -243,7 +243,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 <p>Let&rsquo;s continue.</p>
 <h4 id="second-variable---mytarget">Second variable - mytarget<a href="#second-variable---mytarget" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
 </span></span></code></pre></div><p>Same as before, defining a variable and assigning to it the result of the command inside <code>$()</code>. So what&rsquo;s the command?</p>
@@ -258,7 +258,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 <p><img src="https://i.imgur.com/gdMBKOi.png" alt="mytarget value"></p>
 <h4 id="writing-the-password">Writing the password<a href="#writing-the-password" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">myname</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">mytarget</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> I am user <span class="nv">$myname</span> <span class="p">|</span> md5sum <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span>
 </span></span><span class="line"><span class="cl">
@@ -303,7 +303,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 </span></span><span class="line"><span class="cl"><span class="o">(</span>...<span class="o">)</span>
 </span></span></code></pre></div><p>What is <code>/usr/bin/showtext</code>? Let&rsquo;s <code>cat</code> it&hellip;</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">TERM</span><span class="o">=</span>linux
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">more ~/text.txt
@@ -353,12 +353,12 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 <h2 id="level-29---level-30">Level 29 -&gt; Level 30<a href="#level-29---level-30" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Same setup. This time when we read the README we see this lovely clue:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh"># Bandit Notes
-</span></span></span><span class="line"><span class="cl"><span class="gh"></span>Some notes for bandit30 of bandit.
+</span></span></span><span class="line"><span class="cl">Some notes for bandit30 of bandit.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="gu">## credentials
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">-</span> username: bandit30
-</span></span><span class="line"><span class="cl"><span class="k">-</span> password: <span class="p">&lt;</span><span class="nt">no</span> <span class="na">passwords</span> <span class="na">in</span> <span class="na">production</span><span class="err">!</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">-</span> password: &lt;no passwords in production!&gt;
 </span></span></code></pre></div><p>Well, if there are no passwords in production, that probably means that there are passwords not in production! Let&rsquo;s look at what <strong>branches</strong> are there:</p>
 <p><img src="https://i.imgur.com/9CVfDPE.png" alt="git branch 29"></p>
 <p>We found the <code>dev</code> branch, used <code>git checkout dev</code> to get to it, and read the <code>README</code> to get the password! Nice.</p>
@@ -367,9 +367,8 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 <p><img src="https://i.imgur.com/8MDmjhN.png" alt="readme 30"></p>
 <p>And <code>git log</code> and <code>git branch -a</code> don&rsquo;t show anything useful, as well. What else does a <code>git</code> repository have that we haven&rsquo;t seen yet? <strong>Tags</strong>! Here&rsquo;s some <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">info about <code>git</code> tags</a> if you don&rsquo;t know what they are.</p>
 <p>When we run <code>git tag</code> with no arguments, we list all the existing tags: in this repository, the response is <code>secret</code>. Trying to <code>git checkout secret</code> doesn&rsquo;t work. Hmm.</p>
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/AubJS7oWaWo?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/AubJS7oWaWo?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 <p>We want to look at the tag information itself, so let&rsquo;s run <code>git show secret</code>.</p>
@@ -450,7 +449,7 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -468,7 +467,9 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -476,6 +477,8 @@ THIS WRITEUP WILL SPOIL THE CHALLENGE FOR YOU."
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

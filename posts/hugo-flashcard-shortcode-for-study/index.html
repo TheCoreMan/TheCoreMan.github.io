@@ -95,7 +95,7 @@ sites)."
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>Hugo Flashcard Shortcode</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/flashcards/cover.jpg');}</style>
 	
 
@@ -160,12 +160,12 @@ sites)."
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-2ceff4e832dd8334a696006773342d4f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-0f8f4ce33263dd4296a03f38e276744d&#34;)"
     role="button"
   >
     What&rsquo;s a flashcard? Click here!
   </button>
-  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-2ceff4e832dd8334a696006773342d4f" class="flashcard__back">
+  <div id="answer-id-f5daffdf2e63652a7c5a75877c23387babd3671e-0f8f4ce33263dd4296a03f38e276744d" class="flashcard__back">
     It&rsquo;s a card with a question on one side and the answer on the other. You can use
 it to study for a test or memorize notes from a book you&rsquo;ve read.
   </div>
@@ -186,9 +186,9 @@ The shortcode HTML file goes to <code>layouts/shortcodes/flashcard.html</code> (
 also put it in the theme&rsquo;s shortcodes folder if you want to use it in multiple
 sites).</p>
 <p>Here&rsquo;s how you use it:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="nt">flashcard</span> <span class="na">question</span><span class="o">=</span><span class="s">&#34;question&#34;</span> <span class="p">&gt;</span> } }
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{ { &lt; flashcard question=&#34;question&#34; &gt; } }
 </span></span><span class="line"><span class="cl">answer
-</span></span><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="p">/</span><span class="nt">flashcard</span> <span class="p">&gt;</span> } }
+</span></span><span class="line"><span class="cl">{ { &lt; /flashcard &gt; } }
 </span></span></code></pre></div><p>Just delete the spaces between the <code>{</code>-s. They are here to avoid rendering the
 shortcode.</p>
 <h2 id="why-did-i-build-this">Why did I build this?<a href="#why-did-i-build-this" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
@@ -216,9 +216,9 @@ recently I&rsquo;ve been <a href="/posts/learning-css-with-css-battles.md">dabbl
 <p>The question will be a <strong>named parameter</strong> to the shortcode, and the answer
 will be the <strong>inner content</strong> of the shortcode. So something like this, just
 without the spaces between the <code>{</code>-s. They are here to avoid rendering 😅</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="nt">flashcard</span> <span class="na">question</span><span class="o">=</span><span class="s">&#34;What is the answer to life, the universe and everything?&#34;</span> <span class="p">&gt;</span> } }
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{ { &lt; flashcard question=&#34;What is the answer to life, the universe and everything?&#34; &gt; } }
 </span></span><span class="line"><span class="cl">42! <span class="ge">_some markdown_</span> [<span class="nt">things such as links</span>](<span class="na">/posts</span>)
-</span></span><span class="line"><span class="cl">{ { <span class="p">&lt;</span> <span class="p">/</span><span class="nt">flashcard</span> <span class="p">&gt;</span> } }
+</span></span><span class="line"><span class="cl">{ { &lt; /flashcard &gt; } }
 </span></span></code></pre></div><h2 id="a-play-by-play">A play-by-play<a href="#a-play-by-play" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p><img src="https://i.giphy.com/media/q7UpJegIZjsk0/giphy.gif" alt="Bill O&rsquo;Reilly" title="Bill O'Reilly"></p>
 <h3 id="html-create-a-shortcode-file">HTML: Create a shortcode file<a href="#html-create-a-shortcode-file" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -229,7 +229,7 @@ without the spaces between the <code>{</code>-s. They are here to avoid renderin
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard__back&#34;</span><span class="p">&gt;</span><span class="cp">{{</span><span class="w"> </span><span class="na">.Inner</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">markdownify</span><span class="w"> </span><span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">errorf</span><span class="w"> </span><span class="s">&#34;missing value for param &#39;question&#39;: %s&#34;</span><span class="w"> </span><span class="na">.Position</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">end</span><span class="w"> </span><span class="cp">}}</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">end</span><span class="w"> </span><span class="cp">}}</span>
 </span></span></code></pre></div><p>Aaaaand:</p>
 <pre tabindex="0"><code>failed to render shortcode &#34;flashcard&#34;:
 failed to process shortcode: 
@@ -296,12 +296,12 @@ the <code>id</code> attribute SHOULD be unique. I added some code to make the <c
 which made the HTML slightly more complex:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go-html-template" data-lang="go-html-template"><span class="line"><span class="cl"><span class="c">&lt;!-- get a random string to add to each ID --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="nx">$seed</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">now</span><span class="na">.Format</span><span class="w"> </span><span class="s">&#34;:time_full&#34;</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">$random</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">delimit</span><span class="w"> </span><span class="o">(</span><span class="nx">shuffle</span><span class="w"> </span><span class="o">(</span><span class="nx">split</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">(</span><span class="nx">md5</span><span class="w"> </span><span class="nx">$seed</span><span class="o">)</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="cp">}}</span>
+</span></span></span><span class="line"><span class="cl"><span class="o">(</span><span class="nx">md5</span><span class="w"> </span><span class="nx">$seed</span><span class="o">)</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="cp">}}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- create a unique ID for the answer, based on the question&#39;s SHA and the
 </span></span></span><span class="line"><span class="cl"><span class="c">random string. --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="cp">{{</span><span class="w"> </span><span class="nx">$questionSHA</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="na">.</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">sha1</span><span class="w"> </span><span class="cp">}}</span> <span class="cp">{{</span><span class="w"> </span><span class="nx">$answerID</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">printf</span><span class="w"> </span><span class="s">&#34;answer-id-%s-%s&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nx">$questionSHA</span><span class="w"> </span><span class="nx">$random</span><span class="w"> </span><span class="cp">}}</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">$questionSHA</span><span class="w"> </span><span class="nx">$random</span><span class="w"> </span><span class="cp">}}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">&lt;!-- The flashcard itself --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flashcard&#34;</span><span class="p">&gt;</span>
@@ -336,12 +336,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-043393f24783f60ad4436def672e2c8d&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-923662fd4a6f3d488d7c4032ee73430f&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-043393f24783f60ad4436def672e2c8d" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-923662fd4a6f3d488d7c4032ee73430f" class="flashcard__back">
     Paris.
   </div>
 </div>
@@ -367,12 +367,12 @@ which made the HTML slightly more complex:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-7e3644c766d402334df829f38ad0f2e3&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-4e8e6273fcf3d6302933d6424d08f47a&#34;)"
     role="button"
   >
     What is the capital of France?
   </button>
-  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-7e3644c766d402334df829f38ad0f2e3" class="flashcard__back">
+  <div id="answer-id-6c3396ab0ec485bb7db2cf7861c563e6d1c41969-4e8e6273fcf3d6302933d6424d08f47a" class="flashcard__back">
     Paris, again.
   </div>
 </div>
@@ -403,12 +403,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d23d0f36c7342f883f4e306a9467ed42&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-72a23360c6634d3d3e98e8d42ff47f04&#34;)"
     role="button"
   >
     Does this flash card work with <strong>markdown</strong> <em>in</em> the question, like <code>code</code>?
   </button>
-  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-d23d0f36c7342f883f4e306a9467ed42" class="flashcard__back">
+  <div id="answer-id-d87cd3a9bc378c6ec363e39c8c2358e868a6cc2c-72a23360c6634d3d3e98e8d42ff47f04" class="flashcard__back">
     Yes!
   </div>
 </div>
@@ -436,12 +436,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-6d724e9f46e7a2d2033d334cff460883&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-0e6fc284df34344d83269d376a3e0f27&#34;)"
     role="button"
   >
     What is the answer to life, the universe and everything, with some extra content?
   </button>
-  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-6d724e9f46e7a2d2033d334cff460883" class="flashcard__back">
+  <div id="answer-id-83d831cafa4d895d234c44532c16155b3c442ae1-0e6fc284df34344d83269d376a3e0f27" class="flashcard__back">
     <p>According to <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a>:</p>
 <blockquote>
 <p>&ldquo;You&rsquo;re really not going to like it,&rdquo; observed Deep Thought.</p>
@@ -484,12 +484,12 @@ your own dev tools):</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-8fd963c0fad7f76328e34d232e364440&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-1733240764e6194e808102328fa9bd9b61e87b86-0046a2c44d62f39383e37e68f432dfd7&#34;)"
     role="button"
   >
     Does this flash card work with the <a href="https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md">markdown test file</a>?
   </button>
-  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-8fd963c0fad7f76328e34d232e364440" class="flashcard__back">
+  <div id="answer-id-1733240764e6194e808102328fa9bd9b61e87b86-0046a2c44d62f39383e37e68f432dfd7" class="flashcard__back">
     <h1 id="markdown-syntax">Markdown: Syntax<a href="#markdown-syntax" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
 <ul>
 <li><a href="#cool-how-do-i-get-it-for-my-hugo-site">Cool! How do I get it for my Hugo site?</a></li>
@@ -813,12 +813,12 @@ normal paragraph. For example:</p>
   <div class="notepad-line"></div>
   <button
     class="flashcard__front"
-    onclick="toggleAnswer(&#34;answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-03d23e9afd0f243743c8644e386d276f&#34;)"
+    onclick="toggleAnswer(&#34;answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-44d339ef3d60c48283f36f2d2764e7a0&#34;)"
     role="button"
   >
     TODO
   </button>
-  <div id="answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-03d23e9afd0f243743c8644e386d276f" class="flashcard__back">
+  <div id="answer-id-b698c11e84460ed5999bfeb5cbf25b865c238f3c-44d339ef3d60c48283f36f2d2764e7a0" class="flashcard__back">
     
   </div>
 </div>
@@ -865,7 +865,7 @@ normal paragraph. For example:</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -883,7 +883,9 @@ normal paragraph. For example:</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -891,6 +893,8 @@ normal paragraph. For example:</p>
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 

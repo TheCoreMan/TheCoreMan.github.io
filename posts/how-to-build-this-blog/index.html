@@ -110,7 +110,7 @@ Like it says in GitHub&rsquo;s guide, you need to create a repository with the n
 	<link rel="shortcut icon" href="/favicon.ico">
 
 	<title>How to Build This Blog</title>
-	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.1370d543e7fc066541fe61534a202498c057ea3b7a39dfd2ad3f444a2dadaa87.css" integrity="sha256-E3DVQ+f8BmVB/mFTSiAkmMBX6jt6Od/SrT9ESi2tqoc=" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.f465a4c9a57939cba5c4668b06d74f59e042cecca6786804f33c7d6fc1051928.css" integrity="sha256-9GWkyaV5OculxGaLBtdPWeBCzsymeGgE8zx9b8EFGSg=" crossorigin="anonymous">
 	
 	
 
@@ -198,7 +198,7 @@ Like it says in GitHub&rsquo;s guide, you need to create a repository with the n
 <h3 id="blog-content-repository">Blog content repository<a href="#blog-content-repository" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Create another repository in your account and call it &ldquo;blog&rdquo;. This is where our blog content will go. Make sure it&rsquo;s private! It should look like this:</p>
 <p><img src="https://i.imgur.com/kviPmqM.png" alt="github"></p>
-<h2 id="install-hugohttpsgohugoio">Install <a href="https://gohugo.io/">Hugo</a><a href="#install-hugohttpsgohugoio" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="install-hugo">Install <a href="https://gohugo.io/">Hugo</a><a href="#install-hugo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Hugo is an open-source static site generator, written mostly in Go 💖. <a href="https://gohugo.io/getting-started/installing/">Follow the installation guide</a> to install Hugo. TL;DR for Linux:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Installing homebrew&#34;</span>
 </span></span><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span><span class="s2">&#34;</span>
@@ -255,9 +255,9 @@ Like it says in GitHub&rsquo;s guide, you need to create a repository with the n
 <h3 id="easy-deployment">Easy deployment<a href="#easy-deployment" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Hugo&rsquo;s really fast, which is nice when you build your blog. Here&rsquo;s a top that speed up deployment even more, <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#put-it-into-a-script">based on Hugo&rsquo;s documentation on the subject</a>.</p>
 <p>Create a <code>deploy.sh</code> and <code>deploy.ps1</code> scripst in the root of your <code>blog</code> repository. These scripts will build the site and <code>add</code> + <code>commit</code> + <code>push</code> the changes in the <code>public</code> directory for you. Here are some gist you can easily code and paste:</p>
-<script src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.sh"></script>
+<script src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js"></script>
 
-<script src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js?file=deploy.ps1"></script>
+<script src="https://gist.github.com/ShayNehmad/bd9fd4406114cd14ff15c5e0f8c71174.js"></script>
 
 <h2 id="other-fun-stuff-you-can-do">Other fun stuff you can do<a href="#other-fun-stuff-you-can-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <h3 id="-set-up-twitter-cards">🐣 Set up twitter cards<a href="#-set-up-twitter-cards" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
@@ -335,7 +335,7 @@ Like it says in GitHub&rsquo;s guide, you need to create a repository with the n
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2025 <a href="https://www.mrnice.dev/"></a></p>
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -353,7 +353,9 @@ Like it says in GitHub&rsquo;s guide, you need to create a repository with the n
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -361,6 +363,8 @@ Like it says in GitHub&rsquo;s guide, you need to create a repository with the n
 		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
 	}
 </script>
+
+
 
 </body>
 
