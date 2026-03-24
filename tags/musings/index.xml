@@ -6,8 +6,15 @@
     <description>Recent content in Musings on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Dec 2022 11:01:11 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2026 22:43:56 -0700</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/musings/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some software will become more fragile - not mine</title>
+      <link>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</link>
+      <pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
+      <guid>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://brainmade.org/white-logo.svg&#34; alt=&#34;Brainmade mark&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;This blogpost is mostly a rant.&lt;/p&gt;&#xA;&lt;p&gt;In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the &lt;code&gt;hugo new&lt;/code&gt; command:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;❯ hugo new posts/software-will-get-more-fragile-over-time.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WARN  deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler &lt;span class=&#34;s1&#34;&gt;&amp;#39;files&amp;#39;&lt;/span&gt; setting, see https://gohugo.io/configuration/module/#files&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another warning I&amp;rsquo;ll have to fix. Throw it onto the pile. OK, let&amp;rsquo;s run the Hugo server, then?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>How to Build Your Team to Increase Velocity</title>
       <link>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</link>

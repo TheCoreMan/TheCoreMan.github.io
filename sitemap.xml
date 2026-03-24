@@ -8,10 +8,10 @@
     <loc>https://www.mrnice.dev/</loc>
     <lastmod>2026-03-22T22:43:56-07:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
+    <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2026-03-22T22:43:56-07:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/software/</loc>
+    <loc>https://www.mrnice.dev/posts/</loc>
     <lastmod>2026-03-22T22:43:56-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</loc>
@@ -279,9 +279,6 @@
     <lastmod>2023-01-23T14:15:55+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/how-to-build-your-team-to-increase-velocity/</loc>
-    <lastmod>2022-12-19T11:01:11+02:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/musings/</loc>
     <lastmod>2022-12-19T11:01:11+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/go-israel-november-meetup/</loc>
