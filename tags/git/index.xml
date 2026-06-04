@@ -6,8 +6,15 @@
     <description>Recent content in Git on mrnice.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Oct 2020 16:09:49 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 21:01:56 -0700</lastBuildDate>
     <atom:link href="https://www.mrnice.dev/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SGF Dev Night: Git internals &#43; CTF 🚩</title>
+      <link>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</link>
+      <pubDate>Wed, 03 Jun 2026 21:01:56 -0700</pubDate>
+      <guid>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly</title>
       <link>https://www.mrnice.dev/posts/dev-log-5/</link>
