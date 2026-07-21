@@ -18,27 +18,27 @@
 	</script>
 	
 
-  <meta itemprop="name" content="Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?">
-  <meta itemprop="description" content="隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
+	<meta itemprop="name" content="Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?">
+	<meta itemprop="description" content="隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
 - 白隠 慧鶴 (Hakuin Ekaku)
 Continuing on the journey of knowledge, I wanted to practice more Clojure. Last time we went over first sections of Learn Clojure: syntax and functions. The main way I learned was by doing the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises! :(">
-  <meta itemprop="datePublished" content="2021-06-04T20:39:47+03:00">
-  <meta itemprop="dateModified" content="2021-06-04T20:39:47+03:00">
-  <meta itemprop="wordCount" content="4781">
-  <meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
-  <meta itemprop="keywords" content="Clojure"><meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?">
-  <meta property="og:description" content="隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
+	<meta itemprop="datePublished" content="2021-06-04T20:39:47+03:00">
+	<meta itemprop="dateModified" content="2021-06-04T20:39:47+03:00">
+	<meta itemprop="wordCount" content="4781">
+	<meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+	<meta itemprop="keywords" content="Clojure"><meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-1/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?">
+	<meta property="og:description" content="隻手声あり、その声を聞け? (Two hands clap and there is a sound. What is the sound of one hand?)
 - 白隠 慧鶴 (Hakuin Ekaku)
 Continuing on the journey of knowledge, I wanted to practice more Clojure. Last time we went over first sections of Learn Clojure: syntax and functions. The main way I learned was by doing the exercises at the bottom of each page. But for the rest of the subjects in the guide, there are no exercises! :(">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2021-06-04T20:39:47+03:00">
-    <meta property="article:modified_time" content="2021-06-04T20:39:47+03:00">
-    <meta property="article:tag" content="Clojure">
-    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-06-04T20:39:47+03:00">
+		<meta property="article:modified_time" content="2021-06-04T20:39:47+03:00">
+		<meta property="article:tag" content="Clojure">
+		<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 
 <meta name="twitter:title" content="Foray Into Clojure, Part 1: Collections, Conditionals, and Meditations | 隻手声あり、その声を聞け?">
 
@@ -837,12 +837,12 @@ Continuing on the journey of knowledge, I wanted to practice more Clojure. Last 
 <p>I&rsquo;ve been working a lot with high-scale data pipelines using Spark recently (at work). I still can&rsquo;t really wrap my head around how these frameworks and these &ldquo;map reduce&rdquo; functions are basically the same. My brain isn&rsquo;t wired to deal with such huge differences in scale!</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/1200px-Apache_Spark_logo.svg.png" alt="Apache spark"></p>
 <p>Using Filter Map and Reduce in day-to-day work is very useful, but sometimes harder to read, as this reoccurring Twitter drama shows:</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">All code using array.reduce should be rewritten without array.reduce so it&#39;s readable by humans *mutes thread*</p>&mdash; Jake Archibald (@jaffathecake) <a href="https://twitter.com/jaffathecake/status/1213077702300852224?ref_src=twsrc%5Etfw">January 3, 2020</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">All code using array.reduce should be rewritten without array.reduce so it&#39;s readable by humans *mutes thread*</p>&mdash; Jake Archibald (@jaffathecake) <a href="https://x.com/jaffathecake/status/1213077702300852224?ref_src=twsrc%5Etfw">January 3, 2020</a></blockquote>
+<script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">my rule for .reduce(): only use it when the result has the same type as the items and the reducer is associative, like<br><br>.reduce((a, b) =&gt; a + b, 0)<br><br>✅ summing some numbers<br>✅ multiplying some numbers<br>🚫 building up a list or object<br>🚫 just about anything else (use a loop)</p>&mdash; sophie alpert (@sophiebits) <a href="https://twitter.com/sophiebits/status/1099014182261776384?ref_src=twsrc%5Etfw">February 22, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">my rule for .reduce(): only use it when the result has the same type as the items and the reducer is associative, like<br><br>.reduce((a, b) =&gt; a + b, 0)<br><br>✅ summing some numbers<br>✅ multiplying some numbers<br>🚫 building up a list or object<br>🚫 just about anything else (use a loop)</p>&mdash; sophie alpert (@sophiebits) <a href="https://x.com/sophiebits/status/1099014182261776384?ref_src=twsrc%5Etfw">February 22, 2019</a></blockquote>
+<script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 
 
 <h2 id="closing-words">Closing words<a href="#closing-words" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>

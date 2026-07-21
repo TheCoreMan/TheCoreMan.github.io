@@ -18,35 +18,35 @@
 	</script>
 	
 
-  <meta itemprop="name" content="Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly">
-  <meta itemprop="description" content="If you haven’t read the rest of the devlogs, you can find them here. You might be missing some context if you don’t.
+	<meta itemprop="name" content="Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly">
+	<meta itemprop="description" content="If you haven’t read the rest of the devlogs, you can find them here. You might be missing some context if you don’t.
 Also, this is an old blogpost about something that wasn’t actually released as part of the project yet. Maybe one day I’ll finish it but the documentation value is important.
 After another successful workshop,
 Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.
 (But damn, I miss in-person workshops 😣) pic.twitter.com/mKYaEfwjqp">
-  <meta itemprop="datePublished" content="2020-10-09T16:09:49+03:00">
-  <meta itemprop="dateModified" content="2020-10-09T16:09:49+03:00">
-  <meta itemprop="wordCount" content="4630">
-  <meta itemprop="image" content="https://www.mrnice.dev/images/trophy.jpg">
-  <meta itemprop="keywords" content="Devlog,Git,Ctf,Rust,Web"><meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-5/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly">
-  <meta property="og:description" content="If you haven’t read the rest of the devlogs, you can find them here. You might be missing some context if you don’t.
+	<meta itemprop="datePublished" content="2020-10-09T16:09:49+03:00">
+	<meta itemprop="dateModified" content="2020-10-09T16:09:49+03:00">
+	<meta itemprop="wordCount" content="4630">
+	<meta itemprop="image" content="https://www.mrnice.dev/images/trophy.jpg">
+	<meta itemprop="keywords" content="Devlog,Git,Ctf,Rust,Web"><meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-5/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly">
+	<meta property="og:description" content="If you haven’t read the rest of the devlogs, you can find them here. You might be missing some context if you don’t.
 Also, this is an old blogpost about something that wasn’t actually released as part of the project yet. Maybe one day I’ll finish it but the documentation value is important.
 After another successful workshop,
 Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.
 (But damn, I miss in-person workshops 😣) pic.twitter.com/mKYaEfwjqp">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-10-09T16:09:49+03:00">
-    <meta property="article:modified_time" content="2020-10-09T16:09:49+03:00">
-    <meta property="article:tag" content="Devlog">
-    <meta property="article:tag" content="Git">
-    <meta property="article:tag" content="Ctf">
-    <meta property="article:tag" content="Rust">
-    <meta property="article:tag" content="Web">
-    <meta property="og:image" content="https://www.mrnice.dev/images/trophy.jpg">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2020-10-09T16:09:49+03:00">
+		<meta property="article:modified_time" content="2020-10-09T16:09:49+03:00">
+		<meta property="article:tag" content="Devlog">
+		<meta property="article:tag" content="Git">
+		<meta property="article:tag" content="Ctf">
+		<meta property="article:tag" content="Rust">
+		<meta property="article:tag" content="Web">
+		<meta property="og:image" content="https://www.mrnice.dev/images/trophy.jpg">
 
 <meta name="twitter:title" content="Devlog #5 | Developing a webpage as an excuse to learn Rust, Yew and WebAssembly">
 
@@ -136,8 +136,8 @@ Another Git workshop in the books, as the game server monitoring graphs can atte
 <p><em>Also, this is an old blogpost about something that wasn&rsquo;t actually released as part of the project yet. Maybe one day I&rsquo;ll finish it but the documentation value is important.</em></p>
 <hr>
 <p>After another successful workshop,</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.<br><br>(But damn, I miss in-person workshops 😣) <a href="https://t.co/mKYaEfwjqp">pic.twitter.com/mKYaEfwjqp</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1302564182290825216?ref_src=twsrc%5Etfw">September 6, 2020</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Another Git workshop in the books, as the game server monitoring graphs can attest ✅ So fun when things work out well and people enjoy and learn.<br><br>(But damn, I miss in-person workshops 😣) <a href="https://t.co/mKYaEfwjqp">pic.twitter.com/mKYaEfwjqp</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://x.com/ShayNehmad/status/1302564182290825216?ref_src=twsrc%5Etfw">September 6, 2020</a></blockquote>
+<script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 <p>I decided it&rsquo;s time to tackle issue #26 from the project&rsquo;s backlog using rust, Yew, and WebAssembly. Here&rsquo;s how it looks now that it&rsquo;s done:</p>
 <p><img src="/images/yew-win-state.gif" alt="win state" title="win state"></p>
 <p>This posts in a live log of HOW I did this.</p>

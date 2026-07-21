@@ -18,32 +18,32 @@
 	</script>
 	
 
-  <meta itemprop="name" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
-  <meta itemprop="description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+	<meta itemprop="name" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
+	<meta itemprop="description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
 The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I’m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.toml Replacing level titles with their branches 🌿 Output the result into a working pre-receive hook file Setting up the game inside a Docker container Requirements: What should the Dockerfile do Implementation: What does the Dockerfile actually do What can be improved? What’s next? Side note: This time I’ve been working with my little brother Barak. His invaluable help (and willingness to work with me) is what will probably tip the scales in favor of this project actually making it to the finish line.">
-  <meta itemprop="datePublished" content="2020-05-12T20:20:31+03:00">
-  <meta itemprop="dateModified" content="2020-05-12T20:20:31+03:00">
-  <meta itemprop="wordCount" content="2553">
-  <meta itemprop="image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg">
-  <meta itemprop="keywords" content="Devlog,Git,Ctf,Docker,Rust,Toml"><meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-2/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
-  <meta property="og:description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
+	<meta itemprop="datePublished" content="2020-05-12T20:20:31+03:00">
+	<meta itemprop="dateModified" content="2020-05-12T20:20:31+03:00">
+	<meta itemprop="wordCount" content="2553">
+	<meta itemprop="image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg">
+	<meta itemprop="keywords" content="Devlog,Git,Ctf,Docker,Rust,Toml"><meta property="og:url" content="https://www.mrnice.dev/posts/dev-log-2/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
+	<meta property="og:description" content="Last time we talked a lot about the HOW. This post is about realizing some parts of that plan into a real working PoC.
 It only took us three development logs to start writing code. So fast! /s
 The first step was doing it manually, once 👨🏽‍🏭⚒ Writing a pre-receive hook Looking at the push contents during the pre-receive execution Manually performing all the actions to deploy a game server Starting to automate 🤖 Generating the pre-receive hook automatically 🤖 I guess I’m a Rustacean now 🦀 Requirements: What does the script need to do Implementation: Breaking the problem into smaller problems, and solving them one by one Parsing game-config.toml Replacing level titles with their branches 🌿 Output the result into a working pre-receive hook file Setting up the game inside a Docker container Requirements: What should the Dockerfile do Implementation: What does the Dockerfile actually do What can be improved? What’s next? Side note: This time I’ve been working with my little brother Barak. His invaluable help (and willingness to work with me) is what will probably tip the scales in favor of this project actually making it to the finish line.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-05-12T20:20:31+03:00">
-    <meta property="article:modified_time" content="2020-05-12T20:20:31+03:00">
-    <meta property="article:tag" content="Devlog">
-    <meta property="article:tag" content="Git">
-    <meta property="article:tag" content="Ctf">
-    <meta property="article:tag" content="Docker">
-    <meta property="article:tag" content="Rust">
-    <meta property="article:tag" content="Toml">
-    <meta property="og:image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2020-05-12T20:20:31+03:00">
+		<meta property="article:modified_time" content="2020-05-12T20:20:31+03:00">
+		<meta property="article:tag" content="Devlog">
+		<meta property="article:tag" content="Git">
+		<meta property="article:tag" content="Ctf">
+		<meta property="article:tag" content="Docker">
+		<meta property="article:tag" content="Rust">
+		<meta property="article:tag" content="Toml">
+		<meta property="og:image" content="https://image.freepik.com/free-vector/robotics-concept-illustration_114360-1569.jpg">
 
 <meta name="twitter:title" content="Devlog #2 | Automation applied to an efficient operation will magnify efficiency">
 
@@ -282,8 +282,8 @@ Side note: This time I&rsquo;ve been working with my little brother Barak. His i
 <p><img src="https://media.giphy.com/media/Mxg7OelvuR7SU/giphy.gif" alt="rusty spoons"></p>
 <p>Developing in Rust (after getting over the initial hurdles) was a very rewarding experience. I can see why it&rsquo;s voted as <a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted">the most loved language in StackOverflow&rsquo;s Developer Survey for the fourth year in a row</a>. My setup was as simple as it gets - <code>vim</code> with some rust plugins. It was easy to jump into it with my C++ experience, and the compiler messages blew me away.</p>
 <p>This is obviously an amateur&rsquo;s foray into the language. It&rsquo;s missing a lot of stuff which I hope to add in the future, mainly Unit Testing, and I&rsquo;m sure there are some Rust &ldquo;best practices&rdquo; that I&rsquo;ve missed.</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A cool ending to a hot day: developed my first <a href="https://twitter.com/rustlang?ref_src=twsrc%5Etfw">@rustlang</a> script with <a href="https://twitter.com/SandSpider2234?ref_src=twsrc%5Etfw">@SandSpider2234</a>. It generates a pre-receive <a href="https://twitter.com/hashtag/git?src=hash&amp;ref_src=twsrc%5Etfw">#git</a> hook from the CTF&#39;s configuration, so I don&#39;t have to manually update the hook file when generating new stages. No unit tests yet 😅 <a href="https://t.co/nnGYfJ1cUx">pic.twitter.com/nnGYfJ1cUx</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1262133578793717760?ref_src=twsrc%5Etfw">May 17, 2020</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A cool ending to a hot day: developed my first <a href="https://x.com/rustlang?ref_src=twsrc%5Etfw">@rustlang</a> script with <a href="https://x.com/SandSpider2234?ref_src=twsrc%5Etfw">@SandSpider2234</a>. It generates a pre-receive <a href="https://x.com/hashtag/git?src=hash&amp;ref_src=twsrc%5Etfw">#git</a> hook from the CTF&#39;s configuration, so I don&#39;t have to manually update the hook file when generating new stages. No unit tests yet 😅 <a href="https://t.co/nnGYfJ1cUx">pic.twitter.com/nnGYfJ1cUx</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://x.com/ShayNehmad/status/1262133578793717760?ref_src=twsrc%5Etfw">May 17, 2020</a></blockquote>
+<script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 
 
 <h4 id="requirements-what-does-the-script-need-to-do">Requirements: What does the script need to do<a href="#requirements-what-does-the-script-need-to-do" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>

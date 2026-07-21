@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Chrome on mrnice.dev</title>
-    <link>https://www.mrnice.dev/tags/chrome/</link>
-    <description>Recent content in Chrome on mrnice.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 16 May 2023 09:36:21 +0300</lastBuildDate>
-    <atom:link href="https://www.mrnice.dev/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Optimize your Hugo Blog With Unlighthouse</title>
-      <link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
-      <pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
-      <description>&lt;p&gt;Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip;&#xA;Something something analytics to something something Analytics 4). And one&#xA;of they things I saw was that my blog&amp;rsquo;s performance was bad!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif&#34; alt=&#34;&amp;ldquo;I have failed you&amp;rdquo;&#34; title=&#34;I have failed you&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it&#xA;a few years ago, so a cleanup for performance and content is probably in&#xA;order.&lt;/p&gt;&#xA;&lt;h2 id=&#34;get-initial-lighthouse-results&#34;&gt;Get initial Lighthouse results&lt;/h2&gt;&#xA;&lt;p&gt;What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance&#xA;of your site. It&amp;rsquo;s available as a Chrome extension, but also as a CLI tool&#xA;that you can run on your site. So I thought that the first order of business was&#xA;to run &lt;a href=&#34;https://github.com/GoogleChrome/lighthouse&#34;&gt;Lighthouse&lt;/a&gt; on my site and&#xA;see what I&amp;rsquo;m getting both for Mobile and Desktop.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Chrome on mrnice.dev</title>
+		<link>https://www.mrnice.dev/tags/chrome/</link>
+		<description>Recent content in Chrome on mrnice.dev</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 16 May 2023 09:36:21 +0300</lastBuildDate>
+		
+			<atom:link href="https://www.mrnice.dev/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Optimize your Hugo Blog With Unlighthouse</title>
+				<link>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</link>
+				<pubDate>Tue, 16 May 2023 09:36:21 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/optimize-hugo-with-unlighthouse/</guid>
+				<description>&lt;p&gt;Recently Google let me see the new Analytics dashboard (they moved from&amp;hellip;&#xA;Something something analytics to something something Analytics 4). And one&#xA;of they things I saw was that my blog&amp;rsquo;s performance was bad!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.giphy.com/media/HNEmXQz7A0lDq/giphy.gif&#34; alt=&#34;&amp;ldquo;I have failed you&amp;rdquo;&#34; title=&#34;I have failed you&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;In general the blog&amp;rsquo;s infrastructure didn&amp;rsquo;t get much love since I opened it&#xA;a few years ago, so a cleanup for performance and content is probably in&#xA;order.&lt;/p&gt;&#xA;&lt;h2 id=&#34;get-initial-lighthouse-results&#34;&gt;Get initial Lighthouse results&lt;/h2&gt;&#xA;&lt;p&gt;What&amp;rsquo;s Lighthouse? It&amp;rsquo;s a tool that Google provides to measure the performance&#xA;of your site. It&amp;rsquo;s available as a Chrome extension, but also as a CLI tool&#xA;that you can run on your site. So I thought that the first order of business was&#xA;to run &lt;a href=&#34;https://github.com/GoogleChrome/lighthouse&#34;&gt;Lighthouse&lt;/a&gt; on my site and&#xA;see what I&amp;rsquo;m getting both for Mobile and Desktop.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

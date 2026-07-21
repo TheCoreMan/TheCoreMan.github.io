@@ -1,152 +1,157 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on mrnice.dev</title>
-    <link>https://www.mrnice.dev/tags/</link>
-    <description>Recent content in Tags on mrnice.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jun 2026 21:01:56 -0700</lastBuildDate>
-    <atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Git</title>
-      <link>https://www.mrnice.dev/tags/git/</link>
-      <pubDate>Wed, 03 Jun 2026 21:01:56 -0700</pubDate>
-      <guid>https://www.mrnice.dev/tags/git/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ai</title>
-      <link>https://www.mrnice.dev/tags/ai/</link>
-      <pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
-      <guid>https://www.mrnice.dev/tags/ai/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Musings</title>
-      <link>https://www.mrnice.dev/tags/musings/</link>
-      <pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
-      <guid>https://www.mrnice.dev/tags/musings/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Nestjs</title>
-      <link>https://www.mrnice.dev/tags/nestjs/</link>
-      <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
-      <guid>https://www.mrnice.dev/tags/nestjs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Typescript</title>
-      <link>https://www.mrnice.dev/tags/typescript/</link>
-      <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
-      <guid>https://www.mrnice.dev/tags/typescript/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lunar</title>
-      <link>https://www.mrnice.dev/tags/lunar/</link>
-      <pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/lunar/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Meetup</title>
-      <link>https://www.mrnice.dev/tags/meetup/</link>
-      <pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/meetup/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Security</title>
-      <link>https://www.mrnice.dev/tags/security/</link>
-      <pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Shell</title>
-      <link>https://www.mrnice.dev/tags/shell/</link>
-      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/shell/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Short</title>
-      <link>https://www.mrnice.dev/tags/short/</link>
-      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/short/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Terminal</title>
-      <link>https://www.mrnice.dev/tags/terminal/</link>
-      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/terminal/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Go</title>
-      <link>https://www.mrnice.dev/tags/go/</link>
-      <pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Books</title>
-      <link>https://www.mrnice.dev/tags/books/</link>
-      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/books/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Leadership</title>
-      <link>https://www.mrnice.dev/tags/leadership/</link>
-      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/leadership/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Management</title>
-      <link>https://www.mrnice.dev/tags/management/</link>
-      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/management/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Devex</title>
-      <link>https://www.mrnice.dev/tags/devex/</link>
-      <pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/devex/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Howto</title>
-      <link>https://www.mrnice.dev/tags/howto/</link>
-      <pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/howto/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Orca</title>
-      <link>https://www.mrnice.dev/tags/orca/</link>
-      <pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
-      <guid>https://www.mrnice.dev/tags/orca/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hugo</title>
-      <link>https://www.mrnice.dev/tags/hugo/</link>
-      <pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/hugo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Automation</title>
-      <link>https://www.mrnice.dev/tags/automation/</link>
-      <pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
-      <guid>https://www.mrnice.dev/tags/automation/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tags on mrnice.dev</title>
+		<link>https://www.mrnice.dev/tags/</link>
+		<description>Recent content in Tags on mrnice.dev</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 03 Jun 2026 21:01:56 -0700</lastBuildDate>
+		
+			<atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Git</title>
+				<link>https://www.mrnice.dev/tags/git/</link>
+				<pubDate>Wed, 03 Jun 2026 21:01:56 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/git/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>AI</title>
+				<link>https://www.mrnice.dev/tags/ai/</link>
+				<pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/ai/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Musings</title>
+				<link>https://www.mrnice.dev/tags/musings/</link>
+				<pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/musings/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Nestjs</title>
+				<link>https://www.mrnice.dev/tags/nestjs/</link>
+				<pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+				<guid>https://www.mrnice.dev/tags/nestjs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Typescript</title>
+				<link>https://www.mrnice.dev/tags/typescript/</link>
+				<pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+				<guid>https://www.mrnice.dev/tags/typescript/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Lunar</title>
+				<link>https://www.mrnice.dev/tags/lunar/</link>
+				<pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
+				<guid>https://www.mrnice.dev/tags/lunar/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Meetup</title>
+				<link>https://www.mrnice.dev/tags/meetup/</link>
+				<pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
+				<guid>https://www.mrnice.dev/tags/meetup/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Security</title>
+				<link>https://www.mrnice.dev/tags/security/</link>
+				<pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
+				<guid>https://www.mrnice.dev/tags/security/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Shell</title>
+				<link>https://www.mrnice.dev/tags/shell/</link>
+				<pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/shell/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Short</title>
+				<link>https://www.mrnice.dev/tags/short/</link>
+				<pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/short/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Terminal</title>
+				<link>https://www.mrnice.dev/tags/terminal/</link>
+				<pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/terminal/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Go</title>
+				<link>https://www.mrnice.dev/tags/go/</link>
+				<pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/go/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Books</title>
+				<link>https://www.mrnice.dev/tags/books/</link>
+				<pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/books/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Leadership</title>
+				<link>https://www.mrnice.dev/tags/leadership/</link>
+				<pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/leadership/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Management</title>
+				<link>https://www.mrnice.dev/tags/management/</link>
+				<pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/management/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Devex</title>
+				<link>https://www.mrnice.dev/tags/devex/</link>
+				<pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/devex/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Howto</title>
+				<link>https://www.mrnice.dev/tags/howto/</link>
+				<pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
+				<guid>https://www.mrnice.dev/tags/howto/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Orca</title>
+				<link>https://www.mrnice.dev/tags/orca/</link>
+				<pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
+				<guid>https://www.mrnice.dev/tags/orca/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Hugo</title>
+				<link>https://www.mrnice.dev/tags/hugo/</link>
+				<pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/hugo/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Automation</title>
+				<link>https://www.mrnice.dev/tags/automation/</link>
+				<pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
+				<guid>https://www.mrnice.dev/tags/automation/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

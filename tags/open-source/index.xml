@@ -1,68 +1,73 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Open-Source on mrnice.dev</title>
-    <link>https://www.mrnice.dev/tags/open-source/</link>
-    <description>Recent content in Open-Source on mrnice.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 22 Feb 2023 17:51:00 +0300</lastBuildDate>
-    <atom:link href="https://www.mrnice.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>We gave a talk at GopherCon Israel 2023</title>
-      <link>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</link>
-      <pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>We Attended the Go Israel March 2022 Meetup</title>
-      <link>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</link>
-      <pubDate>Mon, 09 May 2022 22:29:06 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
-      <link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>
-      <pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/swimming-with-monkeys/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</title>
-      <link>https://www.mrnice.dev/posts/my-2020-defcon-talk/</link>
-      <pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/my-2020-defcon-talk/</guid>
-      <description>&lt;p&gt;I recently gave a talk in DefCon SAFEMODE Red Team Village. It was a very interesting and unique experience, here&amp;rsquo;s what I&amp;rsquo;ve learned.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-talk-itself&#34;&gt;The talk itself&lt;/h2&gt;&#xA;&lt;p&gt;The talk was titled &lt;code&gt;Making Breach &amp;amp; Attack Simulation Accessible and Actionable with Infection Monkey&lt;/code&gt;. Watch the recording here:&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/gOS1c375Hbg?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;lectures-covid-and-crowd-interaction&#34;&gt;Lectures, COVID, and crowd interaction&lt;/h2&gt;&#xA;&lt;p&gt;Giving a live talk is something I very much enjoy doing. 🎤&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>The Impact of Open Source on Security - Q&amp;A</title>
-      <link>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</link>
-      <pubDate>Thu, 11 Jun 2020 12:07:50 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Test your ATT&amp;CK before the attack with Infection Monkey</title>
-      <link>https://www.mrnice.dev/posts/monkey-mitre/</link>
-      <pubDate>Mon, 27 Apr 2020 12:07:50 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/monkey-mitre/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monkey See, Centra do: How to Assess Your Zero Trust Status and Mitigate</title>
-      <link>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</link>
-      <pubDate>Wed, 26 Feb 2020 12:07:50 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Infection Monkey for Zero Trust</title>
-      <link>https://www.mrnice.dev/posts/monkey-zero-trust/</link>
-      <pubDate>Tue, 29 Oct 2019 12:07:50 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/monkey-zero-trust/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Open-Source on mrnice.dev</title>
+		<link>https://www.mrnice.dev/tags/open-source/</link>
+		<description>Recent content in Open-Source on mrnice.dev</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 22 Feb 2023 17:51:00 +0300</lastBuildDate>
+		
+			<atom:link href="https://www.mrnice.dev/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>We gave a talk at GopherCon Israel 2023</title>
+				<link>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</link>
+				<pubDate>Wed, 22 Feb 2023 17:51:00 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/we-gave-a-talk-at-gophercon-israel-2023/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>We Attended the Go Israel March 2022 Meetup</title>
+				<link>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</link>
+				<pubDate>Mon, 09 May 2022 22:29:06 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/we-attended-the-go-israel-march-2022-meetup/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Swimm.io and Infection Monkey - Open Source Contributor Summit</title>
+				<link>https://www.mrnice.dev/posts/swimming-with-monkeys/</link>
+				<pubDate>Sun, 18 Oct 2020 12:07:50 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/swimming-with-monkeys/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Lectures, COVID-19, and crowd interaction - my DEFCON2020 experience</title>
+				<link>https://www.mrnice.dev/posts/my-2020-defcon-talk/</link>
+				<pubDate>Sat, 08 Aug 2020 01:12:58 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/my-2020-defcon-talk/</guid>
+				<description>&lt;p&gt;I recently gave a talk in DefCon SAFEMODE Red Team Village. It was a very interesting and unique experience, here&amp;rsquo;s what I&amp;rsquo;ve learned.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-talk-itself&#34;&gt;The talk itself&lt;/h2&gt;&#xA;&lt;p&gt;The talk was titled &lt;code&gt;Making Breach &amp;amp; Attack Simulation Accessible and Actionable with Infection Monkey&lt;/code&gt;. Watch the recording here:&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/gOS1c375Hbg?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;lectures-covid-and-crowd-interaction&#34;&gt;Lectures, COVID, and crowd interaction&lt;/h2&gt;&#xA;&lt;p&gt;Giving a live talk is something I very much enjoy doing. 🎤&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>The Impact of Open Source on Security - Q&amp;A</title>
+				<link>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</link>
+				<pubDate>Thu, 11 Jun 2020 12:07:50 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/the-impact-of-open-source-on-security/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Test your ATT&amp;CK before the attack with Infection Monkey</title>
+				<link>https://www.mrnice.dev/posts/monkey-mitre/</link>
+				<pubDate>Mon, 27 Apr 2020 12:07:50 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/monkey-mitre/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Monkey See, Centra do: How to Assess Your Zero Trust Status and Mitigate</title>
+				<link>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</link>
+				<pubDate>Wed, 26 Feb 2020 12:07:50 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/monkey-see-centra-do-1/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Infection Monkey for Zero Trust</title>
+				<link>https://www.mrnice.dev/posts/monkey-zero-trust/</link>
+				<pubDate>Tue, 29 Oct 2019 12:07:50 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/monkey-zero-trust/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

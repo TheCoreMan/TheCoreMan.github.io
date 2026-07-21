@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Monitoring on mrnice.dev</title>
-    <link>https://www.mrnice.dev/tags/monitoring/</link>
-    <description>Recent content in Monitoring on mrnice.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate>
-    <atom:link href="https://www.mrnice.dev/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>How to add a status page to your Hugo blog</title>
-      <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
-      <description>&lt;p&gt;Shortest guide possible, let&amp;rsquo;s go ⚡️&lt;/p&gt;&#xA;&lt;h2 id=&#34;setting-up-a-status-page&#34;&gt;Setting up a status page&lt;/h2&gt;&#xA;&lt;p&gt;I recommend &lt;a href=&#34;https://onlineornot.com/&#34;&gt;onlineornot.com&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s&#xA;&lt;a href=&#34;https://mrnice.dev&#34;&gt;&lt;code&gt;https://mrnice.dev&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Create a new &lt;a href=&#34;https://onlineornot.com/app/checks&#34;&gt;check&lt;/a&gt; on that URL. Pick&#xA;&amp;ldquo;Monitor a website&amp;rdquo;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/onlineornot1.png&#34; alt=&#34;&amp;ldquo;New check&amp;rdquo;&#34; title=&#34;New check&#34;&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Create a &lt;a href=&#34;https://onlineornot.com/app/status-pages&#34;&gt;status page&lt;/a&gt;, and choose&#xA;your subdomain. I went with &lt;code&gt;mrnicedev&lt;/code&gt; ~&amp;gt; you&amp;rsquo;ll end up with a URL like&#xA;&lt;a href=&#34;https://mrnicedev.onlineornot.com&#34;&gt;&lt;code&gt;https://mrnicedev.onlineornot.com&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;You should get something that looks like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/statuspage.png&#34; alt=&#34;onlineornot&#34; title=&#34;onlineornot&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;adding-the-status-page-link-to-your-blog&#34;&gt;Adding the status page link to your blog&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll do it from the &lt;code&gt;config.toml&lt;/code&gt; file (so it&amp;rsquo;s easy to change) and using a&#xA;&lt;code&gt;with&lt;/code&gt; template statement (so if it&amp;rsquo;s not set, it won&amp;rsquo;t show up).&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Monitoring on mrnice.dev</title>
+		<link>https://www.mrnice.dev/tags/monitoring/</link>
+		<description>Recent content in Monitoring on mrnice.dev</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 17 Sep 2023 22:58:53 +0300</lastBuildDate>
+		
+			<atom:link href="https://www.mrnice.dev/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>How to add a status page to your Hugo blog</title>
+				<link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
+				<pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
+				<description>&lt;p&gt;Shortest guide possible, let&amp;rsquo;s go ⚡️&lt;/p&gt;&#xA;&lt;h2 id=&#34;setting-up-a-status-page&#34;&gt;Setting up a status page&lt;/h2&gt;&#xA;&lt;p&gt;I recommend &lt;a href=&#34;https://onlineornot.com/&#34;&gt;onlineornot.com&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s&#xA;&lt;a href=&#34;https://mrnice.dev&#34;&gt;&lt;code&gt;https://mrnice.dev&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Create a new &lt;a href=&#34;https://onlineornot.com/app/checks&#34;&gt;check&lt;/a&gt; on that URL. Pick&#xA;&amp;ldquo;Monitor a website&amp;rdquo;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/onlineornot1.png&#34; alt=&#34;&amp;ldquo;New check&amp;rdquo;&#34; title=&#34;New check&#34;&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Create a &lt;a href=&#34;https://onlineornot.com/app/status-pages&#34;&gt;status page&lt;/a&gt;, and choose&#xA;your subdomain. I went with &lt;code&gt;mrnicedev&lt;/code&gt; ~&amp;gt; you&amp;rsquo;ll end up with a URL like&#xA;&lt;a href=&#34;https://mrnicedev.onlineornot.com&#34;&gt;&lt;code&gt;https://mrnicedev.onlineornot.com&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;You should get something that looks like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/statuspage.png&#34; alt=&#34;onlineornot&#34; title=&#34;onlineornot&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;adding-the-status-page-link-to-your-blog&#34;&gt;Adding the status page link to your blog&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll do it from the &lt;code&gt;config.toml&lt;/code&gt; file (so it&amp;rsquo;s easy to change) and using a&#xA;&lt;code&gt;with&lt;/code&gt; template statement (so if it&amp;rsquo;s not set, it won&amp;rsquo;t show up).&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

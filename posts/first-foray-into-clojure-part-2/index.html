@@ -18,30 +18,30 @@
 	</script>
 	
 
-  <meta itemprop="name" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
-  <meta itemprop="description" content="“日々是好日” (Nichinichi kore kōnichi) means “Every day is a good day” or “Try to spend every day meaningfully”.
+	<meta itemprop="name" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
+	<meta itemprop="description" content="“日々是好日” (Nichinichi kore kōnichi) means “Every day is a good day” or “Try to spend every day meaningfully”.
 This blog post continues directly from the previous one, so I’ll skip the intros. Go read that one for context. Let’s just jump into it!
 Table of Contents
 Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?! Finally, with no for, that’s what I needed Clojure Debugging What now? Runtime Polymorphism One day someone asked Master Yunmen, “What is the meaning of the teaching?”">
-  <meta itemprop="datePublished" content="2021-08-01T08:32:00+03:00">
-  <meta itemprop="dateModified" content="2021-08-01T08:32:00+03:00">
-  <meta itemprop="wordCount" content="2759">
-  <meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
-  <meta itemprop="keywords" content="Clojure,Algorithms"><meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
-  <meta property="og:description" content="“日々是好日” (Nichinichi kore kōnichi) means “Every day is a good day” or “Try to spend every day meaningfully”.
+	<meta itemprop="datePublished" content="2021-08-01T08:32:00+03:00">
+	<meta itemprop="dateModified" content="2021-08-01T08:32:00+03:00">
+	<meta itemprop="wordCount" content="2759">
+	<meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+	<meta itemprop="keywords" content="Clojure,Algorithms"><meta property="og:url" content="https://www.mrnice.dev/posts/first-foray-into-clojure-part-2/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
+	<meta property="og:description" content="“日々是好日” (Nichinichi kore kōnichi) means “Every day is a good day” or “Try to spend every day meaningfully”.
 This blog post continues directly from the previous one, so I’ll skip the intros. Go read that one for context. Let’s just jump into it!
 Table of Contents
 Runtime Polymorphism Using multi-arity functions Value-based polymorphism with defmulti Comparison to other languages Breaking down what the code means Open to extension Lazy Sequences iterate is also zero-based Standing on the shoulders of giants - using identity Sequence Comprehensions :when and other predefined keyword modifiers Creating Functions The let special form Function composition with comp Recursion Use comment loop?! Finally, with no for, that’s what I needed Clojure Debugging What now? Runtime Polymorphism One day someone asked Master Yunmen, “What is the meaning of the teaching?”">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2021-08-01T08:32:00+03:00">
-    <meta property="article:modified_time" content="2021-08-01T08:32:00+03:00">
-    <meta property="article:tag" content="Clojure">
-    <meta property="article:tag" content="Algorithms">
-    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-08-01T08:32:00+03:00">
+		<meta property="article:modified_time" content="2021-08-01T08:32:00+03:00">
+		<meta property="article:tag" content="Clojure">
+		<meta property="article:tag" content="Algorithms">
+		<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/256px-Clojure_logo.svg.png">
 
 <meta name="twitter:title" content="Foray Into Clojure, Part 2: Polymorphism, Recursion, Debugging, and Sesame Cake | 日々是好日">
 

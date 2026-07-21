@@ -18,32 +18,32 @@
 	</script>
 	
 
-  <meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start">
-  <meta itemprop="description" content="A joint project with my beautiful wife Olga! &lt;3
+	<meta itemprop="name" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start">
+	<meta itemprop="description" content="A joint project with my beautiful wife Olga! &lt;3
 In this post, we’ll go over how we built a Slack Bot that helped my company manage parking spots.
 Table of Contents Requirements Why do this, the stupid reason Why do this, the real reason Planning Task Management Architecture Working Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack What’s next? Requirements">
-  <meta itemprop="datePublished" content="2021-08-27T15:18:40+03:00">
-  <meta itemprop="dateModified" content="2021-08-27T15:18:40+03:00">
-  <meta itemprop="wordCount" content="1427">
-  <meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
-  <meta itemprop="keywords" content="Python,Gcp,Slack,Automation,Cloud,Docker,Serverless"><meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start">
-  <meta property="og:description" content="A joint project with my beautiful wife Olga! &lt;3
+	<meta itemprop="datePublished" content="2021-08-27T15:18:40+03:00">
+	<meta itemprop="dateModified" content="2021-08-27T15:18:40+03:00">
+	<meta itemprop="wordCount" content="1427">
+	<meta itemprop="image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+	<meta itemprop="keywords" content="Python,Gcp,Slack,Automation,Cloud,Docker,Serverless"><meta property="og:url" content="https://www.mrnice.dev/posts/building-a-slack-bot-with-python-on-gcp/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start">
+	<meta property="og:description" content="A joint project with my beautiful wife Olga! &lt;3
 In this post, we’ll go over how we built a Slack Bot that helped my company manage parking spots.
 Table of Contents Requirements Why do this, the stupid reason Why do this, the real reason Planning Task Management Architecture Working Setting up a working environment Setting up GCP Developing an initial server Containerizing the server Deploying the app to the cloud Connecting the server to Slack What’s next? Requirements">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2021-08-27T15:18:40+03:00">
-    <meta property="article:modified_time" content="2021-08-27T15:18:40+03:00">
-    <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="Gcp">
-    <meta property="article:tag" content="Slack">
-    <meta property="article:tag" content="Automation">
-    <meta property="article:tag" content="Cloud">
-    <meta property="article:tag" content="Docker">
-    <meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-08-27T15:18:40+03:00">
+		<meta property="article:modified_time" content="2021-08-27T15:18:40+03:00">
+		<meta property="article:tag" content="Python">
+		<meta property="article:tag" content="Gcp">
+		<meta property="article:tag" content="Slack">
+		<meta property="article:tag" content="Automation">
+		<meta property="article:tag" content="Cloud">
+		<meta property="article:tag" content="Docker">
+		<meta property="og:image" content="https://www.mrnice.dev/images/parkbot/randall-park.jpeg">
 
 <meta name="twitter:title" content="We Built a Slack Bot for Valet Parking Services: 🅿️art 1 | The Start">
 
@@ -188,23 +188,23 @@ people coming in, more parking needs to be managed.</p>
 Slack Channel called <code>#parking</code>, set up ground rules for reserving the spots,
 and responded to queries about spots manually:</p>
 <figure><img src="/images/parkbot/example1.png"><figcaption>
-      <h4>Reserving a spot for the day</h4>
-    </figcaption>
+			<h4>Reserving a spot for the day</h4>
+		</figcaption>
 </figure>
 
 <figure><img src="/images/parkbot/example2.png"><figcaption>
-      <h4>Asking what&#39;s the current status of parking spots</h4>
-    </figcaption>
+			<h4>Asking what&#39;s the current status of parking spots</h4>
+		</figcaption>
 </figure>
 
 <figure><img src="/images/parkbot/example3.png"><figcaption>
-      <h4>Announcing that the parking is full for the day</h4>
-    </figcaption>
+			<h4>Announcing that the parking is full for the day</h4>
+		</figcaption>
 </figure>
 
 <figure><img src="/images/parkbot/example4.png"><figcaption>
-      <h4>When things go wrong... Parking without reserving</h4>
-    </figcaption>
+			<h4>When things go wrong... Parking without reserving</h4>
+		</figcaption>
 </figure>
 
 <p>If there are no open spots available, we have an option to park at a nearby
@@ -265,8 +265,8 @@ looked like this:</p>
 </span></span><span class="line"><span class="cl"> <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">channel</span> <span class="s2">&#34;(8) Available\nor N/A&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><figure><img src="/images/parkbot/arch1.svg"><figcaption>
-      <h4>Architecture Phase 1 | Cloud Function</h4>
-    </figcaption>
+			<h4>Architecture Phase 1 | Cloud Function</h4>
+		</figcaption>
 </figure>
 
 <p>But after reading into what we should learn, we decided to move to
@@ -303,8 +303,8 @@ a Docker container, instead:</p>
 </span></span><span class="line"><span class="cl"> <span class="nx">bot</span> <span class="o">-&gt;</span> <span class="nx">channel</span> <span class="s2">&#34;(10) Available\nor N/A&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><figure><img src="/images/parkbot/arch2.svg"><figcaption>
-      <h4>Architecture Phase 2 | Cloud Run</h4>
-    </figcaption>
+			<h4>Architecture Phase 2 | Cloud Run</h4>
+		</figcaption>
 </figure>
 
 <h2 id="working">Working<a href="#working" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>

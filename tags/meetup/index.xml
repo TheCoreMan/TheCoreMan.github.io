@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Meetup on mrnice.dev</title>
-    <link>https://www.mrnice.dev/tags/meetup/</link>
-    <description>Recent content in Meetup on mrnice.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 22:19:17 +0200</lastBuildDate>
-    <atom:link href="https://www.mrnice.dev/tags/meetup/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>🌘 AI Roundtables @lunar.dev</title>
-      <link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
-      <pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
-      <guid>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</guid>
-      <description>&lt;h2 id=&#34;thank-you-lunar-team&#34;&gt;Thank You, Lunar Team&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into all the AI insights: thanks Eyal Solomon (aka &lt;strong&gt;Luli&lt;/strong&gt;, CEO)&#xA;and Roy Gabbay (aka &lt;strong&gt;Gabbay&lt;/strong&gt;, CTO), and &lt;strong&gt;Rotem&lt;/strong&gt; (VP R&amp;amp;D),&#xA;from &lt;a href=&#34;https://www.lunar.dev/&#34;&gt;lunar.dev&lt;/a&gt; for arranging these meetups and letting&#xA;me be a part of what y&amp;rsquo;all are building. Leading the charge on AI thought&#xA;leadership is hard with so much BS in the air.&lt;/p&gt;&#xA;&lt;p&gt;I definitely learned a ton, met cool folks from the industry, and even had fun.&#xA;So thanks! 🙏&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>GopherCon Israel 2024</title>
-      <link>https://www.mrnice.dev/posts/gophercon-israel-2024/</link>
-      <pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/gophercon-israel-2024/</guid>
-      <description>&lt;p&gt;GopherCon Israel 2024! What a fun day.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/01lobby.jpg&#34; alt=&#34;Lobby&#34; title=&#34;Lobby&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Started by seeing lots of familiar faces!&#xA;&lt;a href=&#34;https://www.linkedin.com/in/mikitebeka/&#34;&gt;Miki Tebeka&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.yardenlaif.com/&#34;&gt;Yarden Laifenfeld&lt;/a&gt;,&#xA;&lt;a href=&#34;https://reallyliri.com/&#34;&gt;Liri Sokol&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/guy-brandwine-7316828/&#34;&gt;Guy Brandwine&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/itamark/&#34;&gt;Itamar Knafo&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/barzik/&#34;&gt;Ran Bar-Zik&lt;/a&gt; and more. It&amp;rsquo;s a lot of fun&#xA;knowing people and saying hi to everyone, and meeting new people, too.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/03selfie.jpg&#34; alt=&#34;Selfie&#34; title=&#34;Selfie&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I arrived there and met some people from Orca Security (where I work right now).&#xA;These are my raw notes from the event, not too much editing, mostly for my peeps&#xA;from Orca&amp;rsquo;s Golang Guild. 🐋&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Meetup on mrnice.dev</title>
+		<link>https://www.mrnice.dev/tags/meetup/</link>
+		<description>Recent content in Meetup on mrnice.dev</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 10 Jan 2025 22:19:17 +0200</lastBuildDate>
+		
+			<atom:link href="https://www.mrnice.dev/tags/meetup/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>🌘 AI Roundtables @lunar.dev</title>
+				<link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
+				<pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
+				<guid>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</guid>
+				<description>&lt;h2 id=&#34;thank-you-lunar-team&#34;&gt;Thank You, Lunar Team&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into all the AI insights: thanks Eyal Solomon (aka &lt;strong&gt;Luli&lt;/strong&gt;, CEO)&#xA;and Roy Gabbay (aka &lt;strong&gt;Gabbay&lt;/strong&gt;, CTO), and &lt;strong&gt;Rotem&lt;/strong&gt; (VP R&amp;amp;D),&#xA;from &lt;a href=&#34;https://www.lunar.dev/&#34;&gt;lunar.dev&lt;/a&gt; for arranging these meetups and letting&#xA;me be a part of what y&amp;rsquo;all are building. Leading the charge on AI thought&#xA;leadership is hard with so much BS in the air.&lt;/p&gt;&#xA;&lt;p&gt;I definitely learned a ton, met cool folks from the industry, and even had fun.&#xA;So thanks! 🙏&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>GopherCon Israel 2024</title>
+				<link>https://www.mrnice.dev/posts/gophercon-israel-2024/</link>
+				<pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/gophercon-israel-2024/</guid>
+				<description>&lt;p&gt;GopherCon Israel 2024! What a fun day.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/01lobby.jpg&#34; alt=&#34;Lobby&#34; title=&#34;Lobby&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Started by seeing lots of familiar faces!&#xA;&lt;a href=&#34;https://www.linkedin.com/in/mikitebeka/&#34;&gt;Miki Tebeka&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.yardenlaif.com/&#34;&gt;Yarden Laifenfeld&lt;/a&gt;,&#xA;&lt;a href=&#34;https://reallyliri.com/&#34;&gt;Liri Sokol&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/guy-brandwine-7316828/&#34;&gt;Guy Brandwine&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/itamark/&#34;&gt;Itamar Knafo&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/barzik/&#34;&gt;Ran Bar-Zik&lt;/a&gt; and more. It&amp;rsquo;s a lot of fun&#xA;knowing people and saying hi to everyone, and meeting new people, too.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/03selfie.jpg&#34; alt=&#34;Selfie&#34; title=&#34;Selfie&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I arrived there and met some people from Orca Security (where I work right now).&#xA;These are my raw notes from the event, not too much editing, mostly for my peeps&#xA;from Orca&amp;rsquo;s Golang Guild. 🐋&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

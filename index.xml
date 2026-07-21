@@ -1,152 +1,157 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>mrnice.dev</title>
-    <link>https://www.mrnice.dev/</link>
-    <description>Recent content on mrnice.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jun 2026 21:01:56 -0700</lastBuildDate>
-    <atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>SGF Dev Night: Git internals &#43; CTF 🚩</title>
-      <link>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</link>
-      <pubDate>Wed, 03 Jun 2026 21:01:56 -0700</pubDate>
-      <guid>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Some software will become more fragile - not mine</title>
-      <link>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</link>
-      <pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
-      <guid>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://brainmade.org/white-logo.svg&#34; alt=&#34;Brainmade mark&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;This blogpost is mostly a rant.&lt;/p&gt;&#xA;&lt;p&gt;In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the &lt;code&gt;hugo new&lt;/code&gt; command:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;❯ hugo new posts/software-will-get-more-fragile-over-time.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WARN  deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler &lt;span class=&#34;s1&#34;&gt;&amp;#39;files&amp;#39;&lt;/span&gt; setting, see https://gohugo.io/configuration/module/#files&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another warning I&amp;rsquo;ll have to fix. Throw it onto the pile. OK, let&amp;rsquo;s run the Hugo server, then?&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</title>
-      <link>https://www.mrnice.dev/posts/nestjs-lifecycle/</link>
-      <pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
-      <guid>https://www.mrnice.dev/posts/nestjs-lifecycle/</guid>
-      <description>&lt;p&gt;First blogpost about stuff I&amp;rsquo;ve learned since I (Shay Nehmad) started working at&#xA;&lt;a href=&#34;https://www.opsinsecurity.com/&#34;&gt;Opsin Security&lt;/a&gt;!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/opsin-logo.svg&#34; alt=&#34;opsin-logo&#34; title=&#34;Opsin Security logo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Check out this &lt;a href=&#34;https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY&#34;&gt;post for more&#xA;details&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;nestjs-lifecycle-issues&#34;&gt;NestJS lifecycle issues&lt;/h2&gt;&#xA;&lt;p&gt;Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It&#xA;was a followup on a ramble on a Slack thread:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/nestjs/slack.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When a certain shared &lt;del&gt;module&lt;/del&gt; provider &lt;em&gt;started&lt;/em&gt; (vagueness on purpose), even though I&#xA;wanted it to load only once, it was being loaded multiple times. In this&#xA;case it was annoying because it was the database module - and it ran migrations&#xA;multiple times each load. Here&amp;rsquo;s how it looked in the logs (simplified):&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>🌘 AI Roundtables @lunar.dev</title>
-      <link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
-      <pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
-      <guid>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</guid>
-      <description>&lt;h2 id=&#34;thank-you-lunar-team&#34;&gt;Thank You, Lunar Team&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into all the AI insights: thanks Eyal Solomon (aka &lt;strong&gt;Luli&lt;/strong&gt;, CEO)&#xA;and Roy Gabbay (aka &lt;strong&gt;Gabbay&lt;/strong&gt;, CTO), and &lt;strong&gt;Rotem&lt;/strong&gt; (VP R&amp;amp;D),&#xA;from &lt;a href=&#34;https://www.lunar.dev/&#34;&gt;lunar.dev&lt;/a&gt; for arranging these meetups and letting&#xA;me be a part of what y&amp;rsquo;all are building. Leading the charge on AI thought&#xA;leadership is hard with so much BS in the air.&lt;/p&gt;&#xA;&lt;p&gt;I definitely learned a ton, met cool folks from the industry, and even had fun.&#xA;So thanks! 🙏&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>🦪 5 Shell Tricks, because why not</title>
-      <link>https://www.mrnice.dev/posts/shell-tricks-bag/</link>
-      <pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/shell-tricks-bag/</guid>
-      <description>&lt;p&gt;No time, let&amp;rsquo;s just go. This is &lt;code&gt;zsh&lt;/code&gt; on MacOS.&lt;/p&gt;&#xA;&lt;h2 id=&#34;copy-current-dir-name&#34;&gt;Copy current dir name&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Useful for when you copy a pyproject from another directory and want to rename the project to the current directory&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;basename &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; pbcopy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pomodoro-&#34;&gt;Pomodoro 🍅&lt;/h2&gt;&#xA;&lt;p&gt;added two new functions to my .zshrc file: &lt;code&gt;work&lt;/code&gt; and &lt;code&gt;rest&lt;/code&gt;, which give me a&#xA;built-in #pomodoro in the terminal. From &lt;a href=&#34;https://patloeber.com/pomodoro-app-cli-macos/&#34;&gt;Simple CLI Pomodoro timer for macOS&#xA;by Patrick Loeber&lt;/a&gt;.&#xA;This also taught me a nice library which might be useful for work: &lt;a href=&#34;https://github.com/julienXX/terminal-notifier&#34;&gt;terminal-notifier&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>GopherCon Israel 2024</title>
-      <link>https://www.mrnice.dev/posts/gophercon-israel-2024/</link>
-      <pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/gophercon-israel-2024/</guid>
-      <description>&lt;p&gt;GopherCon Israel 2024! What a fun day.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/01lobby.jpg&#34; alt=&#34;Lobby&#34; title=&#34;Lobby&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Started by seeing lots of familiar faces!&#xA;&lt;a href=&#34;https://www.linkedin.com/in/mikitebeka/&#34;&gt;Miki Tebeka&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.yardenlaif.com/&#34;&gt;Yarden Laifenfeld&lt;/a&gt;,&#xA;&lt;a href=&#34;https://reallyliri.com/&#34;&gt;Liri Sokol&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/guy-brandwine-7316828/&#34;&gt;Guy Brandwine&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/itamark/&#34;&gt;Itamar Knafo&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/barzik/&#34;&gt;Ran Bar-Zik&lt;/a&gt; and more. It&amp;rsquo;s a lot of fun&#xA;knowing people and saying hi to everyone, and meeting new people, too.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/03selfie.jpg&#34; alt=&#34;Selfie&#34; title=&#34;Selfie&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I arrived there and met some people from Orca Security (where I work right now).&#xA;These are my raw notes from the event, not too much editing, mostly for my peeps&#xA;from Orca&amp;rsquo;s Golang Guild. 🐋&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Book report: The Ideal Team Player</title>
-      <link>https://www.mrnice.dev/posts/the-ideal-team-player/</link>
-      <pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/the-ideal-team-player/</guid>
-      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-three-virtues&#34;&gt;The three virtues&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#humility&#34;&gt;&lt;strong&gt;Humility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#hunger&#34;&gt;&lt;strong&gt;Hunger&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#smart&#34;&gt;&lt;strong&gt;Smart&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#wheres-the-proof&#34;&gt;Where&amp;rsquo;s the proof?&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#compared-to&#34;&gt;Compared to&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#turn-the-ship-around&#34;&gt;Turn the Ship Around!&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-goal&#34;&gt;The Goal&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-story&#34;&gt;The story&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#hiring--promoting&#34;&gt;Hiring &amp;amp; promoting&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#employee-development&#34;&gt;Employee Development&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#trusted-advisors&#34;&gt;Trusted Advisors&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#what-about-performance&#34;&gt;What about performance?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#dollar-store-psychology&#34;&gt;Dollar-store psychology&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#improve-myself&#34;&gt;Improve myself&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#improve-my-team&#34;&gt;Improve my team&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Recently I&amp;rsquo;ve read &lt;a href=&#34;https://www.tablegroup.com/product/ideal-team-player/&#34;&gt;The Ideal Team Player&lt;/a&gt;&#xA;by Patrick Lencioni following &lt;a href=&#34;https://www.linkedin.com/in/yoav-alon/&#34;&gt;Yoav Alon&lt;/a&gt;&amp;rsquo;s recommendation.&#xA;I&amp;rsquo;ve read it on a train: best way to read books. You can&amp;rsquo;t do anything else, and&#xA;your fellow passengers think you&amp;rsquo;re smart. This only works when they don&amp;rsquo;t watch&#xA;videos on their phone with the sound on 💢😡.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>DevProd Adventure</title>
-      <link>https://www.mrnice.dev/posts/devex-adventure/</link>
-      <pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/devex-adventure/</guid>
-      <description>&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;&#xA;&lt;p&gt;This is a presentation I gave at Angular Ventures in 2024. It&amp;rsquo;s about the new-ish&#xA;and emerging concept of Developer Experience, and what I&amp;rsquo;ve learned about it&#xA;over the last year of doing it.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a Reveal.js presentation, so you can view it in your browser on Desktop&#xA;only. Use the arrow keys and &lt;code&gt;Esc&lt;/code&gt; to navigate, and press &lt;code&gt;s&lt;/code&gt; to see the speaker&#xA;notes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;presentation&#34;&gt;Presentation&lt;/h2&gt;&#xA;&lt;!-- markdownlint-disable --&gt;&#xA;&lt;div class=&#34;shay-presentation-container&#34; style=&#34;width: 80vw; height: 80vh; position: relative; left: -25vw&#34;&gt;&#xA;&lt;!--- Add the https://fonts.google.com/specimen/Silkscreen font file --&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://fonts.googleapis.com/css2?family=Silkscreen&amp;display=swap&#34; /&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;dist/reveal.css&#34;&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;dist/theme/dracula.css&#34; id=&#34;theme&#34;&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;plugin/highlight/monokai.css&#34;&gt;&#xA;  &lt;div class=&#34;reveal&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;div class=&#34;slides&#34;&gt;&#xA;        &lt;section data-auto-animate data-background-image=&#34;images/background.png&#34; data-background-opacity=&#34;0.1&#34;&gt;&#xA;          &lt;section data-auto-animate&gt;&#xA;            &lt;h1 class=&#34;r-fit-text&#34;&gt;Developer Experience&lt;/h1&gt;&#xA;            &lt;h4&gt;The adventure begins...&lt;/h4&gt;&#xA;            &lt;p&gt;Shay Nehmad for Angular Ventures, 2024&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</title>
-      <link>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</link>
-      <pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
-      <guid>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Added a Now Page to my Hugo Blog</title>
-      <link>https://www.mrnice.dev/posts/added-a-now-page/</link>
-      <pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/added-a-now-page/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.mrnice.dev/now&#34;&gt;&lt;code&gt;/now&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjJwa3l2d3oxNjBuYzliYmxiN2VmeGc0dDUzcHA2am11emd2YWUyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3HB4P2kNkevUGLpPSb/giphy.gif&#34; alt=&#34;Right now?&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;whats-a-now-page&#34;&gt;What&amp;rsquo;s a now page?&lt;/h2&gt;&#xA;&lt;p&gt;Well, the person behind it, Derek Sivers, &lt;a href=&#34;https://sive.rs/now2&#34;&gt;explains it best on his blog&#xA;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-to-add-a-now-page-for-hugo&#34;&gt;How to add a now page for Hugo&lt;/h2&gt;&#xA;&lt;p&gt;Derek&amp;rsquo;s explanation doesn&amp;rsquo;t include how to do it with&#xA;Hugo! Since some people might be interested in that, and it&amp;rsquo;s not 100% the&#xA;same formula as adding a new post, here&amp;rsquo;s how:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new now.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&amp;hellip;Wait, that&amp;rsquo;s it 😅. Just don&amp;rsquo;t write the &lt;code&gt;posts/&lt;/code&gt; you normally do when&#xA;running &lt;code&gt;hugo new&lt;/code&gt;. This &lt;em&gt;should&lt;/em&gt; add a page under &lt;code&gt;/now&lt;/code&gt;. I suggest adding&#xA;a link to it &lt;em&gt;somewhere&lt;/em&gt; on your site for discoverability - I added mine to the&#xA;&lt;code&gt;/about&lt;/code&gt; page.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Shay Nehmad&#39;s Now page</title>
-      <link>https://www.mrnice.dev/now/</link>
-      <pubDate>Wed, 22 May 2024 17:42:55 +0300</pubDate>
-      <guid>https://www.mrnice.dev/now/</guid>
-      <description>What Shay&amp;rsquo;s up to now.</description>
-    </item>
-    <item>
-      <title>Quick script to refresh a Hugo Post Date</title>
-      <link>https://www.mrnice.dev/posts/refresh-hugo-post-date/</link>
-      <pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/refresh-hugo-post-date/</guid>
-      <description>&lt;p&gt;I tend to go back to old, unpublished posts every now and restart my work on&#xA;them. They&amp;rsquo;re just resting, hiding behind the &lt;code&gt;-D&lt;/code&gt; flag of &lt;code&gt;hugo server&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;But when I want to publish said post, I want the date to be the current date,&#xA;not the creation date. So I wrote a script to update the date of a post to the&#xA;current date.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s the script in action:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Adding shorts to the blog</title>
-      <link>https://www.mrnice.dev/posts/shorts/</link>
-      <pubDate>Tue, 23 Apr 2024 19:31:13 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/shorts/</guid>
-      <description>&lt;p&gt;So, I&amp;rsquo;m sick. Strep. Missed the Seder, as well.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjhwdDdlZWtzcWx6Y3V0Z3JocnFoOHJmOWFlb3J4em0yNW9ucGZmaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SCaWhPSWvBxZK/giphy.gif&#34; alt=&#34;Skeletor is sick&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Taking a few days off to recover, time to play around with the blog.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-add-shorts-if-you-already-have-posts&#34;&gt;Why add shorts if you already have posts?&lt;/h2&gt;&#xA;&lt;p&gt;Shorts are more than a tweet, less than a post.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Stream of consciousness notes that don&amp;rsquo;t merit a more dedicated write-up.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Inspired by &lt;a href=&#34;https://brandur.org/fragments&#34;&gt;Brandur Leach&amp;rsquo;s fragments&lt;/a&gt;&#xA;in his beautiful corner of the web.&lt;/p&gt;&#xA;&lt;p&gt;My hope is that this short-form, more than a tweet, less than a post format will&#xA;help me publish more often. And as I really try to stay off Twitter and other&#xA;social media as much as possible, this should be a way to post more often&#xA;without worrying too much about quality.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>🎧🍏 AirPods (well, any bluetooth) alias for MacOS</title>
-      <link>https://www.mrnice.dev/posts/airpods-alias/</link>
-      <pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
-      <description>&lt;p&gt;So, one early morning, and I’m just getting my coffee. For fun, let’s automate&#xA;connecting to bluetooth AirPods without touching the mouse. Quick Google&#xA;brings up &lt;a href=&#34;https://github.com/toy/blueutil&#34;&gt;&lt;code&gt;blueutil&lt;/code&gt;&lt;/a&gt;, and a tiny bit of &lt;code&gt;jq&lt;/code&gt;&#xA;was all the glue needed:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install blueutil&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;blueutil --connect &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;blueutil --paired --format json-pretty &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; jq -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first time you run this, you&amp;rsquo;ll need to give the terminal permission to&#xA;get access to bluetooth:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>A few Go tools for production-level developer applications (Orca Meetup)</title>
-      <link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
-      <pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>
-      <link>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</link>
-      <pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
-      <guid>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</guid>
-      <description>&lt;h2 id=&#34;how-did-we-get-here&#34;&gt;How did we get here&lt;/h2&gt;&#xA;&lt;p&gt;Back when I left &lt;a href=&#34;https://recolabs.ai/&#34;&gt;Reco&lt;/a&gt;, my parting gift to everyone at&#xA;the company was books 📚. At the time, these were books I haven&amp;rsquo;t read, but were&#xA;recommended by&#xA;&lt;a href=&#34;https://www.goodreads.com/list/show/142078.Rands_Leadership_Books_Reading_List&#34;&gt;the interwebz&lt;/a&gt;.&#xA;The idea was to stay in touch with the team by gifting them good books and&#xA;loaning them from time to time. That&amp;rsquo;s how I wrote &lt;a href=&#34;../turn-the-ship-around-a-vp-rnd-summary&#34;&gt;a book report about&#xA;&amp;ldquo;Turn the Ship Around&amp;rdquo;&lt;/a&gt;, for example.&lt;/p&gt;&#xA;&lt;p&gt;As part of my work at &lt;a href=&#34;https://orca.security/&#34;&gt;Orca Security&lt;/a&gt;, I&amp;rsquo;ve been&#xA;conducting a weekly book club, where we read&#xA;&lt;a href=&#34;https://dataintensive.net/&#34;&gt;Designing Data-Intensive Applications&lt;/a&gt; by Martin&#xA;Kleppmann. Well, weekly-&lt;em&gt;ish&lt;/em&gt;. You know how schedules are. And it was fun!&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Checking out Advent of Cyber 2023</title>
-      <link>https://www.mrnice.dev/posts/advent-of-cyber-2023/</link>
-      <pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
-      <guid>https://www.mrnice.dev/posts/advent-of-cyber-2023/</guid>
-      <description>&lt;p&gt;To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see&#xA;&lt;code&gt;{{ .flag }}&lt;/code&gt; in the text, it means that I&amp;rsquo;ve redacted the flag.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on&#xA;the planet.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;The signup/login UX leaves something to be desired. You start off on the advent&#xA;page, then sign up, and after the initial signup you are not redirected to the&#xA;advent. Need to go look for it again. Then it&amp;rsquo;s &amp;ldquo;join room&amp;rdquo;, whatever that means.&#xA;Anyways, not a big deal, but I thought it&amp;rsquo;s a bit annoying.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to add a status page to your Hugo blog</title>
-      <link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
-      <pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
-      <description>&lt;p&gt;Shortest guide possible, let&amp;rsquo;s go ⚡️&lt;/p&gt;&#xA;&lt;h2 id=&#34;setting-up-a-status-page&#34;&gt;Setting up a status page&lt;/h2&gt;&#xA;&lt;p&gt;I recommend &lt;a href=&#34;https://onlineornot.com/&#34;&gt;onlineornot.com&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s&#xA;&lt;a href=&#34;https://mrnice.dev&#34;&gt;&lt;code&gt;https://mrnice.dev&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Create a new &lt;a href=&#34;https://onlineornot.com/app/checks&#34;&gt;check&lt;/a&gt; on that URL. Pick&#xA;&amp;ldquo;Monitor a website&amp;rdquo;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/onlineornot1.png&#34; alt=&#34;&amp;ldquo;New check&amp;rdquo;&#34; title=&#34;New check&#34;&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Create a &lt;a href=&#34;https://onlineornot.com/app/status-pages&#34;&gt;status page&lt;/a&gt;, and choose&#xA;your subdomain. I went with &lt;code&gt;mrnicedev&lt;/code&gt; ~&amp;gt; you&amp;rsquo;ll end up with a URL like&#xA;&lt;a href=&#34;https://mrnicedev.onlineornot.com&#34;&gt;&lt;code&gt;https://mrnicedev.onlineornot.com&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;You should get something that looks like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/statuspage.png&#34; alt=&#34;onlineornot&#34; title=&#34;onlineornot&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;adding-the-status-page-link-to-your-blog&#34;&gt;Adding the status page link to your blog&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll do it from the &lt;code&gt;config.toml&lt;/code&gt; file (so it&amp;rsquo;s easy to change) and using a&#xA;&lt;code&gt;with&lt;/code&gt; template statement (so if it&amp;rsquo;s not set, it won&amp;rsquo;t show up).&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
-      <link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/mermaid-on-webflow/</guid>
-      <description>&lt;p&gt;How to set up a &lt;a href=&#34;https://mermaid-js.github.io/mermaid/#/&#34;&gt;Mermaid.js&lt;/a&gt; diagram on&#xA;your &lt;a href=&#34;https://webflow.com/&#34;&gt;Webflow&lt;/a&gt; site, the shortest guide possible:&lt;/p&gt;&#xA;&lt;h2 id=&#34;install-mermaid-for-a-specific-post&#34;&gt;Install Mermaid for a specific post&lt;/h2&gt;&#xA;&lt;p&gt;Add an HTML Embed Code by clicking on this button:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/mermaid/html-embed-button.png&#34; alt=&#34;html embed button&#34; title=&#34;html embed button&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Copy this HTML Embed Code snippet to the top of the post.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// Include mermaid.js&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mermaid&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// Initialize the Mermaid chart&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;mermaid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;startOnLoad&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// Apply the dark theme - replace with what you want.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// options can be found here: http://mermaid.js.org/config/theming.html#available-themes&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;theme&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;dark&amp;#39;&lt;/span&gt; &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This looks bad in the preview:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>What is an API proxy?</title>
-      <link>https://www.mrnice.dev/posts/what-is-an-api-proxy/</link>
-      <pubDate>Fri, 01 Sep 2023 23:22:44 +0300</pubDate>
-      <guid>https://www.mrnice.dev/posts/what-is-an-api-proxy/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>mrnice.dev</title>
+		<link>https://www.mrnice.dev/</link>
+		<description>Recent content on mrnice.dev</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 21 Jul 2026 00:12:13 -0700</lastBuildDate>
+		
+			<atom:link href="https://www.mrnice.dev/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>At the Gates of Slop</title>
+				<link>https://www.mrnice.dev/posts/at-the-gates-of-slop/</link>
+				<pubDate>Tue, 21 Jul 2026 00:12:13 -0700</pubDate>
+				<guid>https://www.mrnice.dev/posts/at-the-gates-of-slop/</guid>
+				<description>&lt;p&gt;The title is a riff on &amp;ldquo;At The Gates Of Sleep&amp;rdquo;, a banger Melodic Death Metal song by Insomnium. I was listening to it as the idea for this post came to my mind, and the pun was too good to give up. Give it a listen:&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/2Ssfhj8WDP0?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;My position is simple: LLMs are excellent when they amplify your own work, tolerable when they automate short-lived transactional work, and corrosive when they are used to push unreviewed cognitive labor onto people who trust you. Read on to see how I got here, and whether you&amp;rsquo;ll land differently.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>SGF Dev Night: Git internals &#43; CTF 🚩</title>
+				<link>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</link>
+				<pubDate>Wed, 03 Jun 2026 21:01:56 -0700</pubDate>
+				<guid>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Some software will become more fragile - not mine</title>
+				<link>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</link>
+				<pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
+				<guid>https://www.mrnice.dev/posts/software-will-get-more-fragile-over-time/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;https://brainmade.org/white-logo.svg&#34; alt=&#34;Brainmade mark&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;This blogpost is mostly a rant.&lt;/p&gt;&#xA;&lt;p&gt;In a perfect opening note to this blog, as I was sitting down to write it, I was faced with this message in my terminal, right after typing the &lt;code&gt;hugo new&lt;/code&gt; command:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;❯ hugo new posts/software-will-get-more-fragile-over-time.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WARN  deprecated: module.mounts.excludeFiles was deprecated in Hugo v0.153.0 and will be removed in a future release. Replaced by the simpler &lt;span class=&#34;s1&#34;&gt;&amp;#39;files&amp;#39;&lt;/span&gt; setting, see https://gohugo.io/configuration/module/#files&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another warning I&amp;rsquo;ll have to fix. Throw it onto the pile. OK, let&amp;rsquo;s run the Hugo server, then?&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</title>
+				<link>https://www.mrnice.dev/posts/nestjs-lifecycle/</link>
+				<pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
+				<guid>https://www.mrnice.dev/posts/nestjs-lifecycle/</guid>
+				<description>&lt;p&gt;First blogpost about stuff I&amp;rsquo;ve learned since I (Shay Nehmad) started working at&#xA;&lt;a href=&#34;https://www.opsinsecurity.com/&#34;&gt;Opsin Security&lt;/a&gt;!&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/opsin-logo.svg&#34; alt=&#34;opsin-logo&#34; title=&#34;Opsin Security logo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Check out this &lt;a href=&#34;https://www.linkedin.com/posts/shay-nehmad_when-a-chance-to-rejoin-forces-with-oz-wasserman-activity-7303131853102747648-Qbbc?utm_source=share&amp;amp;utm_medium=member_desktop&amp;amp;rcm=ACoAABhUF3EBK_5T2eMDpXec1Gj5D2zDHhJ62SY&#34;&gt;post for more&#xA;details&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;nestjs-lifecycle-issues&#34;&gt;NestJS lifecycle issues&lt;/h2&gt;&#xA;&lt;p&gt;Recently at work I filed a new ticket on Linear related to NestJS lifecycle. It&#xA;was a followup on a ramble on a Slack thread:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/nestjs/slack.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;When a certain shared &lt;del&gt;module&lt;/del&gt; provider &lt;em&gt;started&lt;/em&gt; (vagueness on purpose), even though I&#xA;wanted it to load only once, it was being loaded multiple times. In this&#xA;case it was annoying because it was the database module - and it ran migrations&#xA;multiple times each load. Here&amp;rsquo;s how it looked in the logs (simplified):&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>🌘 AI Roundtables @lunar.dev</title>
+				<link>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</link>
+				<pubDate>Fri, 10 Jan 2025 22:19:17 +0200</pubDate>
+				<guid>https://www.mrnice.dev/posts/lunar-dev-ai-roundtables/</guid>
+				<description>&lt;h2 id=&#34;thank-you-lunar-team&#34;&gt;Thank You, Lunar Team&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into all the AI insights: thanks Eyal Solomon (aka &lt;strong&gt;Luli&lt;/strong&gt;, CEO)&#xA;and Roy Gabbay (aka &lt;strong&gt;Gabbay&lt;/strong&gt;, CTO), and &lt;strong&gt;Rotem&lt;/strong&gt; (VP R&amp;amp;D),&#xA;from &lt;a href=&#34;https://www.lunar.dev/&#34;&gt;lunar.dev&lt;/a&gt; for arranging these meetups and letting&#xA;me be a part of what y&amp;rsquo;all are building. Leading the charge on AI thought&#xA;leadership is hard with so much BS in the air.&lt;/p&gt;&#xA;&lt;p&gt;I definitely learned a ton, met cool folks from the industry, and even had fun.&#xA;So thanks! 🙏&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>🦪 5 Shell Tricks, because why not</title>
+				<link>https://www.mrnice.dev/posts/shell-tricks-bag/</link>
+				<pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/shell-tricks-bag/</guid>
+				<description>&lt;p&gt;No time, let&amp;rsquo;s just go. This is &lt;code&gt;zsh&lt;/code&gt; on MacOS.&lt;/p&gt;&#xA;&lt;h2 id=&#34;copy-current-dir-name&#34;&gt;Copy current dir name&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Useful for when you copy a pyproject from another directory and want to rename the project to the current directory&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;basename &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; pbcopy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pomodoro-&#34;&gt;Pomodoro 🍅&lt;/h2&gt;&#xA;&lt;p&gt;added two new functions to my .zshrc file: &lt;code&gt;work&lt;/code&gt; and &lt;code&gt;rest&lt;/code&gt;, which give me a&#xA;built-in #pomodoro in the terminal. From &lt;a href=&#34;https://patloeber.com/pomodoro-app-cli-macos/&#34;&gt;Simple CLI Pomodoro timer for macOS&#xA;by Patrick Loeber&lt;/a&gt;.&#xA;This also taught me a nice library which might be useful for work: &lt;a href=&#34;https://github.com/julienXX/terminal-notifier&#34;&gt;terminal-notifier&lt;/a&gt;.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>GopherCon Israel 2024</title>
+				<link>https://www.mrnice.dev/posts/gophercon-israel-2024/</link>
+				<pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/gophercon-israel-2024/</guid>
+				<description>&lt;p&gt;GopherCon Israel 2024! What a fun day.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/01lobby.jpg&#34; alt=&#34;Lobby&#34; title=&#34;Lobby&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Started by seeing lots of familiar faces!&#xA;&lt;a href=&#34;https://www.linkedin.com/in/mikitebeka/&#34;&gt;Miki Tebeka&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.yardenlaif.com/&#34;&gt;Yarden Laifenfeld&lt;/a&gt;,&#xA;&lt;a href=&#34;https://reallyliri.com/&#34;&gt;Liri Sokol&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/guy-brandwine-7316828/&#34;&gt;Guy Brandwine&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/itamark/&#34;&gt;Itamar Knafo&lt;/a&gt;,&#xA;&lt;a href=&#34;https://www.linkedin.com/in/barzik/&#34;&gt;Ran Bar-Zik&lt;/a&gt; and more. It&amp;rsquo;s a lot of fun&#xA;knowing people and saying hi to everyone, and meeting new people, too.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/03selfie.jpg&#34; alt=&#34;Selfie&#34; title=&#34;Selfie&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I arrived there and met some people from Orca Security (where I work right now).&#xA;These are my raw notes from the event, not too much editing, mostly for my peeps&#xA;from Orca&amp;rsquo;s Golang Guild. 🐋&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Book report: The Ideal Team Player</title>
+				<link>https://www.mrnice.dev/posts/the-ideal-team-player/</link>
+				<pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/the-ideal-team-player/</guid>
+				<description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-three-virtues&#34;&gt;The three virtues&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#humility&#34;&gt;&lt;strong&gt;Humility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#hunger&#34;&gt;&lt;strong&gt;Hunger&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#smart&#34;&gt;&lt;strong&gt;Smart&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#wheres-the-proof&#34;&gt;Where&amp;rsquo;s the proof?&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#compared-to&#34;&gt;Compared to&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#turn-the-ship-around&#34;&gt;Turn the Ship Around!&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-goal&#34;&gt;The Goal&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#the-story&#34;&gt;The story&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#hiring--promoting&#34;&gt;Hiring &amp;amp; promoting&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#employee-development&#34;&gt;Employee Development&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#trusted-advisors&#34;&gt;Trusted Advisors&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#what-about-performance&#34;&gt;What about performance?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#dollar-store-psychology&#34;&gt;Dollar-store psychology&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#improve-myself&#34;&gt;Improve myself&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#improve-my-team&#34;&gt;Improve my team&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Recently I&amp;rsquo;ve read &lt;a href=&#34;https://www.tablegroup.com/product/ideal-team-player/&#34;&gt;The Ideal Team Player&lt;/a&gt;&#xA;by Patrick Lencioni following &lt;a href=&#34;https://www.linkedin.com/in/yoav-alon/&#34;&gt;Yoav Alon&lt;/a&gt;&amp;rsquo;s recommendation.&#xA;I&amp;rsquo;ve read it on a train: best way to read books. You can&amp;rsquo;t do anything else, and&#xA;your fellow passengers think you&amp;rsquo;re smart. This only works when they don&amp;rsquo;t watch&#xA;videos on their phone with the sound on 💢😡.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>DevProd Adventure</title>
+				<link>https://www.mrnice.dev/posts/devex-adventure/</link>
+				<pubDate>Thu, 18 Jul 2024 03:24:45 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/devex-adventure/</guid>
+				<description>&lt;h2 id=&#34;context&#34;&gt;Context&lt;/h2&gt;&#xA;&lt;p&gt;This is a presentation I gave at Angular Ventures in 2024. It&amp;rsquo;s about the new-ish&#xA;and emerging concept of Developer Experience, and what I&amp;rsquo;ve learned about it&#xA;over the last year of doing it.&lt;/p&gt;&#xA;&lt;p&gt;It&amp;rsquo;s a Reveal.js presentation, so you can view it in your browser on Desktop&#xA;only. Use the arrow keys and &lt;code&gt;Esc&lt;/code&gt; to navigate, and press &lt;code&gt;s&lt;/code&gt; to see the speaker&#xA;notes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;presentation&#34;&gt;Presentation&lt;/h2&gt;&#xA;&lt;!-- markdownlint-disable --&gt;&#xA;&lt;div class=&#34;shay-presentation-container&#34; style=&#34;width: 80vw; height: 80vh; position: relative; left: -25vw&#34;&gt;&#xA;&lt;!--- Add the https://fonts.google.com/specimen/Silkscreen font file --&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://fonts.googleapis.com/css2?family=Silkscreen&amp;display=swap&#34; /&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;dist/reveal.css&#34;&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;dist/theme/dracula.css&#34; id=&#34;theme&#34;&gt;&#xA;&lt;link rel=&#34;stylesheet&#34; href=&#34;plugin/highlight/monokai.css&#34;&gt;&#xA;  &lt;div class=&#34;reveal&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;div class=&#34;slides&#34;&gt;&#xA;        &lt;section data-auto-animate data-background-image=&#34;images/background.png&#34; data-background-opacity=&#34;0.1&#34;&gt;&#xA;          &lt;section data-auto-animate&gt;&#xA;            &lt;h1 class=&#34;r-fit-text&#34;&gt;Developer Experience&lt;/h1&gt;&#xA;            &lt;h4&gt;The adventure begins...&lt;/h4&gt;&#xA;            &lt;p&gt;Shay Nehmad for Angular Ventures, 2024&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</title>
+				<link>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</link>
+				<pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
+				<guid>https://www.mrnice.dev/posts/how-to-build-a-command-line-aka-cli-app-with-go/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Added a Now Page to my Hugo Blog</title>
+				<link>https://www.mrnice.dev/posts/added-a-now-page/</link>
+				<pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/added-a-now-page/</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;https://www.mrnice.dev/now&#34;&gt;&lt;code&gt;/now&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjJwa3l2d3oxNjBuYzliYmxiN2VmeGc0dDUzcHA2am11emd2YWUyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3HB4P2kNkevUGLpPSb/giphy.gif&#34; alt=&#34;Right now?&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;whats-a-now-page&#34;&gt;What&amp;rsquo;s a now page?&lt;/h2&gt;&#xA;&lt;p&gt;Well, the person behind it, Derek Sivers, &lt;a href=&#34;https://sive.rs/now2&#34;&gt;explains it best on his blog&#xA;&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-to-add-a-now-page-for-hugo&#34;&gt;How to add a now page for Hugo&lt;/h2&gt;&#xA;&lt;p&gt;Derek&amp;rsquo;s explanation doesn&amp;rsquo;t include how to do it with&#xA;Hugo! Since some people might be interested in that, and it&amp;rsquo;s not 100% the&#xA;same formula as adding a new post, here&amp;rsquo;s how:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new now.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&amp;hellip;Wait, that&amp;rsquo;s it 😅. Just don&amp;rsquo;t write the &lt;code&gt;posts/&lt;/code&gt; you normally do when&#xA;running &lt;code&gt;hugo new&lt;/code&gt;. This &lt;em&gt;should&lt;/em&gt; add a page under &lt;code&gt;/now&lt;/code&gt;. I suggest adding&#xA;a link to it &lt;em&gt;somewhere&lt;/em&gt; on your site for discoverability - I added mine to the&#xA;&lt;code&gt;/about&lt;/code&gt; page.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Shay Nehmad&#39;s Now page</title>
+				<link>https://www.mrnice.dev/now/</link>
+				<pubDate>Wed, 22 May 2024 17:42:55 +0300</pubDate>
+				<guid>https://www.mrnice.dev/now/</guid>
+				<description>What Shay&amp;rsquo;s up to now.</description>
+			</item>
+			<item>
+				<title>Quick script to refresh a Hugo Post Date</title>
+				<link>https://www.mrnice.dev/posts/refresh-hugo-post-date/</link>
+				<pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/refresh-hugo-post-date/</guid>
+				<description>&lt;p&gt;I tend to go back to old, unpublished posts every now and restart my work on&#xA;them. They&amp;rsquo;re just resting, hiding behind the &lt;code&gt;-D&lt;/code&gt; flag of &lt;code&gt;hugo server&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;But when I want to publish said post, I want the date to be the current date,&#xA;not the creation date. So I wrote a script to update the date of a post to the&#xA;current date.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s the script in action:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Adding shorts to the blog</title>
+				<link>https://www.mrnice.dev/posts/shorts/</link>
+				<pubDate>Tue, 23 Apr 2024 19:31:13 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/shorts/</guid>
+				<description>&lt;p&gt;So, I&amp;rsquo;m sick. Strep. Missed the Seder, as well.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjhwdDdlZWtzcWx6Y3V0Z3JocnFoOHJmOWFlb3J4em0yNW9ucGZmaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SCaWhPSWvBxZK/giphy.gif&#34; alt=&#34;Skeletor is sick&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Taking a few days off to recover, time to play around with the blog.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-add-shorts-if-you-already-have-posts&#34;&gt;Why add shorts if you already have posts?&lt;/h2&gt;&#xA;&lt;p&gt;Shorts are more than a tweet, less than a post.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Stream of consciousness notes that don&amp;rsquo;t merit a more dedicated write-up.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Inspired by &lt;a href=&#34;https://brandur.org/fragments&#34;&gt;Brandur Leach&amp;rsquo;s fragments&lt;/a&gt;&#xA;in his beautiful corner of the web.&lt;/p&gt;&#xA;&lt;p&gt;My hope is that this short-form, more than a tweet, less than a post format will&#xA;help me publish more often. And as I really try to stay off Twitter and other&#xA;social media as much as possible, this should be a way to post more often&#xA;without worrying too much about quality.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>🎧🍏 AirPods (well, any bluetooth) alias for MacOS</title>
+				<link>https://www.mrnice.dev/posts/airpods-alias/</link>
+				<pubDate>Tue, 23 Apr 2024 18:11:13 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/airpods-alias/</guid>
+				<description>&lt;p&gt;So, one early morning, and I’m just getting my coffee. For fun, let’s automate&#xA;connecting to bluetooth AirPods without touching the mouse. Quick Google&#xA;brings up &lt;a href=&#34;https://github.com/toy/blueutil&#34;&gt;&lt;code&gt;blueutil&lt;/code&gt;&lt;/a&gt;, and a tiny bit of &lt;code&gt;jq&lt;/code&gt;&#xA;was all the glue needed:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install blueutil&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;blueutil --connect &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;blueutil --paired --format json-pretty &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; jq -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;.[] | select(.name | contains(\&amp;#34;Shay’s AirPods Pro\&amp;#34;)) | .address)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first time you run this, you&amp;rsquo;ll need to give the terminal permission to&#xA;get access to bluetooth:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>A few Go tools for production-level developer applications (Orca Meetup)</title>
+				<link>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</link>
+				<pubDate>Sat, 23 Mar 2024 23:22:44 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/a-few-go-tools-for-production-level-developer-applications/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Designing Data-Intensive Applications: Flashcards for a Book Club</title>
+				<link>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</link>
+				<pubDate>Sun, 03 Mar 2024 02:29:20 +0200</pubDate>
+				<guid>https://www.mrnice.dev/posts/designing-data-intensive-applications-bookclub-flashcards/</guid>
+				<description>&lt;h2 id=&#34;how-did-we-get-here&#34;&gt;How did we get here&lt;/h2&gt;&#xA;&lt;p&gt;Back when I left &lt;a href=&#34;https://recolabs.ai/&#34;&gt;Reco&lt;/a&gt;, my parting gift to everyone at&#xA;the company was books 📚. At the time, these were books I haven&amp;rsquo;t read, but were&#xA;recommended by&#xA;&lt;a href=&#34;https://www.goodreads.com/list/show/142078.Rands_Leadership_Books_Reading_List&#34;&gt;the interwebz&lt;/a&gt;.&#xA;The idea was to stay in touch with the team by gifting them good books and&#xA;loaning them from time to time. That&amp;rsquo;s how I wrote &lt;a href=&#34;../turn-the-ship-around-a-vp-rnd-summary&#34;&gt;a book report about&#xA;&amp;ldquo;Turn the Ship Around&amp;rdquo;&lt;/a&gt;, for example.&lt;/p&gt;&#xA;&lt;p&gt;As part of my work at &lt;a href=&#34;https://orca.security/&#34;&gt;Orca Security&lt;/a&gt;, I&amp;rsquo;ve been&#xA;conducting a weekly book club, where we read&#xA;&lt;a href=&#34;https://dataintensive.net/&#34;&gt;Designing Data-Intensive Applications&lt;/a&gt; by Martin&#xA;Kleppmann. Well, weekly-&lt;em&gt;ish&lt;/em&gt;. You know how schedules are. And it was fun!&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Checking out Advent of Cyber 2023</title>
+				<link>https://www.mrnice.dev/posts/advent-of-cyber-2023/</link>
+				<pubDate>Sat, 02 Dec 2023 22:11:08 +0200</pubDate>
+				<guid>https://www.mrnice.dev/posts/advent-of-cyber-2023/</guid>
+				<description>&lt;p&gt;To keep this spoiler-free, I&amp;rsquo;ll be redacting the flag. Whenever you see&#xA;&lt;code&gt;{{ .flag }}&lt;/code&gt; in the text, it means that I&amp;rsquo;ve redacted the flag.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Yes, this is go&amp;rsquo;s text/template syntax. It&amp;rsquo;s the best templating language on&#xA;the planet.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;The signup/login UX leaves something to be desired. You start off on the advent&#xA;page, then sign up, and after the initial signup you are not redirected to the&#xA;advent. Need to go look for it again. Then it&amp;rsquo;s &amp;ldquo;join room&amp;rdquo;, whatever that means.&#xA;Anyways, not a big deal, but I thought it&amp;rsquo;s a bit annoying.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to add a status page to your Hugo blog</title>
+				<link>https://www.mrnice.dev/posts/statuspage-on-hugo/</link>
+				<pubDate>Sun, 17 Sep 2023 22:58:53 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/statuspage-on-hugo/</guid>
+				<description>&lt;p&gt;Shortest guide possible, let&amp;rsquo;s go ⚡️&lt;/p&gt;&#xA;&lt;h2 id=&#34;setting-up-a-status-page&#34;&gt;Setting up a status page&lt;/h2&gt;&#xA;&lt;p&gt;I recommend &lt;a href=&#34;https://onlineornot.com/&#34;&gt;onlineornot.com&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Take your blog&amp;rsquo;s URL. For me, that&amp;rsquo;s&#xA;&lt;a href=&#34;https://mrnice.dev&#34;&gt;&lt;code&gt;https://mrnice.dev&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Create a new &lt;a href=&#34;https://onlineornot.com/app/checks&#34;&gt;check&lt;/a&gt; on that URL. Pick&#xA;&amp;ldquo;Monitor a website&amp;rdquo;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/onlineornot1.png&#34; alt=&#34;&amp;ldquo;New check&amp;rdquo;&#34; title=&#34;New check&#34;&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Create a &lt;a href=&#34;https://onlineornot.com/app/status-pages&#34;&gt;status page&lt;/a&gt;, and choose&#xA;your subdomain. I went with &lt;code&gt;mrnicedev&lt;/code&gt; ~&amp;gt; you&amp;rsquo;ll end up with a URL like&#xA;&lt;a href=&#34;https://mrnicedev.onlineornot.com&#34;&gt;&lt;code&gt;https://mrnicedev.onlineornot.com&lt;/code&gt;&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;You should get something that looks like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/statuspage/statuspage.png&#34; alt=&#34;onlineornot&#34; title=&#34;onlineornot&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;adding-the-status-page-link-to-your-blog&#34;&gt;Adding the status page link to your blog&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll do it from the &lt;code&gt;config.toml&lt;/code&gt; file (so it&amp;rsquo;s easy to change) and using a&#xA;&lt;code&gt;with&lt;/code&gt; template statement (so if it&amp;rsquo;s not set, it won&amp;rsquo;t show up).&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Diagramming in Webflow with Mermaid.js 🧜‍♀️</title>
+				<link>https://www.mrnice.dev/posts/mermaid-on-webflow/</link>
+				<pubDate>Fri, 01 Sep 2023 23:22:46 +0300</pubDate>
+				<guid>https://www.mrnice.dev/posts/mermaid-on-webflow/</guid>
+				<description>&lt;p&gt;How to set up a &lt;a href=&#34;https://mermaid-js.github.io/mermaid/#/&#34;&gt;Mermaid.js&lt;/a&gt; diagram on&#xA;your &lt;a href=&#34;https://webflow.com/&#34;&gt;Webflow&lt;/a&gt; site, the shortest guide possible:&lt;/p&gt;&#xA;&lt;h2 id=&#34;install-mermaid-for-a-specific-post&#34;&gt;Install Mermaid for a specific post&lt;/h2&gt;&#xA;&lt;p&gt;Add an HTML Embed Code by clicking on this button:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.mrnice.dev/images/mermaid/html-embed-button.png&#34; alt=&#34;html embed button&#34; title=&#34;html embed button&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Copy this HTML Embed Code snippet to the top of the post.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// Include mermaid.js&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mermaid&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// Initialize the Mermaid chart&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;mermaid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;startOnLoad&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// Apply the dark theme - replace with what you want.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// options can be found here: http://mermaid.js.org/config/theming.html#available-themes&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;theme&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;dark&amp;#39;&lt;/span&gt; &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This looks bad in the preview:&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

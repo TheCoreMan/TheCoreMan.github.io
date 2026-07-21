@@ -18,27 +18,27 @@
 	</script>
 	
 
-  <meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
-  <meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+	<meta itemprop="name" content="Debugging Windows: New Users, Powershell, and TLS">
+	<meta itemprop="description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
 ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete. The third problem: Unsupported TLS version Conclusions More context 👩‍🔧 If you’re here for the technical stuff only you can skip this section.">
-  <meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00">
-  <meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00">
-  <meta itemprop="wordCount" content="1227">
-  <meta itemprop="keywords" content="Windows,Debugging,Powershell,Monkey,Dev"><meta property="og:url" content="https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS">
-  <meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
+	<meta itemprop="datePublished" content="2019-12-26T15:34:44+02:00">
+	<meta itemprop="dateModified" content="2019-12-26T15:34:44+02:00">
+	<meta itemprop="wordCount" content="1227">
+	<meta itemprop="keywords" content="Windows,Debugging,Powershell,Monkey,Dev"><meta property="og:url" content="https://www.mrnice.dev/posts/debugging-impersonating-new-users-and-powershell/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="Debugging Windows: New Users, Powershell, and TLS">
+	<meta property="og:description" content="A little context I wanted to work on this PR in Infection Monkey. Basically, a very simple feature - make the Monkey create a new user, and try to create an HTTPS request as that new user.
 ToC A little context ToC More context How I wanted to do it The problems The first problem: The application failed to initialize properly (0xc0000124) The second problem: The response content cannot be parsed because the Internet Explorer engine is not available, or Internet Explorer&#39;s first-launch configuration is not complete. The third problem: Unsupported TLS version Conclusions More context 👩‍🔧 If you’re here for the technical stuff only you can skip this section.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2019-12-26T15:34:44+02:00">
-    <meta property="article:modified_time" content="2019-12-26T15:34:44+02:00">
-    <meta property="article:tag" content="Windows">
-    <meta property="article:tag" content="Debugging">
-    <meta property="article:tag" content="Powershell">
-    <meta property="article:tag" content="Monkey">
-    <meta property="article:tag" content="Dev">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2019-12-26T15:34:44+02:00">
+		<meta property="article:modified_time" content="2019-12-26T15:34:44+02:00">
+		<meta property="article:tag" content="Windows">
+		<meta property="article:tag" content="Debugging">
+		<meta property="article:tag" content="Powershell">
+		<meta property="article:tag" content="Monkey">
+		<meta property="article:tag" content="Dev">
 
 <meta name="twitter:title" content="Debugging Windows: New Users, Powershell, and TLS">
 
