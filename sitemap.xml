@@ -2,22 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.mrnice.dev/posts/at-the-gates-of-slop/</loc>
-    <lastmod>2026-07-21T00:12:13-07:00</lastmod>
+    <loc>https://www.mrnice.dev/posts/cat-knip/</loc>
+    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/</loc>
-    <lastmod>2026-07-21T00:12:13-07:00</lastmod>
+    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/nestjs/</loc>
+    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/short/</loc>
+    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/at-the-gates-of-slop/</loc>
     <lastmod>2026-07-21T00:12:13-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/git/</loc>
     <lastmod>2026-06-03T21:01:56-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/sgf-dev-night-git-ctf/</loc>
-    <lastmod>2026-06-03T21:01:56-07:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2026-06-03T21:01:56-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/ai/</loc>
@@ -30,9 +39,6 @@
     <lastmod>2026-03-22T22:43:56-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/nestjs-lifecycle/</loc>
-    <lastmod>2025-03-06T07:14:57-08:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/nestjs/</loc>
     <lastmod>2025-03-06T07:14:57-08:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/typescript/</loc>
@@ -51,9 +57,6 @@
     <lastmod>2025-01-10T22:19:17+02:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/shell/</loc>
-    <lastmod>2024-10-26T21:28:15+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/short/</loc>
     <lastmod>2024-10-26T21:28:15+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/terminal/</loc>

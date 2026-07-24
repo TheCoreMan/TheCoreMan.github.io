@@ -18,26 +18,26 @@
 	</script>
 	
 
-  <meta itemprop="name" content="First Foray Into Clojure, Part 1: CSV to HTML Table">
-  <meta itemprop="description" content="As the quest for knowledge runs ever on, here’s my first real script that I’m coding in Clojure.
+	<meta itemprop="name" content="First Foray Into Clojure, Part 1: CSV to HTML Table">
+	<meta itemprop="description" content="As the quest for knowledge runs ever on, here’s my first real script that I’m coding in Clojure.
 Note: this is a part of a series, see part 0 if you want to. Part 0 was released AFTER part 1. Don’t get confused.
 Planning the script The point of the script is to take a CSV file (that’s easily editable by the humans that need to edit it) and turn it into an HTML snippet that I’d use later on inside a static Hugo website. This is somewhat similar to what I’ve done in my Dev Log #3.">
-  <meta itemprop="datePublished" content="2021-04-10T16:36:32+03:00">
-  <meta itemprop="dateModified" content="2021-04-10T16:36:32+03:00">
-  <meta itemprop="wordCount" content="736">
-  <meta itemprop="keywords" content="Clojure,Web"><meta property="og:url" content="http://localhost:1313/posts/actually-clojure-programming/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="First Foray Into Clojure, Part 1: CSV to HTML Table">
-  <meta property="og:description" content="As the quest for knowledge runs ever on, here’s my first real script that I’m coding in Clojure.
+	<meta itemprop="datePublished" content="2021-04-10T16:36:32+03:00">
+	<meta itemprop="dateModified" content="2021-04-10T16:36:32+03:00">
+	<meta itemprop="wordCount" content="736">
+	<meta itemprop="keywords" content="Clojure,Web"><meta property="og:url" content="http://localhost:1313/posts/actually-clojure-programming/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="First Foray Into Clojure, Part 1: CSV to HTML Table">
+	<meta property="og:description" content="As the quest for knowledge runs ever on, here’s my first real script that I’m coding in Clojure.
 Note: this is a part of a series, see part 0 if you want to. Part 0 was released AFTER part 1. Don’t get confused.
 Planning the script The point of the script is to take a CSV file (that’s easily editable by the humans that need to edit it) and turn it into an HTML snippet that I’d use later on inside a static Hugo website. This is somewhat similar to what I’ve done in my Dev Log #3.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2021-04-10T16:36:32+03:00">
-    <meta property="article:modified_time" content="2021-04-10T16:36:32+03:00">
-    <meta property="article:tag" content="Clojure">
-    <meta property="article:tag" content="Web">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2021-04-10T16:36:32+03:00">
+		<meta property="article:modified_time" content="2021-04-10T16:36:32+03:00">
+		<meta property="article:tag" content="Clojure">
+		<meta property="article:tag" content="Web">
 
 <meta name="twitter:title" content="First Foray Into Clojure, Part 1: CSV to HTML Table">
 
@@ -118,6 +118,7 @@ The point of the script is to take a CSV file (that&rsquo;s easily editable by t
 			</header>
 			<div class="content">
 				
+				
 				<p>As the quest for knowledge runs ever on, here&rsquo;s my first real script that I&rsquo;m coding in Clojure.</p>
 <p><img src="https://i.giphy.com/media/IM0cbuczohKMw3SOlG/giphy.gif" alt="closure"></p>
 <blockquote>
@@ -128,9 +129,9 @@ The point of the script is to take a CSV file (that&rsquo;s easily editable by t
 <p>We&rsquo;ll need special treatment for the <code>row-style</code> header.</p>
 <p>Let&rsquo;s say that the CSV columns are:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csv" data-lang="csv"><span class="line"><span class="cl"><span class="s">a</span><span class="p">,</span><span class="s">b</span><span class="p">,</span><span class="s">c</span><span class="p">,</span><span class="s">row-class</span><span class="p">
-</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">1</span><span class="p">,</span><span class="s">1</span><span class="p">,</span><span class="s">1</span><span class="p">,</span><span class="s">red</span><span class="p">
-</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">clo</span><span class="p">,</span><span class="s">j</span><span class="p">,</span><span class="s">ure</span><span class="p">,</span><span class="s">yellow</span><span class="p">
-</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">Also</span><span class="p">,</span><span class="s">Unicode!</span><span class="p">,</span><span class="s">🥑</span><span class="p">,</span><span class="s">green</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="s">1</span><span class="p">,</span><span class="s">1</span><span class="p">,</span><span class="s">1</span><span class="p">,</span><span class="s">red</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="s">clo</span><span class="p">,</span><span class="s">j</span><span class="p">,</span><span class="s">ure</span><span class="p">,</span><span class="s">yellow</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="s">Also</span><span class="p">,</span><span class="s">Unicode!</span><span class="p">,</span><span class="s">🥑</span><span class="p">,</span><span class="s">green</span><span class="p">
 </span></span></span></code></pre></div><p>That means that the output should be something like:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -286,7 +287,7 @@ The point of the script is to take a CSV file (that&rsquo;s easily editable by t
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2026 <a href="http://localhost:1313/"></a></p>
+		<p>&copy; 2026 <a href="http://localhost:1313/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="http://localhost:1313/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -304,7 +305,9 @@ The point of the script is to take a CSV file (that&rsquo;s easily editable by t
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}

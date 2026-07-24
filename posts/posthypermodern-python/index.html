@@ -18,24 +18,24 @@
 	</script>
 	
 
-  <meta itemprop="name" content="Post-Hypermodern Python - setting up a Python monorepo in 2026">
-  <meta itemprop="description" content="Inspiration This post is inspired by Hypermodern Python by Claudio Jolowicz. It was 100% my “go-to” guide for setting up (some parts of) Python projects, but it’s gotten a bit outdated. Here’s my version of that, updated to 2026, with monorepos, and the tooling I ended up using.
+	<meta itemprop="name" content="Post-Hypermodern Python - setting up a Python monorepo in 2026">
+	<meta itemprop="description" content="Inspiration This post is inspired by Hypermodern Python by Claudio Jolowicz. It was 100% my “go-to” guide for setting up (some parts of) Python projects, but it’s gotten a bit outdated. Here’s my version of that, updated to 2026, with monorepos, and the tooling I ended up using.
 Why Well, someone asked my for how I set up the Python monorepo at work (Opsin Security). Instead of DMing them, decided to write a post.">
-  <meta itemprop="datePublished" content="2025-12-25T09:04:01-08:00">
-  <meta itemprop="dateModified" content="2025-12-25T09:04:01-08:00">
-  <meta itemprop="wordCount" content="347">
-  <meta itemprop="keywords" content="Python,Devops"><meta property="og:url" content="http://localhost:1313/posts/posthypermodern-python/">
-  <meta property="og:site_name" content="mrnice.dev">
-  <meta property="og:title" content="Post-Hypermodern Python - setting up a Python monorepo in 2026">
-  <meta property="og:description" content="Inspiration This post is inspired by Hypermodern Python by Claudio Jolowicz. It was 100% my “go-to” guide for setting up (some parts of) Python projects, but it’s gotten a bit outdated. Here’s my version of that, updated to 2026, with monorepos, and the tooling I ended up using.
+	<meta itemprop="datePublished" content="2025-12-25T09:04:01-08:00">
+	<meta itemprop="dateModified" content="2025-12-25T09:04:01-08:00">
+	<meta itemprop="wordCount" content="347">
+	<meta itemprop="keywords" content="Python,Devops"><meta property="og:url" content="http://localhost:1313/posts/posthypermodern-python/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="Post-Hypermodern Python - setting up a Python monorepo in 2026">
+	<meta property="og:description" content="Inspiration This post is inspired by Hypermodern Python by Claudio Jolowicz. It was 100% my “go-to” guide for setting up (some parts of) Python projects, but it’s gotten a bit outdated. Here’s my version of that, updated to 2026, with monorepos, and the tooling I ended up using.
 Why Well, someone asked my for how I set up the Python monorepo at work (Opsin Security). Instead of DMing them, decided to write a post.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-12-25T09:04:01-08:00">
-    <meta property="article:modified_time" content="2025-12-25T09:04:01-08:00">
-    <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="Devops">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2025-12-25T09:04:01-08:00">
+		<meta property="article:modified_time" content="2025-12-25T09:04:01-08:00">
+		<meta property="article:tag" content="Python">
+		<meta property="article:tag" content="Devops">
 
 <meta name="twitter:title" content="Post-Hypermodern Python - setting up a Python monorepo in 2026">
 
@@ -117,6 +117,7 @@ decided to write a post."
 				<h1>Post-Hypermodern Python - setting up a Python monorepo in 2026</h1>
 			</header>
 			<div class="content">
+				
 				
 				<h2 id="inspiration">Inspiration<a href="#inspiration" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>This post is inspired by <a href="https://blog.claudiojolowicz.com/posts/hypermodern-python-01-setup/">Hypermodern Python</a>
@@ -200,7 +201,7 @@ to have a single, reusable pipeline.</p>
 		</article>
 		<div class="post-nav thin">
 			<a class="next-post" href="http://localhost:1313/posts/does-the-world-need-another-ai-cybersecurity-company/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Does the World Need Another Ai Cybersecurity Company</span>
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Does the World Need Another AI Cybersecurity Company?</span>
 			</a>
 			<a class="prev-post" href="http://localhost:1313/posts/nestjs-lifecycle/">
 				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>It&#39;s the Circle of (NestJS) Life - NestJS Lifecycle breakdown</span>
@@ -211,7 +212,7 @@ to have a single, reusable pipeline.</p>
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2026 <a href="http://localhost:1313/"></a></p>
+		<p>&copy; 2026 <a href="http://localhost:1313/">Shay Nehmad</a></p>
 		<p>
 			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
 			&#183; <a href="http://localhost:1313/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
@@ -229,7 +230,9 @@ to have a single, reusable pipeline.</p>
 	type="text/partytown"
 ></script>
 <script type="text/partytown">
-	var doNotTrack = false;
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
 	if (!doNotTrack) {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}

@@ -10,9 +10,23 @@
 		
 		
 		
-			<lastBuildDate>Wed, 03 Jun 2026 21:01:56 -0700</lastBuildDate>
+			<lastBuildDate>Fri, 24 Jul 2026 15:10:11 -0700</lastBuildDate>
 		
 			<atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Nestjs</title>
+				<link>https://www.mrnice.dev/tags/nestjs/</link>
+				<pubDate>Fri, 24 Jul 2026 15:10:11 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/nestjs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Short</title>
+				<link>https://www.mrnice.dev/tags/short/</link>
+				<pubDate>Fri, 24 Jul 2026 15:10:11 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/short/</guid>
+				<description></description>
+			</item>
 			<item>
 				<title>Git</title>
 				<link>https://www.mrnice.dev/tags/git/</link>
@@ -32,13 +46,6 @@
 				<link>https://www.mrnice.dev/tags/musings/</link>
 				<pubDate>Sun, 22 Mar 2026 22:43:56 -0700</pubDate>
 				<guid>https://www.mrnice.dev/tags/musings/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Nestjs</title>
-				<link>https://www.mrnice.dev/tags/nestjs/</link>
-				<pubDate>Thu, 06 Mar 2025 07:14:57 -0800</pubDate>
-				<guid>https://www.mrnice.dev/tags/nestjs/</guid>
 				<description></description>
 			</item>
 			<item>
@@ -74,13 +81,6 @@
 				<link>https://www.mrnice.dev/tags/shell/</link>
 				<pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
 				<guid>https://www.mrnice.dev/tags/shell/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Short</title>
-				<link>https://www.mrnice.dev/tags/short/</link>
-				<pubDate>Sat, 26 Oct 2024 21:28:15 +0300</pubDate>
-				<guid>https://www.mrnice.dev/tags/short/</guid>
 				<description></description>
 			</item>
 			<item>
