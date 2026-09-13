@@ -489,7 +489,7 @@ Now that we have some of the components working and some of the software written
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Got HTTP response: %s\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">resp</span><span class="p">.</span><span class="nx">Status</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><p>When flashed, has this output:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ tinygo flash -target<span class="o">=</span>xiao-esp32c3 -ldflags <span class="s2">&#34;-X main.ssid=NicestWifiInTown -X main.password=6696491379&#34;</span> -monitor tinygo-repro-http-bug.go
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ tinygo flash -target<span class="o">=</span>xiao-esp32c3 -ldflags <span class="s2">&#34;-X main.ssid=NicestWifiInTown -X main.password=669&#34;</span> -monitor tinygo-repro-http-bug.go
 </span></span><span class="line"><span class="cl">// Flashing progress omitted...
 </span></span><span class="line"><span class="cl">1970/01/01 00:00:01 Connecting to WiFi <span class="s2">&#34;NicestWifiInTown&#34;</span>...
 </span></span><span class="line"><span class="cl">URL.Host: <span class="s2">&#34;httpbin.org&#34;</span>
