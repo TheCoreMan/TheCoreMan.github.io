@@ -10,9 +10,37 @@
 		
 		
 		
-			<lastBuildDate>Fri, 24 Jul 2026 15:10:11 -0700</lastBuildDate>
+			<lastBuildDate>Sat, 12 Sep 2026 12:22:23 -0700</lastBuildDate>
 		
 			<atom:link href="https://www.mrnice.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Embedded</title>
+				<link>https://www.mrnice.dev/tags/embedded/</link>
+				<pubDate>Sat, 12 Sep 2026 12:22:23 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/embedded/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Go</title>
+				<link>https://www.mrnice.dev/tags/go/</link>
+				<pubDate>Sat, 12 Sep 2026 12:22:23 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/go/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Golang</title>
+				<link>https://www.mrnice.dev/tags/golang/</link>
+				<pubDate>Sat, 12 Sep 2026 12:22:23 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/golang/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Podcasts</title>
+				<link>https://www.mrnice.dev/tags/podcasts/</link>
+				<pubDate>Wed, 09 Sep 2026 18:53:50 -0700</pubDate>
+				<guid>https://www.mrnice.dev/tags/podcasts/</guid>
+				<description></description>
+			</item>
 			<item>
 				<title>Nestjs</title>
 				<link>https://www.mrnice.dev/tags/nestjs/</link>
@@ -91,13 +119,6 @@
 				<description></description>
 			</item>
 			<item>
-				<title>Go</title>
-				<link>https://www.mrnice.dev/tags/go/</link>
-				<pubDate>Mon, 09 Sep 2024 22:29:59 +0300</pubDate>
-				<guid>https://www.mrnice.dev/tags/go/</guid>
-				<description></description>
-			</item>
-			<item>
 				<title>Books</title>
 				<link>https://www.mrnice.dev/tags/books/</link>
 				<pubDate>Thu, 08 Aug 2024 21:48:01 +0300</pubDate>
@@ -130,27 +151,6 @@
 				<link>https://www.mrnice.dev/tags/howto/</link>
 				<pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
 				<guid>https://www.mrnice.dev/tags/howto/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Orca</title>
-				<link>https://www.mrnice.dev/tags/orca/</link>
-				<pubDate>Tue, 18 Jun 2024 09:48:22 +0200</pubDate>
-				<guid>https://www.mrnice.dev/tags/orca/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Hugo</title>
-				<link>https://www.mrnice.dev/tags/hugo/</link>
-				<pubDate>Wed, 22 May 2024 18:34:02 +0300</pubDate>
-				<guid>https://www.mrnice.dev/tags/hugo/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Automation</title>
-				<link>https://www.mrnice.dev/tags/automation/</link>
-				<pubDate>Sat, 27 Apr 2024 12:10:52 +0300</pubDate>
-				<guid>https://www.mrnice.dev/tags/automation/</guid>
 				<description></description>
 			</item>
 	</channel>

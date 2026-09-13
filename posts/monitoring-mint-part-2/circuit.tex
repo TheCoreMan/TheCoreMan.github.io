@@ -1,0 +1,105 @@
+\documentclass[tikz,border=6pt]{standalone}
+
+\usepackage[american]{circuitikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\begin{circuitikz}[font=\small]
+
+% Battery
+\coordinate (batneg) at (0,1);
+\coordinate (batpos) at (0,2);
+
+\draw
+    (batneg)
+    to[battery1,l_=3$\times$AA NiMH]
+    (batpos);
+
+\node[above] at (batpos) {$+$};
+\node[below] at (batneg) {$-$};
+
+% Buck-boost converter
+\node[
+    draw,
+    minimum width=3cm,
+    minimum height=2cm,
+    align=center
+] (buck) at (4,1.5)
+{
+    TPS63020\\
+    buck--boost
+};
+
+\coordinate (vin)     at ($(buck.west)+(0, 0.45)$);
+\coordinate (bgin)    at ($(buck.west)+(0,-0.45)$);
+\coordinate (vout)    at ($(buck.east)+(0, 0.45)$);
+\coordinate (bgout)   at ($(buck.east)+(0,-0.45)$);
+
+\node[anchor=west,font=\scriptsize] at ($(vin)+(0.1,0)$) {VIN};
+\node[anchor=west,font=\scriptsize] at ($(bgin)+(0.1,0)$) {GND};
+\node[anchor=east,font=\scriptsize] at ($(vout)+(-0.1,0)$) {OUT};
+\node[anchor=east,font=\scriptsize] at ($(bgout)+(-0.1,0)$) {GND};
+
+% XIAO
+\node[
+    draw,
+    minimum width=3cm,
+    minimum height=2.4cm,
+    align=center
+] (xiao) at (8,1.5)
+{
+    XIAO\\
+    ESP32-C3
+};
+
+\coordinate (x3v3in)  at ($(xiao.west)+(0, 0.45)$);
+\coordinate (xgndin)  at ($(xiao.west)+(0,-0.45)$);
+
+\coordinate (x3v3out) at ($(xiao.east)+(0, 0.7)$);
+\coordinate (xa1)     at ($(xiao.east)+(0, 0)$);
+\coordinate (xgndout) at ($(xiao.east)+(0,-0.7)$);
+
+\node[anchor=west,font=\scriptsize] at ($(x3v3in)+(0.1,0)$) {3V3};
+\node[anchor=west,font=\scriptsize] at ($(xgndin)+(0.1,0)$) {GND};
+
+\node[anchor=east,font=\scriptsize] at ($(x3v3out)+(-0.1,0)$) {3V3};
+\node[anchor=east,font=\scriptsize] at ($(xa1)+(-0.1,0)$) {A1};
+\node[anchor=east,font=\scriptsize] at ($(xgndout)+(-0.1,0)$) {GND};
+
+% Moisture sensor
+\node[
+    draw,
+    minimum width=3cm,
+    minimum height=2.4cm,
+    align=center
+] (sensor) at (12,1.5)
+{
+    Capacitive\\
+    moisture sensor
+};
+
+\coordinate (svcc)  at ($(sensor.west)+(0, 0.7)$);
+\coordinate (saout) at ($(sensor.west)+(0, 0)$);
+\coordinate (sgnd)  at ($(sensor.west)+(0,-0.7)$);
+
+\node[anchor=west,font=\scriptsize] at ($(svcc)+(0.1,0)$) {VCC};
+\node[anchor=west,font=\scriptsize] at ($(saout)+(0.1,0)$) {AOUT};
+\node[anchor=west,font=\scriptsize] at ($(sgnd)+(0.1,0)$) {GND};
+
+% Battery -> buck-boost
+\draw (batpos) -- node[above] {red} (vin);
+\draw (batneg) -- node[below] {black} (bgin);
+
+% Buck-boost -> XIAO
+\draw (vout) -- node[above] {3.3 V} (x3v3in);
+\draw (bgout) -- node[below] {GND} (xgndin);
+
+% XIAO -> moisture sensor
+\draw (x3v3out) -- (svcc);
+\draw (xa1) -- (saout);
+\draw (xgndout) -- (sgnd);
+
+\end{circuitikz}
+
+\end{document}

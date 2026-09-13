@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+	
+	<script type="text/javascript">
+		partytown = {
+			forward: ['dataLayer.push']
+		};
+	</script>
+	<script type="text/javascript">
+		(()=>{!function(e,t,n,s,o,i,a,r,c,l,d,u){function h(){u||(u=1,"/"==(a=(i.lib||"/~partytown/")+(i.debug?"debug/":""))[0]&&(c=t.querySelectorAll('script[type="text/partytown"]'),s!=e?s.dispatchEvent(new CustomEvent("pt1",{detail:e})):(r=setTimeout(f,1e4),t.addEventListener("pt0",p),o?m(1):n.serviceWorker?n.serviceWorker.register(a+(i.swPath||"partytown-sw.js"),{scope:a}).then(function(e){e.active?m():e.installing&&e.installing.addEventListener("statechange",function(e){"activated"==e.target.state&&m()})},console.error):f())))}function m(e){l=t.createElement(e?"script":"iframe"),e||(l.setAttribute("style","display:block;width:0;height:0;border:0;visibility:hidden"),l.setAttribute("aria-hidden",!0)),l.src=a+"partytown-"+(e?"atomics.js?v=0.8.0":"sandbox-sw.html?"+Date.now()),t.querySelector(i.sandboxParent||"body").appendChild(l)}function f(n,o){for(p(),s==e&&(i.forward||[]).map(function(t){delete e[t.split(".")[0]]}),n=0;n<c.length;n++)(o=t.createElement("script")).innerHTML=c[n].innerHTML,t.head.appendChild(o);l&&l.parentNode.removeChild(l)}function p(){clearTimeout(r)}i=e.partytown||{},s==e&&(i.forward||[]).map(function(t){d=e,t.split(".").map(function(t,n,s){d=d[s[n]]=n+1<s.length?"push"==s[n+1]?[]:d[s[n]]||{}:function(){(e._ptf=e._ptf||[]).push(s,arguments)}})}),"complete"==t.readyState?h():(e.addEventListener("DOMContentLoaded",h),e.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated)})()
+	</script>
+	
+
+	<meta itemprop="name" content="🪴 #1 | Monitoring Mint with Microcontrollers running TinyGo">
+	<meta itemprop="description" content="If you’ll listen to the latest Cup o’ Go’s episode, we were talking about TinyGo, and this happened:
+Shay Nehmad: 18:59
+I really love the idea of, like, getting to work with Tiny Go on a thing. But I’ve never gotten into, like, actually getting a chip and, like, soldering it and whatever.
+Jonathan (my co-host) was very encouraging:
+Jonathan Hall: 19:46
+It’s good that you asked that because one of the big features of this release of TinyGo is more ESP32 support. […] we’ll have Ron talk about this next week.">
+	<meta itemprop="datePublished" content="2026-09-09T18:53:50-07:00">
+	<meta itemprop="dateModified" content="2026-09-09T18:53:50-07:00">
+	<meta itemprop="wordCount" content="2303">
+	<meta itemprop="image" content="https://www.mrnice.dev/images/tinygo/red-light.jpg">
+	<meta itemprop="keywords" content="Go,Golang,Embedded,Podcasts"><meta property="og:url" content="https://www.mrnice.dev/posts/monitoring-mint-part-1/">
+	<meta property="og:site_name" content="mrnice.dev">
+	<meta property="og:title" content="🪴 #1 | Monitoring Mint with Microcontrollers running TinyGo">
+	<meta property="og:description" content="If you’ll listen to the latest Cup o’ Go’s episode, we were talking about TinyGo, and this happened:
+Shay Nehmad: 18:59
+I really love the idea of, like, getting to work with Tiny Go on a thing. But I’ve never gotten into, like, actually getting a chip and, like, soldering it and whatever.
+Jonathan (my co-host) was very encouraging:
+Jonathan Hall: 19:46
+It’s good that you asked that because one of the big features of this release of TinyGo is more ESP32 support. […] we’ll have Ron talk about this next week.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-09-09T18:53:50-07:00">
+		<meta property="article:modified_time" content="2026-09-09T18:53:50-07:00">
+		<meta property="article:tag" content="Go">
+		<meta property="article:tag" content="Golang">
+		<meta property="article:tag" content="Embedded">
+		<meta property="article:tag" content="Podcasts">
+		<meta property="og:image" content="https://www.mrnice.dev/images/tinygo/red-light.jpg">
+
+<meta name="twitter:title" content="🪴 #1 | Monitoring Mint with Microcontrollers running TinyGo">
+
+
+
+<meta
+	name="description"
+	content="If you&rsquo;ll listen to the latest Cup o&rsquo; Go&rsquo;s episode, we were talking about TinyGo, and this happened:
+
+Shay Nehmad: 18:59
+I really love the idea of, like, getting to work with Tiny Go on a thing. But I&rsquo;ve never gotten into, like, actually getting a chip and, like, soldering it and whatever.
+
+Jonathan (my co-host) was very encouraging:
+
+Jonathan Hall: 19:46
+It&rsquo;s good that you asked that because one of the big features of this release of TinyGo is more ESP32 support. [&hellip;] we&rsquo;ll have Ron talk about this next week."
+/>
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"url": "https://www.mrnice.dev/",
+		"logo": "https://www.mrnice.dev/images/site-logo.png"
+	}
+</script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>🪴 #1 | Monitoring Mint with Microcontrollers running TinyGo</title>
+	<link rel="stylesheet" href="https://www.mrnice.dev/css/style.min.40de2d33313c4123f7833c2593969e37a9e409fb641243b304cdc96c52a7bed3.css" integrity="sha256-QN4tMzE8QSP3gzwlk5aeN6nkCftkEkOzBM3JbFKnvtM=" crossorigin="anonymous">
+	<style>.bg-img {background-image: url('https://www.mrnice.dev/images/tinygo/red-light.jpg');}</style>
+	
+
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Killercodes/281792c423a4fe5544d9a8d36a4430f2/raw/36c2eb3e0c44133880485a143717bda9d180f2c1/GistDarkCode.css" media="print" onload="this.media='all'">
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.mrnice.dev/">mrnice.dev</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.mrnice.dev/posts/">Posts 📖</a>
+				<a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a>
+				<a href="https://www.mrnice.dev/about/">About me 🧔</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title="Featured Image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><button id="toc-btn" class="hdr-btn desktop-only-ib" title="Table of Contents"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></button><span class="hdr-social hide-in-mobile"><a href="https://twitter.com/ShayNehmad" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="mailto:hello@shaynehmad.com" target="_blank" rel="noopener me" title="Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a><a href="https://www.linkedin.com/in/shay-nehmad/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://stackoverflow.com/users/4119906/shay-nehmad" target="_blank" rel="noopener me" title="Stackoverflow"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162"/></svg></a><a href="https://github.com/TheCoreMan" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.mrnice.dev/posts/">Posts 📖</a></li>
+			<li><a href="https://www.mrnice.dev/ctf/">git CTF 🚩</a></li>
+			<li><a href="https://www.mrnice.dev/about/">About me 🧔</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Sep 9, 2026</span></div>
+				<h1>🪴 #1 | Monitoring Mint with Microcontrollers running TinyGo</h1>
+			</header>
+			<div class="content">
+				
+				
+				<p>If you&rsquo;ll listen to the latest <a href="https://cupogo.dev/">Cup o&rsquo; Go</a>&rsquo;s <a href="https://cupogo.dev/episodes/go-releases-and-events-from-emea-and-around-the-world">episode</a>, we were talking about TinyGo, and this happened:</p>
+<blockquote>
+<p>Shay Nehmad: 18:59</p>
+<p>I really love the idea of, like, getting to work with Tiny Go on a thing. But I&rsquo;ve never gotten into, like, actually getting a chip and, like, soldering it and whatever.</p>
+</blockquote>
+<p>Jonathan (my co-host) was very encouraging:</p>
+<blockquote>
+<p>Jonathan Hall: 19:46</p>
+<p>It&rsquo;s good that you asked that because one of the big features of this release of TinyGo is more ESP32 support. [&hellip;] we&rsquo;ll have Ron talk about this next week.</p>
+</blockquote>
+<p>I was worried about cost, but Jonathan assuaged my fears:</p>
+<blockquote>
+<p>Jonathan Hall: 20:07</p>
+<p>As far as the cheapest way, I think just buy an ESP 32, which is about $5 [&hellip;] They&rsquo;re super, super cheap.</p>
+</blockquote>
+<p><img src="/images/tinygo/lie.jpg" alt="So that was a fucking lie" title="So that was a fucking lie"></p>
+<p>But anyways. Surprising even myself, I actually followed through with it, and got the stuff. Let&rsquo;s get building!</p>
+<h2 id="plan">Plan<a href="#plan" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="prd-what-are-we-building">PRD: What are we building?<a href="#prd-what-are-we-building" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><img src="/images/tinygo/prd.jpg" alt=""></p>
+<p>I have a mint plant outside. It&rsquo;s great for tea and shakes. But I never know when to water it.</p>
+<p><img src="/images/tinygo/mint.jpg" alt=""></p>
+<p>I just randomly throw the water I used to wash rice into the soil. Or sometimes dump out the espresso machine tray on it. It&rsquo;s still alive, so evidently, <em>it&rsquo;s fine</em>. But getting a daily notification of the soil moisture level seemed like a modest first project and a nice improvement. I&rsquo;ll actually water it even on weeks where I didn&rsquo;t cook rice!</p>
+<h3 id="how-will-we-build-it">How will we build it?<a href="#how-will-we-build-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>So&hellip; I&rsquo;m not sure! Usually if this was software I would be able to outline how it works. But this is my first DIY electronics project in a LONG time (since&hellip; 6th grade electronics class). Since this is the first time I&rsquo;ve done this, I&rsquo;m documenting EVERYTHING. In <a href="https://www.whatwetellai.com/">&ldquo;What we tell AI?&rdquo;</a> fashion, instead of a friend or a local maker community, I just talked with ChatGPT 5.6 Sol High to help me out. After a bit of clanker advice, I landed on:</p>
+<pre class="mermaid">
+  flowchart TD
+    A[Wake] --&gt; B[Power moisture sensor]
+    B --&gt; C[Wait 100 ms]
+    C --&gt; D[ADC measurement]
+    D --&gt; E{Soil dry?}
+
+    E --&gt;|Yes| F[Connect Wi-Fi]
+    F --&gt; G[Send: I&#39;m thirsty]
+
+    E --&gt;|No| H[Connect Wi-Fi]
+    H --&gt; I[Send: I&#39;m good]
+
+    G -.-&gt; R[HTTP -&gt; HTTP/S Relay]
+    I -.-&gt; R
+    R -.-&gt; T[Telegram bot]
+    T -.-&gt; PG[Telegram Group]
+
+    G --&gt; J[Turn sensor off]
+    I --&gt; J
+    J --&gt; K[Deep sleep 1 to 6 hours]
+    K --&gt; A
+</pre>
+
+<p>The brain will be an ESP32 microcontroller, and we&rsquo;ll hook it up to a sensor and some power. I went with batteries because I have some rechargeable ones lying around to power my XBox controller.</p>
+<p>I then planned the phases so I could iterate and test along the way, with the main milestones (spoiler; checks are what I&rsquo;ve finished for this blog):</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 1. Inventory: Get all the things.</li>
+<li><input checked="" disabled="" type="checkbox"> 2. Hello world: Flash some TinyGo code on the microcontroller.</li>
+<li><input disabled="" type="checkbox"> 3. Get Wi-Fi working, then send a notification sent from the microcontroller somewhere.</li>
+<li><input checked="" disabled="" type="checkbox"> 4. Solder the headers.</li>
+<li><input checked="" disabled="" type="checkbox"> 5. Connect the sensor.</li>
+<li><input disabled="" type="checkbox"> 6. Read raw moisture values.</li>
+<li><input disabled="" type="checkbox"> 7. Process the values and send a notification when the soil is dry.</li>
+<li><input disabled="" type="checkbox"> 8. Make it all work together and run some tests.</li>
+<li><input disabled="" type="checkbox"> 9. Move to battery power instead of USB power.</li>
+</ul>
+<h2 id="lets-do-it">Let&rsquo;s do it!<a href="#lets-do-it" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="1-inventory--getting-the-mise-en-place">1. Inventory &ndash; getting the mise en place<a href="#1-inventory--getting-the-mise-en-place" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>I got the most beginner-friendly and cheap stuff I could buy. Here&rsquo;s what I got if you want to replicate/follow along:</p>
+<ol>
+<li><a href="https://www.seeedstudio.com/Seeed-XIAO-ESP32C3-p-5431.html">XIAO ESP32-C3</a> from Seeed Studio. I got it because it&rsquo;s dirt cheap, and it&rsquo;s on the <a href="https://tinygo.org/docs/reference/microcontrollers/featured/">TinyGo &ldquo;Featured Boards&rdquo; documentation page</a>.</li>
+<li>California JOS 1 PCS Breadboard.</li>
+<li>Soldering Iron Kit from Plusivo. <em>Why didn&rsquo;t you get the pre-soldered chip?</em> Because soldering seems awesome, I did it in electronics class when I was a kid.</li>
+<li>Stemedu Soil Moisture Sensor.</li>
+<li>Power: Battery case (3 double-AA), a XL63020-3.3 Boost buck.</li>
+<li>AstroAI Multimeter.</li>
+<li>Buncha wires and batteries.</li>
+</ol>
+<p>Since many of these come in packs of 5 or whatever first thing I did was Mise en Place; put all the things on the table so I can get to work and put the spares away.</p>
+<p><img src="/images/tinygo/mise-en-place.jpg" alt=""></p>
+<p>What do I wish I got, but didn&rsquo;t?</p>
+<ul>
+<li>An LED or a screen. It would have been really nice for visual feedback. I thought that all these microcontrollers had a built-in LED, but the XIAO ESP32-C3 doesn&rsquo;t have one.</li>
+</ul>
+<h3 id="2-hello-world">2. Hello world<a href="#2-hello-world" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Let&rsquo;s make this computer compute something. Connected the microcontroller to the laptop. A little red light came on. Usually red light means stop but I&rsquo;ll ignore that:</p>
+<p><img src="/images/tinygo/red-light.jpg" alt=""></p>
+<p>Installing TinyGo was <a href="https://tinygo.org/getting-started/install/macos/">simple enough</a>. There was an error since <code>brew</code> requires trusting a tap now, so <a href="https://github.com/tinygo-org/tinygo-site/pull/514">opened a PR</a> to update the docs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ go version
+</span></span><span class="line"><span class="cl">go version go1.27.1 darwin/arm64
+</span></span><span class="line"><span class="cl">❯ tinygo version
+</span></span><span class="line"><span class="cl">tinygo version 0.42.0 darwin/arm64 <span class="o">(</span>using go version go1.27.1 and LLVM version 22.1.4<span class="o">)</span>
+</span></span></code></pre></div><h4 id="detour-how-to-set-up-zed-for-tinygo">Detour; How to set up Zed for TinyGo<a href="#detour-how-to-set-up-zed-for-tinygo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p>I fired up my current editor of choice - <a href="https://zed.dev/">Zed</a> - and faced an immediate error from <code>gopls</code>: <code>could not import machine (no required module provides package &quot;machine&quot;)</code>.</p>
+<p><img src="/images/tinygo/zed-error.jpg" alt=""></p>
+<p>The reason is that <code>machine</code> is a package provided by TinyGo, and Zed&rsquo;s <code>gopls</code> doesn&rsquo;t know about it. But clearly TinyGo <em>does</em> know about it somehow, since it&rsquo;s able to compile it&hellip; So just gotta make Zed&rsquo;s <code>gopls</code> aware of it. The fix was really simple: Add <code>.zed/settings.json</code> file, and put the GOROOT and relevant build tags for TinyGo in it, so <code>gopls</code> picks them up. To find the params:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ tinygo info xiao-esp32c3
+</span></span><span class="line"><span class="cl">LLVM triple:       riscv32-unknown-none
+</span></span><span class="line"><span class="cl">GOOS:              linux
+</span></span><span class="line"><span class="cl">GOARCH:            arm
+</span></span><span class="line"><span class="cl">build tags:        tinygo.riscv baremetal linux arm tinygo.riscv32 esp32c3 esp espradio xiao_esp32c3 tinygo purego osusergo math_big_pure_go gc.conservative scheduler.tasks serial.usb tinygo.unicore
+</span></span><span class="line"><span class="cl">garbage collector: conservative
+</span></span><span class="line"><span class="cl">scheduler:         tasks
+</span></span><span class="line"><span class="cl">cached GOROOT:     /Users/shay/Library/Caches/tinygo/goroot-dbed4b0f656e7cd92119c0449034866ec8574a8a75d0b86b1f6c92d2c1b6a8a9
+</span></span></code></pre></div><p>Then created this settings file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;lsp&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;gopls&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;binary&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;GOROOT&#34;</span><span class="p">:</span> <span class="s2">&#34;/Users/shay/Library/Caches/tinygo/goroot-dbed4b0f656e7cd92119c0449034866ec8574a8a75d0b86b1f6c92d2c1b6a8a9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;GOFLAGS&#34;</span><span class="p">:</span> <span class="s2">&#34;-tags=tinygo.riscv,baremetal,linux,arm,tinygo.riscv32,esp32c3,esp,espradio,xiao_esp32c3,tinygo,purego,osusergo,math_big_pure_go,gc.conservative,scheduler.tasks,serial.usb,tinygo.unicore&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>EZ PZ! I wanted to get an LED blinking, but&hellip; I don&rsquo;t have an LED. So let&rsquo;s just flash some simple code on it and see that that code works. I looked at the <code>machine</code> package while I was at it, and landed with this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;fmt&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;machine&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;time&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">freq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">machine</span><span class="p">.</span><span class="nf">CPUFrequency</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d: It&#39;s a-me!\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">machine</span><span class="p">.</span><span class="nf">GetRNG</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error getting a random number: %v\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Random number: %d\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;CPU Frequency: %d Hz\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">freq</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;The time now is: %v\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">count</span><span class="o">++</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then, to flash the microcontroller and see the output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ tinygo flash -target<span class="o">=</span>xiao-esp32c3 -monitor .
+</span></span><span class="line"><span class="cl">Connecting to /dev/cu.usbmodem2101...
+</span></span><span class="line"><span class="cl">Connected.
+</span></span><span class="line"><span class="cl">Detected chip: ESP32-C3
+</span></span><span class="line"><span class="cl">USB-JTAG/Serial interface detected, disabling watchdogs
+</span></span><span class="line"><span class="cl">Loading stub loader...
+</span></span><span class="line"><span class="cl">Stub running.
+</span></span><span class="line"><span class="cl">Erasing flash...
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="c1">##################################################]  100.0%</span>
+</span></span><span class="line"><span class="cl">Flash erased.
+</span></span><span class="line"><span class="cl">Attaching SPI flash...
+</span></span><span class="line"><span class="cl">Configuring flash size...
+</span></span><span class="line"><span class="cl">Auto-detected flash size: 4MB
+</span></span><span class="line"><span class="cl">Flash params <span class="nb">set</span> to 0x022F
+</span></span><span class="line"><span class="cl">SHA digest in image updated
+</span></span><span class="line"><span class="cl">Attaching SPI flash...
+</span></span><span class="line"><span class="cl">Switching to <span class="m">460800</span> baud...
+</span></span><span class="line"><span class="cl">Running at <span class="m">460800</span> baud.
+</span></span><span class="line"><span class="cl">Compressed <span class="m">82400</span> bytes to <span class="m">58782</span> <span class="o">(</span>71%<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Flash begin: <span class="m">58782</span> bytes at 0x00000000 <span class="o">(</span><span class="m">4</span> compressed blocks<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="c1">##################################################]  100.0%</span>
+</span></span><span class="line"><span class="cl">Flash complete. Verifying...
+</span></span><span class="line"><span class="cl">MD5 verified: 227e80c3a44d10edde2263258b1be26c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Device reset.
+</span></span><span class="line"><span class="cl">Connected to /dev/cu.usbmodem2101. Press Ctrl-C to exit.
+</span></span><span class="line"><span class="cl">1: It<span class="s1">&#39;s a-me!
+</span></span></span><span class="line"><span class="cl"><span class="s1">Random number: 3731196989
+</span></span></span><span class="line"><span class="cl"><span class="s1">CPU Frequency: 160000000 Hz
+</span></span></span><span class="line"><span class="cl"><span class="s1">The time now is: 1970-01-01 00:00:01.0005752 +0000 UTC m=+1.000575201
+</span></span></span><span class="line"><span class="cl"><span class="s1">2: It&#39;</span>s a-me!
+</span></span><span class="line"><span class="cl">Random number: <span class="m">3267271047</span>
+</span></span><span class="line"><span class="cl">CPU Frequency: <span class="m">160000000</span> Hz
+</span></span><span class="line"><span class="cl">The <span class="nb">time</span> now is: 1970-01-01 00:00:02.000697 +0000 UTC <span class="nv">m</span><span class="o">=</span>+2.000697001
+</span></span><span class="line"><span class="cl">3: It<span class="s1">&#39;s a-me!
+</span></span></span><span class="line"><span class="cl"><span class="s1">Random number: 3000215343
+</span></span></span><span class="line"><span class="cl"><span class="s1">CPU Frequency: 160000000 Hz
+</span></span></span><span class="line"><span class="cl"><span class="s1">The time now is: 1970-01-01 00:00:03.0008043 +0000 UTC m=+3.000804301
+</span></span></span><span class="line"><span class="cl"><span class="s1">4: It&#39;</span>s a-me!
+</span></span><span class="line"><span class="cl">Random number: <span class="m">3601292423</span>
+</span></span><span class="line"><span class="cl">CPU Frequency: <span class="m">160000000</span> Hz
+</span></span><span class="line"><span class="cl">The <span class="nb">time</span> now is: 1970-01-01 00:00:04.00089735 +0000 UTC <span class="nv">m</span><span class="o">=</span>+4.000897351
+</span></span><span class="line"><span class="cl">5: It<span class="s1">&#39;s a-me!
+</span></span></span><span class="line"><span class="cl"><span class="s1">Random number: 1807469129
+</span></span></span><span class="line"><span class="cl"><span class="s1">CPU Frequency: 160000000 Hz
+</span></span></span><span class="line"><span class="cl"><span class="s1">The time now is: 1970-01-01 00:00:05.000997625 +0000 UTC m=+5.000997626
+</span></span></span><span class="line"><span class="cl"><span class="s1">6: It&#39;</span>s a-me!
+</span></span><span class="line"><span class="cl">Random number: <span class="m">1916848320</span>
+</span></span><span class="line"><span class="cl">CPU Frequency: <span class="m">160000000</span> Hz
+</span></span><span class="line"><span class="cl">The <span class="nb">time</span> now is: 1970-01-01 00:00:06.0010918 +0000 UTC <span class="nv">m</span><span class="o">=</span>+6.001091801
+</span></span></code></pre></div><p><img src="/images/tinygo/its-alive.gif" alt="It&rsquo;s alive!" title="It's alive!"></p>
+<p><em>Cool.</em> I was wondering how the chip would know what time is it without a RTC, turns out it doesn&rsquo;t and it just resets to epoch on every flash.</p>
+<h3 id="3-hello-internet">3. Hello, Internet!<a href="#3-hello-internet" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Let&rsquo;s get this thing talking! I&rsquo;d like to get a notification from the microcontroller to Telegram. I like doing automations with it and I actually use it as well. HOWEVER, Telegram webhooks need HTTPS, which <a href="https://github.com/tinygo-org/espradio/issues/61">TinyGo&rsquo;s <code>espradio</code> package does not support being a TLS client</a>. So we will need to do some web developmet. A few things to get working here:</p>
+<ol>
+<li>Get a Telegram bot with an HTTPS webhook endpoint</li>
+<li>Set up a relay online from HTTP to HTTPS</li>
+<li>Get WiFi working on the microcontroller</li>
+<li>Set up the microcontroller to send notifications to the relay</li>
+</ol>
+<p>So eventually it&rsquo;ll look like this:</p>
+<pre class="mermaid">
+  graph TD
+    Microcontroller --&gt;|HTTP| Relay[Relay deployed to Koyeb]
+    Relay --&gt;|HTTPS| Telegram
+    Telegram --&gt; Shay
+    Shay --&gt; Plant
+    Plant --&gt; Tea
+</pre>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/M7_2WtzqvzM?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
+<p>From an OpSec perspective, this setup is more secure, because the Bot Token doesn&rsquo;t live on the IoT device which can be stolen and decomplied. On the other hand&hellip; It&rsquo;s a plant monitoring device, who cares lol.</p>
+<h4 id="relay-deployed-to-koyeb">Relay deployed to Koyeb<a href="#relay-deployed-to-koyeb" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<p><a href="https://www.koyeb.com/">Koyeb</a> is an infrastructure provider. You can deploy stuff to it. I have a special place for them in my heart because they used to sponsor my podcast! Anyway, just a place you can run containers and other resources on the cloud.</p>
+<p>The relay is very standard Go code, which isn&rsquo;t worth reviewing here; just an http handler that parses some params, checks a simple secret, uses <code>text/template</code> to write the message, and then <code>POSTs</code> to Telegram. Quick test:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">❯ curl <span class="s1">&#39;http://localhost:8080/notify?plant=front-porch-mint&amp;status=thirsty&amp;secret=...&#39;</span>
+</span></span><span class="line"><span class="cl">ok
+</span></span></code></pre></div><p>Ended up with:</p>
+<p><img src="/images/tinygo/telegram-screenshot.jpg" alt=""></p>
+<p>Now to deploy the relay. In Koyeb I skated by with using their free tier, and a simple Buildpack Go service:</p>
+<p><img src="/images/tinygo/koyeb.jpg" alt=""></p>
+<p>And then, instead of testing against <code>localhost</code>, we can test against the Koyeb URL:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Note: no `s` here!</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#           |</span>
+</span></span><span class="line"><span class="cl">❯ curl <span class="s1">&#39;http://...-thecoreman-....koyeb.app/notify?plant=front-porch-mint&amp;status=thirsty&amp;secret=...&#39;</span>
+</span></span><span class="line"><span class="cl">ok
+</span></span></code></pre></div><p>I didn&rsquo;t finish setting up WiFi for the microcontroller, but jumped to a more hardware-y part, because my wife and daughter wanted to help out.</p>
+<h3 id="4-soldering">4. Soldering<a href="#4-soldering" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>This part was fun! The microcontroller out the package is not soldered to its headers, so I had to solder them myself. Well, not totally myself; my beautiful wife, <a href="https://olganehmad.com">Olga</a>, helped out.</p>
+<p><img src="/images/tinygo/solder-of-fortune.png" alt="Solder of Fortune" title="Solder of Fortune"></p>
+<p>Luckily, the kit that I got had a book reminding me how to solder well: <a href="https://books.plusivo.com/ebooks/Mastering%20the%20Art%20of%20Soldering%20-%20EN%20r03.pdf">&ldquo;Mastering the Art of Soldering&rdquo;</a>.</p>
+<p><img src="/images/tinygo/solder-book.jpg" alt=""></p>
+<p>Simple as:</p>
+<ol>
+<li>Build the stand</li>
+<li>Go someplace ventilated where you can work (our garage)</li>
+<li>Wet the sponge, prep the solder</li>
+<li>Heat the soldering iron to 340°C</li>
+<li>Place the headers on the breadboard and the microcontroller on top of the (breadboard is just a jig)</li>
+<li>Solder two opposite corners</li>
+<li>Check alignment</li>
+<li>Solder all the rest of the pins</li>
+<li>&hellip;Have your wife make your solders look nicer</li>
+<li>Test that it all still works</li>
+</ol>
+<p><img src="/images/tinygo/shay-solder.jpg" alt=""></p>
+<p><img src="/images/tinygo/solder-2.jpg" alt=""></p>
+<p><img src="/images/tinygo/solder-3.jpg" alt=""></p>
+<p>Then let it cool down and tested that it still works:</p>
+<p><img src="/images/tinygo/solder-4.jpg" alt=""></p>
+<h3 id="5-connecting-the-moisture-sensor">5. Connecting the moisture sensor<a href="#5-connecting-the-moisture-sensor" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The moisture sensor is a simple analog sensor. It has three connectors:</p>
+<ul>
+<li>GND: Ground</li>
+<li>VCC: Power</li>
+<li>AOUT: Analog output</li>
+</ul>
+<p>To figure out how to connect it to the microcontroller, I had to finally learn how a breadboard works. Watched this highly informative YouTube video:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/W6mixXsn-Vc?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+<p>And then looking at the schematic of the XIAO pins from Seeed Studio&rsquo;s website:</p>
+<p><img src="/images/tinygo/XIAO_ESP32-C3_front_pinout.png" alt=""></p>
+<p>And matching them up:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Sensor Pin</th>
+					<th>Sensor cable color</th>
+					<th>XIAO Pin</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>GND</td>
+					<td>Black</td>
+					<td>GND, right side, 2nd pin</td>
+			</tr>
+			<tr>
+					<td>VCC</td>
+					<td>Red</td>
+					<td>3.3V-OUT, right side, 3rd pin</td>
+			</tr>
+			<tr>
+					<td>AOUT</td>
+					<td>Yellow</td>
+					<td>D1 / A1 / ADC1, left side, 2nd pin</td>
+			</tr>
+	</tbody>
+</table>
+<p>With the breadboard, this is simple enough that I did this with my 5 year old. Great fun!</p>
+<p><img src="/images/tinygo/wiring-up-sensor.jpeg" alt=""></p>
+<p><img src="/images/tinygo/moisture-sensor.jpg" alt=""></p>
+<p>To test it, flashed some new code onto the XIAO:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;fmt&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;machine&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;time&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sensor</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">machine</span><span class="p">.</span><span class="nx">ADC</span><span class="p">{</span><span class="nx">Pin</span><span class="p">:</span><span class="w"> </span><span class="nx">machine</span><span class="p">.</span><span class="nx">A1</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sensor</span><span class="p">.</span><span class="nf">Configure</span><span class="p">(</span><span class="nx">machine</span><span class="p">.</span><span class="nx">ADCConfig</span><span class="p">{})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">moistureValue</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">sensor</span><span class="p">.</span><span class="nf">Get</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;#%d:\tMoisture value: %d\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">count</span><span class="p">,</span><span class="w"> </span><span class="nx">moistureValue</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">count</span><span class="o">++</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>And it worked: when running it, getting these readings:</p>
+<pre tabindex="0"><code>❯ tinygo flash -target=xiao-esp32c3 -monitor .
+Connecting to /dev/cu.usbmodem2101...
+Connected.
+Detected chip: ESP32-C3
+USB-JTAG/Serial interface detected, disabling watchdogs
+Loading stub loader...
+Stub running.
+Erasing flash...
+[##################################################]  100.0%
+Flash erased.
+Attaching SPI flash...
+Configuring flash size...
+Auto-detected flash size: 4MB
+Flash params set to 0x022F
+SHA digest in image updated
+Attaching SPI flash...
+Switching to 460800 baud...
+Running at 460800 baud.
+Compressed 64688 bytes to 46813 (72%)
+Flash begin: 46813 bytes at 0x00000000 (3 compressed blocks)
+[##################################################]  100.0%
+Flash complete. Verifying...
+MD5 verified: fbffcf08e8e628610c9844aec6b87838
+
+Device reset.
+Connected to /dev/cu.usbmodem2101. Press Ctrl-C to exit.
+#1:	Moisture value: 45680
+#2:	Moisture value: 45712
+#3:	Moisture value: 45232
+#4:	Moisture value: 45712
+#5:	Moisture value: 45952
+#6:	Moisture value: 45280
+#7:	Moisture value: 45808
+#8:	Moisture value: 46048
+#9:	Moisture value: 45744
+#10:	Moisture value: 45520
+#11:	Moisture value: 46272
+#12:	Moisture value: 46448
+#13:	Moisture value: 46736
+#14:	Moisture value: 46976
+#15:	Moisture value: 47520
+#16:	Moisture value: 47856
+#17:	Moisture value: 45232
+#18:	Moisture value: 44960
+#19:	Moisture value: 44992
+#20:	Moisture value: 43984
+#21:	Moisture value: 44928
+#22:	Moisture value: 45184
+#23:	Moisture value: 45280
+#24:	Moisture value: 45280
+#25:	Moisture value: 45536
+#26:	Moisture value: 45728
+#27:	Moisture value: 45984
+#28:	Moisture value: 46304
+#29:	Moisture value: 46464
+#30:	Moisture value: 46064
+#31:	Moisture value: 65520
+#32:	Moisture value: 65520
+#33:	Moisture value: 65520
+#34:	Moisture value: 65520
+#35:	Moisture value: 65520
+#36:	Moisture value: 65520
+</code></pre><p>So, <code>65520</code> is the value when the sensor was just hanging out on the table, and the 40K-ish values are when holding it with wet hands.</p>
+<h2 id="an-interview-with-ron-evans-of-tinygo">An interview with Ron Evans of TinyGo<a href="#an-interview-with-ron-evans-of-tinygo" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>This was what I managed to get done in about two sessions of working on this. Next up would be connecting the XIAO to the WiFi, putting it together with a battery, and &ldquo;deploying&rdquo; it.</p>
+<p>But, before I managed to do that, we had an interview with Ron Evans of TinyGo, which is the whole reason I started this project to begin with!</p>
+<p><img src="/images/tinygo/podcast-interview.jpg" alt=""></p>
+<p>Watch the <a href="https://youtu.be/LTPleLI43VQ?t=1133">interview with Ron Evans</a> on YouTube, or listen to the podcast episode, <a href="https://cupogo.dev/episodes/a-big-episode-about-tiny-things">Cup o&rsquo; Go E172: A Big Episode About Tiny Things</a>.</p>
+<p>Hopefully I&rsquo;ll find some time over the weekend to wrap this up and publish a part two.</p>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>See Also</h2>
+	<ul>
+	
+	<li><a href="/posts/cup-o-go-episode-0/">Cup O&#39; Go Episode 0: Premiere Episode, Upcoming 1.20 Release and Gophercons World Wide!</a></li>
+	
+	<li><a href="/posts/gophercon-israel-2024/">GopherCon Israel 2024</a></li>
+	
+	<li><a href="/posts/how-to-build-a-command-line-aka-cli-app-with-go/">בנינו כלי פנימי לצוותי הפיתוח שלנו, והלא ייאמן קרה: הם היו מרוצים</a></li>
+	
+	<li><a href="/posts/refresh-hugo-post-date/">Quick script to refresh a Hugo Post Date</a></li>
+	
+	<li><a href="/posts/a-few-go-tools-for-production-level-developer-applications/">A few Go tools for production-level developer applications (Orca Meetup)</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>Shay Nehmad</p>
+				
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.mrnice.dev/tags/go">go</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/golang">golang</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/embedded">embedded</a></span><span class="tag"><a href="https://www.mrnice.dev/tags/podcasts">podcasts</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>2303 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-09-09 18:53 -0700</p>
+			</footer>
+		</article>
+		<aside id="toc">
+			<div class="toc-title">Table of Contents</div>
+			<nav id="TableOfContents">
+  <ul>
+    <li><a href="#plan">Plan</a>
+      <ul>
+        <li><a href="#prd-what-are-we-building">PRD: What are we building?</a></li>
+        <li><a href="#how-will-we-build-it">How will we build it?</a></li>
+      </ul>
+    </li>
+    <li><a href="#lets-do-it">Let&rsquo;s do it!</a>
+      <ul>
+        <li><a href="#1-inventory--getting-the-mise-en-place">1. Inventory &ndash; getting the mise en place</a></li>
+        <li><a href="#2-hello-world">2. Hello world</a></li>
+        <li><a href="#3-hello-internet">3. Hello, Internet!</a></li>
+        <li><a href="#4-soldering">4. Soldering</a></li>
+        <li><a href="#5-connecting-the-moisture-sensor">5. Connecting the moisture sensor</a></li>
+      </ul>
+    </li>
+    <li><a href="#an-interview-with-ron-evans-of-tinygo">An interview with Ron Evans of TinyGo</a></li>
+  </ul>
+</nav>
+		</aside>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://www.mrnice.dev/posts/monitoring-mint-part-2/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>🪴 #2 | Monitoring Mint with Microcontrollers running TinyGo</span>
+			</a>
+			<a class="prev-post" href="https://www.mrnice.dev/posts/cat-knip/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>🐈 TheCoreMan/cat-knip</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2026 <a href="https://www.mrnice.dev/">Shay Nehmad</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+			&#183; <a href="https://www.mrnice.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			&#183; <a href="https://mrnicedev.onlineornot.com/" title="Status" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" class="feather"><rect width="24" height="24" opacity="0"/><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z"/><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.mrnice.dev/js/bundle.min.580988ed2982bcbb74a1773c7abea97b43e4c43b9324e10cda0813ec6ec4bb67.js" integrity="sha256-WAmI7SmCvLt0oXc8er6pe0PkxDuTJOEM2ggT7G7Eu2c=" crossorigin="anonymous"></script>
+	
+<script
+	async
+	src="https://www.googletagmanager.com/gtag/js?id=G-FG2CEVRBFP"
+	type="text/partytown"
+></script>
+<script type="text/partytown">
+	var dnt = (navigator.doNotTrack ||
+window.doNotTrack || navigator.msDoNotTrack); var doNotTrack = (dnt == "1" ||
+dnt == "yes");
+	if (!doNotTrack) {
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-FG2CEVRBFP', { 'anonymize_ip': false });
+	}
+</script>
+
+
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
+
+</body>
+
+</html>

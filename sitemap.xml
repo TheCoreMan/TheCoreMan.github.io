@@ -2,22 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.mrnice.dev/posts/cat-knip/</loc>
-    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
+    <loc>https://www.mrnice.dev/tags/embedded/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/go/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/golang/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/monitoring-mint-part-2/</loc>
+    <lastmod>2026-09-12T12:22:23-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/tags/podcasts/</loc>
+    <lastmod>2026-09-09T18:53:50-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/monitoring-mint-part-1/</loc>
+    <lastmod>2026-09-09T18:53:50-07:00</lastmod>
+  </url><url>
+    <loc>https://www.mrnice.dev/posts/cat-knip/</loc>
     <lastmod>2026-07-24T15:10:11-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/nestjs/</loc>
     <lastmod>2026-07-24T15:10:11-07:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/posts/</loc>
-    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/short/</loc>
-    <lastmod>2026-07-24T15:10:11-07:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/</loc>
     <lastmod>2026-07-24T15:10:11-07:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/at-the-gates-of-slop/</loc>
@@ -64,9 +82,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/shell-tricks-bag/</loc>
     <lastmod>2024-10-26T21:28:15+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/go/</loc>
-    <lastmod>2024-09-09T22:29:59+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/posts/gophercon-israel-2024/</loc>
     <lastmod>2024-09-09T22:29:59+03:00</lastmod>
@@ -218,9 +233,6 @@
     <loc>https://www.mrnice.dev/posts/better-tech-leadership/</loc>
     <lastmod>2023-06-20T12:07:50+03:00</lastmod>
   </url><url>
-    <loc>https://www.mrnice.dev/tags/podcasts/</loc>
-    <lastmod>2023-06-20T12:07:50+03:00</lastmod>
-  </url><url>
     <loc>https://www.mrnice.dev/tags/css/</loc>
     <lastmod>2023-06-09T08:03:13+03:00</lastmod>
   </url><url>
@@ -262,9 +274,6 @@
   </url><url>
     <loc>https://www.mrnice.dev/posts/learning-css-with-css-battles/</loc>
     <lastmod>2023-04-12T11:35:20+03:00</lastmod>
-  </url><url>
-    <loc>https://www.mrnice.dev/tags/golang/</loc>
-    <lastmod>2023-02-22T17:51:00+03:00</lastmod>
   </url><url>
     <loc>https://www.mrnice.dev/tags/open-source/</loc>
     <lastmod>2023-02-22T17:51:00+03:00</lastmod>
