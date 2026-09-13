@@ -320,9 +320,9 @@ It&rsquo;s good that you asked that because one of the big features of this rele
 </span></span></code></pre></div><p><img src="/images/tinygo/its-alive.gif" alt="It&rsquo;s alive!" title="It's alive!"></p>
 <p><em>Cool.</em> I was wondering how the chip would know what time is it without a RTC, turns out it doesn&rsquo;t and it just resets to epoch on every flash.</p>
 <h3 id="3-hello-internet">3. Hello, Internet!<a href="#3-hello-internet" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
-<p>Let&rsquo;s get this thing talking! I&rsquo;d like to get a notification from the microcontroller to Telegram. I like doing automations with it and I actually use it as well. HOWEVER, Telegram webhooks need HTTPS, which <a href="https://github.com/tinygo-org/espradio/issues/61">TinyGo&rsquo;s <code>espradio</code> package does not support being a TLS client</a>. So we will need to do some web developmet. A few things to get working here:</p>
+<p>Let&rsquo;s get this thing talking! I&rsquo;d like to get a notification from the microcontroller to Telegram. I like doing automations with it and I actually use it as well. HOWEVER, Telegram APIs need HTTPS, which <a href="https://github.com/tinygo-org/espradio/issues/61">TinyGo&rsquo;s <code>espradio</code> package does not support being a TLS client</a>. So we will need to do some web developmet. A few things to get working here:</p>
 <ol>
-<li>Get a Telegram bot with an HTTPS webhook endpoint</li>
+<li>Get a Telegram bot with an HTTPS API endpoint</li>
 <li>Set up a relay online from HTTP to HTTPS</li>
 <li>Get WiFi working on the microcontroller</li>
 <li>Set up the microcontroller to send notifications to the relay</li>
